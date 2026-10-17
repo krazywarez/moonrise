@@ -1,4 +1,5 @@
 import CoreLocation
+import Feeds
 import Foundation
 import Observation
 import SkyEngine
@@ -16,6 +17,10 @@ actor Astronomer {
         let i = try SkyEngine.illumination(body, at: date)
         let rs = SkyEngine.riseSet(body, after: date, from: observer)
         return BodyDetails(body: body, position: h, distanceAU: eq.distance, magnitude: i.magnitude, phaseFraction: i.phaseFraction, rise: rs.rise, set: rs.set)
+    }
+
+    func tonight(at date: Date, from observer: Observer) throws -> Tonight {
+        try Tonight(at: date, from: observer)
     }
 }
 
@@ -40,6 +45,9 @@ final class SkyModel: NSObject, CLLocationManagerDelegate {
     private(set) var hasLocation = false
     private(set) var scene: SkyScene?
     private(set) var lastBuild: Duration = .zero
+    private(set) var tonight: Tonight?
+    private(set) var spaceWeather: SpaceWeather?
+    private var weatherFetched: Date?
     /// Hours from now shown by the time scrubber.
     var offsetHours = 0.0 { didSet { refresh() } }
     var displayedDate: Date { .now.addingTimeInterval(offsetHours * 3600) }
@@ -74,8 +82,20 @@ final class SkyModel: NSObject, CLLocationManagerDelegate {
             scene = try? await astronomer.scene(at: date, from: observer)
             lastBuild = clock.now - start
             if let scene { self.scene = scene }
+            if offsetHours == 0 { tonight = try? await astronomer.tonight(at: date, from: observer) }
             building = false
             if pending { pending = false; refresh() }
+        }
+    }
+
+    /// SWPC asks for no more than once a minute; this checks every 10.
+    func refreshSpaceWeather() async {
+        if let weatherFetched, Date.now.timeIntervalSince(weatherFetched) < 600 { return }
+        do {
+            spaceWeather = try await SpaceWeather.fetch()
+            weatherFetched = .now
+        } catch {
+            log.error("Space weather failed: \(error.localizedDescription, privacy: .public)")
         }
     }
 

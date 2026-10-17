@@ -1,0 +1,142 @@
+import Feeds
+import SkyEngine
+import SwiftUI
+
+/// Pull-up sheet over the sky: time scrubber, then tonight's summary.
+struct TodaySheet: View {
+    @Bindable var model: SkyModel
+    var ink: Color
+    var background: Color
+
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 0) {
+                scrubber
+                Text(summary).font(.system(size: 13)).opacity(0.7).padding(.bottom, 16)
+                if let t = model.tonight {
+                    section("Moon") { moon(t) }
+                    section("Planets tonight") { planets(t) }
+                    section("Sun") { sun(t) }
+                }
+                section("Space weather") { weather }
+                Text("Space weather data: NOAA Space Weather Prediction Center.")
+                    .font(.system(size: 11)).opacity(0.5).padding(.top, 8)
+            }
+            .padding(.horizontal, 20)
+            .padding(.top, 18)
+        }
+        .foregroundStyle(ink)
+        .presentationBackground(background)
+        .task {
+            while !Task.isCancelled {
+                await model.refreshSpaceWeather()
+                try? await Task.sleep(for: .seconds(600))
+            }
+        }
+    }
+
+    private var summary: String {
+        var parts: [String] = []
+        if let t = model.tonight {
+            parts.append("Moon \(Int((t.moonIllumination * 100).rounded()))%")
+            let up = t.planets.filter { $0.best != nil }.map { $0.body.rawValue.capitalized }
+            parts.append(up.isEmpty ? "No bright planets tonight" : up.joined(separator: ", "))
+        }
+        if let w = model.spaceWeather { parts.append(String(format: "Kp %.1f", w.kpNow)) }
+        return parts.joined(separator: " · ")
+    }
+
+    private var scrubber: some View {
+        HStack(spacing: 12) {
+            Text(model.displayedDate.formatted(date: .omitted, time: .shortened))
+                .font(.system(size: 13).monospacedDigit())
+                .frame(width: 70, alignment: .leading)
+            Slider(value: $model.offsetHours, in: -12...12, step: 0.25).tint(ink)
+            Button("Now") { model.offsetHours = 0 }
+                .font(.system(size: 13, weight: .medium))
+                .opacity(model.offsetHours == 0 ? 0.4 : 1)
+        }
+        .padding(.bottom, 10)
+    }
+
+    private func section(_ title: String, @ViewBuilder content: () -> some View) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(title).font(.system(size: 11, weight: .medium)).textCase(.uppercase).tracking(0.8).opacity(0.6)
+            content()
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.vertical, 12)
+        .overlay(alignment: .top) { Rectangle().fill(ink.opacity(0.25)).frame(height: 0.5) }
+    }
+
+    private func moon(_ t: Tonight) -> some View {
+        let quarter = switch t.nextQuarter.quarter {
+        case .new: "New moon"
+        case .firstQuarter: "First quarter"
+        case .full: "Full moon"
+        case .lastQuarter: "Last quarter"
+        }
+        return rows([
+            ("Illuminated", "\(Int((t.moonIllumination * 100).rounded()))%, \(t.moonPhase < 180 ? "waxing" : "waning")"),
+            (quarter, t.nextQuarter.date.formatted(.dateTime.weekday(.abbreviated).day().month(.abbreviated).hour().minute())),
+        ])
+    }
+
+    private func planets(_ t: Tonight) -> some View {
+        rows(t.planets.map { p in
+            let name = p.body.rawValue.capitalized
+            guard let best = p.best else { return (name, "not well placed tonight") }
+            var parts: [String] = []
+            if p.now.altitude > 0 {
+                parts.append(String(format: "up now, %.0f° %@", p.now.altitude, compass(p.now.azimuth)))
+            } else if let rise = p.rise, rise < t.end {
+                parts.append("rises \(time(rise))")
+            }
+            // A best point at the end of the window means it is still climbing at dawn.
+            if t.end.timeIntervalSince(best.date) < 900 {
+                parts.append(String(format: "%.0f° %@ by dawn", best.position.altitude, compass(best.position.azimuth)))
+            } else {
+                parts.append(String(format: "highest %@ at %.0f°", time(best.date), best.position.altitude))
+            }
+            return (name, parts.joined(separator: " · "))
+        })
+    }
+
+    private func sun(_ t: Tonight) -> some View {
+        rows([
+            ("Sunset", t.sunset.map(time) ?? "already set"),
+            ("Sunrise", t.sunrise.map(time) ?? "–"),
+        ])
+    }
+
+    @ViewBuilder
+    private var weather: some View {
+        if let w = model.spaceWeather {
+            rows([
+                ("Kp now", String(format: "%.1f%@", w.kpNow, SpaceWeather.gScale(w.kpNow).map { " (G\($0) storm)" } ?? "")),
+                ("Next 24 h", w.kpNext24h.map { String(format: "up to Kp %.1f%@", $0, SpaceWeather.gScale($0).map { " (G\($0))" } ?? "") } ?? "–"),
+                ("Updated", time(w.observedAt)),
+            ])
+        } else {
+            Text("Loading").font(.system(size: 13)).opacity(0.6)
+        }
+    }
+
+    private func rows(_ items: [(String, String)]) -> some View {
+        Grid(alignment: .leading, horizontalSpacing: 16, verticalSpacing: 6) {
+            ForEach(items, id: \.0) { item in
+                GridRow {
+                    Text(item.0).opacity(0.7)
+                    Text(item.1).monospacedDigit()
+                }
+                .font(.system(size: 14))
+            }
+        }
+    }
+
+    private func time(_ d: Date) -> String { d.formatted(date: .omitted, time: .shortened) }
+
+    private func compass(_ azimuth: Double) -> String {
+        ["N", "NE", "E", "SE", "S", "SW", "W", "NW"][Int(((azimuth + 22.5) / 45).rounded(.down)) % 8]
+    }
+}

@@ -16,6 +16,8 @@ targets:
         product: SkyEngine
       - package: MoonriseKit
         product: SkyRenderer
+      - package: MoonriseKit
+        product: Feeds
     entitlements:
       path: Sources/Moonrise.entitlements
       properties:

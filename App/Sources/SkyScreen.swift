@@ -35,13 +35,18 @@ struct SkyScreen: View {
                 }
                 VStack(spacing: 0) {
                     header
+                    if let selection { card(for: selection).padding(.horizontal, 16).padding(.top, 8) }
                     Spacer()
-                    if let selection { card(for: selection).padding(.horizontal, 16).padding(.bottom, 10) }
-                    scrubber
                 }
             }
         }
         .foregroundStyle(ink)
+        .sheet(isPresented: .constant(true)) {
+            TodaySheet(model: model, ink: ink, background: style.ground)
+                .presentationDetents([.height(110), .medium, .large])
+                .presentationBackgroundInteraction(.enabled(upThrough: .medium))
+                .interactiveDismissDisabled()
+        }
         .onChange(of: model.offsetHours) { select(selection) }
         .task {
             model.start()
@@ -108,22 +113,6 @@ struct SkyScreen: View {
         }
         .padding(.horizontal, 20)
         .padding(.top, 8)
-    }
-
-    private var scrubber: some View {
-        HStack(spacing: 12) {
-            Text(model.displayedDate.formatted(date: .omitted, time: .shortened))
-                .font(.system(size: 13).monospacedDigit())
-                .frame(width: 70, alignment: .leading)
-            Slider(value: $model.offsetHours, in: -12...12, step: 0.25)
-                .tint(ink)
-            Button("Now") { model.offsetHours = 0 }
-                .font(.system(size: 13, weight: .medium))
-                .disabled(model.offsetHours == 0)
-        }
-        .padding(.horizontal, 20)
-        .padding(.vertical, 12)
-        .background(style.ground.opacity(0.9))
     }
 
     @ViewBuilder
