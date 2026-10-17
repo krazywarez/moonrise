@@ -1,0 +1,194 @@
+import CoreLocation
+import SkyEngine
+import SkyRenderer
+import SwiftUI
+import WidgetKit
+
+@main
+struct MoonriseWidgets: WidgetBundle {
+    var body: some Widget {
+        MoonWidget()
+        PlanetsWidget()
+    }
+}
+
+/// Last known location, or Chicago. The widget does not request a fresh fix.
+func widgetObserver() -> (Observer, Bool) {
+    if let c = CLLocationManager().location?.coordinate {
+        return (Observer(latitude: c.latitude, longitude: c.longitude), true)
+    }
+    return (Observer(latitude: 41.8781, longitude: -87.6298), false)
+}
+
+/// Astronomy Engine is not thread-safe and WidgetKit may build timelines concurrently.
+let engineLock = NSLock()
+
+/// Hourly entries for the next 12 hours.
+func hourly(from date: Date) -> [Date] {
+    (0..<12).map { date.addingTimeInterval(Double($0) * 3600) }
+}
+
+// MARK: - Moon
+
+struct MoonEntry: TimelineEntry {
+    var date: Date
+    var illumination: Double
+    var waxing: Bool
+    var nextQuarter: (SkyEngine.MoonQuarter, Date)?
+}
+
+struct MoonProvider: TimelineProvider {
+    func placeholder(in context: Context) -> MoonEntry {
+        MoonEntry(date: .now, illumination: 0.44, waxing: true, nextQuarter: nil)
+    }
+
+    func getSnapshot(in context: Context, completion: @escaping (MoonEntry) -> Void) {
+        completion(entry(at: .now))
+    }
+
+    func getTimeline(in context: Context, completion: @escaping (Timeline<MoonEntry>) -> Void) {
+        completion(Timeline(entries: hourly(from: .now).map(entry), policy: .atEnd))
+    }
+
+    func entry(at date: Date) -> MoonEntry {
+        engineLock.lock()
+        defer { engineLock.unlock() }
+        let illumination = (try? SkyEngine.illumination(.moon, at: date).phaseFraction) ?? 0
+        let phase = (try? SkyEngine.moonPhase(at: date)) ?? 0
+        let q = try? SkyEngine.nextMoonQuarter(after: date)
+        return MoonEntry(date: date, illumination: illumination, waxing: phase < 180, nextQuarter: q.map { ($0.quarter, $0.date) })
+    }
+}
+
+func quarterName(_ q: SkyEngine.MoonQuarter) -> String {
+    switch q {
+    case .new: "New moon"
+    case .firstQuarter: "First quarter"
+    case .full: "Full moon"
+    case .lastQuarter: "Last quarter"
+    }
+}
+
+struct MoonWidgetView: View {
+    @Environment(\.widgetFamily) var family
+    var entry: MoonEntry
+
+    var percent: String { "\(Int((entry.illumination * 100).rounded()))%" }
+
+    var body: some View {
+        switch family {
+        case .accessoryCircular:
+            ZStack {
+                AccessoryWidgetBackground()
+                MoonDisc(fraction: entry.illumination, waxing: entry.waxing, light: .white, dark: .white.opacity(0.15))
+                    .padding(6)
+            }
+        case .accessoryInline:
+            Text("Moon \(percent) \(entry.waxing ? "waxing" : "waning")")
+        default:
+            VStack(alignment: .leading, spacing: 6) {
+                MoonDisc(fraction: entry.illumination, waxing: entry.waxing)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(height: 64)
+                Spacer(minLength: 0)
+                Text("Moon \(percent)").font(.system(size: 15, weight: .medium))
+                if let (q, d) = entry.nextQuarter {
+                    Text("\(quarterName(q)) \(d.formatted(.dateTime.weekday(.abbreviated).hour().minute()))")
+                        .font(.system(size: 11)).opacity(0.7)
+                }
+            }
+            .foregroundStyle(Color(red: 0.95, green: 0.95, blue: 0.93))
+        }
+    }
+}
+
+struct MoonWidget: Widget {
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: "moon", provider: MoonProvider()) { entry in
+            MoonWidgetView(entry: entry)
+                .containerBackground(Color(red: 0.043, green: 0.078, blue: 0.141), for: .widget)
+        }
+        .configurationDisplayName("Moon")
+        .description("Tonight's moon phase.")
+        .supportedFamilies([.systemSmall, .accessoryCircular, .accessoryInline])
+    }
+}
+
+// MARK: - Planets
+
+struct PlanetsEntry: TimelineEntry {
+    struct Row: Hashable {
+        var name: String
+        var detail: String
+    }
+
+    var date: Date
+    var rows: [Row]
+    var located: Bool
+}
+
+struct PlanetsProvider: TimelineProvider {
+    func placeholder(in context: Context) -> PlanetsEntry {
+        PlanetsEntry(date: .now, rows: [.init(name: "Saturn", detail: "up now, 30° SE")], located: true)
+    }
+
+    func getSnapshot(in context: Context, completion: @escaping (PlanetsEntry) -> Void) {
+        completion(entry(at: .now))
+    }
+
+    func getTimeline(in context: Context, completion: @escaping (Timeline<PlanetsEntry>) -> Void) {
+        completion(Timeline(entries: hourly(from: .now).map(entry), policy: .atEnd))
+    }
+
+    func entry(at date: Date) -> PlanetsEntry {
+        let (observer, located) = widgetObserver()
+        engineLock.lock()
+        defer { engineLock.unlock() }
+        guard let t = try? Tonight(at: date, from: observer) else { return PlanetsEntry(date: date, rows: [], located: located) }
+        let time: (Date) -> String = { $0.formatted(date: .omitted, time: .shortened) }
+        let rows = t.planets.filter { $0.best != nil }.map { p -> PlanetsEntry.Row in
+            let name = p.body.rawValue.capitalized
+            if p.now.altitude > 0 { return .init(name: name, detail: String(format: "up, %.0f°", p.now.altitude)) }
+            if let rise = p.rise, rise < t.end { return .init(name: name, detail: "rises \(time(rise))") }
+            return .init(name: name, detail: "tonight")
+        }
+        return PlanetsEntry(date: date, rows: rows, located: located)
+    }
+}
+
+struct PlanetsWidgetView: View {
+    var entry: PlanetsEntry
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text("Planets tonight").font(.system(size: 11, weight: .medium)).textCase(.uppercase).opacity(0.6)
+            if entry.rows.isEmpty {
+                Text("None well placed").font(.system(size: 13))
+            }
+            ForEach(entry.rows, id: \.self) { row in
+                HStack {
+                    Text(row.name).font(.system(size: 14, weight: .medium))
+                    Spacer()
+                    Text(row.detail).font(.system(size: 12).monospacedDigit()).opacity(0.75)
+                }
+            }
+            Spacer(minLength: 0)
+            if !entry.located {
+                Text("Open Moonrise to set location").font(.system(size: 10)).opacity(0.5)
+            }
+        }
+        .foregroundStyle(Color(red: 0.95, green: 0.95, blue: 0.93))
+    }
+}
+
+struct PlanetsWidget: Widget {
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: "planets", provider: PlanetsProvider()) { entry in
+            PlanetsWidgetView(entry: entry)
+                .containerBackground(Color(red: 0.043, green: 0.078, blue: 0.141), for: .widget)
+        }
+        .configurationDisplayName("Planets tonight")
+        .description("Which planets are up tonight and when they rise.")
+        .supportedFamilies([.systemSmall, .systemMedium])
+    }
+}

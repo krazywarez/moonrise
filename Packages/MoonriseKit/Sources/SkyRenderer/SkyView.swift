@@ -147,15 +147,7 @@ public struct SkyView: View {
     func drawMoon(_ context: inout GraphicsContext, at c: CGPoint, radius r: Double, fraction: Double, waxing: Bool) {
         let disc = CGRect(x: c.x - r, y: c.y - r, width: 2 * r, height: 2 * r)
         context.fill(Path(ellipseIn: disc), with: .color(style.moonDark))
-        // Lit limb: a half disc plus or minus the terminator ellipse.
-        let side: Double = waxing ? 1 : -1
-        let e = r * abs(1 - 2 * fraction)
-        var lit = Path()
-        lit.move(to: CGPoint(x: c.x, y: c.y - r))
-        lit.addArc(center: c, radius: r, startAngle: .degrees(-90), endAngle: .degrees(90), clockwise: side < 0)
-        lit.addEllipseArc(center: c, rx: e, ry: r, gibbous: fraction > 0.5, side: side)
-        lit.closeSubpath()
-        context.fill(lit, with: .color(style.moonLight))
+        context.fill(Path.moonLit(center: c, radius: r, fraction: fraction, waxing: waxing), with: .color(style.moonLight))
     }
 
     func drawHorizon(_ context: inout GraphicsContext, _ p: Projection, size: CGSize) {
@@ -186,6 +178,18 @@ public struct SkyView: View {
 }
 
 extension Path {
+    /// The lit part of the moon's disc: a half disc plus or minus the terminator ellipse.
+    /// Waxing is lit on the right, as seen from the northern hemisphere.
+    public static func moonLit(center c: CGPoint, radius r: Double, fraction: Double, waxing: Bool) -> Path {
+        let side: Double = waxing ? 1 : -1
+        var lit = Path()
+        lit.move(to: CGPoint(x: c.x, y: c.y - r))
+        lit.addArc(center: c, radius: r, startAngle: .degrees(-90), endAngle: .degrees(90), clockwise: side < 0)
+        lit.addEllipseArc(center: c, rx: r * abs(1 - 2 * fraction), ry: r, gibbous: fraction > 0.5, side: side)
+        lit.closeSubpath()
+        return lit
+    }
+
     /// Half of the terminator ellipse, from the moon's bottom to its top.
     mutating func addEllipseArc(center c: CGPoint, rx: Double, ry: Double, gibbous: Bool, side: Double) {
         // Gibbous: terminator bulges into the dark half; crescent: into the lit half.

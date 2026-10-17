@@ -18,6 +18,7 @@ targets:
         product: SkyRenderer
       - package: MoonriseKit
         product: Feeds
+      - target: MoonriseWidgets
     entitlements:
       path: Sources/Moonrise.entitlements
       properties:
@@ -37,3 +38,30 @@ targets:
         INFOPLIST_KEY_UIStatusBarStyle: UIStatusBarStyleLightContent
         INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait
         INFOPLIST_KEY_NSLocationWhenInUseUsageDescription: Moonrise uses your location to draw the sky above you.
+  MoonriseWidgets:
+    type: app-extension
+    platform: iOS
+    sources: [Widgets]
+    dependencies:
+      - package: MoonriseKit
+        product: SkyEngine
+      - package: MoonriseKit
+        product: SkyRenderer
+      - sdk: WidgetKit.framework
+      - sdk: SwiftUI.framework
+    info:
+      path: Widgets/Info.plist
+      properties:
+        CFBundleDisplayName: Moonrise
+        NSWidgetWantsLocation: true
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: sh.krz.moonrise.widgets
+        DEVELOPMENT_TEAM: ZCNAX3VL9D
+        CODE_SIGN_STYLE: Automatic
+        SWIFT_VERSION: "6.0"
+        TARGETED_DEVICE_FAMILY: "1"
+        MARKETING_VERSION: "0.1"
+        CURRENT_PROJECT_VERSION: "1"
