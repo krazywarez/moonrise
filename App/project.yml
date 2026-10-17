@@ -10,7 +10,7 @@ targets:
   Moonrise:
     type: application
     platform: iOS
-    sources: [Sources]
+    sources: [Sources, Shared]
     dependencies:
       - package: MoonriseKit
         product: SkyEngine
@@ -23,7 +23,18 @@ targets:
       path: Sources/Moonrise.entitlements
       properties:
         aps-environment: development
+    info:
+      path: Sources/Info.plist
+      properties:
+        MoonriseAPIURL: $(MOONRISE_API_URL)
+        NSAppTransportSecurity:
+          NSAllowsLocalNetworking: true
     settings:
+      configs:
+        Debug:
+          MOONRISE_API_URL: http://localhost:8787
+        Release:
+          MOONRISE_API_URL: ""
       base:
         PRODUCT_BUNDLE_IDENTIFIER: sh.krz.moonrise
         DEVELOPMENT_TEAM: ZCNAX3VL9D
@@ -34,6 +45,7 @@ targets:
         CURRENT_PROJECT_VERSION: "1"
         GENERATE_INFOPLIST_FILE: YES
         INFOPLIST_KEY_CFBundleDisplayName: Moonrise
+        INFOPLIST_KEY_NSSupportsLiveActivities: YES
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
         INFOPLIST_KEY_UIStatusBarStyle: UIStatusBarStyleLightContent
         INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait
@@ -41,7 +53,7 @@ targets:
   MoonriseWidgets:
     type: app-extension
     platform: iOS
-    sources: [Widgets]
+    sources: [Widgets, Shared]
     dependencies:
       - package: MoonriseKit
         product: SkyEngine

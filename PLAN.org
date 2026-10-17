@@ -346,6 +346,21 @@ Stacked MRs: !7 Sun tab, !8 backend, !9 aurora map.
 - Not done: app registration with the backend (needs a deployed URL),
   launch caching, Live Activities.
 
+** M3 status (2026-10-17)
+MR !10.
+
+- Backend: Launch Library 2 upcoming list every 10 minutes (separate cron,
+  6 of 15 anonymous requests per hour) into D1; =GET /v1/launches=.
+  Smoke-tested locally with live LL2 data. LL2 images are not used
+  (licence often "Unknown").
+- App: Launches tab (list with T− countdowns, detail sheet); Debug builds
+  read the API from =http://localhost:8787= (=MOONRISE_API_URL=).
+- Live Activity: "Follow on Lock Screen" starts a local countdown
+  activity; verified on the simulator Lock Screen. Updates by push
+  (holds, scrubs, liftoff) not done.
+- Not done: rocket silhouettes to scale, push-to-start and push updates,
+  "launch in one hour" notification.
+
 * roadmap
 ** v1: now
 Sky, System, Sun, Launches, Library core (above).

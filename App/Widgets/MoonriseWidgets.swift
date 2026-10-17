@@ -9,6 +9,7 @@ struct MoonriseWidgets: WidgetBundle {
     var body: some Widget {
         MoonWidget()
         PlanetsWidget()
+        LaunchLiveActivity()
     }
 }
 

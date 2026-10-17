@@ -13,6 +13,7 @@ struct MoonriseApp: App {
             TabView {
                 Tab("Sky", systemImage: "sparkles") { SkyScreen() }
                 Tab("Sun", systemImage: "sun.max") { SunScreen() }
+                Tab("Launches", systemImage: "airplane.departure") { LaunchesScreen() }
             }
             .preferredColorScheme(.dark)
         }

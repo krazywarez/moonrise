@@ -1,5 +1,6 @@
 import { send, type ApnsConfig } from "./apns";
 import { actionableKp, alertBands, eventKey, isNight } from "./aurora";
+import { fetchUpcoming, type Launch } from "./ll2";
 import { fetchSpaceWeather, next24h, type SpaceWeather } from "./swpc";
 
 interface Env {
@@ -17,6 +18,8 @@ interface DeviceRequest {
   utcOffsetMinutes: number;
   aurora?: boolean;
 }
+
+const LAUNCH_CRON = "*/10 * * * *";
 
 const json = (body: unknown, status = 200) => Response.json(body, { status });
 
@@ -49,6 +52,7 @@ export default {
       return json({ ok: true, feeds: rows.results });
     }
     if (request.method === "GET" && url.pathname === "/v1/today") return today(env, now);
+    if (request.method === "GET" && url.pathname === "/v1/launches") return launches(env, now);
 
     if (request.method === "POST" && url.pathname === "/v1/devices") {
       const d = (await request.json().catch(() => ({}))) as Partial<DeviceRequest>;
@@ -69,10 +73,50 @@ export default {
     return json({ error: "not found" }, 404);
   },
 
-  async scheduled(_controller: ScheduledController, env: Env, ctx: ExecutionContext): Promise<void> {
-    ctx.waitUntil(pollSpaceWeather(env, new Date()));
+  async scheduled(controller: ScheduledController, env: Env, ctx: ExecutionContext): Promise<void> {
+    const now = new Date(controller.scheduledTime);
+    // Launches every 10 minutes: 6 of the 15 anonymous Launch Library 2 requests per hour.
+    if (controller.cron === LAUNCH_CRON) ctx.waitUntil(pollLaunches(env, now));
+    else ctx.waitUntil(pollSpaceWeather(env, now));
   },
 } satisfies ExportedHandler<Env>;
+
+async function launches(env: Env, now: Date): Promise<Response> {
+  const since = new Date(now.getTime() - 6 * 3600_000).toISOString();
+  const rows = await env.DB.prepare("SELECT * FROM launches WHERE net >= ?1 ORDER BY net LIMIT 20").bind(since).all<Record<string, unknown>>();
+  const fetched = await env.DB.prepare("SELECT fetched_at FROM feed_snapshots WHERE feed = 'll2' AND ok = 1").first<{ fetched_at: string }>();
+  return json({
+    fetchedAt: fetched?.fetched_at ?? null,
+    launches: rows.results.map((r) => ({
+      id: r.id, name: r.name, net: r.net, windowStart: r.window_start, windowEnd: r.window_end,
+      status: r.status, statusName: r.status_name, provider: r.provider, rocket: r.rocket,
+      mission: r.mission, missionType: r.mission_type, missionDescription: r.mission_description, orbit: r.orbit,
+      pad: r.pad, location: r.location, padLatitude: r.pad_latitude, padLongitude: r.pad_longitude,
+    })),
+  });
+}
+
+async function pollLaunches(env: Env, now: Date): Promise<void> {
+  let list: Launch[];
+  try {
+    list = await fetchUpcoming();
+  } catch (e) {
+    console.error("ll2", String(e));
+    await env.DB.prepare("INSERT INTO feed_snapshots (feed, fetched_at, ok) VALUES ('ll2', ?1, 0) ON CONFLICT (feed) DO UPDATE SET fetched_at = ?1, ok = 0").bind(now.toISOString()).run();
+    return;
+  }
+  const upsert = env.DB.prepare(
+    `INSERT INTO launches (id, name, net, window_start, window_end, status, status_name, provider, rocket, mission, mission_type, mission_description, orbit, pad, location, pad_latitude, pad_longitude, last_updated)
+     VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17, ?18)
+     ON CONFLICT (id) DO UPDATE SET name = ?2, net = ?3, window_start = ?4, window_end = ?5, status = ?6, status_name = ?7, provider = ?8, rocket = ?9,
+       mission = ?10, mission_type = ?11, mission_description = ?12, orbit = ?13, pad = ?14, location = ?15, pad_latitude = ?16, pad_longitude = ?17, last_updated = ?18`,
+  );
+  await env.DB.batch([
+    ...list.map((l) => upsert.bind(l.id, l.name, l.net, l.windowStart, l.windowEnd, l.status, l.statusName, l.provider, l.rocket, l.mission, l.missionType, l.missionDescription, l.orbit, l.pad, l.location, l.padLatitude, l.padLongitude, l.lastUpdated)),
+    env.DB.prepare("DELETE FROM launches WHERE net < ?1").bind(new Date(now.getTime() - 7 * 86400_000).toISOString()),
+    env.DB.prepare("INSERT INTO feed_snapshots (feed, fetched_at, ok) VALUES ('ll2', ?1, 1) ON CONFLICT (feed) DO UPDATE SET fetched_at = ?1, ok = 1").bind(now.toISOString()),
+  ]);
+}
 
 async function pollSpaceWeather(env: Env, now: Date): Promise<void> {
   let w: SpaceWeather;
