@@ -1,11 +1,14 @@
 import Charts
+import CoreLocation
 import Feeds
+import SkyRenderer
 import SwiftUI
 
 struct SunScreen: View {
     @State private var wavelength = SolarImage.corona
     @State private var kp: [KpBar] = []
     @State private var xray: [XRaySample] = []
+    @State private var ovation: Ovation?
     @State private var failed = false
     @State private var imageID = Date.now
 
@@ -28,13 +31,14 @@ struct SunScreen: View {
                 Text(wavelength.caption).font(.system(size: 13)).opacity(0.75).padding(.top, 8)
                 Text(SolarImage.credit).font(.system(size: 10)).opacity(0.5).padding(.top, 4)
 
+                section("Aurora") { auroraMap }
                 section("Solar flares, last 24 h") { flares }
                 section("Geomagnetic activity (Kp)") { kpChart }
 
                 if failed {
                     Text("Couldn't load space weather. Pull to retry.").font(.system(size: 13)).foregroundStyle(accent).padding(.top, 12)
                 }
-                Text("Space weather data: NOAA Space Weather Prediction Center.").font(.system(size: 10)).opacity(0.5).padding(.vertical, 16)
+                Text("Space weather data: NOAA Space Weather Prediction Center. Coastlines: Natural Earth.").font(.system(size: 10)).opacity(0.5).padding(.vertical, 16)
             }
             .padding(.horizontal, 20)
         }
@@ -48,10 +52,12 @@ struct SunScreen: View {
         imageID = .now
         async let k = try? SpaceWeather.fetchKpBars()
         async let x = try? XRay.fetch()
-        let (kpResult, xrayResult) = await (k, x)
+        async let o = try? Ovation.fetch()
+        let (kpResult, xrayResult, ovationResult) = await (k, x, o)
         kp = kpResult ?? kp
         xray = xrayResult ?? xray
-        failed = kpResult == nil || xrayResult == nil
+        ovation = ovationResult ?? ovation
+        failed = kpResult == nil || xrayResult == nil || ovationResult == nil
     }
 
     private var image: some View {
@@ -73,6 +79,23 @@ struct SunScreen: View {
             content()
         }
         .padding(.top, 24)
+    }
+
+    /// Last known location, or Chicago.
+    private var observer: (lat: Double, lon: Double) {
+        let c = CLLocationManager().location?.coordinate
+        return (c?.latitude ?? 41.8781, c?.longitude ?? -87.6298)
+    }
+
+    @ViewBuilder
+    private var auroraMap: some View {
+        if let ovation {
+            AuroraMap(cells: ovation.cells.map { GridValue(lon: $0.lon, lat: $0.lat, value: $0.probability) }, observer: observer, ink: ink)
+            Text("Chance of visible aurora overhead, OVATION model, for \(ovation.forecastTime.formatted(date: .omitted, time: .shortened)). Brighter green is more likely.")
+                .font(.system(size: 11)).opacity(0.6)
+        } else {
+            Text("Loading").font(.system(size: 13)).opacity(0.6)
+        }
     }
 
     @ViewBuilder

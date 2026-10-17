@@ -331,7 +331,7 @@ Not done:
 - Automatic night mode after astronomical dusk.
 
 ** M2 status (2026-10-17)
-Stacked MRs: !7 Sun tab, !8 backend.
+Stacked MRs: !7 Sun tab, !8 backend, !9 aurora map.
 
 - Sun tab: done, checked in the simulator with live data.
 - Backend (=server/=): SWPC polling, =/v1/today=, device registration,
@@ -341,8 +341,10 @@ Stacked MRs: !7 Sun tab, !8 backend.
   in-line from the cron (no Queue yet); "dark" is 20:00–04:00 local time
   rather than sun altitude; no rate limiting or App Attest on
   registration yet.
+- Aurora map: OVATION probabilities on a polar map with Natural Earth
+  coastlines; checked in the simulator.
 - Not done: app registration with the backend (needs a deployed URL),
-  aurora oval map, launch caching, Live Activities.
+  launch caching, Live Activities.
 
 * roadmap
 ** v1: now

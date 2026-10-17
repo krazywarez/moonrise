@@ -94,3 +94,40 @@ public enum XRay {
         return String(format: "A%.1f", flux / 1e-8)
     }
 }
+
+/// NOAA SWPC OVATION aurora model: probability of visible aurora (0–100) on a 1° grid.
+public struct Ovation: Sendable {
+    public struct Cell: Sendable, Equatable {
+        public var lon: Double
+        public var lat: Double
+        public var probability: Double
+    }
+
+    public var forecastTime: Date
+    public var cells: [Cell]
+
+    public static let url = URL(string: "https://services.swpc.noaa.gov/json/ovation_aurora_latest.json")!
+
+    struct Raw: Decodable {
+        var forecastTime: String
+        var coordinates: [[Double]]
+        enum CodingKeys: String, CodingKey {
+            case forecastTime = "Forecast Time"
+            case coordinates
+        }
+    }
+
+    /// Keeps cells with a non-zero probability.
+    public static func decode(_ data: Data) throws -> Ovation {
+        let raw = try JSONDecoder().decode(Raw.self, from: data)
+        let cells = raw.coordinates.compactMap { c -> Cell? in
+            guard c.count == 3, c[2] > 0 else { return nil }
+            return Cell(lon: c[0], lat: c[1], probability: c[2])
+        }
+        return Ovation(forecastTime: (try? Date(raw.forecastTime, strategy: .iso8601)) ?? .now, cells: cells)
+    }
+
+    public static func fetch(session: URLSession = .shared) async throws -> Ovation {
+        try decode(await session.data(from: url).0)
+    }
+}
