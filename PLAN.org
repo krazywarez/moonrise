@@ -310,6 +310,25 @@ The Library is the largest piece of work.
   after the test. A real push still needs an APNs key and a device token.
 - Name reserved in App Store Connect; APNs key created (key ID 644XS4F2RG).
 
+** M1 status (2026-10-17)
+Stacked MRs: !2 app shell, !3 interaction, !4 Today sheet, !5 widgets,
+!6 device pointing.
+
+Done and checked in the iOS 27 simulator: live sky with location, drag
+and pinch, object cards, time scrubber, night mode, Today sheet (moon,
+planets, sun, live SWPC Kp), sandbox APNs token.
+
+Built but not checked:
+- Widgets: build and embed; not viewed (simulator widget gallery could
+  not be driven by automation).
+- Device pointing: maths unit-tested; needs a real phone.
+
+Not done:
+- Draw time on a real iPhone (decides Canvas vs Metal).
+- ISS passes: need an SGP4 propagator and CelesTrak data via the backend.
+- Launches and Voyager in the Today sheet: backend (M2, M3).
+- Automatic night mode after astronomical dusk.
+
 * roadmap
 ** v1: now
 Sky, System, Sun, Launches, Library core (above).

@@ -4,6 +4,7 @@ import SwiftUI
 
 struct SkyScreen: View {
     @State private var model = SkyModel()
+    @State private var pointer = MotionPointer()
     @State private var azimuth = 180.0
     @State private var altitude = 45.0
     @State private var fieldOfView = 100.0
@@ -67,6 +68,7 @@ struct SkyScreen: View {
     /// The view direction with any in-progress gestures applied.
     private func current(width: CGFloat) -> (azimuth: Double, altitude: Double, fieldOfView: Double) {
         let fov = min(max(fieldOfView / Double(zoom), 30), 140)
+        if pointer.active { return (pointer.direction.azimuth, pointer.direction.altitude, fov) }
         let degreesPerPoint = fov / Double(max(width, 1))
         let az = (azimuth - Double(drag.width) * degreesPerPoint).truncatingRemainder(dividingBy: 360)
         let alt = min(max(altitude + Double(drag.height) * degreesPerPoint, 0), 90)
@@ -75,6 +77,13 @@ struct SkyScreen: View {
 
     private func panGesture(width: CGFloat) -> some Gesture {
         DragGesture(minimumDistance: 6)
+            .onChanged { _ in
+                if pointer.active {
+                    azimuth = pointer.direction.azimuth
+                    altitude = min(max(pointer.direction.altitude, 0), 90)
+                    pointer.stop()
+                }
+            }
             .updating($drag) { value, state, _ in state = value.translation }
             .onEnded { value in
                 let degreesPerPoint = fieldOfView / Double(max(width, 1))
@@ -102,6 +111,16 @@ struct SkyScreen: View {
                 }
             }
             Spacer()
+            if pointer.available {
+                Button {
+                    pointer.active ? pointer.stop() : pointer.start()
+                } label: {
+                    Image(systemName: pointer.active ? "scope" : "hand.draw")
+                        .font(.system(size: 17))
+                        .frame(width: 44, height: 44)
+                }
+                .accessibilityLabel(pointer.active ? "Stop following the phone" : "Point the phone at the sky")
+            }
             Button {
                 night.toggle()
             } label: {
