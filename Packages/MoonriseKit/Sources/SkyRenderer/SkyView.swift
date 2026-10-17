@@ -55,22 +55,27 @@ public struct SkyView: View {
     public var centerAltitude: Double
     public var fieldOfView: Double
     public var style = SkyStyle()
+    /// Called after each draw with the time the draw took.
+    public var onDraw: (@Sendable (Duration) -> Void)?
 
-    public init(scene: SkyScene, centerAzimuth: Double = 180, centerAltitude: Double = 55, fieldOfView: Double = 110) {
+    public init(scene: SkyScene, centerAzimuth: Double = 180, centerAltitude: Double = 55, fieldOfView: Double = 110, onDraw: (@Sendable (Duration) -> Void)? = nil) {
         self.scene = scene
         self.centerAzimuth = centerAzimuth
         self.centerAltitude = centerAltitude
         self.fieldOfView = fieldOfView
+        self.onDraw = onDraw
     }
 
     public var body: some View {
         Canvas { context, size in
+            let start = ContinuousClock.now
             let p = Projection(centerAzimuth: centerAzimuth, centerAltitude: centerAltitude, fieldOfView: fieldOfView, size: size)
             context.fill(Path(CGRect(origin: .zero, size: size)), with: .color(style.background))
             drawConstellations(&context, p)
             drawStars(&context, p)
             drawBodies(&context, p)
             drawHorizon(&context, p, size: size)
+            onDraw?(ContinuousClock.now - start)
         }
     }
 
@@ -147,7 +152,7 @@ public struct SkyView: View {
         ground.addLine(to: CGPoint(x: first.x, y: size.height + 10))
         ground.closeSubpath()
         context.fill(ground, with: .color(style.ground))
-        for (name, az) in [("SE", 135.0), ("S", 180.0), ("SW", 225.0), ("E", 90.0), ("W", 270.0)] {
+        for (name, az) in [("N", 0.0), ("NE", 45.0), ("E", 90.0), ("SE", 135.0), ("S", 180.0), ("SW", 225.0), ("W", 270.0), ("NW", 315.0)] {
             guard let pt = p.point(Horizontal(altitude: 0, azimuth: az)), pt.x > 0, pt.x < size.width else { continue }
             label(&context, name, at: CGPoint(x: pt.x, y: pt.y + 18), anchor: .center, color: style.muted)
         }

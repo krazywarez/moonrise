@@ -1,0 +1,13 @@
+#+title: Moonrise app
+
+The Xcode project is generated from =project.yml= and not committed.
+
+#+begin_src sh
+brew install xcodegen
+cd App && xcodegen generate
+open Moonrise.xcodeproj
+#+end_src
+
+Simulator: an iOS 26+ runtime is required. Push registration needs a
+signed build (team =ZCNAX3VL9D=); the APNs device token is logged under
+subsystem =sh.krz.moonrise=.
