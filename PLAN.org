@@ -255,7 +255,8 @@ needs a key. CelesTrak: never more than once per 2-hour update.
 - v1: per-IP rate limits. Later: App Attest verification in the Worker.
 
 ** operations
-- Repo =moonrise-server= on gitbay; deploy with Wrangler from CI.
+- Lives in =server/= in this repo (a separate =moonrise-server= repo is
+  optional); deploy with Wrangler.
 - Staging and production Workers with separate D1 databases and APNs
   environments.
 - Workers Logs for errors; feed staleness in =/healthz=.
@@ -328,6 +329,20 @@ Not done:
 - ISS passes: need an SGP4 propagator and CelesTrak data via the backend.
 - Launches and Voyager in the Today sheet: backend (M2, M3).
 - Automatic night mode after astronomical dusk.
+
+** M2 status (2026-10-17)
+Stacked MRs: !7 Sun tab, !8 backend.
+
+- Sun tab: done, checked in the simulator with live data.
+- Backend (=server/=): SWPC polling, =/v1/today=, device registration,
+  aurora alert rules and APNs sending. Unit-tested; smoke-tested under
+  =wrangler dev= with a local D1. Not deployed.
+- Simplifications against the design above: aurora pushes are sent
+  in-line from the cron (no Queue yet); "dark" is 20:00–04:00 local time
+  rather than sun altitude; no rate limiting or App Attest on
+  registration yet.
+- Not done: app registration with the backend (needs a deployed URL),
+  aurora oval map, launch caching, Live Activities.
 
 * roadmap
 ** v1: now

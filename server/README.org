@@ -1,0 +1,36 @@
+#+title: moonrise-server
+
+Cloudflare Worker: SWPC polling every 5 minutes, =/v1/today=, device
+registration, aurora pushes over APNs. D1 for storage.
+
+* local
+#+begin_src sh
+wrangler d1 migrations apply moonrise --local
+wrangler dev --test-scheduled
+curl "http://localhost:8787/__scheduled?cron=*/5+*+*+*+*"
+curl http://localhost:8787/v1/today
+#+end_src
+
+APNs cannot be reached from =wrangler dev= (no HTTP/2); test pushes
+against a deployed Worker.
+
+* deploy
+#+begin_src sh
+wrangler d1 create moonrise          # put the id in wrangler.jsonc
+wrangler d1 migrations apply moonrise --remote
+wrangler deploy
+wrangler secret put APNS_KEY < AuthKey_644XS4F2RG.p8
+#+end_src
+
+* API
+| Method and path | Body / result |
+|-
+| =GET /v1/today= | ={spaceWeather: {kpNow, observedAt, kpNext24h, fetchedAt}}= |
+| =POST /v1/devices= | ={token, environment, band, utcOffsetMinutes, aurora?}=; band is a 5° geomagnetic latitude band, south negative |
+| =DELETE /v1/devices/{token}= | |
+| =GET /healthz= | feed status |
+
+* tests
+#+begin_src sh
+node --test test/
+#+end_src

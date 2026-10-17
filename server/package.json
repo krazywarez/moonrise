@@ -1,0 +1,11 @@
+{
+  "name": "moonrise-server",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/",
+    "dev": "wrangler dev --test-scheduled",
+    "migrate:local": "wrangler d1 migrations apply moonrise --local",
+    "deploy": "wrangler deploy"
+  }
+}

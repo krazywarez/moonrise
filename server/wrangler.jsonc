@@ -1,0 +1,21 @@
+{
+  "name": "moonrise-server",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-01",
+  "triggers": { "crons": ["*/5 * * * *"] },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "moonrise",
+      // Replace with the id from `wrangler d1 create moonrise` before deploying.
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "vars": {
+    "APNS_KEY_ID": "644XS4F2RG",
+    "APNS_TEAM_ID": "ZCNAX3VL9D",
+    "APNS_TOPIC": "sh.krz.moonrise"
+  }
+  // Secret: APNS_KEY (.p8 contents), set with `wrangler secret put APNS_KEY`.
+}
