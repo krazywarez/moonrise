@@ -122,6 +122,30 @@ public enum SkyEngine {
         return Illumination(magnitude: i.mag, phaseFraction: i.phase_fraction)
     }
 
+    static func date(_ t: astro_time_t) -> Date {
+        Date(timeIntervalSince1970: 946_728_000 + t.ut * 86_400)
+    }
+
+    /// Next rise and next set within `limitDays` after `date`; nil if none in that window.
+    public static func riseSet(_ body: Body, after date: Date, from observer: Observer, limitDays: Double = 1) -> (rise: Date?, set: Date?) {
+        let t = time(date)
+        let rise = Astronomy_SearchRiseSetEx(body.astro, observer.astro, DIRECTION_RISE, t, limitDays, 0)
+        let set = Astronomy_SearchRiseSetEx(body.astro, observer.astro, DIRECTION_SET, t, limitDays, 0)
+        return (rise.status == ASTRO_SUCCESS ? Self.date(rise.time) : nil,
+                set.status == ASTRO_SUCCESS ? Self.date(set.time) : nil)
+    }
+
+    public enum MoonQuarter: Int, Sendable {
+        case new, firstQuarter, full, lastQuarter
+    }
+
+    /// The first lunar quarter after `date`.
+    public static func nextMoonQuarter(after date: Date) throws -> (quarter: MoonQuarter, date: Date) {
+        let q = Astronomy_SearchMoonQuarter(time(date))
+        try check(q.status)
+        return (MoonQuarter(rawValue: Int(q.quarter))!, Self.date(q.time))
+    }
+
     /// Moon's ecliptic longitude east of the sun in degrees: 0 new, 90 first quarter, 180 full, 270 last quarter.
     public static func moonPhase(at date: Date) throws -> Double {
         let a = Astronomy_MoonPhase(time(date))

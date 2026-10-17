@@ -42,3 +42,23 @@ let evening = Date(timeIntervalSince1970: 1_792_202_400) // 2026-10-17T02:00:00Z
         #expect(CGImageDestinationFinalize(dest))
     }
 }
+
+@Test func tapOnSaturnFindsSaturnAndNearbyStarsFindTheirConstellation() throws {
+    let scene = try SkyScene(date: evening, observer: chicago)
+    let p = Projection(centerAzimuth: 180, centerAltitude: 45, fieldOfView: 100, size: CGSize(width: 393, height: 852))
+    let saturn = try #require(scene.bodies.first { $0.body == .saturn })
+    let pt = try #require(p.point(saturn.position))
+    #expect(scene.object(at: CGPoint(x: pt.x + 5, y: pt.y), projection: p) == .body(.saturn))
+
+    // Altair (HR 7557) is in Aquila's figure.
+    let altair = try #require(scene.starsByHR[7557])
+    let a = try #require(p.point(altair))
+    #expect(scene.object(at: a, projection: p) == .constellation("Aql"))
+}
+
+@MainActor
+@Test func nightStyleRenders() throws {
+    let scene = try SkyScene(date: evening, observer: chicago)
+    let renderer = ImageRenderer(content: SkyView(scene: scene, style: .night).frame(width: 393, height: 852))
+    #expect(renderer.cgImage != nil)
+}

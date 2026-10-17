@@ -1,3 +1,4 @@
+import SkyEngine
 import SkyRenderer
 import SwiftUI
 
@@ -6,25 +7,42 @@ struct SkyScreen: View {
     @State private var azimuth = 180.0
     @State private var altitude = 45.0
     @State private var fieldOfView = 100.0
+    @State private var night = false
+    @State private var selection: SkyObject?
+    @State private var details: BodyDetails?
     @GestureState private var drag: CGSize = .zero
     @GestureState private var zoom: CGFloat = 1
     private let stats = DrawStats()
 
+    private var style: SkyStyle { night ? .night : SkyStyle() }
+    private var ink: Color { night ? Color(red: 0.85, green: 0.12, blue: 0.08) : Color(red: 0.95, green: 0.95, blue: 0.93) }
+
     var body: some View {
         GeometryReader { geo in
-            ZStack(alignment: .topLeading) {
-                Color(red: 0.043, green: 0.078, blue: 0.141).ignoresSafeArea()
+            ZStack {
+                style.background.ignoresSafeArea()
                 if let scene = model.scene {
                     let view = current(width: geo.size.width)
-                    SkyView(scene: scene, centerAzimuth: view.azimuth, centerAltitude: view.altitude, fieldOfView: view.fieldOfView) { [stats] d in
+                    SkyView(scene: scene, centerAzimuth: view.azimuth, centerAltitude: view.altitude, fieldOfView: view.fieldOfView, style: style) { [stats] d in
                         stats.record(d)
                     }
                     .ignoresSafeArea()
                     .gesture(panGesture(width: geo.size.width).simultaneously(with: zoomGesture))
+                    .onTapGesture(coordinateSpace: .local) { location in
+                        let p = Projection(centerAzimuth: view.azimuth, centerAltitude: view.altitude, fieldOfView: view.fieldOfView, size: geo.size)
+                        select(scene.object(at: location, projection: p))
+                    }
                 }
-                header
+                VStack(spacing: 0) {
+                    header
+                    Spacer()
+                    if let selection { card(for: selection).padding(.horizontal, 16).padding(.bottom, 10) }
+                    scrubber
+                }
             }
         }
+        .foregroundStyle(ink)
+        .onChange(of: model.offsetHours) { select(selection) }
         .task {
             model.start()
             while !Task.isCancelled {
@@ -32,6 +50,13 @@ struct SkyScreen: View {
                 model.refresh()
             }
         }
+    }
+
+    private func select(_ object: SkyObject?) {
+        selection = object
+        details = nil
+        guard case .body(let body) = object else { return }
+        Task { details = await model.details(of: body) }
     }
 
     /// The view direction with any in-progress gestures applied.
@@ -44,7 +69,7 @@ struct SkyScreen: View {
     }
 
     private func panGesture(width: CGFloat) -> some Gesture {
-        DragGesture(minimumDistance: 0)
+        DragGesture(minimumDistance: 6)
             .updating($drag) { value, state, _ in state = value.translation }
             .onEnded { value in
                 let degreesPerPoint = fieldOfView / Double(max(width, 1))
@@ -60,18 +85,103 @@ struct SkyScreen: View {
     }
 
     private var header: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            Text("Tonight").font(.system(size: 22, weight: .medium))
-            Text(model.hasLocation ? "Your location" : "Chicago (location unavailable)")
-                .font(.system(size: 11)).foregroundStyle(.secondary)
-            TimelineView(.periodic(from: .now, by: 1)) { _ in
-                Text(stats.summary(build: model.lastBuild))
-                    .font(.system(size: 10).monospacedDigit()).foregroundStyle(.secondary)
+        HStack(alignment: .top) {
+            VStack(alignment: .leading, spacing: 4) {
+                Text(model.offsetHours == 0 ? "Tonight" : "Sky at \(model.displayedDate.formatted(date: .omitted, time: .shortened))")
+                    .font(.system(size: 22, weight: .medium))
+                Text(model.hasLocation ? "Your location" : "Chicago (location unavailable)")
+                    .font(.system(size: 11)).opacity(0.7)
+                TimelineView(.periodic(from: .now, by: 1)) { _ in
+                    Text(stats.summary(build: model.lastBuild))
+                        .font(.system(size: 10).monospacedDigit()).opacity(0.7)
+                }
             }
+            Spacer()
+            Button {
+                night.toggle()
+            } label: {
+                Image(systemName: night ? "eye.fill" : "eye")
+                    .font(.system(size: 17))
+                    .frame(width: 44, height: 44)
+            }
+            .accessibilityLabel(night ? "Turn off night mode" : "Turn on night mode")
         }
-        .foregroundStyle(Color(red: 0.95, green: 0.95, blue: 0.93))
         .padding(.horizontal, 20)
         .padding(.top, 8)
+    }
+
+    private var scrubber: some View {
+        HStack(spacing: 12) {
+            Text(model.displayedDate.formatted(date: .omitted, time: .shortened))
+                .font(.system(size: 13).monospacedDigit())
+                .frame(width: 70, alignment: .leading)
+            Slider(value: $model.offsetHours, in: -12...12, step: 0.25)
+                .tint(ink)
+            Button("Now") { model.offsetHours = 0 }
+                .font(.system(size: 13, weight: .medium))
+                .disabled(model.offsetHours == 0)
+        }
+        .padding(.horizontal, 20)
+        .padding(.vertical, 12)
+        .background(style.ground.opacity(0.9))
+    }
+
+    @ViewBuilder
+    private func card(for object: SkyObject) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack {
+                Text(title(for: object)).font(.system(size: 20, weight: .medium))
+                Spacer()
+                Button { selection = nil } label: { Image(systemName: "xmark").frame(width: 32, height: 32) }
+                    .accessibilityLabel("Close")
+            }
+            switch object {
+            case .body:
+                if let d = details { bodyFacts(d) } else { ProgressView().tint(ink) }
+            case .constellation(let id):
+                Text("Constellation · \(id)").font(.system(size: 13)).opacity(0.7)
+            }
+        }
+        .padding(16)
+        .background(style.background.opacity(0.92), in: .rect(cornerRadius: 12))
+        .overlay(RoundedRectangle(cornerRadius: 12).stroke(ink.opacity(0.25), lineWidth: 0.5))
+    }
+
+    private func title(for object: SkyObject) -> String {
+        switch object {
+        case .body(let b): b.rawValue.capitalized
+        case .constellation(let id): constellationNames[id] ?? id
+        }
+    }
+
+    private func bodyFacts(_ d: BodyDetails) -> some View {
+        let time: (Date?) -> String = { $0?.formatted(date: .omitted, time: .shortened) ?? "–" }
+        let distance = d.body == .moon
+            ? "\(Int((d.distanceAU * 149_597_870.7).rounded()).formatted()) km"
+            : String(format: "%.2f AU", d.distanceAU)
+        let rows: [(String, String)] = [
+            ("Altitude", String(format: "%.0f°", d.position.altitude)),
+            ("Direction", String(format: "%.0f° %@", d.position.azimuth, compass(d.position.azimuth))),
+            ("Magnitude", String(format: "%.1f", d.magnitude)),
+            (d.body == .moon ? "Illuminated" : "Phase", String(format: "%.0f%%", d.phaseFraction * 100)),
+            ("Distance", distance),
+            ("Next rise", time(d.rise)),
+            ("Next set", time(d.set)),
+        ]
+        return Grid(alignment: .leading, horizontalSpacing: 16, verticalSpacing: 4) {
+            ForEach(rows, id: \.0) { row in
+                GridRow {
+                    Text(row.0).opacity(0.7)
+                    Text(row.1).monospacedDigit()
+                }
+                .font(.system(size: 13))
+            }
+        }
+    }
+
+    private func compass(_ azimuth: Double) -> String {
+        let points = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"]
+        return points[Int(((azimuth + 22.5) / 45).rounded(.down)) % 8]
     }
 }
 

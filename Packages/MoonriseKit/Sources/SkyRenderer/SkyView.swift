@@ -39,11 +39,31 @@ public struct SkyStyle: Sendable {
     public var muted = Color(red: 0.60, green: 0.64, blue: 0.70)
     public var moonLight = Color(red: 0.93, green: 0.91, blue: 0.85)
     public var moonDark = Color(red: 0.16, green: 0.20, blue: 0.27)
+    public var planet = Color(red: 0.95, green: 0.84, blue: 0.60)
+    /// Draw stars in a single red, for dark-adapted eyes.
+    public var monochromeStars: Color?
 
     public init() {}
 
+    /// Red on black, to keep night vision.
+    public static let night: SkyStyle = {
+        var s = SkyStyle()
+        let red = Color(red: 0.85, green: 0.12, blue: 0.08)
+        s.background = .black
+        s.ground = Color(red: 0.06, green: 0, blue: 0)
+        s.line = red.opacity(0.35)
+        s.label = red
+        s.muted = red.opacity(0.7)
+        s.moonLight = red
+        s.moonDark = Color(red: 0.12, green: 0, blue: 0)
+        s.planet = red
+        s.monochromeStars = red
+        return s
+    }()
+
     /// Star tint from B−V colour index, kept pale.
     func starColor(_ bv: Double) -> Color {
+        if let monochromeStars { return monochromeStars }
         let t = min(max((bv + 0.3) / 2.0, 0), 1)
         return Color(red: 0.80 + 0.20 * t, green: 0.86 - 0.06 * t, blue: 1.0 - 0.32 * t)
     }
@@ -54,12 +74,13 @@ public struct SkyView: View {
     public var centerAzimuth: Double
     public var centerAltitude: Double
     public var fieldOfView: Double
-    public var style = SkyStyle()
+    public var style: SkyStyle
     /// Called after each draw with the time the draw took.
     public var onDraw: (@Sendable (Duration) -> Void)?
 
-    public init(scene: SkyScene, centerAzimuth: Double = 180, centerAltitude: Double = 55, fieldOfView: Double = 110, onDraw: (@Sendable (Duration) -> Void)? = nil) {
+    public init(scene: SkyScene, centerAzimuth: Double = 180, centerAltitude: Double = 55, fieldOfView: Double = 110, style: SkyStyle = SkyStyle(), onDraw: (@Sendable (Duration) -> Void)? = nil) {
         self.scene = scene
+        self.style = style
         self.centerAzimuth = centerAzimuth
         self.centerAltitude = centerAltitude
         self.fieldOfView = fieldOfView
@@ -113,7 +134,7 @@ public struct SkyView: View {
                 label(&context, "Moon \(Int((b.phaseFraction * 100).rounded()))%", at: CGPoint(x: pt.x - 20, y: pt.y), anchor: .trailing)
             } else {
                 let r = max(2.0, 3.6 - 0.35 * b.magnitude)
-                context.fill(Path(ellipseIn: CGRect(x: pt.x - r, y: pt.y - r, width: 2 * r, height: 2 * r)), with: .color(Color(red: 0.95, green: 0.84, blue: 0.60)))
+                context.fill(Path(ellipseIn: CGRect(x: pt.x - r, y: pt.y - r, width: 2 * r, height: 2 * r)), with: .color(style.planet))
                 var tick = Path()
                 tick.move(to: CGPoint(x: pt.x + r + 3, y: pt.y))
                 tick.addLine(to: CGPoint(x: pt.x + r + 15, y: pt.y))

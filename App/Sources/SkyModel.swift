@@ -4,8 +4,32 @@ import Observation
 import SkyEngine
 import SkyRenderer
 
-/// Current place and the scene computed for it. Scenes are built off the main
-/// thread one at a time, since Astronomy Engine is not thread-safe.
+/// Serializes Astronomy Engine calls, which are not thread-safe.
+actor Astronomer {
+    func scene(at date: Date, from observer: Observer) throws -> SkyScene {
+        try SkyScene(date: date, observer: observer)
+    }
+
+    func details(of body: Body, at date: Date, from observer: Observer) throws -> BodyDetails {
+        let h = try SkyEngine.horizontal(body, at: date, from: observer, refraction: true)
+        let eq = try SkyEngine.equatorial(body, at: date, from: observer)
+        let i = try SkyEngine.illumination(body, at: date)
+        let rs = SkyEngine.riseSet(body, after: date, from: observer)
+        return BodyDetails(body: body, position: h, distanceAU: eq.distance, magnitude: i.magnitude, phaseFraction: i.phaseFraction, rise: rs.rise, set: rs.set)
+    }
+}
+
+struct BodyDetails: Sendable {
+    var body: Body
+    var position: Horizontal
+    var distanceAU: Double
+    var magnitude: Double
+    var phaseFraction: Double
+    var rise: Date?
+    var set: Date?
+}
+
+/// Current place, the displayed time and the scene computed for them.
 @MainActor
 @Observable
 final class SkyModel: NSObject, CLLocationManagerDelegate {
@@ -16,9 +40,14 @@ final class SkyModel: NSObject, CLLocationManagerDelegate {
     private(set) var hasLocation = false
     private(set) var scene: SkyScene?
     private(set) var lastBuild: Duration = .zero
+    /// Hours from now shown by the time scrubber.
+    var offsetHours = 0.0 { didSet { refresh() } }
+    var displayedDate: Date { .now.addingTimeInterval(offsetHours * 3600) }
 
+    let astronomer = Astronomer()
     private let manager = CLLocationManager()
     private var building = false
+    private var pending = false
 
     override init() {
         super.init()
@@ -32,20 +61,26 @@ final class SkyModel: NSObject, CLLocationManagerDelegate {
         refresh()
     }
 
-    func refresh(at date: Date = .now) {
-        guard !building else { return }
+    /// Rebuilds the scene for the displayed time. Requests made during a build
+    /// collapse into one rebuild when it finishes.
+    func refresh() {
+        guard !building else { pending = true; return }
         building = true
-        let observer = observer
-        Task.detached(priority: .userInitiated) {
+        let date = displayedDate, observer = observer, astronomer = astronomer
+        Task {
             let clock = ContinuousClock()
             var scene: SkyScene?
-            let elapsed = clock.measure { scene = try? SkyScene(date: date, observer: observer) }
-            await MainActor.run {
-                self.scene = scene
-                self.lastBuild = elapsed
-                self.building = false
-            }
+            let start = clock.now
+            scene = try? await astronomer.scene(at: date, from: observer)
+            lastBuild = clock.now - start
+            if let scene { self.scene = scene }
+            building = false
+            if pending { pending = false; refresh() }
         }
+    }
+
+    func details(of body: Body) async -> BodyDetails? {
+        try? await astronomer.details(of: body, at: displayedDate, from: observer)
     }
 
     nonisolated func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
