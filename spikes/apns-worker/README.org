@@ -1,0 +1,34 @@
+#+title: apns-worker spike
+
+Checks that a deployed Cloudflare Worker can send APNs pushes. APNs only
+speaks HTTP/2; =wrangler dev= does not (workerd issue #4841), so test
+deployed.
+
+* probe (no Apple credentials)
+#+begin_src sh
+wrangler deploy
+curl https://moonrise-apns-spike.<subdomain>.workers.dev/probe
+#+end_src
+
+Sends from a throwaway key to a dummy token on the sandbox host. Any APNs
+JSON reason (expected: 403 =InvalidProviderToken=) means the HTTP/2
+connection worked. A network error means it did not.
+
+* real push
+Needs an APNs auth key (.p8), its key ID, the team ID, the app's bundle ID,
+and a sandbox device token from a development build.
+
+#+begin_src sh
+# set APNS_KEY_ID, APNS_TEAM_ID, APNS_TOPIC in wrangler.jsonc
+wrangler secret put APNS_KEY < AuthKey_XXXXXXXXXX.p8
+wrangler secret put SPIKE_SECRET
+wrangler deploy
+curl -X POST https://moonrise-apns-spike.<subdomain>.workers.dev/push \
+  -H "authorization: Bearer $SPIKE_SECRET" \
+  -d '{"token":"<device token hex>","sandbox":true}'
+#+end_src
+
+* test
+#+begin_src sh
+node --test test/
+#+end_src

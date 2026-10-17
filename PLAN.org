@@ -1,0 +1,358 @@
+#+title: Moonrise
+#+subtitle: concept and plan
+
+* name
+*Moonrise.* App Store name with a descriptor, e.g. "Moonrise: Sky and
+Space", since the bare name is shared and reads as moon-only.
+
+Existing apps (Oct 2026 search), all moon-times utilities: AVIA Moonrise
+(id390606204, last updated 2021), Moonrise Moment (id6788237210),
+Mooncaster. The descriptor and screenshots need to show the app covers
+far more than the moon.
+
+Reserved in App Store Connect 2026-10-17. USPTO search not done.
+
+* Apple identifiers
+| Item | Value |
+|-
+| Team ID | =ZCNAX3VL9D= |
+| Bundle ID | =sh.krz.moonrise= |
+| APNs key | "Moonrise APNs", key ID =644XS4F2RG=, Sandbox and Production. The .p8 is held outside the repo. |
+
+* concept
+An iPhone app for everything in space: what is overhead tonight, what the
+sun is doing, what is launching, where our spacecraft are, and a
+reference library for the planets, stars, galaxies and missions.
+
+The lead on every tab is a picture computed from real data or a real
+image: the sky above you, the solar system today, the sun this hour, a
+rocket on its pad. Text sits underneath, a swipe or tap away.
+
+Free of accounts. Works offline for anything that can be computed;
+fetches only live feeds.
+
+* design
+After NASA's 1975 Graphics Standards Manual.
+
+- Helvetica Neue (ships with iOS). Tabular figures for all numbers.
+- Strict grid, flush left, black hairlines, numbered modules.
+- Off-white and ink by day. Near-black with white line work at night.
+- One red accent for alerts and emphasis. Not NASA's exact red, no NASA
+  insignia or worm logotype, nothing that reads as an official NASA app.
+- Drawings are technical: orbits as orbits, dimension lines, to-scale
+  comparisons, Gantt-style mission timelines.
+- Night mode: red-on-black for dark-adapted eyes, switched on
+  automatically after astronomical dusk while the Sky tab is open.
+- Motion only where it carries data: planets moving at true relative
+  speeds, the moon's phase easing while scrubbing time.
+
+Avoid: neon on black, glow, scan lines, hexagons, crosshairs,
+monospaced readouts as decoration.
+
+* screens
+Five tabs.
+
+** 1. Sky (home)
+- Full-screen sky for your location and time: horizon, stars to about
+  magnitude 6, constellation lines, planets, the moon at its true phase,
+  the sun below the horizon as a glow at the edge.
+- Pans with the device (compass and gyroscope) or by drag. Pinch to zoom.
+- Tap any object for a card: name, magnitude, rise and set, distance,
+  link to its Library page.
+- Time scrubber: drag hours forward or back; tap to return to now.
+- Alert chips across the top when relevant: aurora (Kp threshold for
+  your latitude), ISS pass within the hour, launch within the hour,
+  eclipse or conjunction today.
+- Today sheet, pulled up from the bottom:
+  - Moon: phase, illumination, next quarter.
+  - Visible tonight: planets with direction, altitude, rise and set.
+  - ISS passes over the next 3 days.
+  - Next launch with countdown.
+  - Space weather: Kp now and forecast.
+  - Deep space: Voyager 1 distance and light time.
+
+** 2. System
+- Top-down orrery of the solar system for today. Log-scaled distances by
+  default; toggle to true scale.
+- Time slider from 1957 to 2050. Planets and spacecraft move together.
+- Spacecraft drawn with their trajectories: Voyager 1 and 2, New
+  Horizons, Juno, Europa Clipper, JUICE, Psyche, Parker Solar Probe,
+  Lucy, and missions at Mars.
+- Tap a planet or spacecraft for its Library page.
+- Inset for Earth–Moon space: ISS, JWST at L2, lunar missions.
+
+** 3. Sun
+- Latest SDO full-disk image, full width. Swipe between wavelengths:
+  171 Å (corona), 304 Å (chromosphere), 193 Å, HMI visible light.
+- Kp index: bar chart for the last 3 days and the 3-day forecast.
+- Aurora oval for your hemisphere (OVATION model) with your location
+  marked.
+- Solar flares: GOES X-ray flux for the last 24 hours, flare classes
+  marked.
+- Plain-language summary in one line: "Quiet", "Minor storm likely
+  tonight", and similar.
+
+** 4. Launches
+- Upcoming launches, each led by the rocket's silhouette drawn to a
+  common scale.
+- Detail: vehicle, mission, payload, orbit, pad on a map, countdown,
+  launch window, webcast link.
+- Live Activity from T−1 hour through orbit insertion.
+- Past launches with outcome.
+
+** 5. Library
+Every page leads with a drawing or image; facts follow as a spec sheet.
+
+- Solar system: the sun, 8 planets, dwarf planets, major moons. Each has
+  a dimensioned drawing, a to-scale comparison with Earth, a facts grid,
+  the missions that visited on a timeline, and a short essay.
+- Constellations: all 88. Modern line figure, the plate from a
+  historical atlas (Bayer, Hevelius, Bode), bright stars, best season,
+  where it is tonight.
+- Stars: bright named stars with type, distance, colour and the origin
+  of the name.
+- Deep sky: the 110 Messier objects, then well-known NGC objects, with
+  Hubble, Webb or ground images and a scale bar.
+- Spacecraft and missions: active and historic. Status, location,
+  instruments, findings, timeline.
+- Later sections: exoplanets, rockets side by side to scale, the history
+  of exploration as a browsable timeline, a scale view from Earth to the
+  observable universe.
+
+Search across all of it from the Library tab.
+
+* widgets, Live Activities, notifications
+- Lock Screen: moon phase; Kp; next launch countdown.
+- Home Screen: tonight's planets; Voyager 1 distance; today's sun image.
+- Live Activity: launch countdown through orbit.
+- Notifications, each off by default and opt-in: aurora possible at your
+  latitude; launch in one hour; ISS visible pass in 15 minutes.
+
+* data sources
+Checked 2026-10-17 against primary sources unless marked unconfirmed.
+
+| Source | Use | Terms and limits |
+|-
+| Astronomy Engine v2.1.19 (Don Cross) | Sun, moon, planet positions; rise, set, phases, eclipses, conjunctions | MIT, keep notice. No Swift package; C source vendored as an SPM target. Last release 2023-12. |
+| Yale Bright Star Catalogue (VizieR V/50) | 9,096 stars with V mag, bundled | No licence in ReadMe; VizieR says "free in a scientific context", check per catalogue. US-government origin (NSSDC); public domain unconfirmed. |
+| HYG database | Star names, distances | CC BY-SA 4.0; use only if BSC5 is not enough |
+| IAU boundaries (VizieR VI/49) | Boundaries | Same VizieR ambiguity as BSC5 |
+| Constellation lines: van der Sluys ConstellationLines v1.4 | Stick figures by HR number, bundled | CC BY 4.0. Credit: "Constellation lines: Marc van der Sluys, ConstellationLines (doi:10.5281/zenodo.10397192), CC BY 4.0." Stellarium (CC BY-SA, AGPL repo) and d3-celestial (no data licence) rejected. |
+| OpenNGC | Messier and NGC object data | CC BY-SA 4.0; ShareAlike on the data file. Decide before M5. |
+| NOAA SWPC JSON | Kp (=json/planetary_k_index_1m.json=), Kp forecast (=products/noaa-planetary-k-index-forecast.json=, array of objects), OVATION (=json/ovation_aurora_latest.json=, ~900 KB), GOES X-ray (=json/goes/primary/xrays-6-hour.json=), alerts (=products/alerts.json=) | No terms page; US government. =cache-control: max-age=60=: poll at most once a minute. |
+| NASA SDO | =assets/img/latest/latest_{512,1024,...}_{0171,0193,0304,HMIIC}.jpg= | Not copyrighted unless noted. Credit: "Courtesy of NASA/SDO and the AIA, EVE, and HMI science teams." |
+| JPL Horizons API | Spacecraft positions (Voyager 1 = -31) | No published limit; errors come back as HTTP 200, check payload. Cache server-side. |
+| CelesTrak GP | =celestrak.org/NORAD/elements/gp.php?CATNR=25544&FORMAT=JSON= | Updates every 2 h; one download per update. >50 HTTP errors in 2 h blocks the IP. Fetch only from the Worker; stop on any non-200. |
+| Launch Library 2 v2.3.0 | =ll.thespacedevs.com/2.3.0/= | 15 requests/hour anonymous (confirmed). Higher tiers via Patreon; price, commercial and attribution terms unpublished. Ask The Space Devs before launch. |
+| NASA Image and Video Library | Planet, mission and spacecraft images | Generally not copyrighted; acknowledge NASA. Insignia and logotype protected; no implied endorsement; no current astronauts in promotion. |
+| ESA/Hubble, ESA/Webb, ESO | Deep-sky images | CC BY 4.0; full credit line visible next to each image; note modifications. ESO: no commercial use of identifiable people. |
+| USGS Astrogeology | Planet and moon maps | Public domain |
+| NASA Exoplanet Archive | Exoplanets (later) | Public; bundle a snapshot, refresh periodically |
+| Historical star atlases (LoC, Linda Hall Library, Wikimedia scans) | Constellation plates | Works public domain; check each scan's terms |
+
+Track source and licence per image in the content bundle from day one.
+
+* architecture
+- iOS 26+, SwiftUI, Swift 6 language mode. iPhone first; iPad layout in
+  v1.1.
+- Packages:
+  - =SkyEngine=: Swift wrapper over Astronomy Engine's C library.
+    Coordinates, rise and set, phases, events, kō-style solar longitude
+    (shared with the parked seventy-two app).
+  - =SkyRenderer=: SwiftUI Canvas first; move to Metal if 9,000 stars
+    plus lines cannot hold 60 fps while panning.
+  - =Feeds=: typed clients for SWPC, SDO, CelesTrak, the backend. Cached
+    on disk with per-feed lifetimes.
+  - =Library=: bundled content (JSON plus images), versioned, updatable
+    from the backend without an app release.
+- Backend on Cloudflare; see [[*backend][backend]].
+- No accounts. Device registers an APNs token and a coarse latitude band
+  for aurora alerts, nothing else.
+
+* backend
+Only what the app cannot do alone: cache rate-limited feeds (Launch
+Library 2, Horizons), send pushes (aurora, launches), drive launch Live
+Activities, ship Library content updates. Positions, phases and ISS passes
+are computed on device; ISS pass alerts are local notifications. SWPC and
+SDO are public, so the app can fetch them directly if the backend is down.
+
+** Cloudflare products
+| Product | Role |
+|-
+| Workers (TypeScript) | JSON API; APNs sender |
+| Cron Triggers | Feed polling |
+| D1 | Devices, launches, alert dedupe, Live Activity tokens, ephemeris, content versions |
+| Workers Cache | Cache GET responses (=/v1/today= etc.) |
+| Queues | Push fan-out with retries, decoupled from polling |
+| R2 | Library content packs, widget-sized SDO thumbnails |
+| Workers secrets | APNs .p8 key, key ID, team ID; Launch Library 2 key |
+| Workers Rate Limiting | Per-IP limits on device registration |
+
+** APNs from Workers
+APNs requires HTTP/2. A Cloudflare engineer stated in workerd issue #4841
+(2025-08-20) that production requests pass through Cloudflare's proxy,
+which upgrades them to HTTP/2; workerd itself, and so =wrangler dev=, does
+not support HTTP/2 and there are no plans to add it. Cloudflare's docs do
+not state this. Open-source senders rely on it (e.g.
+FiveSheepCo/cloudflare-apns2). Containers (Workers Paid) can run an HTTP/2
+sender as a fallback. Spike: =spikes/apns-worker=.
+
+- Sign the ES256 provider JWT with WebCrypto; reuse it for 20–60 minutes
+  as Apple requires.
+- Test pushes against a deployed staging Worker using the sandbox APNs
+  host, never from local dev.
+- Keep the sender behind the push Queue so it can move to Cloudflare
+  Containers (a small Go or Python sender) if Workers' HTTP/2 stops
+  working, without touching the rest.
+- Delete tokens on HTTP 410.
+
+** jobs
+| Cron | Job |
+|-
+| =*/5 * * * *= | SWPC: 1-minute Kp, Kp forecast, OVATION aurora, alerts; run aurora engine |
+| =*/10 * * * *= | Launch Library 2 upcoming list |
+| =* * * * *= | If a launch is within 1 h: poll it (needs paid LL2 key); push Live Activity updates on status change |
+| =0 */4 * * *= | CelesTrak ISS and bright satellites |
+| =15 3 * * *= | JPL Horizons daily positions for ~20 spacecraft |
+
+The anonymous Launch Library 2 tier is 15 requests/hour; the 1-minute job
+needs a key. CelesTrak: never more than once per 2-hour update.
+
+** data (D1)
+- =devices=: APNs token, environment (sandbox/production), 5°
+  geomagnetic latitude band, UTC offset, preferences (aurora threshold,
+  launch alerts, quiet hours), last seen.
+- =launches=: normalized LL2 cache plus raw JSON.
+- =feed_snapshots=: latest result per feed with fetch time and status.
+- =alerts_sent=: dedupe key (type, band, storm event).
+- =live_activity_tokens=: launch, update token, device; push-to-start
+  tokens separately.
+- =spacecraft_ephemeris=: spacecraft, date, position.
+- =content_versions=: pack, version, hash, R2 key.
+
+** API
+| Method and path | Purpose |
+|-
+| =GET /v1/today= | One small payload: next launches, space weather summary, active alerts, spacecraft positions, content version. ETag. |
+| =GET /v1/launches=, =GET /v1/launches/{id}= | List, detail |
+| =GET /v1/spacecraft?ids=&from=&to== | Recent positions; full history ships in the app |
+| =GET /v1/content/manifest=, =GET /v1/content/{pack}= | Library updates from R2 |
+| =POST/PATCH/DELETE /v1/devices[/{token}]= | Register, preferences, unregister |
+| =POST /v1/live-activities= | Register an update token for a launch |
+| =GET /healthz= | Liveness and per-feed staleness |
+
+** alerts
+- Aurora: from Kp forecast and OVATION, find the latitude bands that can
+  see aurora; notify devices in those bands where it is dark, outside
+  quiet hours; at most one per band per storm.
+- Launches: "launch in one hour" to opted-in devices; push-to-start the
+  Live Activity (iOS 17.2+); update on countdown, hold, liftoff, staging,
+  orbit or scrub; end 15 minutes after the outcome.
+
+** privacy and abuse
+- Stored per device: push token, 5° latitude band, UTC offset,
+  preferences. No location, no accounts.
+- v1: per-IP rate limits. Later: App Attest verification in the Worker.
+
+** operations
+- Repo =moonrise-server= on gitbay; deploy with Wrangler from CI.
+- Staging and production Workers with separate D1 databases and APNs
+  environments.
+- Workers Logs for errors; feed staleness in =/healthz=.
+- Likely Workers Paid plan (about $5/month) plus an optional Launch
+  Library 2 key. Check current pricing for Queues and D1 before launch.
+
+* content
+The Library is the largest piece of work.
+
+- v1: sun, 8 planets, 5 dwarf planets, ~25 major moons, 88
+  constellations, ~50 named stars, 110 Messier objects, ~40 missions.
+  About 320 pages.
+- Write in one voice: short essay plus spec sheet per page. Start from
+  NASA public-domain text where useful, rewritten.
+- Drawings for every planet and moon in the house style, generated from
+  data (radius, oblateness, rings, axial tilt) rather than drawn by hand.
+
+* milestones
+- *M0, spike.* Confirm every source, licence and rate limit above.
+  Astronomy Engine building from Swift with tests against Horizons.
+  Static sky render for one place and time. Reserve the name.
+- *M1, Sky.* Live sky with device motion, object cards, time scrubber,
+  night mode, Today sheet. Moon and planets widgets.
+- *M2, Sun.* SDO images, Kp, aurora oval, flares. Backend up; aurora
+  push.
+- *M3, Launches.* List, detail, rocket silhouettes, Live Activity.
+- *M4, System.* Orrery with time slider and spacecraft trajectories.
+- *M5, Library v1.* Solar system, constellations, stars, Messier,
+  missions. Search.
+- *1.0* = M1–M5, TestFlight, App Store.
+
+** M0 results (2026-10-17)
+- Data sources: checked; see [[*data sources][data sources]]. Open: Launch Library 2
+  commercial terms, OpenNGC ShareAlike, BSC5 licence statement.
+- =Packages/MoonriseKit=:
+  - =CAstronomy=: Astronomy Engine v2.1.19 C source.
+  - =SkyEngine=: Swift wrapper. Tests against JPL Horizons (Chicago,
+    2026-10-17 02:00 UT): apparent RA/Dec and airless alt/az for the Moon,
+    Mars, Jupiter, Saturn within 1′; heliocentric Jupiter and Saturn within
+    1′ angular (Saturn 0.00045 AU, about 10″).
+  - =SkyRenderer=: stereographic projection, 8,404 stars to V 6.5, 88
+    constellations, planets to mag 6, moon with phase, horizon. Scene
+    build 0.03 s, Canvas render of a 1179×2556 frame 0.09 s on an Apple
+    silicon Mac via =ImageRenderer=. Not measured on a device; panning at
+    60 fps (16 ms per frame) is unproven and likely needs culling,
+    pre-rendered star layers or Metal.
+- =spikes/apns-worker=: ES256 provider token via WebCrypto (unit-tested),
+  =/push= and a credential-free =/probe=. Deployed as
+  =moonrise-apns-spike=; =/probe= got APNs JSON responses (403
+  =InvalidProviderToken= with an =apns-id=) on 3 of 3 calls, so the
+  deployed Worker reaches the APNs sandbox over HTTP/2. Worker deleted
+  after the test. A real push still needs an APNs key and a device token.
+- Name reserved in App Store Connect; APNs key created (key ID 644XS4F2RG).
+
+* roadmap
+** v1: now
+Sky, System, Sun, Launches, Library core (above).
+
+** v2: plan, track, more devices
+- Events: eclipses, meteor showers, conjunctions, oppositions, each with
+  an observing plan. Eclipse path maps with local timings; the 2 August
+  2027 total eclipse (Spain, North Africa, Egypt) is a launch target.
+- Deep Space Network Now: which DSN dishes are talking to which
+  spacecraft.
+- More satellites: Tiangong, Hubble, Starlink trains, bright passes.
+- Observing log stored as plain text or Org.
+- Mars: latest rover raw images, local time at each rover.
+- Library: exoplanets, rockets to scale, exploration timeline, scale
+  view.
+- iPad, Mac, Apple Watch complications.
+
+** v3: across time and cultures
+- Sky cultures: Chinese, Polynesian, Arabic, Norse and other
+  constellations over the same stars.
+- Historical sky for any date and place, with precession.
+- 3D planets from USGS maps; immersive sky and orrery on Vision Pro.
+- Guided seasonal sky tours and mission stories.
+- Live coverage of major events (e.g. an Artemis landing) on the orrery
+  with a Live Activity.
+- Maybe: smart-telescope pointing (Seestar and similar).
+
+* risks
+- Library scope: 320 pages is most of the effort. Ship 1.0 with fewer
+  pages before adding more.
+- Sky render performance and compass accuracy; indoor and urban magnetic
+  interference makes device-motion panning unreliable, so drag must
+  always work.
+- Third-party feed limits (Launch Library 2) and feed outages: show the
+  last good data with its age.
+- NASA brand rules: the style is borrowed, the branding must not be.
+- A crowded category (SkySafari, Night Sky, Stellarium, Next Spaceflight,
+  SpaceWeatherLive). The case for this app is all of it in one place,
+  designed well, not depth in any one area.
+
+* open questions
+- Pricing: free, paid up front, or free with a one-time unlock for the
+  Library and alerts.
+- Fallback for APNs if Workers' HTTP/2 stops working: Containers sender
+  vs. a separate small VPS. The M0 probe worked, so this is a contingency.
+- Whether the Sky tab needs AR camera overlay at all (current lean: no).
