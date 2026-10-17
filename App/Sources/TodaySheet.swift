@@ -2,7 +2,7 @@ import Feeds
 import SkyEngine
 import SwiftUI
 
-/// Pull-up sheet over the sky: time scrubber, then tonight's summary.
+/// Tonight's details: moon, planets, sun and space weather.
 struct TodaySheet: View {
     @Bindable var model: SkyModel
     var ink: Color
@@ -11,8 +11,6 @@ struct TodaySheet: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                scrubber
-                Text(summary).font(.system(size: 13)).opacity(0.7).padding(.bottom, 16)
                 if let t = model.tonight {
                     section("Moon") { moon(t) }
                     section("Planets tonight") { planets(t) }
@@ -27,36 +25,6 @@ struct TodaySheet: View {
         }
         .foregroundStyle(ink)
         .presentationBackground(background)
-        .task {
-            while !Task.isCancelled {
-                await model.refreshSpaceWeather()
-                try? await Task.sleep(for: .seconds(600))
-            }
-        }
-    }
-
-    private var summary: String {
-        var parts: [String] = []
-        if let t = model.tonight {
-            parts.append("Moon \(Int((t.moonIllumination * 100).rounded()))%")
-            let up = t.planets.filter { $0.best != nil }.map { $0.body.rawValue.capitalized }
-            parts.append(up.isEmpty ? "No bright planets tonight" : up.joined(separator: ", "))
-        }
-        if let w = model.spaceWeather { parts.append(String(format: "Kp %.1f", w.kpNow)) }
-        return parts.joined(separator: " · ")
-    }
-
-    private var scrubber: some View {
-        HStack(spacing: 12) {
-            Text(model.displayedDate.formatted(date: .omitted, time: .shortened))
-                .font(.system(size: 13).monospacedDigit())
-                .frame(width: 70, alignment: .leading)
-            Slider(value: $model.offsetHours, in: -12...12, step: 0.25).tint(ink)
-            Button("Now") { model.offsetHours = 0 }
-                .font(.system(size: 13, weight: .medium))
-                .opacity(model.offsetHours == 0 ? 0.4 : 1)
-        }
-        .padding(.bottom, 10)
     }
 
     private func section(_ title: String, @ViewBuilder content: () -> some View) -> some View {
@@ -139,4 +107,60 @@ struct TodaySheet: View {
     private func compass(_ azimuth: Double) -> String {
         ["N", "NE", "E", "SE", "S", "SW", "W", "NW"][Int(((azimuth + 22.5) / 45).rounded(.down)) % 8]
     }
+}
+
+/// Bottom bar on the sky: time scrubber and a one-line summary that opens the Today sheet.
+struct TodayBar: View {
+    @Bindable var model: SkyModel
+    var ink: Color
+    var background: Color
+    var onExpand: () -> Void
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            scrubber
+            Button(action: onExpand) {
+                HStack {
+                    Text(summary).font(.system(size: 13)).opacity(0.75).lineLimit(1)
+                    Spacer()
+                    Image(systemName: "chevron.up").font(.system(size: 12, weight: .medium)).opacity(0.6)
+                }
+            }
+            .buttonStyle(.plain)
+            .accessibilityHint("Shows tonight's details")
+        }
+        .padding(.horizontal, 20)
+        .padding(.vertical, 10)
+        .background(background.opacity(0.92))
+        .task {
+            while !Task.isCancelled {
+                await model.refreshSpaceWeather()
+                try? await Task.sleep(for: .seconds(600))
+            }
+        }
+    }
+
+    private var summary: String {
+        var parts: [String] = []
+        if let t = model.tonight {
+            parts.append("Moon \(Int((t.moonIllumination * 100).rounded()))%")
+            let up = t.planets.filter { $0.best != nil }.map { $0.body.rawValue.capitalized }
+            parts.append(up.isEmpty ? "No bright planets tonight" : up.joined(separator: ", "))
+        }
+        if let w = model.spaceWeather { parts.append(String(format: "Kp %.1f", w.kpNow)) }
+        return parts.joined(separator: " · ")
+    }
+
+    private var scrubber: some View {
+        HStack(spacing: 12) {
+            Text(model.displayedDate.formatted(date: .omitted, time: .shortened))
+                .font(.system(size: 13).monospacedDigit())
+                .frame(width: 70, alignment: .leading)
+            Slider(value: $model.offsetHours, in: -12...12, step: 0.25).tint(ink)
+            Button("Now") { model.offsetHours = 0 }
+                .font(.system(size: 13, weight: .medium))
+                .opacity(model.offsetHours == 0 ? 0.4 : 1)
+        }
+    }
+
 }

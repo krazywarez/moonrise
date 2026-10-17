@@ -10,8 +10,11 @@ struct MoonriseApp: App {
 
     var body: some Scene {
         WindowGroup {
-            SkyScreen()
-                .preferredColorScheme(.dark)
+            TabView {
+                Tab("Sky", systemImage: "sparkles") { SkyScreen() }
+                Tab("Sun", systemImage: "sun.max") { SunScreen() }
+            }
+            .preferredColorScheme(.dark)
         }
     }
 }

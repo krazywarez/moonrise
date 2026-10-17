@@ -9,6 +9,7 @@ struct SkyScreen: View {
     @State private var altitude = 45.0
     @State private var fieldOfView = 100.0
     @State private var night = false
+    @State private var showToday = false
     @State private var selection: SkyObject?
     @State private var details: BodyDetails?
     @GestureState private var drag: CGSize = .zero
@@ -38,15 +39,14 @@ struct SkyScreen: View {
                     header
                     if let selection { card(for: selection).padding(.horizontal, 16).padding(.top, 8) }
                     Spacer()
+                    TodayBar(model: model, ink: ink, background: style.ground) { showToday = true }
                 }
             }
         }
         .foregroundStyle(ink)
-        .sheet(isPresented: .constant(true)) {
+        .sheet(isPresented: $showToday) {
             TodaySheet(model: model, ink: ink, background: style.ground)
-                .presentationDetents([.height(110), .medium, .large])
-                .presentationBackgroundInteraction(.enabled(upThrough: .medium))
-                .interactiveDismissDisabled()
+                .presentationDetents([.medium, .large])
         }
         .onChange(of: model.offsetHours) { select(selection) }
         .task {
