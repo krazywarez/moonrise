@@ -17,6 +17,8 @@ struct PageDrawing: View {
             case "star": star
             case "deep-sky": deepSky
             case "mission": mission
+            case "exoplanet": exoplanet
+            case "rocket": RocketLineup(highlight: page.id, ink: ink, accent: accent).frame(height: 260)
             default: EmptyView()
             }
         }
@@ -156,6 +158,59 @@ struct PageDrawing: View {
         }
         .frame(height: 170)
         .accessibilityLabel("\(page.title) apparent size compared with the full Moon")
+    }
+
+    // MARK: Exoplanets
+
+    /// The planet beside Earth and Jupiter to scale, and its orbit beside Mercury's and Earth's.
+    private var exoplanet: some View {
+        let d = page.drawing!
+        let star = starColor(d.starTempK)
+        return HStack(alignment: .bottom, spacing: 24) {
+            if let r = d.radiusEarth {
+                Canvas { context, size in
+                    let maxR = max(r, 11.2)
+                    let scale = (size.height - 22) / (2 * maxR)
+                    let bodies: [(String, Double, Color)] = [("Earth", 1, Color(red: 0.35, green: 0.6, blue: 0.95)), (page.title, r, ink), ("Jupiter", 11.2, Color(red: 0.85, green: 0.72, blue: 0.55))]
+                    var x = 8.0
+                    for (name, radius, color) in bodies.sorted(by: { $0.1 < $1.1 }) {
+                        let rr = max(radius * scale, 1.5)
+                        let c = CGPoint(x: x + rr, y: size.height - 18 - rr)
+                        context.fill(Path(ellipseIn: CGRect(x: c.x - rr, y: c.y - rr, width: 2 * rr, height: 2 * rr)), with: .color(name == page.title ? accent : color))
+                        context.draw(Text(name).font(.caption2).foregroundStyle(ink.opacity(0.7)), at: CGPoint(x: c.x, y: size.height - 6))
+                        x += 2 * rr + 34
+                    }
+                }
+                .frame(height: 140)
+                .accessibilityLabel("\(page.title), \(String(format: "%.1f", r)) times Earth's radius")
+            }
+            if let a = d.orbitAU {
+                Canvas { context, size in
+                    let c = CGPoint(x: size.width / 2, y: size.height / 2 - 6)
+                    let outer = max(a, 1)
+                    let scale = (min(size.width, size.height) / 2 - 14) / outer
+                    for (name, au) in [("Mercury", 0.387), ("Earth", 1.0)] where au <= outer {
+                        let r = au * scale
+                        context.stroke(Path(ellipseIn: CGRect(x: c.x - r, y: c.y - r, width: 2 * r, height: 2 * r)), with: .color(ink.opacity(0.3)), style: StrokeStyle(lineWidth: 0.6, dash: [2, 3]))
+                        context.draw(Text(name).font(.caption2).foregroundStyle(ink.opacity(0.6)), at: CGPoint(x: c.x, y: c.y - r - 7))
+                    }
+                    let r = a * scale
+                    context.stroke(Path(ellipseIn: CGRect(x: c.x - r, y: c.y - r, width: 2 * r, height: 2 * r)), with: .color(accent), lineWidth: 1)
+                    context.fill(Path(ellipseIn: CGRect(x: c.x - 4, y: c.y - 4, width: 8, height: 8)), with: .color(star))
+                    context.draw(Text(String(format: "%.3g AU", a)).font(.caption2).foregroundStyle(ink), at: CGPoint(x: c.x, y: size.height - 6))
+                }
+                .frame(width: 150, height: 150)
+                .accessibilityLabel("Orbit \(String(format: "%.3g", a)) astronomical units from its star")
+            }
+        }
+    }
+
+    private func starColor(_ t: Double?) -> Color {
+        guard let t else { return ink }
+        if t < 3700 { return Color(red: 1, green: 0.6, blue: 0.4) }
+        if t < 5200 { return Color(red: 1, green: 0.8, blue: 0.55) }
+        if t < 6000 { return Color(red: 1, green: 0.95, blue: 0.8) }
+        return Color(red: 0.8, green: 0.88, blue: 1)
     }
 
     // MARK: Missions

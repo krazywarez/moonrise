@@ -11,6 +11,9 @@ from concurrent.futures import ThreadPoolExecutor
 
 PAGES = pathlib.Path(__file__).resolve().parent.parent / "Packages/MoonriseKit/Sources/Library/Resources/pages"
 UA = {"User-Agent": "moonrise-library-check (sh.krz.moonrise)"}
+BLOCKS_SCRIPTS = ("https://www.loc.gov/item/", "https://www.jpl.nasa.gov/news/press_kits/", "https://rocketlabcorp.com/", "https://www.blueorigin.com/", "https://blueorigin.com/")
+# Launch Library 2 allows 15 anonymous requests an hour; its pages are not checked here.
+SKIP = ("https://ll.thespacedevs.com/",)
 
 
 def status(url, image=False):
@@ -39,15 +42,16 @@ def main():
     checks = []
     for name, p in pages:
         for s in p.get("sources", []):
-            checks.append((p["id"], "source", s["url"], False))
+            if not s["url"].startswith(SKIP):
+                checks.append((p["id"], "source", s["url"], False))
         if p.get("image"):
             checks.append((p["id"], "image", p["image"]["url"], True))
             checks.append((p["id"], "image page", p["image"]["page"], False))
     with ThreadPoolExecutor(8) as pool:
         results = list(pool.map(lambda c: (c, status(c[2], c[3])), checks))
     for (pid, kind, url, _), st in results:
-        # loc.gov item pages send scripts to a bot check (403); the items exist.
-        if st == 403 and kind == "image page" and url.startswith("https://www.loc.gov/item/"):
+        # Sites that refuse scripts (403/429) but load in a browser.
+        if st in (403, 429) and any(url.startswith(p) for p in BLOCKS_SCRIPTS):
             continue
         if st != 200:
             problems.append(f"{pid}: {kind} {st} {url}")

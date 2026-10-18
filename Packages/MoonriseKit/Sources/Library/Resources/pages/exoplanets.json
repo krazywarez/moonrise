@@ -1,0 +1,1953 @@
+[
+  {
+    "id": "51-pegasi-b",
+    "section": "exoplanets",
+    "title": "51 Pegasi b",
+    "subtitle": "First planet found around a Sun-like star · 50 light-years",
+    "facts": [
+      {
+        "label": "Host star",
+        "value": "51 Pegasi, spectral type G5 V",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "50.4 light-years (15.46 pc)",
+        "source": 0
+      },
+      {
+        "label": "Discovery",
+        "value": "1995, radial velocity (Haute-Provence Observatory)",
+        "source": 0
+      },
+      {
+        "label": "Mass",
+        "value": "About 0.61 Jupiter masses (about 194 Earth masses)",
+        "source": 0
+      },
+      {
+        "label": "Orbital period",
+        "value": "4.231 days",
+        "source": 0
+      },
+      {
+        "label": "Orbit",
+        "value": "0.052 AU from its star",
+        "source": 0
+      },
+      {
+        "label": "Recognition",
+        "value": "Half of the 2019 Nobel Prize in Physics, to Michel Mayor and Didier Queloz",
+        "source": 2
+      }
+    ],
+    "essay": "51 Pegasi b was the first planet found orbiting an ordinary Sun-like star. Michel Mayor and Didier Queloz announced it in 1995 after measuring a regular shift in the star's spectrum as the planet pulled it back and forth every 4.2 days. The discovery earned them half of the 2019 Nobel Prize in Physics.\n\nThe planet has roughly 60 percent of Jupiter's mass but orbits only 0.052 AU from its star, about one seventh of Mercury's distance from the Sun. No planet in the Solar System is like it. Its discovery showed that giant planets can sit very close to their stars, and 51 Pegasi b became the prototype of the class now called hot Jupiters, which turned out to be common in later surveys.\n\nThe planet does not have a measured radius, because it was found by the radial velocity method rather than by watching it pass in front of its star. In 2015 astronomers using the HARPS spectrograph at ESO's La Silla Observatory detected visible starlight reflected off the planet, the first spectroscopic detection of this kind for an exoplanet. The host star lies about 50 light-years away in the constellation Pegasus.",
+    "image": {
+      "url": "https://cdn.eso.org/images/screen/eso1517a.jpg",
+      "credit": "ESO/M. Kornmesser/Nick Risinger (skysurvey.org)",
+      "licence": "CC BY 4.0",
+      "page": "https://www.eso.org/public/images/eso1517a/",
+      "caption": "Artist's impression of 51 Pegasi b, a hot Jupiter close to its Sun-like star."
+    },
+    "drawing": {
+      "kind": "exoplanet",
+      "orbitAU": 0.052,
+      "starTempK": 5761
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Exoplanet Archive: 51 Peg b",
+        "url": "https://exoplanetarchive.ipac.caltech.edu/overview/51%20Peg%20b"
+      },
+      {
+        "title": "NASA Exoplanet Catalog: 51 Pegasi b",
+        "url": "https://science.nasa.gov/exoplanet-catalog/51-pegasi-b/"
+      },
+      {
+        "title": "The Nobel Prize in Physics 2019: summary",
+        "url": "https://www.nobelprize.org/prizes/physics/2019/summary/"
+      },
+      {
+        "title": "ESO eso1517: First detection of reflected visible light from 51 Pegasi b",
+        "url": "https://www.eso.org/public/news/eso1517/"
+      }
+    ]
+  },
+  {
+    "id": "hd-209458-b",
+    "section": "exoplanets",
+    "title": "HD 209458 b",
+    "subtitle": "Hot Jupiter with an escaping atmosphere · 158 light-years",
+    "facts": [
+      {
+        "label": "Host star",
+        "value": "HD 209458, spectral type G0 V",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "157.5 light-years (48.30 pc)",
+        "source": 0
+      },
+      {
+        "label": "Discovery",
+        "value": "1999, radial velocity (W. M. Keck Observatory); transits first recorded the same year",
+        "source": 2
+      },
+      {
+        "label": "Radius",
+        "value": "1.39 Jupiter radii (15.6 Earth radii)",
+        "source": 0
+      },
+      {
+        "label": "Mass",
+        "value": "0.73 Jupiter masses (232 Earth masses)",
+        "source": 0
+      },
+      {
+        "label": "Orbital period",
+        "value": "3.525 days",
+        "source": 0
+      },
+      {
+        "label": "Orbit",
+        "value": "0.04707 AU from its star",
+        "source": 1
+      },
+      {
+        "label": "Equilibrium temperature",
+        "value": "About 1,450 K (Sing et al. 2016, via the archive)",
+        "source": 0
+      }
+    ],
+    "essay": "HD 209458 b is a hot Jupiter orbiting a G-type star about 158 light-years away. It was found in 1999 from the wobble it causes in its star's motion, and later that year a team led by David Charbonneau recorded two transits, small dips in the star's brightness as the planet crossed its face. Those observations gave the planet's size directly and showed it to be a gas giant somewhat larger than Jupiter, with about three quarters of Jupiter's mass.\n\nBecause it transits a bright star, HD 209458 b became the testing ground for studying exoplanet atmospheres. In 2003 a team led by Alfred Vidal-Madjar used the Hubble Space Telescope to observe starlight passing through the planet's outer layers during transit. They found an envelope of hydrogen extending more than 200,000 km from the planet and escaping into space, trailing behind it like a comet's tail.\n\nThe planet orbits its star every 3.5 days at about 0.047 AU, which heats it to an equilibrium temperature of roughly 1,450 K. The researchers who measured the escaping hydrogen suggested that much of the planet may eventually be lost this way, leaving only a dense core.",
+    "image": {
+      "url": "https://cdn.esahubble.org/archives/images/large/heic0303a.jpg",
+      "credit": "European Space Agency, Alfred Vidal-Madjar (Institut d'Astrophysique de Paris, CNRS, France) and NASA",
+      "licence": "CC BY 4.0",
+      "page": "https://esahubble.org/images/heic0303a/",
+      "caption": "Artist's impression of HD 209458 b with hydrogen escaping from its atmosphere and trailing behind the planet."
+    },
+    "drawing": {
+      "kind": "exoplanet",
+      "radiusEarth": 15.58,
+      "orbitAU": 0.04707,
+      "starTempK": 6091
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Exoplanet Archive: HD 209458 b",
+        "url": "https://exoplanetarchive.ipac.caltech.edu/overview/HD%20209458%20b"
+      },
+      {
+        "title": "NASA Exoplanet Catalog: HD 209458 b",
+        "url": "https://science.nasa.gov/exoplanet-catalog/hd-209458-b/"
+      },
+      {
+        "title": "Charbonneau et al. 2000, Detection of planetary transits across a Sun-like star",
+        "url": "https://arxiv.org/abs/astro-ph/9911436"
+      },
+      {
+        "title": "ESA/Hubble heic0303: European astronomers observe first evaporating planet",
+        "url": "https://esahubble.org/news/heic0303/"
+      }
+    ]
+  },
+  {
+    "id": "kepler-22b",
+    "section": "exoplanets",
+    "title": "Kepler-22b",
+    "subtitle": "First Kepler planet confirmed in a habitable zone · 635 light-years",
+    "facts": [
+      {
+        "label": "Host star",
+        "value": "Kepler-22, spectral type G5 V",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "634.8 light-years (194.6 pc)",
+        "source": 0
+      },
+      {
+        "label": "Discovery",
+        "value": "2011, transit (Kepler)",
+        "source": 0
+      },
+      {
+        "label": "Radius",
+        "value": "2.1 Earth radii",
+        "source": 0
+      },
+      {
+        "label": "Mass",
+        "value": "Less than 9.1 Earth masses (upper limit, Bonomo et al. 2023)",
+        "source": 0
+      },
+      {
+        "label": "Orbital period",
+        "value": "289.9 days",
+        "source": 0
+      },
+      {
+        "label": "Orbit",
+        "value": "0.812 AU from its star",
+        "source": 0
+      },
+      {
+        "label": "Equilibrium temperature",
+        "value": "279 K",
+        "source": 0
+      }
+    ],
+    "essay": "Kepler-22b was the first planet that NASA's Kepler mission confirmed in the habitable zone of a Sun-like star, the range of orbits where a planet with the right atmosphere could keep liquid water on its surface. The announcement came in December 2011.\n\nThe planet orbits a G-type star about 635 light-years away every 290 days, at 0.81 AU, so its year is not much shorter than Earth's. Its equilibrium temperature, the temperature it would have with no atmosphere and an assumed reflectivity, is about 279 K. Kepler measured its radius at about 2.1 times Earth's from the depth of its transits, which happen once per orbit.\n\nThat size puts Kepler-22b between Earth and Neptune, a range with no counterpart in the Solar System. Its mass has not been pinned down: radial velocity measurements give only an upper limit of about 9 Earth masses. Without a mass, its density is unknown, and it is not possible to say whether it is rocky, rich in water, or wrapped in a thick gas envelope. NASA's description from the time of discovery makes the same point: the planet's composition is not known.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA14883/PIA14883~large.jpg",
+      "credit": "NASA/JPL-Caltech/Ames",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/PIA14883",
+      "caption": "Artist's concept of Kepler-22b, with clouds drawn in its atmosphere."
+    },
+    "drawing": {
+      "kind": "exoplanet",
+      "radiusEarth": 2.1,
+      "orbitAU": 0.812,
+      "starTempK": 5596
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Exoplanet Archive: Kepler-22 b",
+        "url": "https://exoplanetarchive.ipac.caltech.edu/overview/Kepler-22%20b"
+      },
+      {
+        "title": "NASA Exoplanet Catalog: Kepler-22b",
+        "url": "https://science.nasa.gov/exoplanet-catalog/kepler-22b/"
+      },
+      {
+        "title": "NASA Photojournal PIA14883: Closer to Finding an Earth",
+        "url": "https://photojournal.jpl.nasa.gov/catalog/PIA14883"
+      }
+    ]
+  },
+  {
+    "id": "kepler-186f",
+    "section": "exoplanets",
+    "title": "Kepler-186f",
+    "subtitle": "Earth-size planet in its star's habitable zone · 580 light-years",
+    "facts": [
+      {
+        "label": "Host star",
+        "value": "Kepler-186, spectral type M1 (red dwarf)",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "579 light-years (177.6 pc)",
+        "source": 0
+      },
+      {
+        "label": "Discovery",
+        "value": "2014, transit (Kepler)",
+        "source": 0
+      },
+      {
+        "label": "Radius",
+        "value": "1.17 Earth radii",
+        "source": 0
+      },
+      {
+        "label": "Mass",
+        "value": "Not measured",
+        "source": 0
+      },
+      {
+        "label": "Orbital period",
+        "value": "129.9 days",
+        "source": 0
+      },
+      {
+        "label": "Orbit",
+        "value": "0.432 AU from its star",
+        "source": 0
+      }
+    ],
+    "essay": "Kepler-186f was the first validated Earth-size planet found orbiting in the habitable zone of another star. It was announced in April 2014 from data collected by NASA's Kepler space telescope, which detected the slight dimming of the star each time the planet passed in front of it.\n\nThe planet is about 17 percent larger than Earth in radius. It is the outermost of five known planets around Kepler-186, a red dwarf of spectral type M1 roughly 580 light-years away. The four inner planets orbit much closer to the star; Kepler-186f completes an orbit every 130 days at 0.43 AU. Because a red dwarf is much cooler and dimmer than the Sun, the planet receives only about a third of the energy that Earth receives from the Sun, yet still lies within the star's habitable zone.\n\nThe star is too faint for radial velocity measurements to determine the planet's mass, so its density and composition are unknown. Earlier studies of planet sizes suggest that a planet this small is likely to be rocky, but that remains an inference rather than a measurement.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA17999/PIA17999~large.jpg",
+      "credit": "NASA/Ames/SETI Institute/JPL-Caltech",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/PIA17999",
+      "caption": "Artist's concept of Kepler-186f, an Earth-size planet in its star's habitable zone."
+    },
+    "drawing": {
+      "kind": "exoplanet",
+      "radiusEarth": 1.17,
+      "orbitAU": 0.432,
+      "starTempK": 3755
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Exoplanet Archive: Kepler-186 f",
+        "url": "https://exoplanetarchive.ipac.caltech.edu/overview/Kepler-186%20f"
+      },
+      {
+        "title": "NASA Exoplanet Catalog: Kepler-186f",
+        "url": "https://science.nasa.gov/exoplanet-catalog/kepler-186-f/"
+      },
+      {
+        "title": "NASA Photojournal PIA17999: Kepler-186f, the First Earth-size Planet in the Habitable Zone",
+        "url": "https://photojournal.jpl.nasa.gov/catalog/PIA17999"
+      }
+    ]
+  },
+  {
+    "id": "kepler-452b",
+    "section": "exoplanets",
+    "title": "Kepler-452b",
+    "subtitle": "Near-Earth-size planet around a Sun-like star · 1,800 light-years",
+    "facts": [
+      {
+        "label": "Host star",
+        "value": "Kepler-452, spectral type G2",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "About 1,800 light-years (551.7 pc)",
+        "source": 0
+      },
+      {
+        "label": "Discovery",
+        "value": "2015, transit (Kepler)",
+        "source": 0
+      },
+      {
+        "label": "Radius",
+        "value": "About 1.63 Earth radii",
+        "source": 0
+      },
+      {
+        "label": "Mass",
+        "value": "Not measured",
+        "source": 0
+      },
+      {
+        "label": "Orbital period",
+        "value": "384.8 days",
+        "source": 0
+      },
+      {
+        "label": "Orbit",
+        "value": "1.046 AU from its star",
+        "source": 0
+      },
+      {
+        "label": "Equilibrium temperature",
+        "value": "265 K",
+        "source": 0
+      }
+    ],
+    "essay": "Kepler-452b was announced in July 2015 as the first near-Earth-size planet found in the habitable zone of a Sun-like star. It orbits Kepler-452, a G2 star of about the same temperature as the Sun, roughly 1,800 light-years away.\n\nIts orbit is the most Earth-like on this list: a period of 385 days at 1.05 AU. Its equilibrium temperature is estimated at about 265 K. NASA's Kepler telescope found it through transits, and the depth of those transits gives a radius about 60 percent larger than Earth's, with an uncertainty of roughly 15 percent.\n\nThe host star is estimated to be about 6 billion years old, 1.5 billion years older than the Sun. Stars grow larger, hotter and brighter as they age, so Kepler-452 is a little larger and brighter than the Sun is today. The star is also faint, and the planet's mass has not been measured. Without a mass there is no density, so it is not known whether Kepler-452b is rocky like Earth or has a thick gas envelope. NASA's illustration of the planet shows one possible appearance; whether it has oceans or continents is unknown.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA19825/PIA19825~large.jpg",
+      "credit": "NASA/Ames/JPL-Caltech",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/PIA19825",
+      "caption": "Artist's concept comparing Earth (left) with Kepler-452b, shown as one possible appearance of the planet."
+    },
+    "drawing": {
+      "kind": "exoplanet",
+      "radiusEarth": 1.63,
+      "orbitAU": 1.046,
+      "starTempK": 5757
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Exoplanet Archive: Kepler-452 b",
+        "url": "https://exoplanetarchive.ipac.caltech.edu/overview/Kepler-452%20b"
+      },
+      {
+        "title": "NASA Exoplanet Catalog: Kepler-452b",
+        "url": "https://science.nasa.gov/exoplanet-catalog/kepler-452-b/"
+      },
+      {
+        "title": "NASA Photojournal PIA19825: Earth's Bigger, Older Cousin",
+        "url": "https://photojournal.jpl.nasa.gov/catalog/PIA19825"
+      }
+    ]
+  },
+  {
+    "id": "proxima-centauri-b",
+    "section": "exoplanets",
+    "title": "Proxima Centauri b",
+    "subtitle": "Closest known exoplanet · 4.2 light-years",
+    "facts": [
+      {
+        "label": "Host star",
+        "value": "Proxima Centauri, spectral type M5.5 V (red dwarf)",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "4.24 light-years (1.301 pc)",
+        "source": 0
+      },
+      {
+        "label": "Discovery",
+        "value": "2016, radial velocity (European Southern Observatory)",
+        "source": 0
+      },
+      {
+        "label": "Minimum mass",
+        "value": "1.06 Earth masses",
+        "source": 0
+      },
+      {
+        "label": "Orbital period",
+        "value": "11.18 days",
+        "source": 0
+      },
+      {
+        "label": "Orbit",
+        "value": "0.0485 AU from its star",
+        "source": 0
+      },
+      {
+        "label": "Equilibrium temperature",
+        "value": "218 K",
+        "source": 0
+      }
+    ],
+    "essay": "Proxima Centauri b orbits the nearest star to the Sun, the red dwarf Proxima Centauri, 4.2 light-years away. Its discovery was announced in August 2016 by the Pale Red Dot campaign, which monitored the star with the HARPS spectrograph at ESO's La Silla Observatory and other telescopes during the first half of 2016 and detected a regular 11.2-day wobble in its motion.\n\nRadial velocity gives a minimum mass, because the tilt of the orbit is unknown. For Proxima b that minimum is about 1.06 Earth masses, so the planet is probably rocky, but its radius has not been measured. It orbits at about 0.049 AU, much closer than Mercury is to the Sun. Proxima Centauri is so dim that this orbit lies in its habitable zone, with an equilibrium temperature of about 218 K.\n\nWhether the planet is habitable is an open question. Proxima Centauri produces ultraviolet and X-ray flares far more intense than those Earth receives from the Sun, which could strongly affect conditions on the surface. Studies of the planet's possible climates published with the discovery found that liquid water on its surface cannot be ruled out. Proxima Centauri itself is too faint to see without a telescope; it lies near Alpha Centauri in the southern constellation Centaurus.",
+    "image": {
+      "url": "https://cdn.eso.org/images/screen/eso1629a.jpg",
+      "credit": "ESO/M. Kornmesser",
+      "licence": "CC BY 4.0",
+      "page": "https://www.eso.org/public/images/eso1629a/",
+      "caption": "Artist's impression of Proxima Centauri b, with the Alpha Centauri pair in the sky beyond Proxima Centauri."
+    },
+    "drawing": {
+      "kind": "exoplanet",
+      "orbitAU": 0.04848,
+      "starTempK": 2900
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Exoplanet Archive: Proxima Cen b",
+        "url": "https://exoplanetarchive.ipac.caltech.edu/overview/Proxima%20Cen%20b"
+      },
+      {
+        "title": "NASA Exoplanet Catalog: Proxima Centauri b",
+        "url": "https://science.nasa.gov/exoplanet-catalog/proxima-centauri-b/"
+      },
+      {
+        "title": "ESO eso1629: Planet found in habitable zone around nearest star",
+        "url": "https://www.eso.org/public/news/eso1629/"
+      }
+    ]
+  },
+  {
+    "id": "trappist-1b",
+    "section": "exoplanets",
+    "title": "TRAPPIST-1b",
+    "subtitle": "Innermost of seven rocky planets · 41 light-years",
+    "facts": [
+      {
+        "label": "Host star",
+        "value": "TRAPPIST-1, spectral type M8.0 V (ultracool dwarf)",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "40.5 light-years (12.43 pc)",
+        "source": 0
+      },
+      {
+        "label": "Discovery",
+        "value": "2016, transit (TRAPPIST telescope, La Silla Observatory)",
+        "source": 0
+      },
+      {
+        "label": "Radius",
+        "value": "1.116 Earth radii",
+        "source": 0
+      },
+      {
+        "label": "Mass",
+        "value": "1.374 Earth masses",
+        "source": 0
+      },
+      {
+        "label": "Orbital period",
+        "value": "1.511 days",
+        "source": 0
+      },
+      {
+        "label": "Orbit",
+        "value": "0.01154 AU from its star",
+        "source": 0
+      },
+      {
+        "label": "Equilibrium temperature",
+        "value": "About 400 K (Ducrot et al. 2020, via the archive)",
+        "source": 0
+      }
+    ],
+    "essay": "TRAPPIST-1b is the innermost of seven Earth-size planets orbiting TRAPPIST-1, an ultracool red dwarf about 40 light-years away in Aquarius. It was one of the first three planets found in 2016 by the TRAPPIST telescope at La Silla; the full seven-planet system was reported in 2017.\n\nThe planet is slightly larger and more massive than Earth. Its mass comes from transit-timing variations: the planets tug on one another, shifting the times of their transits by small amounts, and modelling those shifts gives their masses. Combined with the radii, the densities of all seven planets fit a single rocky composition.\n\nTRAPPIST-1b orbits every 1.5 days at about one hundredth of Earth's distance from the Sun and receives about four times as much energy as Earth. In 2023 the James Webb Space Telescope measured its thermal emission at 15 microns with the MIRI instrument by watching the planet pass behind its star. The dayside temperature came out at about 500 K, consistent with a bare rock that absorbs starlight and re-radiates it without redistributing heat. This suggests the planet has no significant atmosphere. It was the first detection of light emitted by an exoplanet as small and cool as the Solar System's rocky planets.",
+    "image": {
+      "url": "https://cdn.esawebb.org/archives/images/screen/weic2309a.jpg",
+      "credit": "NASA, ESA, CSA, J. Olmsted (STScI), T. P. Greene (NASA Ames), T. Bell (BAERI), E. Ducrot (CEA), P. Lagage (CEA)",
+      "licence": "CC BY 4.0",
+      "page": "https://esawebb.org/images/weic2309a/",
+      "caption": "Illustration (artist's impression) of TRAPPIST-1b as a dark, airless rocky planet close to its red star."
+    },
+    "drawing": {
+      "kind": "exoplanet",
+      "radiusEarth": 1.116,
+      "orbitAU": 0.01154,
+      "starTempK": 2566
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Exoplanet Archive: TRAPPIST-1 b",
+        "url": "https://exoplanetarchive.ipac.caltech.edu/overview/TRAPPIST-1%20b"
+      },
+      {
+        "title": "NASA Exoplanet Catalog: TRAPPIST-1 b",
+        "url": "https://science.nasa.gov/exoplanet-catalog/trappist-1-b/"
+      },
+      {
+        "title": "ESA/Webb weic2309: Webb measures the temperature of a rocky exoplanet",
+        "url": "https://esawebb.org/news/weic2309/"
+      },
+      {
+        "title": "Greene et al. 2023, Thermal emission from the Earth-sized exoplanet TRAPPIST-1 b using JWST",
+        "url": "https://arxiv.org/abs/2303.14849"
+      },
+      {
+        "title": "Agol et al. 2021, Refining the transit timing and photometric analysis of TRAPPIST-1",
+        "url": "https://arxiv.org/abs/2010.01074"
+      }
+    ]
+  },
+  {
+    "id": "trappist-1e",
+    "section": "exoplanets",
+    "title": "TRAPPIST-1e",
+    "subtitle": "Rocky planet in its star's habitable zone · 41 light-years",
+    "facts": [
+      {
+        "label": "Host star",
+        "value": "TRAPPIST-1, spectral type M8.0 V (ultracool dwarf)",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "40.5 light-years (12.43 pc)",
+        "source": 0
+      },
+      {
+        "label": "Discovery",
+        "value": "2017, transit (Spitzer and ground-based telescopes)",
+        "source": 0
+      },
+      {
+        "label": "Radius",
+        "value": "0.920 Earth radii",
+        "source": 0
+      },
+      {
+        "label": "Mass",
+        "value": "0.692 Earth masses",
+        "source": 0
+      },
+      {
+        "label": "Orbital period",
+        "value": "6.101 days",
+        "source": 0
+      },
+      {
+        "label": "Orbit",
+        "value": "0.02925 AU from its star",
+        "source": 0
+      },
+      {
+        "label": "Equilibrium temperature",
+        "value": "About 250 K (Ducrot et al. 2020, via the archive)",
+        "source": 0
+      }
+    ],
+    "essay": "TRAPPIST-1e is the fourth of seven Earth-size planets around TRAPPIST-1, an ultracool red dwarf about 40 light-years away in Aquarius. It was one of the planets reported in 2017 from a campaign with NASA's Spitzer Space Telescope and ground-based telescopes that found the system's full extent.\n\nIt is slightly smaller than Earth, with 92 percent of Earth's radius and about 69 percent of its mass. Both values are known to a few percent. The radius comes from transit depths, and the mass from transit-timing variations caused by the planets' mutual gravity. The resulting density fits a rocky body, slightly less dense than Earth.\n\nTRAPPIST-1e orbits every 6.1 days at 0.029 AU. Because the star is so faint, that close orbit places it in the system's habitable zone, along with planets f and g, and its equilibrium temperature is about 250 K. Like the other planets it is probably tidally locked, with one hemisphere always facing the star, which would give it a large temperature difference between day and night. NASA's 2018 description of the system called TRAPPIST-1e the rockiest of the seven planets, while noting that it could still hold some liquid water.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA22093/PIA22093~large.jpg",
+      "credit": "NASA/JPL-Caltech",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/PIA22093",
+      "caption": "Artist's concept of the seven TRAPPIST-1 planets based on data as of February 2018; TRAPPIST-1e is the fourth from the left."
+    },
+    "drawing": {
+      "kind": "exoplanet",
+      "radiusEarth": 0.92,
+      "orbitAU": 0.02925,
+      "starTempK": 2566
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Exoplanet Archive: TRAPPIST-1 e",
+        "url": "https://exoplanetarchive.ipac.caltech.edu/overview/TRAPPIST-1%20e"
+      },
+      {
+        "title": "NASA Exoplanet Catalog: TRAPPIST-1 e",
+        "url": "https://science.nasa.gov/exoplanet-catalog/trappist-1-e/"
+      },
+      {
+        "title": "NASA Photojournal PIA21424: The TRAPPIST-1 Habitable Zone",
+        "url": "https://photojournal.jpl.nasa.gov/catalog/PIA21424"
+      },
+      {
+        "title": "NASA Photojournal PIA22093: TRAPPIST-1 Planet Lineup - Updated Feb. 2018",
+        "url": "https://photojournal.jpl.nasa.gov/catalog/PIA22093"
+      },
+      {
+        "title": "Agol et al. 2021, Refining the transit timing and photometric analysis of TRAPPIST-1",
+        "url": "https://arxiv.org/abs/2010.01074"
+      }
+    ]
+  },
+  {
+    "id": "trappist-1f",
+    "section": "exoplanets",
+    "title": "TRAPPIST-1f",
+    "subtitle": "Cool rocky planet in a seven-planet system · 41 light-years",
+    "facts": [
+      {
+        "label": "Host star",
+        "value": "TRAPPIST-1, spectral type M8.0 V (ultracool dwarf)",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "40.5 light-years (12.43 pc)",
+        "source": 0
+      },
+      {
+        "label": "Discovery",
+        "value": "2017, transit (Spitzer and ground-based telescopes)",
+        "source": 0
+      },
+      {
+        "label": "Radius",
+        "value": "1.045 Earth radii",
+        "source": 0
+      },
+      {
+        "label": "Mass",
+        "value": "1.039 Earth masses",
+        "source": 0
+      },
+      {
+        "label": "Orbital period",
+        "value": "9.208 days",
+        "source": 0
+      },
+      {
+        "label": "Orbit",
+        "value": "0.03849 AU from its star",
+        "source": 0
+      },
+      {
+        "label": "Equilibrium temperature",
+        "value": "About 218 K (Ducrot et al. 2020, via the archive)",
+        "source": 0
+      }
+    ],
+    "essay": "TRAPPIST-1f is the fifth planet out from TRAPPIST-1, an ultracool red dwarf about 40 light-years away in Aquarius. It was reported in 2017 along with planets e, g and h, which brought the known system to seven Earth-size planets, all orbiting closer to their star than Mercury is to the Sun.\n\nIts radius and mass are both within a few percent of Earth's: 1.045 Earth radii and 1.039 Earth masses. These values come from transits observed by Spitzer and other telescopes, and from the small timing shifts in those transits caused by the planets pulling on each other. Analysis of all seven planets shows densities consistent with a rocky composition somewhat lower in iron than Earth, or with an Earth-like interior plus lighter material such as a water layer.\n\nTRAPPIST-1f orbits every 9.2 days at 0.038 AU and lies in the system's habitable zone, with an equilibrium temperature of about 218 K. It is probably tidally locked, keeping one side facing the star. In that case its night side could be frozen while liquid water might exist near the boundary between day and night, if the planet has an atmosphere.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA21423/PIA21423~large.jpg",
+      "credit": "NASA/JPL-Caltech",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/PIA21423",
+      "caption": "Artist's concept of the surface of TRAPPIST-1f, with other planets of the system visible in the sky."
+    },
+    "drawing": {
+      "kind": "exoplanet",
+      "radiusEarth": 1.045,
+      "orbitAU": 0.03849,
+      "starTempK": 2566
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Exoplanet Archive: TRAPPIST-1 f",
+        "url": "https://exoplanetarchive.ipac.caltech.edu/overview/TRAPPIST-1%20f"
+      },
+      {
+        "title": "NASA Exoplanet Catalog: TRAPPIST-1 f",
+        "url": "https://science.nasa.gov/exoplanet-catalog/trappist-1-f/"
+      },
+      {
+        "title": "NASA Photojournal PIA21423: Surface of TRAPPIST-1f",
+        "url": "https://photojournal.jpl.nasa.gov/catalog/PIA21423"
+      },
+      {
+        "title": "NASA Photojournal PIA21424: The TRAPPIST-1 Habitable Zone",
+        "url": "https://photojournal.jpl.nasa.gov/catalog/PIA21424"
+      },
+      {
+        "title": "Agol et al. 2021, Refining the transit timing and photometric analysis of TRAPPIST-1",
+        "url": "https://arxiv.org/abs/2010.01074"
+      }
+    ]
+  },
+  {
+    "id": "lhs-1140-b",
+    "section": "exoplanets",
+    "title": "LHS 1140 b",
+    "subtitle": "Temperate super-Earth or water world · 49 light-years",
+    "facts": [
+      {
+        "label": "Host star",
+        "value": "LHS 1140, spectral type M4.5 V (red dwarf)",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "48.9 light-years (14.99 pc)",
+        "source": 0
+      },
+      {
+        "label": "Discovery",
+        "value": "2017, transit (MEarth Project)",
+        "source": 0
+      },
+      {
+        "label": "Radius",
+        "value": "1.73 Earth radii",
+        "source": 0
+      },
+      {
+        "label": "Mass",
+        "value": "5.6 Earth masses",
+        "source": 0
+      },
+      {
+        "label": "Orbital period",
+        "value": "24.74 days",
+        "source": 0
+      },
+      {
+        "label": "Orbit",
+        "value": "0.0946 AU from its star",
+        "source": 0
+      },
+      {
+        "label": "Equilibrium temperature",
+        "value": "226 K",
+        "source": 0
+      }
+    ],
+    "essay": "LHS 1140 b orbits a faint red dwarf about 49 light-years away in Cetus. It was found in 2017 by the MEarth Project, which watches nearby red dwarfs for transits, and its mass was measured with ESO's HARPS spectrograph. The planet transits its star every 25 days.\n\nAlthough it orbits ten times closer to its star than Earth is to the Sun, it receives only about half as much light as Earth because the star is so dim. That places it in the habitable zone, with an equilibrium temperature of about 226 K. ESO's 2017 announcement described it as one of the most promising targets for studying the atmosphere of a temperate rocky planet.\n\nLater measurements revised its properties to 1.73 Earth radii and 5.6 Earth masses. That density is lower than expected for an Earth-like rocky interior. Two explanations fit: a mini-Neptune with a thin hydrogen envelope of about 0.1 percent of its mass, or a water world with roughly 9 to 19 percent of its mass in water. Transmission spectra from the James Webb Space Telescope, published in 2024, ruled out a hydrogen-rich atmosphere. They were strongly affected by bright regions on the star, but showed tentative evidence of a nitrogen-dominated atmosphere, which would point to a planet with a dense atmosphere rather than an airless rock.",
+    "image": {
+      "url": "https://cdn.eso.org/images/screen/eso1712a.jpg",
+      "credit": "ESO/spaceengine.org",
+      "licence": "CC BY 4.0",
+      "page": "https://www.eso.org/public/images/eso1712a/",
+      "caption": "Artist's impression of the super-Earth LHS 1140 b orbiting its red dwarf star."
+    },
+    "drawing": {
+      "kind": "exoplanet",
+      "radiusEarth": 1.73,
+      "orbitAU": 0.0946,
+      "starTempK": 3096
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Exoplanet Archive: LHS 1140 b",
+        "url": "https://exoplanetarchive.ipac.caltech.edu/overview/LHS%201140%20b"
+      },
+      {
+        "title": "NASA Exoplanet Catalog: LHS 1140 b",
+        "url": "https://science.nasa.gov/exoplanet-catalog/lhs-1140-b/"
+      },
+      {
+        "title": "ESO eso1712: Newly discovered exoplanet may be best candidate in search for signs of life",
+        "url": "https://www.eso.org/public/news/eso1712/"
+      },
+      {
+        "title": "Cadieux et al. 2024, Transmission spectroscopy of the habitable zone exoplanet LHS 1140 b with JWST/NIRISS",
+        "url": "https://arxiv.org/abs/2406.15136"
+      }
+    ]
+  },
+  {
+    "id": "k2-18-b",
+    "section": "exoplanets",
+    "title": "K2-18 b",
+    "subtitle": "Sub-Neptune with methane and carbon dioxide · 124 light-years",
+    "facts": [
+      {
+        "label": "Host star",
+        "value": "K2-18, spectral type M2.5 V (red dwarf)",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "124 light-years (38.03 pc)",
+        "source": 0
+      },
+      {
+        "label": "Discovery",
+        "value": "2015, transit (K2)",
+        "source": 0
+      },
+      {
+        "label": "Radius",
+        "value": "2.37 Earth radii",
+        "source": 0
+      },
+      {
+        "label": "Mass",
+        "value": "8.92 Earth masses",
+        "source": 0
+      },
+      {
+        "label": "Orbital period",
+        "value": "32.94 days",
+        "source": 0
+      },
+      {
+        "label": "Orbit",
+        "value": "0.1429 AU from its star",
+        "source": 0
+      },
+      {
+        "label": "Equilibrium temperature",
+        "value": "284 K",
+        "source": 0
+      }
+    ],
+    "essay": "K2-18 b orbits a red dwarf about 124 light-years away in Leo. It was found in 2015 by NASA's K2 mission, the extended phase of the Kepler telescope, and transits its star every 33 days. Its orbit lies in the star's habitable zone, with an equilibrium temperature of about 284 K.\n\nThe planet is a sub-Neptune: 2.4 times Earth's radius and about 9 times its mass. Planets of this size are common around other stars but absent from the Solar System, and their structure is debated. K2-18 b could be a rocky or icy core under a thick hydrogen-rich atmosphere, or it could have a liquid water ocean beneath a thinner hydrogen layer, a type of planet some researchers call Hycean.\n\nIn 2019 a team at University College London analysing Hubble Space Telescope transit data reported water vapour in its atmosphere, the first atmospheric detection for a planet in a habitable zone. In 2023 the James Webb Space Telescope detected methane and carbon dioxide, along with a shortage of ammonia. The Webb team said this pattern supports an ocean beneath a hydrogen-rich atmosphere. The same data gave a possible detection of dimethyl sulfide, a molecule produced on Earth only by life, but the team described that inference as less robust and in need of further validation.",
+    "image": {
+      "url": "https://cdn.esawebb.org/archives/images/screen/weic2321a.jpg",
+      "credit": "NASA, CSA, ESA, J. Olmstead (STScI), N. Madhusudhan (Cambridge University)",
+      "licence": "CC BY 4.0",
+      "page": "https://esawebb.org/images/weic2321a/",
+      "caption": "Illustration (artist's impression) of K2-18 b orbiting its red dwarf star."
+    },
+    "drawing": {
+      "kind": "exoplanet",
+      "radiusEarth": 2.37,
+      "orbitAU": 0.1429,
+      "starTempK": 3457
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Exoplanet Archive: K2-18 b",
+        "url": "https://exoplanetarchive.ipac.caltech.edu/overview/K2-18%20b"
+      },
+      {
+        "title": "NASA Exoplanet Catalog: K2-18 b",
+        "url": "https://science.nasa.gov/exoplanet-catalog/k2-18-b/"
+      },
+      {
+        "title": "ESA/Hubble heic1916: Hubble finds water vapour on habitable-zone exoplanet for the first time",
+        "url": "https://esahubble.org/news/heic1916/"
+      },
+      {
+        "title": "ESA/Webb weic2321: Webb discovers methane, carbon dioxide in atmosphere of K2-18 b",
+        "url": "https://esawebb.org/news/weic2321/"
+      }
+    ]
+  },
+  {
+    "id": "wasp-39b",
+    "section": "exoplanets",
+    "title": "WASP-39b",
+    "subtitle": "Hot Saturn where Webb first found carbon dioxide · 700 light-years",
+    "facts": [
+      {
+        "label": "Host star",
+        "value": "WASP-39, a G-type star",
+        "source": 1
+      },
+      {
+        "label": "Distance",
+        "value": "698 light-years (214.0 pc)",
+        "source": 0
+      },
+      {
+        "label": "Discovery",
+        "value": "2011, transit (SuperWASP)",
+        "source": 0
+      },
+      {
+        "label": "Radius",
+        "value": "1.279 Jupiter radii (14.3 Earth radii)",
+        "source": 0
+      },
+      {
+        "label": "Mass",
+        "value": "0.281 Jupiter masses (89 Earth masses)",
+        "source": 0
+      },
+      {
+        "label": "Orbital period",
+        "value": "4.055 days",
+        "source": 0
+      },
+      {
+        "label": "Orbit",
+        "value": "0.04828 AU from its star",
+        "source": 0
+      },
+      {
+        "label": "Equilibrium temperature",
+        "value": "1,166 K",
+        "source": 0
+      }
+    ],
+    "essay": "WASP-39b is a hot gas giant orbiting a Sun-like G-type star about 700 light-years away. The ground-based SuperWASP survey found it in 2011 from its transits. It has about the mass of Saturn, roughly a quarter of Jupiter's, but a radius 1.3 times Jupiter's, so its density is very low. It orbits every four days at 0.048 AU, and its equilibrium temperature is about 1,170 K.\n\nIts low density and large, puffed-up atmosphere make it a good subject for transmission spectroscopy, in which astronomers compare the starlight filtered through the planet's atmosphere during a transit at many wavelengths. For that reason it was one of the first exoplanets observed by the James Webb Space Telescope.\n\nIn August 2022 the Webb Early Release Science team reported a clear carbon dioxide absorption feature between 4.1 and 4.6 microns in its NIRSpec spectrum: the first unequivocal detection of carbon dioxide in a planet outside the Solar System. Later Webb results on the planet identified water, carbon monoxide, sodium, potassium and sulfur dioxide. The sulfur dioxide is produced by chemical reactions triggered by high-energy light from the star, the first concrete evidence of photochemistry on an exoplanet.",
+    "image": {
+      "url": "https://cdn.esawebb.org/archives/images/screen/weic2213a.jpg",
+      "credit": "NASA, ESA, CSA, and J. Olmsted (STScI)",
+      "licence": "CC BY 4.0",
+      "page": "https://esawebb.org/images/weic2213a/",
+      "caption": "Illustration (artist's impression) of WASP-39b and its star."
+    },
+    "drawing": {
+      "kind": "exoplanet",
+      "radiusEarth": 14.34,
+      "orbitAU": 0.04828,
+      "starTempK": 5485
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Exoplanet Archive: WASP-39 b",
+        "url": "https://exoplanetarchive.ipac.caltech.edu/overview/WASP-39%20b"
+      },
+      {
+        "title": "NASA Exoplanet Catalog: WASP-39 b",
+        "url": "https://science.nasa.gov/exoplanet-catalog/wasp-39-b/"
+      },
+      {
+        "title": "ESA/Webb weic2213: Webb detects carbon dioxide in exoplanet atmosphere",
+        "url": "https://esawebb.org/news/weic2213/"
+      },
+      {
+        "title": "ESA/Webb weic2221: Webb reveals an exoplanet atmosphere as never seen before",
+        "url": "https://esawebb.org/news/weic2221/"
+      }
+    ]
+  },
+  {
+    "id": "wasp-12b",
+    "section": "exoplanets",
+    "title": "WASP-12b",
+    "subtitle": "Hot Jupiter with a decaying orbit · 1,390 light-years",
+    "facts": [
+      {
+        "label": "Host star",
+        "value": "WASP-12, an F-type star",
+        "source": 1
+      },
+      {
+        "label": "Distance",
+        "value": "About 1,390 light-years (427.2 pc)",
+        "source": 0
+      },
+      {
+        "label": "Discovery",
+        "value": "2008, transit (SuperWASP)",
+        "source": 0
+      },
+      {
+        "label": "Radius",
+        "value": "1.97 Jupiter radii (22.0 Earth radii)",
+        "source": 0
+      },
+      {
+        "label": "Mass",
+        "value": "About 1.4 Jupiter masses (published values 1.31–1.47)",
+        "source": 0
+      },
+      {
+        "label": "Orbital period",
+        "value": "1.091 days (26.2 hours)",
+        "source": 0
+      },
+      {
+        "label": "Orbit",
+        "value": "0.0234 AU from its star",
+        "source": 0
+      },
+      {
+        "label": "Equilibrium temperature",
+        "value": "About 2,580 K (Collins et al. 2017, via the archive)",
+        "source": 0
+      }
+    ],
+    "essay": "WASP-12b is a hot Jupiter about 1,390 light-years away, found in 2008 by the SuperWASP transit survey. It orbits a late F-type star, slightly hotter than the Sun, every 26 hours at only 0.023 AU. It has about 1.4 times Jupiter's mass but nearly twice its radius; its equilibrium temperature is about 2,600 K.\n\nWASP-12b is the first planet whose orbit is known to be shrinking. Since its discovery, the time between transits has been decreasing by about 29 milliseconds per year. Other explanations, such as a slightly elongated orbit that slowly rotates, were tested against new transit, occultation and radial velocity data and ruled out in favour of orbital decay. The planet raises tides on its star, and the energy lost to those tides draws the planet inward. At the current rate, the decay timescale is about 3.25 million years.\n\nIn 2010 a study with the Spitzer Space Telescope reported that the planet's atmosphere has more carbon than oxygen, which would make it the first carbon-rich planet observed. The image here is an artist's concept made for that study.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA13691/PIA13691~large.jpg",
+      "credit": "NASA/JPL-Caltech",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/PIA13691",
+      "caption": "Artist's concept of WASP-12b, an orange gas giant, close to its star."
+    },
+    "drawing": {
+      "kind": "exoplanet",
+      "radiusEarth": 22.03,
+      "orbitAU": 0.0234,
+      "starTempK": 6265
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Exoplanet Archive: WASP-12 b",
+        "url": "https://exoplanetarchive.ipac.caltech.edu/overview/WASP-12%20b"
+      },
+      {
+        "title": "NASA Exoplanet Catalog: WASP-12 b",
+        "url": "https://science.nasa.gov/exoplanet-catalog/wasp-12-b/"
+      },
+      {
+        "title": "Yee et al. 2020, The orbit of WASP-12b is decaying",
+        "url": "https://arxiv.org/abs/1911.09131"
+      },
+      {
+        "title": "NASA Photojournal PIA13691: Hot, Carbon-Rich Planet Artist Concept",
+        "url": "https://photojournal.jpl.nasa.gov/catalog/PIA13691"
+      }
+    ]
+  },
+  {
+    "id": "hd-189733-b",
+    "section": "exoplanets",
+    "title": "HD 189733 b",
+    "subtitle": "Deep blue hot Jupiter · 64 light-years",
+    "facts": [
+      {
+        "label": "Host star",
+        "value": "HD 189733, spectral type K2 V",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "64.5 light-years (19.76 pc)",
+        "source": 0
+      },
+      {
+        "label": "Discovery",
+        "value": "2005, radial velocity (Haute-Provence Observatory)",
+        "source": 0
+      },
+      {
+        "label": "Radius",
+        "value": "1.13 Jupiter radii (12.7 Earth radii)",
+        "source": 0
+      },
+      {
+        "label": "Mass",
+        "value": "1.13 Jupiter masses (359 Earth masses)",
+        "source": 0
+      },
+      {
+        "label": "Orbital period",
+        "value": "2.219 days",
+        "source": 0
+      },
+      {
+        "label": "Orbit",
+        "value": "0.03126 AU from its star",
+        "source": 1
+      },
+      {
+        "label": "Equilibrium temperature",
+        "value": "About 1,200 K (Sing et al. 2016, via the archive)",
+        "source": 0
+      }
+    ],
+    "essay": "HD 189733 b is a hot Jupiter orbiting an orange K-type star about 64 light-years away. It is about the size and mass of Jupiter and orbits every 2.2 days at 0.031 AU. It was found in 2005, and because it transits a nearby, bright star it has become one of the most studied exoplanets.\n\nIn 2013 astronomers using the Hubble Space Telescope measured the planet's visible colour for the first time. They observed the system as the planet passed behind its star and found that the total light dropped in blue wavelengths but stayed constant at the other colours they measured. The planet reflects mainly blue light, so it would look deep blue if seen up close. The colour is thought to come from a hazy atmosphere containing silicate particles that scatter blue light, not from an ocean.\n\nIn 2007 infrared data from the Spitzer Space Telescope produced the first map of temperature variations across an exoplanet, using HD 189733 b. Its atmosphere is above 1,000 °C, with winds estimated at 7,000 km/h, and Hubble observations have shown it to be changeable, with hazes and violent flares from the star.",
+    "image": {
+      "url": "https://cdn.esahubble.org/archives/images/screen/heic1312a.jpg",
+      "credit": "NASA, ESA, M. Kornmesser",
+      "licence": "CC BY 4.0",
+      "page": "https://esahubble.org/images/heic1312a/",
+      "caption": "Artist's impression of HD 189733 b as a deep blue gas giant next to its star."
+    },
+    "drawing": {
+      "kind": "exoplanet",
+      "radiusEarth": 12.67,
+      "orbitAU": 0.03126,
+      "starTempK": 5052
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Exoplanet Archive: HD 189733 b",
+        "url": "https://exoplanetarchive.ipac.caltech.edu/overview/HD%20189733%20b"
+      },
+      {
+        "title": "NASA Exoplanet Catalog: HD 189733 b",
+        "url": "https://science.nasa.gov/exoplanet-catalog/hd-189733-b/"
+      },
+      {
+        "title": "ESA/Hubble heic1312: Hubble spots azure blue planet",
+        "url": "https://esahubble.org/news/heic1312/"
+      },
+      {
+        "title": "NASA Photojournal PIA09376: First Map of Alien World",
+        "url": "https://photojournal.jpl.nasa.gov/catalog/PIA09376"
+      }
+    ]
+  },
+  {
+    "id": "gj-1214-b",
+    "section": "exoplanets",
+    "title": "GJ 1214 b",
+    "subtitle": "Hazy sub-Neptune around a red dwarf · 48 light-years",
+    "facts": [
+      {
+        "label": "Host star",
+        "value": "GJ 1214, spectral type M4 V (red dwarf)",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "47.8 light-years (14.64 pc)",
+        "source": 0
+      },
+      {
+        "label": "Discovery",
+        "value": "2009, transit (MEarth Project)",
+        "source": 0
+      },
+      {
+        "label": "Radius",
+        "value": "2.733 Earth radii",
+        "source": 0
+      },
+      {
+        "label": "Mass",
+        "value": "8.41 Earth masses",
+        "source": 0
+      },
+      {
+        "label": "Orbital period",
+        "value": "1.580 days (37.9 hours)",
+        "source": 0
+      },
+      {
+        "label": "Orbit",
+        "value": "0.01505 AU from its star",
+        "source": 0
+      },
+      {
+        "label": "Equilibrium temperature",
+        "value": "567 K",
+        "source": 0
+      }
+    ],
+    "essay": "GJ 1214 b orbits a small red dwarf about 48 light-years away. The MEarth Project found it in 2009 through its transits, and radial velocity measurements with ESO's HARPS spectrograph gave its mass. At the time it was only the second super-Earth with both mass and radius measured, and the first in which an atmosphere was inferred from its density.\n\nWith 2.7 times Earth's radius and 8.4 times its mass, it is a sub-Neptune, a type of planet common around other stars but missing from the Solar System. Its density is too low for a purely rocky planet, so it must have a substantial layer of water, a thick atmosphere, or both. Years of transmission spectroscopy found a flat, featureless spectrum, because high-altitude aerosols hide the lower atmosphere.\n\nIn 2023 a team used the James Webb Space Telescope to record a thermal phase curve, following the planet's infrared brightness through a complete orbit. They measured dayside and nightside temperatures of about 553 K and 437 K and found evidence of water absorption on both sides. The planet reflects about half the light that falls on it, and comparison with models points to an atmosphere rich in heavy elements under a thick, highly reflective layer of cloud or haze.",
+    "image": {
+      "url": "https://cdn.eso.org/images/screen/eso0950a.jpg",
+      "credit": "ESO/L. Calçada",
+      "licence": "CC BY 4.0",
+      "page": "https://www.eso.org/public/images/eso0950a/",
+      "caption": "Artist's impression of GJ 1214 b passing in front of its red dwarf star."
+    },
+    "drawing": {
+      "kind": "exoplanet",
+      "radiusEarth": 2.733,
+      "orbitAU": 0.01505,
+      "starTempK": 3101
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Exoplanet Archive: GJ 1214 b",
+        "url": "https://exoplanetarchive.ipac.caltech.edu/overview/GJ%201214%20b"
+      },
+      {
+        "title": "NASA Exoplanet Catalog: GJ 1214 b",
+        "url": "https://science.nasa.gov/exoplanet-catalog/gj-1214-b/"
+      },
+      {
+        "title": "ESO eso0950: Astronomers find world with thick, inhospitable atmosphere and an icy heart",
+        "url": "https://www.eso.org/public/news/eso0950/"
+      },
+      {
+        "title": "Kempton et al. 2023, A reflective, metal-rich atmosphere for GJ 1214b from its JWST phase curve",
+        "url": "https://arxiv.org/abs/2305.06240"
+      }
+    ]
+  },
+  {
+    "id": "55-cancri-e",
+    "section": "exoplanets",
+    "title": "55 Cancri e",
+    "subtitle": "Lava world with a possible atmosphere · 41 light-years",
+    "facts": [
+      {
+        "label": "Host star",
+        "value": "55 Cancri A, spectral type G8 V",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "41.0 light-years (12.59 pc)",
+        "source": 0
+      },
+      {
+        "label": "Discovery",
+        "value": "2004, radial velocity (McDonald Observatory); transits found in 2011",
+        "source": 2
+      },
+      {
+        "label": "Radius",
+        "value": "1.875 Earth radii",
+        "source": 0
+      },
+      {
+        "label": "Mass",
+        "value": "7.99 Earth masses",
+        "source": 0
+      },
+      {
+        "label": "Orbital period",
+        "value": "0.7365 days (17.7 hours)",
+        "source": 0
+      },
+      {
+        "label": "Orbit",
+        "value": "0.01544 AU from its star",
+        "source": 0
+      },
+      {
+        "label": "Equilibrium temperature",
+        "value": "About 1,960 K (Demory et al. 2011, via the archive)",
+        "source": 0
+      }
+    ],
+    "essay": "55 Cancri e is the innermost of five known planets orbiting 55 Cancri A, a Sun-like star about 41 light-years away in Cancer. It was found in 2004 by radial velocity, and in 2011 astronomers discovered that it also transits its star, which gave its radius. It is a super-Earth with 1.9 times Earth's radius and 8 times its mass, a density consistent with a mainly rocky composition.\n\nThe planet orbits its star in under 18 hours at 0.015 AU, about one twenty-fifth of Mercury's distance from the Sun. At that range it is almost certainly tidally locked, and its dayside is hot enough for the surface to be molten. Its equilibrium temperature is about 1,960 K.\n\nWhether a planet this hot can keep an atmosphere was a long-standing question. In 2024 a team led by Renyu Hu of NASA's Jet Propulsion Laboratory used the NIRCam and MIRI instruments on the James Webb Space Telescope to measure the planet's thermal emission from 4 to 12 microns. The dayside was cooler than expected for bare rock, and the spectrum ruled out a thin atmosphere of vaporised rock. A dip in the spectrum between 4 and 5 microns points to an atmosphere containing carbon monoxide or carbon dioxide, which the team thinks is bubbling out of the planet's interior. As of 2024 it is the best evidence for an atmosphere on a rocky exoplanet.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA22069/PIA22069~large.jpg",
+      "credit": "NASA/JPL-Caltech",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/PIA22069",
+      "caption": "Artist's concept of 55 Cancri e with its star, showing a possible atmosphere over a molten surface."
+    },
+    "drawing": {
+      "kind": "exoplanet",
+      "radiusEarth": 1.875,
+      "orbitAU": 0.01544,
+      "starTempK": 5172
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Exoplanet Archive: 55 Cnc e",
+        "url": "https://exoplanetarchive.ipac.caltech.edu/overview/55%20Cnc%20e"
+      },
+      {
+        "title": "NASA Exoplanet Catalog: 55 Cancri e",
+        "url": "https://science.nasa.gov/exoplanet-catalog/55-cancri-e/"
+      },
+      {
+        "title": "ESA/Webb weic2412: Webb hints at possible atmosphere surrounding rocky exoplanet",
+        "url": "https://esawebb.org/news/weic2412/"
+      },
+      {
+        "title": "Hu et al. 2024, A secondary atmosphere on the rocky exoplanet 55 Cancri e",
+        "url": "https://arxiv.org/abs/2405.04744"
+      }
+    ]
+  },
+  {
+    "id": "kepler-16b",
+    "section": "exoplanets",
+    "title": "Kepler-16b",
+    "subtitle": "Planet orbiting two stars · 245 light-years",
+    "facts": [
+      {
+        "label": "Host stars",
+        "value": "Kepler-16 A (K dwarf, 0.69 solar masses) and Kepler-16 B (red dwarf, 0.20 solar masses)",
+        "source": 2
+      },
+      {
+        "label": "Distance",
+        "value": "244.9 light-years (75.09 pc)",
+        "source": 0
+      },
+      {
+        "label": "Discovery",
+        "value": "2011, transit (Kepler)",
+        "source": 0
+      },
+      {
+        "label": "Radius",
+        "value": "0.754 Jupiter radii (8.45 Earth radii)",
+        "source": 0
+      },
+      {
+        "label": "Mass",
+        "value": "0.333 Jupiter masses (106 Earth masses)",
+        "source": 0
+      },
+      {
+        "label": "Orbital period",
+        "value": "228.8 days",
+        "source": 0
+      },
+      {
+        "label": "Orbit",
+        "value": "0.7048 AU from the centre of mass of the two stars",
+        "source": 0
+      }
+    ],
+    "essay": "Kepler-16b was the first planet confirmed to transit a pair of stars. The discovery, announced in 2011 from Kepler space telescope data, showed a planet orbiting both members of an eclipsing binary about 245 light-years away.\n\nThe two stars are a K dwarf with 69 percent of the Sun's mass and a red dwarf with 20 percent. They orbit each other every 41 days on an eccentric path, and from Earth they eclipse one another. The planet circles both stars every 229 days on a nearly circular orbit, 0.70 AU from their centre of mass. It passes in front of each star in turn, so Kepler recorded the stellar eclipses and the planet's transits together.\n\nThat combination fixes the sizes and masses of all three bodies precisely. Kepler-16b has about a third of Jupiter's mass and three quarters of its radius, close to Saturn in both. The orbits of the stars and the planet lie within half a degree of a single plane, which suggests the planet formed in a disc around both stars. The planet is cold and gaseous and is not considered habitable. NASA compared it to Tatooine, the fictional desert planet with two suns.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA14724/PIA14724~large.jpg",
+      "credit": "NASA/JPL-Caltech",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/PIA14724",
+      "caption": "Artist's concept of Kepler-16b with its two host stars."
+    },
+    "drawing": {
+      "kind": "exoplanet",
+      "radiusEarth": 8.449,
+      "orbitAU": 0.7048,
+      "starTempK": 4450
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Exoplanet Archive: Kepler-16 b",
+        "url": "https://exoplanetarchive.ipac.caltech.edu/overview/Kepler-16%20b"
+      },
+      {
+        "title": "NASA Exoplanet Catalog: Kepler-16b",
+        "url": "https://science.nasa.gov/exoplanet-catalog/kepler-16b/"
+      },
+      {
+        "title": "NASA Photojournal PIA14724: Where the Sun Sets Twice",
+        "url": "https://photojournal.jpl.nasa.gov/catalog/PIA14724"
+      },
+      {
+        "title": "Doyle et al. 2011, Kepler-16: A transiting circumbinary planet",
+        "url": "https://arxiv.org/abs/1109.3432"
+      }
+    ]
+  },
+  {
+    "id": "psr-b1257-12-c",
+    "section": "exoplanets",
+    "title": "PSR B1257+12 c",
+    "subtitle": "Pulsar planet among the first exoplanets found · 2,000 light-years",
+    "facts": [
+      {
+        "label": "Host star",
+        "value": "PSR B1257+12, a pulsar",
+        "source": 1
+      },
+      {
+        "label": "Distance",
+        "value": "About 2,000 light-years (600 pc)",
+        "source": 0
+      },
+      {
+        "label": "Discovery",
+        "value": "1992, pulsar timing (Arecibo Observatory)",
+        "source": 0
+      },
+      {
+        "label": "Mass",
+        "value": "4.3 Earth masses",
+        "source": 0
+      },
+      {
+        "label": "Orbital period",
+        "value": "66.54 days",
+        "source": 0
+      },
+      {
+        "label": "Orbit",
+        "value": "0.36 AU from the pulsar",
+        "source": 0
+      }
+    ],
+    "essay": "PSR B1257+12 c is one of the planets that Aleksander Wolszczan found around a pulsar in 1992 using the Arecibo radio telescope in Puerto Rico. Planets c and d, both dated to 1992 in the NASA Exoplanet Archive, were the first planets of any kind found outside the Solar System. A third, much smaller planet, b, is listed from 1994.\n\nA pulsar is a rapidly spinning neutron star, the collapsed core left by a supernova, which sweeps beams of radiation past Earth like a lighthouse. Its radio pulses arrive with very regular timing. As the planets orbit, they pull the pulsar slightly back and forth, and the pulses arrive a little early or late in a repeating pattern. Analysing that pattern gives the planets' orbits and masses.\n\nPlanet c has about 4.3 times Earth's mass and orbits every 66.5 days at 0.36 AU, similar to Mercury's distance from the Sun. Its radius is unknown, since it does not transit. Charged particles from the pulsar probably rain down on the planets. The planets may be a second generation, formed after the original planetary system was destroyed when the star exploded.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA08042/PIA08042~large.jpg",
+      "credit": "NASA/JPL-Caltech",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/PIA08042",
+      "caption": "Artist's concept of the three planets orbiting the pulsar PSR B1257+12."
+    },
+    "drawing": {
+      "kind": "exoplanet",
+      "orbitAU": 0.36
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Exoplanet Archive: PSR B1257+12 c",
+        "url": "https://exoplanetarchive.ipac.caltech.edu/overview/PSR%20B1257%2B12%20c"
+      },
+      {
+        "title": "NASA Exoplanet Catalog: PSR B1257+12 c",
+        "url": "https://science.nasa.gov/exoplanet-catalog/psr-b125712-c/"
+      },
+      {
+        "title": "NASA Photojournal PIA08042: Extreme Planets Artist Concept",
+        "url": "https://photojournal.jpl.nasa.gov/catalog/PIA08042"
+      }
+    ]
+  },
+  {
+    "id": "beta-pictoris-b",
+    "section": "exoplanets",
+    "title": "Beta Pictoris b",
+    "subtitle": "Directly imaged young giant planet · 64 light-years",
+    "facts": [
+      {
+        "label": "Host star",
+        "value": "Beta Pictoris, spectral type A6 V",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "64.4 light-years (19.74 pc)",
+        "source": 0
+      },
+      {
+        "label": "Discovery",
+        "value": "2008, direct imaging (VLT, Paranal Observatory)",
+        "source": 0
+      },
+      {
+        "label": "Mass",
+        "value": "About 8.7 Jupiter masses",
+        "source": 0
+      },
+      {
+        "label": "Orbital period",
+        "value": "About 23.8 years (8,682 days)",
+        "source": 0
+      },
+      {
+        "label": "Orbit",
+        "value": "10.07 AU from its star",
+        "source": 0
+      },
+      {
+        "label": "Temperature",
+        "value": "About 1,600 K (Currie et al. 2013, via the archive)",
+        "source": 0
+      }
+    ],
+    "essay": "Beta Pictoris b is a young giant planet orbiting Beta Pictoris, an A-type star about 64 light-years away in Pictor. The star is only about 12 million years old and is surrounded by a dusty debris disc, the first such disc to be imaged, in 1984. A warp in the disc and comets falling onto the star had already suggested a massive planet.\n\nA team led by Anne-Marie Lagrange found a faint point of light inside the disc in images taken in 2003 with the NACO adaptive optics instrument on ESO's Very Large Telescope, and reported it in 2008. In images from 2008 and early 2009 the source could not be seen; by late 2009 it had reappeared on the other side of the star. This showed it was a companion in orbit and not a background star. It was the first time astronomers had directly followed an exoplanet moving from one side of its star to the other.\n\nThe planet orbits at about 10 AU, roughly Saturn's distance from the Sun, with a period of about 24 years. It has around 9 Jupiter masses and, being young, still glows in the infrared at about 1,600 K from heat left over from its formation. Its age shows that giant planets can form within a few million years.",
+    "image": {
+      "url": "https://cdn.eso.org/images/screen/eso1024a.jpg",
+      "credit": "ESO/A.-M. Lagrange",
+      "licence": "CC BY 4.0",
+      "page": "https://www.eso.org/public/images/eso1024a/",
+      "caption": "VLT infrared images of Beta Pictoris showing the planet on opposite sides of the star in 2003 and 2009, with the star's glow removed."
+    },
+    "drawing": {
+      "kind": "exoplanet",
+      "orbitAU": 10.07,
+      "starTempK": 8039
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Exoplanet Archive: bet Pic b",
+        "url": "https://exoplanetarchive.ipac.caltech.edu/overview/bet%20Pic%20b"
+      },
+      {
+        "title": "NASA Exoplanet Catalog: Beta Pictoris b",
+        "url": "https://science.nasa.gov/exoplanet-catalog/beta-pictoris-b/"
+      },
+      {
+        "title": "ESO eso0842: Beta Pictoris planet finally imaged?",
+        "url": "https://www.eso.org/public/news/eso0842/"
+      },
+      {
+        "title": "ESO eso1024: Exoplanet caught on the move",
+        "url": "https://www.eso.org/public/news/eso1024/"
+      }
+    ]
+  },
+  {
+    "id": "hr-8799-e",
+    "section": "exoplanets",
+    "title": "HR 8799 e",
+    "subtitle": "Innermost imaged planet of a four-giant system · 135 light-years",
+    "facts": [
+      {
+        "label": "Host star",
+        "value": "HR 8799, spectral type A5 V",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "134.5 light-years (41.24 pc)",
+        "source": 0
+      },
+      {
+        "label": "Discovery",
+        "value": "2010, direct imaging (W. M. Keck Observatory)",
+        "source": 0
+      },
+      {
+        "label": "Mass",
+        "value": "About 10 Jupiter masses (large uncertainty)",
+        "source": 0
+      },
+      {
+        "label": "Orbital period",
+        "value": "About 57 years",
+        "source": 1
+      },
+      {
+        "label": "Orbit",
+        "value": "16.4 AU from its star",
+        "source": 0
+      },
+      {
+        "label": "Temperature",
+        "value": "About 1,150 K",
+        "source": 0
+      }
+    ],
+    "essay": "HR 8799 e is the innermost of four giant planets imaged around HR 8799, a young star about 135 light-years away in Pegasus. Planets b, c and d were reported in 2008; e was found in 2010 in Keck Observatory images, at a smaller separation than the others. The four planets, each several times Jupiter's mass, have since been followed over years of observations as they move along their orbits.\n\nThe planets can be imaged because they orbit far from the star and the system is young, less than 100 million years old, so they still glow in the infrared from the heat of their formation. HR 8799 e orbits at about 16 AU, somewhat closer than Uranus is to the Sun, with a period of about 57 years. Its mass is about 10 Jupiter masses, with a large uncertainty.\n\nIn 2019 the GRAVITY instrument, which combines the light of the four 8.2-metre telescopes of ESO's Very Large Telescope Interferometer, made the first direct observation of an exoplanet by optical interferometry. Its spectrum of HR 8799 e indicated a temperature of about 1,150 K and clouds of iron and silicate particles. In 2025 the James Webb Space Telescope imaged the system with its NIRCam coronagraph and found carbon dioxide in the planets' atmospheres, evidence that they formed by building solid cores first, as Jupiter and Saturn did.",
+    "image": {
+      "url": "https://cdn.esawebb.org/archives/images/screen/weic2504a.jpg",
+      "credit": "NASA, ESA, CSA, STScI, W. Balmer (JHU), L. Pueyo (STScI), M. Perrin (STScI)",
+      "licence": "CC BY 4.0",
+      "page": "https://esawebb.org/images/weic2504a/",
+      "caption": "James Webb Space Telescope NIRCam image of the HR 8799 system, with the star blocked by a coronagraph and its planets visible as points of light."
+    },
+    "drawing": {
+      "kind": "exoplanet",
+      "orbitAU": 16.4,
+      "starTempK": 7400
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Exoplanet Archive: HR 8799 e",
+        "url": "https://exoplanetarchive.ipac.caltech.edu/overview/HR%208799%20e"
+      },
+      {
+        "title": "NASA Exoplanet Catalog: HR 8799 e",
+        "url": "https://science.nasa.gov/exoplanet-catalog/hr-8799-e/"
+      },
+      {
+        "title": "Marois et al. 2010, Images of a fourth planet orbiting HR 8799",
+        "url": "https://arxiv.org/abs/1011.4918"
+      },
+      {
+        "title": "ESO eso1905: GRAVITY instrument breaks new ground in exoplanet imaging",
+        "url": "https://www.eso.org/public/news/eso1905/"
+      },
+      {
+        "title": "ESA/Webb weic2504: Webb images young, giant exoplanets, detects carbon dioxide",
+        "url": "https://esawebb.org/news/weic2504/"
+      }
+    ]
+  },
+  {
+    "id": "2m1207-b",
+    "section": "exoplanets",
+    "title": "2M1207 b",
+    "subtitle": "First exoplanet seen in a direct image · 210 light-years",
+    "facts": [
+      {
+        "label": "Host",
+        "value": "2MASS J12073346-3932539 (2M1207 A), an M8 brown dwarf",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "209.7 light-years (64.31 pc)",
+        "source": 0
+      },
+      {
+        "label": "Discovery",
+        "value": "2004, direct imaging (VLT, Paranal Observatory); confirmed 2005",
+        "source": 3
+      },
+      {
+        "label": "Mass",
+        "value": "About 5.2 Jupiter masses",
+        "source": 0
+      },
+      {
+        "label": "Separation",
+        "value": "About 46 AU from the brown dwarf (projected)",
+        "source": 0
+      },
+      {
+        "label": "Temperature",
+        "value": "About 1,160 K",
+        "source": 0
+      }
+    ],
+    "essay": "2M1207 b was the first planet outside the Solar System to be photographed directly. In April 2004 a team led by Gaël Chauvin used the NACO adaptive optics instrument on ESO's Very Large Telescope to take infrared images of 2M1207, a young brown dwarf in the TW Hydrae association, and found a faint, very red point of light 0.8 arcseconds away. Images taken in early 2005 showed the two objects moving together across the sky, which confirmed the faint object was a companion and not a background star.\n\nThe host is not a star in the usual sense. 2M1207 A is a brown dwarf of spectral type M8, too small for major nuclear fusion to have started in its core. Its companion has about 5 Jupiter masses and lies about 46 AU from it, roughly one and a half times Neptune's distance from the Sun. The system is about 210 light-years away, near the southern constellation Hydra.\n\nAs a member of the TW Hydrae association, 2M1207 is only about 8 million years old. The brown dwarf has roughly 25 Jupiter masses, so the companion is about a fifth of its mass, a much larger ratio than between Jupiter and the Sun. Because the system is young, the planet is still hot from its formation, at roughly 1,160 K, and glows in the infrared. That is why it could be imaged.",
+    "image": {
+      "url": "https://cdn.eso.org/images/screen/eso0515a.jpg",
+      "credit": "ESO",
+      "licence": "CC BY 4.0",
+      "page": "https://www.eso.org/public/images/eso0515a/",
+      "caption": "VLT NACO near-infrared composite image of the brown dwarf 2M1207 (centre) and its planetary companion (right)."
+    },
+    "drawing": {
+      "kind": "exoplanet"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Exoplanet Archive: 2MASS J12073346-3932539 b",
+        "url": "https://exoplanetarchive.ipac.caltech.edu/overview/2MASS%20J12073346-3932539%20b"
+      },
+      {
+        "title": "NASA Exoplanet Catalog: 2MASS J12073346-3932539 b",
+        "url": "https://science.nasa.gov/exoplanet-catalog/2mass-j12073346-3932539-b/"
+      },
+      {
+        "title": "ESO eso0428: Is this speck of light an exoplanet?",
+        "url": "https://www.eso.org/public/news/eso0428/"
+      },
+      {
+        "title": "ESO eso0515: Yes, it is the image of an exoplanet",
+        "url": "https://www.eso.org/public/news/eso0515/"
+      }
+    ]
+  },
+  {
+    "id": "toi-700-d",
+    "section": "exoplanets",
+    "title": "TOI-700 d",
+    "subtitle": "TESS's first Earth-size habitable-zone planet · 102 light-years",
+    "facts": [
+      {
+        "label": "Host star",
+        "value": "TOI-700, spectral type M2.5 V (red dwarf)",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "101.5 light-years (31.13 pc)",
+        "source": 0
+      },
+      {
+        "label": "Discovery",
+        "value": "2020, transit (TESS)",
+        "source": 0
+      },
+      {
+        "label": "Radius",
+        "value": "1.145 Earth radii",
+        "source": 0
+      },
+      {
+        "label": "Mass",
+        "value": "Not measured",
+        "source": 0
+      },
+      {
+        "label": "Orbital period",
+        "value": "37.42 days",
+        "source": 0
+      },
+      {
+        "label": "Orbit",
+        "value": "0.1642 AU from its star",
+        "source": 0
+      },
+      {
+        "label": "Equilibrium temperature",
+        "value": "About 269 K (Rodriguez et al. 2020, via the archive)",
+        "source": 0
+      }
+    ],
+    "essay": "TOI-700 d was the first Earth-size planet in a habitable zone found by NASA's Transiting Exoplanet Survey Satellite (TESS). It was announced in January 2020. The host, TOI-700, is a red dwarf about 100 light-years away in Dorado. It lies in the TESS continuous viewing zone in the southern ecliptic hemisphere, and the discovery used observations spanning 11 TESS sectors.\n\nThe planet is about 15 percent larger than Earth and orbits every 37 days at 0.16 AU. It receives about 86 percent of the energy Earth receives from the Sun, which places it in the conservative habitable zone, with an equilibrium temperature of about 269 K. The discovery team used ground-based follow-up and vetting tests to rule out common false-positive explanations.\n\nTOI-700 has four known planets; a second Earth-size planet, TOI-700 e, was reported in 2023. The star shows low levels of activity compared with some other red dwarfs that host Earth-size planets, which makes the system useful for studying how rocky planets lose or keep their atmospheres. TOI-700 d's mass has not been measured, so its composition is not known.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA23408/PIA23408~orig.jpg",
+      "credit": "NASA's Goddard Space Flight Center",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/PIA23408",
+      "caption": "Artist's illustration of the TOI-700 planetary system."
+    },
+    "drawing": {
+      "kind": "exoplanet",
+      "radiusEarth": 1.145,
+      "orbitAU": 0.1642,
+      "starTempK": 3459
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Exoplanet Archive: TOI-700 d",
+        "url": "https://exoplanetarchive.ipac.caltech.edu/overview/TOI-700%20d"
+      },
+      {
+        "title": "NASA Exoplanet Catalog: TOI-700 d",
+        "url": "https://science.nasa.gov/exoplanet-catalog/toi-700-d/"
+      },
+      {
+        "title": "NASA Photojournal PIA23408: TOI 700 Artists' Illustration",
+        "url": "https://photojournal.jpl.nasa.gov/catalog/PIA23408"
+      },
+      {
+        "title": "Gilbert et al. 2020, The first habitable zone Earth-sized planet from TESS. I: Validation of the TOI-700 system",
+        "url": "https://arxiv.org/abs/2001.00952"
+      }
+    ]
+  },
+  {
+    "id": "kepler-10b",
+    "section": "exoplanets",
+    "title": "Kepler-10b",
+    "subtitle": "Kepler's first confirmed rocky planet · 605 light-years",
+    "facts": [
+      {
+        "label": "Host star",
+        "value": "Kepler-10, spectral type G2 V",
+        "source": 2
+      },
+      {
+        "label": "Distance",
+        "value": "605 light-years (185.5 pc)",
+        "source": 0
+      },
+      {
+        "label": "Discovery",
+        "value": "2011, transit (Kepler)",
+        "source": 0
+      },
+      {
+        "label": "Radius",
+        "value": "1.47 Earth radii",
+        "source": 0
+      },
+      {
+        "label": "Mass",
+        "value": "3.24 Earth masses",
+        "source": 0
+      },
+      {
+        "label": "Orbital period",
+        "value": "0.8375 days (20.1 hours)",
+        "source": 0
+      },
+      {
+        "label": "Orbit",
+        "value": "0.01685 AU from its star",
+        "source": 0
+      },
+      {
+        "label": "Equilibrium temperature",
+        "value": "2,188 K",
+        "source": 0
+      }
+    ],
+    "essay": "Kepler-10b was the first rocky planet confirmed by NASA's Kepler mission, announced in January 2011. It orbits Kepler-10, a Sun-like G-type star about 605 light-years away. Kepler found it by detecting the small, regular dip in the star's brightness each time the planet crossed in front of it, once every 20 hours.\n\nThe planet is about 1.5 times Earth's radius and about 3.2 times its mass. Its radius comes from Kepler's transit measurements and its mass from radial velocity observations of the star. Together they give a mean density about the same as Earth's, which for a planet this size indicates a rocky composition rather than a thick gas envelope.\n\nKepler-10b orbits in just 20 hours at 0.017 AU, more than twenty times closer to its star than Mercury is to the Sun. Its equilibrium temperature is about 2,190 K. Kepler-10 also has a second transiting planet, Kepler-10c, which orbits every 45 days, and a third planet, Kepler-10d, found by radial velocity.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA13776/PIA13776~large.jpg",
+      "credit": "NASA",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/PIA13776",
+      "caption": "Artist's concept of Kepler-10b in front of its host star."
+    },
+    "drawing": {
+      "kind": "exoplanet",
+      "radiusEarth": 1.47,
+      "orbitAU": 0.01685,
+      "starTempK": 5708
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Exoplanet Archive: Kepler-10 b",
+        "url": "https://exoplanetarchive.ipac.caltech.edu/overview/Kepler-10%20b"
+      },
+      {
+        "title": "NASA Exoplanet Catalog: Kepler-10b",
+        "url": "https://science.nasa.gov/exoplanet-catalog/kepler-10-b/"
+      },
+      {
+        "title": "SIMBAD: Kepler-10",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=Kepler-10"
+      },
+      {
+        "title": "NASA Photojournal PIA13776: NASA's Kepler Mission Discovers Its First Rocky Planet",
+        "url": "https://photojournal.jpl.nasa.gov/catalog/PIA13776"
+      }
+    ]
+  },
+  {
+    "id": "kelt-9b",
+    "section": "exoplanets",
+    "title": "KELT-9b",
+    "subtitle": "Hottest known gas giant · 670 light-years",
+    "facts": [
+      {
+        "label": "Host star",
+        "value": "KELT-9 (HD 195689), spectral type B9.5–A0",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "667 light-years (204.5 pc)",
+        "source": 0
+      },
+      {
+        "label": "Discovery",
+        "value": "2017, transit (KELT-North)",
+        "source": 0
+      },
+      {
+        "label": "Radius",
+        "value": "1.94 Jupiter radii (21.7 Earth radii)",
+        "source": 0
+      },
+      {
+        "label": "Mass",
+        "value": "2.88 Jupiter masses",
+        "source": 0
+      },
+      {
+        "label": "Orbital period",
+        "value": "1.481 days",
+        "source": 0
+      },
+      {
+        "label": "Orbit",
+        "value": "0.03368 AU from its star",
+        "source": 0
+      },
+      {
+        "label": "Equilibrium temperature",
+        "value": "3,921 K",
+        "source": 0
+      }
+    ],
+    "essay": "KELT-9b is the hottest gas giant planet known. It orbits KELT-9, a hot, blue star near the boundary between spectral types B and A, about 670 light-years away. The KELT-North transit survey found it in 2017.\n\nThe planet is about 2.9 times Jupiter's mass and nearly twice its radius, giving it roughly half Jupiter's density. It orbits every 1.5 days at 0.034 AU. Its equilibrium temperature is about 3,900 K, and its dayside reaches more than 4,600 K, hotter than most stars.\n\nThe star's strong ultraviolet radiation heats the planet's upper atmosphere and drives gas away from it, so the planet may trail a tail of evaporated material. Its orbit is also unusual: it runs nearly perpendicular to the star's spin axis, which is equivalent to a planet in the Solar System orbiting over the Sun's poles. The star is about 300 million years old, young compared with the Sun, and is more than twice the Sun's size.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA21472/PIA21472~large.jpg",
+      "credit": "NASA/JPL-Caltech",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/PIA21472",
+      "caption": "Artist's concept of KELT-9b orbiting its hot blue host star."
+    },
+    "drawing": {
+      "kind": "exoplanet",
+      "radiusEarth": 21.7,
+      "orbitAU": 0.03368,
+      "starTempK": 9270
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Exoplanet Archive: KELT-9 b",
+        "url": "https://exoplanetarchive.ipac.caltech.edu/overview/KELT-9%20b"
+      },
+      {
+        "title": "NASA Exoplanet Catalog: KELT-9 b",
+        "url": "https://science.nasa.gov/exoplanet-catalog/kelt-9-b/"
+      },
+      {
+        "title": "NASA Photojournal PIA21472: Hottest Hot Jupiter (Artist's Concept)",
+        "url": "https://photojournal.jpl.nasa.gov/catalog/PIA21472"
+      },
+      {
+        "title": "Gaudi et al. 2017, A giant planet undergoing extreme-ultraviolet irradiation by its hot massive-star host",
+        "url": "https://arxiv.org/abs/1706.06723"
+      }
+    ]
+  },
+  {
+    "id": "gliese-667-cc",
+    "section": "exoplanets",
+    "title": "Gliese 667 Cc",
+    "subtitle": "Super-Earth in a triple star system · 24 light-years",
+    "facts": [
+      {
+        "label": "Host star",
+        "value": "Gliese 667 C, spectral type M1.5 V (red dwarf)",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "23.6 light-years (7.244 pc)",
+        "source": 0
+      },
+      {
+        "label": "Discovery",
+        "value": "Radial velocity (La Silla Observatory); the archive lists 2013",
+        "source": 0
+      },
+      {
+        "label": "Minimum mass",
+        "value": "About 3.8 Earth masses",
+        "source": 0
+      },
+      {
+        "label": "Orbital period",
+        "value": "28.14 days",
+        "source": 0
+      },
+      {
+        "label": "Orbit",
+        "value": "0.125 AU from its star",
+        "source": 0
+      }
+    ],
+    "essay": "Gliese 667 Cc orbits Gliese 667 C, a red dwarf about 24 light-years away that belongs to a triple star system called Gliese 667. The planet was found by radial velocity measurements, mainly with ESO's HARPS spectrograph at La Silla, and was featured in a 2012 ESO release on how common super-Earths are in the habitable zones of red dwarfs.\n\nRadial velocity measurements give only a minimum mass, which for Gliese 667 Cc is about 3.8 Earth masses. It orbits every 28 days at 0.125 AU, close to the middle of its star's habitable zone. It does not have a measured radius, so its density and composition are unknown.\n\nA 2013 analysis that combined HARPS data with observations from other spectrographs found evidence for up to six or seven planet signals around Gliese 667 C, several in or near the habitable zone. Planet c was one of the two candidates already known before that analysis, and it remains in the NASA Exoplanet Archive's list of confirmed planets.",
+    "image": {
+      "url": "https://cdn.eso.org/images/screen/eso1214a.jpg",
+      "credit": "ESO/L. Calçada",
+      "licence": "CC BY 4.0",
+      "page": "https://www.eso.org/public/images/eso1214a/",
+      "caption": "Artist's impression of sunset on Gliese 667 Cc, with the more distant pair Gliese 667 A and B in the sky."
+    },
+    "drawing": {
+      "kind": "exoplanet",
+      "orbitAU": 0.125,
+      "starTempK": 3350
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Exoplanet Archive: GJ 667 C c",
+        "url": "https://exoplanetarchive.ipac.caltech.edu/overview/GJ%20667%20C%20c"
+      },
+      {
+        "title": "NASA Exoplanet Catalog: GJ 667 C c",
+        "url": "https://science.nasa.gov/exoplanet-catalog/gj-667-c-c/"
+      },
+      {
+        "title": "ESO eso1214: Many billions of rocky planets in the habitable zones around red dwarfs in the Milky Way",
+        "url": "https://www.eso.org/public/news/eso1214/"
+      },
+      {
+        "title": "Anglada-Escudé et al. 2013, A dynamically-packed planetary system around GJ 667C with three super-Earths in its habitable zone",
+        "url": "https://arxiv.org/abs/1306.6074"
+      }
+    ]
+  }
+]

@@ -36,6 +36,11 @@ public struct LibraryPage: Codable, Sendable, Identifiable, Hashable {
         public var sizeArcmin: Double?
         public var status: String?
         public var launch: String?
+        public var radiusEarth: Double?
+        public var orbitAU: Double?
+        public var starTempK: Double?
+        public var heightM: Double?
+        public var diameterM: Double?
     }
 
     /// What the page describes elsewhere in the app.
@@ -68,7 +73,7 @@ public struct LibraryPage: Codable, Sendable, Identifiable, Hashable {
 }
 
 public enum LibrarySection: String, Codable, Sendable, CaseIterable, Identifiable {
-    case sun, planets, dwarfPlanets = "dwarf-planets", moons, constellations, stars, deepSky = "deep-sky", missions
+    case sun, planets, dwarfPlanets = "dwarf-planets", moons, constellations, stars, deepSky = "deep-sky", exoplanets, missions, rockets
 
     public var id: String { rawValue }
 
@@ -81,7 +86,9 @@ public enum LibrarySection: String, Codable, Sendable, CaseIterable, Identifiabl
         case .constellations: "Constellations"
         case .stars: "Stars"
         case .deepSky: "Deep sky"
+        case .exoplanets: "Exoplanets"
         case .missions: "Missions"
+        case .rockets: "Rockets"
         }
     }
 }

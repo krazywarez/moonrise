@@ -28,7 +28,7 @@ func pageFollowsTheBrief(_ p: LibraryPage) {
         #expect(image.url.scheme == "https", "\(p.id): image URL")
         #expect(!image.credit.isEmpty, "\(p.id): image credit")
     } else {
-        #expect([.constellations, .stars, .missions].contains(p.section), "\(p.id): missing image")
+        #expect([.constellations, .stars, .missions, .rockets].contains(p.section), "\(p.id): missing image")
     }
 }
 

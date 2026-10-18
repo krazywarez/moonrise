@@ -30,16 +30,18 @@ one file per section, each a JSON array of pages.
 #+end_src
 
 - =id=: lowercase, hyphenated, unique across all sections (e.g. =m42=, =ori=, =sirius=, =voyager-1=).
-- =section=: one of =sun=, =planets=, =dwarf-planets=, =moons=, =constellations=, =stars=, =deep-sky=, =missions=.
+- =section=: one of =sun=, =planets=, =dwarf-planets=, =moons=, =constellations=, =stars=, =deep-sky=, =missions=, =exoplanets=, =rockets=.
 - =facts=: 4–8 items. Every fact has =source=, an index into =sources=. Units in SI or AU, with conversions where helpful. Use tabular style: "10 h 33 m", "29.4 Earth years".
 - =sources=: 1–5 items, primary or authoritative (NASA NSSDC fact sheets, NASA science pages, JPL, IAU, ESA, NOIRLab, SIMBAD). Every URL must return HTTP 200 when checked.
-- =image=: optional only for constellations, stars and missions when no verifiable image exists (set to =null=).
+- =image=: optional only for constellations, stars, missions and rockets when no verifiable image exists (set to =null=).
 - =drawing=: per section:
   - planets, dwarf planets, moons, sun: ={"kind": "planet", "radiusKm", "rings", "axialTiltDeg", "color"}=; =color= is a representative hex.
   - constellations: ={"kind": "constellation"}= (the app draws the figure from its line data).
   - stars: ={"kind": "star", "spectralType": "A1V", "colorIndex": 0.0}= (B−V).
   - deep sky: ={"kind": "deep-sky", "type": "galaxy|globular|open|nebula|planetary|supernova-remnant", "sizeArcmin": 90}=.
   - missions: ={"kind": "mission", "status": "active|complete|lost", "launch": "1977-09-05"}=.
+  - exoplanets: ={"kind": "exoplanet", "radiusEarth": 1.07, "orbitAU": 0.0485, "starTempK": 2566}= (omit a field if no measured value).
+  - rockets: ={"kind": "rocket", "heightM": 70.0, "diameterM": 3.7, "status": "active|retired|in development"}=.
 - =link=: what the page describes in the rest of the app: ={"body": "mars"}=, ={"constellation": "Ori"}= (IAU abbreviation), ={"hr": 2491}= (Bright Star Catalogue number), ={"messier": 42}=, ={"spacecraft": "Voyager 1"}=, or ={}=.
 
 * Essay voice

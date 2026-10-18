@@ -1,0 +1,1488 @@
+[
+  {
+    "id": "v-2",
+    "section": "rockets",
+    "title": "V-2",
+    "subtitle": "Germany · first long-range ballistic missile, 1942–1952",
+    "facts": [
+      {
+        "label": "Builder",
+        "value": "German Army rocket team at Peenemünde led by Wernher von Braun",
+        "source": 0
+      },
+      {
+        "label": "Length",
+        "value": "14 m (46 ft)",
+        "source": 0
+      },
+      {
+        "label": "Diameter",
+        "value": "1.65 m (5 ft 5 in)",
+        "source": 1
+      },
+      {
+        "label": "Mass at launch",
+        "value": "About 13,000 kg (29,000 lb)",
+        "source": 0
+      },
+      {
+        "label": "Payload",
+        "value": "About 1,000 kg (2,200 lb) warhead over about 320 km (200 miles)",
+        "source": 0
+      },
+      {
+        "label": "First successful flight",
+        "value": "3 October 1942, Peenemünde",
+        "source": 1
+      },
+      {
+        "label": "Flights",
+        "value": "3,200 to 3,600 fired at Allied targets, 1944–1945; 67 flown in the United States, 1946–1952",
+        "source": 1
+      },
+      {
+        "label": "Status",
+        "value": "Retired",
+        "source": 2
+      }
+    ],
+    "essay": "The V-2, called the A-4 by its designers, was the first large liquid-propellant rocket and the first long-range ballistic missile. Germany's army rocket team built it at Peenemünde on the Baltic coast. It burned alcohol with liquid oxygen, stood 14 m tall and could carry a one-tonne warhead about 320 km. After two failed attempts, the first successful flight took place on 3 October 1942.\n\nFrom September 1944 the V-2 was fired at London, Paris, Antwerp and other cities. Production moved to the underground Mittelwerk plant, where prisoners from the Mittelbau-Dora concentration camp were forced to build the rockets under conditions that killed many of them.\n\nAfter the war the United States brought captured rockets and parts, and many of the engineers, to Texas and New Mexico. Sixty-seven V-2s flew there and at Cape Canaveral between 1946 and 1952, carrying instruments into the upper atmosphere. A flight on 24 October 1946 returned the first photographs of Earth taken from about 65 miles up. In the Bumper programme a V-2 served as the first stage of the first large two-stage rocket, flown in 1948. Both the American and the Soviet missile and launcher programmes grew out of this work.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/9131496/9131496~large.jpg",
+      "credit": "NASA",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/9131496",
+      "caption": "A captured V-2 lifts off from White Sands, New Mexico, in 1946."
+    },
+    "drawing": {
+      "kind": "rocket",
+      "heightM": 14.0,
+      "diameterM": 1.65,
+      "status": "retired"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA: Wernher von Braun",
+        "url": "https://www.nasa.gov/people/wernher-von-braun/"
+      },
+      {
+        "title": "Smithsonian National Air and Space Museum: V-2 Missile",
+        "url": "https://airandspace.si.edu/collection-objects/missile-surface-surface-v-2-4/nasm_A19600342000"
+      },
+      {
+        "title": "NASA: 75 Years Ago: First Launch of a Two-Stage Rocket",
+        "url": "https://www.nasa.gov/history/75-years-ago-first-launch-of-a-two-stage-rocket/"
+      }
+    ]
+  },
+  {
+    "id": "r-7-vostok",
+    "section": "rockets",
+    "title": "R-7 (Vostok)",
+    "subtitle": "Soviet Union · R-7 missile with a third stage, used for Vostok from 1960",
+    "facts": [
+      {
+        "label": "Builder",
+        "value": "OKB-1 design bureau under Sergei Korolev, Soviet Union",
+        "source": 0
+      },
+      {
+        "label": "Length",
+        "value": "More than 38 m with the Vostok payload fairing",
+        "source": 0
+      },
+      {
+        "label": "Core stage diameter",
+        "value": "2.99 m; more than 10 m across the four strap-on boosters",
+        "source": 2
+      },
+      {
+        "label": "Mass at launch (R-7 missile)",
+        "value": "270 t, of which about 247 t propellant",
+        "source": 0
+      },
+      {
+        "label": "Payload to low Earth orbit",
+        "value": "About 4.5 t for the 8K72; the 8K72K added about 200 kg",
+        "source": 0
+      },
+      {
+        "label": "First flight",
+        "value": "R-7: 15 May 1957; 8K72K: 22 December 1960",
+        "source": 0
+      },
+      {
+        "label": "Record before Gagarin",
+        "value": "16 launches of the R-7 with the Blok Ye third stage, 8 failures",
+        "source": 0
+      },
+      {
+        "label": "Status",
+        "value": "Retired; the R-7 family continues as Soyuz",
+        "source": 4
+      }
+    ],
+    "essay": "The R-7 was the world's first intercontinental ballistic missile, designed by Sergei Korolev's OKB-1 bureau. Four tapered strap-on boosters surround a central core, and all five units ignite on the ground. The first launch, on 15 May 1957, failed when a strap-on broke away; the first successful flight followed on 21 August 1957. Six weeks later an R-7 put Sputnik into orbit, and its large core stage reached orbit as well.\n\nFor lunar probes and then the Vostok crewed spacecraft, Korolev's team added a third stage, Blok Ye. The 8K72 version launched the first Luna probes. For piloted flights the third-stage engine was replaced with the slightly more powerful RD-0109, and the result was designated 8K72K. With the spacecraft and its fairing the vehicle was more than 38 m tall.\n\nIts record was poor at first. Before Gagarin's flight there had been 16 launches of the R-7 with Blok Ye, and half of them failed. On 12 April 1961 an 8K72K launched Yuri Gagarin in Vostok 1, a flight that lasted 108 minutes. Later members of the same family, under the Soyuz name, are still flying.",
+    "image": null,
+    "drawing": {
+      "kind": "rocket",
+      "heightM": 38.0,
+      "diameterM": 2.99,
+      "status": "retired"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA SP-2000-4408, Challenge to Apollo, Part 1 (Asif Siddiqi)",
+        "url": "https://www.nasa.gov/wp-content/uploads/static/history/SP-4408pt1.pdf"
+      },
+      {
+        "title": "NASA: 65 Years Ago, Sputnik Ushers in the Space Age",
+        "url": "https://www.nasa.gov/history/65-years-ago-sputnik-ushers-in-the-space-age/"
+      },
+      {
+        "title": "Launch Library 2: Vostok-K",
+        "url": "https://ll.thespacedevs.com/2.3.0/launcher_configurations/103/"
+      },
+      {
+        "title": "NASA: April 1961 – First Human Entered Space",
+        "url": "https://www.nasa.gov/image-article/april-1961-first-human-entered-space/"
+      },
+      {
+        "title": "ESA: Soyuz",
+        "url": "https://www.esa.int/About_Us/50_years_of_ESA/Soyuz"
+      }
+    ]
+  },
+  {
+    "id": "saturn-v",
+    "section": "rockets",
+    "title": "Saturn V",
+    "subtitle": "NASA · super heavy-lift Moon rocket, 1967–1973",
+    "facts": [
+      {
+        "label": "Builder",
+        "value": "NASA Marshall Space Flight Center (design); United States",
+        "source": 0
+      },
+      {
+        "label": "Height",
+        "value": "111 m (363 ft)",
+        "source": 0
+      },
+      {
+        "label": "Diameter",
+        "value": "10.1 m (33 ft), first stage",
+        "source": 1
+      },
+      {
+        "label": "Mass at liftoff",
+        "value": "2.8 million kg (6.2 million lb)",
+        "source": 0
+      },
+      {
+        "label": "Payload",
+        "value": "About 118,000 kg (130 tons) to Earth orbit; about 43,500 kg (50 tons) to the Moon",
+        "source": 0
+      },
+      {
+        "label": "First flight",
+        "value": "9 November 1967 (Apollo 4)",
+        "source": 2
+      },
+      {
+        "label": "Launches",
+        "value": "13, 1967–1973; Launch Library 2 records 12 successes and 1 failure (as of 18 October 2026)",
+        "source": 2
+      },
+      {
+        "label": "Status",
+        "value": "Retired",
+        "source": 0
+      }
+    ],
+    "essay": "The Saturn V was the rocket NASA built to send astronauts to the Moon. It was designed at the Marshall Space Flight Center in Huntsville, Alabama, and stood 111 m tall with the Apollo spacecraft on top. Fully fuelled it weighed about 2.8 million kg and produced 34.5 million newtons of thrust at liftoff. It could put about 118 t into Earth orbit or send about 43.5 t toward the Moon.\n\nThe first stage was 10.1 m (33 ft) in diameter and carried the rocket to an altitude of about 68 km. The Apollo version had three stages, each burning until its propellant ran out and then separating. The third stage placed the Apollo spacecraft in Earth orbit and then pushed it toward the Moon.\n\nThe first Saturn V flew without a crew as Apollo 4 in 1967, followed by the uncrewed Apollo 6 in 1968. Apollo 8 was the first crewed launch, and Apollo 11 carried the first crew to land on the Moon in July 1969. The final Saturn V, in 1973, flew with only two stages and launched the Skylab space station. In all, 13 were launched.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/6900556/6900556~large.jpg",
+      "credit": "NASA",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/6900556",
+      "caption": "The Saturn V carrying Apollo 11 climbs away from Kennedy Space Center on 16 July 1969."
+    },
+    "drawing": {
+      "kind": "rocket",
+      "heightM": 111.0,
+      "diameterM": 10.1,
+      "status": "retired"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA: What Was the Saturn V? (Grades 5–8)",
+        "url": "https://www.nasa.gov/learning-resources/for-kids-and-students/what-was-the-saturn-v-grades-5-8/"
+      },
+      {
+        "title": "NASA: This Week in NASA History: Saturn V First Stage LOX Tank at Marshall",
+        "url": "https://www.nasa.gov/image-article/this-week-nasa-history-saturn-v-first-stage-lox-tank-marshall-nov-4-1964/"
+      },
+      {
+        "title": "Launch Library 2: Saturn V",
+        "url": "https://ll.thespacedevs.com/2.3.0/launcher_configurations/93/"
+      }
+    ]
+  },
+  {
+    "id": "n1",
+    "section": "rockets",
+    "title": "N1",
+    "subtitle": "Soviet Union · super heavy-lift Moon rocket, 1969–1972",
+    "facts": [
+      {
+        "label": "Builder",
+        "value": "OKB-1 design bureau (later TsKBEM), Soviet Union",
+        "source": 0
+      },
+      {
+        "label": "Height",
+        "value": "105.3 m",
+        "source": 0
+      },
+      {
+        "label": "Diameter",
+        "value": "16.9 m at the base of the first stage",
+        "source": 0
+      },
+      {
+        "label": "Mass at launch",
+        "value": "2,820 t",
+        "source": 0
+      },
+      {
+        "label": "Payload to low Earth orbit",
+        "value": "90 t",
+        "source": 0
+      },
+      {
+        "label": "First-stage engines",
+        "value": "30",
+        "source": 2
+      },
+      {
+        "label": "Launches",
+        "value": "4, 1969–1972, all failed (Launch Library 2, as of 18 October 2026)",
+        "source": 3
+      },
+      {
+        "label": "Status",
+        "value": "Retired; work suspended in June 1974",
+        "source": 0
+      }
+    ],
+    "essay": "The N1 was the Soviet Union's rocket for landing a cosmonaut on the Moon, the counterpart of the Saturn V. Korolev's OKB-1 bureau began it in the early 1960s. It was a cone-shaped stack 105.3 m tall and 16.9 m across at the base, with a launch mass of about 2,820 t and a design payload of about 90 t to low Earth orbit. All its stages burned kerosene and liquid oxygen, and the first stage alone had 30 engines.\n\nNone of the four launches reached orbit. The first, in February 1969, ended after a fire broke out in the tail of the first stage. On 3 July 1969 the second rocket stalled about 100 m above the pad, fell back and exploded, destroying the pad; American reconnaissance satellites photographed the damage. In June 1971 the third lost roll control soon after liftoff, and the fourth, on 23 November 1972, failed during first-stage flight.\n\nEngineers were preparing improved boosters with new engines for 1974, but in May of that year the Soviet defence minister suspended further launches. In June 1974 Valentin Glushko, newly appointed head of the reorganised design bureau, stopped all work on the N1-L3 lunar programme.",
+    "image": null,
+    "drawing": {
+      "kind": "rocket",
+      "heightM": 105.3,
+      "diameterM": 16.9,
+      "status": "retired"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA SP-2000-4408, Challenge to Apollo, Part 2 (Asif Siddiqi)",
+        "url": "https://www.nasa.gov/wp-content/uploads/static/history/SP-4408pt2.pdf"
+      },
+      {
+        "title": "NASA SP-2000-4408, Challenge to Apollo, Part 1 (Asif Siddiqi)",
+        "url": "https://www.nasa.gov/wp-content/uploads/static/history/SP-4408pt1.pdf"
+      },
+      {
+        "title": "NASA: 50 Years Ago: National Goal Nears Fulfillment",
+        "url": "https://www.nasa.gov/history/50-years-ago-national-goal-nears-fulfillment/"
+      },
+      {
+        "title": "Launch Library 2: N1",
+        "url": "https://ll.thespacedevs.com/2.3.0/launcher_configurations/114/"
+      }
+    ]
+  },
+  {
+    "id": "space-shuttle",
+    "section": "rockets",
+    "title": "Space Shuttle",
+    "subtitle": "NASA · reusable crewed launch system, 1981–2011",
+    "facts": [
+      {
+        "label": "Builder",
+        "value": "NASA (orbiters by Rockwell International); United States",
+        "source": 0
+      },
+      {
+        "label": "Height on the pad",
+        "value": "56.1 m (184 ft)",
+        "source": 0
+      },
+      {
+        "label": "Diameter",
+        "value": "8.4 m (27.5 ft), external tank",
+        "source": 1
+      },
+      {
+        "label": "Mass at liftoff",
+        "value": "About 2,040 t (4.5 million lb), depending on payload",
+        "source": 0
+      },
+      {
+        "label": "Heaviest payload",
+        "value": "About 25 tons, the Chandra X-ray Observatory",
+        "source": 2
+      },
+      {
+        "label": "First flight",
+        "value": "12 April 1981 (STS-1, Columbia)",
+        "source": 2
+      },
+      {
+        "label": "Missions",
+        "value": "135, 1981–2011; Challenger lost during ascent in 1986, Columbia during re-entry in 2003",
+        "source": 0
+      },
+      {
+        "label": "Status",
+        "value": "Retired",
+        "source": 2
+      }
+    ],
+    "essay": "The Space Shuttle launched like a rocket and landed like an aeroplane. Each launch stack had three parts: a winged orbiter carrying the crew, cargo and three main engines; a large external tank holding liquid hydrogen and liquid oxygen for those engines; and two solid rocket boosters that provided most of the thrust for the first two minutes. On the pad it stood 56.1 m tall and weighed about 2,040 t. The boosters were recovered from the ocean and reused, and the orbiter was flown again; only the tank was discarded.\n\nColumbia made the first flight on 12 April 1981. Five orbiters flew in space: Columbia, Challenger, Discovery, Atlantis and Endeavour. Missions usually lasted between five and sixteen days, with crews of up to eight. The orbiter's 18 m payload bay carried satellites, the Spacelab laboratory and large parts of the International Space Station, and could bring payloads back to Earth. The heaviest single cargo was the Chandra X-ray Observatory, at about 25 tons.\n\nTwo orbiters and their crews were lost: Challenger during ascent in January 1986 and Columbia during re-entry in February 2003. Atlantis flew the 135th and final mission, STS-135, in July 2011.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/s81-30462/s81-30462~large.jpg",
+      "credit": "NASA",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/s81-30462",
+      "caption": "Columbia lifts off from Pad 39A on STS-1, the first Space Shuttle mission, on 12 April 1981."
+    },
+    "drawing": {
+      "kind": "rocket",
+      "heightM": 56.1,
+      "diameterM": 8.4,
+      "status": "retired"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA: The Space Shuttle",
+        "url": "https://www.nasa.gov/reference/the-space-shuttle/"
+      },
+      {
+        "title": "NASA: External Tank Departs for the California Science Center",
+        "url": "https://www.nasa.gov/image-article/external-tank-departs-california-science-center/"
+      },
+      {
+        "title": "NASA Facts: Space Shuttle Era Facts",
+        "url": "https://www3.nasa.gov/centers/kennedy/pdf/566250main_SHUTTLE%20ERA%20FACTS_040412.pdf"
+      }
+    ]
+  },
+  {
+    "id": "ariane-5",
+    "section": "rockets",
+    "title": "Ariane 5",
+    "subtitle": "ESA / ArianeGroup · heavy-lift rocket, 1996–2023",
+    "facts": [
+      {
+        "label": "Builder",
+        "value": "ArianeGroup, for ESA; Europe",
+        "source": 2
+      },
+      {
+        "label": "Height",
+        "value": "Up to 53 m (Ariane 5 ECA)",
+        "source": 1
+      },
+      {
+        "label": "Diameter",
+        "value": "5.4 m",
+        "source": 1
+      },
+      {
+        "label": "Mass at liftoff",
+        "value": "780 t (Ariane 5 ECA, double launch)",
+        "source": 1
+      },
+      {
+        "label": "Payload to GTO",
+        "value": "10 t (Ariane 5 ECA)",
+        "source": 1
+      },
+      {
+        "label": "First flight",
+        "value": "4 June 1996",
+        "source": 2
+      },
+      {
+        "label": "Launches",
+        "value": "117, 1996–2023; Launch Library 2 records 5 failures or partial failures (as of 18 October 2026)",
+        "source": 0
+      },
+      {
+        "label": "Status",
+        "value": "Retired; final flight VA261 on 6 July 2023",
+        "source": 0
+      }
+    ],
+    "essay": "Ariane 5 was Europe's main launcher for more than a quarter of a century. Unlike Ariane 1 to 4, which were closely related to one another, it was designed as a new system, starting in 1985. A cryogenic core stage with a single Vulcain engine was flanked by two large solid boosters. The most-used version, Ariane 5 ECA, stood up to 53 m tall, weighed about 780 t at liftoff for a double launch and could place 10 t into geostationary transfer orbit.\n\nThat capacity let Ariane 5 carry two large communications satellites at once, which made it popular with commercial operators. It also launched ESA's Rosetta comet mission, twelve Galileo navigation satellites in three launches, the five Automated Transfer Vehicles that supplied the International Space Station, the James Webb Space Telescope in 2021 and, on its last ESA mission, the Juice spacecraft bound for Jupiter.\n\nAriane 5 first flew on 4 June 1996, and Launch Library 2 counts five failures or partial failures over its career. The final flight, VA261, took place on 6 July 2023, bringing the total to 117 launches from Europe's Spaceport in French Guiana.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/NHQ202112250015/NHQ202112250015~large.jpg",
+      "credit": "NASA/Bill Ingalls",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/NHQ202112250015",
+      "caption": "Ariane 5 lifts off from Europe's Spaceport in Kourou with the James Webb Space Telescope on 25 December 2021."
+    },
+    "drawing": {
+      "kind": "rocket",
+      "heightM": 53.0,
+      "diameterM": 5.4,
+      "status": "retired"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "ESA: Ariane 5",
+        "url": "https://www.esa.int/Enabling_Support/Space_Transportation/Launch_vehicles/Ariane_5"
+      },
+      {
+        "title": "ESA: Ariane 5 ECA",
+        "url": "https://www.esa.int/Enabling_Support/Space_Transportation/Ariane/Ariane_5_ECA"
+      },
+      {
+        "title": "Launch Library 2: Ariane 5 configurations",
+        "url": "https://ll.thespacedevs.com/2.3.0/launcher_configurations/?search=Ariane%205&mode=detailed"
+      }
+    ]
+  },
+  {
+    "id": "ariane-6",
+    "section": "rockets",
+    "title": "Ariane 6",
+    "subtitle": "ESA / ArianeGroup · heavy-lift rocket, 2024–",
+    "facts": [
+      {
+        "label": "Builder",
+        "value": "ArianeGroup (prime contractor), for ESA; Europe",
+        "source": 2
+      },
+      {
+        "label": "Height",
+        "value": "56 m or 62 m, depending on fairing",
+        "source": 0
+      },
+      {
+        "label": "Diameter",
+        "value": "5.4 m",
+        "source": 0
+      },
+      {
+        "label": "Mass at liftoff",
+        "value": "Up to 540 t (Ariane 62); up to 870 t (Ariane 64)",
+        "source": 0
+      },
+      {
+        "label": "Payload to low Earth orbit",
+        "value": "Up to 10.3 t (Ariane 62); up to 21.6 t (Ariane 64)",
+        "source": 0
+      },
+      {
+        "label": "Payload to GTO",
+        "value": "Up to 4.5 t (Ariane 62); up to 11.5 t (Ariane 64)",
+        "source": 0
+      },
+      {
+        "label": "First flight",
+        "value": "9 July 2024 (Ariane 62); first Ariane 64 on 12 February 2026",
+        "source": 1
+      },
+      {
+        "label": "Launches",
+        "value": "9, no failures (Launch Library 2, as of 18 October 2026)",
+        "source": 3
+      }
+    ],
+    "essay": "Ariane 6 replaced Ariane 5 as Europe's heavy launcher. ESA member states approved its development in December 2014, with ArianeGroup as prime contractor and Arianespace as operator. It flies in two versions: Ariane 62 with two P120C solid boosters and Ariane 64 with four. The core stage uses the Vulcain 2.1, an upgraded version of Ariane 5's main engine, and both stages burn liquid hydrogen and liquid oxygen.\n\nThe main change from Ariane 5 is the upper stage. Its Vinci engine can be reignited several times, so one launch can drop satellites into different orbits, and a final burn brings the stage back down to avoid leaving debris in orbit. The 5.4 m fairing comes in 14 m and 20 m lengths, giving a total height of 56 m or 62 m. Ariane 62 can place up to 4.5 t into geostationary transfer orbit and Ariane 64 up to 11.5 t.\n\nThe first Ariane 6, a two-booster Ariane 62, flew on 9 July 2024 from a new launch zone at Europe's Spaceport in French Guiana. The first Ariane 64 followed on 12 February 2026, carrying 32 Amazon Leo satellites. Launch Library 2 lists nine launches without a failure as of October 2026.",
+    "image": {
+      "url": "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2024/04/ariane_6_media_kit_cover/26045375-1-eng-GB/Ariane_6_media_kit_cover_pillars.jpg",
+      "credit": "ESA",
+      "licence": "CC BY-SA 3.0 IGO",
+      "page": "https://www.esa.int/ESA_Multimedia/Images/2024/04/Ariane_6_media_kit_cover",
+      "caption": "An Ariane 62 on its launch pad at Europe's Spaceport, used as the cover of ESA's Ariane 6 media kit."
+    },
+    "drawing": {
+      "kind": "rocket",
+      "heightM": 62.0,
+      "diameterM": 5.4,
+      "status": "active"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "ESA: Ariane 6 media kit",
+        "url": "https://esamultimedia.esa.int/docs/STS/ariane-6_media-kit_english.pdf"
+      },
+      {
+        "title": "ESA: More power: first Ariane 6 with four boosters lifts off",
+        "url": "https://www.esa.int/Enabling_Support/Space_Transportation/Ariane/More_power_first_Ariane_6_with_four_boosters_lifts_off"
+      },
+      {
+        "title": "ESA: Ariane 6 overview",
+        "url": "https://www.esa.int/Enabling_Support/Space_Transportation/Launch_vehicles/Ariane_6_overview"
+      },
+      {
+        "title": "Launch Library 2: Ariane 6 configurations",
+        "url": "https://ll.thespacedevs.com/2.3.0/launcher_configurations/?search=Ariane%206&mode=detailed"
+      }
+    ]
+  },
+  {
+    "id": "soyuz-2",
+    "section": "rockets",
+    "title": "Soyuz-2",
+    "subtitle": "Russia · medium-lift rocket of the R-7 family, 2004–",
+    "facts": [
+      {
+        "label": "Builder",
+        "value": "TsSKB-Progress (Progress Rocket Space Centre), Samara, Russia",
+        "source": 0
+      },
+      {
+        "label": "Height",
+        "value": "46.3 m (Soyuz-2.1a and 2.1b)",
+        "source": 2
+      },
+      {
+        "label": "Diameter",
+        "value": "2.95 m core stage; four 2.68 m strap-on boosters",
+        "source": 0
+      },
+      {
+        "label": "Mass at liftoff",
+        "value": "About 312 t (Soyuz-2.1a)",
+        "source": 2
+      },
+      {
+        "label": "Payload to low Earth orbit",
+        "value": "About 8,200 kg (Soyuz-2.1b)",
+        "source": 2
+      },
+      {
+        "label": "Payload to GTO",
+        "value": "3,060 kg from French Guiana (Soyuz-2.1b with Fregat)",
+        "source": 0
+      },
+      {
+        "label": "First flight",
+        "value": "8 November 2004 (Soyuz-2.1a); 27 December 2006 (Soyuz-2.1b)",
+        "source": 0
+      },
+      {
+        "label": "Launches",
+        "value": "210, including the Kourou flights; 7 failures (Launch Library 2, as of 18 October 2026)",
+        "source": 3
+      }
+    ],
+    "essay": "Soyuz-2 is the current version of the rocket family that began with the R-7 missile and launched Sputnik and Gagarin. Four strap-on boosters, each 19 m long, surround a 28 m core stage; all five ignite at liftoff and burn kerosene with liquid oxygen. A third stage sits on top, often with a restartable Fregat upper stage. The vehicle is designed and built by the Progress Rocket Space Centre in Samara.\n\nThe main change from earlier Soyuz rockets is a digital flight control system, introduced on Soyuz-2.1a, which first flew from Plesetsk on 8 November 2004. Soyuz-2.1b, which first flew on 27 December 2006 carrying the CoRoT telescope, adds the more powerful RD-0124 engine on the third stage.\n\nFrom October 2011 a version called Soyuz-ST also flew from a dedicated pad at Europe's Spaceport in French Guiana, the first Soyuz launches from anywhere other than Baikonur or Plesetsk. Launching close to the equator let it place about 3 t into geostationary transfer orbit, compared with 1.7 t from Baikonur, and its first flight carried two Galileo navigation satellites. Soyuz was withdrawn from French Guiana after a last launch in February 2022. Counting those flights, Launch Library 2 lists 210 Soyuz-2 launches with seven failures.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/NHQ202104090005/NHQ202104090005~large.jpg",
+      "credit": "NASA/Bill Ingalls",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/NHQ202104090005",
+      "caption": "A Soyuz rocket lifts off from Baikonur Cosmodrome with the Soyuz MS-18 spacecraft on 9 April 2021."
+    },
+    "drawing": {
+      "kind": "rocket",
+      "heightM": 46.3,
+      "diameterM": 2.95,
+      "status": "active"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "ESA Bulletin 132: Soyuz at the Guiana Space Centre",
+        "url": "https://www.esa.int/esapub/bulletin/bulletin132/bul132h_arend.pdf"
+      },
+      {
+        "title": "ESA: Soyuz",
+        "url": "https://www.esa.int/About_Us/50_years_of_ESA/Soyuz"
+      },
+      {
+        "title": "Launch Library 2: Soyuz 2.1 configurations",
+        "url": "https://ll.thespacedevs.com/2.3.0/launcher_configurations/?search=Soyuz%202.1&mode=detailed"
+      },
+      {
+        "title": "Launch Library 2: Soyuz ST configurations (Kourou)",
+        "url": "https://ll.thespacedevs.com/2.3.0/launcher_configurations/?search=Soyuz%20ST&mode=detailed"
+      }
+    ]
+  },
+  {
+    "id": "proton-m",
+    "section": "rockets",
+    "title": "Proton-M",
+    "subtitle": "Russia · heavy-lift rocket, 2001–",
+    "facts": [
+      {
+        "label": "Builder",
+        "value": "Khrunichev State Research and Production Space Center, Moscow, Russia",
+        "source": 1
+      },
+      {
+        "label": "Height",
+        "value": "58.2 m with the standard commercial fairing (Breeze M upper stage)",
+        "source": 0
+      },
+      {
+        "label": "Diameter",
+        "value": "7.4 m across the first stage and its outboard tanks; 4.1 m core",
+        "source": 1
+      },
+      {
+        "label": "Mass at liftoff",
+        "value": "705 t",
+        "source": 0
+      },
+      {
+        "label": "Payload to low Earth orbit",
+        "value": "23.0 t (three stages, 180 km, 51.5°)",
+        "source": 1
+      },
+      {
+        "label": "Payload to GTO",
+        "value": "6.27 t (1,500 m/s from geostationary orbit, Breeze M)",
+        "source": 0
+      },
+      {
+        "label": "First flight",
+        "value": "7 April 2001",
+        "source": 2
+      },
+      {
+        "label": "Launches",
+        "value": "116, 11 failures; most recent 12 February 2026 (Launch Library 2, as of 18 October 2026)",
+        "source": 3
+      }
+    ],
+    "essay": "Proton-M is the current version of the Proton, a Soviet and Russian heavy rocket family. It is built by the Khrunichev centre in Moscow. The first stage has a central oxidiser tank surrounded by six outboard fuel tanks, with six RD-276 engines, which gives the rocket its 7.4 m wide base; the upper stages are 4.1 m across. All stages burn nitrogen tetroxide with unsymmetrical dimethylhydrazine.\n\nWith the Breeze M upper stage on top, Proton-M stands 58.2 m tall and weighs about 705 t at liftoff. The three-stage rocket can put about 23 t into low Earth orbit, and the Breeze M, which can restart several times during a mission lasting about nine hours, delivers communications satellites directly to high orbits. For many years International Launch Services sold it on the commercial market.\n\nProton-M first flew in April 2001. Launch Library 2 records failures in most years between 2006 and 2015, and launches have since become infrequent: two in 2023 and one in 2026. In all it counts 116 Proton-M launches with 11 failures; the most recent, on 12 February 2026, carried the Elektro-L No.5 weather satellite.",
+    "image": null,
+    "drawing": {
+      "kind": "rocket",
+      "heightM": 58.2,
+      "diameterM": 7.4,
+      "status": "active"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "International Launch Services: Proton Breeze M",
+        "url": "https://www.ilslaunch.com/launch-vehicle/proton-breeze-m/"
+      },
+      {
+        "title": "ILS Proton Mission Planner's Guide, Section A (rev. 7, 2009)",
+        "url": "https://www.ilslaunch.com/wp-content/uploads/pdf/PMPG%20Section%20A.pdf"
+      },
+      {
+        "title": "Launch Library 2: Proton-M configurations",
+        "url": "https://ll.thespacedevs.com/2.3.0/launcher_configurations/?search=Proton-M&mode=detailed"
+      },
+      {
+        "title": "Launch Library 2: recent Proton launches",
+        "url": "https://ll.thespacedevs.com/2.3.0/launches/previous/?search=Proton&mode=list&limit=3&ordering=-net"
+      }
+    ]
+  },
+  {
+    "id": "long-march-5",
+    "section": "rockets",
+    "title": "Long March 5",
+    "subtitle": "China · heavy-lift rocket, 2016–",
+    "facts": [
+      {
+        "label": "Builder",
+        "value": "China Academy of Launch Vehicle Technology (CASC), China",
+        "source": 0
+      },
+      {
+        "label": "Height",
+        "value": "57 m",
+        "source": 0
+      },
+      {
+        "label": "Diameter",
+        "value": "5 m core stage",
+        "source": 0
+      },
+      {
+        "label": "Mass at liftoff",
+        "value": "867 t",
+        "source": 0
+      },
+      {
+        "label": "Payload",
+        "value": "About 25,000 kg to low Earth orbit (Long March 5B); about 14,000 kg to GTO",
+        "source": 0
+      },
+      {
+        "label": "First flight",
+        "value": "3 November 2016",
+        "source": 0
+      },
+      {
+        "label": "Launches",
+        "value": "18 (Long March 5 and 5B), 1 failure (Launch Library 2, as of 18 October 2026)",
+        "source": 1
+      },
+      {
+        "label": "Launch site",
+        "value": "Wenchang, Hainan",
+        "source": 2
+      }
+    ],
+    "essay": "Long March 5 is China's heavy-lift rocket, developed by the China Academy of Launch Vehicle Technology and built by the China Aerospace Science and Technology Corporation. It was the first Chinese launcher designed from the start around non-hypergolic propellants, which do not ignite on contact. The core stage is 5 m in diameter, the rocket is 57 m tall, and it weighs about 867 t at liftoff.\n\nThere are two main versions. The standard Long March 5 can send about 14 t to geostationary transfer orbit or launch probes beyond Earth orbit. Long March 5B, which first flew in May 2020, is aimed at low Earth orbit and can carry about 25 t there. The rocket launches from Wenchang, on Hainan island in southern China.\n\nThe first flight took place on 3 November 2016, and the second, in July 2017, failed. On 24 November 2020 a Long March 5 launched the Chang'e-5 mission, the first robotic sample return from the Moon since the Soviet Luna 24 in 1976. Launch Library 2 counts 18 launches of the two versions with that one failure as of October 2026.",
+    "image": null,
+    "drawing": {
+      "kind": "rocket",
+      "heightM": 57.0,
+      "diameterM": 5.0,
+      "status": "active"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "Launch Library 2: Long March 5",
+        "url": "https://ll.thespacedevs.com/2.3.0/launcher_configurations/128/"
+      },
+      {
+        "title": "Launch Library 2: Long March 5 configurations",
+        "url": "https://ll.thespacedevs.com/2.3.0/launcher_configurations/?search=Long%20March%205&mode=detailed"
+      },
+      {
+        "title": "NASA APOD: Chang'e 5 Mission Launch (27 November 2020)",
+        "url": "https://science.nasa.gov/image-article/apod-2020-november-27-change-5-mission-launch/"
+      }
+    ]
+  },
+  {
+    "id": "delta-iv-heavy",
+    "section": "rockets",
+    "title": "Delta IV Heavy",
+    "subtitle": "United Launch Alliance · heavy-lift rocket, 2004–2024",
+    "facts": [
+      {
+        "label": "Builder",
+        "value": "United Launch Alliance (ULA), United States",
+        "source": 1
+      },
+      {
+        "label": "Height",
+        "value": "71 m (233 ft)",
+        "source": 0
+      },
+      {
+        "label": "Diameter",
+        "value": "5 m per core; 16 m (53 ft) across all three cores",
+        "source": 0
+      },
+      {
+        "label": "Mass at liftoff",
+        "value": "About 726 t (1.6 million lb) fully fuelled",
+        "source": 0
+      },
+      {
+        "label": "Payload",
+        "value": "28,370 kg to low Earth orbit; 14,210 kg to GTO",
+        "source": 2
+      },
+      {
+        "label": "First flight",
+        "value": "21 December 2004",
+        "source": 2
+      },
+      {
+        "label": "Launches",
+        "value": "16, 2004–2024; 1 partial failure, the 2004 demonstration flight (Launch Library 2, as of 18 October 2026)",
+        "source": 2
+      },
+      {
+        "label": "Status",
+        "value": "Retired; final launch 9 April 2024 (NROL-70)",
+        "source": 1
+      }
+    ],
+    "essay": "Delta IV Heavy was the largest member of the Delta IV family. It used three common booster cores side by side, each about 5 m in diameter and powered by a single RS-68 engine burning liquid hydrogen and liquid oxygen. A second stage with one RL10 engine, also burning hydrogen and oxygen, sat on the centre core. The assembled rocket stood 71 m tall, measured 16 m across the three cores and weighed about 726 t when fuelled. Launch Library 2 gives its capacity as about 28 t to low Earth orbit.\n\nThe first flight, a demonstration in December 2004, is recorded as a partial failure; every later launch succeeded. The rocket flew mainly for the US National Reconnaissance Office, which accounted for 12 of its 16 missions. By 2018 the boosters used the upgraded RS-68A engine, producing 702,000 lb of thrust each, and NASA described the rocket as the most powerful it was then using. That year it launched NASA's Parker Solar Probe toward the Sun.\n\nThe sixteenth and final Delta IV Heavy launched NROL-70 from Cape Canaveral on 9 April 2024. That launch ended the Delta rocket line after about 60 years, with ULA moving its heavy missions to the new Vulcan rocket.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/NHQ201808120013/NHQ201808120013~large.jpg",
+      "credit": "NASA/Bill Ingalls",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/NHQ201808120013",
+      "caption": "A Delta IV Heavy lifts off from Cape Canaveral with NASA's Parker Solar Probe on 12 August 2018."
+    },
+    "drawing": {
+      "kind": "rocket",
+      "heightM": 71.0,
+      "diameterM": 5.0,
+      "status": "retired"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "ULA: Delta IV Parker Solar Probe",
+        "url": "https://www.ulalaunch.com/missions/archived-launched/delta-iv-parker-solar-probe"
+      },
+      {
+        "title": "ULA: Marking the End of an Era, ULA Launches Final Delta IV Heavy",
+        "url": "https://www.ulalaunch.com/about/news-detail/2024/04/09/marking-the-end-of-an-era-united-launch-alliance-successfully-launches-final-delta-iv-heavy-rocket"
+      },
+      {
+        "title": "Launch Library 2: Delta IV Heavy",
+        "url": "https://ll.thespacedevs.com/2.3.0/launcher_configurations/21/"
+      },
+      {
+        "title": "NASA: Workhorse Rocket to Carry NASA's Parker Solar Probe",
+        "url": "https://science.nasa.gov/blogs/parker-solar-probe/2018/08/11/workhorse-rocket-to-carry-nasas-parker-solar-probe/"
+      },
+      {
+        "title": "ULA: NRO Mission Launches on the ULA Delta IV Heavy (2013)",
+        "url": "https://www.ulalaunch.com/about/news-detail/2013/08/28/national-reconnaissance-office-mission-successfully-launches-on-world-s-largest-rocket-the-united-launch-alliance-delta-iv-heavy"
+      }
+    ]
+  },
+  {
+    "id": "atlas-v",
+    "section": "rockets",
+    "title": "Atlas V",
+    "subtitle": "United Launch Alliance · medium- to heavy-lift rocket, 2002–",
+    "facts": [
+      {
+        "label": "Builder",
+        "value": "United Launch Alliance (ULA), United States",
+        "source": 1
+      },
+      {
+        "label": "Height",
+        "value": "About 60 m (197 ft) in the 541 configuration",
+        "source": 0
+      },
+      {
+        "label": "Diameter",
+        "value": "3.8 m booster",
+        "source": 2
+      },
+      {
+        "label": "Mass at liftoff",
+        "value": "About 531,000 kg in the 541 configuration with Mars 2020",
+        "source": 3
+      },
+      {
+        "label": "Payload",
+        "value": "Up to 18,850 kg to low Earth orbit and 8,900 kg to GTO (551 configuration)",
+        "source": 1
+      },
+      {
+        "label": "First flight",
+        "value": "21 August 2002 (Atlas V 401, Hot Bird 6)",
+        "source": 2
+      },
+      {
+        "label": "Launches",
+        "value": "110, no failures recorded (Launch Library 2, as of 18 October 2026)",
+        "source": 4
+      }
+    ],
+    "essay": "Atlas V is a two-stage rocket built around a 3.8 m booster powered by a single Russian-built RD-180 engine, which burns kerosene and liquid oxygen and delivers more than 860,000 lb of thrust. The Centaur upper stage burns liquid hydrogen with liquid oxygen on one or two RL10 engines. Up to five solid boosters can be strapped to the first stage.\n\nEach version is named with three digits: the fairing diameter in metres (4 or 5), the number of solid boosters, and the number of Centaur engines. An Atlas V 541, for example, has a 5 m fairing, four boosters and one Centaur engine; in that form it stands about 60 m tall. The most powerful version, the 551, can put up to 18,850 kg into low Earth orbit.\n\nThe first Atlas V flew on 21 August 2002. It has carried many NASA planetary missions; five of them went to Mars: the Mars Reconnaissance Orbiter in 2005, the Curiosity rover in 2011, MAVEN in 2013, InSight in 2018 and the Perseverance rover in 2020. It also launches Boeing's Starliner capsule with astronauts to the International Space Station. Launch Library 2 lists 110 Atlas V launches without a failure as of October 2026, and more are scheduled.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/201311180006HQ/201311180006HQ~large.jpg",
+      "credit": "NASA/Bill Ingalls",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/201311180006HQ",
+      "caption": "An Atlas V climbs away from Cape Canaveral with NASA's MAVEN spacecraft on 18 November 2013."
+    },
+    "drawing": {
+      "kind": "rocket",
+      "heightM": 60.0,
+      "diameterM": 3.8,
+      "status": "active"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA JPL: Mars 2020 Perseverance Launch Press Kit, Mission Overview",
+        "url": "https://www.jpl.nasa.gov/news/press_kits/mars_2020/launch/mission/"
+      },
+      {
+        "title": "ULA: Atlas V",
+        "url": "https://www.ulalaunch.com/rockets/atlas-v"
+      },
+      {
+        "title": "ULA: Atlas V Launch Services User's Guide (2010)",
+        "url": "https://www.ulalaunch.com/docs/default-source/rockets/atlasvusersguide2010a.pdf?sfvrsn=f84bb59e_2"
+      },
+      {
+        "title": "NASA JPL: Mars 2020 Perseverance Launch Press Kit, Quick Facts",
+        "url": "https://www.jpl.nasa.gov/news/press_kits/mars_2020/launch/quick_facts/"
+      },
+      {
+        "title": "Launch Library 2: Atlas V configurations",
+        "url": "https://ll.thespacedevs.com/2.3.0/launcher_configurations/?search=Atlas%20V&mode=detailed"
+      }
+    ]
+  },
+  {
+    "id": "falcon-9",
+    "section": "rockets",
+    "title": "Falcon 9",
+    "subtitle": "SpaceX · reusable medium-lift rocket, 2010–",
+    "facts": [
+      {
+        "label": "Builder",
+        "value": "SpaceX, United States",
+        "source": 0
+      },
+      {
+        "label": "Height",
+        "value": "70 m (229.6 ft)",
+        "source": 0
+      },
+      {
+        "label": "Diameter",
+        "value": "3.7 m (12 ft)",
+        "source": 0
+      },
+      {
+        "label": "Mass at liftoff",
+        "value": "549,054 kg",
+        "source": 0
+      },
+      {
+        "label": "Payload",
+        "value": "22,800 kg to low Earth orbit; 8,300 kg to GTO; 4,020 kg to Mars",
+        "source": 0
+      },
+      {
+        "label": "First flight",
+        "value": "4 June 2010",
+        "source": 1
+      },
+      {
+        "label": "Launches",
+        "value": "697, 4 failures or partial failures, including the 2016 pre-launch loss of Amos-6 (Launch Library 2, as of 18 October 2026)",
+        "source": 1
+      }
+    ],
+    "essay": "Falcon 9 is a two-stage rocket built by SpaceX. Both stages burn rocket-grade kerosene with liquid oxygen: the first stage has nine Merlin engines and the second a single Merlin Vacuum engine that can restart several times to drop payloads in different orbits. The current version stands 70 m tall, weighs about 549 t at liftoff and can lift up to 22,800 kg to low Earth orbit.\n\nThe first stage is designed to be reused. After separation it uses four grid fins at the top of the stage to steer as it falls back through the atmosphere, then lands upright on deployable legs. The fairing halves are also recovered for reuse. SpaceX describes Falcon 9 as the first orbital-class rocket capable of reflight, which lets it fly the most expensive part of the rocket again.\n\nFalcon 9 first flew on 4 June 2010. It carries satellites of all kinds as well as the Dragon spacecraft, which takes cargo and NASA astronauts to the International Space Station. Launch Library 2 counts 697 Falcon 9 launches across all versions as of October 2026, with four failures or partial failures. One of these was the loss of a rocket and its Amos-6 satellite on the pad before launch in 2016, and the most recent was in July 2024.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/KSC-20240928-PH-JBS01_0046/KSC-20240928-PH-JBS01_0046~large.jpg",
+      "credit": "NASA/Ben Smegelsky",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/KSC-20240928-PH-JBS01_0046",
+      "caption": "A Falcon 9 lifts off from Cape Canaveral Space Force Station on NASA's SpaceX Crew-9 mission on 28 September 2024."
+    },
+    "drawing": {
+      "kind": "rocket",
+      "heightM": 70.0,
+      "diameterM": 3.7,
+      "status": "active"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "SpaceX: Falcon 9",
+        "url": "https://www.spacex.com/vehicles/falcon-9/"
+      },
+      {
+        "title": "Launch Library 2: Falcon 9 configurations",
+        "url": "https://ll.thespacedevs.com/2.3.0/launcher_configurations/?search=Falcon%209&mode=detailed"
+      }
+    ]
+  },
+  {
+    "id": "falcon-heavy",
+    "section": "rockets",
+    "title": "Falcon Heavy",
+    "subtitle": "SpaceX · reusable heavy-lift rocket, 2018–",
+    "facts": [
+      {
+        "label": "Builder",
+        "value": "SpaceX, United States",
+        "source": 0
+      },
+      {
+        "label": "Height",
+        "value": "70 m (229.6 ft)",
+        "source": 0
+      },
+      {
+        "label": "Width",
+        "value": "12.2 m across the three cores; each core 3.7 m",
+        "source": 0
+      },
+      {
+        "label": "Mass at liftoff",
+        "value": "1,420,788 kg",
+        "source": 0
+      },
+      {
+        "label": "Payload",
+        "value": "63,800 kg to low Earth orbit; 26,700 kg to GTO; 16,800 kg to Mars",
+        "source": 0
+      },
+      {
+        "label": "First flight",
+        "value": "6 February 2018",
+        "source": 1
+      },
+      {
+        "label": "Launches",
+        "value": "14, no failures (Launch Library 2, as of 18 October 2026)",
+        "source": 1
+      }
+    ],
+    "essay": "Falcon Heavy is three Falcon 9 first stages strapped together with a single Falcon 9 second stage on the centre core. Its 27 Merlin engines produce more than 5 million lb of thrust at liftoff. It is 70 m tall and 12.2 m wide across the three cores, and weighs about 1,420 t at liftoff. It can lift 63,800 kg to low Earth orbit, 26,700 kg to geostationary transfer orbit or 16,800 kg to Mars.\n\nThe three cores are joined at the nose cone, the interstage and the engine section. Shortly after liftoff the centre core throttles down to save propellant. The two side boosters separate first, after which the centre core returns to full thrust. Like Falcon 9 first stages, the cores carry grid fins and are designed to be recovered, and the fairing halves are also recovered.\n\nFalcon Heavy first flew on 6 February 2018. Its customers include NASA, which used it to launch the Psyche spacecraft toward a metal-rich asteroid in October 2023. Launch Library 2 counts 14 launches without a failure as of October 2026.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/NHQ202310110006/NHQ202310110006~large.jpg",
+      "credit": "NASA/Aubrey Gemignani",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/NHQ202310110006",
+      "caption": "A Falcon Heavy with NASA's Psyche spacecraft stands on Launch Complex 39A at Kennedy Space Center in October 2023."
+    },
+    "drawing": {
+      "kind": "rocket",
+      "heightM": 70.0,
+      "diameterM": 3.7,
+      "status": "active"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "SpaceX: Falcon Heavy",
+        "url": "https://www.spacex.com/vehicles/falcon-heavy/"
+      },
+      {
+        "title": "Launch Library 2: Falcon Heavy",
+        "url": "https://ll.thespacedevs.com/2.3.0/launcher_configurations/161/"
+      },
+      {
+        "title": "NASA image: Psyche Launch",
+        "url": "https://images.nasa.gov/details/NHQ202310130017"
+      }
+    ]
+  },
+  {
+    "id": "starship",
+    "section": "rockets",
+    "title": "Starship (Super Heavy and Ship)",
+    "subtitle": "SpaceX · fully reusable super heavy-lift rocket, in testing since 2023",
+    "facts": [
+      {
+        "label": "Builder",
+        "value": "SpaceX, United States",
+        "source": 0
+      },
+      {
+        "label": "Height",
+        "value": "124 m (407 ft): Super Heavy 72 m, Ship 52 m",
+        "source": 0
+      },
+      {
+        "label": "Diameter",
+        "value": "9 m (29.5 ft)",
+        "source": 0
+      },
+      {
+        "label": "Propellant",
+        "value": "3,650 t in Super Heavy and 1,600 t in the Ship (liquid methane and liquid oxygen)",
+        "source": 0
+      },
+      {
+        "label": "Payload",
+        "value": "More than 100 t to orbit, fully reusable (design)",
+        "source": 0
+      },
+      {
+        "label": "First flight",
+        "value": "20 April 2023",
+        "source": 1
+      },
+      {
+        "label": "Test flights",
+        "value": "14 integrated flights; Launch Library 2 records 9 successes and 5 failures or partial failures (as of 18 October 2026)",
+        "source": 1
+      },
+      {
+        "label": "Status",
+        "value": "In development",
+        "source": 1
+      }
+    ],
+    "essay": "Starship is SpaceX's two-stage launch system, designed so that both stages can be recovered and flown again. The first stage, Super Heavy, is 72 m tall and has 33 Raptor engines burning liquid methane and liquid oxygen. The upper stage, also called Starship or the Ship, is 52 m tall and has three sea-level Raptors and three vacuum-optimised ones. Stacked, the two stages are 124 m tall and 9 m in diameter. SpaceX describes it as the most powerful launch vehicle ever developed.\n\nInstead of landing on legs, Super Heavy is designed to return to the launch site and be caught by the launch tower, then flown again without refurbishment. SpaceX's stated goal is more than 100 t to orbit with both stages reused. Tanker versions of the Ship, without windows, are planned to refuel other Ships in low Earth orbit so that they can carry several hundred tonnes of cargo on to Mars.\n\nDevelopment, manufacturing and launches take place at Starbase in southern Texas. The first integrated flight test, on 20 April 2023, failed. SpaceX has flown three successive versions since; Launch Library 2 counts 14 integrated flights to October 2026, nine of them successful, including all three flights of the third version in 2026. The system is still in its test phase.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/iss072e220043/iss072e220043~large.jpg",
+      "credit": "NASA/Don Pettit",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/iss072e220043",
+      "caption": "The exhaust plume of Starship's sixth flight test, launched from Starbase in Texas, photographed from the International Space Station on 19 November 2024."
+    },
+    "drawing": {
+      "kind": "rocket",
+      "heightM": 124.0,
+      "diameterM": 9.0,
+      "status": "in development"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "SpaceX: Starship",
+        "url": "https://www.spacex.com/vehicles/starship/"
+      },
+      {
+        "title": "Launch Library 2: Starship configurations (flight counts use V1, V2 and V3; the Starship Prototype hops are excluded)",
+        "url": "https://ll.thespacedevs.com/2.3.0/launcher_configurations/?search=Starship&mode=detailed"
+      }
+    ]
+  },
+  {
+    "id": "sls-block-1",
+    "section": "rockets",
+    "title": "SLS Block 1",
+    "subtitle": "NASA · super heavy-lift Moon rocket, 2022–",
+    "facts": [
+      {
+        "label": "Builder",
+        "value": "NASA, with Boeing (core stage), Northrop Grumman (boosters) and L3Harris (RS-25 engines); United States",
+        "source": 0
+      },
+      {
+        "label": "Height",
+        "value": "98.1 m (322 ft)",
+        "source": 0
+      },
+      {
+        "label": "Diameter",
+        "value": "8.4 m (27.6 ft) core stage",
+        "source": 0
+      },
+      {
+        "label": "Mass at liftoff",
+        "value": "About 2,608 t (5.75 million lb)",
+        "source": 0
+      },
+      {
+        "label": "Payload",
+        "value": "More than 27 t (59,500 lb) to the Moon",
+        "source": 0
+      },
+      {
+        "label": "First flight",
+        "value": "16 November 2022 (Artemis I)",
+        "source": 1
+      },
+      {
+        "label": "Launches",
+        "value": "2, both successful: Artemis I (2022) and Artemis II (2026) (Launch Library 2, as of 18 October 2026)",
+        "source": 1
+      }
+    ],
+    "essay": "The Space Launch System is NASA's rocket for the Artemis Moon missions, the only one able to send the Orion crew capsule, astronauts and cargo to the Moon in a single launch. Block 1, the first version, uses a core stage 8.4 m in diameter with four RS-25 engines, drawn from an inventory of 16 former Space Shuttle engines upgraded for SLS. Two shuttle-derived solid rocket boosters provide more than 75 percent of the thrust during the first two minutes. An interim cryogenic propulsion stage with a single RL10 engine then sends Orion out of Earth orbit.\n\nThe assembled rocket is 98 m tall, weighs about 2,600 t and produces 8.8 million lb of thrust at liftoff, about 15 percent more than the Saturn V. It can send more than 27 t to the Moon.\n\nArtemis I flew without a crew on 16 November 2022. On 1 April 2026 the second SLS launched Artemis II, the first crewed flight of SLS and Orion, sending four astronauts around the Moon and back. NASA is preparing further Block 1 launches, and a more powerful Block 1B with a larger upper stage is in development.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/NHQ202211160030/NHQ202211160030~large.jpg",
+      "credit": "NASA/Joel Kowsky",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/NHQ202211160030",
+      "caption": "The first SLS lifts off from Launch Complex 39B at Kennedy Space Center on Artemis I, 16 November 2022."
+    },
+    "drawing": {
+      "kind": "rocket",
+      "heightM": 98.1,
+      "diameterM": 8.4,
+      "status": "active"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA: SLS (Space Launch System) fact sheet, December 2025",
+        "url": "https://www.nasa.gov/wp-content/uploads/2026/03/sls-5640-sls-fact-sheet-dec2025-508.pdf"
+      },
+      {
+        "title": "Launch Library 2: Space Launch System Block 1",
+        "url": "https://ll.thespacedevs.com/2.3.0/launcher_configurations/143/"
+      },
+      {
+        "title": "NASA: Liftoff! NASA Launches Astronauts on Historic Artemis Moon Mission",
+        "url": "https://www.nasa.gov/news-release/liftoff-nasa-launches-astronauts-on-historic-artemis-moon-mission/"
+      },
+      {
+        "title": "NASA: Space Launch System",
+        "url": "https://www.nasa.gov/humans-in-space/space-launch-system/"
+      }
+    ]
+  },
+  {
+    "id": "new-glenn",
+    "section": "rockets",
+    "title": "New Glenn",
+    "subtitle": "Blue Origin · partly reusable heavy-lift rocket, 2025–",
+    "facts": [
+      {
+        "label": "Builder",
+        "value": "Blue Origin, United States",
+        "source": 0
+      },
+      {
+        "label": "Height",
+        "value": "More than 98 m (320 ft)",
+        "source": 0
+      },
+      {
+        "label": "Diameter",
+        "value": "7 m",
+        "source": 0
+      },
+      {
+        "label": "Payload",
+        "value": "45 t to low Earth orbit; more than 13 t to GTO",
+        "source": 0
+      },
+      {
+        "label": "Engines",
+        "value": "Seven BE-4 (liquefied natural gas and liquid oxygen) on the first stage; two BE-3U (liquid hydrogen and liquid oxygen) on the second",
+        "source": 0
+      },
+      {
+        "label": "First flight",
+        "value": "16 January 2025",
+        "source": 1
+      },
+      {
+        "label": "Launches",
+        "value": "3, 1 failure (19 April 2026) (Launch Library 2, as of 18 October 2026)",
+        "source": 1
+      }
+    ],
+    "essay": "New Glenn is Blue Origin's orbital rocket, named after John Glenn, the first American to orbit Earth. It is more than 98 m tall and 7 m in diameter, and its 7 m payload fairing has about twice the volume of the 5 m fairings used on most large rockets. The first stage has seven BE-4 engines burning liquefied natural gas with liquid oxygen; two of the same engines power ULA's Vulcan. The second stage has two restartable BE-3U engines burning liquid hydrogen.\n\nThe first stage is designed for at least 25 flights. After separation it descends to a landing ship about 1,000 km downrange, using strakes along its side for lift and four fins for control. New Glenn can carry 45 t to low Earth orbit or more than 13 t to geostationary transfer orbit. It is built near Kennedy Space Center and launched from Launch Complex 36 at Cape Canaveral.\n\nThe first flight, on 16 January 2025, reached orbit. On the second, on 13 November 2025, it launched NASA's twin ESCAPADE spacecraft toward Mars, and the first stage landed on the ship for the first time. The third flight, on 19 April 2026, failed.",
+    "image": null,
+    "drawing": {
+      "kind": "rocket",
+      "heightM": 98.0,
+      "diameterM": 7.0,
+      "status": "active"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "Blue Origin: New Glenn",
+        "url": "https://www.blueorigin.com/new-glenn"
+      },
+      {
+        "title": "Launch Library 2: New Glenn",
+        "url": "https://ll.thespacedevs.com/2.3.0/launcher_configurations/138/"
+      },
+      {
+        "title": "NASA image: NASA's ESCAPADE Launch on Blue Origin's NG-2",
+        "url": "https://images.nasa.gov/details/KSC-20251113-PH-BLU01_0009"
+      }
+    ]
+  },
+  {
+    "id": "electron",
+    "section": "rockets",
+    "title": "Electron",
+    "subtitle": "Rocket Lab · small launch vehicle, 2017–",
+    "facts": [
+      {
+        "label": "Builder",
+        "value": "Rocket Lab",
+        "source": 0
+      },
+      {
+        "label": "Height",
+        "value": "18 m (59 ft)",
+        "source": 0
+      },
+      {
+        "label": "Diameter",
+        "value": "1.2 m (3.9 ft)",
+        "source": 0
+      },
+      {
+        "label": "Mass at liftoff",
+        "value": "13,000 kg",
+        "source": 0
+      },
+      {
+        "label": "Payload to low Earth orbit",
+        "value": "300 kg",
+        "source": 0
+      },
+      {
+        "label": "First flight",
+        "value": "25 May 2017",
+        "source": 1
+      },
+      {
+        "label": "Launches",
+        "value": "97, 4 failures (Launch Library 2, as of 18 October 2026)",
+        "source": 1
+      }
+    ],
+    "essay": "Electron is a small two-stage rocket built by Rocket Lab for dedicated launches of small satellites. It is 18 m tall and 1.2 m in diameter, weighs about 13 t at liftoff and can place up to 300 kg in low Earth orbit. The structure is made of carbon composite, and both stages burn kerosene with liquid oxygen.\n\nRocket Lab describes its Rutherford engine as the first 3D-printed, electric-pump-fed rocket engine: electric motors, rather than a turbine, drive the propellant pumps. The first stage has nine Rutherfords and the second stage a single vacuum version. An optional third stage, the Kick Stage, can deliver satellites to several orbits or inclinations on one flight, raise them to higher altitudes or carry hosted payloads. Rocket Lab also calls Electron the only reusable-capable small launch vehicle.\n\nBecause Electron is small, a single customer can buy a whole launch and choose the orbit and launch date rather than sharing a ride on a larger rocket. Rocket Lab operates three dedicated launch pads for it. The first flight, on 25 May 2017, failed to reach orbit. Launch Library 2 counts 97 Electron launches with four failures as of October 2026, the same launch total that Rocket Lab lists.",
+    "image": null,
+    "drawing": {
+      "kind": "rocket",
+      "heightM": 18.0,
+      "diameterM": 1.2,
+      "status": "active"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "Rocket Lab: Electron",
+        "url": "https://rocketlabcorp.com/launch/electron/"
+      },
+      {
+        "title": "Launch Library 2: Electron",
+        "url": "https://ll.thespacedevs.com/2.3.0/launcher_configurations/26/"
+      }
+    ]
+  },
+  {
+    "id": "h3",
+    "section": "rockets",
+    "title": "H3",
+    "subtitle": "JAXA / Mitsubishi Heavy Industries · medium- to heavy-lift rocket, 2023–",
+    "facts": [
+      {
+        "label": "Builder",
+        "value": "JAXA and Mitsubishi Heavy Industries, Japan",
+        "source": 1
+      },
+      {
+        "label": "Height",
+        "value": "63 m with the long fairing; 57 m with the short fairing",
+        "source": 0
+      },
+      {
+        "label": "Diameter",
+        "value": "5.2 m",
+        "source": 0
+      },
+      {
+        "label": "Mass at liftoff",
+        "value": "575 t (H3-24L)",
+        "source": 0
+      },
+      {
+        "label": "Payload",
+        "value": "At least 4 t to Sun-synchronous orbit (500 km); at least 6.5 t to GTO (1,500 m/s from GEO)",
+        "source": 0
+      },
+      {
+        "label": "First flight",
+        "value": "7 March 2023 (failed)",
+        "source": 2
+      },
+      {
+        "label": "Launches",
+        "value": "9, 2 failures (Launch Library 2, as of 18 October 2026)",
+        "source": 2
+      }
+    ],
+    "essay": "H3 is Japan's main launch vehicle, developed by JAXA and Mitsubishi Heavy Industries to replace the H-IIA. Its aims were lower cost, shorter preparation time and enough flexibility to win commercial launches as well as government ones. Each H3 is built from a set of options: two or three LE-9 engines on the first stage, zero, two or four SRB-3 solid boosters, and a short or long fairing. The designation lists these choices, so an H3-24L has two LE-9 engines, four boosters and the long fairing.\n\nThe LE-9 needed more thrust than any liquid-fuelled engine Japan had built before. To keep it simple and reliable it uses an expander bleed cycle, a method JAXA developed on its LE-5 engine series, which reduces the number of parts and makes the engine less prone to abnormal combustion; some parts are 3D-printed. The rocket is 5.2 m in diameter and 63 m tall with the long fairing, and in the H3-24L configuration weighs about 575 t at liftoff. It can place at least 6.5 t into geostationary transfer orbit.\n\nThe first H3 failed on 7 March 2023. Most later flights have succeeded, including the first flight of the H3-30, with three LE-9 engines and no boosters, on 12 June 2026. Launch Library 2 counts nine launches with two failures as of October 2026. H3 flies from the Tanegashima Space Center.",
+    "image": null,
+    "drawing": {
+      "kind": "rocket",
+      "heightM": 63.0,
+      "diameterM": 5.2,
+      "status": "active"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "JAXA: H3ロケット 諸元・能力 (H3 specifications)",
+        "url": "https://www.rocket.jaxa.jp/rocket/h3/system.html"
+      },
+      {
+        "title": "JAXA: H3 Launch Vehicle",
+        "url": "https://global.jaxa.jp/projects/rockets/h3/"
+      },
+      {
+        "title": "Launch Library 2: H3 configurations",
+        "url": "https://ll.thespacedevs.com/2.3.0/launcher_configurations/?search=H3&mode=detailed"
+      }
+    ]
+  },
+  {
+    "id": "pslv",
+    "section": "rockets",
+    "title": "PSLV",
+    "subtitle": "ISRO · medium-lift rocket, 1993–",
+    "facts": [
+      {
+        "label": "Builder",
+        "value": "Indian Space Research Organisation (ISRO), India",
+        "source": 0
+      },
+      {
+        "label": "Height",
+        "value": "44 m",
+        "source": 0
+      },
+      {
+        "label": "Diameter",
+        "value": "2.8 m",
+        "source": 0
+      },
+      {
+        "label": "Mass at liftoff",
+        "value": "320 t (PSLV-XL)",
+        "source": 0
+      },
+      {
+        "label": "Payload",
+        "value": "1,750 kg to a 600 km Sun-synchronous polar orbit; 1,425 kg to sub-GTO",
+        "source": 0
+      },
+      {
+        "label": "First flight",
+        "value": "20 September 1993",
+        "source": 0
+      },
+      {
+        "label": "Launches",
+        "value": "64, 5 failures or partial failures (Launch Library 2, as of 18 October 2026)",
+        "source": 1
+      }
+    ],
+    "essay": "The Polar Satellite Launch Vehicle is India's long-serving medium launcher and the first Indian rocket with liquid-fuelled stages. ISRO designed it to put Indian remote-sensing satellites into Sun-synchronous polar orbits, and it can carry 1,750 kg to such an orbit at 600 km. It is 44 m tall and 2.8 m in diameter.\n\nThe four stages alternate between solid and liquid propulsion. The first stage is the S139 solid motor with 139 t of propellant, the second the liquid Vikas engine, the third a solid motor, and the fourth two small liquid engines that place the payload precisely. Up to six solid strap-on boosters can be added: the XL version, with six, weighs 320 t at liftoff, while the core-alone version has none.\n\nThe first PSLV, launched on 20 September 1993, failed, and the first success came in October 1994. The rocket has since launched many Indian and foreign satellites, as well as Chandrayaan-1 to the Moon in 2008 and the Mars Orbiter Mission in 2013. On the PSLV-C37 flight it carried a Cartosat-2 series satellite and 103 smaller satellites. Launch Library 2 counts 64 launches with five failures, two of them in 2025 and 2026.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/KSC-08pd3405/KSC-08pd3405~large.jpg",
+      "credit": "NASA",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/KSC-08pd3405",
+      "caption": "A PSLV lifts off from Sriharikota, India, with Chandrayaan-1 on 22 October 2008."
+    },
+    "drawing": {
+      "kind": "rocket",
+      "heightM": 44.0,
+      "diameterM": 2.8,
+      "status": "active"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "ISRO: PSLV",
+        "url": "https://www.isro.gov.in/PSLV_CON.html"
+      },
+      {
+        "title": "Launch Library 2: PSLV configurations",
+        "url": "https://ll.thespacedevs.com/2.3.0/launcher_configurations/?search=PSLV&mode=detailed"
+      }
+    ]
+  }
+]

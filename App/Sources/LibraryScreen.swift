@@ -12,6 +12,18 @@ struct LibraryScreen: View {
         NavigationStack {
             List {
                 if query.isEmpty {
+                    Section {
+                        NavigationLink("Timeline of exploration") { ExplorationTimeline() }
+                            .listRowBackground(pageBackground)
+                        if !Library.pages(in: .rockets).isEmpty {
+                            NavigationLink("Rockets to scale") {
+                                ScrollView { RocketLineup(highlight: nil, ink: ink, accent: accent).frame(height: 420).padding(.vertical, 20) }
+                                    .background(Color.black.ignoresSafeArea())
+                                    .navigationTitle("Rockets to scale")
+                            }
+                            .listRowBackground(pageBackground)
+                        }
+                    }
                     ForEach(LibrarySection.allCases) { section in
                         let pages = Library.pages(in: section)
                         if !pages.isEmpty {
