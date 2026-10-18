@@ -47,3 +47,22 @@ func linksPointAtThingsTheAppKnows(_ p: LibraryPage) {
     #expect(Library.search(first.title).first?.id == first.id)
     #expect(Library.search("   ").isEmpty)
 }
+
+@Test func scaleObjectsComeFromPages() {
+    let objects = Library.scaleObjects
+    #expect(objects.first?.name == "ISS")
+    #expect(objects.last?.name == "Observable universe")
+    #expect(objects.contains { $0.name == "Earth" && abs($0.meters - 12_742_000) < 1 })
+    #expect(objects.contains { $0.page == "arcturus" })
+    #expect(objects.contains { $0.page == "m31" })
+    #expect(Set(objects.map(\.name)).count == objects.count)
+    for o in objects where o.page != nil { #expect(Library.page(id: o.page!) != nil, "\(o.name)") }
+}
+
+@Test func scaleSizeFormats() {
+    #expect(Library.formatSize(109) == "109 m")
+    #expect(Library.formatSize(12_742_000) == "12,742 km")
+    #expect(Library.formatSize(2 * 30.07 * 1.495978707e11) == "60.1 AU")
+    #expect(Library.formatSize(100_000 * 9.4607e15) == "100,000 light-years")
+    #expect(Library.formatSize(93e9 * 9.4607e15) == "93 billion light-years")
+}

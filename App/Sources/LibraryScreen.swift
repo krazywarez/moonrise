@@ -15,6 +15,8 @@ struct LibraryScreen: View {
                     Section {
                         NavigationLink("Timeline of exploration") { ExplorationTimeline() }
                             .listRowBackground(pageBackground)
+                        NavigationLink("Scale of the universe") { ScaleScreen(ink: ink, accent: accent) }
+                            .listRowBackground(pageBackground)
                         if !Library.pages(in: .rockets).isEmpty {
                             NavigationLink("Rockets to scale") {
                                 ScrollView { RocketLineup(highlight: nil, ink: ink, accent: accent).frame(height: 420).padding(.vertical, 20) }

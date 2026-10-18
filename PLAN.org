@@ -401,7 +401,7 @@ Sky, System, Sun, Launches, Library core (above).
 - Observing log stored as plain text or Org.
 - Mars: latest rover raw images, local time at each rover.
 - Library: exoplanets, rockets to scale, exploration timeline, scale
-  view.
+  view. Done.
 - iPad, Mac, Apple Watch complications.
 
 ** v3: across time and cultures
