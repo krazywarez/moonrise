@@ -7,6 +7,7 @@ struct EventsScreen: View {
     var placeName: String
     @State private var events: [SkyEvent] = []
     @State private var filter = "notable"
+    @State private var eclipse: SkyEvent?
     @Environment(\.dismiss) private var dismiss
 
     private let ink = Color(red: 0.95, green: 0.95, blue: 0.93)
@@ -39,7 +40,15 @@ struct EventsScreen: View {
                 }
                 ForEach(months, id: \.0) { month, items in
                     Section(month) {
-                        ForEach(items) { row($0) }
+                        ForEach(items) { e in
+                            if e.kind == .solarEclipse {
+                                Button { eclipse = e } label: { row(e) }
+                                    .buttonStyle(.plain)
+                                    .accessibilityHint("Shows the path and local times")
+                            } else {
+                                row(e)
+                            }
+                        }
                     }
                 }
             }
@@ -49,6 +58,7 @@ struct EventsScreen: View {
             .navigationTitle("Events")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done") { dismiss() } } }
+            .sheet(item: $eclipse) { e in EclipseScreen(date: e.date, observer: observer, placeName: placeName) }
         }
         .foregroundStyle(ink)
         .task {
