@@ -98,6 +98,7 @@ struct LibraryPageView: View {
             }
             .padding(.horizontal, 20)
             .frame(maxWidth: .infinity, alignment: .leading)
+            .readableWidth()
         }
         .foregroundStyle(ink)
         .background(pageBackground.ignoresSafeArea())

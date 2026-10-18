@@ -20,7 +20,7 @@ struct OnboardingScreen: View {
             Rectangle().fill(accent).frame(width: 48, height: 5).padding(.top, 10).padding(.bottom, 24)
             VStack(alignment: .leading, spacing: 14) {
                 Text("The sky above you tonight, the Sun today, launches, the solar system, and a library of everything up there.")
-                Text("To draw the sky for where you are, Moonrise uses your location. It is used on this phone to work out positions and is not sent to us or anyone else.")
+                Text("To draw the sky for where you are, Moonrise uses your location. It is used on this device to work out positions and is not sent to us or anyone else.")
                     .foregroundStyle(ink.opacity(0.75))
             }
             .font(.body)
@@ -49,6 +49,8 @@ struct OnboardingScreen: View {
         }
         .padding(.horizontal, 24)
         .padding(.bottom, 24)
+        .frame(maxWidth: 560)
+        .frame(maxWidth: .infinity)
         .foregroundStyle(ink)
         .background(background.ignoresSafeArea())
     }

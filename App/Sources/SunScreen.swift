@@ -41,6 +41,7 @@ struct SunScreen: View {
                 Text("Space weather data: NOAA Space Weather Prediction Center. Coastlines: Natural Earth.").font(.caption2).dimmed(0.5).padding(.vertical, 16)
             }
             .padding(.horizontal, 20)
+            .readableWidth()
         }
         .foregroundStyle(ink)
         .background(background.ignoresSafeArea())

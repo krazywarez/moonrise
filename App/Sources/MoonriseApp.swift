@@ -22,6 +22,7 @@ struct MoonriseApp: App {
                 Tab("Launches", systemImage: "airplane.departure", value: "launches") { LaunchesScreen() }
                 Tab("Library", systemImage: "books.vertical", value: "library") { LibraryScreen() }
             }
+            .tabViewStyle(.sidebarAdaptable)
             // Red tab highlight while the Sky tab is in night mode.
             .tint(tab == "sky" && nightActive ? SkyStyle.nightRed : nil)
             .preferredColorScheme(.dark)

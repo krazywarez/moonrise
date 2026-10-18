@@ -93,6 +93,7 @@ struct SystemScreen: View {
                     .font(.caption2).dimmed(0.5).padding(.vertical, 16)
             }
             .padding(.horizontal, 20)
+            .readableWidth()
         }
         .foregroundStyle(ink)
         .background(background.ignoresSafeArea())

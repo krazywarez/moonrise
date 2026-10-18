@@ -36,6 +36,7 @@ struct LaunchesScreen: View {
                 }
             }
             .padding(.horizontal, 20)
+            .readableWidth()
         }
         .foregroundStyle(ink)
         .background(background.ignoresSafeArea())
