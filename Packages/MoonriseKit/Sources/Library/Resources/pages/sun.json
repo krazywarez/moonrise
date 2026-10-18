@@ -1,0 +1,78 @@
+[
+  {
+    "id": "sun",
+    "section": "sun",
+    "title": "The Sun",
+    "subtitle": "The star at the centre of the solar system",
+    "facts": [
+      {
+        "label": "Mean distance from Earth",
+        "value": "1 AU (149.6 million km)",
+        "source": 0
+      },
+      {
+        "label": "Radius",
+        "value": "695,700 km (109.2 × Earth)",
+        "source": 0
+      },
+      {
+        "label": "Mass",
+        "value": "332,900 × Earth (1.9884 × 10³⁰ kg)",
+        "source": 0
+      },
+      {
+        "label": "Rotation period",
+        "value": "25.38 days at 16° latitude (609.12 h)",
+        "source": 0
+      },
+      {
+        "label": "Orbit around the galactic centre",
+        "value": "About 230 million years",
+        "source": 1
+      },
+      {
+        "label": "Moons",
+        "value": "None; orbited by 8 planets and at least 5 dwarf planets (NASA, 2026)",
+        "source": 1
+      },
+      {
+        "label": "Effective temperature",
+        "value": "5,772 K",
+        "source": 0
+      },
+      {
+        "label": "Spectral type",
+        "value": "G2 V",
+        "source": 0
+      }
+    ],
+    "essay": "The Sun is a G2 V main-sequence star about 4.6 billion years old, and it holds 99.8 percent of the mass in the solar system. It is a ball of hydrogen and helium plasma. The visible surface, the photosphere, has an effective temperature of 5,772 K, while the core reaches about 15 million °C, hot enough for hydrogen to fuse into helium. Light leaving the photosphere takes about 8 minutes 20 seconds to reach Earth.\n\nBecause the Sun is not solid, it does not rotate as one body: the equator turns once in about 25 days and the poles in about 36. Above the photosphere are the thin chromosphere and the corona, which reaches about 2 million °C, far hotter than the surface below it. The corona flows outward as the solar wind and inflates the heliosphere, a bubble that extends beyond the orbits of the planets. Spacecraft including SOHO, the Solar Dynamics Observatory and Parker Solar Probe observe it continuously.\n\nNever look at the Sun directly, or through binoculars or a telescope, without a certified solar filter covering the front of the instrument. With a proper filter, a small telescope shows sunspots, which rise and fall in number over a cycle of about 11 years.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000759/GSFC_20171208_Archive_e000759~medium.jpg",
+      "credit": "NASA/SDO",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/GSFC_20171208_Archive_e000759",
+      "caption": "The Sun in extreme ultraviolet light from the Solar Dynamics Observatory on 16 March 2015, with dark coronal holes near both poles."
+    },
+    "drawing": {
+      "kind": "planet",
+      "radiusKm": 695700,
+      "rings": false,
+      "axialTiltDeg": 7.25,
+      "color": "#F9D71C"
+    },
+    "link": {
+      "body": "sun"
+    },
+    "sources": [
+      {
+        "title": "NASA Sun Fact Sheet",
+        "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/sunfact.html"
+      },
+      {
+        "title": "NASA Science: Sun Facts",
+        "url": "https://science.nasa.gov/sun/facts/"
+      }
+    ]
+  }
+]

@@ -1,0 +1,3232 @@
+[
+  {
+    "id": "and",
+    "section": "constellations",
+    "title": "Andromeda",
+    "subtitle": "The Princess",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "And",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Andromedae",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "722 square degrees (19th of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "November (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "90°N to 36°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Mirach (β And), magnitude 2.05",
+        "source": 3
+      },
+      {
+        "label": "Notable deep-sky object",
+        "value": "M31, the Andromeda Galaxy: spiral galaxy, 2.5 million light-years, magnitude 3.1",
+        "source": 4
+      }
+    ],
+    "essay": "Andromeda is one of the 48 constellations listed by Ptolemy in the second century. In Greek myth she was the daughter of Cepheus and Cassiopeia, chained to a rock as an offering to the sea monster Cetus and rescued by Perseus. All of those figures lie next to her in the sky.\n\nThe constellation is a chain of stars running north-east from the corner of the Square of Pegasus. That corner star, Alpheratz (magnitude 2.06), belongs to Andromeda, although older charts counted it in both figures. Mirach, at 2.05, is fractionally brighter and is formally the brightest star. Almach, the third bright star along the chain, is a double star that shows gold and blue components in a small telescope.\n\nThe best-known object here is the Andromeda Galaxy, M31, a spiral galaxy about 2.5 million light-years away and the nearest large galaxy to the Milky Way. At magnitude 3.1 it is visible to the naked eye from a dark site as an elongated haze. To find it, start at Mirach, step north-west to the fainter star Mu Andromedae, and continue about the same distance again. Andromeda is best placed in the evening in November and is fully visible from anywhere north of about 36° S.",
+    "image": {
+      "url": "https://tile.loc.gov/storage-services/service/pnp/cph/3g10000/3g10000/3g10000/3g10054v.jpg",
+      "credit": "Sidney Hall, Urania's Mirror (London, 1825); Library of Congress, Prints and Photographs Division",
+      "licence": "Public domain",
+      "page": "https://www.loc.gov/item/2002695398/",
+      "caption": "Andromeda, with Triangulum and the obsolete Gloria Frederici, on plate 5 of Urania's Mirror, engraved by Sidney Hall."
+    },
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "And"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: bet And",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=bet%20And"
+      },
+      {
+        "title": "NASA Hubble: Messier 31",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-31/"
+      }
+    ]
+  },
+  {
+    "id": "ant",
+    "section": "constellations",
+    "title": "Antlia",
+    "subtitle": "The Air Pump",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "Ant",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Antliae",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "239 square degrees (62nd of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "April (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "49°N to 90°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Alpha Antliae (α Ant), magnitude 4.25",
+        "source": 3
+      }
+    ],
+    "essay": "Antlia was introduced by Nicolas-Louis de Lacaille, who mapped the southern sky from the Cape of Good Hope in 1751 and 1752 and published his new constellations in the 1750s. He named it la Machine Pneumatique, the air pump, and the Latin name was later shortened to Antlia. Like most of Lacaille's figures, it commemorates a scientific instrument rather than a figure from myth.\n\nIt is a small, faint area with no star brighter than fourth magnitude. The brightest, Alpha Antliae, is an orange giant of magnitude 4.25 with no traditional name. The constellation lies south of the long body of Hydra, between Alphard and the stars of Vela. The easiest way to locate it is to identify those neighbours first and then look in the sparse gap between them.\n\nAntlia lies well south of the celestial equator. From the Southern Hemisphere it climbs high in the evening around April; from mid-northern latitudes it stays low in the south, and it is fully visible only from south of about 49° N. Its deep-sky objects are faint galaxies, including members of the Antlia Cluster, which need a telescope of moderate size.",
+    "image": {
+      "url": "https://tile.loc.gov/storage-services/service/pnp/cph/3g10000/3g10000/3g10000/3g10077v.jpg",
+      "credit": "Sidney Hall, Urania's Mirror (London, 1825); Library of Congress, Prints and Photographs Division",
+      "licence": "Public domain",
+      "page": "https://www.loc.gov/item/2002695522/",
+      "caption": "Antlia Pneumatica among Hydra, Crater, Corvus and other southern figures on plate 32 of Urania's Mirror, engraved by Sidney Hall."
+    },
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "Ant"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: alf Ant",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=alf%20Ant"
+      }
+    ]
+  },
+  {
+    "id": "aps",
+    "section": "constellations",
+    "title": "Apus",
+    "subtitle": "The Bird of Paradise",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "Aps",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Apodis",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "206 square degrees (67th of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "July (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "6°N to 90°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Alpha Apodis (α Aps), magnitude 3.80",
+        "source": 3
+      }
+    ],
+    "essay": "Apus is one of twelve constellations created by Petrus Plancius from observations made by the Dutch navigators Pieter Dirkszoon Keyser and Frederick de Houtman on voyages to the East Indies in the 1590s. It first appeared on a celestial globe in 1598 and was included in Johann Bayer's atlas Uranometria in 1603. The name refers to the bird of paradise, which European traders knew from skins brought back from New Guinea. The Greek word apous means \"without feet\", because the skins were often prepared with the feet removed.\n\nThe constellation lies close to the south celestial pole, between Triangulum Australe and Octans. Its stars are faint: the brightest, Alpha Apodis, is an orange giant of magnitude 3.80. Find Apus by locating the three bright stars of Triangulum Australe and looking a little further toward the pole.\n\nFrom southern temperate latitudes Apus is circumpolar and can be seen on any clear night, but it stands highest in the evening around July. It is fully visible only from south of about 6° N, so it is out of reach for most northern observers. It contains a few faint globular clusters, such as NGC 6101, that need a telescope.",
+    "image": null,
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "Aps"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: alf Aps",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=alf%20Aps"
+      }
+    ]
+  },
+  {
+    "id": "aqr",
+    "section": "constellations",
+    "title": "Aquarius",
+    "subtitle": "The Water Bearer",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "Aqr",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Aquarii",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "980 square degrees (10th of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "October (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "65°N to 86°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Sadalsuud (β Aqr), magnitude 2.89",
+        "source": 3
+      },
+      {
+        "label": "Notable deep-sky object",
+        "value": "Helix Nebula (NGC 7293, Caldwell 63): planetary nebula, 650 light-years, magnitude 7.3",
+        "source": 4
+      }
+    ],
+    "essay": "Aquarius is one of Ptolemy's 48 constellations and one of the oldest recorded figures, with roots in Babylonian star lore, where it was a figure pouring water. Greek writers identified the water bearer with Ganymede, the youth carried to Olympus to serve as cupbearer to the gods. It is a zodiac constellation, so the Sun, Moon and planets pass through it.\n\nAquarius is large but faint. Its brightest star, Sadalsuud (Beta Aquarii), is magnitude 2.89, only slightly brighter than Sadalmelik (Alpha) at 2.94. The most recognisable pattern is the Water Jar, a small Y of four stars around Zeta Aquarii just south of the celestial equator. Look south of the Square of Pegasus and east of Capricornus to find it.\n\nThe Helix Nebula (NGC 7293, Caldwell 63) is a planetary nebula about 650 light-years away, one of the nearest of its kind. It is large but has a low surface brightness, and is best seen with binoculars or a wide-field telescope under dark skies. The globular cluster M2 is also within reach of binoculars. The Eta Aquariid meteor shower, debris from Halley's Comet, peaks in early May. Aquarius is best placed in the evening in October and is fully visible from between about 65° N and 86° S.",
+    "image": {
+      "url": "https://tile.loc.gov/storage-services/service/pnp/cph/3g10000/3g10000/3g10000/3g10072v.jpg",
+      "credit": "Sidney Hall, Urania's Mirror (London, 1825); Library of Congress, Prints and Photographs Division",
+      "licence": "Public domain",
+      "page": "https://www.loc.gov/item/2002695517/",
+      "caption": "Aquarius with Piscis Austrinus and the obsolete Ballon Aerostatique on plate 26 of Urania's Mirror, engraved by Sidney Hall."
+    },
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "Aqr"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: bet Aqr",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=bet%20Aqr"
+      },
+      {
+        "title": "NASA Hubble: Caldwell 63",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-caldwell-catalog/caldwell-63/"
+      }
+    ]
+  },
+  {
+    "id": "aql",
+    "section": "constellations",
+    "title": "Aquila",
+    "subtitle": "The Eagle",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "Aql",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Aquilae",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "652 square degrees (22nd of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "September (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "78°N to 71°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Altair (α Aql), magnitude 0.76",
+        "source": 3
+      }
+    ],
+    "essay": "Aquila is one of Ptolemy's 48 constellations. In Greek myth it is the eagle that carried Zeus's thunderbolts, and in some versions the bird that carried Ganymede up to Olympus, which links it to neighbouring Aquarius. The Milky Way runs through it, so binoculars show rich star fields.\n\nIts brightest star, Altair (magnitude 0.76), is one of the nearest bright stars and one corner of the Summer Triangle, with Vega in Lyra and Deneb in Cygnus. Altair is easy to identify because it is flanked by two fainter stars, Tarazed and Alshain, which form a short line with it. The rest of the eagle's body and wings spreads south-west of this line toward the celestial equator.\n\nAquila straddles the celestial equator, so it can be seen from almost everywhere on Earth; it is fully visible from between about 78° N and 71° S. It is best placed in the evening in September. Eta Aquilae is one of the brightest Cepheid variable stars. It changes by almost a full magnitude over about a week, which can be followed with the naked eye by comparing it with nearby stars of known brightness.",
+    "image": {
+      "url": "https://tile.loc.gov/storage-services/service/pnp/cph/3g10000/3g10000/3g10000/3g10062v.jpg",
+      "credit": "Sidney Hall, Urania's Mirror (London, 1825); Library of Congress, Prints and Photographs Division",
+      "licence": "Public domain",
+      "page": "https://www.loc.gov/item/2002695506/",
+      "caption": "Aquila with Delphinus, Sagitta and the obsolete Antinous on plate 13 of Urania's Mirror, engraved by Sidney Hall."
+    },
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "Aql"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: alf Aql",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=alf%20Aql"
+      }
+    ]
+  },
+  {
+    "id": "ara",
+    "section": "constellations",
+    "title": "Ara",
+    "subtitle": "The Altar",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "Ara",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Arae",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "237 square degrees (63rd of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "July (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "22°N to 90°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Beta Arae (β Ara), magnitude 2.85",
+        "source": 3
+      },
+      {
+        "label": "Notable deep-sky object",
+        "value": "NGC 6397 (Caldwell 86): globular cluster, 7,800 light-years, magnitude 5.7",
+        "source": 4
+      }
+    ],
+    "essay": "Ara is one of Ptolemy's 48 constellations. It represents the altar on which the Greek gods swore an oath of allegiance before their war against the Titans. The Milky Way above it was sometimes described as the smoke rising from the altar fire.\n\nThe constellation lies south of the tail of Scorpius, between Scorpius and Triangulum Australe. Its brightest star, Beta Arae, is an orange supergiant of magnitude 2.85, slightly brighter than Alpha Arae at 2.95. The main stars form a rough rectangle. Classical charts draw the altar with its flames pointing south, so to northern observers it appears upside down. Locate the curl of Scorpius's tail and the star Shaula, then look roughly 15 degrees further south.\n\nAra contains NGC 6397 (Caldwell 86), one of the nearest globular clusters to Earth at about 7,800 light-years. At magnitude 5.7 it is an easy binocular object. Hubble measured the cluster's distance directly by parallax and estimated its age at about 13.4 billion years. Ara is best placed in the evening in July and is fully visible from south of about 22° N; from mid-northern latitudes only its northern part rises.",
+    "image": null,
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "Ara"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: bet Ara",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=bet%20Ara"
+      },
+      {
+        "title": "NASA Hubble: Caldwell 86",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-caldwell-catalog/caldwell-86/"
+      }
+    ]
+  },
+  {
+    "id": "ari",
+    "section": "constellations",
+    "title": "Aries",
+    "subtitle": "The Ram",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "Ari",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Arietis",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "441 square degrees (39th of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "December (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "90°N to 58°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Hamal (α Ari), magnitude 2.01",
+        "source": 3
+      }
+    ],
+    "essay": "Aries is one of Ptolemy's 48 constellations and a member of the zodiac. In Greek myth it is the ram with the golden fleece that rescued Phrixus and Helle, the fleece later sought by Jason and the Argonauts. About two thousand years ago the Sun stood in Aries at the March equinox, which is why that point is still called the First Point of Aries, even though precession has since carried it into Pisces.\n\nThe constellation is small and its main pattern is a short, bent line of three stars: Hamal (Alpha Arietis, magnitude 2.01), Sheratan and Mesarthim. Hamal is an orange giant and the only star in Aries brighter than magnitude 2.5. To find it, look between the Pleiades in Taurus and the Square of Pegasus, or follow a line south-east from Almach in Andromeda.\n\nMesarthim (Gamma Arietis) is a double star of two nearly equal white components that a small telescope separates easily. Aries has few bright deep-sky objects; its galaxies, such as NGC 772, need a moderate telescope. It is best placed in the evening in December and is fully visible from anywhere north of about 58° S.",
+    "image": {
+      "url": "https://tile.loc.gov/storage-services/service/pnp/cph/3g10000/3g10000/3g10000/3g10064v.jpg",
+      "credit": "Sidney Hall, Urania's Mirror (London, 1825); Library of Congress, Prints and Photographs Division",
+      "licence": "Public domain",
+      "page": "https://www.loc.gov/item/2002695509/",
+      "caption": "Aries with the obsolete Musca Borealis on plate 16 of Urania's Mirror, engraved by Sidney Hall."
+    },
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "Ari"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: alf Ari",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=alf%20Ari"
+      }
+    ]
+  },
+  {
+    "id": "aur",
+    "section": "constellations",
+    "title": "Auriga",
+    "subtitle": "The Charioteer",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "Aur",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Aurigae",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "657 square degrees (21st of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "February (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "90°N to 33°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Capella (α Aur), magnitude 0.08",
+        "source": 3
+      }
+    ],
+    "essay": "Auriga is one of Ptolemy's 48 constellations. It is drawn as a charioteer holding a goat and her kids, and Greek writers most often identified him with Erichthonius, a legendary king of Athens credited with inventing the four-horse chariot. The bright star Capella takes its name from the Latin for \"little she-goat\", and the small triangle of faint stars just south of it are the Kids.\n\nCapella (magnitude 0.08) is the brightest star in Auriga and one of the brightest in the night sky. It anchors a large pentagon of stars; the southernmost point of the pentagon is Elnath, which is formally assigned to Taurus. Capella lies north of Orion and Taurus, with the Pleiades to its south-west, and from mid-northern latitudes it passes nearly overhead on winter evenings.\n\nThe winter Milky Way runs through Auriga, and the open clusters M36, M37 and M38 lie in a line inside the pentagon, all within reach of binoculars. Epsilon Aurigae is an eclipsing binary in which a dark disk passes in front of the visible star every 27 years. The constellation is best placed in the evening in February and is fully visible from anywhere north of about 33° S.",
+    "image": {
+      "url": "https://tile.loc.gov/storage-services/service/pnp/cph/3g10000/3g10000/3g10000/3g10056v.jpg",
+      "credit": "Sidney Hall, Urania's Mirror (London, 1825); Library of Congress, Prints and Photographs Division",
+      "licence": "Public domain",
+      "page": "https://www.loc.gov/item/2002695500/",
+      "caption": "Auriga, the charioteer carrying the goat and kids, on plate 7 of Urania's Mirror, engraved by Sidney Hall."
+    },
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "Aur"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: alf Aur",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=alf%20Aur"
+      }
+    ]
+  },
+  {
+    "id": "boo",
+    "section": "constellations",
+    "title": "Boötes",
+    "subtitle": "The Herdsman",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "Boo",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Boötis",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "907 square degrees (13th of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "June (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "90°N to 34°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Arcturus (α Boo), magnitude −0.05",
+        "source": 3
+      }
+    ],
+    "essay": "Boötes is one of Ptolemy's 48 constellations. It is a herdsman or ploughman, usually pictured driving the bears Ursa Major and Ursa Minor around the pole; the name of its brightest star, Arcturus, means \"guardian of the bear\". In 1690 Hevelius added the hunting dogs of Canes Venatici at his side.\n\nArcturus, at magnitude −0.05, is the brightest star in the northern half of the celestial sphere and the fourth-brightest star in the night sky. It is an orange giant. The standard way to find it is to follow the curve of the Big Dipper's handle away from the bowl, often remembered as \"arc to Arcturus\". The rest of Boötes forms a long kite shape extending north from Arcturus toward the Dipper's handle.\n\nIzar (Epsilon Boötis) is a double star with a bright orange primary and a fainter bluish companion that needs a telescope at moderately high magnification. The Quadrantid meteor shower, which peaks in early January, radiates from the northern part of Boötes, in an area once occupied by the obsolete constellation Quadrans Muralis. Boötes is best placed in the evening in June and is fully visible from anywhere north of about 34° S.",
+    "image": {
+      "url": "https://tile.loc.gov/storage-services/service/pnp/cph/3g10000/3g10000/3g10000/3g10059v.jpg",
+      "credit": "Sidney Hall, Urania's Mirror (London, 1825); Library of Congress, Prints and Photographs Division",
+      "licence": "Public domain",
+      "page": "https://www.loc.gov/item/2002695503/",
+      "caption": "Boötes with Canes Venatici, Coma Berenices and the obsolete Quadrans Muralis on plate 10 of Urania's Mirror, engraved by Sidney Hall."
+    },
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "Boo"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: alf Boo",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=alf%20Boo"
+      }
+    ]
+  },
+  {
+    "id": "cae",
+    "section": "constellations",
+    "title": "Caelum",
+    "subtitle": "The Engraving Tool",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "Cae",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Caeli",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "125 square degrees (81st of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "January (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "41°N to 90°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Alpha Caeli (α Cae), magnitude 4.45",
+        "source": 3
+      }
+    ],
+    "essay": "Caelum is one of the fourteen constellations introduced by Nicolas-Louis de Lacaille after his survey of the southern sky from the Cape of Good Hope in 1751 and 1752. He called it les Burins, the engraver's chisels, rendered in Latin as Caela Sculptoris; the modern name is a shortened form. It has no mythology.\n\nIt is one of the smallest and faintest constellations, ranking 81st of 88 in area. Its brightest star, Alpha Caeli, is magnitude 4.45, and only a handful of its stars are brighter than fifth magnitude. Caelum lies in the space between Columba to the east and the winding line of Eridanus to the west, south of Lepus. The easiest approach is to find Phact, the brightest star of Columba, and look about 10 degrees to its west.\n\nCaelum has no bright deep-sky objects; its galaxies require a telescope. It is best placed in the evening in January and is fully visible from south of about 41° N, so observers at mid-northern latitudes see it low in the south on winter evenings, if at all. Under dark southern skies it is a useful exercise in tracing faint stars.",
+    "image": {
+      "url": "https://tile.loc.gov/storage-services/service/pnp/cph/3g10000/3g10000/3g10000/3g10075v.jpg",
+      "credit": "Sidney Hall, Urania's Mirror (London, 1825); Library of Congress, Prints and Photographs Division",
+      "licence": "Public domain",
+      "page": "https://www.loc.gov/item/2002695520/",
+      "caption": "Caelum, shown as Cela Sculptoris, with Canis Major, Lepus and Columba on plate 30 of Urania's Mirror, engraved by Sidney Hall."
+    },
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "Cae"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: alf Cae",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=alf%20Cae"
+      }
+    ]
+  },
+  {
+    "id": "cam",
+    "section": "constellations",
+    "title": "Camelopardalis",
+    "subtitle": "The Giraffe",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "Cam",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Camelopardalis",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "757 square degrees (18th of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "February (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "90°N to 3°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Beta Camelopardalis (β Cam), magnitude 4.02",
+        "source": 3
+      },
+      {
+        "label": "Notable deep-sky object",
+        "value": "NGC 2403 (Caldwell 7): spiral galaxy, 12 million light-years, magnitude 8.9",
+        "source": 4
+      }
+    ],
+    "essay": "Camelopardalis was introduced by the Dutch astronomer Petrus Plancius, who drew it on a celestial globe in 1612; the German astronomer Jakob Bartsch included it in a star chart published in 1624. The name is the old Latin word for the giraffe, combining \"camel\" and \"leopard\". It fills a large region between the Pole Star and the bright constellations Auriga, Perseus and Cassiopeia that the Greeks left without a figure.\n\nCamelopardalis ranks 18th of 88 in area but is faint. Its brightest star, Beta Camelopardalis, is only magnitude 4.02, and most of its stars are fourth or fifth magnitude, so it is hard to trace under city skies. It is easiest to locate by elimination: look in the empty-seeming region between Capella and Polaris.\n\nKemble's Cascade, a chain of about twenty faint stars ending at the small open cluster NGC 1502, is a well-known binocular sight here. The spiral galaxy NGC 2403 (Caldwell 7) lies about 12 million light-years away and at magnitude 8.9 can be seen in a small telescope. The constellation is circumpolar from latitudes north of about 37° N, stands highest in the evening in February, and is fully visible from anywhere north of about 3° S.",
+    "image": {
+      "url": "https://tile.loc.gov/storage-services/service/pnp/cph/3g10000/3g10000/3g10000/3g10051v.jpg",
+      "credit": "Sidney Hall, Urania's Mirror (London, 1825); Library of Congress, Prints and Photographs Division",
+      "licence": "Public domain",
+      "page": "https://www.loc.gov/item/2002695395/",
+      "caption": "Camelopardalis with the obsolete Tarandus and Custos Messium on plate 2 of Urania's Mirror, engraved by Sidney Hall."
+    },
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "Cam"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: bet Cam",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=bet%20Cam"
+      },
+      {
+        "title": "NASA Hubble: Caldwell 7",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-caldwell-catalog/caldwell-7/"
+      }
+    ]
+  },
+  {
+    "id": "cnc",
+    "section": "constellations",
+    "title": "Cancer",
+    "subtitle": "The Crab",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "Cnc",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Cancri",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "506 square degrees (31st of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "March (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "90°N to 56°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Tarf (β Cnc), magnitude 3.52",
+        "source": 3
+      },
+      {
+        "label": "Notable deep-sky object",
+        "value": "M44, the Beehive Cluster (Praesepe): open cluster, 600 light-years, magnitude 3.7",
+        "source": 4
+      }
+    ],
+    "essay": "Cancer is one of Ptolemy's 48 constellations and a member of the zodiac. In Greek myth it is the crab that Hera sent to distract Heracles while he fought the Hydra; Heracles crushed it, and Hera placed it among the stars. The Tropic of Cancer is named after it because the Sun was in Cancer at the June solstice about two thousand years ago.\n\nIt is the faintest of the zodiac constellations. Its brightest star, Tarf (Beta Cancri), is magnitude 3.52. Cancer lies between Gemini and Leo: look roughly halfway between Pollux and Regulus. Under dark skies its main stars form an inverted Y.\n\nThe constellation's main attraction is the Beehive Cluster, M44, also called Praesepe. This open cluster is about 600 light-years away and has a combined magnitude of 3.7, so it is visible to the naked eye as a hazy patch and resolves into dozens of stars in binoculars. Galileo resolved it into individual stars with his first telescope in 1610. The smaller, fainter open cluster M67 lies near Alpha Cancri and is one of the oldest known open clusters. Cancer is best placed in the evening in March and is fully visible from anywhere north of about 56° S.",
+    "image": {
+      "url": "https://tile.loc.gov/storage-services/service/pnp/ds/00200/00242v.jpg",
+      "credit": "Sidney Hall, Urania's Mirror (London, 1825); Library of Congress, Prints and Photographs Division",
+      "licence": "Public domain",
+      "page": "https://www.loc.gov/item/2011645258/",
+      "caption": "Cancer on plate 19 of Urania's Mirror, engraved by Sidney Hall."
+    },
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "Cnc"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: bet Cnc",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=bet%20Cnc"
+      },
+      {
+        "title": "NASA Hubble: Messier 44",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-44/"
+      }
+    ]
+  },
+  {
+    "id": "cvn",
+    "section": "constellations",
+    "title": "Canes Venatici",
+    "subtitle": "The Hunting Dogs",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "CVn",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Canum Venaticorum",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "465 square degrees (38th of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "May (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "90°N to 37°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Cor Caroli (α² CVn), magnitude 2.88",
+        "source": 3
+      },
+      {
+        "label": "Notable deep-sky object",
+        "value": "M51, the Whirlpool Galaxy: spiral galaxy, 31 million light-years, magnitude 8.4",
+        "source": 4
+      }
+    ],
+    "essay": "Canes Venatici was introduced by Johannes Hevelius and published in his star atlas Firmamentum Sobiescianum in 1690. The two hunting dogs are held on a leash by Boötes, the herdsman, as he follows the bears around the pole. Hevelius formed the figure from faint stars below the handle of the Big Dipper that Ptolemy had not assigned to any constellation.\n\nThe constellation has only one star brighter than fourth magnitude: Cor Caroli (Alpha-2 Canum Venaticorum), magnitude 2.88. Its name means \"Charles's heart\" and honours an English king Charles; sources differ on whether Charles I or Charles II was meant. Cor Caroli is a double star that small telescopes split easily. Find it below the curve of the Big Dipper's handle, roughly 15 to 20 degrees from it.\n\nCanes Venatici lies well away from the Milky Way and contains many galaxies. The Whirlpool Galaxy, M51, is a face-on spiral about 31 million light-years away at magnitude 8.4; small telescopes show its smaller companion galaxy beside it. Other galaxies here include M94 and M106, and the bright globular cluster M3 lies near the border with Boötes. The constellation is best placed in the evening in May and is fully visible from anywhere north of about 37° S.",
+    "image": {
+      "url": "https://tile.loc.gov/storage-services/service/pnp/cph/3g10000/3g10000/3g10000/3g10059v.jpg",
+      "credit": "Sidney Hall, Urania's Mirror (London, 1825); Library of Congress, Prints and Photographs Division",
+      "licence": "Public domain",
+      "page": "https://www.loc.gov/item/2002695503/",
+      "caption": "Canes Venatici, the hunting dogs held by Boötes, on plate 10 of Urania's Mirror, engraved by Sidney Hall."
+    },
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "CVn"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: alf02 CVn",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=alf02%20CVn"
+      },
+      {
+        "title": "NASA Hubble: Messier 51",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-51/"
+      }
+    ]
+  },
+  {
+    "id": "cma",
+    "section": "constellations",
+    "title": "Canis Major",
+    "subtitle": "The Great Dog",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "CMa",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Canis Majoris",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "380 square degrees (43rd of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "February (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "56°N to 90°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Sirius (α CMa), magnitude −1.46",
+        "source": 3
+      }
+    ],
+    "essay": "Canis Major is one of Ptolemy's 48 constellations. It is the larger of Orion's two hunting dogs, following its master across the sky. Its main star, Sirius, was important to ancient Egyptian timekeeping, because its first appearance before sunrise each year came shortly before the annual Nile flood.\n\nSirius (Alpha Canis Majoris) is the brightest star in the night sky, at magnitude −1.46. It appears so bright mainly because it is close, at about 8.6 light-years. To find it, follow the three stars of Orion's Belt down and to the south-east. Several other bright stars outline the dog's body south of Sirius, including Adhara (Epsilon), Wezen (Delta) and Aludra (Eta). Sirius has a white dwarf companion, Sirius B, which is difficult to see in the glare of the primary.\n\nThe open cluster M41 lies about 4 degrees south of Sirius and is visible to the naked eye under dark skies; binoculars show dozens of its stars. Together with Procyon and Betelgeuse, Sirius forms the large Winter Triangle. Canis Major is best placed in the evening in February and is fully visible from anywhere south of about 56° N.",
+    "image": {
+      "url": "https://tile.loc.gov/storage-services/service/pnp/cph/3g10000/3g10000/3g10000/3g10075v.jpg",
+      "credit": "Sidney Hall, Urania's Mirror (London, 1825); Library of Congress, Prints and Photographs Division",
+      "licence": "Public domain",
+      "page": "https://www.loc.gov/item/2002695520/",
+      "caption": "Canis Major with Lepus, Columba and Caelum on plate 30 of Urania's Mirror, engraved by Sidney Hall."
+    },
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "CMa"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: alf CMa",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=alf%20CMa"
+      }
+    ]
+  },
+  {
+    "id": "cmi",
+    "section": "constellations",
+    "title": "Canis Minor",
+    "subtitle": "The Lesser Dog",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "CMi",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Canis Minoris",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "183 square degrees (71st of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "March (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "89°N to 76°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Procyon (α CMi), magnitude 0.37",
+        "source": 3
+      }
+    ],
+    "essay": "Canis Minor is one of Ptolemy's 48 constellations. It is the smaller of Orion's two hunting dogs. The name of its brightest star, Procyon, means \"before the dog\" in Greek, because from Mediterranean latitudes it rises shortly before Sirius, the Dog Star.\n\nProcyon (magnitude 0.37) is one of the brightest stars in the sky and one of the nearest, at about 11.5 light-years. Like Sirius, it has a faint white dwarf companion. The only other prominent star in the constellation is Gomeisa (Beta Canis Minoris), so the figure is just a short line of two stars. Find Procyon east of Betelgeuse in Orion; with Betelgeuse and Sirius it forms the large Winter Triangle.\n\nThe constellation is small, ranking 71st of 88 in area, and contains no bright deep-sky objects. It lies just north of the celestial equator, so it can be seen from almost every inhabited place on Earth; it is fully visible from between about 89° N and 76° S. It is best placed in the evening in March, when it stands high in the south for northern observers and high in the north for southern ones.",
+    "image": {
+      "url": "https://tile.loc.gov/storage-services/service/pnp/cph/3g10000/3g10000/3g10000/3g10076v.jpg",
+      "credit": "Sidney Hall, Urania's Mirror (London, 1825); Library of Congress, Prints and Photographs Division",
+      "licence": "Public domain",
+      "page": "https://www.loc.gov/item/2002695521/",
+      "caption": "Canis Minor with Monoceros and the obsolete Atelier Typographique on plate 31 of Urania's Mirror, engraved by Sidney Hall."
+    },
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "CMi"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: alf CMi",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=alf%20CMi"
+      }
+    ]
+  },
+  {
+    "id": "cap",
+    "section": "constellations",
+    "title": "Capricornus",
+    "subtitle": "The Sea Goat",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "Cap",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Capricorni",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "414 square degrees (40th of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "September (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "62°N to 90°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Deneb Algedi (δ Cap), magnitude 2.83",
+        "source": 3
+      },
+      {
+        "label": "Notable deep-sky object",
+        "value": "M30: globular cluster, 28,000 light-years, magnitude 7.7",
+        "source": 4
+      }
+    ],
+    "essay": "Capricornus is one of Ptolemy's 48 constellations and part of the zodiac. Its sea-goat figure, with the head and forelegs of a goat and the tail of a fish, goes back to Babylonian astronomy. Greek writers linked it to the god Pan, who was said to have jumped into the Nile and taken this shape while escaping the monster Typhon. The Tropic of Capricorn takes its name from the constellation, which held the December solstice in antiquity.\n\nThe stars are faint and form a broad triangle or boat shape. The brightest is Deneb Algedi (Delta Capricorni) at magnitude 2.83, an eclipsing binary at the eastern end. At the western tip, Algedi (Alpha Capricorni) is a naked-eye double: two unrelated stars that happen to lie in nearly the same direction. A line from Vega through Altair, continued southward, reaches the western end of Capricornus.\n\nThe globular cluster M30 lies about 28,000 light-years away and is magnitude 7.7, a modest binocular or small-telescope object near the eastern end of the figure. Capricornus is best placed in the evening in September and is fully visible from anywhere south of about 62° N.",
+    "image": {
+      "url": "https://tile.loc.gov/storage-services/service/pnp/cph/3g10000/3g10000/3g10000/3g10071v.jpg",
+      "credit": "Sidney Hall, Urania's Mirror (London, 1825); Library of Congress, Prints and Photographs Division",
+      "licence": "Public domain",
+      "page": "https://www.loc.gov/item/2002695516/",
+      "caption": "Capricornus, the sea-goat, on plate 25 of Urania's Mirror, engraved by Sidney Hall."
+    },
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "Cap"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: del Cap",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=del%20Cap"
+      },
+      {
+        "title": "NASA Hubble: Messier 30",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-30/"
+      }
+    ]
+  },
+  {
+    "id": "car",
+    "section": "constellations",
+    "title": "Carina",
+    "subtitle": "The Ship's Keel",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "Car",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Carinae",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "494 square degrees (34th of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "March (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "14°N to 90°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Canopus (α Car), magnitude −0.74",
+        "source": 3
+      },
+      {
+        "label": "Notable deep-sky object",
+        "value": "Carina Nebula (NGC 3372, Caldwell 92): emission nebula, 7,500 light-years, magnitude 4.8",
+        "source": 4
+      }
+    ],
+    "essay": "Carina was once part of Argo Navis, the ship of Jason and the Argonauts, which Ptolemy listed as one of his 48 constellations. Nicolas-Louis de Lacaille divided the large ship into Carina (the keel), Puppis (the stern) and Vela (the sails) in the 1750s. Because the stars kept the Greek letters assigned across the whole ship, Carina has an Alpha and a Beta but no Gamma or Delta, which are in Vela.\n\nCanopus, Alpha Carinae, is the second-brightest star in the night sky at magnitude −0.74. It is a bright giant far more luminous than Sirius, and spacecraft have used it as a reference star for orientation. With two stars of Vela, Carina also forms the False Cross, which is sometimes mistaken for the Southern Cross.\n\nThe Carina Nebula (NGC 3372, Caldwell 92) is an emission nebula about 7,500 light-years away and magnitude 4.8, visible to the naked eye as a bright patch in the southern Milky Way. It contains Eta Carinae, a massive, unstable binary star system that had a great eruption in the 1840s. Lacaille discovered the nebula from the Cape of Good Hope in 1752. Carina is best placed in the evening in March and is fully visible from anywhere south of about 14° N.",
+    "image": {
+      "url": "https://tile.loc.gov/storage-services/service/pnp/cph/3g10000/3g10000/3g10000/3g10077v.jpg",
+      "credit": "Sidney Hall, Urania's Mirror (London, 1825); Library of Congress, Prints and Photographs Division",
+      "licence": "Public domain",
+      "page": "https://www.loc.gov/item/2002695522/",
+      "caption": "The ship Argo Navis, from which Carina was later separated, with Hydra and other southern figures on plate 32 of Urania's Mirror, engraved by Sidney Hall."
+    },
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "Car"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: alf Car",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=alf%20Car"
+      },
+      {
+        "title": "NASA Hubble: Caldwell 92",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-caldwell-catalog/caldwell-92/"
+      }
+    ]
+  },
+  {
+    "id": "cas",
+    "section": "constellations",
+    "title": "Cassiopeia",
+    "subtitle": "The Queen",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "Cas",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Cassiopeiae",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "598 square degrees (25th of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "November (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "90°N to 12°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Schedar (α Cas), magnitude 2.23",
+        "source": 3
+      }
+    ],
+    "essay": "Cassiopeia is one of Ptolemy's 48 constellations. In Greek myth she was the queen of Ethiopia, wife of Cepheus and mother of Andromeda, whose boast about beauty provoked Poseidon to send the sea monster Cetus. She was placed in the sky on a throne that circles the pole, so she spends part of each night upside down.\n\nIts five main stars form a W or M shape that is easy to recognise. The brightest is Schedar (Alpha Cassiopeiae) at magnitude 2.23, only just ahead of Caph (Beta) at 2.27. Gamma Cassiopeiae, at the centre of the W, is an irregular variable star. Cassiopeia lies on the opposite side of Polaris from the Big Dipper, so when one is low the other is high.\n\nThe Milky Way runs through Cassiopeia and it is rich in open clusters, including M52 and M103, both visible in binoculars. In 1572 Tycho Brahe observed a supernova here, now known as Tycho's Supernova; its remnant is a radio and X-ray source. Cassiopeia is circumpolar from latitudes north of about 43° N. It is best placed in the evening in November and is fully visible from anywhere north of about 12° S.",
+    "image": {
+      "url": "https://tile.loc.gov/storage-services/service/pnp/cph/3g10000/3g10000/3g10000/3g10052v.jpg",
+      "credit": "Sidney Hall, Urania's Mirror (London, 1825); Library of Congress, Prints and Photographs Division",
+      "licence": "Public domain",
+      "page": "https://www.loc.gov/item/2002695396/",
+      "caption": "Cassiopeia seated on her throne on plate 3 of Urania's Mirror, engraved by Sidney Hall."
+    },
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "Cas"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: alf Cas",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=alf%20Cas"
+      }
+    ]
+  },
+  {
+    "id": "cen",
+    "section": "constellations",
+    "title": "Centaurus",
+    "subtitle": "The Centaur",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "Cen",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Centauri",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "1060 square degrees (9th of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "May (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "25°N to 90°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Rigil Kentaurus (α Cen A), magnitude 0.01; its companion Toliman (α Cen B) is 1.33",
+        "source": 3
+      },
+      {
+        "label": "Notable deep-sky object",
+        "value": "Omega Centauri (NGC 5139, Caldwell 80): globular cluster, 17,000 light-years, magnitude 3.7",
+        "source": 4
+      }
+    ],
+    "essay": "Centaurus is one of Ptolemy's 48 constellations and the ninth-largest of the 88. It represents a centaur, usually identified with Chiron, the teacher of heroes such as Achilles and Jason. In Ptolemy's time it also included the stars now assigned to Crux.\n\nIts brightest star, Alpha Centauri, is the nearest star system to the Sun. To the eye it is a single point, but a small telescope splits it into Rigil Kentaurus (Alpha Centauri A, magnitude 0.01) and Toliman (Alpha Centauri B, magnitude 1.33). A third, faint member, Proxima Centauri, is the nearest known star to the Sun. Hadar (Beta Centauri, magnitude 0.58) lies close by, and the two form the Pointers, which lead to the Southern Cross.\n\nOmega Centauri (NGC 5139, Caldwell 80) is the largest and brightest globular cluster in the sky, about 17,000 light-years away and magnitude 3.7, with about 10 million stars. Ptolemy catalogued it as a single star. Centaurus A (Caldwell 77), about 11 million light-years away, is the closest active galaxy to Earth and shows in small telescopes as a glow crossed by a dark dust lane. Centaurus is best placed in the evening in May and is fully visible from anywhere south of about 25° N.",
+    "image": {
+      "url": "https://tile.loc.gov/storage-services/service/pnp/cph/3g10000/3g10000/3g10000/3g10077v.jpg",
+      "credit": "Sidney Hall, Urania's Mirror (London, 1825); Library of Congress, Prints and Photographs Division",
+      "licence": "Public domain",
+      "page": "https://www.loc.gov/item/2002695522/",
+      "caption": "Centaurus with Lupus, Hydra and other southern figures on plate 32 of Urania's Mirror, engraved by Sidney Hall."
+    },
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "Cen"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: alf Cen A",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=alf%20Cen%20A"
+      },
+      {
+        "title": "NASA Hubble: Caldwell 80",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-caldwell-catalog/caldwell-80/"
+      }
+    ]
+  },
+  {
+    "id": "cep",
+    "section": "constellations",
+    "title": "Cepheus",
+    "subtitle": "The King",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "Cep",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Cephei",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "588 square degrees (27th of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "October (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "90°N to 1°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Alderamin (α Cep), magnitude 2.46",
+        "source": 3
+      },
+      {
+        "label": "Notable deep-sky object",
+        "value": "NGC 6946 (Caldwell 12), on the border with Cygnus: spiral galaxy, 15 million light-years, magnitude 9.7",
+        "source": 4
+      }
+    ],
+    "essay": "Cepheus is one of Ptolemy's 48 constellations. In Greek myth he was king of Ethiopia, husband of Cassiopeia and father of Andromeda. His figure lies next to his queen near the north celestial pole.\n\nThe main stars form a shape like a simple house with a pointed roof, the roof pointing toward Polaris. The brightest is Alderamin (Alpha Cephei) at magnitude 2.46. Because of precession, the north celestial pole is moving through Cepheus, and in several thousand years Gamma and later Alpha Cephei will be the nearest bright stars to the pole. To find Cepheus, look between the W of Cassiopeia and the head of Draco.\n\nDelta Cephei, near the south-eastern corner of the house, is the prototype of the Cepheid variables, stars whose pulsation period is linked to their luminosity, which made them a key tool for measuring distances to other galaxies. Mu Cephei, Herschel's Garnet Star, is one of the reddest stars visible to the naked eye. The spiral galaxy NGC 6946 (Caldwell 12), on the border with Cygnus, has had ten observed supernovae since 1917. Cepheus is circumpolar from latitudes north of about 37° N, best placed in the evening in October, and fully visible from anywhere north of about 1° S.",
+    "image": {
+      "url": "https://tile.loc.gov/storage-services/service/pnp/cph/3g10000/3g10000/3g10000/3g10053v.jpg",
+      "credit": "Sidney Hall, Urania's Mirror (London, 1825); Library of Congress, Prints and Photographs Division",
+      "licence": "Public domain",
+      "page": "https://www.loc.gov/item/2002695397/",
+      "caption": "Cepheus, the king, on plate 4 of Urania's Mirror, engraved by Sidney Hall."
+    },
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "Cep"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: alf Cep",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=alf%20Cep"
+      },
+      {
+        "title": "NASA Hubble: Caldwell 12",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-caldwell-catalog/caldwell-12/"
+      }
+    ]
+  },
+  {
+    "id": "cet",
+    "section": "constellations",
+    "title": "Cetus",
+    "subtitle": "The Sea Monster",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "Cet",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Ceti",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "1231 square degrees (4th of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "December (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "65°N to 79°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Diphda (β Cet), magnitude 2.01",
+        "source": 3
+      },
+      {
+        "label": "Notable deep-sky object",
+        "value": "M77: spiral galaxy with an active nucleus, 45 million light-years, magnitude 9.6",
+        "source": 4
+      }
+    ],
+    "essay": "Cetus is one of Ptolemy's 48 constellations and the fourth-largest of the 88. It represents the sea monster sent by Poseidon to ravage the coast of Ethiopia after Queen Cassiopeia's boast, the creature from which Perseus rescued Andromeda.\n\nAlthough large, Cetus has few bright stars. The brightest is Diphda (Beta Ceti, magnitude 2.01), in the tail, which stands alone in a sparse area south of the Square of Pegasus. Menkar (Alpha Ceti, 2.53) marks the head, south of Aries and south-west of the Pleiades. Between them lies Mira (Omicron Ceti), the first star of its kind recognised as variable, after David Fabricius noticed it in 1596. Mira swings from about third magnitude to well below naked-eye visibility over roughly 11 months.\n\nThe spiral galaxy M77, about 45 million light-years away and magnitude 9.6, has an unusually bright, active core and is one of the prototypes of the Seyfert galaxies. Tau Ceti, a Sun-like star about 12 light-years away, is one of the nearest single stars visible without a telescope. Cetus is best placed in the evening in December and is fully visible from between about 65° N and 79° S.",
+    "image": {
+      "url": "https://tile.loc.gov/storage-services/service/pnp/cph/3g10000/3g10000/3g10000/3g10074v.jpg",
+      "credit": "Sidney Hall, Urania's Mirror (London, 1825); Library of Congress, Prints and Photographs Division",
+      "licence": "Public domain",
+      "page": "https://www.loc.gov/item/2002695519/",
+      "caption": "Cetus with Eridanus, Fornax and several obsolete figures on plate 28 of Urania's Mirror, engraved by Sidney Hall."
+    },
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "Cet"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: bet Cet",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=bet%20Cet"
+      },
+      {
+        "title": "NASA Hubble: Messier 77",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-77/"
+      }
+    ]
+  },
+  {
+    "id": "cha",
+    "section": "constellations",
+    "title": "Chamaeleon",
+    "subtitle": "The Chameleon",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "Cha",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Chamaeleontis",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "132 square degrees (78th of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "April (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "6°N to 90°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Alpha Chamaeleontis (α Cha), magnitude 4.05",
+        "source": 3
+      }
+    ],
+    "essay": "Chamaeleon is one of twelve constellations created by Petrus Plancius from observations made by the Dutch navigators Pieter Dirkszoon Keyser and Frederick de Houtman in the 1590s. It first appeared on a celestial globe in 1598 and in Johann Bayer's Uranometria of 1603. The figure is the lizard known for changing colour.\n\nIt is a small, faint constellation close to the south celestial pole. The brightest star, Alpha Chamaeleontis, is magnitude 4.05, and the main stars form a small elongated diamond. To locate it, find the Southern Cross and follow its long axis toward the pole for about 20 degrees. From southern temperate latitudes Chamaeleon is circumpolar and can be seen on any clear night.\n\nChamaeleon contains a group of dark molecular clouds, the Chamaeleon complex, which is one of the nearest regions of active star formation to the Sun. Its young stars are hidden by dust at visible wavelengths and are studied mainly with infrared telescopes. The small planetary nebula NGC 3195 is a target for telescopes of moderate size. Chamaeleon is best placed in the evening around April and is fully visible only from south of about 6° N, so it is out of reach for nearly all northern observers.",
+    "image": null,
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "Cha"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: alf Cha",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=alf%20Cha"
+      }
+    ]
+  },
+  {
+    "id": "cir",
+    "section": "constellations",
+    "title": "Circinus",
+    "subtitle": "The Drawing Compass",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "Cir",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Circini",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "93 square degrees (85th of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "June (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "19°N to 90°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Alpha Circini (α Cir), magnitude 3.19",
+        "source": 3
+      }
+    ],
+    "essay": "Circinus is one of the fourteen constellations introduced by Nicolas-Louis de Lacaille in the 1750s after his survey of the southern sky from the Cape of Good Hope. It represents a pair of drawing compasses, one of several surveying and drafting instruments he placed in this part of the sky alongside Norma, the set square.\n\nCircinus is the fourth-smallest constellation, ranking 85th of 88 in area. Its brightest star, Alpha Circini, is magnitude 3.19. It is the brightest of the rapidly oscillating Ap stars, which show tiny brightness changes over a few minutes. The easiest way to find Circinus is from Alpha Centauri: the constellation lies just to its east, between Alpha Centauri and Triangulum Australe.\n\nThe Milky Way passes through Circinus, giving rich star fields in binoculars. The Circinus Galaxy, a nearby active galaxy hidden behind the dust of the Milky Way, was only identified in the 1970s and is a target for professional instruments rather than visual observers. Circinus is best placed in the evening around June and is fully visible from anywhere south of about 19° N. From mid-northern latitudes it never rises.",
+    "image": null,
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "Cir"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: alf Cir",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=alf%20Cir"
+      }
+    ]
+  },
+  {
+    "id": "col",
+    "section": "constellations",
+    "title": "Columba",
+    "subtitle": "The Dove",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "Col",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Columbae",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "270 square degrees (54th of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "February (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "46°N to 90°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Phact (α Col), magnitude 2.65",
+        "source": 3
+      }
+    ],
+    "essay": "Columba was introduced by the Dutch astronomer Petrus Plancius, who drew it on a map in 1592 as Noah's dove, the bird sent from the ark to look for dry land. It was formed from stars south of Lepus that Ptolemy had not included in any figure, and Augustin Royer included it in his star atlas of 1679.\n\nThe brightest star is Phact (Alpha Columbae), magnitude 2.65. With Wazn (Beta Columbae) it forms a short line marking the dove's body. To find Columba, look south of Lepus, which lies directly below Orion's feet, and south-west of Sirius in Canis Major.\n\nMu Columbae is a runaway star. It and AE Aurigae are moving rapidly away from the region of Orion in opposite directions, and their paths trace back to a common origin about 2.5 million years ago, probably the break-up of a multiple star system. The globular cluster NGC 1851 is a compact target for small telescopes. Columba is best placed in the evening in February and is fully visible from anywhere south of about 46° N, so northern observers see it low in the south on winter evenings.",
+    "image": {
+      "url": "https://tile.loc.gov/storage-services/service/pnp/cph/3g10000/3g10000/3g10000/3g10075v.jpg",
+      "credit": "Sidney Hall, Urania's Mirror (London, 1825); Library of Congress, Prints and Photographs Division",
+      "licence": "Public domain",
+      "page": "https://www.loc.gov/item/2002695520/",
+      "caption": "Columba, shown as Columba Noachi, with Canis Major, Lepus and Caelum on plate 30 of Urania's Mirror, engraved by Sidney Hall."
+    },
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "Col"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: alf Col",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=alf%20Col"
+      }
+    ]
+  },
+  {
+    "id": "com",
+    "section": "constellations",
+    "title": "Coma Berenices",
+    "subtitle": "Berenice's Hair",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "Com",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Comae Berenices",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "386 square degrees (42nd of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "May (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "90°N to 56°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Beta Comae Berenices (β Com), magnitude 4.25",
+        "source": 3
+      },
+      {
+        "label": "Notable deep-sky object",
+        "value": "M64, the Black Eye Galaxy: spiral galaxy, 17 million light-years, magnitude 9.8",
+        "source": 4
+      }
+    ],
+    "essay": "Coma Berenices recalls Queen Berenice II of Egypt, who is said to have cut off her hair as an offering for the safe return of her husband, Ptolemy III, from war. When the hair disappeared from the temple, the court astronomer Conon of Samos announced that it had been placed among the stars. Ptolemy treated these stars as an asterism attached to Leo; Gerardus Mercator showed them as a separate constellation on his celestial globe of 1551, and Tycho Brahe included it in his star catalogue of 1602.\n\nThe constellation is faint. Its brightest star, Beta Comae Berenices, is only magnitude 4.25. Its most visible feature is the Coma Star Cluster (Melotte 111), a loose group of fifth- and sixth-magnitude stars spread over several degrees and best seen in binoculars. Find it between Denebola, the tail of Leo, and Arcturus.\n\nThe north galactic pole lies in Coma Berenices, so the view here is out of the plane of the Milky Way and many distant galaxies are visible. The Black Eye Galaxy, M64, about 17 million light-years away and magnitude 9.8, has a dark band of dust across its core. The constellation also contains the Coma Cluster of galaxies. It is best placed in the evening in May and is fully visible from anywhere north of about 56° S.",
+    "image": {
+      "url": "https://tile.loc.gov/storage-services/service/pnp/cph/3g10000/3g10000/3g10000/3g10059v.jpg",
+      "credit": "Sidney Hall, Urania's Mirror (London, 1825); Library of Congress, Prints and Photographs Division",
+      "licence": "Public domain",
+      "page": "https://www.loc.gov/item/2002695503/",
+      "caption": "Coma Berenices, with Boötes and Canes Venatici, on plate 10 of Urania's Mirror, engraved by Sidney Hall."
+    },
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "Com"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: bet Com",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=bet%20Com"
+      },
+      {
+        "title": "NASA Hubble: Messier 64",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-64/"
+      }
+    ]
+  },
+  {
+    "id": "cra",
+    "section": "constellations",
+    "title": "Corona Australis",
+    "subtitle": "The Southern Crown",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "CrA",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Coronae Australis",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "128 square degrees (80th of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "August (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "44°N to 90°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Meridiana (α CrA), magnitude 4.09",
+        "source": 3
+      },
+      {
+        "label": "Notable deep-sky object",
+        "value": "NGC 6541 (Caldwell 78): globular cluster, 22,000 light-years, magnitude 6.3",
+        "source": 4
+      }
+    ],
+    "essay": "Corona Australis is one of Ptolemy's 48 constellations. It is a curved line of faint stars that the Greeks saw as a wreath or crown, sometimes said to have fallen from the head of Sagittarius, beside whose feet it lies.\n\nThe constellation is small, ranking 80th of 88 in area, and its two brightest stars are nearly equal: Meridiana (Alpha Coronae Australis) at magnitude 4.09 and Beta at 4.10. The arc of stars is distinctive under dark skies. Find it just south of the Teapot asterism of Sagittarius, east of the stinger at the end of Scorpius's tail.\n\nThe Milky Way runs along the edge of Corona Australis. The Corona Australis molecular cloud, near the star R Coronae Australis, is one of the nearest star-forming regions to the Sun and appears in photographs as a mix of dark dust and blue reflection nebulae. The globular cluster NGC 6541 (Caldwell 78) is about 22,000 light-years away and magnitude 6.3, within reach of binoculars. Corona Australis is best placed in the evening in August and is fully visible from anywhere south of about 44° N; from mid-northern latitudes it stays low on the southern horizon in summer.",
+    "image": {
+      "url": "https://tile.loc.gov/storage-services/service/pnp/cph/3g10000/3g10000/3g10000/3g10070v.jpg",
+      "credit": "Sidney Hall, Urania's Mirror (London, 1825); Library of Congress, Prints and Photographs Division",
+      "licence": "Public domain",
+      "page": "https://www.loc.gov/item/2002695515/",
+      "caption": "Corona Australis below Sagittarius, with Microscopium and Telescopium, on plate 24 of Urania's Mirror, engraved by Sidney Hall."
+    },
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "CrA"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: alf CrA",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=alf%20CrA"
+      },
+      {
+        "title": "NASA Hubble: Caldwell 78",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-caldwell-catalog/caldwell-78/"
+      }
+    ]
+  },
+  {
+    "id": "crb",
+    "section": "constellations",
+    "title": "Corona Borealis",
+    "subtitle": "The Northern Crown",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "CrB",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Coronae Borealis",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "179 square degrees (72nd of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "July (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "90°N to 50°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Alphecca (α CrB), magnitude 2.24",
+        "source": 3
+      }
+    ],
+    "essay": "Corona Borealis is one of Ptolemy's 48 constellations. In Greek myth it is the crown given by Dionysus to Ariadne, the Cretan princess who helped Theseus escape the Labyrinth; Dionysus later set it in the sky.\n\nIt is a small semicircle of seven stars, compact and easy to recognise. The brightest is Alphecca (Alpha Coronae Borealis), magnitude 2.24, which sits in the middle of the arc like the jewel of the crown. Find the Northern Crown about a third of the way from Arcturus toward Vega, just east of the kite of Boötes.\n\nTwo well-known variable stars lie here. R Coronae Borealis is the prototype of a class of stars that fade by several magnitudes for months at a time when clouds of carbon dust form around them. T Coronae Borealis is a recurrent nova: normally about tenth magnitude, it has brightened to naked-eye visibility in recorded outbursts, including those of 1866 and 1946. The constellation lies away from the Milky Way and contains the Corona Borealis Galaxy Cluster, which is too faint for small telescopes. It is best placed in the evening in July and is fully visible from anywhere north of about 50° S.",
+    "image": {
+      "url": "https://tile.loc.gov/storage-services/service/pnp/cph/3g10000/3g10000/3g10000/3g10060v.jpg",
+      "credit": "Sidney Hall, Urania's Mirror (London, 1825); Library of Congress, Prints and Photographs Division",
+      "licence": "Public domain",
+      "page": "https://www.loc.gov/item/2002695504/",
+      "caption": "Corona Borealis beside Hercules on plate 11 of Urania's Mirror, engraved by Sidney Hall."
+    },
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "CrB"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: alf CrB",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=alf%20CrB"
+      }
+    ]
+  },
+  {
+    "id": "crv",
+    "section": "constellations",
+    "title": "Corvus",
+    "subtitle": "The Crow",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "Crv",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Corvi",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "184 square degrees (70th of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "May (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "64°N to 90°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Gienah (γ Crv), magnitude 2.58",
+        "source": 3
+      },
+      {
+        "label": "Notable deep-sky object",
+        "value": "Antennae Galaxies (NGC 4038 and 4039, Caldwell 60 and 61): interacting spiral galaxies, 65 million light-years, magnitudes 10.5 and 11.0",
+        "source": 4
+      }
+    ],
+    "essay": "Corvus is one of Ptolemy's 48 constellations. In Greek myth Apollo sent a crow to fetch water in a cup; the bird delayed, then blamed a water snake for its lateness. Apollo saw through the lie and set the crow, the cup (Crater) and the snake (Hydra) in the sky, with the crow kept just out of reach of the cup.\n\nThe main stars form a compact quadrilateral, sometimes called the Sail, which is easy to see despite its modest brightness. The brightest is Gienah (Gamma Corvi) at magnitude 2.58. Alpha Corvi, named Alchiba, is fainter than all four corner stars. Find Corvus about 15 degrees south-west of Spica in Virgo.\n\nThe Antennae Galaxies (NGC 4038 and 4039, Caldwell 60 and 61) are a pair of colliding spiral galaxies about 65 million light-years away. Their long tidal tails, made of stars pulled out during the encounter, give them their name. At magnitudes 10.5 and 11.0 they need a telescope of moderate size. The pair has been interacting for a few hundred million years. Corvus is best placed in the evening in May and is fully visible from anywhere south of about 64° N.",
+    "image": {
+      "url": "https://tile.loc.gov/storage-services/service/pnp/cph/3g10000/3g10000/3g10000/3g10077v.jpg",
+      "credit": "Sidney Hall, Urania's Mirror (London, 1825); Library of Congress, Prints and Photographs Division",
+      "licence": "Public domain",
+      "page": "https://www.loc.gov/item/2002695522/",
+      "caption": "Corvus and Crater perched on the back of Hydra on plate 32 of Urania's Mirror, engraved by Sidney Hall."
+    },
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "Crv"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: gam Crv",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=gam%20Crv"
+      },
+      {
+        "title": "NASA Hubble: Caldwell 60/61",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-caldwell-catalog/caldwell-60-61/"
+      }
+    ]
+  },
+  {
+    "id": "crt",
+    "section": "constellations",
+    "title": "Crater",
+    "subtitle": "The Cup",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "Crt",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Crateris",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "282 square degrees (53rd of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "April (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "64°N to 90°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Delta Crateris (δ Crt), magnitude 3.56",
+        "source": 3
+      }
+    ],
+    "essay": "Crater is one of Ptolemy's 48 constellations. It is the cup of Apollo in the same myth as neighbouring Corvus: the crow, sent with the cup to fetch water, was punished for its delay and its lie, and the cup was placed in the sky just beyond the crow's reach, on the back of Hydra.\n\nCrater is faint, with no star brighter than third magnitude. Its brightest star is Delta Crateris, an orange giant of magnitude 3.56; Alpha Crateris, named Alkes, is fainter. The main stars form a goblet shape. Find Crater immediately west of the Corvus quadrilateral, south of the hindquarters of Leo and above the long body of Hydra.\n\nCrater lies far from the Milky Way and contains only faint galaxies. The Crater 2 dwarf galaxy, a satellite of the Milky Way identified in 2016 from survey data, is one of the largest and most diffuse satellites known, but it cannot be seen in amateur telescopes. Crater is best placed in the evening in April and is fully visible from anywhere south of about 64° N. From mid-northern latitudes it is low in the south on spring evenings, where light pollution near the horizon makes its stars hard to pick out.",
+    "image": {
+      "url": "https://tile.loc.gov/storage-services/service/pnp/cph/3g10000/3g10000/3g10000/3g10077v.jpg",
+      "credit": "Sidney Hall, Urania's Mirror (London, 1825); Library of Congress, Prints and Photographs Division",
+      "licence": "Public domain",
+      "page": "https://www.loc.gov/item/2002695522/",
+      "caption": "Crater and Corvus on the back of Hydra on plate 32 of Urania's Mirror, engraved by Sidney Hall."
+    },
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "Crt"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: del Crt",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=del%20Crt"
+      }
+    ]
+  },
+  {
+    "id": "cru",
+    "section": "constellations",
+    "title": "Crux",
+    "subtitle": "The Southern Cross",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "Cru",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Crucis",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "68 square degrees (88th of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "May (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "25°N to 90°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Acrux (α Cru), a double star with components of magnitude 1.28 and 1.58",
+        "source": 3
+      },
+      {
+        "label": "Notable deep-sky object",
+        "value": "Jewel Box (NGC 4755, Caldwell 94): open cluster, 6,500 light-years, magnitude 4.2",
+        "source": 4
+      }
+    ],
+    "essay": "Crux is the smallest of the 88 constellations. Ptolemy listed its stars as part of Centaurus, and European navigators sailing south in the 16th century began treating the cross as a separate figure. It appeared on Dutch celestial globes around the end of that century and was established as a constellation in Augustin Royer's star atlas of 1679.\n\nFour bright stars form the cross. Acrux (Alpha Crucis), at the foot, is a double star whose two components are magnitude 1.28 and 1.58; together they outshine Mimosa (Beta Crucis), the brightest single star at 1.25. The long axis of the cross, from Gacrux through Acrux, points toward the south celestial pole, which made Crux a traditional aid to navigation. The two Pointers, Alpha and Beta Centauri, lie to its east and distinguish it from the larger, fainter False Cross in Carina and Vela.\n\nNext to Mimosa is the Jewel Box (NGC 4755, Caldwell 94), an open cluster about 6,500 light-years away and magnitude 4.2, about 16 million years old. Beside the cross lies the Coalsack (Caldwell 99), a dark nebula about 600 light-years away that blocks the Milky Way behind it and is plain to the naked eye. Crux is best placed in the evening in May and is fully visible from anywhere south of about 25° N.",
+    "image": null,
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "Cru"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: alf01 Cru",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=alf01%20Cru"
+      },
+      {
+        "title": "NASA Hubble: Caldwell 94",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-caldwell-catalog/caldwell-94/"
+      }
+    ]
+  },
+  {
+    "id": "cyg",
+    "section": "constellations",
+    "title": "Cygnus",
+    "subtitle": "The Swan",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "Cyg",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Cygni",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "804 square degrees (16th of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "September (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "90°N to 28°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Deneb (α Cyg), magnitude 1.25",
+        "source": 3
+      },
+      {
+        "label": "Notable deep-sky object",
+        "value": "North America Nebula (NGC 7000, Caldwell 20): emission nebula, 1,800 light-years, magnitude 5.0",
+        "source": 4
+      }
+    ],
+    "essay": "Cygnus is one of Ptolemy's 48 constellations. Greek myth offers several swans, the best known being the form Zeus took to visit Leda. The figure flies south along the Milky Way with its long neck stretched toward Sagittarius, and its brightest stars form the Northern Cross.\n\nDeneb (Alpha Cygni, magnitude 1.25) marks the swan's tail and the top of the cross. It is a white supergiant, one of the most luminous stars visible to the eye, and one corner of the Summer Triangle with Vega and Altair. At the other end of the cross, Albireo (Beta Cygni) marks the swan's head; a small telescope shows it as a golden star and a blue one.\n\nThe Milky Way is bright here and is split by the Great Rift, a lane of dust. The North America Nebula (NGC 7000, Caldwell 20), about 1,800 light-years away and magnitude 5.0, lies near Deneb and shows in binoculars under dark skies. The Veil Nebula is the remnant of an ancient supernova. 61 Cygni was the first star to have its distance measured by parallax, by Friedrich Bessel in 1838, and Cygnus X-1 was the first X-ray source widely accepted as a black hole. Cygnus is best placed in the evening in September and is fully visible from anywhere north of about 28° S.",
+    "image": {
+      "url": "https://tile.loc.gov/storage-services/service/pnp/cph/3g10000/3g10000/3g10000/3g10063v.jpg",
+      "credit": "Sidney Hall, Urania's Mirror (London, 1825); Library of Congress, Prints and Photographs Division",
+      "licence": "Public domain",
+      "page": "https://www.loc.gov/item/2002695507/",
+      "caption": "Cygnus with Lacerta, Lyra, Vulpecula and Anser on plate 14 of Urania's Mirror, engraved by Sidney Hall."
+    },
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "Cyg"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: alf Cyg",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=alf%20Cyg"
+      },
+      {
+        "title": "NASA Hubble: Caldwell 20",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-caldwell-catalog/caldwell-20/"
+      }
+    ]
+  },
+  {
+    "id": "del",
+    "section": "constellations",
+    "title": "Delphinus",
+    "subtitle": "The Dolphin",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "Del",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Delphini",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "189 square degrees (69th of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "September (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "90°N to 69°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Rotanev (β Del), magnitude 3.63",
+        "source": 3
+      },
+      {
+        "label": "Notable deep-sky object",
+        "value": "NGC 6934 (Caldwell 47): globular cluster, 50,000 light-years, magnitude 8.8",
+        "source": 4
+      }
+    ],
+    "essay": "Delphinus is one of Ptolemy's 48 constellations. In Greek myth the dolphin was the messenger that persuaded the sea nymph Amphitrite to marry Poseidon; another story says a dolphin carried the poet Arion to safety after he was thrown overboard.\n\nIt is a small, compact group whose four main stars form a diamond known as Job's Coffin, with a fifth star marking the tail. The brightest is Rotanev (Beta Delphini, magnitude 3.63), slightly brighter than Sualocin (Alpha Delphini). The two names are \"Nicolaus Venator\" spelled backwards, the Latin form of the name of Niccolò Cacciatore, an assistant at the Palermo Observatory, and appeared in Giuseppe Piazzi's star catalogue of 1814. Find Delphinus about 12 degrees north-east of Altair.\n\nGamma Delphini is a double star with yellow and white components that is easy to split in a small telescope. The globular cluster NGC 6934 (Caldwell 47), about 50,000 light-years away and magnitude 8.8, is a target for small telescopes. Delphinus is best placed in the evening in September and is fully visible from anywhere north of about 69° S.",
+    "image": {
+      "url": "https://tile.loc.gov/storage-services/service/pnp/cph/3g10000/3g10000/3g10000/3g10062v.jpg",
+      "credit": "Sidney Hall, Urania's Mirror (London, 1825); Library of Congress, Prints and Photographs Division",
+      "licence": "Public domain",
+      "page": "https://www.loc.gov/item/2002695506/",
+      "caption": "Delphinus with Aquila, Sagitta and the obsolete Antinous on plate 13 of Urania's Mirror, engraved by Sidney Hall."
+    },
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "Del"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: bet Del",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=bet%20Del"
+      },
+      {
+        "title": "NASA Hubble: Caldwell 47",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-caldwell-catalog/caldwell-47/"
+      }
+    ]
+  },
+  {
+    "id": "dor",
+    "section": "constellations",
+    "title": "Dorado",
+    "subtitle": "The Dolphinfish",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "Dor",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Doradus",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "179 square degrees (73rd of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "January (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "19°N to 90°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Alpha Doradus (α Dor), magnitude 3.28",
+        "source": 3
+      },
+      {
+        "label": "Notable deep-sky object",
+        "value": "Tarantula Nebula (30 Doradus, Caldwell 103) in the Large Magellanic Cloud: 170,000 light-years, magnitude 4.0",
+        "source": 4
+      }
+    ],
+    "essay": "Dorado is one of twelve constellations created by Petrus Plancius from observations made by the Dutch navigators Pieter Dirkszoon Keyser and Frederick de Houtman in the 1590s. It first appeared on a globe in 1598 and in Johann Bayer's Uranometria of 1603. Its name refers to the dolphinfish, or mahi-mahi, which the sailors would have seen in tropical waters; it is sometimes drawn as a swordfish.\n\nThe stars are faint. The brightest, Alpha Doradus, is magnitude 3.28. Dorado lies between Canopus and the south celestial pole, and most of the Large Magellanic Cloud falls inside its boundaries. The Cloud, a satellite galaxy of the Milky Way, appears to the naked eye as a detached patch of the Milky Way and is the simplest way to locate the constellation.\n\nInside the Large Magellanic Cloud is the Tarantula Nebula (30 Doradus, Caldwell 103), about 170,000 light-years away and magnitude 4.0. It is the most productive star-forming region in the nearby universe and home to the most massive stars known. In 1987 the supernova SN 1987A, the nearest seen since 1604, appeared in the Large Magellanic Cloud close to the Tarantula. Dorado is best placed in the evening in January and is fully visible from anywhere south of about 19° N.",
+    "image": null,
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "Dor"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: alf Dor",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=alf%20Dor"
+      },
+      {
+        "title": "NASA Hubble: Caldwell 103",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-caldwell-catalog/caldwell-103/"
+      }
+    ]
+  },
+  {
+    "id": "dra",
+    "section": "constellations",
+    "title": "Draco",
+    "subtitle": "The Dragon",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "Dra",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Draconis",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "1083 square degrees (8th of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "July (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "90°N to 3°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Eltanin (γ Dra), magnitude 2.23",
+        "source": 3
+      },
+      {
+        "label": "Notable deep-sky object",
+        "value": "Cat's Eye Nebula (NGC 6543, Caldwell 6): planetary nebula, magnitude 8.2",
+        "source": 4
+      }
+    ],
+    "essay": "Draco is one of Ptolemy's 48 constellations and the eighth-largest of the 88. In Greek myth it is usually identified with Ladon, the dragon that guarded the golden apples of the Hesperides and was killed by Heracles; in the sky, Hercules stands with one foot near the dragon's head.\n\nThe dragon's body winds between Ursa Major and Ursa Minor, and its head is a quadrilateral of four stars close to Vega. The brightest star, Eltanin (Gamma Draconis, magnitude 2.23), is in the head. Thuban (Alpha Draconis), much fainter, lies between Mizar in the Big Dipper's handle and Kochab in the Little Dipper. Around 2800 BC, when the early Egyptian pyramids were being built, Thuban was the nearest bright star to the north celestial pole.\n\nThe Cat's Eye Nebula (NGC 6543, Caldwell 6) is a planetary nebula of magnitude 8.2 close to the north ecliptic pole. Hubble images show concentric shells of gas around its central star. The Draconid meteor shower in early October radiates from the dragon's head. Draco is circumpolar from latitudes north of about 42° N, best placed in the evening in July, and fully visible from anywhere north of about 3° S.",
+    "image": {
+      "url": "https://tile.loc.gov/storage-services/service/pnp/cph/3g10000/3g10000/3g10000/3g10050v.jpg",
+      "credit": "Sidney Hall, Urania's Mirror (London, 1825); Library of Congress, Prints and Photographs Division",
+      "licence": "Public domain",
+      "page": "https://www.loc.gov/item/2002695394/",
+      "caption": "Draco coiled around Ursa Minor on plate 1 of Urania's Mirror, engraved by Sidney Hall."
+    },
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "Dra"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: gam Dra",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=gam%20Dra"
+      },
+      {
+        "title": "NASA Hubble: Caldwell 6",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-caldwell-catalog/caldwell-6/"
+      }
+    ]
+  },
+  {
+    "id": "equ",
+    "section": "constellations",
+    "title": "Equuleus",
+    "subtitle": "The Little Horse",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "Equ",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Equulei",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "72 square degrees (87th of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "September (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "90°N to 76°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Kitalpha (α Equ), magnitude 3.93",
+        "source": 3
+      }
+    ],
+    "essay": "Equuleus is one of Ptolemy's 48 constellations and the second-smallest of the 88, ranking 87th in area. It represents the head of a small horse or foal, sometimes said to be Celeris, the brother of Pegasus. It may have been introduced by the Greek astronomer Hipparchus, whose work Ptolemy drew on.\n\nThe constellation is faint, with no star brighter than fourth magnitude. The brightest, Kitalpha (Alpha Equulei), is magnitude 3.93; its name comes from an Arabic phrase meaning \"part of the horse\". The main stars form a small, irregular quadrilateral. Find Equuleus between the diamond of Delphinus and Enif, the bright star at the nose of Pegasus.\n\nEquuleus has no bright deep-sky objects, though it contains several double stars. Delta Equulei is a close binary with an orbital period of about 5.7 years, one of the shortest among binaries whose stars can be resolved by telescope. The constellation lies just north of the celestial equator, so it is visible from nearly all of the inhabited Earth. It is best placed in the evening in September and is fully visible from anywhere north of about 76° S.",
+    "image": null,
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "Equ"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: alf Equ",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=alf%20Equ"
+      }
+    ]
+  },
+  {
+    "id": "eri",
+    "section": "constellations",
+    "title": "Eridanus",
+    "subtitle": "The River",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "Eri",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Eridani",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "1138 square degrees (6th of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "January (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "32°N to 89°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Achernar (α Eri), magnitude 0.46",
+        "source": 3
+      }
+    ],
+    "essay": "Eridanus is one of Ptolemy's 48 constellations and the sixth-largest of the 88. It represents a river, identified in Greek myth with the Po of northern Italy, into which Phaethon fell after losing control of the chariot of the Sun. Ptolemy's river ended at the star now called Acamar (Theta Eridani); later astronomers extended it south to Achernar, a star that does not rise from Greece.\n\nThe river begins near Rigel in Orion, at Cursa (Beta Eridani), and winds west and then south across nearly 60 degrees of declination. Its brightest star, Achernar (Alpha Eridani, magnitude 0.46), marks the southern end; the name means \"end of the river\". Achernar is one of the fastest-rotating stars known and is noticeably flattened.\n\nEpsilon Eridani, about 10.5 light-years away, is one of the nearest Sun-like stars and is surrounded by a disk of debris. The barred spiral galaxy NGC 1300 is a well-known target for astrophotographers. Because it spans so wide a range of declination, Eridanus can be seen in full only from latitudes between about 32° N and 89° S. It is best placed in the evening in January; mid-northern observers see only its upper reaches.",
+    "image": {
+      "url": "https://tile.loc.gov/storage-services/service/pnp/cph/3g10000/3g10000/3g10000/3g10074v.jpg",
+      "credit": "Sidney Hall, Urania's Mirror (London, 1825); Library of Congress, Prints and Photographs Division",
+      "licence": "Public domain",
+      "page": "https://www.loc.gov/item/2002695519/",
+      "caption": "Eridanus, shown as Fluvius Eridanus, with Cetus, Fornax and obsolete figures on plate 28 of Urania's Mirror, engraved by Sidney Hall."
+    },
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "Eri"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: alf Eri",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=alf%20Eri"
+      }
+    ]
+  },
+  {
+    "id": "for",
+    "section": "constellations",
+    "title": "Fornax",
+    "subtitle": "The Furnace",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "For",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Fornacis",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "398 square degrees (41st of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "December (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "50°N to 90°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Dalim (α For), magnitude 3.98",
+        "source": 3
+      },
+      {
+        "label": "Notable deep-sky object",
+        "value": "Hubble Ultra Deep Field: a small patch of Fornax containing about 10,000 galaxies",
+        "source": 4
+      }
+    ],
+    "essay": "Fornax is one of the fourteen constellations introduced by Nicolas-Louis de Lacaille in the 1750s after his survey of the southern sky. He named it the chemical furnace, Fornax Chemica, after an apparatus used in laboratory chemistry, and the name was later shortened. It has no mythology.\n\nThe constellation is faint. Its brightest star, Dalim (Alpha Fornacis), is magnitude 3.98. Fornax lies inside the large westward loop of Eridanus, south of Cetus; the practical way to find it is to trace Eridanus from Rigel and look in the area the river encloses.\n\nFornax lies far from the Milky Way and contains the Fornax Cluster, one of the nearest clusters of galaxies, whose members include the barred spiral NGC 1365 and the radio galaxy Fornax A. The Fornax Dwarf, a faint satellite galaxy of the Milky Way, also lies here. The Hubble Ultra Deep Field, which shows about 10,000 galaxies, some seen as they were within a few hundred million years of the big bang, was taken in a small patch of Fornax chosen because it has few bright foreground stars. Fornax is best placed in the evening in December and is fully visible from anywhere south of about 50° N.",
+    "image": {
+      "url": "https://tile.loc.gov/storage-services/service/pnp/cph/3g10000/3g10000/3g10000/3g10074v.jpg",
+      "credit": "Sidney Hall, Urania's Mirror (London, 1825); Library of Congress, Prints and Photographs Division",
+      "licence": "Public domain",
+      "page": "https://www.loc.gov/item/2002695519/",
+      "caption": "Fornax, shown as Fornax Chemica, with Eridanus and Cetus on plate 28 of Urania's Mirror, engraved by Sidney Hall."
+    },
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "For"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: alf For",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=alf%20For"
+      },
+      {
+        "title": "NASA Hubble: Hubble Ultra Deep Field 2014",
+        "url": "https://science.nasa.gov/asset/hubble/hubble-ultra-deep-field-2014/"
+      }
+    ]
+  },
+  {
+    "id": "gem",
+    "section": "constellations",
+    "title": "Gemini",
+    "subtitle": "The Twins",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "Gem",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Geminorum",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "514 square degrees (30th of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "February (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "90°N to 54°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Pollux (β Gem), magnitude 1.14",
+        "source": 3
+      },
+      {
+        "label": "Notable deep-sky object",
+        "value": "M35: open cluster, 2,800 light-years, magnitude 5.3",
+        "source": 4
+      }
+    ],
+    "essay": "Gemini is one of Ptolemy's 48 constellations and part of the zodiac. Its two brightest stars are named for the twins Castor and Pollux, brothers of Helen of Troy, who sailed with the Argonauts and were regarded as protectors of sailors. When Castor, the mortal twin, was killed, Pollux asked to share his immortality with him, and Zeus placed both in the sky.\n\nPollux (Beta Geminorum, magnitude 1.14) is the brighter of the pair, an orange giant with a known planet. Castor (Alpha) is slightly fainter. A small telescope splits it into two close stars, and each of those, together with a faint third component, is itself a binary, making six stars in all. The twins' bodies form two roughly parallel lines of stars extending south-west toward Orion. A line from Rigel through Betelgeuse leads to Gemini.\n\nThe open cluster M35, about 2,800 light-years away and magnitude 5.3, lies near the feet of the twins and shows in binoculars. The Eskimo Nebula, NGC 2392, is a planetary nebula for small telescopes. The Geminid meteor shower, one of the strongest of the year, peaks in mid-December with its radiant near Castor. Gemini is best placed in the evening in February and is fully visible from anywhere north of about 54° S.",
+    "image": {
+      "url": "https://tile.loc.gov/storage-services/service/pnp/cph/3g10000/3g10000/3g10000/3g10066v.jpg",
+      "credit": "Sidney Hall, Urania's Mirror (London, 1825); Library of Congress, Prints and Photographs Division",
+      "licence": "Public domain",
+      "page": "https://www.loc.gov/item/2002695511/",
+      "caption": "Gemini, the twins Castor and Pollux, on plate 18 of Urania's Mirror, engraved by Sidney Hall."
+    },
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "Gem"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: bet Gem",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=bet%20Gem"
+      },
+      {
+        "title": "NASA Hubble: Messier 35",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-35/"
+      }
+    ]
+  },
+  {
+    "id": "gru",
+    "section": "constellations",
+    "title": "Grus",
+    "subtitle": "The Crane",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "Gru",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Gruis",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "366 square degrees (45th of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "October (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "33°N to 90°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Alnair (α Gru), magnitude 1.71",
+        "source": 3
+      }
+    ],
+    "essay": "Grus is one of twelve constellations created by Petrus Plancius from observations made by the Dutch navigators Pieter Dirkszoon Keyser and Frederick de Houtman in the 1590s. It first appeared on a globe in 1598 and in Johann Bayer's Uranometria of 1603. It represents a crane. Some of its stars had earlier been counted by Arab astronomers as part of the Southern Fish, Piscis Austrinus.\n\nThe brightest star is Alnair (Alpha Gruis), a blue-white star of magnitude 1.71. Beta Gruis, a red giant of similar brightness, lies close by, and the colour contrast between the two is easy to see with the naked eye. A line of stars runs north-west from the body to Gamma Gruis, marking the crane's neck. Find Grus south-west of Fomalhaut, the bright star of Piscis Austrinus.\n\nDelta and Mu Gruis are wide naked-eye pairs, each made of two stars that lie in nearly the same direction but at different distances. The constellation contains several galaxies visible in larger telescopes, including the Grus Quartet, a group of interacting spirals. Grus is best placed in the evening in October and is fully visible from anywhere south of about 33° N.",
+    "image": null,
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "Gru"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: alf Gru",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=alf%20Gru"
+      }
+    ]
+  },
+  {
+    "id": "her",
+    "section": "constellations",
+    "title": "Hercules",
+    "subtitle": "Hercules",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "Her",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Herculis",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "1225 square degrees (5th of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "July (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "90°N to 38°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Kornephoros (β Her), magnitude 2.77",
+        "source": 3
+      },
+      {
+        "label": "Notable deep-sky object",
+        "value": "M13, the Great Globular Cluster: 25,000 light-years, magnitude 5.8",
+        "source": 4
+      }
+    ],
+    "essay": "Hercules is one of Ptolemy's 48 constellations and the fifth-largest of the 88. Ptolemy knew it as the Kneeler, an unnamed figure kneeling with one foot on the head of Draco; later writers identified him with Heracles, the hero of the twelve labours. For northern observers the figure appears upside down.\n\nHercules has no first-magnitude star. Its brightest, Kornephoros (Beta Herculis), is magnitude 2.77. The most recognisable pattern is the Keystone, a quadrilateral of four third-magnitude stars marking the hero's torso. Find it about a third of the way from Vega to Arcturus. Rasalgethi (Alpha Herculis), at the hero's head near Ophiuchus, is a red giant that varies irregularly in brightness.\n\nOn the western side of the Keystone is M13, the Great Globular Cluster, about 25,000 light-years away and magnitude 5.8. Edmond Halley discovered it in 1714. It is visible in binoculars as a fuzzy star and resolves into stars in a moderate telescope. A second globular cluster, M92, lies north of the Keystone and is often overlooked because of its neighbour. Hercules is best placed in the evening in July and is fully visible from anywhere north of about 38° S.",
+    "image": {
+      "url": "https://tile.loc.gov/storage-services/service/pnp/cph/3g10000/3g10000/3g10000/3g10060v.jpg",
+      "credit": "Sidney Hall, Urania's Mirror (London, 1825); Library of Congress, Prints and Photographs Division",
+      "licence": "Public domain",
+      "page": "https://www.loc.gov/item/2002695504/",
+      "caption": "Hercules, kneeling, with Corona Borealis on plate 11 of Urania's Mirror, engraved by Sidney Hall."
+    },
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "Her"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: bet Her",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=bet%20Her"
+      },
+      {
+        "title": "NASA Hubble: Messier 13",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-13/"
+      }
+    ]
+  },
+  {
+    "id": "hor",
+    "section": "constellations",
+    "title": "Horologium",
+    "subtitle": "The Pendulum Clock",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "Hor",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Horologii",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "249 square degrees (58th of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "December (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "22°N to 90°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Alpha Horologii (α Hor), magnitude 3.86",
+        "source": 3
+      },
+      {
+        "label": "Notable deep-sky object",
+        "value": "NGC 1261 (Caldwell 87): globular cluster, 50,000 light-years, magnitude 8.3",
+        "source": 4
+      }
+    ],
+    "essay": "Horologium is one of the fourteen constellations introduced by Nicolas-Louis de Lacaille in the 1750s, after his survey of the southern sky from the Cape of Good Hope. It represents a pendulum clock, an instrument then essential for timing astronomical observations. It has no mythology.\n\nThe constellation is long and faint, running north to south beside the lower course of Eridanus. Its brightest star, Alpha Horologii, is an orange giant of magnitude 3.86, and most of the rest are fifth magnitude. Find it east of Achernar and west of the Large Magellanic Cloud, with Reticulum on its eastern side.\n\nThe globular cluster NGC 1261 (Caldwell 87) lies about 50,000 light-years away and is magnitude 8.3, a target for small telescopes. Horologium also contains the Horologium Supercluster, a large concentration of galaxy clusters that is far too faint to see but is prominent in maps of the large-scale structure of the universe. Horologium is best placed in the evening in December and is fully visible from anywhere south of about 22° N. From southern temperate latitudes it is well placed through the summer months, December to February.",
+    "image": null,
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "Hor"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: alf Hor",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=alf%20Hor"
+      },
+      {
+        "title": "NASA Hubble: Caldwell 87",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-caldwell-catalog/caldwell-87/"
+      }
+    ]
+  },
+  {
+    "id": "hya",
+    "section": "constellations",
+    "title": "Hydra",
+    "subtitle": "The Water Snake",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "Hya",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Hydrae",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "1303 square degrees (1st of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "April (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "54°N to 83°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Alphard (α Hya), magnitude 1.97",
+        "source": 3
+      },
+      {
+        "label": "Notable deep-sky object",
+        "value": "M83, the Southern Pinwheel: spiral galaxy, 15 million light-years, magnitude 7.5",
+        "source": 4
+      }
+    ],
+    "essay": "Hydra is the largest of the 88 constellations and one of Ptolemy's 48. In Greek myth it is identified with the many-headed Lernaean Hydra killed by Heracles, and also with the water snake in the story of Corvus and Crater, which ride on its back.\n\nHydra stretches across almost seven hours of right ascension, from south of Cancer to south of Libra. Its head, a small group of stars just south of Cancer and east of Procyon, is the best place to start. The brightest star, Alphard (Alpha Hydrae, magnitude 1.97), lies alone in a sparse region; its name means \"the solitary one\". From Alphard the body runs south-east beneath Crater and Corvus toward Centaurus.\n\nThe spiral galaxy M83, the Southern Pinwheel, is about 15 million light-years away and magnitude 7.5, one of the brightest spiral galaxies in the sky. Hydra also contains the open cluster M48, the globular cluster M68 and the planetary nebula NGC 3242, known as the Ghost of Jupiter. Hydra is best placed in the evening in April and is fully visible from between about 54° N and 83° S.",
+    "image": {
+      "url": "https://tile.loc.gov/storage-services/service/pnp/cph/3g10000/3g10000/3g10000/3g10077v.jpg",
+      "credit": "Sidney Hall, Urania's Mirror (London, 1825); Library of Congress, Prints and Photographs Division",
+      "licence": "Public domain",
+      "page": "https://www.loc.gov/item/2002695522/",
+      "caption": "Hydra stretching across plate 32 of Urania's Mirror, with Crater, Corvus and other figures on its back, engraved by Sidney Hall."
+    },
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "Hya"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: alf Hya",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=alf%20Hya"
+      },
+      {
+        "title": "NASA Hubble: Messier 83",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-83/"
+      }
+    ]
+  },
+  {
+    "id": "hyi",
+    "section": "constellations",
+    "title": "Hydrus",
+    "subtitle": "The Lesser Water Snake",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "Hyi",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Hydri",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "243 square degrees (61st of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "December (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "7°N to 90°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Beta Hydri (β Hyi), magnitude 2.79",
+        "source": 3
+      }
+    ],
+    "essay": "Hydrus is one of twelve constellations created by Petrus Plancius from observations made by the Dutch navigators Pieter Dirkszoon Keyser and Frederick de Houtman in the 1590s. It first appeared on a globe in 1598 and in Johann Bayer's Uranometria of 1603. It represents a lesser water snake, distinct from the much larger Hydra.\n\nHydrus lies close to the south celestial pole, between the Large and Small Magellanic Clouds. Its three brightest stars form a large triangle. The brightest, Beta Hydri (magnitude 2.79), is the nearest bright star to the south celestial pole; it is a Sun-like star about 24 light-years away and older than the Sun. Alpha Hydri (2.84) lies about 5 degrees from Achernar, which makes a convenient starting point: from Achernar look south for Alpha Hydri, then follow the triangle toward the pole.\n\nHydrus lies far from the plane of the Milky Way and has few bright deep-sky objects; its galaxies need a telescope. From southern temperate latitudes it is circumpolar and visible on any clear night. It is best placed in the evening in December and is fully visible from anywhere south of about 7° N, so it is out of reach for nearly all northern observers.",
+    "image": null,
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "Hyi"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: bet Hyi",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=bet%20Hyi"
+      }
+    ]
+  },
+  {
+    "id": "ind",
+    "section": "constellations",
+    "title": "Indus",
+    "subtitle": "The Indian",
+    "facts": [
+      {
+        "label": "Abbreviation",
+        "value": "Ind",
+        "source": 0
+      },
+      {
+        "label": "Genitive",
+        "value": "Indi",
+        "source": 0
+      },
+      {
+        "label": "Area",
+        "value": "294 square degrees (49th of 88)",
+        "source": 1
+      },
+      {
+        "label": "Best evening visibility",
+        "value": "October (on the meridian around 21:00 local time)",
+        "source": 2
+      },
+      {
+        "label": "Fully visible from latitudes",
+        "value": "15°N to 90°S",
+        "source": 2
+      },
+      {
+        "label": "Brightest star",
+        "value": "Alpha Indi (α Ind), magnitude 3.11",
+        "source": 3
+      }
+    ],
+    "essay": "Indus is one of twelve constellations created by Petrus Plancius from observations made by the Dutch navigators Pieter Dirkszoon Keyser and Frederick de Houtman in the 1590s. It first appeared on a globe in 1598 and in Johann Bayer's Uranometria of 1603. It depicts an indigenous man holding arrows; which people the figure was meant to represent is not recorded.\n\nThe constellation is faint. Its brightest star, Alpha Indi, is an orange giant of magnitude 3.11. Indus is bordered by Pavo to the west, Grus and Tucana to the east, and Microscopium and Sagittarius to the north. A practical way to find it is to locate Peacock, the bright star of Pavo, and look about 10 degrees north for Alpha Indi.\n\nEpsilon Indi is one of the nearest stars to the Sun, at about 12 light-years. It has a pair of brown dwarf companions and a giant planet, and it is just visible to the naked eye from a dark site. The constellation contains several galaxies for larger telescopes. Indus is best placed in the evening in October and is fully visible from anywhere south of about 15° N.",
+    "image": null,
+    "drawing": {
+      "kind": "constellation"
+    },
+    "link": {
+      "constellation": "Ind"
+    },
+    "sources": [
+      {
+        "title": "IAU: The Constellations",
+        "url": "https://www.iau.org/IAU/IAU/Astronomy-FAQs/Constellations.aspx"
+      },
+      {
+        "title": "AstroPixels (F. Espenak): constellation areas and ranks",
+        "url": "https://astropixels.com/constellations/constellationslist.html"
+      },
+      {
+        "title": "Calculated from the IAU constellation boundaries (Davenhall & Leggett, VizieR VI/49)",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/VI/49"
+      },
+      {
+        "title": "SIMBAD: alf Ind",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=alf%20Ind"
+      }
+    ]
+  }
+]

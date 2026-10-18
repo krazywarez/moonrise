@@ -1,0 +1,1593 @@
+[
+  {
+    "id": "moon",
+    "section": "moons",
+    "title": "The Moon",
+    "subtitle": "Earth's only natural satellite",
+    "facts": [
+      {
+        "label": "Parent body",
+        "value": "Earth",
+        "source": 0
+      },
+      {
+        "label": "Mean radius",
+        "value": "1,737.4 km",
+        "source": 0
+      },
+      {
+        "label": "Mean distance from Earth",
+        "value": "384,400 km",
+        "source": 0
+      },
+      {
+        "label": "Orbital period (sidereal)",
+        "value": "27.32 days",
+        "source": 0
+      },
+      {
+        "label": "Synodic month (phase cycle)",
+        "value": "29.53 days",
+        "source": 0
+      },
+      {
+        "label": "Surface gravity",
+        "value": "1.62 m/s² (0.165 × Earth)",
+        "source": 0
+      },
+      {
+        "label": "Recession from Earth",
+        "value": "3.8 cm per year",
+        "source": 0
+      }
+    ],
+    "essay": "The Moon orbits Earth at a mean distance of 384,400 km and has a mean radius of 1,737.4 km, a little over a quarter of Earth's. It turns once on its axis for each orbit, so the same hemisphere always faces Earth. The far side was first seen when a Soviet spacecraft flew past in 1959. One orbit relative to the stars takes 27.32 days, but the cycle of phases from one new moon to the next takes 29.53 days, because Earth moves along its own orbit in the meantime.\n\nThe surface is rock and dust, marked by impact craters and by the maria, dark plains of cooled lava that fill old impact basins. There is no breathable atmosphere, only a very thin exosphere. Water ice has been found in permanently dark craters near the poles. Apollo astronauts brought back 382 kg of rock and soil, which are still being studied. The Moon is moving away from Earth by about 3.8 cm per year.\n\nTo the eye, the maria form the dark patches on the near side. Binoculars or a small telescope show the most detail away from full moon, when low sunlight along the terminator, the line between day and night, picks out crater walls and mountains.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA00405/PIA00405~medium.jpg",
+      "credit": "NASA/JPL/USGS",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/photojournal/earths-moon/",
+      "caption": "The Moon in enhanced colour from the Galileo spacecraft in 1992, with the bright rayed crater Tycho near the bottom."
+    },
+    "drawing": {
+      "kind": "planet",
+      "radiusKm": 1737.4,
+      "rings": false,
+      "axialTiltDeg": 6.68,
+      "color": "#A8A39D"
+    },
+    "link": {
+      "body": "moon"
+    },
+    "sources": [
+      {
+        "title": "NASA Moon Fact Sheet",
+        "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+      },
+      {
+        "title": "NASA Science: Moon Facts",
+        "url": "https://science.nasa.gov/moon/facts/"
+      }
+    ]
+  },
+  {
+    "id": "phobos",
+    "section": "moons",
+    "title": "Phobos",
+    "subtitle": "Larger moon of Mars",
+    "facts": [
+      {
+        "label": "Parent body",
+        "value": "Mars",
+        "source": 1
+      },
+      {
+        "label": "Mean radius",
+        "value": "11.08 km",
+        "source": 1
+      },
+      {
+        "label": "Mean distance from Mars",
+        "value": "9,375 km",
+        "source": 2
+      },
+      {
+        "label": "Orbital period",
+        "value": "0.319 days (7 h 39 m)",
+        "source": 2
+      },
+      {
+        "label": "Discovered",
+        "value": "1877, Asaph Hall",
+        "source": 3
+      },
+      {
+        "label": "Dimensions",
+        "value": "27 × 22 × 18 km",
+        "source": 0
+      },
+      {
+        "label": "Largest crater",
+        "value": "Stickney, about 9.7 km across",
+        "source": 0
+      }
+    ],
+    "essay": "Phobos is the larger and inner of the two moons of Mars. It is an irregular body about 27 by 22 by 18 km, with a mean radius of 11.08 km, and it orbits only 9,375 km from the centre of Mars, about three times a day. It is so close to the planet that from some places on Mars it cannot always be seen.\n\nIts largest feature is Stickney, a crater about 9.7 km wide named after Chloe Angeline Stickney Hall, the mathematician wife of Asaph Hall, who discovered both Martian moons in 1877. A giant impact in the past nearly shattered Phobos. The moon is dark, with a composition similar to carbonaceous asteroids, and its surface has been ground into fine dust by meteoroid impacts. That dust holds little heat: measured temperatures run from about −4 °C on the sunlit side to −112 °C on the dark side.\n\nPhobos is moving closer to Mars by about 1.8 m every hundred years. At that rate it will either strike the planet or break up into a ring in about 50 million years. It has no atmosphere. It may be a captured asteroid, although some evidence argues against that origin.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA10368/PIA10368~medium.jpg",
+      "credit": "NASA/JPL-Caltech/University of Arizona",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/photojournal/phobos-from-6800-kilometers-color/",
+      "caption": "Phobos in colour from the HiRISE camera on Mars Reconnaissance Orbiter in 2008, with Stickney crater at lower right."
+    },
+    "drawing": {
+      "kind": "planet",
+      "radiusKm": 11.08,
+      "rings": false,
+      "color": "#7A6A5C"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Phobos",
+        "url": "https://science.nasa.gov/mars/moons/phobos/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Physical Parameters",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Mean Elements",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Discovery Circumstances",
+        "url": "https://ssd.jpl.nasa.gov/sats/discovery.html"
+      }
+    ]
+  },
+  {
+    "id": "deimos",
+    "section": "moons",
+    "title": "Deimos",
+    "subtitle": "Smaller moon of Mars",
+    "facts": [
+      {
+        "label": "Parent body",
+        "value": "Mars",
+        "source": 1
+      },
+      {
+        "label": "Mean radius",
+        "value": "6.2 km",
+        "source": 1
+      },
+      {
+        "label": "Mean distance from Mars",
+        "value": "23,457 km",
+        "source": 2
+      },
+      {
+        "label": "Orbital period",
+        "value": "1.262 days (30 h 18 m)",
+        "source": 2
+      },
+      {
+        "label": "Discovered",
+        "value": "1877, Asaph Hall",
+        "source": 3
+      },
+      {
+        "label": "Dimensions",
+        "value": "15 × 12 × 11 km",
+        "source": 0
+      },
+      {
+        "label": "Regolith depth",
+        "value": "Up to about 100 m",
+        "source": 0
+      }
+    ],
+    "essay": "Deimos is the smaller and outer of the two moons of Mars. It measures about 15 by 12 by 11 km, with a mean radius of 6.2 km, and orbits 23,457 km from the centre of Mars once every 30 hours. Asaph Hall discovered it in August 1877, a few days before he found Phobos. Hall named the pair after the sons of Ares, the Greek counterpart of Mars: Deimos means dread and Phobos means fear.\n\nLike Phobos, Deimos is a dark, reddish body with surface material similar to the C-type asteroids of the outer asteroid belt. It looks smoother than Phobos because a thick layer of loose rock and dust, perhaps as deep as 100 m, has partly filled its craters. Its largest crater is about 2.3 km across, a fifth the size of the largest on Phobos, and it lacks the grooves and ridges seen on its neighbour.\n\nDeimos has too little gravity to keep the debris thrown up by impacts. That material stays in orbit around Mars close to the moon's own path, and much of it is later swept up again and settles back on the surface as dust. NASA's Mars Reconnaissance Orbiter photographed Deimos in colour in 2009.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA11826/PIA11826~orig.jpg",
+      "credit": "NASA/JPL-Caltech/University of Arizona",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/photojournal/martian-moon-deimos-in-high-resolution/",
+      "caption": "Two enhanced-colour views of Deimos taken by the HiRISE camera on Mars Reconnaissance Orbiter in February 2009."
+    },
+    "drawing": {
+      "kind": "planet",
+      "radiusKm": 6.2,
+      "rings": false,
+      "color": "#8C7B6B"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Deimos",
+        "url": "https://science.nasa.gov/mars/moons/deimos/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Physical Parameters",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Mean Elements",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Discovery Circumstances",
+        "url": "https://ssd.jpl.nasa.gov/sats/discovery.html"
+      }
+    ]
+  },
+  {
+    "id": "io",
+    "section": "moons",
+    "title": "Io",
+    "subtitle": "Innermost Galilean moon of Jupiter",
+    "facts": [
+      {
+        "label": "Parent body",
+        "value": "Jupiter",
+        "source": 1
+      },
+      {
+        "label": "Mean radius",
+        "value": "1,821.49 km",
+        "source": 1
+      },
+      {
+        "label": "Mean distance from Jupiter",
+        "value": "421,800 km",
+        "source": 2
+      },
+      {
+        "label": "Orbital period",
+        "value": "1.763 days (42 h 18 m)",
+        "source": 2
+      },
+      {
+        "label": "Discovered",
+        "value": "1610, Galileo Galilei",
+        "source": 3
+      },
+      {
+        "label": "Mean density",
+        "value": "3.528 g/cm³",
+        "source": 1
+      },
+      {
+        "label": "Tidal flexing of surface",
+        "value": "Up to about 100 m",
+        "source": 0
+      }
+    ],
+    "essay": "Io is the innermost of the four large moons of Jupiter that Galileo Galilei discovered in 1610. Its mean radius is 1,821.5 km, slightly larger than Earth's Moon, and it orbits 421,800 km from Jupiter every 1.76 days, keeping one face toward the planet.\n\nIo is the most volcanically active world in the Solar System. Regular pulls from Europa and Ganymede keep its orbit slightly elliptical, so Jupiter's tides raise and lower the surface by as much as 100 m and heat the interior. Hundreds of volcanoes erupt, some with lava fountains tens of kilometres high, and lakes of molten lava fill depressions, so impact craters do not last. The thin atmosphere is mostly sulfur dioxide. Voyager 1 found the first evidence of active volcanism in 1979, and Galileo and Juno have since studied the moon at close range.\n\nAs Jupiter's magnetic field sweeps past, it strips about a tonne of material from Io every second. The material is ionised and spreads into a ring of charged particles along Io's orbit called the plasma torus. In binoculars Io is one of four star-like points lined up beside Jupiter, and its position changes visibly from night to night.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA02308/PIA02308~medium.jpg",
+      "credit": "NASA/JPL/University of Arizona",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/photojournal/global-image-of-io-true-color/",
+      "caption": "Io in approximately true colour, assembled from Galileo images taken in July 1999."
+    },
+    "drawing": {
+      "kind": "planet",
+      "radiusKm": 1821.49,
+      "rings": false,
+      "color": "#D9C46A"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Io Facts",
+        "url": "https://science.nasa.gov/jupiter/jupiter-moons/io/facts/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Physical Parameters",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Mean Elements",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Discovery Circumstances",
+        "url": "https://ssd.jpl.nasa.gov/sats/discovery.html"
+      }
+    ]
+  },
+  {
+    "id": "europa",
+    "section": "moons",
+    "title": "Europa",
+    "subtitle": "Ice-covered ocean moon of Jupiter",
+    "facts": [
+      {
+        "label": "Parent body",
+        "value": "Jupiter",
+        "source": 1
+      },
+      {
+        "label": "Mean radius",
+        "value": "1,560.8 km",
+        "source": 1
+      },
+      {
+        "label": "Mean distance from Jupiter",
+        "value": "671,100 km",
+        "source": 2
+      },
+      {
+        "label": "Orbital period",
+        "value": "3.53 days",
+        "source": 2
+      },
+      {
+        "label": "Discovered",
+        "value": "1610, Galileo Galilei",
+        "source": 3
+      },
+      {
+        "label": "Ice shell thickness",
+        "value": "About 15–25 km (estimated)",
+        "source": 0
+      },
+      {
+        "label": "Ocean depth",
+        "value": "About 60–150 km (estimated)",
+        "source": 0
+      }
+    ],
+    "essay": "Europa is the smallest of Jupiter's four Galilean moons, with a mean radius of 1,560.8 km, a little smaller than Earth's Moon. It orbits 671,100 km from Jupiter every 3.53 days. Galileo Galilei discovered it in 1610.\n\nThe surface is water ice, brighter than Earth's Moon and crossed by long cracks and ridges, with few large impact craters, which indicates that it is young. The Galileo spacecraft found that Jupiter's magnetic field is disturbed around Europa in a way best explained by an electrically conducting layer under the ice, most likely a global ocean of salt water. Current estimates put the ice shell at 15 to 25 km thick over an ocean 60 to 150 km deep. That ocean would hold about twice as much water as all of Earth's oceans.\n\nHubble Space Telescope observations suggest that thin plumes of water may sometimes rise from the surface, and in 2019 a team using the Keck Observatory reported water vapour above Europa. NASA launched Europa Clipper in October 2024 to make dozens of close flybys and assess whether the ocean could support life. In binoculars Europa is one of the four star-like moons beside Jupiter.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA19048/PIA19048~medium.jpg",
+      "credit": "NASA/JPL-Caltech/SETI Institute",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/photojournal/europas-stunning-surface-2/",
+      "caption": "Europa in approximate natural colour, reprocessed in 2014 from Galileo images taken in the late 1990s."
+    },
+    "drawing": {
+      "kind": "planet",
+      "radiusKm": 1560.8,
+      "rings": false,
+      "color": "#C9B79C"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Europa Facts",
+        "url": "https://science.nasa.gov/jupiter/jupiter-moons/europa/europa-facts/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Physical Parameters",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Mean Elements",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Discovery Circumstances",
+        "url": "https://ssd.jpl.nasa.gov/sats/discovery.html"
+      }
+    ]
+  },
+  {
+    "id": "ganymede",
+    "section": "moons",
+    "title": "Ganymede",
+    "subtitle": "Largest moon of Jupiter",
+    "facts": [
+      {
+        "label": "Parent body",
+        "value": "Jupiter",
+        "source": 1
+      },
+      {
+        "label": "Mean radius",
+        "value": "2,631.2 km",
+        "source": 1
+      },
+      {
+        "label": "Mean distance from Jupiter",
+        "value": "1,070,400 km",
+        "source": 2
+      },
+      {
+        "label": "Orbital period",
+        "value": "7.16 days",
+        "source": 2
+      },
+      {
+        "label": "Discovered",
+        "value": "1610, Galileo Galilei",
+        "source": 3
+      },
+      {
+        "label": "Magnetic field",
+        "value": "Its own, detected by Galileo in 1996",
+        "source": 0
+      },
+      {
+        "label": "Subsurface ocean",
+        "value": "About 100 km thick, under ~150 km of ice",
+        "source": 0
+      }
+    ],
+    "essay": "Ganymede is the largest moon in the Solar System. Its mean radius of 2,631.2 km makes it bigger than the planet Mercury and the dwarf planet Pluto. It orbits 1,070,400 km from Jupiter every 7.16 days and is third in distance from the planet among the four Galilean moons, which Galileo Galilei discovered in 1610.\n\nIt is the only moon known to have its own magnetic field, a discovery made by the Galileo spacecraft in 1996. The field is generated in a metallic iron core and produces auroras around the moon's poles. Hubble observations of how those auroras rock back and forth as Jupiter's magnetic field changes gave strong evidence for an underground ocean of salt water, estimated at about 100 km thick and buried under roughly 150 km of mostly ice crust. It may hold more water than all the water on Earth's surface.\n\nThe surface has two kinds of terrain: older, dark, heavily cratered regions and younger, lighter regions crossed by grooves and ridges from tectonic deformation. NASA's Juno spacecraft made a close flyby in June 2021 and later identified mineral salts and organic compounds on the surface. In binoculars Ganymede is one of the four star-like moons near Jupiter.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA00716/PIA00716~orig.jpg",
+      "credit": "NASA/JPL",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/photojournal/ganymede-color-global/",
+      "caption": "Ganymede in natural colour from the Galileo spacecraft's first encounter in 1996, showing dark cratered and lighter grooved terrain."
+    },
+    "drawing": {
+      "kind": "planet",
+      "radiusKm": 2631.2,
+      "rings": false,
+      "color": "#8F8478"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Ganymede Facts",
+        "url": "https://science.nasa.gov/jupiter/jupiter-moons/ganymede/facts/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Physical Parameters",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Mean Elements",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Discovery Circumstances",
+        "url": "https://ssd.jpl.nasa.gov/sats/discovery.html"
+      }
+    ]
+  },
+  {
+    "id": "callisto",
+    "section": "moons",
+    "title": "Callisto",
+    "subtitle": "Outermost Galilean moon of Jupiter",
+    "facts": [
+      {
+        "label": "Parent body",
+        "value": "Jupiter",
+        "source": 1
+      },
+      {
+        "label": "Mean radius",
+        "value": "2,410.3 km",
+        "source": 1
+      },
+      {
+        "label": "Mean distance from Jupiter",
+        "value": "1,882,700 km",
+        "source": 2
+      },
+      {
+        "label": "Orbital period",
+        "value": "16.69 days",
+        "source": 2
+      },
+      {
+        "label": "Discovered",
+        "value": "1610, Galileo Galilei",
+        "source": 3
+      },
+      {
+        "label": "Surface age",
+        "value": "About 4 billion years",
+        "source": 0
+      },
+      {
+        "label": "Possible ocean",
+        "value": "About 250 km below the surface",
+        "source": 0
+      }
+    ],
+    "essay": "Callisto is Jupiter's second-largest moon and the third-largest moon in the Solar System, with a mean radius of 2,410.3 km, almost the size of Mercury. It is the outermost of the four Galilean moons, orbiting 1,882,700 km from Jupiter every 16.69 days. Galileo Galilei discovered it in 1610.\n\nIts surface is about 4 billion years old and is the most heavily cratered in the Solar System. Craters range from simple bowls to large basins surrounded by multiple rings. Because the craters have not been erased, the moon appears to have had little geological activity, with no volcanoes or tectonic shifting. Bright spots across the dark surface are thought to be crater peaks capped with water ice.\n\nMagnetic measurements by the Galileo spacecraft in the 1990s suggest a salty ocean may lie about 250 km below the surface, possibly in contact with rock. Later research allows that the ocean may be deeper than first thought, or may not exist. Oxygen has been detected in Callisto's thin exosphere. Of the four Galilean moons, Callisto moves farthest from Jupiter, which makes it easy to pick out in binoculars when it is near its greatest distance from the planet.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA03456/PIA03456~orig.jpg",
+      "credit": "NASA/JPL/DLR",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/photojournal/global-callisto-in-color/",
+      "caption": "The only complete global colour image of Callisto taken by Galileo, from May 2001."
+    },
+    "drawing": {
+      "kind": "planet",
+      "radiusKm": 2410.3,
+      "rings": false,
+      "color": "#5E554C"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Callisto Facts",
+        "url": "https://science.nasa.gov/jupiter/jupiter-moons/callisto/facts/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Physical Parameters",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Mean Elements",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Discovery Circumstances",
+        "url": "https://ssd.jpl.nasa.gov/sats/discovery.html"
+      }
+    ]
+  },
+  {
+    "id": "mimas",
+    "section": "moons",
+    "title": "Mimas",
+    "subtitle": "Innermost major moon of Saturn",
+    "facts": [
+      {
+        "label": "Parent body",
+        "value": "Saturn",
+        "source": 1
+      },
+      {
+        "label": "Mean radius",
+        "value": "198.2 km",
+        "source": 1
+      },
+      {
+        "label": "Mean distance from Saturn",
+        "value": "186,000 km",
+        "source": 2
+      },
+      {
+        "label": "Orbital period",
+        "value": "0.942 days (22 h 37 m)",
+        "source": 2
+      },
+      {
+        "label": "Discovered",
+        "value": "1789, William Herschel",
+        "source": 3
+      },
+      {
+        "label": "Herschel crater",
+        "value": "130 km across",
+        "source": 0
+      },
+      {
+        "label": "Mean density",
+        "value": "1.150 g/cm³",
+        "source": 1
+      }
+    ],
+    "essay": "Mimas is the smallest and innermost of Saturn's major moons, with a mean radius of 198.2 km. It orbits 186,000 km from Saturn in 22 h 37 m and keeps the same face toward the planet. William Herschel discovered it in 1789 using his 40-foot reflecting telescope. Its low density, 1.15 g/cm³, indicates that it is made almost entirely of water ice, the only substance detected on its surface. It is not quite large enough to pull itself into a round shape and is slightly egg-shaped.\n\nAlmost the whole surface is covered in impact craters. The largest, Herschel, is 130 km across, about a third of the moon's diameter, with walls about 5 km high and a central peak about 6 km high. The impact that formed it probably came close to breaking Mimas apart. Cassini's closest flyby, in 2010, produced the images that show the crater most clearly.\n\nMimas orbits closer to Saturn than Enceladus does and on a more elongated orbit, so it should be heated more by tides. Yet Enceladus erupts water while Mimas has one of the most heavily cratered and oldest-looking surfaces in the Solar System. Any explanation of the heat inside Enceladus has to account for this difference.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA12570/PIA12570~medium.jpg",
+      "credit": "NASA/JPL-Caltech/Space Science Institute",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/photojournal/flying-by-the-death-star-moon/",
+      "caption": "Mimas and its 130 km Herschel crater, from Cassini's closest flyby in February 2010."
+    },
+    "drawing": {
+      "kind": "planet",
+      "radiusKm": 198.2,
+      "rings": false,
+      "color": "#BDBDBD"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Mimas",
+        "url": "https://science.nasa.gov/saturn/moons/mimas/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Physical Parameters",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Mean Elements",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Discovery Circumstances",
+        "url": "https://ssd.jpl.nasa.gov/sats/discovery.html"
+      }
+    ]
+  },
+  {
+    "id": "enceladus",
+    "section": "moons",
+    "title": "Enceladus",
+    "subtitle": "Geyser moon of Saturn",
+    "facts": [
+      {
+        "label": "Parent body",
+        "value": "Saturn",
+        "source": 1
+      },
+      {
+        "label": "Mean radius",
+        "value": "252.1 km",
+        "source": 1
+      },
+      {
+        "label": "Mean distance from Saturn",
+        "value": "238,400 km",
+        "source": 2
+      },
+      {
+        "label": "Orbital period",
+        "value": "1.370 days (32 h 53 m)",
+        "source": 2
+      },
+      {
+        "label": "Discovered",
+        "value": "1789, William Herschel",
+        "source": 3
+      },
+      {
+        "label": "Plume speed",
+        "value": "About 400 m/s",
+        "source": 0
+      },
+      {
+        "label": "Surface temperature",
+        "value": "About −201 °C",
+        "source": 0
+      }
+    ],
+    "essay": "Enceladus is a small icy moon of Saturn with a mean radius of 252.1 km. It orbits 238,400 km from Saturn, between Mimas and Tethys, once every 32.9 hours. William Herschel discovered it in 1789. Its surface reflects more sunlight than that of any other body in the Solar System, and because it absorbs so little, its temperature is about −201 °C.\n\nIn 2005 the Cassini spacecraft found jets of water vapour and ice grains leaving the south polar region at about 400 m/s. They come from warm fractures known informally as the tiger stripes. Most of the material falls back as snow, keeping the surface white, and the rest supplies Saturn's E ring. Gravity measurements showed that the jets are fed by a global ocean under an ice shell 20 to 25 km thick on average and perhaps only 1 to 5 km thick at the south pole.\n\nCassini flew through the plume and sampled it. It found water vapour, carbon dioxide, methane, salts, silica and organic material, and the results point to hydrothermal vents on the ocean floor. The heat comes from tides: Enceladus orbits twice for every orbit of Dione, and this resonance keeps its orbit slightly elongated, so Saturn's pull on the moon varies along its path.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA06254/PIA06254~medium.jpg",
+      "credit": "NASA/JPL/Space Science Institute",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/photojournal/zooming-in-on-enceladus-mosaic/",
+      "caption": "False-colour Cassini mosaic of Enceladus from July 2005, showing fractured terrain and the south polar tiger stripes at bottom."
+    },
+    "drawing": {
+      "kind": "planet",
+      "radiusKm": 252.1,
+      "rings": false,
+      "color": "#F2F4F5"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Enceladus",
+        "url": "https://science.nasa.gov/saturn/moons/enceladus/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Physical Parameters",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Mean Elements",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Discovery Circumstances",
+        "url": "https://ssd.jpl.nasa.gov/sats/discovery.html"
+      }
+    ]
+  },
+  {
+    "id": "tethys",
+    "section": "moons",
+    "title": "Tethys",
+    "subtitle": "Icy mid-sized moon of Saturn",
+    "facts": [
+      {
+        "label": "Parent body",
+        "value": "Saturn",
+        "source": 1
+      },
+      {
+        "label": "Mean radius",
+        "value": "531.1 km",
+        "source": 1
+      },
+      {
+        "label": "Mean distance from Saturn",
+        "value": "295,000 km",
+        "source": 2
+      },
+      {
+        "label": "Orbital period",
+        "value": "1.888 days (45 h 18 m)",
+        "source": 2
+      },
+      {
+        "label": "Discovered",
+        "value": "1684, Giovanni Domenico Cassini",
+        "source": 3
+      },
+      {
+        "label": "Mean density",
+        "value": "0.984 g/cm³",
+        "source": 1
+      },
+      {
+        "label": "Odysseus crater",
+        "value": "400 km across",
+        "source": 0
+      }
+    ],
+    "essay": "Tethys is Saturn's fifth-largest moon, with a mean radius of 531.1 km. It orbits 295,000 km from Saturn every 45.3 hours, keeping one face toward the planet. Giovanni Domenico Cassini discovered it in 1684. Its density, 0.984 g/cm³, is slightly lower than that of water, so it must be almost entirely water ice with only a small amount of rock.\n\nTwo large features dominate the surface. Odysseus is an impact crater 400 km across, nearly two-fifths of the moon's diameter. Its rim and central peak have largely collapsed, leaving a shallow basin, which suggests the interior was still partly soft when it formed. Ithaca Chasma is a valley about 100 km wide, 3 to 5 km deep and 2,000 km long that runs roughly from pole to pole. It may have opened as water inside the moon froze and expanded, or it may be linked to the Odysseus impact.\n\nTethys shares its orbit with two small moons. Telesto stays 60 degrees ahead of it and Calypso 60 degrees behind, at stable Lagrange points. Tethys is very bright, partly because ice grains from Saturn's E ring, which originate in the jets of Enceladus, constantly coat its surface.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA07738/PIA07738~medium.jpg",
+      "credit": "NASA/JPL/Space Science Institute",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/photojournal/tethys-in-full-view/",
+      "caption": "Cassini mosaic of Tethys from 2005 showing the south polar region, with the rift Ithaca Chasma crossing the disk."
+    },
+    "drawing": {
+      "kind": "planet",
+      "radiusKm": 531.1,
+      "rings": false,
+      "color": "#D8D8D4"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Tethys",
+        "url": "https://science.nasa.gov/saturn/moons/tethys/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Physical Parameters",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Mean Elements",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Discovery Circumstances",
+        "url": "https://ssd.jpl.nasa.gov/sats/discovery.html"
+      }
+    ]
+  },
+  {
+    "id": "dione",
+    "section": "moons",
+    "title": "Dione",
+    "subtitle": "Icy moon of Saturn",
+    "facts": [
+      {
+        "label": "Parent body",
+        "value": "Saturn",
+        "source": 1
+      },
+      {
+        "label": "Mean radius",
+        "value": "561.4 km",
+        "source": 1
+      },
+      {
+        "label": "Mean distance from Saturn",
+        "value": "377,700 km",
+        "source": 2
+      },
+      {
+        "label": "Orbital period",
+        "value": "2.737 days (65 h 41 m)",
+        "source": 2
+      },
+      {
+        "label": "Discovered",
+        "value": "1684, Giovanni Domenico Cassini",
+        "source": 3
+      },
+      {
+        "label": "Mean density",
+        "value": "1.478 g/cm³",
+        "source": 1
+      },
+      {
+        "label": "Co-orbital moons",
+        "value": "Helene (ahead) and Polydeuces (behind)",
+        "source": 0
+      }
+    ],
+    "essay": "Dione has a mean radius of 561.4 km and orbits Saturn at 377,700 km, close to the distance between Earth and the Moon, once every 2.74 days. Giovanni Domenico Cassini discovered it in 1684. Its density of 1.48 g/cm³ suggests that about a third of the moon is a dense core, probably silicate rock, and the rest is water ice. At its average temperature of about −186 °C the ice is hard and behaves like rock.\n\nVoyager images showed bright, wispy lines across Dione. From 2005 the Cassini spacecraft resolved them as bright ice cliffs and canyon walls, some several hundred metres high, formed when the crust cracked. They are evidence of tectonic activity in the past. The trailing hemisphere is more heavily cratered than the leading one, the reverse of what is expected, which has led to the idea that an impact once turned the moon around.\n\nTwo small moons share Dione's orbit: Helene, 60 degrees ahead, and Polydeuces, 60 degrees behind. Dione is also in resonance with Enceladus, which completes exactly two orbits for each one of Dione's. That resonance keeps Enceladus's orbit slightly elongated and helps drive the tidal heating behind its jets.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA07746/PIA07746~medium.jpg",
+      "credit": "NASA/JPL/Space Science Institute",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/photojournal/dione-in-full-view/",
+      "caption": "Cassini mosaic of Dione from October 2005, showing cratered terrain and tectonic fractures near the right edge."
+    },
+    "drawing": {
+      "kind": "planet",
+      "radiusKm": 561.4,
+      "rings": false,
+      "color": "#CFCFCB"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Dione",
+        "url": "https://science.nasa.gov/saturn/moons/dione/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Physical Parameters",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Mean Elements",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Discovery Circumstances",
+        "url": "https://ssd.jpl.nasa.gov/sats/discovery.html"
+      }
+    ]
+  },
+  {
+    "id": "rhea",
+    "section": "moons",
+    "title": "Rhea",
+    "subtitle": "Second-largest moon of Saturn",
+    "facts": [
+      {
+        "label": "Parent body",
+        "value": "Saturn",
+        "source": 1
+      },
+      {
+        "label": "Mean radius",
+        "value": "763.5 km",
+        "source": 1
+      },
+      {
+        "label": "Mean distance from Saturn",
+        "value": "527,200 km",
+        "source": 2
+      },
+      {
+        "label": "Orbital period",
+        "value": "4.52 days",
+        "source": 2
+      },
+      {
+        "label": "Discovered",
+        "value": "1672, Giovanni Domenico Cassini",
+        "source": 3
+      },
+      {
+        "label": "Mean density",
+        "value": "1.237 g/cm³",
+        "source": 1
+      },
+      {
+        "label": "Surface temperature",
+        "value": "About −174 °C (sunlit) to −220 °C (shade)",
+        "source": 0
+      }
+    ],
+    "essay": "Rhea is Saturn's second-largest moon, with a mean radius of 763.5 km, less than a third of Titan's. It orbits 527,200 km from Saturn every 4.52 days, keeping one face toward the planet. Giovanni Domenico Cassini discovered it in 1672. Its density of 1.24 g/cm³ points to a body about three-quarters ice and one-quarter rock, and Cassini gravity measurements suggest the two are mixed rather than separated into a rocky core and icy mantle.\n\nRhea is farther from Saturn than Dione and Tethys and receives too little tidal heating to have resurfaced much, so it is more heavily cratered than either. Like them, it has bright wispy markings, which Cassini showed in 2006 to be fracture cliffs exposing clean ice. Surface temperatures range from about −174 °C in sunlight to −220 °C in shadow.\n\nIn 2010 Cassini detected a very thin exosphere of oxygen and carbon dioxide around Rhea. It was the first time a spacecraft had directly sampled an oxygen atmosphere at a world other than Earth. The oxygen is released when charged particles trapped in Saturn's rotating magnetic field strike the icy surface. Its density at the surface is about 5 trillion times lower than that of Earth's air.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA07763/PIA07763~medium.jpg",
+      "credit": "NASA/JPL/Space Science Institute",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/photojournal/rhea-full-moon/",
+      "caption": "Cassini mosaic of 21 images showing the full cratered disk of Rhea, with the ancient Tirawa basin above and right of centre."
+    },
+    "drawing": {
+      "kind": "planet",
+      "radiusKm": 763.5,
+      "rings": false,
+      "color": "#C4C2BD"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Rhea",
+        "url": "https://science.nasa.gov/saturn/moons/rhea/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Physical Parameters",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Mean Elements",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Discovery Circumstances",
+        "url": "https://ssd.jpl.nasa.gov/sats/discovery.html"
+      }
+    ]
+  },
+  {
+    "id": "titan",
+    "section": "moons",
+    "title": "Titan",
+    "subtitle": "Largest moon of Saturn",
+    "facts": [
+      {
+        "label": "Parent body",
+        "value": "Saturn",
+        "source": 1
+      },
+      {
+        "label": "Mean radius",
+        "value": "2,574.76 km",
+        "source": 1
+      },
+      {
+        "label": "Mean distance from Saturn",
+        "value": "1,221,900 km",
+        "source": 2
+      },
+      {
+        "label": "Orbital period",
+        "value": "15.95 days",
+        "source": 2
+      },
+      {
+        "label": "Discovered",
+        "value": "1655, Christiaan Huygens",
+        "source": 3
+      },
+      {
+        "label": "Surface pressure",
+        "value": "About 60% higher than on Earth",
+        "source": 0
+      },
+      {
+        "label": "Atmosphere",
+        "value": "About 95% nitrogen, 5% methane",
+        "source": 0
+      }
+    ],
+    "essay": "Titan is Saturn's largest moon and the second-largest in the Solar System, after Ganymede. Its mean radius is 2,574.8 km, larger than the planet Mercury. It orbits 1,221,900 km from Saturn every 15.95 days, keeping one face toward the planet. Christiaan Huygens discovered it in 1655.\n\nIt is the only moon with a dense atmosphere. The gas is about 95 percent nitrogen and 5 percent methane, and the pressure at the surface is about 60 percent higher than at sea level on Earth. Sunlight and charged particles break up methane high in the atmosphere, and the fragments recombine into organic compounds that form an orange haze hiding the surface. Titan has a cycle of liquids like Earth's water cycle, but with methane and ethane: clouds, rain, rivers, lakes and seas. Fields of dunes made of dark hydrocarbon grains cover much of the equatorial region.\n\nGravity measurements by Cassini, and radio data from ESA's Huygens probe, which landed in 2005, point to an ocean of salty water 55 to 80 km below the icy crust. NASA's Dragonfly rotorcraft is planned to launch in 2028 and land at several sites on the surface. In a small telescope Titan appears as a star-like point near Saturn.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA14602/PIA14602~orig.jpg",
+      "credit": "NASA/JPL-Caltech/Space Science Institute",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/photojournal/hazy-orange-orb/",
+      "caption": "Titan in natural colour from Cassini, its surface hidden by orange haze, with the north polar hood at top."
+    },
+    "drawing": {
+      "kind": "planet",
+      "radiusKm": 2574.76,
+      "rings": false,
+      "color": "#D9A54A"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Titan Facts",
+        "url": "https://science.nasa.gov/saturn/moons/titan/facts/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Physical Parameters",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Mean Elements",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Discovery Circumstances",
+        "url": "https://ssd.jpl.nasa.gov/sats/discovery.html"
+      }
+    ]
+  },
+  {
+    "id": "iapetus",
+    "section": "moons",
+    "title": "Iapetus",
+    "subtitle": "Two-toned moon of Saturn",
+    "facts": [
+      {
+        "label": "Parent body",
+        "value": "Saturn",
+        "source": 1
+      },
+      {
+        "label": "Mean radius",
+        "value": "734.3 km",
+        "source": 1
+      },
+      {
+        "label": "Mean distance from Saturn",
+        "value": "3,561,700 km",
+        "source": 2
+      },
+      {
+        "label": "Orbital period",
+        "value": "79.33 days",
+        "source": 2
+      },
+      {
+        "label": "Discovered",
+        "value": "1671, Giovanni Domenico Cassini",
+        "source": 3
+      },
+      {
+        "label": "Albedo",
+        "value": "0.03–0.05 leading side, 0.5–0.6 trailing side",
+        "source": 0
+      },
+      {
+        "label": "Mean density",
+        "value": "1.089 g/cm³",
+        "source": 1
+      }
+    ],
+    "essay": "Iapetus is Saturn's third-largest moon, with a mean radius of 734.3 km. It orbits far from the planet, at 3,561,700 km, taking 79.33 days, and like most of Saturn's large moons it keeps one face toward Saturn. Its orbit is inclined, so from Iapetus the rings would be seen at an angle rather than edge-on. Its density of 1.09 g/cm³ shows that it is mostly ice.\n\nThe two hemispheres differ sharply in brightness. The leading side, which faces forward along the orbit, is as dark as coal, with an albedo of 0.03 to 0.05. The trailing side is about ten times brighter, at 0.5 to 0.6. Giovanni Domenico Cassini noticed this when he discovered the moon in 1671: he could see it only when it was on the west side of Saturn, and he correctly concluded that one side was darker and always faced the same way.\n\nThe Cassini spacecraft's flyby in 2007 showed that thermal segregation is the main cause. Dark material, possibly dust from the outer moon Phoebe, gathers on the leading side. It absorbs sunlight and warms during the long day, so ice evaporates from it and refreezes on colder, brighter ground. The dark areas become darker and the bright areas brighter.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA08384/PIA08384~medium.jpg",
+      "credit": "NASA/JPL/Space Science Institute",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/photojournal/the-other-side-of-iapetus/",
+      "caption": "False-colour Cassini mosaic of the bright trailing hemisphere of Iapetus from September 2007, with the transition to the dark leading hemisphere along the right side."
+    },
+    "drawing": {
+      "kind": "planet",
+      "radiusKm": 734.3,
+      "rings": false,
+      "color": "#9C8F7A"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Iapetus",
+        "url": "https://science.nasa.gov/saturn/moons/iapetus/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Physical Parameters",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Mean Elements",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Discovery Circumstances",
+        "url": "https://ssd.jpl.nasa.gov/sats/discovery.html"
+      }
+    ]
+  },
+  {
+    "id": "miranda",
+    "section": "moons",
+    "title": "Miranda",
+    "subtitle": "Innermost major moon of Uranus",
+    "facts": [
+      {
+        "label": "Parent body",
+        "value": "Uranus",
+        "source": 1
+      },
+      {
+        "label": "Mean radius",
+        "value": "235.8 km",
+        "source": 1
+      },
+      {
+        "label": "Mean distance from Uranus",
+        "value": "129,846 km",
+        "source": 2
+      },
+      {
+        "label": "Orbital period",
+        "value": "1.413 days (33 h 55 m)",
+        "source": 2
+      },
+      {
+        "label": "Discovered",
+        "value": "1948, Gerard Kuiper",
+        "source": 3
+      },
+      {
+        "label": "Mean density",
+        "value": "1.178 g/cm³",
+        "source": 1
+      },
+      {
+        "label": "Deepest canyons",
+        "value": "Up to 12 times the depth of the Grand Canyon",
+        "source": 0
+      }
+    ],
+    "essay": "Miranda is the smallest and innermost of the five major moons of Uranus, with a mean radius of 235.8 km. It orbits 129,846 km from Uranus every 1.41 days, on an orbit slightly more inclined than those of the other four. Gerard Kuiper discovered it in 1948 on photographs taken at McDonald Observatory in Texas. It was the last moon of Uranus found before Voyager 2 reached the planet in 1986.\n\nVoyager 2 showed a surface far more varied than expected for a body this small. Three large regions called coronae, lightly cratered collections of ridges and valleys, meet older, heavily cratered terrain at sharp boundaries. Fault canyons reach as much as 12 times the depth of the Grand Canyon. In Miranda's low gravity, a rock dropped from the highest cliff would take about 10 minutes to reach the bottom.\n\nScientists disagree about how these features formed. One idea is that a large impact shattered Miranda and the pieces reassembled. Another, considered more likely, is that impacts partly melted the icy interior and slushy water rose to the surface in episodes and refroze. Like the other large Uranian moons, Miranda is thought to be made of roughly equal amounts of water ice and silicate rock.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA01490/PIA01490~medium.jpg",
+      "credit": "NASA/JPL/USGS",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/photojournal/south-polar-view-of-miranda/",
+      "caption": "Voyager 2 mosaic of Miranda's south polar region from January 1986, showing coronae next to older cratered ground."
+    },
+    "drawing": {
+      "kind": "planet",
+      "radiusKm": 235.8,
+      "rings": false,
+      "color": "#9A9A96"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Miranda",
+        "url": "https://science.nasa.gov/uranus/moons/miranda/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Physical Parameters",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Mean Elements",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Discovery Circumstances",
+        "url": "https://ssd.jpl.nasa.gov/sats/discovery.html"
+      }
+    ]
+  },
+  {
+    "id": "ariel",
+    "section": "moons",
+    "title": "Ariel",
+    "subtitle": "Brightest major moon of Uranus",
+    "facts": [
+      {
+        "label": "Parent body",
+        "value": "Uranus",
+        "source": 1
+      },
+      {
+        "label": "Mean radius",
+        "value": "578.9 km",
+        "source": 1
+      },
+      {
+        "label": "Mean distance from Uranus",
+        "value": "190,929 km",
+        "source": 2
+      },
+      {
+        "label": "Orbital period",
+        "value": "2.520 days (60 h 29 m)",
+        "source": 2
+      },
+      {
+        "label": "Discovered",
+        "value": "1851, William Lassell",
+        "source": 3
+      },
+      {
+        "label": "Mean density",
+        "value": "1.539 g/cm³",
+        "source": 1
+      },
+      {
+        "label": "Surface",
+        "value": "Youngest of the major Uranian moons",
+        "source": 0
+      }
+    ],
+    "essay": "Ariel has a mean radius of 578.9 km and orbits Uranus at 190,929 km every 2.52 days, on an orbit with low inclination and eccentricity. It keeps the same face toward Uranus. William Lassell, an English amateur astronomer who paid for his telescopes with money from brewing, discovered it in 1851. John Herschel named it at Lassell's request after characters in Shakespeare's The Tempest and Pope's The Rape of the Lock.\n\nAriel has the brightest surface of the five major Uranian moons, although none of them reflects more than about a third of the sunlight that reaches it, which suggests dark carbon-rich material on their surfaces. Ariel also appears to have the youngest surface. It has few large craters and many small ones, and it is crossed by graben, valleys bounded by faults. These point to the most recent geological activity among the large moons of Uranus. Voyager 2 took its best colour image of Ariel in January 1986 from 170,000 km.\n\nLike its neighbours, Ariel is thought to be roughly half water ice and half silicate rock, and carbon dioxide has been detected on its surface. In the past it was heated enough for heavier material to sink toward the centre, possibly through tidal interaction with Uranus.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA00041/PIA00041~orig.jpg",
+      "credit": "NASA/JPL",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/photojournal/ariel-highest-resolution-color-picture/",
+      "caption": "Ariel's southern hemisphere in Voyager 2's best colour image, taken in January 1986, with fault valleys near the terminator."
+    },
+    "drawing": {
+      "kind": "planet",
+      "radiusKm": 578.9,
+      "rings": false,
+      "color": "#A9A6A0"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Ariel",
+        "url": "https://science.nasa.gov/uranus/moons/ariel/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Physical Parameters",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Mean Elements",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Discovery Circumstances",
+        "url": "https://ssd.jpl.nasa.gov/sats/discovery.html"
+      }
+    ]
+  },
+  {
+    "id": "umbriel",
+    "section": "moons",
+    "title": "Umbriel",
+    "subtitle": "Darkest major moon of Uranus",
+    "facts": [
+      {
+        "label": "Parent body",
+        "value": "Uranus",
+        "source": 1
+      },
+      {
+        "label": "Mean radius",
+        "value": "584.7 km",
+        "source": 1
+      },
+      {
+        "label": "Mean distance from Uranus",
+        "value": "265,986 km",
+        "source": 2
+      },
+      {
+        "label": "Orbital period",
+        "value": "4.14 days",
+        "source": 2
+      },
+      {
+        "label": "Discovered",
+        "value": "1851, William Lassell",
+        "source": 3
+      },
+      {
+        "label": "Reflectivity",
+        "value": "About 16% of incoming light",
+        "source": 0
+      },
+      {
+        "label": "Mean density",
+        "value": "1.523 g/cm³",
+        "source": 1
+      }
+    ],
+    "essay": "Umbriel has a mean radius of 584.7 km, slightly larger than Ariel, and orbits Uranus at 265,986 km every 4.14 days, keeping one face toward the planet. William Lassell discovered it in 1851, the same year he found Ariel. It is named after a spirit in Alexander Pope's poem The Rape of the Lock.\n\nIt is the darkest of the five major Uranian moons. Its surface reflects only about 16 percent of the light that falls on it, similar to the highland regions of Earth's Moon, while the other large moons of Uranus are noticeably brighter. The process that darkened it is not known. Its surface is old and heavily cratered, and of the five large moons it shows the least sign of geological activity.\n\nEverything known about Umbriel's surface comes from Voyager 2, which passed through the Uranus system in January 1986. Its most detailed image, taken from 557,000 km with a resolution of about 10 km, shows the cratered southern hemisphere. Voyager 2 also found a bright ring about 140 km across on the dark surface. What made it is unclear, but it may be a frost deposit associated with an impact crater. Like the other large Uranian moons, Umbriel is thought to be roughly half ice and half rock.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA00040/PIA00040~orig.jpg",
+      "credit": "NASA/JPL",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/photojournal/umbriel-at-closest-approach/",
+      "caption": "Voyager 2's most detailed image of Umbriel, taken in January 1986, showing its heavily cratered southern hemisphere."
+    },
+    "drawing": {
+      "kind": "planet",
+      "radiusKm": 584.7,
+      "rings": false,
+      "color": "#5F5F5C"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Umbriel",
+        "url": "https://science.nasa.gov/uranus/moons/umbriel/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Physical Parameters",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Mean Elements",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Discovery Circumstances",
+        "url": "https://ssd.jpl.nasa.gov/sats/discovery.html"
+      }
+    ]
+  },
+  {
+    "id": "titania",
+    "section": "moons",
+    "title": "Titania",
+    "subtitle": "Largest moon of Uranus",
+    "facts": [
+      {
+        "label": "Parent body",
+        "value": "Uranus",
+        "source": 1
+      },
+      {
+        "label": "Mean radius",
+        "value": "788.9 km",
+        "source": 1
+      },
+      {
+        "label": "Mean distance from Uranus",
+        "value": "436,298 km",
+        "source": 2
+      },
+      {
+        "label": "Orbital period",
+        "value": "8.71 days",
+        "source": 2
+      },
+      {
+        "label": "Discovered",
+        "value": "1787, William Herschel",
+        "source": 3
+      },
+      {
+        "label": "Longest fault valleys",
+        "value": "About 1,600 km",
+        "source": 0
+      },
+      {
+        "label": "Mean density",
+        "value": "1.653 g/cm³",
+        "source": 1
+      }
+    ],
+    "essay": "Titania is the largest moon of Uranus, with a mean radius of 788.9 km. It orbits 436,298 km from the planet every 8.71 days, keeping one face toward Uranus. William Herschel discovered it in January 1787, the same year he found Oberon. It is named after the queen of the fairies in Shakespeare's A Midsummer Night's Dream.\n\nVoyager 2 photographed Titania in January 1986, almost 200 years after its discovery, from about 500,000 km. The images show impact craters and a system of fault valleys, some about 1,600 km long. The valleys break the crust in two directions, which indicates that it was stretched, and shows that Titania was geologically active at some point. Deposits of bright material along the valley walls that face the Sun may be frost.\n\nTitania is a neutral grey colour, typical of the major Uranian moons. Like them, it is thought to be made of roughly equal amounts of water ice and rock, and its density is 1.65 g/cm³. None of the large moons of Uranus reflects more than about a third of the sunlight that reaches it, which suggests that dark, carbon-rich material coats their surfaces. Voyager 2 is the only spacecraft to have visited Uranus, so its images remain the only close views of Titania.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA00036/PIA00036~orig.jpg",
+      "credit": "NASA/JPL",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/photojournal/titania-high-resolution-color-composite/",
+      "caption": "Voyager 2 colour composite of Titania from January 1986, with a large trench-like valley near the terminator."
+    },
+    "drawing": {
+      "kind": "planet",
+      "radiusKm": 788.9,
+      "rings": false,
+      "color": "#A39E95"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Titania",
+        "url": "https://science.nasa.gov/uranus/moons/titania/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Physical Parameters",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Mean Elements",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Discovery Circumstances",
+        "url": "https://ssd.jpl.nasa.gov/sats/discovery.html"
+      }
+    ]
+  },
+  {
+    "id": "oberon",
+    "section": "moons",
+    "title": "Oberon",
+    "subtitle": "Outermost major moon of Uranus",
+    "facts": [
+      {
+        "label": "Parent body",
+        "value": "Uranus",
+        "source": 1
+      },
+      {
+        "label": "Mean radius",
+        "value": "761.4 km",
+        "source": 1
+      },
+      {
+        "label": "Mean distance from Uranus",
+        "value": "583,511 km",
+        "source": 2
+      },
+      {
+        "label": "Orbital period",
+        "value": "13.46 days",
+        "source": 2
+      },
+      {
+        "label": "Discovered",
+        "value": "1787, William Herschel",
+        "source": 3
+      },
+      {
+        "label": "Tallest known mountain",
+        "value": "About 6 km",
+        "source": 0
+      },
+      {
+        "label": "Mean density",
+        "value": "1.664 g/cm³",
+        "source": 1
+      }
+    ],
+    "essay": "Oberon is the outermost of the five major moons of Uranus and the second largest, with a mean radius of 761.4 km. It orbits 583,511 km from Uranus every 13.46 days, keeping one face toward the planet. William Herschel discovered it in 1787, and his son John Herschel later named it after the king of the fairies in Shakespeare's A Midsummer Night's Dream.\n\nLittle was known about Oberon until Voyager 2 flew past Uranus in January 1986. Voyager's best image of it, taken from 660,000 km, shows features as small as 12 km. The surface is heavily cratered, like Umbriel's and more so than those of Ariel, Titania and Miranda. Several large craters are surrounded by bright rays similar to those on Jupiter's moon Callisto, and Oberon has at least one mountain that rises about 6 km above the surface.\n\nLike the other large moons of Uranus, Oberon is thought to be roughly half ice and half rock, and its density is 1.66 g/cm³. Its surface, like theirs, reflects no more than about a third of the sunlight that reaches it, which suggests that carbon-rich material has darkened it. Voyager 2 is the only spacecraft to have visited Uranus, so its images remain the only close views of Oberon.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA00034/PIA00034~orig.jpg",
+      "credit": "NASA/JPL",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/photojournal/oberon-at-voyager-closest-approach/",
+      "caption": "Voyager 2's best image of Oberon, from January 1986, showing large craters with bright rays."
+    },
+    "drawing": {
+      "kind": "planet",
+      "radiusKm": 761.4,
+      "rings": false,
+      "color": "#8A7F74"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Oberon",
+        "url": "https://science.nasa.gov/uranus/moons/oberon/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Physical Parameters",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Mean Elements",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Discovery Circumstances",
+        "url": "https://ssd.jpl.nasa.gov/sats/discovery.html"
+      }
+    ]
+  },
+  {
+    "id": "triton",
+    "section": "moons",
+    "title": "Triton",
+    "subtitle": "Largest moon of Neptune",
+    "facts": [
+      {
+        "label": "Parent body",
+        "value": "Neptune",
+        "source": 1
+      },
+      {
+        "label": "Mean radius",
+        "value": "1,352.6 km",
+        "source": 1
+      },
+      {
+        "label": "Mean distance from Neptune",
+        "value": "354,800 km",
+        "source": 2
+      },
+      {
+        "label": "Orbital period",
+        "value": "5.88 days",
+        "source": 2
+      },
+      {
+        "label": "Discovered",
+        "value": "1846, William Lassell",
+        "source": 3
+      },
+      {
+        "label": "Orbit direction",
+        "value": "Retrograde",
+        "source": 0
+      },
+      {
+        "label": "Surface temperature",
+        "value": "About −235 °C",
+        "source": 0
+      }
+    ],
+    "essay": "Triton is the largest moon of Neptune, with a mean radius of 1,352.6 km. It orbits 354,800 km from Neptune every 5.88 days and keeps one face toward the planet. William Lassell discovered it in 1846, 17 days after Neptune itself was found.\n\nIt is the only large moon in the Solar System that orbits in the direction opposite to its planet's rotation. This retrograde orbit is one reason scientists think Triton is a Kuiper Belt object that Neptune captured, and it has much in common with Pluto. Its density, about 2.06 g/cm³, is higher than that of most moons of the outer planets, which implies a larger share of rock inside. Because of the tilt of its orbit, both of its poles take turns facing the Sun.\n\nVoyager 2, the only spacecraft to visit, flew past in 1989. It measured a surface temperature of about −235 °C and found active geysers. The surface is a crust of frozen nitrogen over an icy mantle, with few craters, smooth volcanic plains and pits formed by icy lava flows. Nitrogen frost reflects about 70 percent of the sunlight that reaches it. A thin atmosphere of nitrogen with a little methane is thought to come from activity driven by seasonal heating from the Sun.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA00317/PIA00317~medium.jpg",
+      "credit": "NASA/JPL/USGS",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/photojournal/global-color-mosaic-of-triton/",
+      "caption": "Global colour mosaic of Triton assembled from Voyager 2 images taken in 1989."
+    },
+    "drawing": {
+      "kind": "planet",
+      "radiusKm": 1352.6,
+      "rings": false,
+      "color": "#D8C9C0"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Triton",
+        "url": "https://science.nasa.gov/neptune/moons/triton/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Physical Parameters",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Mean Elements",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Discovery Circumstances",
+        "url": "https://ssd.jpl.nasa.gov/sats/discovery.html"
+      }
+    ]
+  },
+  {
+    "id": "charon",
+    "section": "moons",
+    "title": "Charon",
+    "subtitle": "Largest moon of Pluto",
+    "facts": [
+      {
+        "label": "Parent body",
+        "value": "Pluto",
+        "source": 1
+      },
+      {
+        "label": "Mean radius",
+        "value": "606 km",
+        "source": 1
+      },
+      {
+        "label": "Mean distance from Pluto",
+        "value": "19,600 km",
+        "source": 2
+      },
+      {
+        "label": "Orbital period",
+        "value": "6.39 days",
+        "source": 2
+      },
+      {
+        "label": "Discovered",
+        "value": "1978, James Christy",
+        "source": 3
+      },
+      {
+        "label": "Size relative to parent",
+        "value": "About half the diameter of Pluto",
+        "source": 0
+      },
+      {
+        "label": "Rotation",
+        "value": "Mutually tidally locked with Pluto",
+        "source": 0
+      }
+    ],
+    "essay": "Charon is the largest of Pluto's five moons, with a mean radius of 606 km, about half the size of Pluto. That makes it the largest known moon relative to its parent body, and the pair is sometimes described as a double dwarf planet. It orbits 19,600 km from Pluto every 6.39 days.\n\nPluto and Charon are mutually tidally locked. Each always shows the same face to the other, and Charon's orbital period is the same as Pluto's rotation period, so as seen from Pluto, Charon neither rises nor sets but stays over the same spot. James Christy discovered Charon in 1978 at the US Naval Observatory in Flagstaff, Arizona, while he and Robert Harrington were working to refine Pluto's orbit. He noticed that images of Pluto were elongated, and that the direction of the elongation cycled with a period of 6.39 days.\n\nNASA's New Horizons spacecraft flew past in July 2015. Its images show that Charon has less variety of colour than Pluto, apart from a reddish north polar region informally named Mordor Macula. Christy proposed the name Charon, the ferryman of the dead in Greek mythology, partly because its first four letters match the name of his wife, Charlene.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA19968/PIA19968~medium.jpg",
+      "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/photojournal/charon-in-enhanced-color/",
+      "caption": "Charon in enhanced colour from New Horizons just before closest approach in July 2015, with the reddish north polar region at top."
+    },
+    "drawing": {
+      "kind": "planet",
+      "radiusKm": 606.0,
+      "rings": false,
+      "color": "#9C9792"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Charon",
+        "url": "https://science.nasa.gov/dwarf-planets/pluto/moons/charon/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Physical Parameters",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Mean Elements",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "JPL Solar System Dynamics: Planetary Satellite Discovery Circumstances",
+        "url": "https://ssd.jpl.nasa.gov/sats/discovery.html"
+      }
+    ]
+  }
+]

@@ -1,0 +1,3569 @@
+[
+  {
+    "id": "sirius",
+    "section": "stars",
+    "title": "Sirius",
+    "subtitle": "Alpha Canis Majoris",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Canis Major",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "−1.46 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "0.00",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "A0mA1Va",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "8.60 light-years, from parallax 379.21 ± 1.58 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Radius",
+        "value": "1.711 ± 0.013 × Sun (VLTI interferometry)",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 30 June 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Sirius is the brightest star in the night sky. It is a white main-sequence star of spectral type A, about twice the Sun's radius, and at 8.6 light-years it is one of the nearest stars to the Sun. Its brightness comes mainly from that closeness rather than from great intrinsic power.\n\nSirius has a white dwarf companion, Sirius B. Friedrich Bessel inferred an unseen companion in 1844 from a slow wobble in Sirius's motion across the sky, and Alvan Graham Clark first saw it through a telescope in 1862. The two stars orbit each other in about 50 years. Sirius B has roughly the mass of the Sun packed into a body about the size of the Earth, and it is hard to see next to the glare of the primary.\n\nTo find Sirius, follow the three stars of Orion's Belt to the southeast; the line leads to the brightest point in that part of the sky. When Sirius is low on the horizon, turbulence in the atmosphere often makes it flash different colours. The name comes from the Greek for \"scorching\" or \"glowing\".",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "A0mA1Va",
+      "colorIndex": 0.0
+    },
+    "link": {
+      "hr": 2491
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 2491",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+2491"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 2491",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=2491"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "Kervella et al. 2003, The interferometric diameter and internal structure of Sirius A, A&A 408, 681",
+        "url": "https://arxiv.org/abs/astro-ph/0306604"
+      }
+    ]
+  },
+  {
+    "id": "canopus",
+    "section": "stars",
+    "title": "Canopus",
+    "subtitle": "Alpha Carinae",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Carina",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "−0.72 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "+0.15",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "A9II",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "About 310 light-years (range 290–330), from parallax 10.55 ± 0.56 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Luminosity",
+        "value": "About 12,000 × Sun (from SED fitting at 94.79 pc)",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 30 June 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Canopus is the second-brightest star in the night sky, after Sirius. It is a bright giant of spectral type A9/F0, white with a faint yellow tint, about 310 light-years away. Its luminosity is many thousands of times the Sun's, so unlike Sirius it is bright because it is powerful rather than because it is near.\n\nBecause Canopus is bright and lies far from the ecliptic, many spacecraft have used it as a reference star for attitude control, locking a star tracker onto it to keep their orientation fixed.\n\nCanopus lies at declination −53°, about 36° south of Sirius, in the constellation Carina, the keel of the old ship Argo. It never rises for observers north of about latitude 37° N. From the southern United States, North Africa and similar latitudes it appears briefly low on the southern horizon on winter evenings. From the Southern Hemisphere it is high in the sky in the summer months and is circumpolar from far southern latitudes.",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "A9II",
+      "colorIndex": 0.15
+    },
+    "link": {
+      "hr": 2326
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 2326",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+2326"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 2326",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=2326"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "McDonald, Zijlstra & Boyer 2012, Fundamental parameters and infrared excesses of Hipparcos stars, MNRAS 427, 343 (VizieR J/MNRAS/427/343)",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=J/MNRAS/427/343/table2&HIP=30438"
+      }
+    ]
+  },
+  {
+    "id": "arcturus",
+    "section": "stars",
+    "title": "Arcturus",
+    "subtitle": "Alpha Boötis",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Boötes",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "−0.04 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "+1.23",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "K1.5IIIFe-0.5",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "36.7 light-years, from parallax 88.83 ± 0.54 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Radius",
+        "value": "25.4 ± 0.2 × Sun",
+        "source": 3
+      },
+      {
+        "label": "Mass",
+        "value": "1.08 ± 0.06 × Sun",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 30 June 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Arcturus is the brightest star in the northern half of the celestial sphere and the fourth-brightest star in the night sky. It is an orange giant of spectral type K1.5 III, about 37 light-years away. Having exhausted the hydrogen in its core, it has expanded to about 25 times the Sun's radius, though its mass is only slightly greater than the Sun's.\n\nDetailed spectroscopic studies show that Arcturus has about a third of the Sun's abundance of iron and an age of around 7 billion years. It also moves quickly across the sky relative to most bright stars, by more than 2 arcseconds per year. Its composition and motion mark it as a member of the Milky Way's thick disk, an older population of stars than the Sun's.\n\nTo find Arcturus from the Northern Hemisphere, follow the curve of the Big Dipper's handle away from the bowl; the arc leads to Arcturus, in the constellation Boötes. It is prominent in spring and summer evenings, and its orange colour is plain to the eye. The name comes from the Greek for \"guardian of the bear\", from its position following Ursa Major across the sky.",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "K1.5IIIFe-0.5",
+      "colorIndex": 1.23
+    },
+    "link": {
+      "hr": 5340
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 5340",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+5340"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 5340",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=5340"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "Ramírez & Allende Prieto 2011, Fundamental parameters and chemical composition of Arcturus, ApJ 743, 135",
+        "url": "https://arxiv.org/abs/1109.4425"
+      }
+    ]
+  },
+  {
+    "id": "rigil-kentaurus",
+    "section": "stars",
+    "title": "Rigil Kentaurus",
+    "subtitle": "Alpha Centauri A",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Centaurus",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "−0.01 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "+0.71",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "G2V",
+        "source": 1
+      },
+      {
+        "label": "Distance",
+        "value": "4.34 light-years, from parallax 750.81 ± 0.38 mas (Akeson et al. 2021)",
+        "source": 0
+      },
+      {
+        "label": "Radius",
+        "value": "1.2234 ± 0.0053 × Sun (VLTI interferometry)",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 6 November 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Rigil Kentaurus is Alpha Centauri A, the brighter member of the nearest star system to the Sun, 4.3 light-years away. It is a yellow main-sequence star of spectral type G2 V, the same type as the Sun, with a radius about 22 percent larger, measured with ESO's Very Large Telescope Interferometer.\n\nAlpha Centauri A and B (Toliman) orbit each other every 80 years, with a separation that ranges from about 11 to 35 times the Earth–Sun distance. To the naked eye they merge into a single point, which appears as the third-brightest star in the night sky. A third star, the red dwarf Proxima Centauri, lies about 2 degrees away on the sky; radial-velocity measurements show it is gravitationally bound to the pair, on an orbit lasting roughly 550,000 years. A small telescope splits A and B.\n\nThe system lies at declination −61° and cannot be seen from north of about latitude 29° N. In the southern sky, Rigil Kentaurus and Hadar are the two bright Pointers that lead to the Southern Cross; Rigil Kentaurus is the one farther from the Cross. The name comes from the Arabic for \"foot of the centaur\".",
+    "image": {
+      "url": "https://cdn.esahubble.org/archives/images/screen/potw1635a.jpg",
+      "credit": "ESA/Hubble & NASA",
+      "licence": "CC BY 4.0",
+      "page": "https://esahubble.org/images/potw1635a/",
+      "caption": "Alpha Centauri A (left) and B (right), imaged by Hubble's Wide Field and Planetary Camera 2."
+    },
+    "drawing": {
+      "kind": "star",
+      "spectralType": "G2V",
+      "colorIndex": 0.71
+    },
+    "link": {
+      "hr": 5459
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: alf Cen",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=alf+Cen"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 5459",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=5459"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "Kervella et al. 2017, The radii and limb darkenings of Alpha Centauri A and B, A&A 597, A137",
+        "url": "https://arxiv.org/abs/1610.06185"
+      }
+    ]
+  },
+  {
+    "id": "vega",
+    "section": "stars",
+    "title": "Vega",
+    "subtitle": "Alpha Lyrae",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Lyra",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "0.03 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "0.00",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "A0V",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "25.0 light-years, from parallax 130.23 ± 0.36 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Radius",
+        "value": "2.71 ± 0.02 × Sun (NPOI interferometry)",
+        "source": 3
+      },
+      {
+        "label": "Luminosity",
+        "value": "53.1 ± 2.7 × Sun",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 30 June 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Vega is a white main-sequence star of spectral type A0 V, 25 light-years away, and the fifth-brightest star in the night sky. It has long served as a reference point for astronomical brightness: the standard photometric magnitude systems were set up so that Vega has a magnitude close to zero in every band. It was the first star other than the Sun to be photographed, in 1850, and the first to have its spectrum photographed, in 1872.\n\nVega rotates fast enough to flatten it noticeably, and we view it almost pole-on, so its poles appear hotter than its equator. In 1983 the IRAS satellite found that Vega emits more infrared light than a bare star should, which was traced to a disk of cold dust around it. Similar debris disks have since been found around many stars.\n\nVega is the brightest corner of the Summer Triangle, with Deneb and Altair, and stands high overhead on summer evenings at mid-northern latitudes. Because of the precession of the Earth's axis, it was close to the north celestial pole around 12,000 BCE and will be again in about 12,000 years. The name derives from an Arabic phrase meaning \"the swooping eagle\".",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "A0V",
+      "colorIndex": 0.0
+    },
+    "link": {
+      "hr": 7001
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 7001",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+7001"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 7001",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=7001"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "Baines et al. 2018, Fundamental parameters of 87 stars from the NPOI, AJ 155, 30 (VizieR J/AJ/155/30)",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=J/AJ/155/30/table5&HD=172167"
+      }
+    ]
+  },
+  {
+    "id": "capella",
+    "section": "stars",
+    "title": "Capella",
+    "subtitle": "Alpha Aurigae",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Auriga",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "0.08 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "+0.80",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "G3III:",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "42.8 light-years, from parallax 76.20 ± 0.46 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Radius",
+        "value": "Aa 11.98 ± 0.57, Ab 8.83 ± 0.33 × Sun",
+        "source": 3
+      },
+      {
+        "label": "Luminosity",
+        "value": "Aa 78.7 ± 4.2, Ab 72.7 ± 3.6 × Sun",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 30 June 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Capella looks like a single yellow star but is a system of four. The bright light comes from two giant stars of nearly equal mass, each about two and a half times the Sun's, orbiting each other every 104 days. The pair is too close to split with a telescope, but it has been resolved by interferometry and its orbit measured in detail. A second, much fainter pair of red dwarfs lies far from the giants and shares their motion through space.\n\nThe two giants are at different stages of evolution. The cooler and larger one, about 12 times the Sun's radius, has already passed through the red giant phase and is burning helium in its core; the hotter one, about 9 times the Sun's radius, is crossing the stage just before. Each gives off roughly 75 times the Sun's light. The system is 43 light-years away.\n\nCapella is the brightest star in Auriga and the sixth-brightest in the night sky. It is circumpolar from latitudes north of about 44° N and stands nearly overhead on winter evenings at mid-northern latitudes. The name is Latin for \"little she-goat\".",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "G3III:",
+      "colorIndex": 0.8
+    },
+    "link": {
+      "hr": 1708
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 1708",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+1708"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 1708",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=1708"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "Torres et al. 2015, Capella (alpha Aurigae) revisited: new binary orbit, physical properties, and evolutionary state",
+        "url": "https://arxiv.org/abs/1505.07461"
+      }
+    ]
+  },
+  {
+    "id": "rigel",
+    "section": "stars",
+    "title": "Rigel",
+    "subtitle": "Beta Orionis",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Orion",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "0.12 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "−0.03",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "B8Ia",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "About 860 light-years (range 790–950), from parallax 3.78 ± 0.34 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Radius",
+        "value": "74.1 ± 6.1 × Sun (NPOI interferometry)",
+        "source": 3
+      },
+      {
+        "label": "Luminosity",
+        "value": "About 62,000 × Sun (± 11,000)",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 30 June 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Rigel is a blue-white supergiant of spectral type B8 Ia, marking the left foot of Orion as seen from the Northern Hemisphere. It is usually the brightest star in Orion and the seventh-brightest in the night sky. Its distance from the Hipparcos parallax is about 860 light-years, with an uncertainty of roughly ten percent.\n\nAt that distance Rigel is tens of thousands of times as luminous as the Sun, with a radius around 74 times the Sun's, measured with the Navy Precision Optical Interferometer. It is a young, massive star that has left the main sequence and will probably end its life as a supernova. Its brightness varies slightly and irregularly as its outer layers pulsate.\n\nRigel has a companion, Rigel B, about 9.5 arcseconds away, which is itself a close binary. It can be seen in a small telescope on a steady night, despite Rigel's glare.\n\nRigel sits diagonally opposite Betelgeuse across Orion's Belt. The contrast between the two, blue-white and orange-red, is easy to see with the naked eye. The name comes from the Arabic for \"foot\".",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "B8Ia",
+      "colorIndex": -0.03
+    },
+    "link": {
+      "hr": 1713
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 1713",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+1713"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 1713",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=1713"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "Baines et al. 2018, Fundamental parameters of 87 stars from the NPOI, AJ 155, 30 (VizieR J/AJ/155/30)",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=J/AJ/155/30/table5&HD=34085"
+      }
+    ]
+  },
+  {
+    "id": "procyon",
+    "section": "stars",
+    "title": "Procyon",
+    "subtitle": "Alpha Canis Minoris",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Canis Minor",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "0.38 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "+0.42",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "F5IV-V+DQZ",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "11.5 light-years, from parallax 284.56 ± 1.26 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Radius",
+        "value": "2.048 ± 0.025 × Sun (VLTI interferometry)",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 30 June 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Procyon is the brightest star in Canis Minor and the eighth-brightest in the night sky. At 11.5 light-years it is one of the Sun's nearer neighbours. It is a yellow-white star of spectral type F5 IV-V, about twice the Sun's radius. The \"IV\" class marks it as a subgiant: it is at the end of its main-sequence life, with hydrogen in its core nearly used up, and has begun to expand.\n\nLike Sirius, Procyon has a white dwarf companion. Friedrich Bessel noted irregularities in Procyon's motion in 1844, and John Martin Schaeberle saw the companion, Procyon B, at Lick Observatory in 1896. The two orbit each other every 40.8 years. Procyon B is very faint and lies close to the primary, which makes it a difficult target.\n\nProcyon forms the Winter Triangle with Sirius and Betelgeuse. It lies east of Betelgeuse and northeast of Sirius. The name is Greek for \"before the dog\": seen from mid-northern latitudes, Procyon rises shortly before Sirius, the Dog Star.",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "F5IV-V+DQZ",
+      "colorIndex": 0.42
+    },
+    "link": {
+      "hr": 2943
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 2943",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+2943"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 2943",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=2943"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "Kervella et al. 2004, The diameter and evolutionary state of Procyon A, A&A 413, 251",
+        "url": "https://arxiv.org/abs/astro-ph/0309148"
+      }
+    ]
+  },
+  {
+    "id": "achernar",
+    "section": "stars",
+    "title": "Achernar",
+    "subtitle": "Alpha Eridani",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Eridanus",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "0.46 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "−0.16",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "B6Vpe",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "About 139 light-years (range 136–143), from parallax 23.39 ± 0.57 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Luminosity",
+        "value": "About 2,800 × Sun (from SED fitting at 42.75 pc)",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 30 June 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Achernar is a hot blue-white star of spectral type B6 at the southern end of the constellation Eridanus, the river, about 140 light-years away. It is the ninth-brightest star in the night sky.\n\nAchernar rotates very fast, close to the speed at which material at its equator would be flung off. Interferometric observations with ESO's Very Large Telescope Interferometer in 2003 showed that its equatorial diameter is about one and a half times its polar diameter, making it one of the most flattened stars known. It is a Be star: from time to time it sheds gas from its equator into a disk, which produces emission lines in its spectrum. A fainter companion star has been detected close to it.\n\nAchernar lies at declination −57° and is not visible from north of about latitude 33° N. For observers in the Southern Hemisphere it is high in the sky on spring evenings and is circumpolar from latitudes south of about 33° S. It sits roughly between Canopus and Fomalhaut, in a part of the sky with few other bright stars. The name comes from the Arabic for \"end of the river\".",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "B6Vpe",
+      "colorIndex": -0.16
+    },
+    "link": {
+      "hr": 472
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 472",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+472"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 472",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=472"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "McDonald, Zijlstra & Boyer 2012, Fundamental parameters and infrared excesses of Hipparcos stars, MNRAS 427, 343 (VizieR J/MNRAS/427/343)",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=J/MNRAS/427/343/table2&HIP=7588"
+      }
+    ]
+  },
+  {
+    "id": "betelgeuse",
+    "section": "stars",
+    "title": "Betelgeuse",
+    "subtitle": "Alpha Orionis",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Orion",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "0.50 (V), variable",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "+1.85",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "M1-M2Ia-Iab",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "About 500 light-years (range 440–570), from parallax 6.55 ± 0.83 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Luminosity",
+        "value": "About 74,000 × Sun (from SED fitting at 152.67 pc)",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 30 June 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Betelgeuse is a red supergiant of spectral type M1-M2 marking Orion's right shoulder (upper left as seen from the Northern Hemisphere). It is one of the largest stars visible to the naked eye: if it replaced the Sun, its visible surface would extend beyond the orbit of Mars. Its distance is uncertain; the Hipparcos parallax gives about 500 light-years, with a range of about 440 to 570.\n\nBetelgeuse is a semiregular variable. Its brightness changes over periods of several hundred days as its distended outer layers pulsate and large convection cells come and go on its surface. From late 2019 to early 2020 it faded to about magnitude 1.6, well below its usual range. Images taken with ESO's Very Large Telescope showed the southern part of the star darkened, and the dimming has been attributed to a cloud of dust that formed from gas the star had ejected. It returned to its usual brightness in 2020.\n\nAs a massive star near the end of its life, Betelgeuse is expected eventually to explode as a supernova. Its orange-red colour is obvious to the eye next to blue-white Rigel. The name derives from an Arabic phrase meaning \"the hand of al-Jauzā'\", a figure that occupied this part of the sky.",
+    "image": {
+      "url": "https://cdn.eso.org/images/screen/eso2003a.jpg",
+      "credit": "ESO/M. Montargès et al.",
+      "licence": "CC BY 4.0",
+      "page": "https://www.eso.org/public/images/eso2003a/",
+      "caption": "The surface of Betelgeuse imaged with SPHERE on ESO's Very Large Telescope in December 2019, during its dimming."
+    },
+    "drawing": {
+      "kind": "star",
+      "spectralType": "M1-M2Ia-Iab",
+      "colorIndex": 1.85
+    },
+    "link": {
+      "hr": 2061
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 2061",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+2061"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 2061",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=2061"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "McDonald, Zijlstra & Boyer 2012, Fundamental parameters and infrared excesses of Hipparcos stars, MNRAS 427, 343 (VizieR J/MNRAS/427/343)",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=J/MNRAS/427/343/table2&HIP=27989"
+      }
+    ]
+  },
+  {
+    "id": "hadar",
+    "section": "stars",
+    "title": "Hadar",
+    "subtitle": "Beta Centauri",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Centaurus",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "0.61 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "−0.23",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "B1III",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "About 390 light-years (range 370–420), from parallax 8.32 ± 0.50 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Luminosity",
+        "value": "About 37,000 × Sun (combined light of the system, from SED fitting at 120.19 pc)",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 21 August 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Hadar is a hot blue-white giant of spectral type B1 III, about 390 light-years away, and the brighter of the two Pointers to the Southern Cross. It is the second-brightest star in Centaurus and the eleventh-brightest in the night sky.\n\nHadar is a multiple star. The main star is itself a pair of similar hot B-type giants in a close orbit, separated by too little for a conventional telescope to split but resolved by long-baseline interferometers. A third, fainter star lies about an arcsecond away. Together the stars emit tens of thousands of times as much light as the Sun.\n\nThe Pointers make Hadar easy to find. Hadar and Rigil Kentaurus lie close together in the southern Milky Way, and a line drawn from Rigil Kentaurus through Hadar leads to the Southern Cross; Hadar is the one closer to the Cross. Although the two Pointers look like a pair, Hadar is roughly ninety times farther away than Rigil Kentaurus. Hadar lies at declination −60° and is not visible from north of about latitude 30° N.",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "B1III",
+      "colorIndex": -0.23
+    },
+    "link": {
+      "hr": 5267
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 5267",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+5267"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 5267",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=5267"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "McDonald, Zijlstra & Boyer 2012, Fundamental parameters and infrared excesses of Hipparcos stars, MNRAS 427, 343 (VizieR J/MNRAS/427/343)",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=J/MNRAS/427/343/table2&HIP=68702"
+      }
+    ]
+  },
+  {
+    "id": "altair",
+    "section": "stars",
+    "title": "Altair",
+    "subtitle": "Alpha Aquilae",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Aquila",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "0.77 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "+0.22",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "A7Vn",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "16.7 light-years, from parallax 194.95 ± 0.57 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Radius",
+        "value": "1.82 ± 0.01 × Sun (NPOI interferometry)",
+        "source": 3
+      },
+      {
+        "label": "Luminosity",
+        "value": "10.1 ± 0.5 × Sun",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 30 June 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Altair is a white main-sequence star of spectral type A7 V, 16.7 light-years away, and the brightest star in Aquila, the eagle. It is the southern corner of the Summer Triangle, with Vega and Deneb.\n\nAltair spins very fast, completing a rotation in less than ten hours, compared with about 25 days for the Sun. The rotation flattens it, so its equatorial diameter is noticeably larger than its polar diameter. In 2007 astronomers using the CHARA interferometer produced images of Altair's surface, the first of a main-sequence star other than the Sun. They show the flattened disk and a darker, cooler equator, an effect called gravity darkening: material at the equator is farther from the centre, feels weaker gravity, and is cooler.\n\nAltair is easy to recognise because it sits between two fainter stars, Tarazed and Alshain, forming a short line across the sky. It is well placed on summer and autumn evenings in the Northern Hemisphere and lies close to the celestial equator, so it can be seen from almost everywhere on Earth. The name comes from the Arabic for \"the flying eagle\".",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "A7Vn",
+      "colorIndex": 0.22
+    },
+    "link": {
+      "hr": 7557
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 7557",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+7557"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 7557",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=7557"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "Baines et al. 2018, Fundamental parameters of 87 stars from the NPOI, AJ 155, 30 (VizieR J/AJ/155/30)",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=J/AJ/155/30/table5&HD=187642"
+      }
+    ]
+  },
+  {
+    "id": "aldebaran",
+    "section": "stars",
+    "title": "Aldebaran",
+    "subtitle": "Alpha Tauri",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Taurus",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "0.85 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "+1.54",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "K5+III",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "66.6 light-years, from parallax 48.94 ± 0.77 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 30 June 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Aldebaran is an orange giant of spectral type K5 III, about 67 light-years away, and the brightest star in Taurus. It is a star that has used up the hydrogen in its core and swollen to a size many times the Sun's, with a cool surface that gives it its orange colour. Its brightness varies slightly and irregularly.\n\nAldebaran appears among the V-shaped Hyades cluster that forms the bull's face, but it is not a member. The Hyades are about 150 light-years away, more than twice as far as Aldebaran, which lies in the foreground by chance.\n\nAldebaran is close to the ecliptic, so the Moon passes in front of it during some years, a series of occultations that can be timed precisely. To find it from the Northern Hemisphere, follow the line of Orion's Belt up and to the right (northwest) to the first bright orange star. Continuing the line further leads to the Pleiades. The name comes from the Arabic for \"the follower\", because it appears to follow the Pleiades across the sky.",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "K5+III",
+      "colorIndex": 1.54
+    },
+    "link": {
+      "hr": 1457
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 1457",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+1457"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 1457",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=1457"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      }
+    ]
+  },
+  {
+    "id": "antares",
+    "section": "stars",
+    "title": "Antares",
+    "subtitle": "Alpha Scorpii",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Scorpius",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "0.96 (V), variable",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "+1.83",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "M1.5Iab+B2Vn",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "About 550 light-years (range 470–670), from parallax 5.89 ± 1.00 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Luminosity",
+        "value": "About 66,000 × Sun (from SED fitting at 169.78 pc)",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 30 June 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Antares is a red supergiant of spectral type M1.5, the brightest star in Scorpius, marking the scorpion's heart. Its distance is uncertain; the Hipparcos parallax gives about 550 light-years, with a range of roughly 470 to 670. It is one of the largest stars visible to the naked eye, hundreds of times the Sun's radius, and is a semiregular variable whose brightness changes slowly by a few tenths of a magnitude.\n\nAntares has a hot blue-white companion, Antares B, about 3 arcseconds away. The companion is more than four magnitudes fainter and difficult to separate from the glare of the supergiant; it needs a good telescope and steady air.\n\nIn 2017 astronomers used ESO's Very Large Telescope Interferometer to map the surface of Antares and the motions of gas in its atmosphere, producing the most detailed image of any star other than the Sun at the time.\n\nAntares lies close to the ecliptic, so the Moon and planets pass near it. Its name means \"rival of Ares\", the Greek counterpart of Mars, because its reddish colour resembles that of the planet. It is best seen on summer evenings from mid-northern latitudes, low in the south, and much higher from the Southern Hemisphere.",
+    "image": {
+      "url": "https://cdn.eso.org/images/screen/eso1726a.jpg",
+      "credit": "ESO/K. Ohnaka",
+      "licence": "CC BY 4.0",
+      "page": "https://www.eso.org/public/images/eso1726a/",
+      "caption": "A reconstructed view of the surface of Antares from observations with ESO's Very Large Telescope Interferometer."
+    },
+    "drawing": {
+      "kind": "star",
+      "spectralType": "M1.5Iab+B2Vn",
+      "colorIndex": 1.83
+    },
+    "link": {
+      "hr": 6134
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 6134",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+6134"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 6134",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=6134"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "McDonald, Zijlstra & Boyer 2012, Fundamental parameters and infrared excesses of Hipparcos stars, MNRAS 427, 343 (VizieR J/MNRAS/427/343)",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=J/MNRAS/427/343/table2&HIP=80763"
+      }
+    ]
+  },
+  {
+    "id": "spica",
+    "section": "stars",
+    "title": "Spica",
+    "subtitle": "Alpha Virginis",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Virgo",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "0.98 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "−0.23",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "B1V",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "About 250 light-years (range 240–260), from parallax 13.06 ± 0.70 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Luminosity",
+        "value": "About 17,000 × Sun (combined light of the system, from SED fitting at 76.57 pc)",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 30 June 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Spica is the brightest star in Virgo and appears as a single blue-white point, but it is a close binary of two hot B-type stars. The stars orbit each other every 4.01 days, so close that they distort each other into slightly egg-shaped forms. As the pair turns, the visible area of each star changes, and the combined light varies a little in brightness. The more massive star also pulsates; it is a Beta Cephei variable. Together they give off more than ten thousand times as much light as the Sun. The system is about 250 light-years away.\n\nSpica lies only about 2 degrees from the ecliptic, so the Moon passes in front of it in some years, and the planets pass close by.\n\nTo find Spica from the Northern Hemisphere, follow the curve of the Big Dipper's handle to Arcturus, then continue the curve the same distance again to reach Spica. It is prominent in spring evenings. The name is Latin for \"ear of grain\", which the figure of Virgo is traditionally shown holding.",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "B1V",
+      "colorIndex": -0.23
+    },
+    "link": {
+      "hr": 5056
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 5056",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+5056"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 5056",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=5056"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "McDonald, Zijlstra & Boyer 2012, Fundamental parameters and infrared excesses of Hipparcos stars, MNRAS 427, 343 (VizieR J/MNRAS/427/343)",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=J/MNRAS/427/343/table2&HIP=65474"
+      }
+    ]
+  },
+  {
+    "id": "pollux",
+    "section": "stars",
+    "title": "Pollux",
+    "subtitle": "Beta Geminorum",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Gemini",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "1.14 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "+1.00",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "K0IIIb",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "33.8 light-years, from parallax 96.54 ± 0.27 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Radius",
+        "value": "9.06 ± 0.03 × Sun (NPOI interferometry)",
+        "source": 3
+      },
+      {
+        "label": "Luminosity",
+        "value": "32.7 ± 1.6 × Sun",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 15 December 2015",
+        "source": 2
+      }
+    ],
+    "essay": "Pollux is an orange giant of spectral type K0 III, about 34 light-years away, and the brightest star in Gemini. Although Bayer labelled it Beta Geminorum, it is brighter than its twin, Castor (Alpha Geminorum). It is a star that has finished burning hydrogen in its core and expanded to about nine times the Sun's radius, measured with the Navy Precision Optical Interferometer.\n\nPollux has a planet. In 2006 two teams independently reported a regular variation in its radial velocity with a period of about 590 days, caused by a giant planet of at least a few times Jupiter's mass. In 2015 the IAU's NameExoWorlds contest gave the planet the name Thestias, and the star's traditional name Pollux was formally recognised in the same process.\n\nPollux and Castor form the heads of the twins and are about 4.5 degrees apart. Castor appears white and Pollux slightly orange. They are well placed on winter and spring evenings in the Northern Hemisphere, northeast of Orion. In Greek mythology, Castor and Pollux were twin brothers, the Dioscuri.",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "K0IIIb",
+      "colorIndex": 1.0
+    },
+    "link": {
+      "hr": 2990
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 2990",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+2990"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 2990",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=2990"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "Baines et al. 2018, Fundamental parameters of 87 stars from the NPOI, AJ 155, 30 (VizieR J/AJ/155/30)",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=J/AJ/155/30/table5&HD=62509"
+      }
+    ]
+  },
+  {
+    "id": "fomalhaut",
+    "section": "stars",
+    "title": "Fomalhaut",
+    "subtitle": "Alpha Piscis Austrini",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Piscis Austrinus",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "1.16 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "+0.09",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "A4V",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "25.1 light-years, from parallax 129.81 ± 0.47 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Age",
+        "value": "440 ± 40 million years",
+        "source": 3
+      },
+      {
+        "label": "Mass",
+        "value": "1.92 ± 0.02 × Sun",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 15 December 2015",
+        "source": 2
+      }
+    ],
+    "essay": "Fomalhaut is a white main-sequence star of spectral type A4 V, 25 light-years away, and the brightest star in Piscis Austrinus. It is about twice the Sun's mass and roughly 440 million years old.\n\nFomalhaut is surrounded by a ring of cold dust and debris, imaged by the Hubble Space Telescope in 2004 and 2008 and later by ALMA, Herschel and the James Webb Space Telescope. The ring's sharp inner edge and offset from the star suggest that planets may shape it. In 2008 a faint object inside the ring was reported as a possible planet, Fomalhaut b; later Hubble observations showed it fading and spreading out, and it is now generally interpreted as an expanding cloud of dust from a collision between bodies.\n\nFomalhaut has two distant stellar companions. The orange dwarf TW Piscis Austrini, about 2 degrees away on the sky, and the red dwarf LP 876-10, about 6 degrees away, share its motion through space and are gravitationally bound to it.\n\nFrom mid-northern latitudes Fomalhaut is low in the south on autumn evenings, alone in a region with few bright stars. A line through the western side of the Square of Pegasus, extended south, points toward it. The name comes from the Arabic for \"mouth of the fish\".",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "A4V",
+      "colorIndex": 0.09
+    },
+    "link": {
+      "hr": 8728
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 8728",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+8728"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 8728",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=8728"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "Mamajek 2012, On the age and binarity of Fomalhaut, ApJ 754, L20",
+        "url": "https://arxiv.org/abs/1206.6353"
+      }
+    ]
+  },
+  {
+    "id": "deneb",
+    "section": "stars",
+    "title": "Deneb",
+    "subtitle": "Alpha Cygni",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Cygnus",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "1.25 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "+0.09",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "A2Ia",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "About 1,400 light-years (range 1,200–1,600), from parallax 2.31 ± 0.32 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Luminosity",
+        "value": "About 43,000 × Sun (from SED fitting at 432.9 pc)",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 30 June 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Deneb is a white supergiant of spectral type A2 Ia and the brightest star in Cygnus. It is among the most luminous stars visible to the naked eye, but its distance is poorly known. The Hipparcos parallax gives about 1,400 light-years, with a range of roughly 1,240 to 1,640; other methods give different values. At any of these distances, Deneb gives off tens of thousands of times as much light as the Sun.\n\nDeneb is the prototype of the Alpha Cygni variables, supergiants whose brightness and spectra change slightly and irregularly as their outer layers pulsate in several modes at once.\n\nDeneb forms the northeastern corner of the Summer Triangle, with Vega and Altair. It is fainter to the eye than Vega and Altair, even though it is far more luminous, because it is dozens of times more distant. It marks the tail of the swan, and the head of the Northern Cross asterism, whose long axis runs along the Milky Way. Deneb is circumpolar from latitudes north of about 45° N. The name comes from the Arabic for \"tail\".",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "A2Ia",
+      "colorIndex": 0.09
+    },
+    "link": {
+      "hr": 7924
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 7924",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+7924"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 7924",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=7924"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "McDonald, Zijlstra & Boyer 2012, Fundamental parameters and infrared excesses of Hipparcos stars, MNRAS 427, 343 (VizieR J/MNRAS/427/343)",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=J/MNRAS/427/343/table2&HIP=102098"
+      }
+    ]
+  },
+  {
+    "id": "mimosa",
+    "section": "stars",
+    "title": "Mimosa",
+    "subtitle": "Beta Crucis",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Crux",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "1.25 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "−0.23",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "B1IV",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "About 280 light-years (range 260–300), from parallax 11.71 ± 0.98 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Luminosity",
+        "value": "About 15,000 × Sun (from SED fitting at 85.4 pc)",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 20 July 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Mimosa, Beta Crucis, is a hot blue-white star of spectral type B1, about 280 light-years away, and the second-brightest star in the Southern Cross. It gives off more than ten thousand times as much light as the Sun.\n\nMimosa is a Beta Cephei variable: it pulsates in several modes with periods of a few hours, changing its brightness by a few hundredths of a magnitude, too little to notice by eye. Such pulsations are common among massive stars of its type and are used to probe their interiors.\n\nMimosa marks the eastern (left-hand) end of the crossbar of the Southern Cross. About a degree to its southeast is the Jewel Box, the open star cluster NGC 4755, which shows well in binoculars. Mimosa lies at declination −60° and is not visible from north of about latitude 30° N. From the Southern Hemisphere it is visible most of the year and is circumpolar from latitudes south of about 30° S. With Acrux, Gacrux and the fainter Imai (Delta Crucis), it forms the main figure of the Cross.",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "B1IV",
+      "colorIndex": -0.23
+    },
+    "link": {
+      "hr": 4853
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 4853",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+4853"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 4853",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=4853"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "McDonald, Zijlstra & Boyer 2012, Fundamental parameters and infrared excesses of Hipparcos stars, MNRAS 427, 343 (VizieR J/MNRAS/427/343)",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=J/MNRAS/427/343/table2&HIP=62434"
+      }
+    ]
+  },
+  {
+    "id": "acrux",
+    "section": "stars",
+    "title": "Acrux",
+    "subtitle": "Alpha Crucis",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Crux",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "1.33 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "−0.24",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "B0.5IV",
+        "source": 1
+      },
+      {
+        "label": "Distance",
+        "value": "About 322 light-years (range 307–339), from parallax 10.13 ± 0.50 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Luminosity",
+        "value": "About 37,000 × Sun (combined light of the system, from SED fitting at 98.72 pc)",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 20 July 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Acrux, Alpha Crucis, is the brightest star in the Southern Cross and the southernmost first-magnitude star in the sky. It is about 320 light-years away. What looks like one blue-white star is a multiple system. A small telescope splits it into two stars about 4 arcseconds apart, both hot B-type stars. The brighter of the two is itself a spectroscopic binary. Together they give off tens of thousands of times as much light as the Sun.\n\nAcrux marks the foot of the Southern Cross. The long axis of the Cross, from Gacrux through Acrux, points roughly toward the south celestial pole, which lies about four and a half times the length of the Cross beyond Acrux. This makes the Cross a traditional way of finding south at night in the Southern Hemisphere.\n\nAcrux lies at declination −63° and is not visible from north of about latitude 27° N. From much of Australia, New Zealand, southern Africa and South America it is circumpolar. The name is a contraction of its Bayer designation, Alpha Crucis.",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "B0.5IV",
+      "colorIndex": -0.24
+    },
+    "link": {
+      "hr": 4730
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: alf Cru",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=alf+Cru"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 4730",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=4730"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "McDonald, Zijlstra & Boyer 2012, Fundamental parameters and infrared excesses of Hipparcos stars, MNRAS 427, 343 (VizieR J/MNRAS/427/343)",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=J/MNRAS/427/343/table2&HIP=60718"
+      }
+    ]
+  },
+  {
+    "id": "toliman",
+    "section": "stars",
+    "title": "Toliman",
+    "subtitle": "Alpha Centauri B",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Centaurus",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "1.33 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "+0.88",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "K1V",
+        "source": 1
+      },
+      {
+        "label": "Distance",
+        "value": "4.34 light-years, from parallax 750.81 ± 0.38 mas (Akeson et al. 2021)",
+        "source": 0
+      },
+      {
+        "label": "Radius",
+        "value": "0.8632 ± 0.0037 × Sun (VLTI interferometry)",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 10 August 2018",
+        "source": 2
+      }
+    ],
+    "essay": "Toliman is Alpha Centauri B, the fainter of the two Sun-like stars in the nearest star system to the Sun, 4.3 light-years away. It is an orange main-sequence star of spectral type K1 V, slightly smaller and cooler than the Sun, with a radius about 86 percent of the Sun's, measured with ESO's Very Large Telescope Interferometer.\n\nToliman and Rigil Kentaurus (Alpha Centauri A) orbit each other every 80 years. To the naked eye they appear as one star; a small telescope separates them. A third member, the red dwarf Proxima Centauri, is gravitationally bound to the pair at a much greater distance.\n\nIn 2012 astronomers reported an Earth-mass planet orbiting Toliman, but later analysis of the same data showed the signal was most likely an artefact of the way the observations were sampled. Searches for planets around both stars continue.\n\nThe name Toliman is an old name for the Alpha Centauri pair, of Arabic origin. The IAU Working Group on Star Names adopted it for component B in 2018. The system lies at declination −61° and is not visible from north of about latitude 29° N.",
+    "image": {
+      "url": "https://cdn.esahubble.org/archives/images/screen/potw1635a.jpg",
+      "credit": "ESA/Hubble & NASA",
+      "licence": "CC BY 4.0",
+      "page": "https://esahubble.org/images/potw1635a/",
+      "caption": "Alpha Centauri A (left) and B (right), imaged by Hubble's Wide Field and Planetary Camera 2."
+    },
+    "drawing": {
+      "kind": "star",
+      "spectralType": "K1V",
+      "colorIndex": 0.88
+    },
+    "link": {
+      "hr": 5460
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: alf Cen",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=alf+Cen"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 5460",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=5460"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "Kervella et al. 2017, The radii and limb darkenings of Alpha Centauri A and B, A&A 597, A137",
+        "url": "https://arxiv.org/abs/1610.06185"
+      }
+    ]
+  },
+  {
+    "id": "regulus",
+    "section": "stars",
+    "title": "Regulus",
+    "subtitle": "Alpha Leonis",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Leo",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "1.35 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "−0.11",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "B8IVn",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "79.3 light-years, from parallax 41.13 ± 0.35 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Radius",
+        "value": "4.35 ± 0.10 × Sun (NPOI interferometry)",
+        "source": 3
+      },
+      {
+        "label": "Luminosity",
+        "value": "316.2 ± 16.7 × Sun",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 30 June 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Regulus is the brightest star in Leo, a blue-white star of spectral type B8 IV about 79 light-years away. It rotates very quickly, once every 16 hours or so, with an equatorial speed over 300 km/s. Interferometric observations with the CHARA array in 2005 showed that this rotation flattens the star, with the equator noticeably wider than the poles and cooler than them.\n\nRegulus is a multiple system. The bright star has a close, faint companion in a 40-day orbit, detected from the star's radial-velocity motion and probably a white dwarf. A pair of much fainter stars, a K-type dwarf and an M-type dwarf, lies about 3 arcminutes away and shares its motion through space.\n\nRegulus sits almost on the ecliptic, so the Moon often passes in front of it, and planets pass close by. It marks the bottom of the Sickle, a backward question mark of stars that forms the lion's head and mane. It is well placed on spring evenings in the Northern Hemisphere. The name is Latin for \"little king\".",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "B8IVn",
+      "colorIndex": -0.11
+    },
+    "link": {
+      "hr": 3982
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 3982",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+3982"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 3982",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=3982"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "Baines et al. 2018, Fundamental parameters of 87 stars from the NPOI, AJ 155, 30 (VizieR J/AJ/155/30)",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=J/AJ/155/30/table5&HD=87901"
+      }
+    ]
+  },
+  {
+    "id": "adhara",
+    "section": "stars",
+    "title": "Adhara",
+    "subtitle": "Epsilon Canis Majoris",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Canis Major",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "1.50 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "−0.21",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "B1.5II",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "405 light-years, from parallax 8.05 ± 0.14 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Luminosity",
+        "value": "About 21,000 × Sun (from SED fitting at 124.22 pc)",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 21 August 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Adhara, Epsilon Canis Majoris, is a hot blue-white bright giant of spectral type B1.5 II, about 400 light-years away. It is the second-brightest star in Canis Major and gives off tens of thousands of times as much light as the Sun.\n\nAdhara is the brightest source of extreme ultraviolet radiation in the sky, as measured by NASA's Extreme Ultraviolet Explorer satellite in the 1990s. Extreme ultraviolet light is normally absorbed by neutral hydrogen in interstellar space. Adhara is seen through a region of unusually thin gas around the Sun, which lets its radiation reach us.\n\nAdhara has a companion of about magnitude 7.5, roughly 7.5 arcseconds away, which can be seen in a telescope despite the glare.\n\nAdhara lies about 12 degrees south-southeast of Sirius and forms a triangle with Wezen and Aludra in the hindquarters of the great dog. It is well placed on winter evenings in the Northern Hemisphere and summer evenings in the Southern Hemisphere. The name comes from the Arabic for \"the virgins\".",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "B1.5II",
+      "colorIndex": -0.21
+    },
+    "link": {
+      "hr": 2618
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 2618",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+2618"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 2618",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=2618"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "McDonald, Zijlstra & Boyer 2012, Fundamental parameters and infrared excesses of Hipparcos stars, MNRAS 427, 343 (VizieR J/MNRAS/427/343)",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=J/MNRAS/427/343/table2&HIP=33579"
+      }
+    ]
+  },
+  {
+    "id": "shaula",
+    "section": "stars",
+    "title": "Shaula",
+    "subtitle": "Lambda Scorpii",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Scorpius",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "1.63 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "−0.22",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "B2IV+DA7.9",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "About 570 light-years (range 500–660), from parallax 5.71 ± 0.75 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Luminosity",
+        "value": "About 48,000 × Sun (combined light of the system, from SED fitting at 175.13 pc)",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 20 July 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Shaula, Lambda Scorpii, marks the stinger at the end of the scorpion's tail and is the second-brightest star in Scorpius. It is a hot blue-white star of spectral type B2 IV. Its distance is uncertain; the Hipparcos parallax gives about 570 light-years, with a range of roughly 500 to 660.\n\nShaula is a multiple system of at least three stars, detected through spectroscopy and interferometry. The brightest component is a Beta Cephei variable, pulsating with a period of a few hours and changing brightness by a few hundredths of a magnitude. The stars together give off tens of thousands of times as much light as the Sun.\n\nShaula has a fainter neighbour, Lesath (Upsilon Scorpii), less than a degree away, and the two look like a pair of eyes at the tip of the tail. The tail of Scorpius curves down and to the left from Antares, as seen from the Northern Hemisphere, and ends at Shaula. From mid-northern latitudes it stays low in the south on summer evenings; from the Southern Hemisphere it passes almost overhead. The name comes from the Arabic for \"the raised tail\".",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "B2IV+DA7.9",
+      "colorIndex": -0.22
+    },
+    "link": {
+      "hr": 6527
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 6527",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+6527"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 6527",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=6527"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "McDonald, Zijlstra & Boyer 2012, Fundamental parameters and infrared excesses of Hipparcos stars, MNRAS 427, 343 (VizieR J/MNRAS/427/343)",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=J/MNRAS/427/343/table2&HIP=85927"
+      }
+    ]
+  },
+  {
+    "id": "gacrux",
+    "section": "stars",
+    "title": "Gacrux",
+    "subtitle": "Gamma Crucis",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Crux",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "1.63 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "+1.59",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "M3.5III",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "88.6 light-years, from parallax 36.83 ± 0.18 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 20 July 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Gacrux, Gamma Crucis, is the top star of the Southern Cross and a red giant of spectral type M3.5 III, about 89 light-years away. It is a cool, expanded star that has exhausted the hydrogen in its core. Its orange-red colour stands out against the blue-white of the other main stars of the Cross, which are hot young stars several times farther away.\n\nThe line from Gacrux through Acrux, the long axis of the Southern Cross, points toward the south celestial pole. Extending it about four and a half times the length of the Cross reaches the pole's position, which has no bright star of its own.\n\nGacrux lies at declination −57° and is not visible from north of about latitude 33° N. From the Southern Hemisphere it is visible most of the year and best placed on autumn evenings. The name is a contraction of its Bayer designation, Gamma Crucis.",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "M3.5III",
+      "colorIndex": 1.59
+    },
+    "link": {
+      "hr": 4763
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 4763",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+4763"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 4763",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=4763"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      }
+    ]
+  },
+  {
+    "id": "bellatrix",
+    "section": "stars",
+    "title": "Bellatrix",
+    "subtitle": "Gamma Orionis",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Orion",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "1.64 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "−0.22",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "B2III",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "About 252 light-years (range 243–263), from parallax 12.92 ± 0.52 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Luminosity",
+        "value": "About 9,200 × Sun (from SED fitting at 77.4 pc)",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 30 June 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Bellatrix, Gamma Orionis, is a hot blue-white giant of spectral type B2 III, about 250 light-years away, marking Orion's left shoulder (upper right as seen from the Northern Hemisphere). It is the third-brightest star in Orion and gives off thousands of times as much light as the Sun.\n\nBellatrix is much closer than most of the bright stars of Orion. Rigel, Alnilam, Alnitak, Mintaka and Saiph are several hundred to a couple of thousand light-years away, and many of them belong to the Orion OB1 association of young massive stars. Bellatrix is in the foreground and is not part of that group.\n\nBellatrix forms the top right corner of the main rectangle of Orion, with Betelgeuse on the other shoulder and Rigel and Saiph at the feet. Its blue-white colour contrasts with orange Betelgeuse about 7.5 degrees to the east. Orion lies on the celestial equator and can be seen from almost anywhere on Earth; it is best placed on winter evenings in the Northern Hemisphere. The name is Latin for \"female warrior\".",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "B2III",
+      "colorIndex": -0.22
+    },
+    "link": {
+      "hr": 1790
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 1790",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+1790"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 1790",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=1790"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "McDonald, Zijlstra & Boyer 2012, Fundamental parameters and infrared excesses of Hipparcos stars, MNRAS 427, 343 (VizieR J/MNRAS/427/343)",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=J/MNRAS/427/343/table2&HIP=25336"
+      }
+    ]
+  },
+  {
+    "id": "elnath",
+    "section": "stars",
+    "title": "Elnath",
+    "subtitle": "Beta Tauri",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Taurus",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "1.65 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "−0.13",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "B7III",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "134 light-years, from parallax 24.36 ± 0.34 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 20 July 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Elnath, Beta Tauri, is a blue-white giant of spectral type B7 III, about 134 light-years away, and the second-brightest star in Taurus. It marks the tip of the bull's northern horn.\n\nFor centuries Elnath was shared between two constellations: it was also counted as Gamma Aurigae, completing the pentagon of Auriga. When the IAU fixed the constellation boundaries in 1930, it was placed in Taurus. To the eye it still reads as the bottom corner of Auriga's pentagon, with Capella at the opposite corner.\n\nElnath lies a few degrees from the galactic anticentre, the point in the sky directly opposite the centre of the Milky Way. Looking in this direction we see through the outer parts of the Galaxy's disk.\n\nTo find Elnath, look about halfway between Betelgeuse and Capella, or follow the bull's horns up and to the left from Aldebaran and the Hyades, as seen from the Northern Hemisphere. It is well placed on winter evenings. The name comes from the Arabic for \"the butting one\", referring to the bull's horn.",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "B7III",
+      "colorIndex": -0.13
+    },
+    "link": {
+      "hr": 1791
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 1791",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+1791"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 1791",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=1791"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      }
+    ]
+  },
+  {
+    "id": "miaplacidus",
+    "section": "stars",
+    "title": "Miaplacidus",
+    "subtitle": "Beta Carinae",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Carina",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "1.68 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "0.00",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "A1III-",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "113 light-years, from parallax 28.82 ± 0.11 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Luminosity",
+        "value": "About 210 × Sun (from SED fitting at 34.7 pc)",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 20 July 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Miaplacidus, Beta Carinae, is a white giant of spectral type A1 III, about 113 light-years away, and the second-brightest star in Carina. It is a star that has recently left the main sequence and gives off a couple of hundred times as much light as the Sun.\n\nMiaplacidus is one of the more southerly bright stars, at declination −70°. It cannot be seen from north of about latitude 20° N. From latitudes south of about 20° S it is circumpolar and never sets. From Australia, southern Africa and southern South America it is visible all year.\n\nIt lies in a rich part of the southern Milky Way. To find it, start at the False Cross, an asterism of four stars in Carina and Vela that is larger and less sharply shaped than the Southern Cross; Miaplacidus lies about 10 degrees to the south of the False Cross's southern end. It is also the brightest star in the Diamond Cross, a smaller asterism in Carina. Northeast of it is the Carina Nebula, visible as a bright patch to the naked eye from a dark site.",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "A1III-",
+      "colorIndex": 0.0
+    },
+    "link": {
+      "hr": 3685
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 3685",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+3685"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 3685",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=3685"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "McDonald, Zijlstra & Boyer 2012, Fundamental parameters and infrared excesses of Hipparcos stars, MNRAS 427, 343 (VizieR J/MNRAS/427/343)",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=J/MNRAS/427/343/table2&HIP=45238"
+      }
+    ]
+  },
+  {
+    "id": "alnilam",
+    "section": "stars",
+    "title": "Alnilam",
+    "subtitle": "Epsilon Orionis",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Orion",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "1.70 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "−0.19",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "B0Ia",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "About 2,000 light-years (range 1,600–2,700), from parallax 1.65 ± 0.45 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Luminosity",
+        "value": "About 260,000 × Sun (from SED fitting at 606.06 pc)",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 20 July 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Alnilam, Epsilon Orionis, is the middle star of Orion's Belt and a blue supergiant of spectral type B0 Ia. Its distance is poorly determined. The Hipparcos parallax gives about 2,000 light-years, with a range of roughly 1,550 to 2,700, and at that distance it gives off hundreds of thousands of times as much light as the Sun. It is one of the most luminous stars visible to the naked eye.\n\nAlnilam is a young, massive star that is losing mass through a strong stellar wind. It is a member of the Orion OB1 association, a group of young massive stars that also includes the other two Belt stars and the stars of the Orion Nebula region. Like most stars of its type, it will probably end its life as a supernova.\n\nThe three stars of Orion's Belt, Alnitak, Alnilam and Mintaka, lie in a straight line about 3 degrees long. They are the easiest way to find Orion, and the line of the Belt points southeast to Sirius and northwest to Aldebaran. The Belt lies on the celestial equator and can be seen from everywhere on Earth. The name Alnilam comes from the Arabic for \"string of pearls\".",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "B0Ia",
+      "colorIndex": -0.19
+    },
+    "link": {
+      "hr": 1903
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 1903",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+1903"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 1903",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=1903"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "McDonald, Zijlstra & Boyer 2012, Fundamental parameters and infrared excesses of Hipparcos stars, MNRAS 427, 343 (VizieR J/MNRAS/427/343)",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=J/MNRAS/427/343/table2&HIP=26311"
+      }
+    ]
+  },
+  {
+    "id": "alnair",
+    "section": "stars",
+    "title": "Alnair",
+    "subtitle": "Alpha Gruis",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Grus",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "1.74 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "−0.13",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "B6V",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "101 light-years, from parallax 32.29 ± 0.21 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 20 July 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Alnair, Alpha Gruis, is a blue-white star of spectral type B6 V, about 101 light-years away, and the brightest star in the southern constellation Grus, the crane. It is a hot main-sequence star several times the Sun's mass. Like many B-type stars, it rotates rapidly.\n\nAlnair lies at declination −47°, so it is not visible from north of about latitude 43° N and stays low in the south for observers in the southern United States, southern Europe and similar latitudes. From the Southern Hemisphere it is well placed on spring evenings and is circumpolar from latitudes south of about 43° S.\n\nAlnair lies about 20 degrees south-southwest of Fomalhaut. Its neighbour Beta Gruis (Tiaki), about 6 degrees to the east, is a red giant of similar brightness, and the contrast in colour between the two is easy to see. The constellation Grus was introduced in the late 16th century from the observations of Dutch navigators. Alnair's name comes from the Arabic for \"the bright one\", from a description of it as the bright star of the fish's tail, when these stars were counted as part of Piscis Austrinus.",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "B6V",
+      "colorIndex": -0.13
+    },
+    "link": {
+      "hr": 8425
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 8425",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+8425"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 8425",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=8425"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      }
+    ]
+  },
+  {
+    "id": "alioth",
+    "section": "stars",
+    "title": "Alioth",
+    "subtitle": "Epsilon Ursae Majoris",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Ursa Major",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "1.77 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "−0.02",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "A1III-IVpkB9",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "82.6 light-years, from parallax 39.51 ± 0.20 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Luminosity",
+        "value": "About 110 × Sun (from SED fitting at 25.31 pc)",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 30 June 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Alioth, Epsilon Ursae Majoris, is the brightest star in the Big Dipper and in Ursa Major. It is a white A-type star about 83 light-years away.\n\nAlioth is a chemically peculiar Ap star. It has a strong magnetic field, and elements such as chromium are concentrated in patches on its surface. As the star rotates, every 5.1 days, these patches move into and out of view, causing small changes in its brightness and spectrum. This makes it an Alpha² Canum Venaticorum variable.\n\nAlioth belongs to the Ursa Major moving group, a set of stars that share a common motion through space and probably formed together. Five of the seven Big Dipper stars belong to the group; Dubhe and Alkaid do not.\n\nAlioth is the first star of the Dipper's handle, next to the bowl. It is circumpolar from latitudes north of about 34° N and visible all year from Europe, North America and northern Asia. Following the curve of the handle leads to Arcturus and then to Spica.",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "A1III-IVpkB9",
+      "colorIndex": -0.02
+    },
+    "link": {
+      "hr": 4905
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 4905",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+4905"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 4905",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=4905"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "McDonald, Zijlstra & Boyer 2012, Fundamental parameters and infrared excesses of Hipparcos stars, MNRAS 427, 343 (VizieR J/MNRAS/427/343)",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=J/MNRAS/427/343/table2&HIP=62956"
+      }
+    ]
+  },
+  {
+    "id": "mirfak",
+    "section": "stars",
+    "title": "Mirfak",
+    "subtitle": "Alpha Persei",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Perseus",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "1.79 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "+0.48",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "F5Ib",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "About 506 light-years (range 493–520), from parallax 6.44 ± 0.17 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Luminosity",
+        "value": "About 3,800 × Sun (from SED fitting at 155.28 pc)",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 20 July 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Mirfak, Alpha Persei, is a yellow-white supergiant of spectral type F5 Ib, about 500 light-years away, and the brightest star in Perseus. It gives off thousands of times as much light as the Sun.\n\nMirfak is the brightest member of the Alpha Persei Cluster, also catalogued as Melotte 20, a loose group of young blue-white stars spread over a few degrees of sky. The cluster is too large for most telescopes but shows well in binoculars, which give a field of bright stars around Mirfak against the Milky Way.\n\nPerseus lies along the Milky Way between Cassiopeia and Auriga. To find Mirfak from the Northern Hemisphere, follow a line from Cassiopeia's W toward Capella; Mirfak is the brightest star along the way. It is circumpolar from latitudes north of about 40° N, and is well placed on autumn and winter evenings. Algol, the eclipsing binary star, lies about 9 degrees to its south-southwest. The name comes from the Arabic for \"elbow\".",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "F5Ib",
+      "colorIndex": 0.48
+    },
+    "link": {
+      "hr": 1017
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 1017",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+1017"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 1017",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=1017"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "McDonald, Zijlstra & Boyer 2012, Fundamental parameters and infrared excesses of Hipparcos stars, MNRAS 427, 343 (VizieR J/MNRAS/427/343)",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=J/MNRAS/427/343/table2&HIP=15863"
+      }
+    ]
+  },
+  {
+    "id": "dubhe",
+    "section": "stars",
+    "title": "Dubhe",
+    "subtitle": "Alpha Ursae Majoris",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Ursa Major",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "1.79 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "+1.07",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "G9III+A7.5",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "123 light-years, from parallax 26.54 ± 0.48 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Radius",
+        "value": "17.03 ± 0.13 × Sun (NPOI interferometry)",
+        "source": 3
+      },
+      {
+        "label": "Luminosity",
+        "value": "165.1 ± 8.3 × Sun",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 30 June 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Dubhe, Alpha Ursae Majoris, is an orange giant of spectral type G9 III, about 123 light-years away, and the second-brightest star in the Big Dipper. It has expanded to about 17 times the Sun's radius, measured with the Navy Precision Optical Interferometer. It has a fainter companion, an A-type star in a close orbit, detected spectroscopically.\n\nDubhe is one of the two Big Dipper stars, with Alkaid, that are not members of the Ursa Major moving group, the set of stars that share a common motion and form the rest of the Dipper. Over tens of thousands of years, these differing motions will change the Dipper's shape.\n\nDubhe and Merak form the outer edge of the Dipper's bowl and are known as the Pointers. A line from Merak through Dubhe, extended about five times their separation, leads to Polaris and north. Dubhe is circumpolar from latitudes north of about 28° N and is visible all year from Europe, North America and northern Asia. The name comes from the Arabic for \"bear\".",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "G9III+A7.5",
+      "colorIndex": 1.07
+    },
+    "link": {
+      "hr": 4301
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 4301",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+4301"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 4301",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=4301"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "Baines et al. 2018, Fundamental parameters of 87 stars from the NPOI, AJ 155, 30 (VizieR J/AJ/155/30)",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=J/AJ/155/30/table5&HD=95689"
+      }
+    ]
+  },
+  {
+    "id": "wezen",
+    "section": "stars",
+    "title": "Wezen",
+    "subtitle": "Delta Canis Majoris",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Canis Major",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "1.84 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "+0.68",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "F8Ia",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "About 1,600 light-years (range 1,400–2,000), from parallax 2.03 ± 0.38 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Luminosity",
+        "value": "About 37,000 × Sun (from SED fitting at 492.61 pc)",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 20 July 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Wezen, Delta Canis Majoris, is a yellow-white supergiant of spectral type F8 Ia. Its distance is poorly determined; the Hipparcos parallax gives about 1,600 light-years, with a range of roughly 1,350 to 2,000. At that distance it gives off tens of thousands of times as much light as the Sun.\n\nWezen is a massive star that has finished burning hydrogen in its core and is now crossing toward the red supergiant stage. Stars of its mass spend a short time as yellow supergiants, so they are relatively rare. It is expected to end its life as a supernova.\n\nWezen is the third-brightest star in Canis Major. It forms a triangle with Adhara and Aludra in the dog's hindquarters, about 10 degrees southeast of Sirius. It is well placed on winter evenings from mid-northern latitudes, where it stays low in the south, and much higher from the Southern Hemisphere. The name comes from the Arabic for \"weight\".",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "F8Ia",
+      "colorIndex": 0.68
+    },
+    "link": {
+      "hr": 2693
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 2693",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+2693"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 2693",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=2693"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "McDonald, Zijlstra & Boyer 2012, Fundamental parameters and infrared excesses of Hipparcos stars, MNRAS 427, 343 (VizieR J/MNRAS/427/343)",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=J/MNRAS/427/343/table2&HIP=34444"
+      }
+    ]
+  },
+  {
+    "id": "kaus-australis",
+    "section": "stars",
+    "title": "Kaus Australis",
+    "subtitle": "Epsilon Sagittarii",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Sagittarius",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "1.85 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "−0.03",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "B9.5III",
+        "source": 1
+      },
+      {
+        "label": "Distance",
+        "value": "143 light-years, from parallax 22.76 ± 0.24 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 20 July 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Kaus Australis, Epsilon Sagittarii, is the brightest star in Sagittarius. It is a blue-white giant of spectral type B9.5 III, about 143 light-years away.\n\nThe brightest stars of Sagittarius form the asterism known as the Teapot. Kaus Australis is the bottom corner of the spout side of the Teapot. The spout points toward the centre of the Milky Way, which lies about 10 degrees to its northwest, behind the thick star clouds and dark dust lanes of this region.\n\nKaus Australis lies at declination −34°. From mid-northern latitudes it is low in the south on summer evenings, and from the Southern Hemisphere it passes high overhead in winter. The Teapot is easiest to see from the Southern Hemisphere or from low northern latitudes, where it stands well clear of the horizon haze. The name combines the Arabic word for \"bow\" with the Latin for \"southern\": it marks the southern part of the archer's bow, alongside Kaus Media (the middle) and Kaus Borealis (the northern part).",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "B9.5III",
+      "colorIndex": -0.03
+    },
+    "link": {
+      "hr": 6879
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 6879",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+6879"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 6879",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=6879"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      }
+    ]
+  },
+  {
+    "id": "alkaid",
+    "section": "stars",
+    "title": "Alkaid",
+    "subtitle": "Eta Ursae Majoris",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Ursa Major",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "1.86 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "−0.19",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "B3V",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "104 light-years, from parallax 31.38 ± 0.24 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Radius",
+        "value": "3.40 ± 0.50 × Sun (NPOI interferometry)",
+        "source": 3
+      },
+      {
+        "label": "Luminosity",
+        "value": "594.0 ± 31.1 × Sun",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 30 June 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Alkaid, Eta Ursae Majoris, marks the end of the Big Dipper's handle. It is a hot blue-white main-sequence star of spectral type B3 V, about 104 light-years away, with a radius about three and a half times the Sun's and several hundred times its luminosity.\n\nAlkaid is younger and hotter than the other Dipper stars. It is one of the two Big Dipper stars, with Dubhe, that are not members of the Ursa Major moving group, the set of stars that share a common motion through space. Over tens of thousands of years this difference in motion will change the shape of the Dipper.\n\nAlkaid is circumpolar from latitudes north of about 41° N. Following the curve of the handle onward from Alkaid leads to Arcturus. M51, the Whirlpool Galaxy, lies about 3.5 degrees southwest of Alkaid. The name comes from an Arabic phrase meaning \"the leader of the daughters of the bier\", in which the bowl was seen as a bier and the stars of the handle as mourners.",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "B3V",
+      "colorIndex": -0.19
+    },
+    "link": {
+      "hr": 5191
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 5191",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+5191"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 5191",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=5191"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "Baines et al. 2018, Fundamental parameters of 87 stars from the NPOI, AJ 155, 30 (VizieR J/AJ/155/30)",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=J/AJ/155/30/table5&HD=120315"
+      }
+    ]
+  },
+  {
+    "id": "avior",
+    "section": "stars",
+    "title": "Avior",
+    "subtitle": "Epsilon Carinae",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Carina",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "1.86 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "+1.28",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "K3:III+B2:V",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "About 610 light-years (range 560–660), from parallax 5.39 ± 0.42 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Luminosity",
+        "value": "About 14,000 × Sun (combined light of the system, from SED fitting at 185.53 pc)",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 20 July 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Avior, Epsilon Carinae, is a binary star about 600 light-years away. Its spectrum combines that of an orange giant of spectral type K3 III with that of a hot blue-white star of type B2. The two stars are too close together to separate with a telescope; their presence is revealed by the composite spectrum.\n\nTogether the two stars give off more than ten thousand times as much light as the Sun. To the naked eye Avior appears orange-white.\n\nAvior is the southwestern star of the False Cross, an asterism of four stars in Carina and Vela. The False Cross is larger and dimmer than the Southern Cross and lacks a central fifth star. Its long axis does not point to the south celestial pole, which is why navigators distinguished it from the real Cross.\n\nAvior lies at declination −60° and is not visible from north of about latitude 30° N. From the Southern Hemisphere it is well placed on summer and autumn evenings. The name is a modern one, introduced in the 20th century for navigation, rather than a traditional name of Arabic or classical origin.",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "K3:III+B2:V",
+      "colorIndex": 1.28
+    },
+    "link": {
+      "hr": 3307
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 3307",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+3307"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 3307",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=3307"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "McDonald, Zijlstra & Boyer 2012, Fundamental parameters and infrared excesses of Hipparcos stars, MNRAS 427, 343 (VizieR J/MNRAS/427/343)",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=J/MNRAS/427/343/table2&HIP=41037"
+      }
+    ]
+  },
+  {
+    "id": "sargas",
+    "section": "stars",
+    "title": "Sargas",
+    "subtitle": "Theta Scorpii",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Scorpius",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "1.87 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "+0.40",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "F1III",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "About 300 light-years (range 260–350), from parallax 10.86 ± 1.49 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Luminosity",
+        "value": "About 1,200 × Sun (from SED fitting at 92.08 pc)",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 21 August 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Sargas, Theta Scorpii, is a yellow-white giant of spectral type F1, about 300 light-years away, and the third-brightest star in Scorpius. It gives off about a thousand times as much light as the Sun.\n\nSargas marks the deepest point of the scorpion's curved tail, where the tail turns back up toward the stinger at Shaula. The tail of Scorpius lies in the Milky Way close to the direction of the galactic centre, and the region around Sargas is rich in star clusters, including the open clusters M6 and M7, visible to the naked eye from a dark site about 8 to 11 degrees to the north-northeast.\n\nSargas lies at declination −43°. From mid-northern latitudes it stays very low on the southern horizon on summer evenings and cannot be seen north of about latitude 47° N. From the Southern Hemisphere it passes high overhead in winter. The IAU Working Group on Star Names adopted the name in 2016.",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "F1III",
+      "colorIndex": 0.4
+    },
+    "link": {
+      "hr": 6553
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 6553",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+6553"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 6553",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=6553"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "McDonald, Zijlstra & Boyer 2012, Fundamental parameters and infrared excesses of Hipparcos stars, MNRAS 427, 343 (VizieR J/MNRAS/427/343)",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=J/MNRAS/427/343/table2&HIP=86228"
+      }
+    ]
+  },
+  {
+    "id": "menkalinan",
+    "section": "stars",
+    "title": "Menkalinan",
+    "subtitle": "Beta Aurigae",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Auriga",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "1.90 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "+0.03",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "A1IV-Vp",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "81.1 light-years, from parallax 40.21 ± 0.23 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Luminosity",
+        "value": "About 84 × Sun (combined light of the system, from SED fitting at 24.87 pc)",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 20 July 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Menkalinan, Beta Aurigae, is the second-brightest star in Auriga, about 81 light-years away. It is a binary of two nearly identical white stars of spectral type A1, each a little over twice the Sun's mass, orbiting each other every 3.96 days. The orbit is seen nearly edge-on, so each star partly eclipses the other, causing small dips in the combined brightness of about a tenth of a magnitude. That is too small to see easily by eye.\n\nMenkalinan was one of the first spectroscopic binaries discovered. In 1889 Antonia Maury, working at Harvard College Observatory, saw its spectral lines double and merge periodically, showing two stars in orbit.\n\nMenkalinan forms one corner of the pentagon of Auriga, with Capella about 7.5 degrees to its west. It is circumpolar from latitudes north of about 45° N and well placed on winter evenings. The name comes from the Arabic for \"shoulder of the rein-holder\", Auriga being the charioteer.",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "A1IV-Vp",
+      "colorIndex": 0.03
+    },
+    "link": {
+      "hr": 2088
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 2088",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+2088"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 2088",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=2088"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "McDonald, Zijlstra & Boyer 2012, Fundamental parameters and infrared excesses of Hipparcos stars, MNRAS 427, 343 (VizieR J/MNRAS/427/343)",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=J/MNRAS/427/343/table2&HIP=28360"
+      }
+    ]
+  },
+  {
+    "id": "atria",
+    "section": "stars",
+    "title": "Atria",
+    "subtitle": "Alpha Trianguli Australis",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Triangulum Australe",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "1.92 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "+1.44",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "K2IIb-IIIa",
+        "source": 1
+      },
+      {
+        "label": "Distance",
+        "value": "391 light-years, from parallax 8.35 ± 0.15 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Luminosity",
+        "value": "About 3,900 × Sun (from SED fitting at 119.76 pc)",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 20 July 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Atria, Alpha Trianguli Australis, is an orange bright giant of spectral type K2, about 390 light-years away, and the brightest star in Triangulum Australe, the southern triangle. It is a star that has exhausted the hydrogen in its core and expanded, giving off thousands of times as much light as the Sun.\n\nTriangulum Australe is a small, compact triangle of three stars, much more conspicuous than its northern counterpart Triangulum. It was introduced in the late 16th century from the observations of Dutch navigators.\n\nAtria lies at declination −69° and cannot be seen from north of about latitude 21° N. From Australia, southern Africa and southern South America it is circumpolar or nearly so. To find it, look east-southeast of the Pointers, Rigil Kentaurus and Hadar; Atria is the brightest corner of the triangle that lies there. Its orange colour distinguishes it from the white stars nearby. The name is a contraction of its Bayer designation, Alpha Trianguli Australis.",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "K2IIb-IIIa",
+      "colorIndex": 1.44
+    },
+    "link": {
+      "hr": 6217
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 6217",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+6217"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 6217",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=6217"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "McDonald, Zijlstra & Boyer 2012, Fundamental parameters and infrared excesses of Hipparcos stars, MNRAS 427, 343 (VizieR J/MNRAS/427/343)",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=J/MNRAS/427/343/table2&HIP=82273"
+      }
+    ]
+  },
+  {
+    "id": "alhena",
+    "section": "stars",
+    "title": "Alhena",
+    "subtitle": "Gamma Geminorum",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Gemini",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "1.93 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "0.00",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "A1.5IV+",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "About 110 light-years (range 100–120), from parallax 29.84 ± 2.23 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Luminosity",
+        "value": "About 160 × Sun (from SED fitting at 33.51 pc)",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 20 July 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Alhena, Gamma Geminorum, is a white star of spectral type A1, about 110 light-years away, and the third-brightest star in Gemini. It is a spectroscopic binary: the bright star has a fainter companion detected from the periodic shift of its spectral lines, with an orbit lasting several years.\n\nAlhena marks the foot of Pollux, one of the twins. With Castor and Pollux at the heads, Alhena and Mebsuta mark the feet, and the bodies of the twins run in two roughly parallel lines toward Orion.\n\nTo find Alhena, start at Betelgeuse and look about 14 degrees to the east-northeast, or follow the line of the twins' bodies from Castor and Pollux toward Orion. Its white colour is similar to Castor's and differs from the faint orange of Pollux. It is well placed on winter evenings in the Northern Hemisphere. The name comes from an Arabic word meaning \"the brand\" or \"mark\", probably referring to a mark on a camel's neck.",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "A1.5IV+",
+      "colorIndex": 0.0
+    },
+    "link": {
+      "hr": 2421
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 2421",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+2421"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 2421",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=2421"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "McDonald, Zijlstra & Boyer 2012, Fundamental parameters and infrared excesses of Hipparcos stars, MNRAS 427, 343 (VizieR J/MNRAS/427/343)",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=J/MNRAS/427/343/table2&HIP=31681"
+      }
+    ]
+  },
+  {
+    "id": "peacock",
+    "section": "stars",
+    "title": "Peacock",
+    "subtitle": "Alpha Pavonis",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Pavo",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "1.94 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "−0.20",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "B2IV",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "About 179 light-years (range 174–184), from parallax 18.24 ± 0.52 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Luminosity",
+        "value": "About 1,400 × Sun (from SED fitting at 54.82 pc)",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 20 July 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Peacock, Alpha Pavonis, is a hot blue-white star of spectral type B2 IV, about 180 light-years away, and the brightest star in Pavo, the peacock. It gives off more than a thousand times as much light as the Sun. It is a spectroscopic binary: the bright star has a companion in a close orbit, revealed by the periodic shifting of its spectral lines.\n\nPavo is one of the southern constellations introduced in the late 16th century from the observations of Dutch navigators, and Peacock is its only bright star.\n\nPeacock lies at declination −57° and is not visible from north of about latitude 33° N. From the Southern Hemisphere it is well placed on winter and spring evenings and is circumpolar from latitudes south of about 33° S. To find it, look about 30 degrees south-southeast of the Teapot of Sagittarius; it is the brightest star in that part of the sky. The name Peacock is a modern one, introduced in the 20th century for air navigation.",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "B2IV",
+      "colorIndex": -0.2
+    },
+    "link": {
+      "hr": 7790
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 7790",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+7790"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 7790",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=7790"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "McDonald, Zijlstra & Boyer 2012, Fundamental parameters and infrared excesses of Hipparcos stars, MNRAS 427, 343 (VizieR J/MNRAS/427/343)",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=J/MNRAS/427/343/table2&HIP=100751"
+      }
+    ]
+  },
+  {
+    "id": "alsephina",
+    "section": "stars",
+    "title": "Alsephina",
+    "subtitle": "Delta Velorum",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Vela",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "1.96 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "+0.04",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "A2IV+A4V",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "80.6 light-years, from parallax 40.49 ± 0.39 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Luminosity",
+        "value": "About 83 × Sun (combined light of the system, from SED fitting at 24.7 pc)",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 5 September 2017",
+        "source": 2
+      }
+    ],
+    "essay": "Alsephina, Delta Velorum, is a white star about 81 light-years away, the brightest star in the southern part of Vela. It is a multiple system. The main pair, components Aa and Ab, are A-type stars in a 45-day orbit, seen nearly edge-on so that they eclipse each other. A third star, B, lies about half an arcsecond away.\n\nThe eclipses were discovered in 1997, when the star tracker on NASA's Galileo spacecraft, which used Delta Velorum as a reference star, recorded drops in its brightness. Ground-based observers then confirmed it as an eclipsing binary. It is one of the brightest eclipsing binaries in the sky, though its eclipses are infrequent.\n\nAlsephina forms the northwestern corner of the False Cross, an asterism of four stars in Carina and Vela that is sometimes mistaken for the Southern Cross. It lies at declination −55° and is not visible from north of about latitude 35° N. The IAU Working Group on Star Names approved the name in 2017. It is derived from an Arabic word for \"the ship\", referring to the old constellation Argo Navis, of which Vela was a part.",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "A2IV+A4V",
+      "colorIndex": 0.04
+    },
+    "link": {
+      "hr": 3485
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 3485",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+3485"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 3485",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=3485"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "McDonald, Zijlstra & Boyer 2012, Fundamental parameters and infrared excesses of Hipparcos stars, MNRAS 427, 343 (VizieR J/MNRAS/427/343)",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=J/MNRAS/427/343/table2&HIP=42913"
+      }
+    ]
+  },
+  {
+    "id": "castor",
+    "section": "stars",
+    "title": "Castor",
+    "subtitle": "Alpha Geminorum",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Gemini",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "1.98 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "+0.03",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "A1V",
+        "source": 1
+      },
+      {
+        "label": "Distance",
+        "value": "About 51 light-years (range 48–54), from parallax 64.12 ± 3.75 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Luminosity",
+        "value": "About 47 × Sun (combined light of the system, from SED fitting at 15.6 pc)",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 30 June 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Castor, Alpha Geminorum, is the second-brightest star in Gemini, about 51 light-years away. To the eye it is a single white star, but it is a system of six. A small telescope shows two white stars, Castor A and Castor B, a few arcseconds apart, which orbit each other over several centuries. Each of these is itself a close spectroscopic binary. A third pair, Castor C, lies about 70 arcseconds away: two red dwarfs that eclipse each other every 19.5 hours, catalogued as the variable star YY Geminorum.\n\nAlthough Bayer gave Castor the designation Alpha, it is slightly fainter than Pollux.\n\nCastor and Pollux form the heads of the twins, about 4.5 degrees apart. Castor is the northern of the two and appears white, while Pollux is slightly orange. They are well placed on winter and spring evenings in the Northern Hemisphere, northeast of Orion. In Greek mythology, Castor and Pollux were twin brothers, the Dioscuri, protectors of sailors.",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "A1V",
+      "colorIndex": 0.03
+    },
+    "link": {
+      "hr": 2891
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: alf Gem",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=alf+Gem"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 2891",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=2891"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "McDonald, Zijlstra & Boyer 2012, Fundamental parameters and infrared excesses of Hipparcos stars, MNRAS 427, 343 (VizieR J/MNRAS/427/343)",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=J/MNRAS/427/343/table2&HIP=36850"
+      }
+    ]
+  },
+  {
+    "id": "mirzam",
+    "section": "stars",
+    "title": "Mirzam",
+    "subtitle": "Beta Canis Majoris",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Canis Major",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "1.98 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "−0.23",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "B1II-III",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "About 493 light-years (range 477–510), from parallax 6.62 ± 0.22 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Luminosity",
+        "value": "About 24,000 × Sun (from SED fitting at 151.06 pc)",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 20 July 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Mirzam, Beta Canis Majoris, is a hot blue-white giant of spectral type B1, about 490 light-years away. It gives off tens of thousands of times as much light as the Sun.\n\nMirzam pulsates with periods of a few hours, changing its brightness by a few hundredths of a magnitude. For a time such stars were called Beta Canis Majoris variables after it; they are now known as Beta Cephei variables. Their pulsations are used to study the interiors of massive stars.\n\nMirzam lies about 5 degrees west of Sirius and marks the dog's forepaw. Because it lies west of Sirius, it rises a little earlier, and the name comes from the Arabic for \"the herald\", announcing the rising of Sirius. It is well placed on winter evenings in the Northern Hemisphere and summer evenings in the Southern Hemisphere, and lies close enough to the celestial equator to be seen from most of the world.",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "B1II-III",
+      "colorIndex": -0.23
+    },
+    "link": {
+      "hr": 2294
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 2294",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+2294"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 2294",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=2294"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "McDonald, Zijlstra & Boyer 2012, Fundamental parameters and infrared excesses of Hipparcos stars, MNRAS 427, 343 (VizieR J/MNRAS/427/343)",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=J/MNRAS/427/343/table2&HIP=30324"
+      }
+    ]
+  },
+  {
+    "id": "alphard",
+    "section": "stars",
+    "title": "Alphard",
+    "subtitle": "Alpha Hydrae",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Hydra",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "1.98 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "+1.44",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "K3IIIa",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "180 light-years, from parallax 18.09 ± 0.18 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Luminosity",
+        "value": "About 790 × Sun (from SED fitting at 55.28 pc)",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 20 July 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Alphard, Alpha Hydrae, is an orange giant of spectral type K3, about 180 light-years away, and the brightest star in Hydra, the largest constellation in the sky. It is a star that has exhausted the hydrogen in its core and expanded, giving off several hundred times as much light as the Sun.\n\nHydra stretches more than 100 degrees across the sky, but most of its stars are faint. Alphard is the only bright star in a large region with few others, and its name comes from the Arabic for \"the solitary one\".\n\nTo find Alphard, look about 23 degrees south-southwest of Regulus, in an area with no other bright stars. Its orange colour helps confirm it. The head of Hydra, a small group of fainter stars, lies about 16 degrees to its northwest. Alphard lies just south of the celestial equator and can be seen from almost anywhere on Earth; it is best placed on late winter and spring evenings in the Northern Hemisphere.",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "K3IIIa",
+      "colorIndex": 1.44
+    },
+    "link": {
+      "hr": 3748
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 3748",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+3748"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 3748",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=3748"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "McDonald, Zijlstra & Boyer 2012, Fundamental parameters and infrared excesses of Hipparcos stars, MNRAS 427, 343 (VizieR J/MNRAS/427/343)",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=J/MNRAS/427/343/table2&HIP=46390"
+      }
+    ]
+  },
+  {
+    "id": "hamal",
+    "section": "stars",
+    "title": "Hamal",
+    "subtitle": "Alpha Arietis",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Aries",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "2.00 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "+1.15",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "K2-IIIbCa-1",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "65.8 light-years, from parallax 49.56 ± 0.25 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 20 July 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Hamal, Alpha Arietis, is an orange giant of spectral type K2 III, about 66 light-years away, and the brightest star in Aries. It is a star that has exhausted the hydrogen in its core and expanded to several times the Sun's radius.\n\nAries is a small, faint constellation, and Hamal is its most noticeable star. With Sheratan and Mesarthim, it forms a short bent line that marks the ram's head.\n\nAries holds an old place in astronomy. About two thousand years ago the vernal equinox, the point where the Sun crosses the celestial equator moving north, lay in Aries, and this point is still called the First Point of Aries. Precession of the Earth's axis has since carried the equinox westward into Pisces.\n\nTo find Hamal, look east of the Square of Pegasus, about halfway from Alpheratz to the Pleiades. It is well placed on autumn and early winter evenings in the Northern Hemisphere. The name comes from the Arabic word for \"the ram\", once used for the whole constellation.",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "K2-IIIbCa-1",
+      "colorIndex": 1.15
+    },
+    "link": {
+      "hr": 617
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 617",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+617"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 617",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=617"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      }
+    ]
+  },
+  {
+    "id": "polaris",
+    "section": "stars",
+    "title": "Polaris",
+    "subtitle": "Alpha Ursae Minoris",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Ursa Minor",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "2.02 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "+0.60",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "F8Ib",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "433 light-years, from parallax 7.54 ± 0.11 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Luminosity",
+        "value": "About 2,600 × Sun (from SED fitting at 132.63 pc)",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 30 June 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Polaris, Alpha Ursae Minoris, is the North Star. It lies less than a degree from the north celestial pole, so it stays almost still while the rest of the sky turns around it, and its altitude above the horizon is close to the observer's latitude. It cannot be seen from the Southern Hemisphere.\n\nPolaris is a yellow-white supergiant of spectral type F7-F8, about 430 light-years away according to the Hipparcos parallax, though other methods have given different distances. It is the nearest classical Cepheid variable: it pulsates with a period of about 4 days, though its brightness changes by only a few hundredths of a magnitude. Cepheids are used to measure distances to other galaxies.\n\nPolaris is a triple star. Polaris B, about 18 arcseconds away, is visible in a small telescope. A third star, Polaris Ab, orbits much closer and was first imaged directly by the Hubble Space Telescope in 2006.\n\nTo find Polaris, follow the Pointers, Merak and Dubhe at the outer edge of the Big Dipper's bowl, about five times their separation. Polaris is the end of the Little Dipper's handle. Precession will carry the pole closest to Polaris around the year 2100.",
+    "image": {
+      "url": "https://cdn.esahubble.org/archives/images/screen/opo0602a.jpg",
+      "credit": "NASA, ESA, N. Evans (Harvard-Smithsonian CfA), and H. Bond (STScI)",
+      "licence": "CC BY 4.0",
+      "page": "https://esahubble.org/images/opo0602a/",
+      "caption": "Hubble images of the Polaris system, resolving the close companion Polaris Ab next to the bright primary."
+    },
+    "drawing": {
+      "kind": "star",
+      "spectralType": "F8Ib",
+      "colorIndex": 0.6
+    },
+    "link": {
+      "hr": 424
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 424",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+424"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 424",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=424"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "McDonald, Zijlstra & Boyer 2012, Fundamental parameters and infrared excesses of Hipparcos stars, MNRAS 427, 343 (VizieR J/MNRAS/427/343)",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=J/MNRAS/427/343/table2&HIP=11767"
+      }
+    ]
+  },
+  {
+    "id": "nunki",
+    "section": "stars",
+    "title": "Nunki",
+    "subtitle": "Sigma Sagittarii",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Sagittarius",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "2.02 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "−0.22",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "B2.5V",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "About 228 light-years (range 223–232), from parallax 14.32 ± 0.29 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Luminosity",
+        "value": "About 1,400 × Sun (from SED fitting at 69.83 pc)",
+        "source": 3
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 21 August 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Nunki, Sigma Sagittarii, is a hot blue-white main-sequence star of spectral type B2.5 V, about 230 light-years away, and the second-brightest star in Sagittarius. It gives off more than a thousand times as much light as the Sun.\n\nNunki lies about 3.5 degrees from the ecliptic, close enough that the Moon passes in front of it in some years, and the planets pass nearby.\n\nThe brightest stars of Sagittarius form the Teapot asterism, and Nunki marks the handle. The spout, on the other side, points toward the centre of the Milky Way. The Sagittarius star clouds lie to the west of the Teapot; they are thousands of light-years away, far beyond Nunki and the other Teapot stars. Nunki lies at declination −26°; from mid-northern latitudes it is low in the south on summer evenings, and from the Southern Hemisphere it passes nearly overhead in winter. The IAU Working Group on Star Names adopted the name in 2016.",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "B2.5V",
+      "colorIndex": -0.22
+    },
+    "link": {
+      "hr": 7121
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 7121",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+7121"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 7121",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=7121"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      },
+      {
+        "title": "McDonald, Zijlstra & Boyer 2012, Fundamental parameters and infrared excesses of Hipparcos stars, MNRAS 427, 343 (VizieR J/MNRAS/427/343)",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=J/MNRAS/427/343/table2&HIP=92855"
+      }
+    ]
+  },
+  {
+    "id": "diphda",
+    "section": "stars",
+    "title": "Diphda",
+    "subtitle": "Beta Ceti",
+    "facts": [
+      {
+        "label": "Constellation",
+        "value": "Cetus",
+        "source": 2
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "2.04 (V)",
+        "source": 1
+      },
+      {
+        "label": "Colour index (B−V)",
+        "value": "+1.02",
+        "source": 1
+      },
+      {
+        "label": "Spectral type",
+        "value": "G9.5IIICH-1",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "96.3 light-years, from parallax 33.86 ± 0.16 mas (Hipparcos, van Leeuwen 2007)",
+        "source": 0
+      },
+      {
+        "label": "Name",
+        "value": "Approved by the IAU Working Group on Star Names, 21 August 2016",
+        "source": 2
+      }
+    ],
+    "essay": "Diphda, Beta Ceti, is an orange giant of spectral type G9.5 III, about 96 light-years away, and the brightest star in Cetus, the whale or sea monster. Though designated Beta, it is brighter than Menkar, Alpha Ceti. It is a star that has exhausted the hydrogen in its core and expanded.\n\nDiphda is also known as Deneb Kaitos, \"the tail of the whale\", and in older references the two names are used interchangeably. The IAU Working Group on Star Names adopted Diphda in 2016. The name comes from the Arabic for \"frog\".\n\nDiphda sits in a part of the sky with few bright stars, so it is easy to identify once found. Extending the eastern side of the Square of Pegasus, from Alpheratz through Algenib, southward by roughly two and a half times its length leads close to Diphda, slightly to the east of the line. It is well placed on autumn evenings in the Northern Hemisphere and spring evenings in the Southern Hemisphere and lies close enough to the celestial equator to be seen from almost everywhere.",
+    "image": null,
+    "drawing": {
+      "kind": "star",
+      "spectralType": "G9.5IIICH-1",
+      "colorIndex": 1.02
+    },
+    "link": {
+      "hr": 188
+    },
+    "sources": [
+      {
+        "title": "SIMBAD: HR 188",
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=HR+188"
+      },
+      {
+        "title": "Yale Bright Star Catalogue, 5th revised ed. (VizieR V/50): HR 188",
+        "url": "https://vizier.cds.unistra.fr/viz-bin/VizieR-5?-source=V/50/catalog&HR=188"
+      },
+      {
+        "title": "IAU Catalog of Star Names (IAU Working Group on Star Names)",
+        "url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+      }
+    ]
+  }
+]

@@ -1,0 +1,3792 @@
+[
+  {
+    "id": "m1",
+    "section": "deep-sky",
+    "title": "M1",
+    "subtitle": "Crab Nebula · supernova remnant in Taurus",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Supernova remnant",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Taurus",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "6,500 light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "8.4",
+        "source": 0
+      },
+      {
+        "label": "Apparent size",
+        "value": "6 × 4 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 1952",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "John Bevis, 1731",
+        "source": 0
+      }
+    ],
+    "essay": "M1 is the expanding debris of a star that exploded as a supernova. Chinese astronomers recorded the explosion in 1054 as a \"guest star\" that stayed visible in daylight for close to a month. The cloud of gas it left behind is now about six light-years across and lies 6,500 light-years away in Taurus.\n\nAt the centre is a pulsar: the collapsed core of the original star, now a rapidly spinning, strongly magnetised neutron star. Hubble images show wisps of material moving away from it at half the speed of light. They form along magnetic field lines in a gas of high-energy particles that the pulsar drives outward.\n\nThe English astronomer John Bevis found the nebula in 1731. Charles Messier later came across it and took it for Halley's Comet, and that mistake prompted him to compile his catalogue of objects that could be confused with comets. The Crab became its first entry. At magnitude 8.4, M1 is a small-telescope object. It shows as a faint, oval glow about 6 by 4 arcminutes, near the star that marks the southern horn of Taurus. The filaments need a large aperture or long-exposure photographs. January evenings are the best time to look.",
+    "image": {
+      "url": "https://science.nasa.gov/wp-content/uploads/2023/04/crab-nebula-mosaic.jpg?w=1200",
+      "credit": "NASA, ESA, J. Hester and A. Loll (Arizona State University)",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-1/",
+      "caption": "Hubble mosaic of the Crab Nebula assembled from 24 exposures, showing the orange filaments of the shattered star."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "supernova-remnant",
+      "sizeArcmin": 6
+    },
+    "link": {
+      "messier": 1
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 1 (The Crab Nebula)",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-1/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 1",
+        "url": "http://www.messier.seds.org/m/m001.html"
+      }
+    ]
+  },
+  {
+    "id": "m2",
+    "section": "deep-sky",
+    "title": "M2",
+    "subtitle": "Globular cluster in Aquarius",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Globular cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Aquarius",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "37,000 light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "6.3",
+        "source": 0
+      },
+      {
+        "label": "Apparent size",
+        "value": "16 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 7089",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Jean-Dominique Maraldi, 1746",
+        "source": 0
+      }
+    ],
+    "essay": "M2 is a globular cluster: a spherical swarm of old stars held together by their combined gravity. It holds more than 150,000 stars and measures over 150 light-years across, which puts it among the largest clusters of its kind. Most of its mass is packed into the core, with the star density falling off steadily toward the edges.\n\nThe French astronomer Jean-Dominique Maraldi found it in 1746 while he was following a comet. It was the first globular cluster to be added to Messier's list. The cluster lies about 37,000 light-years away in Aquarius.\n\nAt magnitude 6.3, M2 sits right at the naked-eye limit and can be glimpsed without optics only under very dark, clear skies. Binoculars show it as a round, fuzzy star with a brighter middle, about 16 arcminutes across including its faint outer halo. A small telescope makes the core stand out more clearly, but the individual stars blend together until you use a large instrument. October evenings are the best time to look.",
+    "image": {
+      "url": "https://cdn.esahubble.org/archives/images/screen/potw1913a.jpg",
+      "credit": "ESA/Hubble & NASA, G. Piotto et al.",
+      "licence": "CC BY 4.0",
+      "page": "https://esahubble.org/images/potw1913a/",
+      "caption": "Hubble view of the globular cluster M2 in visible and infrared light."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "globular",
+      "sizeArcmin": 16
+    },
+    "link": {
+      "messier": 2
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 2",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-2/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 2",
+        "url": "http://www.messier.seds.org/m/m002.html"
+      }
+    ]
+  },
+  {
+    "id": "m3",
+    "section": "deep-sky",
+    "title": "M3",
+    "subtitle": "Globular cluster in Canes Venatici",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Globular cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Canes Venatici",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "34,000 light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "6.2",
+        "source": 0
+      },
+      {
+        "label": "Apparent size",
+        "value": "18 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 5272",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Charles Messier, 1764",
+        "source": 0
+      }
+    ],
+    "essay": "M3 was the first object in the catalogue that Charles Messier discovered himself, in 1764. He described it as a nebula without stars. Twenty years later, in 1784, William Herschel resolved it into individual stars. Astronomers now count more than half a million stars in the cluster, and its age is estimated at about eight billion years.\n\nM3 is known for its variable stars. At least 274 have been found in it, more than in any other known cluster. For some kinds of variable star the period of the brightness changes is tied to the star's true luminosity. That relation lets astronomers turn measured brightness into distance, which makes clusters like M3 useful for calibrating distance scales.\n\nThe cluster lies 34,000 light-years away in Canes Venatici, roughly between Arcturus and the handle of the Big Dipper. At magnitude 6.2 it is easy to pick up in binoculars as a round glow about 18 arcminutes across with a bright centre. Moderate telescopes start to resolve stars around its edges. It is best placed for viewing in June.",
+    "image": {
+      "url": "https://cdn.esahubble.org/archives/images/screen/potw1914a.jpg",
+      "credit": "ESA/Hubble & NASA, G. Piotto et al.",
+      "licence": "CC BY 4.0",
+      "page": "https://esahubble.org/images/potw1914a/",
+      "caption": "Hubble image of the core of the globular cluster M3, which holds about half a million stars."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "globular",
+      "sizeArcmin": 18
+    },
+    "link": {
+      "messier": 3
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 3",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-3/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 3",
+        "url": "http://www.messier.seds.org/m/m003.html"
+      }
+    ]
+  },
+  {
+    "id": "m4",
+    "section": "deep-sky",
+    "title": "M4",
+    "subtitle": "Globular cluster in Scorpius",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Globular cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Scorpius",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "5,500 light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "5.9",
+        "source": 0
+      },
+      {
+        "label": "Apparent size",
+        "value": "36 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 6121",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Jean-Philippe Loys de Chéseaux, 1746",
+        "source": 0
+      }
+    ],
+    "essay": "M4 is the closest globular cluster to Earth, at about 5,500 light-years. It holds more than 100,000 stars, and its proximity makes it one of the most studied clusters in the sky. The Swiss astronomer Jean-Philippe Loys de Chéseaux discovered it in 1746.\n\nBecause it is so near, Hubble can detect its white dwarfs, the cooling cores of dead stars. The cluster may contain up to 40,000 of them. White dwarfs fade at a predictable rate, so the faintest ones give an age for the cluster, and through it a lower limit on the age of the universe. Stars in clusters like this can be up to 13 billion years old. In 2003 Hubble helped confirm a planet of about 2.5 Jupiter masses in M4. It orbits a pair made up of a white dwarf and a pulsar.\n\nM4 is easy to find: it sits just west of Antares, the bright orange-red star in Scorpius. At magnitude 5.9 it shows in binoculars or a small telescope as a fuzzy ball of light about the size of the full Moon. A telescope of moderate size begins to resolve stars across its loose core. July is the best month to observe it.",
+    "image": {
+      "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/hubble/stars/globular-clusters/Hubble_M4_WFC3_ACS_ok_flat_cont_FINAL_NewImage.jpg?w=1600",
+      "credit": "NASA, ESA, G. Piotto (Universita degli Studi di Padova), S. Anderson (University of Washington), A. Sarajedini (Florida Atlantic University), L. Bedin (INAF - Osservatorio Astronomico di Padova); Image Processing: Gladys Kober (NASA/Catholic University of America)",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-4/",
+      "caption": "Hubble image of M4 combining Wide Field Camera 3 and Advanced Camera for Surveys data across a wide range of wavelengths."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "globular",
+      "sizeArcmin": 36
+    },
+    "link": {
+      "messier": 4
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 4",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-4/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 4",
+        "url": "http://www.messier.seds.org/m/m004.html"
+      }
+    ]
+  },
+  {
+    "id": "m5",
+    "section": "deep-sky",
+    "title": "M5",
+    "subtitle": "Globular cluster in Serpens",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Globular cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Serpens",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "25,000 light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "6.7",
+        "source": 0
+      },
+      {
+        "label": "Apparent size",
+        "value": "23 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 5904",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Gottfried Kirch, 1702",
+        "source": 0
+      }
+    ],
+    "essay": "M5 is one of the oldest globular clusters in the Milky Way. Most of its stars formed more than 12 billion years ago. The German astronomer Gottfried Kirch discovered it in 1702, and it lies about 25,000 light-years away in Serpens.\n\nIn a cluster this old, the massive stars should have burned out long ago and only old, low-mass stars should remain. Hubble images show that the cluster also contains a population of hot, blue stars that look much younger than their neighbours. These blue stragglers probably form when stars collide or interact in the crowded core, where up to a few million stars can be packed into a small volume.\n\nAt magnitude 6.7, M5 is a binocular object. It appears as a round patch of light with a bright, concentrated centre, about 23 arcminutes across in total. A small telescope begins to break up its outer regions into stars, and larger instruments resolve much of it. The cluster is best placed for viewing in June.",
+    "image": {
+      "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/hubble/stars/globular-clusters/Hubble_M5_WFC3_UV_flat_FINAL_NewImage.jpg?w=1600",
+      "credit": "NASA, ESA, G. Piotto (Universita degli Studi di Padova); Image Processing: Gladys Kober (NASA/Catholic University of America)",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-5/",
+      "caption": "Ultraviolet Hubble image of M5 that highlights the cluster's hot, blue stars."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "globular",
+      "sizeArcmin": 23
+    },
+    "link": {
+      "messier": 5
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 5",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-5/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 5",
+        "url": "http://www.messier.seds.org/m/m005.html"
+      }
+    ]
+  },
+  {
+    "id": "m6",
+    "section": "deep-sky",
+    "title": "M6",
+    "subtitle": "Butterfly Cluster · open cluster in Scorpius",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Open cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Scorpius",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "1,600 light-years",
+        "source": 1
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "4.2",
+        "source": 1
+      },
+      {
+        "label": "Apparent size",
+        "value": "25 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 6405",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Giovanni Battista Hodierna, before 1654",
+        "source": 1
+      }
+    ],
+    "essay": "M6 is an open cluster of young stars in the tail of Scorpius. Its brighter stars form a pattern that observers have compared to a butterfly with open wings, which gives the cluster its common name. Age estimates range from 50 to 100 million years.\n\nGiovanni Battista Hodierna recorded the cluster before 1654, but his work was not widely known until the 1980s. Jean-Philippe Loys de Chéseaux found it independently in 1745 or 1746, and Charles Messier added it to his catalogue in 1764. About 80 member stars have been identified. The main body of the cluster covers about 25 arcminutes, and outlying members spread over twice that. At a distance of about 1,600 light-years, that corresponds to roughly 12 light-years across.\n\nMost of the stars are hot and blue-white. The brightest star is a reddish exception: a slow, semiregular variable. At magnitude 4.2, M6 is visible to the naked eye from dark southern sites. It sits a few degrees from the brighter cluster M7. Binoculars or a small telescope at low power show the butterfly shape best, with the orange variable on one side.",
+    "image": {
+      "url": "https://storage.noirlab.edu/media/archives/images/screen/noao-02637.jpg",
+      "credit": "N.A.Sharp, Mark Hanna, REU program/NOIRLab/NSF/AURA",
+      "licence": "CC BY 4.0",
+      "page": "https://noirlab.edu/public/images/noao-02637/",
+      "caption": "Colour image of the Butterfly Cluster taken with the Burrell Schmidt telescope on Kitt Peak."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "open",
+      "sizeArcmin": 25
+    },
+    "link": {
+      "messier": 6
+    },
+    "sources": [
+      {
+        "title": "NOIRLab image: M6, NGC 6405; Butterfly Cluster",
+        "url": "https://noirlab.edu/public/images/noao-02637/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 6",
+        "url": "http://www.messier.seds.org/m/m006.html"
+      }
+    ]
+  },
+  {
+    "id": "m7",
+    "section": "deep-sky",
+    "title": "M7",
+    "subtitle": "Ptolemy's Cluster · open cluster in Scorpius",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Open cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Scorpius",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "980 light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "3.3",
+        "source": 0
+      },
+      {
+        "label": "Apparent size",
+        "value": "80 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 6475",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Recorded by Ptolemy, about 130 AD",
+        "source": 0
+      }
+    ],
+    "essay": "M7 is a large, bright open cluster next to the stinger of Scorpius. The astronomer Claudius Ptolemy recorded it in about 130 AD, so it is often called Ptolemy's Cluster. Charles Messier added it to his catalogue in May 1764.\n\nOpen clusters are groups of stars that formed together from one cloud of gas and dust. They are only loosely held together, and over time the gravity of other objects pulls them apart. M7 contains about 80 stars, lies about 980 light-years away, and probably formed about 220 million years ago.\n\nIt is the southernmost object in Messier's catalogue. That makes it hard to see from far northern latitudes, but from southern and mid-northern sites it is an easy naked-eye object at magnitude 3.3. Its stars spread over about 80 arcminutes, more than twice the width of the full Moon, against a dense Milky Way background. Binoculars or a low-power, wide-field telescope give the best view. The Butterfly Cluster, M6, lies a few degrees away. Both are best seen on July evenings.",
+    "image": {
+      "url": "https://science.nasa.gov/wp-content/uploads/2023/06/hubble-m7-wfc3-2-flat-final.jpg?w=1200",
+      "credit": "NASA, ESA, D. Bennett (University of Maryland), and K. Sahu (STScI); Image Processing: Gladys Kober",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-7/",
+      "caption": "Hubble view of a small field of stars within the open cluster M7."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "open",
+      "sizeArcmin": 80
+    },
+    "link": {
+      "messier": 7
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 7",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-7/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 7",
+        "url": "http://www.messier.seds.org/m/m007.html"
+      }
+    ]
+  },
+  {
+    "id": "m8",
+    "section": "deep-sky",
+    "title": "M8",
+    "subtitle": "Lagoon Nebula · emission nebula in Sagittarius",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Emission nebula",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Sagittarius",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "5,200 light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "6.0",
+        "source": 0
+      },
+      {
+        "label": "Apparent size",
+        "value": "90 × 40 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 6523",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Giovanni Battista Hodierna, 1654",
+        "source": 0
+      }
+    ],
+    "essay": "The Lagoon Nebula is a large cloud of interstellar gas and dust where stars are still forming. Massive young stars embedded in it give off strong ultraviolet radiation that ionises the surrounding hydrogen and makes it glow. The nebula also contains its own young star cluster, NGC 6530.\n\nThe Italian astronomer Giovanni Battista Hodierna discovered it in 1654. Like Messier after him, he catalogued nebulous objects so they would not be mistaken for comets. The nebula lies about 5,200 light-years away in Sagittarius, toward the centre of the Milky Way. Hubble has studied several parts of the cloud in detail. One small region, the Hourglass, holds two twisting funnels of gas, each about half a light-year long, near the hot star Herschel 36.\n\nAt magnitude 6, the Lagoon is faintly visible to the naked eye under dark skies as a brighter knot in the summer Milky Way, just north of the spout of the Sagittarius \"teapot\". It covers about 90 by 40 arcminutes. Binoculars show the glow and the cluster on its eastern side. A small telescope shows the dark lane that crosses the nebula and gives it its name. The best month is August.",
+    "image": {
+      "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/hubble/nebulae/emission/Hubble_M8_ACS_1_flat_FINAL.jpg?w=1600",
+      "credit": "NASA, ESA, M. Mutchler (Space Telescope Science Institute); Processing: Gladys Kober (NASA/Catholic University of America)",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-8/",
+      "caption": "Hubble image of part of the Lagoon Nebula, with clouds of gas, dark dust and scattered young blue stars."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "nebula",
+      "sizeArcmin": 90
+    },
+    "link": {
+      "messier": 8
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 8 (The Lagoon Nebula)",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-8/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 8",
+        "url": "http://www.messier.seds.org/m/m008.html"
+      }
+    ]
+  },
+  {
+    "id": "m9",
+    "section": "deep-sky",
+    "title": "M9",
+    "subtitle": "Globular cluster in Ophiuchus",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Globular cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Ophiuchus",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "25,000 light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "8.4",
+        "source": 0
+      },
+      {
+        "label": "Apparent size",
+        "value": "12 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 6333",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Charles Messier, 1764",
+        "source": 0
+      }
+    ],
+    "essay": "M9 is one of the globular clusters closest to the centre of the Milky Way. It lies about 25,000 light-years from Earth in Ophiuchus. Charles Messier discovered it in 1764. Most globular clusters are close to spherical, because the mass concentrated at the centre pulls the outer stars evenly inward. M9 is less round than most. Its position near the much greater mass of the galactic centre has distorted its shape.\n\nHubble's image of the core, taken in visible, infrared and ultraviolet light, shows that the cluster's stars differ in colour. Red stars have cooler surfaces and blue stars are much hotter.\n\nAt magnitude 8.4, M9 is a small-telescope target. It appears as a small, round, fuzzy spot about 12 arcminutes across that brightens toward the middle. Only the brightest stars at its edge resolve in moderate apertures. The best time to look is in July, when Ophiuchus is high in the evening sky.",
+    "image": {
+      "url": "https://science.nasa.gov/wp-content/uploads/2023/04/heic1205a.jpg?w=1200",
+      "credit": "NASA & ESA",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-9/",
+      "caption": "Hubble image of the core of the globular cluster M9 in visible, infrared and ultraviolet light."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "globular",
+      "sizeArcmin": 12
+    },
+    "link": {
+      "messier": 9
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 9",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-9/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 9",
+        "url": "http://www.messier.seds.org/m/m009.html"
+      }
+    ]
+  },
+  {
+    "id": "m10",
+    "section": "deep-sky",
+    "title": "M10",
+    "subtitle": "Globular cluster in Ophiuchus",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Globular cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Ophiuchus",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "15,000 light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "6.4",
+        "source": 0
+      },
+      {
+        "label": "Apparent size",
+        "value": "20 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 6254",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Charles Messier, 1764",
+        "source": 0
+      }
+    ],
+    "essay": "M10 is a bright globular cluster in Ophiuchus, about 15,000 light-years from Earth. Charles Messier discovered it in 1764.\n\nThe cluster has a large population of blue stragglers: stars that look much younger and hotter than the others around them. The stars in a globular cluster are thought to have formed at about the same time, so a group of apparently young stars needs an explanation. The likely cause is collisions or close interactions between stars. Such events are expected in the dense cores of globular clusters, where up to a few million stars can be packed closely together. Hubble's ultraviolet images make these hot stars stand out clearly against the cooler, older population.\n\nAt magnitude 6.4, M10 is visible in binoculars as a round glow about 20 arcminutes across, brighter toward the centre. The globular cluster M12 is only a few degrees away, and both fit in a low-power binocular sweep. A small telescope shows a grainy texture across the cluster, and larger instruments resolve many of its stars. July is the best month to observe it.",
+    "image": {
+      "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/hubble/stars/globular-clusters/Hubble_M10_WFC3UVIS_flat_FINAL_NewImage.jpg?w=1600",
+      "credit": "NASA, ESA, G. Piotto (Universita degli Studi di Padova); Image Processing: Gladys Kober (NASA/Catholic University of America)",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-10/",
+      "caption": "Ultraviolet Hubble image of M10's core, where hot blue stragglers stand out."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "globular",
+      "sizeArcmin": 20
+    },
+    "link": {
+      "messier": 10
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 10",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-10/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 10",
+        "url": "http://www.messier.seds.org/m/m010.html"
+      }
+    ]
+  },
+  {
+    "id": "m11",
+    "section": "deep-sky",
+    "title": "M11",
+    "subtitle": "Wild Duck Cluster · open cluster in Scutum",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Open cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Scutum",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "6,200 light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "6.3",
+        "source": 0
+      },
+      {
+        "label": "Apparent size",
+        "value": "14 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 6705",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Gottfried Kirch, 1681",
+        "source": 0
+      }
+    ],
+    "essay": "M11 is one of the richest and most compact open clusters known, with more than 2,900 stars. Its brightest stars form a rough V shape that resembles a flock of ducks in flight, which gives it the name Wild Duck Cluster. The German astronomer Gottfried Kirch discovered it in 1681.\n\nOpen clusters are loosely bound groups of stars. They usually disperse after a few hundred million years, much sooner than the tightly bound globular clusters. By studying the brightest and hottest main-sequence stars in M11, astronomers estimate that it formed about 220 million years ago. It is one of the few open clusters in Messier's catalogue that Hubble has imaged.\n\nThe cluster lies 6,200 light-years away in the small constellation Scutum, against one of the brightest parts of the Milky Way. Of the open clusters in Messier's catalogue it is the most distant that can be seen with the naked eye, at magnitude 6.3. Binoculars show it as a small, triangular patch of light about 14 arcminutes across. A small telescope resolves the patch into a dense field of faint stars with one brighter star near the tip of the V. August is the best month to view it.",
+    "image": {
+      "url": "https://cdn.esahubble.org/archives/images/screen/potw1912a.jpg",
+      "credit": "ESA/Hubble & NASA, P. Dobbie et al.",
+      "licence": "CC BY 4.0",
+      "page": "https://esahubble.org/images/potw1912a/",
+      "caption": "Hubble image of part of the Wild Duck Cluster, one of the richest open clusters in the sky."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "open",
+      "sizeArcmin": 14
+    },
+    "link": {
+      "messier": 11
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 11",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-11/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 11",
+        "url": "http://www.messier.seds.org/m/m011.html"
+      }
+    ]
+  },
+  {
+    "id": "m12",
+    "section": "deep-sky",
+    "title": "M12",
+    "subtitle": "Globular cluster in Ophiuchus",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Globular cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Ophiuchus",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "23,000 light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "7.7",
+        "source": 0
+      },
+      {
+        "label": "Apparent size",
+        "value": "16 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 6218",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Charles Messier, 1764",
+        "source": 0
+      }
+    ],
+    "essay": "M12 is a globular cluster in Ophiuchus, about 23,000 light-years from Earth. Charles Messier discovered it in 1764. It is a relatively loose cluster, yet it contains many interacting binary stars. In these pairs, material from one star flows onto its companion and gives off X-rays, and many such sources have been detected in M12. That is unexpected, because stars in a sparse cluster should interact less often than those in a dense one.\n\nM12 also has fewer low-mass stars than expected. Astronomers think the Milky Way's gravity stripped many of them away as the cluster passed through denser regions of the galaxy on its orbit around the galactic centre. It may have lost up to a million stars this way.\n\nAt magnitude 7.7, M12 is visible in binoculars as a soft, round glow about 16 arcminutes across. It lies only a few degrees from M10, and the two make a good pair at low power. In a small telescope M12 looks less concentrated than M10, and its looser structure lets moderate apertures resolve stars across much of its face. It is best observed in July.",
+    "image": {
+      "url": "https://cdn.esahubble.org/archives/images/screen/potw1113a.jpg",
+      "credit": "ESA/Hubble & NASA",
+      "licence": "CC BY 4.0",
+      "page": "https://esahubble.org/images/potw1113a/",
+      "caption": "Hubble image of the centre of M12 in visible and infrared light."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "globular",
+      "sizeArcmin": 16
+    },
+    "link": {
+      "messier": 12
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 12",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-12/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 12",
+        "url": "http://www.messier.seds.org/m/m012.html"
+      }
+    ]
+  },
+  {
+    "id": "m13",
+    "section": "deep-sky",
+    "title": "M13",
+    "subtitle": "Hercules Globular Cluster · globular cluster in Hercules",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Globular cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Hercules",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "25,000 light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "5.8",
+        "source": 0
+      },
+      {
+        "label": "Apparent size",
+        "value": "20 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 6205",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Edmond Halley, 1714",
+        "source": 0
+      }
+    ],
+    "essay": "M13 is one of the brightest globular clusters visible from the Northern Hemisphere. It holds more than 100,000 stars and lies about 25,000 light-years away in Hercules. Edmond Halley, known for the comet that bears his name, discovered it in 1714.\n\nWhen Charles Messier added the cluster to his catalogue in 1764, he believed it contained no stars. Its stars are so tightly packed that they were not resolved until 1779. Near the core, stars are about a hundred times more crowded than in the Sun's neighbourhood. At that density stars sometimes collide and merge. The products are blue stragglers, which look younger than the stars around them.\n\nM13 is easy to find. It sits on the western side of the Keystone, the four-star figure at the centre of Hercules, about a third of the way from Eta to Zeta Herculis. At magnitude 5.8 it can be glimpsed with the naked eye from a dark site and is obvious in binoculars as a round glow with a bright centre. A small telescope shows a granular texture across its 20-arcminute disc, and larger telescopes resolve many of its stars. July is the best month.",
+    "image": {
+      "url": "https://cdn.esahubble.org/archives/images/screen/potw1011a.jpg",
+      "credit": "ESA/Hubble and NASA",
+      "licence": "CC BY 4.0",
+      "page": "https://esahubble.org/images/potw1011a/",
+      "caption": "Hubble image of the crowded core of the Hercules globular cluster."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "globular",
+      "sizeArcmin": 20
+    },
+    "link": {
+      "messier": 13
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 13",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-13/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 13",
+        "url": "http://www.messier.seds.org/m/m013.html"
+      }
+    ]
+  },
+  {
+    "id": "m14",
+    "section": "deep-sky",
+    "title": "M14",
+    "subtitle": "Globular cluster in Ophiuchus",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Globular cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Ophiuchus",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "29,000 light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "8.3",
+        "source": 0
+      },
+      {
+        "label": "Apparent size",
+        "value": "11 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 6402",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Charles Messier, 1764",
+        "source": 0
+      }
+    ],
+    "essay": "M14 is a globular cluster of more than 150,000 stars in Ophiuchus, about 29,000 light-years from Earth. Charles Messier discovered it in 1764.\n\nIn the summer of 1938 the cluster produced a nova, a rare event in a globular cluster. In a nova, a star brightens by a factor of about 10,000 within a few days and then fades back to normal over the following months. From the ground the nova's position is lost in a blur of crowded stars. Hubble images resolve individual stars at the suspected site, although the star that erupted may be too faint to identify.\n\nHubble has also observed M14 in ultraviolet, visible and near-infrared light. Astronomers used those data to study how the cluster formed and to compare the chemical makeup of the different groups of stars it contains. At magnitude 8.3, M14 needs a telescope. In small instruments it is a round, evenly lit haze about 11 arcminutes across, with little central brightening, and its stars resolve only in larger apertures. It lies in a fairly empty part of Ophiuchus, so star-hopping from M10 and M12 is a common route. The best month to look is July.",
+    "image": {
+      "url": "https://science.nasa.gov/wp-content/uploads/2023/04/hubble_m14_wfc3_1flat_cont_final.jpg?w=1200",
+      "credit": "NASA, ESA, and F. D'Antona (INAF, Osservatorio Astronomico di Roma); Image Processing: Gladys Kober",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-14/",
+      "caption": "Hubble image of M14 in ultraviolet, visible and near-infrared light."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "globular",
+      "sizeArcmin": 11
+    },
+    "link": {
+      "messier": 14
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 14",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-14/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 14",
+        "url": "http://www.messier.seds.org/m/m014.html"
+      }
+    ]
+  },
+  {
+    "id": "m15",
+    "section": "deep-sky",
+    "title": "M15",
+    "subtitle": "Globular cluster in Pegasus",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Globular cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Pegasus",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "33,600 light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "6.2",
+        "source": 0
+      },
+      {
+        "label": "Apparent size",
+        "value": "18 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 7078",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Jean-Dominique Maraldi, 1746",
+        "source": 0
+      }
+    ],
+    "essay": "M15 is one of the densest globular clusters known. Its stars crowd more and more tightly toward a very bright core. It lies about 33,600 light-years away in Pegasus and is around 12 billion years old. The astronomer Jean-Dominique Maraldi found it in 1746 while searching for comets.\n\nIt was the first globular cluster known to contain a planetary nebula, the shed outer layers of a dying star. Francis G. Pease found this nebula, Pease 1, in 1928. Only four planetary nebulae are known inside globular clusters. Observations also point to a black hole of about 4,000 solar masses at the cluster's centre. That is far heavier than black holes formed from single stars and far lighter than the supermassive ones in galaxy cores.\n\nAt magnitude 6.2, M15 is an easy binocular target. It looks like a fuzzy star about 4 degrees northwest of Enif, the star that marks the horse's nose in Pegasus. A small telescope shows a bright, compact centre surrounded by a fainter halo up to 18 arcminutes across. Larger telescopes resolve its outer stars. The best month is September.",
+    "image": {
+      "url": "https://science.nasa.gov/wp-content/uploads/2023/04/heic1321a.jpg?w=1200",
+      "credit": "NASA, ESA",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-15/",
+      "caption": "Hubble image of M15 combining ultraviolet, visible and infrared observations."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "globular",
+      "sizeArcmin": 18
+    },
+    "link": {
+      "messier": 15
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 15",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-15/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 15",
+        "url": "http://www.messier.seds.org/m/m015.html"
+      }
+    ]
+  },
+  {
+    "id": "m16",
+    "section": "deep-sky",
+    "title": "M16",
+    "subtitle": "Eagle Nebula · emission nebula and cluster in Serpens",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Emission nebula with open cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Serpens",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "7,000 light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "6.0",
+        "source": 0
+      },
+      {
+        "label": "Apparent size",
+        "value": "7 arcmin (cluster)",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 6611 (cluster), IC 4703 (nebula)",
+        "source": 0
+      },
+      {
+        "label": "Discovered",
+        "value": "Jean-Philippe Loys de Chéseaux, 1745",
+        "source": 0
+      }
+    ],
+    "essay": "The name M16 covers two objects that catalogues list separately: an emission nebula, IC 4703, and the young star cluster inside it, NGC 6611. Together they are called the Eagle Nebula. The Swiss astronomer Jean-Philippe Loys de Chéseaux discovered it in 1745. It lies about 7,000 light-years away in Serpens.\n\nThe nebula is an active star-forming region about 70 by 55 light-years across. Its best-known feature is a set of dark columns of gas and dust 4 to 5 light-years tall, called the Pillars of Creation. Ultraviolet light and winds from hot young stars nearby are slowly eroding them. Hubble's infrared images look through the dust and show newborn stars inside the pillars.\n\nThe cluster shines at about magnitude 6 and is visible in binoculars as a small group of stars with a faint haze around it. A small telescope shows the cluster clearly. The nebula is easier to see with a nebula filter and dark skies, and the pillars themselves need a large telescope and good conditions. The Omega Nebula, M17, is a few degrees to the south. August is the best month.",
+    "image": {
+      "url": "https://science.nasa.gov/wp-content/uploads/2023/04/hubble_birthofstars_0.jpg?w=1200",
+      "credit": "NASA, ESA and the Hubble Heritage Team (STScI/AURA)",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-16/",
+      "caption": "Hubble view of the Pillars of Creation, columns of gas and dust in the Eagle Nebula."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "nebula",
+      "sizeArcmin": 7
+    },
+    "link": {
+      "messier": 16
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 16 (The Eagle Nebula)",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-16/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 16",
+        "url": "http://www.messier.seds.org/m/m016.html"
+      }
+    ]
+  },
+  {
+    "id": "m17",
+    "section": "deep-sky",
+    "title": "M17",
+    "subtitle": "Omega Nebula · emission nebula in Sagittarius",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Emission nebula",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Sagittarius",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "5,500 light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "6.0",
+        "source": 0
+      },
+      {
+        "label": "Apparent size",
+        "value": "11 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 6618",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Jean-Philippe Loys de Chéseaux, 1745",
+        "source": 0
+      }
+    ],
+    "essay": "M17, the Omega or Swan Nebula, is one of the largest star-forming regions in the Milky Way. It lies 5,500 light-years away in Sagittarius. Jean-Philippe Loys de Chéseaux discovered it in 1745.\n\nIt contains one of the youngest star clusters in our galaxy, about one million years old. Many of its stars are hidden by the gas and dust around them. Their radiation is evaporating and eroding the dense, cold clouds where new stars form. Hubble images show this process in detail. One pocket of gas near the brightest part of the nebula is about ten times the size of our solar system, and dark fingers of dust reach into the glowing gas from the surrounding cloud.\n\nAt magnitude 6, the Omega Nebula is one of the brightest nebulae in the sky and is visible in binoculars. Its brightest part is a bar of light about 11 arcminutes long with a hook at one end, which observers have likened to a swan or to the Greek letter omega. A small telescope shows the bar and the hook clearly, and a nebula filter brings out fainter gas around them. M16 and M18 are nearby. August is the best month to look.",
+    "image": {
+      "url": "https://science.nasa.gov/wp-content/uploads/2017/10/m17-field2-f110wf160w-a1-final-vers1.jpg?w=1200",
+      "credit": "NASA, ESA, and A. Kraus (The University of Texas at Austin); Processing: Gladys Kober (NASA/Catholic University of America)",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-17/",
+      "caption": "Hubble image of part of the Omega Nebula, colourised to highlight oxygen, hydrogen and infrared light."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "nebula",
+      "sizeArcmin": 11
+    },
+    "link": {
+      "messier": 17
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 17 (The Omega Nebula)",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-17/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 17",
+        "url": "http://www.messier.seds.org/m/m017.html"
+      }
+    ]
+  },
+  {
+    "id": "m18",
+    "section": "deep-sky",
+    "title": "M18",
+    "subtitle": "Open cluster in Sagittarius",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Open cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Sagittarius",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "4,900 light-years",
+        "source": 1
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "7.5",
+        "source": 1
+      },
+      {
+        "label": "Apparent size",
+        "value": "9 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 6613",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Charles Messier, 1764",
+        "source": 1
+      }
+    ],
+    "essay": "M18 is a small, sparse open cluster in Sagittarius. It is one of Charles Messier's own discoveries, catalogued on 3 June 1764. The cluster has only a couple of dozen members and is young, around 30 million years old.\n\nPublished distances disagree, from under 4,000 to 6,000 light-years. A commonly adopted value is about 4,900 light-years, at which its apparent width of 9 arcminutes corresponds to about 17 light-years. Its hottest stars are of spectral type B3, consistent with its young age. Colour images show a mix of bright blue stars and a few yellow and orange ones.\n\nM18 sits in a rich part of the Milky Way between two more prominent objects: the Omega Nebula, M17, just to the north, and the Small Sagittarius Star Cloud, M24, to the south. That makes it easy to locate but also easy to overlook. At magnitude 7.5 it is visible in binoculars as a small knot of stars. A small telescope at low power shows a little over a dozen fairly bright stars in a loose group, which stands out only modestly from the dense background.",
+    "image": {
+      "url": "https://storage.noirlab.edu/media/archives/images/screen/noao-m18.jpg",
+      "credit": "Hillary Mathis, REU program/NOIRLab/NSF/AURA",
+      "licence": "CC BY 4.0",
+      "page": "https://noirlab.edu/public/images/noao-m18/",
+      "caption": "Colour image of the sparse open cluster M18 from the Burrell Schmidt telescope on Kitt Peak."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "open",
+      "sizeArcmin": 9
+    },
+    "link": {
+      "messier": 18
+    },
+    "sources": [
+      {
+        "title": "NOIRLab image: M18, NGC 6613",
+        "url": "https://noirlab.edu/public/images/noao-m18/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 18",
+        "url": "http://www.messier.seds.org/m/m018.html"
+      }
+    ]
+  },
+  {
+    "id": "m19",
+    "section": "deep-sky",
+    "title": "M19",
+    "subtitle": "Globular cluster in Ophiuchus",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Globular cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Ophiuchus",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "28,500 light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "7.7",
+        "source": 0
+      },
+      {
+        "label": "Apparent size",
+        "value": "17 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 6273",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Charles Messier, 1764",
+        "source": 0
+      }
+    ],
+    "essay": "M19 is a globular cluster in southern Ophiuchus, about 28,500 light-years from Earth. Charles Messier discovered it in 1764. The stars in a globular cluster orbit a common centre of gravity, so most clusters are close to round. M19 is noticeably elongated. It lies only about 6,500 light-years from the centre of the Milky Way, and the gravity and tidal forces of the galaxy's dense central region are probably stretching it.\n\nHubble has observed M19 in ultraviolet, visible and near-infrared light to study how it formed and to measure the proportions of the different populations of stars it contains. An earlier Hubble image of the cluster has a stair-step outline. It was taken with a camera made of four detectors, one of which had a smaller field of view and higher resolution than the other three.\n\nAt magnitude 7.7, M19 can be found with binoculars, but it appears only as a faint, slightly oval patch about 17 arcminutes across. A small telescope shows the oval shape more clearly, and large telescopes resolve individual stars. The cluster is best observed in July, low in the south for mid-northern observers.",
+    "image": {
+      "url": "https://science.nasa.gov/wp-content/uploads/2023/04/hubble_m19_wfc3_str_gapfilled_flat_cont_final.jpg?w=1200",
+      "credit": "NASA, ESA, and C. Johnson (STScI); Image Processing: Gladys Kober",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-19/",
+      "caption": "Hubble image of M19 in ultraviolet, visible and near-infrared light, with a small gap filled by ground-based data."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "globular",
+      "sizeArcmin": 17
+    },
+    "link": {
+      "messier": 19
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 19",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-19/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 19",
+        "url": "http://www.messier.seds.org/m/m019.html"
+      }
+    ]
+  },
+  {
+    "id": "m20",
+    "section": "deep-sky",
+    "title": "M20",
+    "subtitle": "Trifid Nebula · nebula in Sagittarius",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Nebula",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Sagittarius",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "5,000 light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "6.3",
+        "source": 0
+      },
+      {
+        "label": "Apparent size",
+        "value": "28 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 6514",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Charles Messier, 1764",
+        "source": 0
+      }
+    ],
+    "essay": "The Trifid Nebula is a star-forming cloud in Sagittarius, about 5,000 light-years from Earth. Charles Messier discovered it in 1764. Its name comes from three dark lanes of dust that appear to divide its glowing centre into three lobes.\n\nA group of recently formed massive stars sits near the centre of the nebula. Their ultraviolet radiation has a strong effect on the surrounding cloud. Near these stars, star formation has stopped, because their radiation has blown away the gas and dust from which new stars would form. Farther out, the same radiation compresses and sculpts the cloud.\n\nIn 2026, for its 36th anniversary, Hubble imaged the Trifid again with Wide Field Camera 3. Comparing the new image with Hubble's 1997 view shows changes in the nebula over less than three decades. At magnitude 6.3, the Trifid can be found in binoculars a little north of the Lagoon Nebula, M8, as a faint glow around a star. A small telescope shows the round nebula, about 28 arcminutes across including its fainter outer part. Under dark skies the dust lanes become visible. A nebula filter helps. August is the best month to observe it.",
+    "image": {
+      "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/hubble/nebulae/emission/hubble_2026_trifid.jpg?w=1600",
+      "credit": "NASA, ESA, STScI; Image Processing: Joseph DePasquale (STScI)",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-20/",
+      "caption": "Hubble's 2026 Wide Field Camera 3 image of the Trifid Nebula, taken for the telescope's 36th anniversary."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "nebula",
+      "sizeArcmin": 28
+    },
+    "link": {
+      "messier": 20
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 20 (The Trifid Nebula)",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-20/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 20",
+        "url": "http://www.messier.seds.org/m/m020.html"
+      }
+    ]
+  },
+  {
+    "id": "m21",
+    "section": "deep-sky",
+    "title": "M21",
+    "subtitle": "Open cluster in Sagittarius",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Open cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Sagittarius",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "About 4,250 light-years (uncertain)",
+        "source": 1
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "6.5",
+        "source": 1
+      },
+      {
+        "label": "Apparent size",
+        "value": "13 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 6531",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Charles Messier, 1764",
+        "source": 1
+      }
+    ],
+    "essay": "M21 is a compact open cluster in Sagittarius, close on the sky to the Trifid Nebula, M20. Charles Messier discovered it on 5 June 1764. The cluster has a strong concentration of stars toward its centre and a wide range of star brightnesses, but only about 57 confirmed members. Its brightest stars are giants of spectral type B0, which means the cluster is young: estimates put its age at a few million years. It is thought to belong to a larger group of young, hot stars in Sagittarius known as the Sagittarius OB1 association.\n\nIts distance is uncertain. Published values range from about 2,200 to 4,250 light-years, and the sources also disagree on whether M21 or the Trifid Nebula is closer to us.\n\nAt magnitude 6.5, M21 is visible in binoculars as a small, bright knot of stars about a degree northeast of the Trifid. Both fit in one low-power field. A small telescope resolves a tight central group of brighter stars surrounded by fainter ones, spread over about 13 arcminutes. The Lagoon Nebula, M8, is a short distance to the south, which makes this one of the richest areas of the summer Milky Way for small instruments.",
+    "image": {
+      "url": "https://storage.noirlab.edu/media/archives/images/screen/noirlab2521ag.jpg",
+      "credit": "NSF–DOE Vera C. Rubin Observatory/NOIRLab/SLAC/AURA",
+      "licence": "CC BY 4.0",
+      "page": "https://noirlab.edu/public/images/noirlab2521ag/",
+      "caption": "Rubin Observatory image of the open cluster M21, tightly packed with small, dim stars."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "open",
+      "sizeArcmin": 13
+    },
+    "link": {
+      "messier": 21
+    },
+    "sources": [
+      {
+        "title": "NOIRLab image: Trifid and Lagoon Nebulae Excerpt: Messier 21",
+        "url": "https://noirlab.edu/public/images/noirlab2521ag/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 21",
+        "url": "http://www.messier.seds.org/m/m021.html"
+      }
+    ]
+  },
+  {
+    "id": "m22",
+    "section": "deep-sky",
+    "title": "M22",
+    "subtitle": "Globular cluster in Sagittarius",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Globular cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Sagittarius",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "10,000 light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "5.1",
+        "source": 0
+      },
+      {
+        "label": "Apparent size",
+        "value": "32 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 6656",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Abraham Ihle, 1665",
+        "source": 0
+      }
+    ],
+    "essay": "M22 was one of the first globular clusters ever found. The German amateur astronomer Abraham Ihle came across it in August 1665 while looking for Saturn. At about 10,000 light-years, it is one of the closest globular clusters to Earth, and it is one of about 150 known in the Milky Way.\n\nThe cluster is about 70 light-years in diameter. Like other globular clusters it is old, probably 12 to 13 billion years, compared with a universe 13.8 billion years old. It lies in front of the Galactic Bulge, the dense mass of stars around the centre of the Milky Way. Dust and gas between us and the cluster dim its light, so it looks fainter than it otherwise would.\n\nM22 is one of the brightest globular clusters visible from the Northern Hemisphere, at magnitude 5.1. Under good conditions it can be seen with the naked eye a little northeast of the top of the Sagittarius \"teapot\". On the sky it covers an area about the size of the full Moon. Binoculars show a large, bright glow, and a small telescope starts to resolve its stars, more easily than for most globulars. The best month is August.",
+    "image": {
+      "url": "https://cdn.esahubble.org/archives/images/screen/potw1514a.jpg",
+      "credit": "ESA/Hubble & NASA",
+      "licence": "CC BY 4.0",
+      "page": "https://esahubble.org/images/potw1514a/",
+      "caption": "Hubble image of the centre of the globular cluster M22."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "globular",
+      "sizeArcmin": 32
+    },
+    "link": {
+      "messier": 22
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 22",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-22/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 22",
+        "url": "http://www.messier.seds.org/m/m022.html"
+      }
+    ]
+  },
+  {
+    "id": "m23",
+    "section": "deep-sky",
+    "title": "M23",
+    "subtitle": "Open cluster in Sagittarius",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Open cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Sagittarius",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "2,150 light-years",
+        "source": 1
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "5.5",
+        "source": 1
+      },
+      {
+        "label": "Apparent size",
+        "value": "27 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 6494",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Charles Messier, 1764",
+        "source": 1
+      }
+    ],
+    "essay": "M23 is a bright, rich open cluster in Sagittarius. Charles Messier discovered it on 20 June 1764. At a distance of about 2,150 light-years, its apparent width of about 27 arcminutes corresponds to roughly 15 to 20 light-years. Studies have confirmed at least 150 member stars.\n\nThe cluster is more than 200 million years old, which is fairly old for an open cluster. The hottest stars still on the main sequence are of spectral type B9, and the brightest member is about magnitude 9.2. M23 lies in the plane of the Milky Way. Stars behind it are reddened by dust, and deep images show dark patches where thick dust blocks distant stars entirely. A bright star northwest of the cluster is a foreground object, not a member.\n\nAt magnitude 5.5, M23 is an easy binocular target in the summer Milky Way, about 2.5 degrees north and 3.5 degrees west of the star Mu Sagittarii. It appears as a hazy patch with individual stars at its edges. A small telescope at low power shows dozens of stars, mostly between magnitude 10 and 13, in loose chains and curves that blend into the rich background.",
+    "image": {
+      "url": "https://storage.noirlab.edu/media/archives/images/screen/noao-m23.jpg",
+      "credit": "N.A.Sharp, REU program/NOIRLab/NSF/AURA",
+      "licence": "CC BY 4.0",
+      "page": "https://noirlab.edu/public/images/noao-m23/",
+      "caption": "True-colour image of the open cluster M23 from the Burrell Schmidt telescope on Kitt Peak."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "open",
+      "sizeArcmin": 27
+    },
+    "link": {
+      "messier": 23
+    },
+    "sources": [
+      {
+        "title": "NOIRLab image: M23, NGC 6494",
+        "url": "https://noirlab.edu/public/images/noao-m23/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 23",
+        "url": "http://www.messier.seds.org/m/m023.html"
+      }
+    ]
+  },
+  {
+    "id": "m24",
+    "section": "deep-sky",
+    "title": "M24",
+    "subtitle": "Small Sagittarius Star Cloud · star cloud in Sagittarius",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Star cloud",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Sagittarius",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "10,000 light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "4.6",
+        "source": 0
+      },
+      {
+        "label": "Apparent size",
+        "value": "90 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "IC 4715",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Charles Messier, 1764",
+        "source": 0
+      }
+    ],
+    "essay": "M24 is not a single object but a gap in the Milky Way's dust clouds. Through it we see a dense field of stars in the Sagittarius spiral arm of our galaxy. From our position, nearby dust blocks most views toward the inner Milky Way. The Small Sagittarius Star Cloud, as M24 is also known, is a clear line of sight about 600 light-years wide that reaches stars 10,000 to 16,000 light-years away.\n\nCharles Messier added it to his catalogue in 1764 and described it as a large nebulosity containing many stars of different magnitudes. The region also includes several smaller nebulae and star clusters. Hubble's close-up views cover only a tiny part of it but show many types and colours of stars. They were taken during a study of preplanetary nebulae, a short and rarely seen stage in the death of a Sun-like star.\n\nOn the sky the star cloud is about nine times larger than the full Moon and shines at about magnitude 4.6. To the naked eye it is a hazy, elongated patch south of the Omega Nebula, M17. Binoculars show a grainy mass of stars, and a telescope at low power resolves it into thousands of points of different brightness. It is best seen on summer evenings in the Northern Hemisphere.",
+    "image": {
+      "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/hubble/stars/star-cloud/Hubble_M24_1_flat_FINAL_A_rot90.jpg?w=1600",
+      "credit": "NASA, ESA, and R. Sahai (Jet Propulsion Laboratory); Processing: Gladys Kober (NASA/Catholic University of America)",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-24/",
+      "caption": "Hubble view of a tiny part of the Small Sagittarius Star Cloud, crowded with stars of many colours."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "open",
+      "sizeArcmin": 90
+    },
+    "link": {
+      "messier": 24
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 24",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-24/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 24",
+        "url": "http://www.messier.seds.org/m/m024.html"
+      }
+    ]
+  },
+  {
+    "id": "m25",
+    "section": "deep-sky",
+    "title": "M25",
+    "subtitle": "Open cluster in Sagittarius",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Open cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Sagittarius",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "2,000 light-years",
+        "source": 1
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "4.6",
+        "source": 1
+      },
+      {
+        "label": "Apparent size",
+        "value": "32 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "IC 4725",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Philippe Loys de Chéseaux, 1745–46",
+        "source": 1
+      }
+    ],
+    "essay": "M25 is a bright open cluster in Sagittarius. Philippe Loys de Chéseaux recorded it in 1745 or 1746, and Charles Messier added it to his catalogue in 1764. Although it is easy to see, John Herschel left it out of his General Catalogue, so it was not included in the New General Catalogue. It has only an Index Catalogue number, IC 4725, added in 1908.\n\nThe cluster is middle-aged, about 90 million years old. It lies about 2,000 light-years away and is twenty-odd light-years across. Among its members is U Sagittarii, a Cepheid variable star that brightens and fades with a period of 6.74 days. Cepheids in clusters are useful because the cluster's distance helps calibrate the relation between a Cepheid's period and its luminosity. The cluster also contains G-type giant stars.\n\nAt magnitude 4.6, M25 can be seen with the naked eye under dark skies as a faint patch in the Milky Way. In binoculars it is a loose, bright group about half a degree across with a few orange stars among the white ones. A small telescope at low power shows dozens of stars.",
+    "image": {
+      "url": "https://storage.noirlab.edu/media/archives/images/screen/noao-m25.jpg",
+      "credit": "Hillary Mathis, Vanessa Harvey, REU program/NOIRLab/NSF/AURA",
+      "licence": "CC BY 4.0",
+      "page": "https://noirlab.edu/public/images/noao-m25/",
+      "caption": "Colour image of the open cluster M25 from the Burrell Schmidt telescope on Kitt Peak."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "open",
+      "sizeArcmin": 32
+    },
+    "link": {
+      "messier": 25
+    },
+    "sources": [
+      {
+        "title": "NOIRLab image: M25, IC4725",
+        "url": "https://noirlab.edu/public/images/noao-m25/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 25",
+        "url": "http://www.messier.seds.org/m/m025.html"
+      }
+    ]
+  },
+  {
+    "id": "m26",
+    "section": "deep-sky",
+    "title": "M26",
+    "subtitle": "Open cluster in Scutum",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Open cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Scutum",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "5,000 light-years",
+        "source": 1
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "8.0",
+        "source": 1
+      },
+      {
+        "label": "Apparent size",
+        "value": "15 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 6694",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Charles Messier, 1764",
+        "source": 1
+      }
+    ],
+    "essay": "M26 is a compact open cluster in the small constellation Scutum. Charles Messier discovered it on 20 June 1764 and noted that it could not be distinguished well in his telescope and needed a better instrument. It lies about 5,000 light-years away and is around 90 million years old.\n\nAt that distance its apparent width of about 15 arcminutes corresponds to roughly 22 light-years. Its brightest stars are only about magnitude 12, of spectral type B8. Observers using 150 to 200 mm telescopes report about 25 stars, with some 70 fainter members. One feature noted by researchers is a zone of low star density, about 3 arcminutes across, immediately around the cluster's nucleus. It is more likely caused by dark interstellar matter in front of the cluster than by a real hole in its population of stars.\n\nAt magnitude 8.0, M26 is much fainter than its neighbour M11, the Wild Duck Cluster, a few degrees to the north. Binoculars show it only as a small hazy spot. A small telescope resolves a handful of brighter stars over a fine haze, and the cluster has to compete with a dense background of Milky Way stars.",
+    "image": {
+      "url": "https://storage.noirlab.edu/media/archives/images/screen/noao-m26.jpg",
+      "credit": "Hillary Mathis, Vanessa Harvey, REU program/NOIRLab/NSF/AURA",
+      "licence": "CC BY 4.0",
+      "page": "https://noirlab.edu/public/images/noao-m26/",
+      "caption": "Deep colour image of the open cluster M26 against a crowded Milky Way background."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "open",
+      "sizeArcmin": 15
+    },
+    "link": {
+      "messier": 26
+    },
+    "sources": [
+      {
+        "title": "NOIRLab image: M26, NGC 6694",
+        "url": "https://noirlab.edu/public/images/noao-m26/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 26",
+        "url": "http://www.messier.seds.org/m/m026.html"
+      }
+    ]
+  },
+  {
+    "id": "m27",
+    "section": "deep-sky",
+    "title": "M27",
+    "subtitle": "Dumbbell Nebula · planetary nebula in Vulpecula",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Planetary nebula",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Vulpecula",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "1,200 light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "7.5",
+        "source": 0
+      },
+      {
+        "label": "Apparent size",
+        "value": "8.0 × 5.7 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 6853",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Charles Messier, 1764",
+        "source": 0
+      }
+    ],
+    "essay": "M27, the Dumbbell Nebula, was the first planetary nebula ever found. Charles Messier discovered it in 1764. A planetary nebula is the shell of gas thrown off by an old, dying star. The name is a historical misnomer: these objects looked round and planet-like in early telescopes, but they have nothing to do with planets.\n\nHubble images of M27 show many knots of gas and dust. Some point toward the central star like fingers, and others are isolated clouds, some with tails. They typically measure 17 billion to 56 billion kilometres across, several times the distance from the Sun to Pluto, and each contains about as much mass as three Earths. They probably form when the star's wind is strong enough to blow away small particles but not larger clumps, leaving a trail behind each clump. Similar knots appear in other nearby planetary nebulae.\n\nThe nebula lies more than 1,200 light-years away in Vulpecula. At magnitude 7.5 it is one of the brightest planetary nebulae and is visible in binoculars as a small, fuzzy patch. A small telescope shows two brighter lobes on either side of the centre, the shape that gives it its name. September is the best month.",
+    "image": {
+      "url": "https://science.nasa.gov/wp-content/uploads/2023/04/opo0306a.jpg?w=1200",
+      "credit": "NASA/ESA and the Hubble Heritage Team (STScI/AURA)",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-27/",
+      "caption": "Hubble close-up of glowing knots of gas in part of the Dumbbell Nebula."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "planetary",
+      "sizeArcmin": 8
+    },
+    "link": {
+      "messier": 27
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 27 (The Dumbbell Nebula)",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-27/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 27",
+        "url": "http://www.messier.seds.org/m/m027.html"
+      }
+    ]
+  },
+  {
+    "id": "m28",
+    "section": "deep-sky",
+    "title": "M28",
+    "subtitle": "Globular cluster in Sagittarius",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Globular cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Sagittarius",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "18,000 light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "7.7",
+        "source": 0
+      },
+      {
+        "label": "Apparent size",
+        "value": "11.2 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 6626",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Charles Messier, 1764",
+        "source": 0
+      }
+    ],
+    "essay": "M28 is a globular cluster in Sagittarius, about 18,000 light-years from Earth. Charles Messier discovered it in 1764.\n\nIt was the first globular cluster found to contain a millisecond pulsar. This object, PSR B1821–24, is a dense neutron star that spins about once every three milliseconds. It emits beams of radiation from its poles, and as the star rotates the beams sweep past Earth like a lighthouse, so it appears to pulse. Astronomers found it in 1986 with the Lovell Telescope, a radio telescope in England. Millisecond pulsars are thought to be spun up by taking in material from a companion star. The crowded cores of globular clusters, where close encounters between stars are common, are good places to form them.\n\nAt magnitude 7.7, M28 appears in binoculars as a faint, round patch of light. It lies about a degree northwest of Kaus Borealis, the star at the top of the Sagittarius \"teapot\". A small telescope shows a compact glow with a brighter centre, about 11 arcminutes across, and larger telescopes resolve its individual stars more effectively. M22, a brighter globular cluster, is a few degrees to the east. August is the best month.",
+    "image": {
+      "url": "https://cdn.esahubble.org/archives/images/screen/potw1910a.jpg",
+      "credit": "ESA/Hubble & NASA, J. E. Grindlay et al.",
+      "licence": "CC BY 4.0",
+      "page": "https://esahubble.org/images/potw1910a/",
+      "caption": "Hubble image of the globular cluster M28."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "globular",
+      "sizeArcmin": 11.2
+    },
+    "link": {
+      "messier": 28
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 28",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-28/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 28",
+        "url": "http://www.messier.seds.org/m/m028.html"
+      }
+    ]
+  },
+  {
+    "id": "m29",
+    "section": "deep-sky",
+    "title": "M29",
+    "subtitle": "Open cluster in Cygnus",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Open cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Cygnus",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "4,000–6,000 light-years (uncertain)",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "7.1",
+        "source": 1
+      },
+      {
+        "label": "Apparent size",
+        "value": "7 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 6913",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Charles Messier, 1764",
+        "source": 1
+      }
+    ],
+    "essay": "M29 is a small, coarse open cluster in Cygnus. Charles Messier discovered it in 1764. It lies in a crowded part of the Milky Way near Gamma Cygni, the star at the centre of the Northern Cross.\n\nIts distance is uncertain, somewhere between 4,000 and 6,000 light-years. The uncertainty comes from the strong and poorly measured dimming of its light by dust between us and the cluster. Without that dust it would appear several times brighter. The cluster is young, about 10 million years old: its hottest stars are giants of spectral type B0. It is considered part of a larger association of young stars in Cygnus, known as Cygnus OB1.\n\nAt magnitude 7.1, M29 is visible in binoculars as a small, compact group a little south of Gamma Cygni. In a small telescope its brightest stars form a tight group a few arcminutes wide. The cluster covers about 7 arcminutes in all, and the dense Milky Way field around it makes its edges hard to define. It is best seen on summer and early autumn evenings in the Northern Hemisphere.",
+    "image": {
+      "url": "https://storage.noirlab.edu/media/archives/images/screen/noao-m29.jpg",
+      "credit": "Hillary Mathis/NOIRLab/NSF/AURA",
+      "licence": "CC BY 4.0",
+      "page": "https://noirlab.edu/public/images/noao-m29/",
+      "caption": "Colour image of the open cluster M29 from the KPNO 2.1-meter telescope."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "open",
+      "sizeArcmin": 7
+    },
+    "link": {
+      "messier": 29
+    },
+    "sources": [
+      {
+        "title": "NOIRLab image: M29, NGC 6913",
+        "url": "https://noirlab.edu/public/images/noao-m29/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 29",
+        "url": "http://www.messier.seds.org/m/m029.html"
+      }
+    ]
+  },
+  {
+    "id": "m30",
+    "section": "deep-sky",
+    "title": "M30",
+    "subtitle": "Globular cluster in Capricornus",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Globular cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Capricornus",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "28,000 light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "7.7",
+        "source": 0
+      },
+      {
+        "label": "Apparent size",
+        "value": "12 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 7099",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Charles Messier, 1764",
+        "source": 0
+      }
+    ],
+    "essay": "M30 is a globular cluster in Capricornus, about 28,000 light-years from Earth. Charles Messier discovered it in 1764. It is about 90 light-years across and formed about 13 billion years ago. Its several hundred thousand stars are packed very densely toward the centre.\n\nLike other globular clusters, M30 is made up mostly of old stars, but it also contains blue stragglers, old stars that look young. Using Hubble's Wide Field Planetary Camera 2, astronomers identified two distinct types in M30. Some form when two stars collide nearly head-on and merge. Others are in binary systems, where one star pulls hydrogen from its companion and is rejuvenated by the extra fuel.\n\nAt magnitude 7.7, M30 can be seen in binoculars as a small, round glow. It lies in a fairly empty part of the sky. A small telescope shows a bright, concentrated core about 12 arcminutes across including its faint outer halo. Larger instruments resolve stars in its outer parts. The best month to look is October.",
+    "image": {
+      "url": "https://cdn.esahubble.org/archives/images/screen/heic0918a.jpg",
+      "credit": "NASA / ESA",
+      "licence": "CC BY 4.0",
+      "page": "https://esahubble.org/images/heic0918a/",
+      "caption": "Hubble Advanced Camera for Surveys image of the dense core of M30."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "globular",
+      "sizeArcmin": 12
+    },
+    "link": {
+      "messier": 30
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 30",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-30/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 30",
+        "url": "http://www.messier.seds.org/m/m030.html"
+      }
+    ]
+  },
+  {
+    "id": "m31",
+    "section": "deep-sky",
+    "title": "M31",
+    "subtitle": "Andromeda Galaxy · spiral galaxy in Andromeda",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Spiral galaxy",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Andromeda",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "2.5 million light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "3.1",
+        "source": 0
+      },
+      {
+        "label": "Apparent size",
+        "value": "178 × 63 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 224",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "First recorded by Abd al-Rahman al-Sufi, 964",
+        "source": 0
+      }
+    ],
+    "essay": "The Andromeda Galaxy is the nearest major galaxy to the Milky Way, about 2.5 million light-years away. It is a large spiral, and because it is so close it is one of the main references astronomers use to understand spiral galaxies in general, including our own, which we can only see from the inside. It is bright enough that nobody can be credited with discovering it. The earliest known written record is in the Persian astronomer Abd al-Rahman al-Sufi's Book of Fixed Stars, from 964. Two smaller galaxies, M32 and M110, orbit it as satellites.\n\nIn 2025 NASA released a Hubble panorama of Andromeda built from more than 600 overlapping fields, a project that took over ten years. It covers about 200 million stars, still only a fraction of the galaxy's total, spread across roughly 2.5 billion pixels. Astronomers are using it to reconstruct the galaxy's history, including past mergers with smaller satellite galaxies.\n\nAt magnitude 3.1, Andromeda is easy to see with the naked eye as an elongated glow, even under moderate light pollution. Its full extent spans several times the width of the full Moon. Binoculars show the bright central bulge and an oval haze, and a small telescope also picks up M32 nearby. The best month to observe it is November.",
+    "image": {
+      "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/hubble/galaxies/andromeda/Hubble_M31Mosaic_2025_10552x2468_STScI-01JGY92V0Z2HJTVH605N4WH9XQ.jpg?w=2000",
+      "credit": "NASA, ESA, Benjamin F. Williams (UWashington), Zhuo Chen (UWashington), L. Clifton Johnson (Northwestern); Image Processing: Joseph DePasquale (STScI)",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-31/",
+      "caption": "Hubble's 2025 panorama of the Andromeda Galaxy, assembled from more than 600 overlapping fields."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "galaxy",
+      "sizeArcmin": 178
+    },
+    "link": {
+      "messier": 31
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 31 (The Andromeda Galaxy)",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-31/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 31",
+        "url": "http://www.messier.seds.org/m/m031.html"
+      }
+    ]
+  },
+  {
+    "id": "m32",
+    "section": "deep-sky",
+    "title": "M32",
+    "subtitle": "Satellite of the Andromeda Galaxy · compact elliptical galaxy in Andromeda",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Compact elliptical galaxy",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Andromeda",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "2.5 million light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "8.1",
+        "source": 0
+      },
+      {
+        "label": "Apparent size",
+        "value": "8 × 6 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 221",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Guillaume Le Gentil, 1749",
+        "source": 0
+      }
+    ],
+    "essay": "M32 is a compact elliptical galaxy and one of the two bright satellite galaxies of the Andromeda Galaxy, M31. The other is M110. Like Andromeda, M32 is about 2.5 million light-years from Earth. The French astronomer Guillaume Le Gentil discovered it in 1749.\n\nElliptical galaxies have little visible structure, and M32 is small and dense. Hubble images show stars crowded together in its core and thinning out toward its edges. Astronomers have used the galaxy to study gravitational microlensing, in which the gravity of one star bends and briefly brightens the light of a star behind it. They have also studied its variable stars, which help measure distances. A survey of the southern half of Andromeda, the Panchromatic Hubble Andromeda Southern Treasury, covered M32 in visible and near-ultraviolet light.\n\nM32 shines at magnitude 8.1 and lies just south of Andromeda's bright central region, in the same telescope field. That makes it easy to locate. A small to medium telescope shows it as a small, bright oval with a soft edge. Large telescopes are needed to see any detail beyond a spot of light. The best month to look is November.",
+    "image": {
+      "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/hubble/galaxies/elliptical/Hubble_M32_str2_flat_FINAL_NewImage.jpg?w=1600",
+      "credit": "NASA, ESA, B. Williams (University of Washington); Image Processing: Gladys Kober (NASA/Catholic University of America)",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-32/",
+      "caption": "Hubble image of M32 taken for the Panchromatic Hubble Andromeda Southern Treasury survey."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "galaxy",
+      "sizeArcmin": 8
+    },
+    "link": {
+      "messier": 32
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 32",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-32/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 32",
+        "url": "http://www.messier.seds.org/m/m032.html"
+      }
+    ]
+  },
+  {
+    "id": "m33",
+    "section": "deep-sky",
+    "title": "M33",
+    "subtitle": "Triangulum Galaxy · spiral galaxy in Triangulum",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Spiral galaxy",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Triangulum",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "About 3 million light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "5.7",
+        "source": 0
+      },
+      {
+        "label": "Apparent size",
+        "value": "73 × 45 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 598",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Catalogued by Charles Messier, 1764",
+        "source": 0
+      }
+    ],
+    "essay": "M33, the Triangulum Galaxy, is a spiral galaxy about half the size of the Milky Way. It is the third-largest member of the Local Group of galaxies, after the Andromeda Galaxy and the Milky Way, and lies about 3 million light-years away. Others may have seen it earlier, but Charles Messier was the first to catalogue it, in August 1764.\n\nHubble has mapped its central region and inner spiral arms in a mosaic of 54 separate fields. The mosaic resolves about 25 million individual stars across a region 14,000 light-years wide. The observations show that M33 forms stars at about ten times the average rate found in Andromeda. Its largest star-forming region, NGC 604, is one of the largest stellar nurseries in the Local Group.\n\nAt magnitude 5.7, M33 is one of the most distant objects visible to the unaided eye, but only under very clear, dark skies. Its light is spread over an area larger than the full Moon, so it has low surface brightness and disappears in light-polluted skies. Low magnification and a wide field work best: binoculars show it as a large, faint oval. A telescope starts to show some spiral structure under dark skies. November is the best month.",
+    "image": {
+      "url": "https://science.nasa.gov/wp-content/uploads/2023/04/heic1901a.jpg?w=1600",
+      "credit": "NASA, ESA, and M. Durbin, J. Dalcanton and B. F. Williams (University of Washington)",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-33/",
+      "caption": "Hubble mosaic of the central region and inner spiral arms of the Triangulum Galaxy."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "galaxy",
+      "sizeArcmin": 73
+    },
+    "link": {
+      "messier": 33
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 33 (The Triangulum Galaxy)",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-33/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 33",
+        "url": "http://www.messier.seds.org/m/m033.html"
+      }
+    ]
+  },
+  {
+    "id": "m34",
+    "section": "deep-sky",
+    "title": "M34",
+    "subtitle": "Open cluster in Perseus",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Open cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Perseus",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "1,400 light-years",
+        "source": 1
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "5.5",
+        "source": 1
+      },
+      {
+        "label": "Apparent size",
+        "value": "35 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 1039",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Giovanni Battista Hodierna, before 1654",
+        "source": 1
+      }
+    ],
+    "essay": "M34 is an open cluster of about 100 stars in Perseus, about 1,400 light-years from Earth. Its stars are spread over about 35 arcminutes, more than the width of the full Moon, which corresponds to about 14 light-years.\n\nGiovanni Battista Hodierna probably recorded it before 1654. Charles Messier found it independently on 25 August 1764. Age estimates for the cluster range from about 110 million to 190 million years. Some studies have found that M34 moves through space together with several other clusters, including the Pleiades. They form a loose group called the Local Association. The brightest member is about magnitude 7.9. A slightly brighter star nearby, at magnitude 7.3, affects the cluster's appearance but is not a member.\n\nAt magnitude 5.5, M34 is visible to the naked eye under good conditions as a faint, nebulous patch. It lies just north of the line from Algol, Beta Persei, to Gamma Andromedae. Ordinary 10×50 binoculars resolve it into stars, and a telescope at low magnification shows it best: a scattered group of bright stars with fainter ones filling the gaps. Autumn and early winter evenings in the Northern Hemisphere are the best time to look.",
+    "image": {
+      "url": "https://storage.noirlab.edu/media/archives/images/screen/noao-m34.jpg",
+      "credit": "REU program/NOIRLab/NSF/AURA",
+      "licence": "CC BY 4.0",
+      "page": "https://noirlab.edu/public/images/noao-m34/",
+      "caption": "Colour image of the open cluster M34 from the Burrell Schmidt telescope on Kitt Peak."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "open",
+      "sizeArcmin": 35
+    },
+    "link": {
+      "messier": 34
+    },
+    "sources": [
+      {
+        "title": "NOIRLab image: M34, NGC 1039",
+        "url": "https://noirlab.edu/public/images/noao-m34/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 34",
+        "url": "http://www.messier.seds.org/m/m034.html"
+      }
+    ]
+  },
+  {
+    "id": "m35",
+    "section": "deep-sky",
+    "title": "M35",
+    "subtitle": "Shoe Buckle Cluster · open cluster in Gemini",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Open cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Gemini",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "2,800 light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "5.3",
+        "source": 0
+      },
+      {
+        "label": "Apparent size",
+        "value": "28 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 2168",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Jean-Philippe Loys de Chéseaux, 1745",
+        "source": 0
+      }
+    ],
+    "essay": "M35 is the only Messier object in Gemini. It is an open cluster of about 400 stars, sometimes called the Shoe Buckle Cluster, spread over a region about 30 light-years across. At about 150 million years old it is relatively young. It lies 2,800 light-years from Earth.\n\nThe Swiss astronomer Jean-Philippe Loys de Chéseaux discovered the cluster in 1745, and Charles Messier catalogued it in 1764. Open clusters form from a single cloud of gas and dust, so their stars share an age and chemical composition. That makes them useful for studying how stars evolve. M35 contains many hot blue stars as well as some cooler orange and red giants. Hubble's images of it come from a calibration program that periodically checks the telescope's instruments for changes in sensitivity.\n\nM35 is large and bright, at magnitude 5.3. On very dark nights it is visible to the naked eye as a fuzzy spot near the foot of Castor, one of the Gemini twins. Binoculars show a haze with some stars resolved, and a telescope shows a rich group of bright stars about 28 arcminutes across. In the same field, a smaller and more distant cluster, NGC 2158, appears as a faint, compact glow. M35 is best seen in Northern Hemisphere winter.",
+    "image": {
+      "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/hubble/stars/open-clusters/Hubble_M35_WFPC2ok_flat_FINAL1.jpg?w=1600",
+      "credit": "NASA, ESA, and E. Nelan (Space Telescope Science Institute), A. Riess (The Johns Hopkins University), J. Rhodes (Jet Propulsion Laboratory) ; Processing: Gladys Kober (NASA/Catholic University of America)",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-35/",
+      "caption": "Hubble close-up of several of the hundreds of stars in the open cluster M35."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "open",
+      "sizeArcmin": 28
+    },
+    "link": {
+      "messier": 35
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 35",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-35/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 35",
+        "url": "http://www.messier.seds.org/m/m035.html"
+      }
+    ]
+  },
+  {
+    "id": "m36",
+    "section": "deep-sky",
+    "title": "M36",
+    "subtitle": "Open cluster in Auriga",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Open cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Auriga",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "4,100 light-years",
+        "source": 1
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "6.3",
+        "source": 1
+      },
+      {
+        "label": "Apparent size",
+        "value": "12 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 1960",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Giovanni Battista Hodierna, before 1654",
+        "source": 1
+      }
+    ],
+    "essay": "M36 is one of three bright open clusters in the southern part of Auriga, along with M37 and M38. All three lie at similar distances, about 4,000 light-years from Earth. Giovanni Battista Hodierna recorded all three before 1654, but his work did not become widely known until 1984. Guillaume Le Gentil rediscovered M36 independently, and Charles Messier catalogued it on 2 September 1764.\n\nM36 is the youngest of the three, about 25 million years old, and contains no evolved red giant stars. It has about 60 confirmed members. The brightest are about magnitude 9 and of spectral type B2, with the most luminous member giving off about 360 times as much light as the Sun. Many of these hot stars spin rapidly, as do the bright B-type stars of the Pleiades. If M36 were as close as the Pleiades, about ten times nearer, it would look much like them.\n\nAt magnitude 6.3, M36 is easy to find in binoculars as a small, bright patch with a few stars resolved. A small telescope at low power shows a compact group of bright stars about 12 arcminutes across. M37 and M38 are each a few degrees away, and all three can be found in one binocular sweep.",
+    "image": {
+      "url": "https://storage.noirlab.edu/media/archives/images/screen/noao-m36.jpg",
+      "credit": "NOIRLab/NSF/AURA",
+      "licence": "CC BY 4.0",
+      "page": "https://noirlab.edu/public/images/noao-m36/",
+      "caption": "Colour composite of the young open cluster M36 from the Kitt Peak 0.9-meter telescope."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "open",
+      "sizeArcmin": 12
+    },
+    "link": {
+      "messier": 36
+    },
+    "sources": [
+      {
+        "title": "NOIRLab image: M36, NGC 1960",
+        "url": "https://noirlab.edu/public/images/noao-m36/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 36",
+        "url": "http://www.messier.seds.org/m/m036.html"
+      }
+    ]
+  },
+  {
+    "id": "m37",
+    "section": "deep-sky",
+    "title": "M37",
+    "subtitle": "Open cluster in Auriga",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Open cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Auriga",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "4,400 light-years",
+        "source": 1
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "6.2",
+        "source": 1
+      },
+      {
+        "label": "Apparent size",
+        "value": "24 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 2099",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Giovanni Battista Hodierna, before 1654",
+        "source": 1
+      }
+    ],
+    "essay": "M37 is the brightest and richest of the three open clusters in southern Auriga, alongside M36 and M38. It contains about 150 stars brighter than magnitude 12.5 and perhaps more than 500 in total, within a diameter of about 25 light-years. Giovanni Battista Hodierna recorded it before 1654. Guillaume Le Gentil missed it when he rediscovered M36 and M38 in 1749, so Charles Messier found it independently on 2 September 1764.\n\nM37 is older than its two neighbours, at about 300 million years. It contains at least a dozen red giants, and its hottest main-sequence stars are of spectral type B9, both signs of a more evolved cluster. Its distance is less certain than its age. Published values range from about 3,600 to 4,700 light-years. A commonly adopted figure is about 4,400 light-years.\n\nAt magnitude 6.2, M37 is easy in binoculars, where it looks like a rich, grainy patch. A small telescope resolves it into a dense field of faint stars about 24 arcminutes across. The cluster is much more richly populated than M36 or M38.",
+    "image": {
+      "url": "https://storage.noirlab.edu/media/archives/images/screen/noao-m37.jpg",
+      "credit": "NOIRLab/NSF/AURA",
+      "licence": "CC BY 4.0",
+      "page": "https://noirlab.edu/public/images/noao-m37/",
+      "caption": "Colour composite of the open cluster M37 from the Kitt Peak 0.9-meter telescope."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "open",
+      "sizeArcmin": 24
+    },
+    "link": {
+      "messier": 37
+    },
+    "sources": [
+      {
+        "title": "NOIRLab image: M37, NGC 2099",
+        "url": "https://noirlab.edu/public/images/noao-m37/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 37",
+        "url": "http://www.messier.seds.org/m/m037.html"
+      }
+    ]
+  },
+  {
+    "id": "m38",
+    "section": "deep-sky",
+    "title": "M38",
+    "subtitle": "Open cluster in Auriga",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Open cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Auriga",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "4,200 light-years",
+        "source": 1
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "7.4",
+        "source": 1
+      },
+      {
+        "label": "Apparent size",
+        "value": "21 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 1912",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Giovanni Battista Hodierna, before 1654",
+        "source": 1
+      }
+    ],
+    "essay": "M38 is an open cluster in southern Auriga, about 2.5 degrees northwest of M36. Giovanni Battista Hodierna recorded it before 1654, and Guillaume Le Gentil found it again in 1749. Charles Messier added it to his catalogue on 25 September 1764.\n\nThe cluster is of intermediate age, about 220 million years according to one widely used catalogue. At its distance of about 4,200 light-years, its apparent width of about 20 arcminutes corresponds to roughly 25 light-years. Its brightest member is a yellow giant of magnitude 7.9 and spectral type G0. That star gives off about 900 times as much light as the Sun. From the distance of M38, the Sun itself would appear only about magnitude 15.\n\nObservers have long noted that the brightest stars form a pattern like an oblique cross or the Greek letter pi. At magnitude 7.4, M38 is the faintest of the three Auriga clusters but still easy in binoculars, where it shows as a soft glow with scattered stars. A small telescope at low power resolves dozens of stars in a loose, fairly even spread.",
+    "image": {
+      "url": "https://storage.noirlab.edu/media/archives/images/screen/noao-m38.jpg",
+      "credit": "NOIRLab/NSF/AURA",
+      "licence": "CC BY 4.0",
+      "page": "https://noirlab.edu/public/images/noao-m38/",
+      "caption": "Colour image of the open cluster M38 from the Burrell Schmidt telescope on Kitt Peak."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "open",
+      "sizeArcmin": 21
+    },
+    "link": {
+      "messier": 38
+    },
+    "sources": [
+      {
+        "title": "NOIRLab image: M38, NGC 1912",
+        "url": "https://noirlab.edu/public/images/noao-m38/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 38",
+        "url": "http://www.messier.seds.org/m/m038.html"
+      }
+    ]
+  },
+  {
+    "id": "m39",
+    "section": "deep-sky",
+    "title": "M39",
+    "subtitle": "Open cluster in Cygnus",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Open cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Cygnus",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "825 light-years",
+        "source": 1
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "4.6",
+        "source": 1
+      },
+      {
+        "label": "Apparent size",
+        "value": "32 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 7092",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Charles Messier, 1764 (possibly seen by Le Gentil in 1749)",
+        "source": 1
+      }
+    ],
+    "essay": "M39 is a large, loose open cluster in Cygnus, about 9 degrees east and slightly north of Deneb. At about 825 light-years it is one of the nearer open clusters. About 30 stars are confirmed members, within a volume about 7 light-years across. Estimates of its age range from about 230 to 300 million years.\n\nGuillaume Le Gentil may have seen the cluster in 1749. Charles Messier found it independently in 1764. All of its stars studied so far are main-sequence stars. The brightest, of spectral type A0 and magnitude 6.8, appear to be close to the point where they will begin to evolve into red giants. The cluster is approaching us at about 28 km/s.\n\nM39's total brightness is usually given as magnitude 4.6, although some observers estimate it at 5.2 to 6.0. It is visible to the naked eye under dark skies as a hazy spot in the Milky Way. Its stars are spread over about 32 arcminutes, so it is best viewed in binoculars or a telescope at its lowest power. Those show a sparse group of bright stars against a rich background. It is best placed on late summer and autumn evenings in the Northern Hemisphere.",
+    "image": {
+      "url": "https://storage.noirlab.edu/media/archives/images/screen/noao-m39.jpg",
+      "credit": "WIYN/KPNO/NOIRLab/NSF/AURA/H. Schweiker",
+      "licence": "CC BY 4.0",
+      "page": "https://noirlab.edu/public/images/noao-m39/",
+      "caption": "Wide-field image of the loose open cluster M39 taken with the Mosaic camera at the WIYN 0.9-meter telescope."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "open",
+      "sizeArcmin": 32
+    },
+    "link": {
+      "messier": 39
+    },
+    "sources": [
+      {
+        "title": "NOIRLab image: M39, NGC 7092",
+        "url": "https://noirlab.edu/public/images/noao-m39/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 39",
+        "url": "http://www.messier.seds.org/m/m039.html"
+      }
+    ]
+  },
+  {
+    "id": "m40",
+    "section": "deep-sky",
+    "title": "M40",
+    "subtitle": "Winnecke 4 · double star in Ursa Major",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Double star",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Ursa Major",
+        "source": 1
+      },
+      {
+        "label": "Distance",
+        "value": "About 1,140 and 450 light-years (two stars)",
+        "source": 1
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "8.4 (combined); 9.0 and 9.3",
+        "source": 1
+      },
+      {
+        "label": "Apparent separation",
+        "value": "About 49 arcsec",
+        "source": 1
+      },
+      {
+        "label": "Other designation",
+        "value": "Winnecke 4 (WNC 4)",
+        "source": 0
+      },
+      {
+        "label": "Discovered",
+        "value": "Charles Messier, 1764",
+        "source": 1
+      }
+    ],
+    "essay": "M40 is a pair of faint stars in Ursa Major, not a cluster or nebula. Charles Messier recorded it in 1764 while searching for a nebula that the 17th-century astronomer Johannes Hevelius had reported in this area. Messier found no nebula, but he measured the position of the two stars and gave them a number anyway. The entry shows how his catalogue was put together: he collected positions of objects that could be confused with comets, and did not always filter them strictly.\n\nLater observers could not identify Messier's object, and it was considered lost for about two centuries. In 1966 John Mallas matched Messier's description to a double star that Friedrich August Theodor Winnecke had observed at Pulkovo Observatory in 1863 and catalogued as Winnecke 4.\n\nThe two stars are of magnitude 9.0 and 9.3, about 49 arcseconds apart. They are probably an optical double, a chance alignment of two unrelated stars at different distances, estimated at about 1,140 and 450 light-years. M40 lies just northeast of Megrez, the star where the handle of the Big Dipper joins the bowl. A small telescope easily splits it into two faint points of similar brightness.",
+    "image": {
+      "url": "https://storage.noirlab.edu/media/archives/images/screen/noao-m40.jpg",
+      "credit": "NOIRLab/NSF/AURA",
+      "licence": "CC BY 4.0",
+      "page": "https://noirlab.edu/public/images/noao-m40/",
+      "caption": "Kitt Peak 0.9-meter telescope image of the double star M40, also catalogued as Winnecke 4."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "open",
+      "sizeArcmin": 0.8
+    },
+    "link": {
+      "messier": 40
+    },
+    "sources": [
+      {
+        "title": "NOIRLab image: M40 (Winnecke 4)",
+        "url": "https://noirlab.edu/public/images/noao-m40/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 40",
+        "url": "http://www.messier.seds.org/m/m040.html"
+      }
+    ]
+  },
+  {
+    "id": "m41",
+    "section": "deep-sky",
+    "title": "M41",
+    "subtitle": "Open cluster in Canis Major",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Open cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Canis Major",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "2,300 light-years",
+        "source": 1
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "4.5",
+        "source": 1
+      },
+      {
+        "label": "Apparent size",
+        "value": "38 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 2287",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Giovanni Battista Hodierna, before 1654",
+        "source": 1
+      }
+    ],
+    "essay": "M41 is an open cluster in Canis Major, about 4 degrees almost directly south of Sirius, the brightest star in the night sky. It contains about 100 stars, including several red giants that appear orange. The brightest of them, of spectral type K3 and magnitude 6.9, lies near the centre of the cluster and gives off about 700 times as much light as the Sun. The cluster is about 2,300 light-years away and roughly 25 light-years across. Its age is estimated at about 190 to 240 million years. Studies of its red giants show a chemical composition very similar to the Sun's.\n\nM41 may have been recorded by Aristotle around 325 BC. If so, it would be the faintest object noted in classical antiquity, but the identification is uncertain. Giovanni Battista Hodierna catalogued it before 1654, and it became widely known after John Flamsteed found it again in 1702. A bright blue giant at the cluster's southeast edge is a foreground star, not a member.\n\nAt magnitude 4.5, M41 can be seen with the naked eye under dark skies. Binoculars show a bright, scattered group about 38 arcminutes across, larger than the full Moon. A small telescope at low power shows dozens of stars, with the orange giants standing out among the white ones.",
+    "image": {
+      "url": "https://storage.noirlab.edu/media/archives/images/screen/noao-m41.jpg",
+      "credit": "NOIRLab/NSF/AURA",
+      "licence": "CC BY 4.0",
+      "page": "https://noirlab.edu/public/images/noao-m41/",
+      "caption": "Colour image of the open cluster M41 from the Burrell Schmidt telescope on Kitt Peak, showing several orange red giants."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "open",
+      "sizeArcmin": 38
+    },
+    "link": {
+      "messier": 41
+    },
+    "sources": [
+      {
+        "title": "NOIRLab image: M41, NGC 2287",
+        "url": "https://noirlab.edu/public/images/noao-m41/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 41",
+        "url": "http://www.messier.seds.org/m/m041.html"
+      }
+    ]
+  },
+  {
+    "id": "m42",
+    "section": "deep-sky",
+    "title": "M42",
+    "subtitle": "Orion Nebula · nebula in Orion",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Nebula",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Orion",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "1,500 light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "4.0",
+        "source": 0
+      },
+      {
+        "label": "Apparent size",
+        "value": "85 × 60 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 1976",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Nicolas-Claude Fabri de Peiresc, 1610 (possibly)",
+        "source": 1
+      }
+    ],
+    "essay": "The Orion Nebula is the closest large star-forming region to Earth, about 1,500 light-years away. It is a huge cloud of gas and dust in which large numbers of new stars are forming. Many cultures have known it. The Maya of Mesoamerica regarded it as a cosmic fire of creation. The first telescopic record may be Nicolas-Claude Fabri de Peiresc's in 1610.\n\nAt the heart of the nebula are four massive young stars called the Trapezium, after their arrangement. Their ultraviolet light is carving a cavity in the cloud and disrupting the growth of hundreds of smaller stars around them. Hubble has found protoplanetary discs around many of the young stars in the nebula, flattened clouds of dust and gas that may become planetary systems, like the one from which our solar system formed 4.5 billion years ago. Hubble's mosaic of the nebula combines 520 exposures into an image of more than a billion pixels.\n\nAt magnitude 4.0, M42 is visible to the naked eye as a fuzzy star in the middle of the sword that hangs below Orion's belt. Binoculars show a glowing cloud. A small telescope shows the bright inner region, dark dust lanes and the four Trapezium stars. The best month is January.",
+    "image": {
+      "url": "https://science.nasa.gov/wp-content/uploads/2023/04/orion-nebula-xlarge_web.jpg",
+      "credit": "NASA, ESA, M. Robberto (Space Telescope Science Institute/ESA) and the Hubble Space Telescope Orion Treasury Project Team",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-42/",
+      "caption": "Hubble mosaic of the Orion Nebula, built from 520 exposures in multiple wavelengths."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "nebula",
+      "sizeArcmin": 85
+    },
+    "link": {
+      "messier": 42
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 42 (The Orion Nebula)",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-42/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 42",
+        "url": "http://www.messier.seds.org/m/m042.html"
+      }
+    ]
+  },
+  {
+    "id": "m43",
+    "section": "deep-sky",
+    "title": "M43",
+    "subtitle": "De Mairan's Nebula · nebula in Orion",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Nebula",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Orion",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "1,600 light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "9.0",
+        "source": 0
+      },
+      {
+        "label": "Apparent size",
+        "value": "20 × 15 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 1982",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Jean-Jacques d'Ortous de Mairan, 1731",
+        "source": 0
+      }
+    ],
+    "essay": "M43 is a small nebula next to the Orion Nebula, M42, separated from it only by a dark lane of dust. The French astronomer Jean-Jacques d'Ortous de Mairan recognised it as a separate nebula in 1731, which is why it is sometimes called De Mairan's Nebula.\n\nA single massive star near its centre lights up M43 and shapes the surrounding gas and dust with its radiation. Because of its small size and its single illuminating star, astronomers call it a miniature Orion Nebula. M42, by comparison, is much larger and is shaped by the four massive stars of the Trapezium. Both nebulae belong to the Orion Molecular Cloud Complex, a vast stellar nursery that also includes the Horsehead Nebula and the Flame Nebula. M43 lies about 1,600 light-years from Earth.\n\nAt magnitude 9, M43 needs a telescope. In a small instrument it appears as a small glow around a star, just north of the bright core of the Orion Nebula and separated from it by the dark dust lane. It is easiest to see at moderate magnification, which reduces the glare from M42. The best month to observe it is January.",
+    "image": {
+      "url": "https://science.nasa.gov/wp-content/uploads/2023/04/heic0601c.jpg?w=1200",
+      "credit": "NASA, ESA, M. Robberto (Space Telescope Science Institute/ESA) and the Hubble Space Telescope Orion Treasury Project Team",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-43/",
+      "caption": "Hubble view of M43, a small nebula shaped by a single massive star near its centre."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "nebula",
+      "sizeArcmin": 20
+    },
+    "link": {
+      "messier": 43
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 43",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-43/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 43",
+        "url": "http://www.messier.seds.org/m/m043.html"
+      }
+    ]
+  },
+  {
+    "id": "m44",
+    "section": "deep-sky",
+    "title": "M44",
+    "subtitle": "Beehive Cluster · open cluster in Cancer",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Open cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Cancer",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "600 light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "3.7",
+        "source": 0
+      },
+      {
+        "label": "Apparent size",
+        "value": "95 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 2632",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Known since antiquity; recorded by Aratos about 260 BC",
+        "source": 1
+      }
+    ],
+    "essay": "M44, the Beehive Cluster or Praesepe, is an open cluster of about 1,000 stars in Cancer. At roughly 600 light-years it is one of the closest open clusters to Earth. It is thought to be about 600 to 700 million years old, young compared with the roughly 13-billion-year age of the Milky Way.\n\nBecause it is visible to the naked eye, the cluster has been known since ancient times. The Greek poet Aratos mentioned it around 260 BC. Galileo was the first to show that it is more than a cloudy patch: with his telescope he resolved about 40 of its stars. Hubble has imaged parts of the cluster's outskirts, but mainly to look through it at distant background galaxies.\n\nM44 covers about 1.5 degrees of sky, roughly three full Moons. To the naked eye it is a faint blur of light in the middle of Cancer, where the three branches of the constellation's upside-down \"Y\" meet. In light-polluted skies, look halfway along a line from Regulus in Leo to Pollux in Gemini, a little to the south and west. Binoculars resolve about 20 stars and show the cluster well. A telescope at its lowest power reveals scores to hundreds more, mostly blue-white. It is highest in the evening sky in March.",
+    "image": {
+      "url": "https://storage.noirlab.edu/media/archives/images/screen/noao-m44bash.jpg",
+      "credit": "KPNO/NOIRLab/NSF/AURA/Tom Bash and John Fox/Adam Block",
+      "licence": "CC BY 4.0",
+      "page": "https://noirlab.edu/public/images/noao-m44bash/",
+      "caption": "Wide-field image of the Beehive Cluster taken through the Advanced Observing Program at Kitt Peak Visitor Center."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "open",
+      "sizeArcmin": 95
+    },
+    "link": {
+      "messier": 44
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 44 (The Beehive Cluster)",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-44/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 44",
+        "url": "http://www.messier.seds.org/m/m044.html"
+      },
+      {
+        "title": "NOIRLab image: M44: The Beehive Cluster",
+        "url": "https://noirlab.edu/public/images/noao-m44bash/"
+      }
+    ]
+  },
+  {
+    "id": "m45",
+    "section": "deep-sky",
+    "title": "M45",
+    "subtitle": "Pleiades · open cluster in Taurus",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Open cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Taurus",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "445 light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "1.6",
+        "source": 0
+      },
+      {
+        "label": "Apparent size",
+        "value": "110 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Known since prehistoric times",
+        "source": 0
+      }
+    ],
+    "essay": "The Pleiades, also called the Seven Sisters, is the best-known open cluster in the sky. It contains more than a thousand stars loosely bound by gravity, but a handful of bright, hot blue members dominate its appearance. The cluster has been observed since prehistoric times and has no known discoverer. Galileo was the first to look at it through a telescope.\n\nThe cluster is about 445 light-years away in Taurus, although published distances vary. Long-exposure photographs show blue nebulosity around the brightest stars. This is light from the stars scattered by a dust cloud the cluster is passing through. Hubble imaged part of that cloud near the star Merope. The image shows the star's radiation pressure slowing the smaller dust particles more than the larger ones, so the dust is sorted by size as the cloud moves toward the star.\n\nAt magnitude 1.6, the Pleiades is easy to see with the naked eye, even from towns, as a small, tight group of six or seven stars shaped like a little dipper. It spans almost two degrees, so binoculars or a telescope at very low power give the best view, showing dozens of blue-white stars. The dust nebulosity is faint and best seen in photographs. December is the best month.",
+    "image": {
+      "url": "https://science.nasa.gov/wp-content/uploads/2023/04/interstellar_cloud_in_pleiades.jpg?w=1200",
+      "credit": "NASA and the Hubble Heritage Team (STScI/AURA); Acknowledgment: George Herbig and Theodore Simon (Institute for Astronomy, University of Hawaii)",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-45/",
+      "caption": "Hubble image of a dust cloud being sorted by radiation pressure from the Pleiades star Merope, just outside the frame."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "open",
+      "sizeArcmin": 110
+    },
+    "link": {
+      "messier": 45
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 45 (The Pleiades)",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-45/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 45",
+        "url": "http://www.messier.seds.org/m/m045.html"
+      }
+    ]
+  },
+  {
+    "id": "m46",
+    "section": "deep-sky",
+    "title": "M46",
+    "subtitle": "Open cluster in Puppis",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Open cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Puppis",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "5,400 light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "6.0",
+        "source": 1
+      },
+      {
+        "label": "Apparent size",
+        "value": "27 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 2437",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Charles Messier, 1771",
+        "source": 1
+      }
+    ],
+    "essay": "M46 is a rich open cluster in Puppis, about 5,400 light-years from Earth. Charles Messier discovered it in 1771. It was the first object he found after publishing the first edition of his catalogue, which listed M1 to M45.\n\nA planetary nebula, NGC 2438, appears on the cluster's northern edge, but it is not a member. It lies about 2,400 light-years closer to us than the cluster's stars. The nebula formed when a Sun-like star ran out of nuclear fuel and expelled its outer layers. The white dwarf left behind is visible at its centre in Hubble's image. William Herschel was the first to see the nebula, and his son John Herschel described it in 1827 as round and a little velvety at the edges.\n\nTo find M46, start at Sirius and move about 14 degrees east and slightly north. At magnitude 6.0, the cluster appears in binoculars as a large, even haze about 27 arcminutes across. Under dark skies the brighter cluster M47 and the smaller NGC 2423 fit in the same binocular field. A small telescope resolves dozens of faint stars, and a nebula filter helps show NGC 2438, a 10th-magnitude ring, against the background sky.",
+    "image": {
+      "url": "https://science.nasa.gov/wp-content/uploads/2023/04/hubble_ngc2438_wfpc2_screen_3mb.png?w=1200",
+      "credit": "NASA, ESA, K. Knoll (NASA Goddard), and S. Öttl (Leopold Franzens Universität Innsbruck), et. al.; Processing: Gladys Kober (NASA/Catholic University of America)",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-46/",
+      "caption": "Hubble image of the planetary nebula NGC 2438 in front of the stars of M46."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "open",
+      "sizeArcmin": 27
+    },
+    "link": {
+      "messier": 46
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 46",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-46/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 46",
+        "url": "http://www.messier.seds.org/m/m046.html"
+      }
+    ]
+  },
+  {
+    "id": "m47",
+    "section": "deep-sky",
+    "title": "M47",
+    "subtitle": "Open cluster in Puppis",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Open cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Puppis",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "1,600 light-years",
+        "source": 1
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "4.4",
+        "source": 1
+      },
+      {
+        "label": "Apparent size",
+        "value": "30 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 2422",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Giovanni Battista Hodierna, before 1654",
+        "source": 1
+      }
+    ],
+    "essay": "M47 is a bright, coarse open cluster in Puppis, about 1,600 light-years from Earth. It contains some 50 stars spread over about 30 arcminutes, roughly the size of the full Moon, which corresponds to about 14 light-years.\n\nGiovanni Battista Hodierna described it before 1654 as a nebula between the two dogs, Canis Major and Canis Minor, but his work did not come to light until 1984. Charles Messier found it independently on 19 February 1771. However, he made a sign error when he calculated its position. As a result there was no cluster at his listed coordinates, and M47 was considered missing until 1959, when T. F. Morris identified it. Caroline Herschel and William Herschel both observed it in the 1780s. The wrong position survived for a long time, and it even entered the New General Catalogue as NGC 2478, an entry with no object.\n\nAt magnitude 4.4, M47 can be seen with the naked eye at a dark site as a dim, fuzzy spot. It lies just west of the fainter, richer cluster M46, and the two make a good contrast in binoculars. M47 resolves into a scattered group of bright stars, while M46 remains a haze. A small telescope at low power shows M47 best.",
+    "image": {
+      "url": "https://storage.noirlab.edu/media/archives/images/screen/noao-m47.jpg",
+      "credit": "NOIRLab/NSF/AURA",
+      "licence": "CC BY 4.0",
+      "page": "https://noirlab.edu/public/images/noao-m47/",
+      "caption": "Colour image of the open cluster M47 from the Burrell Schmidt telescope on Kitt Peak."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "open",
+      "sizeArcmin": 30
+    },
+    "link": {
+      "messier": 47
+    },
+    "sources": [
+      {
+        "title": "NOIRLab image: M47, NGC 2422",
+        "url": "https://noirlab.edu/public/images/noao-m47/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 47",
+        "url": "http://www.messier.seds.org/m/m047.html"
+      }
+    ]
+  },
+  {
+    "id": "m48",
+    "section": "deep-sky",
+    "title": "M48",
+    "subtitle": "Open cluster in Hydra",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Open cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Hydra",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "2,500 light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "5.5",
+        "source": 0
+      },
+      {
+        "label": "Apparent size",
+        "value": "54 arcmin",
+        "source": 0
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 2548",
+        "source": 0
+      },
+      {
+        "label": "Discovered",
+        "value": "Charles Messier, 1771",
+        "source": 0
+      }
+    ],
+    "essay": "M48 is an open cluster near the head of Hydra, close to the border with Monoceros. It has about 100 to 200 core members and as many as 1,000 stars in total, and it lies roughly 2,500 light-years from Earth. It is of intermediate age for an open cluster.\n\nThe cluster has a confused history. Charles Messier catalogued it on 19 February 1771 but recorded its position wrongly, so astronomers could not find it and it was treated as lost. Johann Elert Bode found it again around 1782, and Caroline Herschel found it on 8 March 1783 and added it to her list as No. 5. William Herschel catalogued it as H VI.22 on 1 February 1786.\n\nHubble's image of part of the cluster comes from observations used to calibrate Wide Field Camera 3. Those calibrations improve the camera's measurements of the distances, brightness, positions and motions of the objects it observes. At magnitude 5.5, M48 is visible to the naked eye under good, dark skies. Binoculars or a small telescope show about 50 stars brighter than magnitude 13 and many fainter ones. The core spans about 30 arcminutes, the width of the full Moon, and the whole cluster extends to about 54 arcminutes.",
+    "image": {
+      "url": "https://science.nasa.gov/wp-content/uploads/2024/08/hubble-m48-1-flat-final-2.jpg?w=1200",
+      "credit": "NASA, ESA, A. Riess (The Johns Hopkins University): Processing: Gladys Kober (NASA/Catholic University of America)",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-48/",
+      "caption": "Hubble image of part of the open cluster M48."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "open",
+      "sizeArcmin": 54
+    },
+    "link": {
+      "messier": 48
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 48",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-48/"
+      }
+    ]
+  },
+  {
+    "id": "m49",
+    "section": "deep-sky",
+    "title": "M49",
+    "subtitle": "Elliptical galaxy in Virgo",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Elliptical galaxy",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Virgo",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "60 million light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "9.4",
+        "source": 0
+      },
+      {
+        "label": "Apparent size",
+        "value": "9 × 7.5 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 4472",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Charles Messier, 1771",
+        "source": 0
+      }
+    ],
+    "essay": "M49 is a giant elliptical galaxy in the Virgo Cluster, about 60 million light-years away. Charles Messier discovered it in 1771. It was the first member of the Virgo Cluster to be found, and the first elliptical galaxy found outside the Local Group.\n\nElliptical galaxies lack the arms and discs of spirals. They are smooth, fairly featureless systems, and their stars are usually much older than those in spiral galaxies. M49 contains about 200 billion stars. It also has an unusually rich population of globular star clusters, nearly 6,000. An X-ray source at its core indicates a supermassive black hole, estimated at about 565 million times the mass of the Sun.\n\nAt magnitude 9.4, M49 is one of the brighter galaxies in the Virgo Cluster. It can be picked up in binoculars, but it is easier in a small telescope. There it appears as a round to slightly oval glow, with a bright centre and no visible structure. May is the best month to look.",
+    "image": {
+      "url": "https://cdn.esahubble.org/archives/images/screen/potw1911a.jpg",
+      "credit": "ESA/Hubble & NASA, J. Blakenslee, P Cote et al.",
+      "licence": "CC BY 4.0",
+      "page": "https://esahubble.org/images/potw1911a/",
+      "caption": "Hubble infrared image of the giant elliptical galaxy M49."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "galaxy",
+      "sizeArcmin": 9
+    },
+    "link": {
+      "messier": 49
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 49",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-49/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 49",
+        "url": "http://www.messier.seds.org/m/m049.html"
+      }
+    ]
+  },
+  {
+    "id": "m50",
+    "section": "deep-sky",
+    "title": "M50",
+    "subtitle": "Open cluster in Monoceros",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Open cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Monoceros",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "3,200 light-years",
+        "source": 1
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "5.9",
+        "source": 1
+      },
+      {
+        "label": "Apparent size",
+        "value": "16 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 2323",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Charles Messier, 1772 (possibly seen by G. D. Cassini before 1711)",
+        "source": 1
+      }
+    ],
+    "essay": "M50 is an open cluster in Monoceros, near its border with Canis Major. Charles Messier discovered it on 5 April 1772. Giovanni Domenico Cassini may have seen it earlier, before 1711, according to an account by his son Jacques Cassini.\n\nThe cluster is probably about 3,200 light-years away. Its angular extent of about 15 by 20 arcminutes corresponds to about 20 light-years, with a denser central part about 10 light-years across. Photographic plates taken in 1893 suggested a population of about 200 stars in the main body. The cluster's age is estimated at about 78 million years. Most of its bright stars are blue-white, but it also contains some yellow giants and a red giant about 7 arcminutes south of the centre that contrasts with its neighbours. Some observers have described the cluster's outline as heart-shaped.\n\nAt magnitude 5.9, M50 is just within naked-eye reach under dark skies and is easy in binoculars, about a third of the way from Sirius to Procyon. It looks like a bright, compact haze with a few stars resolved. A small telescope shows dozens of stars, and the red giant south of centre stands out against the blue-white members.",
+    "image": {
+      "url": "https://storage.noirlab.edu/media/archives/images/screen/noao-m50.jpg",
+      "credit": "NOIRLab/NSF/AURA",
+      "licence": "CC BY 4.0",
+      "page": "https://noirlab.edu/public/images/noao-m50/",
+      "caption": "Colour image of the open cluster M50 from the Burrell Schmidt telescope on Kitt Peak."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "open",
+      "sizeArcmin": 16
+    },
+    "link": {
+      "messier": 50
+    },
+    "sources": [
+      {
+        "title": "NOIRLab image: M50, NGC 2323",
+        "url": "https://noirlab.edu/public/images/noao-m50/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 50",
+        "url": "http://www.messier.seds.org/m/m050.html"
+      }
+    ]
+  },
+  {
+    "id": "m51",
+    "section": "deep-sky",
+    "title": "M51",
+    "subtitle": "Whirlpool Galaxy · spiral galaxy in Canes Venatici",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Spiral galaxy",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Canes Venatici",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "31 million light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "8.4",
+        "source": 0
+      },
+      {
+        "label": "Apparent size",
+        "value": "11 × 7 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 5194",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Charles Messier, 1773",
+        "source": 0
+      }
+    ],
+    "essay": "M51, the Whirlpool Galaxy, is a spiral galaxy about 31 million light-years away in Canes Venatici. Charles Messier discovered it in 1773. It is seen almost face-on and is relatively close, which makes it one of the most studied examples of a classic spiral galaxy.\n\nIts two prominent, winding arms make it a grand-design spiral. They are long lanes of stars and gas laced with dust, and they act as star-formation factories, compressing hydrogen gas and creating clusters of new stars. In Hubble's image, pink regions mark star formation, blue strands are clusters of hot young stars, and yellow light comes from older stars.\n\nA smaller galaxy, NGC 5195, lies at the tip of one arm. Some astronomers think its gravitational pull is why the Whirlpool's arms are so pronounced, and that its tidal forces trigger new star formation. Hubble's images show that NGC 5195 is passing behind M51. It has been gliding past for hundreds of millions of years. At magnitude 8.4, M51 is visible in a small telescope near the end of the Big Dipper's handle, as two round glows, one larger than the other. Dark skies and larger apertures begin to show the spiral arms and the bridge between the galaxies. May is the best month.",
+    "image": {
+      "url": "https://science.nasa.gov/wp-content/uploads/2023/04/m51-and-companion_0.jpg?w=1200",
+      "credit": "NASA, ESA, S. Beckwith (STScI) and the Hubble Heritage Team (STScI/AURA)",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-51/",
+      "caption": "Hubble image of the Whirlpool Galaxy and its companion NGC 5195."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "galaxy",
+      "sizeArcmin": 11
+    },
+    "link": {
+      "messier": 51
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 51 (The Whirlpool Galaxy)",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-51/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 51",
+        "url": "http://www.messier.seds.org/m/m051.html"
+      }
+    ]
+  },
+  {
+    "id": "m52",
+    "section": "deep-sky",
+    "title": "M52",
+    "subtitle": "Open cluster in Cassiopeia",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Open cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Cassiopeia",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "About 5,000 light-years (estimates range from 3,000 to 7,000)",
+        "source": 1
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "7.3",
+        "source": 1
+      },
+      {
+        "label": "Apparent size",
+        "value": "13 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 7654",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Charles Messier, 1774",
+        "source": 1
+      }
+    ],
+    "essay": "M52 is a rich open cluster in Cassiopeia, set in a dense Milky Way field. Charles Messier discovered it in 1774. One study counted 193 probable members within 9 arcminutes of the centre. The cluster is young, about 35 million years old. Its brightest main-sequence star is only magnitude 11.0, of spectral type B7, and two yellow giants of magnitudes 7.8 and 8.2 are brighter than any main-sequence member. The cluster also contains a rare, extremely hot Of star.\n\nIts distance is poorly known, with published estimates from about 3,000 to 7,000 light-years. The main difficulty is the strong absorption of its light by interstellar dust. At a distance of 5,000 light-years, its apparent width of 13 arcminutes corresponds to about 19 light-years. A conspicuous red star a little off the cluster's centre is a foreground object, not a member. The Bubble Nebula, NGC 7635, lies about half a degree to the southwest.\n\nAt magnitude 7.3, M52 is visible in binoculars as a small, hazy patch. It lies on an extension of the line from Alpha to Beta Cassiopeiae. A small telescope resolves many faint stars around the bright foreground star near the centre. It is best placed on autumn evenings in the Northern Hemisphere.",
+    "image": {
+      "url": "https://storage.noirlab.edu/media/archives/images/screen/noao-m52.jpg",
+      "credit": "NOIRLab/NSF/AURA",
+      "licence": "CC BY 4.0",
+      "page": "https://noirlab.edu/public/images/noao-m52/",
+      "caption": "Colour image of the open cluster M52 in Cassiopeia from the Burrell Schmidt telescope on Kitt Peak."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "open",
+      "sizeArcmin": 13
+    },
+    "link": {
+      "messier": 52
+    },
+    "sources": [
+      {
+        "title": "NOIRLab image: M52, NGC 7654",
+        "url": "https://noirlab.edu/public/images/noao-m52/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 52",
+        "url": "http://www.messier.seds.org/m/m052.html"
+      }
+    ]
+  },
+  {
+    "id": "m53",
+    "section": "deep-sky",
+    "title": "M53",
+    "subtitle": "Globular cluster in Coma Berenices",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Globular cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Coma Berenices",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "59,700 light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "8.3",
+        "source": 0
+      },
+      {
+        "label": "Apparent size",
+        "value": "13 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 5024",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Johann Elert Bode, 1775",
+        "source": 0
+      }
+    ],
+    "essay": "M53 is one of the most distant globular clusters from Earth, about 59,700 light-years away in Coma Berenices. The German astronomer Johann Elert Bode discovered it in 1775.\n\nGlobular clusters are much older and larger than open clusters. They are expected to contain mostly old, red stars and few young, blue ones. M53 has an unusually large number of blue stragglers: stars that look brighter and younger than the cluster's other stars, even though all of them should have formed at about the same time. These stars probably form through close encounters or collisions between stars in the crowded core. Hubble's sharp images help astronomers pick them out from the surrounding stars.\n\nThe cluster is roughly spherical and becomes steadily denser toward its centre. At magnitude 8.3 it is a small-telescope target, about a degree northeast of the star Alpha Comae Berenices. In a small telescope it appears as a round, evenly bright glow about 13 arcminutes across with a brighter core. Larger telescopes resolve its individual stars. The fainter globular cluster NGC 5053 lies about a degree away. M53 is best observed in May.",
+    "image": {
+      "url": "https://cdn.esahubble.org/archives/images/screen/potw1140a.jpg",
+      "credit": "ESA/Hubble & NASA",
+      "licence": "CC BY 4.0",
+      "page": "https://esahubble.org/images/potw1140a/",
+      "caption": "Hubble image of the globular cluster M53 in visible and infrared light."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "globular",
+      "sizeArcmin": 13
+    },
+    "link": {
+      "messier": 53
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 53",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-53/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 53",
+        "url": "http://www.messier.seds.org/m/m053.html"
+      }
+    ]
+  },
+  {
+    "id": "m54",
+    "section": "deep-sky",
+    "title": "M54",
+    "subtitle": "Globular cluster in Sagittarius",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Globular cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Sagittarius",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "90,000 light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "8.4",
+        "source": 0
+      },
+      {
+        "label": "Apparent size",
+        "value": "12 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 6715",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Charles Messier, 1778",
+        "source": 0
+      }
+    ],
+    "essay": "M54 was the first globular cluster found to lie outside the Milky Way. Charles Messier discovered it in 1778 without knowing its true distance. The cluster belongs to a small satellite galaxy of the Milky Way, the Sagittarius Dwarf Elliptical Galaxy, and lies about 90,000 light-years from Earth.\n\nThe Sagittarius dwarf is slowly being pulled apart and absorbed by the Milky Way's much stronger gravity. Eventually the two galaxies will merge, and M54 will become part of our galaxy. In Hubble's images, M54 is a dense, compact ball of stars that becomes much more crowded toward the centre.\n\nAt magnitude 8.4, M54 can be found in binoculars as a small, star-like patch near Ascella, Zeta Sagittarii, at the bottom of the Sagittarius \"teapot\". A small telescope shows a bright, compact core with a faint halo about 12 arcminutes across. Resolving its individual stars needs a large telescope. The best month to look is August.",
+    "image": {
+      "url": "https://cdn.esahubble.org/archives/images/screen/potw1145a.jpg",
+      "credit": "ESA/Hubble & NASA",
+      "licence": "CC BY 4.0",
+      "page": "https://esahubble.org/images/potw1145a/",
+      "caption": "Hubble image of M54, the first globular cluster found outside the Milky Way."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "globular",
+      "sizeArcmin": 12
+    },
+    "link": {
+      "messier": 54
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 54",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-54/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 54",
+        "url": "http://www.messier.seds.org/m/m054.html"
+      }
+    ]
+  },
+  {
+    "id": "m55",
+    "section": "deep-sky",
+    "title": "M55",
+    "subtitle": "Globular cluster in Sagittarius",
+    "facts": [
+      {
+        "label": "Object type",
+        "value": "Globular cluster",
+        "source": 0
+      },
+      {
+        "label": "Constellation",
+        "value": "Sagittarius",
+        "source": 0
+      },
+      {
+        "label": "Distance",
+        "value": "20,000 light-years",
+        "source": 0
+      },
+      {
+        "label": "Apparent magnitude",
+        "value": "6.3",
+        "source": 0
+      },
+      {
+        "label": "Apparent size",
+        "value": "19 arcmin",
+        "source": 1
+      },
+      {
+        "label": "Catalogue number",
+        "value": "NGC 6809",
+        "source": 1
+      },
+      {
+        "label": "Discovered",
+        "value": "Nicolas-Louis de Lacaille, 1752",
+        "source": 1
+      }
+    ],
+    "essay": "M55 is a large, loosely packed globular cluster in southern Sagittarius, about 20,000 light-years away and about 100 light-years in diameter. It holds roughly 100,000 stars.\n\nThe French astronomer Nicolas-Louis de Lacaille found it in 1752, while observing from what is now South Africa. Charles Messier had difficulty seeing it from Paris and did not add it to his catalogue until 1778. M55 is large and fairly bright, but it has no dense core and many of its stars are faint, so it is hard to see in poor conditions. For northern observers it sits low in the sky, where a thicker layer of atmosphere, water vapour and light pollution all reduce the view. When Messier finally catalogued it, he noted that its light was even and did not seem to contain any stars.\n\nThrough binoculars, even under dark skies, M55 appears only as a round, hazy patch about 19 arcminutes across, larger than many globulars but with little central brightening. Because its stars are spread out, small telescopes begin to resolve individual stars, and larger telescopes show many of them easily. From southern latitudes it stands much higher in the sky. The best month to look is September.",
+    "image": {
+      "url": "https://science.nasa.gov/wp-content/uploads/2023/06/hubble-m55-mos-acs-long-flat-final2.jpg?w=1200",
+      "credit": "NASA, ESA, A. Sarajedini (Florida Atlantic University), and M. Libralato (STScI, ESA, JWST); Image Processing: Gladys Kober",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-55/",
+      "caption": "Hubble mosaic of part of the globular cluster M55, resolved into individual stars."
+    },
+    "drawing": {
+      "kind": "deep-sky",
+      "type": "globular",
+      "sizeArcmin": 19
+    },
+    "link": {
+      "messier": 55
+    },
+    "sources": [
+      {
+        "title": "NASA Hubble's Messier Catalog: Messier 55",
+        "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-55/"
+      },
+      {
+        "title": "SEDS Messier Database: Messier 55",
+        "url": "http://www.messier.seds.org/m/m055.html"
+      }
+    ]
+  }
+]

@@ -1,0 +1,2851 @@
+[
+  {
+    "id": "sputnik-1",
+    "section": "missions",
+    "title": "Sputnik 1",
+    "subtitle": "Soviet Union · First artificial satellite, 1957–1958",
+    "facts": [
+      {
+        "label": "Agency",
+        "value": "Soviet Union (design team led by Sergei Korolev)",
+        "source": 0
+      },
+      {
+        "label": "Launch",
+        "value": "4 October 1957, from the site now called Baikonur Cosmodrome",
+        "source": 0
+      },
+      {
+        "label": "Launch vehicle",
+        "value": "R-7 (an intercontinental ballistic missile)",
+        "source": 0
+      },
+      {
+        "label": "Mass",
+        "value": "184 lb (about 83 kg)",
+        "source": 0
+      },
+      {
+        "label": "Orbital period",
+        "value": "About 90 minutes",
+        "source": 0
+      },
+      {
+        "label": "Transmitter stopped",
+        "value": "26 October 1957 (batteries exhausted)",
+        "source": 0
+      },
+      {
+        "label": "Re-entry",
+        "value": "4 January 1958",
+        "source": 0
+      }
+    ],
+    "essay": "Sputnik 1 was the first artificial satellite. The Soviet Union launched it on 4 October 1957 from the site in Kazakhstan now known as the Baikonur Cosmodrome, as a contribution to the International Geophysical Year. The rocket was an R-7, built as an intercontinental ballistic missile. Sergei Korolev had planned a larger scientific satellite, but when that project fell behind he had a much simpler one designed and built quickly.\n\nThe satellite was a pressurized aluminium-alloy sphere weighing 184 lb (about 83 kg). It carried no scientific instruments, only a radio transmitter whose beeping signal amateur operators around the world could pick up. Even so, tracking it was useful: how long it stayed in orbit gave information on the density of the upper atmosphere, and its signals tested radio propagation and tracking methods. It went around Earth about every 90 minutes. The rocket's large core stage also reached orbit, and because it was more reflective, most observers who saw something in the sky were watching the rocket rather than the satellite.\n\nThe batteries ran out on 26 October 1957 and Sputnik re-entered the atmosphere on 4 January 1958. Its launch prompted congressional hearings in the United States that led to the creation of NASA in 1958.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/S76-22361/S76-22361~large.jpg",
+      "credit": "NASA",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/S76-22361",
+      "caption": "Full-scale mockup of Sputnik 1 on display at the Paris Air Show in 1975."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "complete",
+      "launch": "1957-10-04"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA: 65 Years Ago, Sputnik Ushers in the Space Age",
+        "url": "https://www.nasa.gov/history/65-years-ago-sputnik-ushers-in-the-space-age/"
+      },
+      {
+        "title": "NASA: Sputnik 1",
+        "url": "https://www.nasa.gov/image-article/sputnik-1/"
+      }
+    ]
+  },
+  {
+    "id": "explorer-1",
+    "section": "missions",
+    "title": "Explorer 1",
+    "subtitle": "United States · First US satellite, 1958",
+    "facts": [
+      {
+        "label": "Agency",
+        "value": "US Army Ballistic Missile Agency with JPL",
+        "source": 0
+      },
+      {
+        "label": "Launch",
+        "value": "31 January 1958, 10:48 p.m. EST (1 February, 03:48 UTC)",
+        "source": 0
+      },
+      {
+        "label": "Launch site",
+        "value": "Cape Canaveral, Florida",
+        "source": 0
+      },
+      {
+        "label": "Launch vehicle",
+        "value": "Jupiter-C (Juno 1)",
+        "source": 0
+      },
+      {
+        "label": "Last transmission",
+        "value": "23 May 1958",
+        "source": 0
+      },
+      {
+        "label": "Key result",
+        "value": "Detected the radiation belts now named after James Van Allen",
+        "source": 1
+      }
+    ],
+    "essay": "Explorer 1 was the first satellite launched by the United States. It went up from Cape Canaveral on a Jupiter-C rocket at 10:48 p.m. EST on 31 January 1958, a little under four months after Sputnik 1. The rocket came from the Army Ballistic Missile Agency in Huntsville under Wernher von Braun: a modified Redstone missile topped with upper stages of clustered solid-propellant motors built by the Jet Propulsion Laboratory. The urgency came partly from the failure of the Navy's Vanguard rocket, which exploded on the pad in December 1957.\n\nThe science payload was designed by James Van Allen of the University of Iowa. It included a cosmic-ray detector, temperature sensors, a micrometeorite microphone and erosion gauges, and two transmitters. The cosmic-ray detector returned counts that pointed to belts of charged particles trapped by Earth's magnetic field, now called the Van Allen radiation belts.\n\nOnce orbit was confirmed, Pickering, Van Allen and von Braun announced the success at a press conference in Washington in the early hours of 1 February. The satellite's last transmission came on 23 May 1958.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA04601/PIA04601~medium.jpg",
+      "credit": "NASA/JPL",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/PIA04601",
+      "caption": "Explorer 1, the first US satellite."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "complete",
+      "launch": "1958-02-01"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Explorer 1",
+        "url": "https://science.nasa.gov/mission/explorer-1/"
+      },
+      {
+        "title": "NASA: Story of Explorer 1",
+        "url": "https://www.nasa.gov/history/story-of-explorer-1/"
+      }
+    ]
+  },
+  {
+    "id": "vostok-1",
+    "section": "missions",
+    "title": "Vostok 1",
+    "subtitle": "Soviet Union · First human spaceflight, 1961",
+    "facts": [
+      {
+        "label": "Agency",
+        "value": "Soviet Union",
+        "source": 0
+      },
+      {
+        "label": "Launch",
+        "value": "12 April 1961, 9:07 a.m. Moscow time",
+        "source": 1
+      },
+      {
+        "label": "Crew",
+        "value": "Yuri Gagarin",
+        "source": 0
+      },
+      {
+        "label": "Flight",
+        "value": "One orbit of Earth, 108 minutes",
+        "source": 0
+      },
+      {
+        "label": "Speed in orbit",
+        "value": "About 27,400 km/h",
+        "source": 0
+      },
+      {
+        "label": "Landing",
+        "value": "Saratov region, about 26 km south-west of Engels",
+        "source": 1
+      }
+    ],
+    "essay": "Vostok 1 carried the first person into space. Cosmonaut Yuri Gagarin of the Soviet Union lifted off at 9:07 a.m. Moscow time on 12 April 1961, made a single orbit of Earth and was back on the ground 108 minutes later. In orbit the spacecraft travelled at about 27,400 km/h.\n\nThe flight was largely automated. Re-entry was controlled by a computer on board rather than flown by hand. The landing also differed from the early American human spaceflight programme. Instead of riding the capsule all the way down, Gagarin ejected from the spacecraft during the descent and landed separately under his own parachute, in the Saratov region of the Soviet Union about 26 km south-west of the town of Engels.\n\nThe mission came three and a half years after Sputnik 1 and showed that a person could be launched into orbit, survive weightlessness and the heat of re-entry, and be recovered safely. Every later crewed programme, from Mercury and Apollo to the International Space Station, built on that first single orbit.",
+    "image": null,
+    "drawing": {
+      "kind": "mission",
+      "status": "complete",
+      "launch": "1961-04-12"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA: April 1961 – First Human Entered Space",
+        "url": "https://www.nasa.gov/image-article/april-1961-first-human-entered-space/"
+      },
+      {
+        "title": "NASA StarChild: The launch of Vostok 1",
+        "url": "https://starchild.gsfc.nasa.gov/docs/StarChild/space_level2/vostok1.html"
+      }
+    ]
+  },
+  {
+    "id": "mariner-2",
+    "section": "missions",
+    "title": "Mariner 2",
+    "subtitle": "NASA · Venus flyby, 1962",
+    "facts": [
+      {
+        "label": "Agency",
+        "value": "NASA (mission managed by JPL)",
+        "source": 0
+      },
+      {
+        "label": "Launch",
+        "value": "27 August 1962, 06:53:14 UTC",
+        "source": 0
+      },
+      {
+        "label": "Launch vehicle",
+        "value": "Atlas-Agena B, Cape Canaveral",
+        "source": 0
+      },
+      {
+        "label": "Venus flyby",
+        "value": "14 December 1962 at 34,854 km",
+        "source": 0
+      },
+      {
+        "label": "Last contact",
+        "value": "3 January 1963, at 86.7 million km from Earth",
+        "source": 0
+      },
+      {
+        "label": "Spacecraft mass",
+        "value": "203.6 kg",
+        "source": 0
+      }
+    ],
+    "essay": "Mariner 2 was the first successful planetary mission: the first spacecraft to return data from a close pass of another planet. It was launched on 27 August 1962, 36 days after its twin Mariner 1 was lost shortly after launch, and carried the same set of instruments.\n\nThe spacecraft had no camera. Its main instruments were microwave and infrared radiometers, a magnetometer, a cosmic dust detector, a solar plasma spectrometer and energetic particle detectors. After a course correction on 4 September, it passed Venus on 14 December 1962 at a range of 34,854 km. During a 42-minute scan the radiometers swept across the night side, the terminator and the day side of the planet.\n\nThe readings showed little difference in temperature between the day and night sides, and the microwave radiometer indicated values well above 200 °C, far hotter than many scientists had expected. Mariner 2 also found a dense cloud layer roughly 56 to 80 km above the surface and detected no planetary magnetic field, though it may simply have been too far away to see one. It also made measurements of the interplanetary medium during the cruise to Venus and after the flyby. NASA kept in contact until 3 January 1963, when the probe was 86.7 million km from Earth, then a record distance for a deep space probe.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA04594/PIA04594~orig.jpg",
+      "credit": "NASA/JPL",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/PIA04594",
+      "caption": "Artist's concept of Mariner 2, the first spacecraft to fly past Venus."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "complete",
+      "launch": "1962-08-27"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Mariner 2",
+        "url": "https://science.nasa.gov/mission/mariner-2/"
+      },
+      {
+        "title": "NSSDCA Master Catalog: Mariner 2",
+        "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1962-041A"
+      }
+    ]
+  },
+  {
+    "id": "mariner-4",
+    "section": "missions",
+    "title": "Mariner 4",
+    "subtitle": "NASA · Mars flyby, 1964–1967",
+    "facts": [
+      {
+        "label": "Agency",
+        "value": "NASA (mission managed by JPL)",
+        "source": 0
+      },
+      {
+        "label": "Launch",
+        "value": "28 November 1964, 14:22:01 UTC",
+        "source": 0
+      },
+      {
+        "label": "Launch vehicle",
+        "value": "Atlas-Agena D, Cape Canaveral",
+        "source": 0
+      },
+      {
+        "label": "Mars flyby",
+        "value": "15 July 1965, 01:00:57 UTC, at 9,846 km",
+        "source": 0
+      },
+      {
+        "label": "Images returned",
+        "value": "21 full images plus 22 lines of a 22nd",
+        "source": 0
+      },
+      {
+        "label": "Last contact",
+        "value": "31 December 1967",
+        "source": 0
+      },
+      {
+        "label": "Spacecraft mass",
+        "value": "260.8 kg",
+        "source": 0
+      }
+    ],
+    "essay": "Mariner 4 made the first successful flyby of Mars and returned the first close-up pictures of another planet. Its twin, Mariner 3, launched three weeks earlier but its payload shroud failed to separate, leaving it inert in solar orbit. Mariner 4 flew with a redesigned all-metal shroud and had no such problem.\n\nAfter a single course correction in December 1964, the spacecraft passed Mars on the evening of 14 July 1965 US time at a range of 9,846 km. About 40 minutes before closest approach its TV camera began taking 21 images, plus 22 lines of a 22nd, through red and green filters. The pictures showed an old, heavily cratered surface more like the Moon than the Earth. Before the computers had finished processing the first frame, team members printed the raw numbers on strips of paper and coloured them in by hand.\n\nAfter the flyby Mariner 4 passed behind Mars as seen from Earth, so its radio signal travelled through the Martian atmosphere. The result showed a very low surface pressure, which meant future landers would need rockets as well as parachutes. The probe also measured daytime surface temperatures of about −100 °C. Contact continued intermittently until 31 December 1967.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA02979/PIA02979~orig.jpg",
+      "credit": "NASA/JPL",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/PIA02979",
+      "caption": "Mariner 4 image of the 151 km Mars crater later named Mariner after the spacecraft."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "complete",
+      "launch": "1964-11-28"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Mariner 4",
+        "url": "https://science.nasa.gov/mission/mariner-4/"
+      },
+      {
+        "title": "NSSDCA Master Catalog: Mariner 4",
+        "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1964-077A"
+      }
+    ]
+  },
+  {
+    "id": "luna-9",
+    "section": "missions",
+    "title": "Luna 9",
+    "subtitle": "Soviet Union · Moon lander, 1966",
+    "facts": [
+      {
+        "label": "Agency",
+        "value": "Soviet Union",
+        "source": 0
+      },
+      {
+        "label": "Launch",
+        "value": "31 January 1966",
+        "source": 0
+      },
+      {
+        "label": "Landing",
+        "value": "3 February 1966, 18:44:52 UTC",
+        "source": 0
+      },
+      {
+        "label": "Landing site",
+        "value": "Oceanus Procellarum, 7.08° N, 295.63° E",
+        "source": 0
+      },
+      {
+        "label": "Key result",
+        "value": "First survivable landing on the Moon and first photographs from its surface",
+        "source": 1
+      }
+    ],
+    "essay": "Luna 9 was the first spacecraft to land on the Moon without being destroyed and the first to send back pictures from the lunar surface. It was launched by the Soviet Union on 31 January 1966 and touched down on 3 February 1966 at 18:44:52 UTC in Oceanus Procellarum, the Ocean of Storms, at 7.08° N, 295.63° E.\n\nEarlier Soviet attempts had shown how hard this was. Luna 5, 7 and 8, launched in 1965, all hit the Moon instead of landing softly, and Luna 6 missed it entirely. Luna 9 succeeded where they had failed. Once on the surface, its small lander transmitted close-up photographs of the ground around it. Together with later landers such as Luna 13, the purpose of these images was to study the lunar surface at close range and help judge whether crewed landings would be feasible.\n\nNSSDCA holds photographic data from Luna 9 along with images from Luna 3, 13, 21 and 22 and several Zond flights. Luna 9 belongs to a Soviet lunar programme that achieved several firsts, including the first impact on the Moon, the first images of the far side, the first soft landing and the first lunar orbiter.",
+    "image": {
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/lunar-science/2023/08/luna9close_big.jpg",
+      "credit": "National Space Science Data Center",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/resource/first-photo-from-the-surface-of-the-moon/",
+      "caption": "Close-up of the surface of Oceanus Procellarum taken by the Luna 9 lander in February 1966."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "complete",
+      "launch": "1966-01-31"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NSSDCA: Soviet Missions to the Moon",
+        "url": "https://nssdc.gsfc.nasa.gov/planetary/lunar/lunarussr.html"
+      },
+      {
+        "title": "NASA Science: First Photo from the Surface of the Moon",
+        "url": "https://science.nasa.gov/resource/first-photo-from-the-surface-of-the-moon/"
+      }
+    ]
+  },
+  {
+    "id": "apollo-8",
+    "section": "missions",
+    "title": "Apollo 8",
+    "subtitle": "NASA · First crewed lunar orbit, 1968",
+    "facts": [
+      {
+        "label": "Agency",
+        "value": "NASA",
+        "source": 0
+      },
+      {
+        "label": "Launch",
+        "value": "21 December 1968, 12:51 UTC",
+        "source": 1
+      },
+      {
+        "label": "Launch vehicle",
+        "value": "Saturn V, Kennedy Space Center",
+        "source": 1
+      },
+      {
+        "label": "Lunar orbit insertion",
+        "value": "24 December 1968",
+        "source": 1
+      },
+      {
+        "label": "Lunar orbits",
+        "value": "10",
+        "source": 1
+      },
+      {
+        "label": "Splashdown",
+        "value": "27 December 1968, Pacific Ocean",
+        "source": 1
+      },
+      {
+        "label": "Mission duration",
+        "value": "147 h 0 min 42 s",
+        "source": 1
+      }
+    ],
+    "essay": "Apollo 8 was the first crewed spacecraft to leave Earth orbit and reach the Moon, and the first crewed launch of the Saturn V rocket. Frank Borman, James Lovell and William Anders lifted off on 21 December 1968 and entered lunar orbit on 24 December.\n\nThe flight tested the Apollo command and service module, with its communications, tracking and life-support systems, in deep space and in lunar orbit. No lunar module flew on this mission; a test article of the same mass was carried in its place as ballast. After a first elliptical orbit the spacecraft settled into a near-circular orbit about 110 km above the surface and completed 10 orbits in all. The crew photographed both the near side and the far side to map landmarks and terrain for later landing missions, and made six live television broadcasts, including a reading from the book of Genesis on Christmas Eve.\n\nOn 24 December Anders photographed Earth rising over the lunar horizon. The picture is known as Earthrise. The engine burn to leave lunar orbit came on 25 December, and the command module splashed down in the Pacific on 27 December 1968 after a flight of just over six days. The command module is now on display at the Museum of Science and Industry in Chicago.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/as08-14-2383/as08-14-2383~large.jpg",
+      "credit": "NASA",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/as08-14-2383",
+      "caption": "Earthrise: Earth above the lunar horizon, photographed from Apollo 8 on 24 December 1968."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "complete",
+      "launch": "1968-12-21"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA: Apollo 8",
+        "url": "https://www.nasa.gov/mission/apollo-8/"
+      },
+      {
+        "title": "NSSDCA Master Catalog: Apollo 8",
+        "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1968-118A"
+      }
+    ]
+  },
+  {
+    "id": "apollo-11",
+    "section": "missions",
+    "title": "Apollo 11",
+    "subtitle": "NASA · First crewed Moon landing, 1969",
+    "facts": [
+      {
+        "label": "Agency",
+        "value": "NASA",
+        "source": 0
+      },
+      {
+        "label": "Launch",
+        "value": "16 July 1969, 13:32 UTC, Kennedy Space Center pad 39A",
+        "source": 0
+      },
+      {
+        "label": "Launch vehicle",
+        "value": "Saturn V (SA-504)",
+        "source": 0
+      },
+      {
+        "label": "Landing",
+        "value": "20 July 1969, 20:17:40 UTC, Mare Tranquillitatis",
+        "source": 0
+      },
+      {
+        "label": "Time on the surface",
+        "value": "21 h 36 min",
+        "source": 0
+      },
+      {
+        "label": "Samples returned",
+        "value": "21.55 kg of lunar rock and soil",
+        "source": 0
+      },
+      {
+        "label": "Splashdown",
+        "value": "24 July 1969, Pacific Ocean",
+        "source": 0
+      }
+    ],
+    "essay": "Apollo 11 was the first mission to land people on the Moon and return them to Earth. Neil Armstrong, Buzz Aldrin and Michael Collins launched on a Saturn V from Kennedy Space Center on 16 July 1969 and entered lunar orbit on 19 July.\n\nOn 20 July Armstrong and Aldrin separated in the lunar module Eagle while Collins stayed in orbit in the command module. Eagle landed in Mare Tranquillitatis, the Sea of Tranquility, at 20:17:40 UTC. Armstrong stepped onto the surface at 02:56 UTC on 21 July and Aldrin followed 19 minutes later. During a single moonwalk lasting a little over two hours they set up a package of scientific experiments, took photographs and collected 21.55 kg of rock and soil, covering about 250 m in total.\n\nEagle's ascent stage lifted off on 21 July after 21 hours 36 minutes on the surface and docked with the command module in lunar orbit. The crew left the Moon on 22 July and splashed down in the Pacific on 24 July, about 24 km from the recovery ship USS Hornet, after a flight of 195 hours 18 minutes. NASA described the spacecraft's performance as excellent throughout the mission.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/as11-44-6642/as11-44-6642~large.jpg",
+      "credit": "NASA",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/as11-44-6642",
+      "caption": "The Apollo 11 lunar module ascent stage returning from the surface, with Earth in the background, photographed from the command module."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "complete",
+      "launch": "1969-07-16"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NSSDCA Master Catalog: Apollo 11 Command and Service Module",
+        "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-059A"
+      },
+      {
+        "title": "NASA: Apollo 11",
+        "url": "https://www.nasa.gov/mission/apollo-11/"
+      }
+    ]
+  },
+  {
+    "id": "venera-7",
+    "section": "missions",
+    "title": "Venera 7",
+    "subtitle": "Soviet Union · Venus lander, 1970",
+    "facts": [
+      {
+        "label": "Agency",
+        "value": "Soviet Union",
+        "source": 0
+      },
+      {
+        "label": "Launch",
+        "value": "17 August 1970",
+        "source": 0
+      },
+      {
+        "label": "Mission type",
+        "value": "Lander",
+        "source": 0
+      },
+      {
+        "label": "Outcome",
+        "value": "Success; first of its kind",
+        "source": 0
+      },
+      {
+        "label": "Key result",
+        "value": "First successful soft landing of a spacecraft on another planet",
+        "source": 1
+      },
+      {
+        "label": "Measurements",
+        "value": "Surface temperature and pressure",
+        "source": 1
+      }
+    ],
+    "essay": "Venera 7 was the first spacecraft to make a soft landing on another planet and send back data from its surface. The Soviet Union launched it toward Venus on 17 August 1970, and it reached the planet later the same year.\n\nIt followed a series of Soviet atmospheric probes. Venera 4 in 1967 was the first to return data on the composition of the Venusian atmosphere, and Veneras 5 and 6 in 1969 detected nitrogen and oxygen, but all three were crushed by the pressure before they reached the ground. Venera 7 was designed as a lander, and its capsule reached the surface.\n\nFrom the ground it measured the surface temperature and pressure of Venus, the first such measurements made on the surface of another planet. A companion attempt launched five days after Venera 7, Cosmos 359, failed. Later Soviet landers built on its design: Venera 8 measured wind speed during its descent in 1972, and Veneras 9 and 10 in 1975 combined landers with orbiters.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/S91-50688/S91-50688~large.jpg",
+      "credit": "NASA",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/S91-50688",
+      "caption": "Global view of Venus built from Magellan radar, Pioneer Venus and Venera data."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "complete",
+      "launch": "1970-08-17"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Venus Exploration",
+        "url": "https://science.nasa.gov/venus/exploration/"
+      },
+      {
+        "title": "ESA: Past missions to Venus",
+        "url": "https://www.esa.int/Science_Exploration/Space_Science/Envision/Past_missions_to_Venus"
+      }
+    ]
+  },
+  {
+    "id": "pioneer-10",
+    "section": "missions",
+    "title": "Pioneer 10",
+    "subtitle": "NASA · Jupiter flyby, 1972–2003",
+    "facts": [
+      {
+        "label": "Agency",
+        "value": "NASA (mission managed by Ames Research Center)",
+        "source": 0
+      },
+      {
+        "label": "Launch",
+        "value": "3 March 1972, 01:49 UTC (2 March in Florida)",
+        "source": 1
+      },
+      {
+        "label": "Launch vehicle",
+        "value": "Atlas-Centaur, Cape Canaveral",
+        "source": 0
+      },
+      {
+        "label": "Jupiter flyby",
+        "value": "4 December 1973 at 130,354 km",
+        "source": 0
+      },
+      {
+        "label": "Routine contact ended",
+        "value": "31 March 1997",
+        "source": 0
+      },
+      {
+        "label": "Last signal received",
+        "value": "23 January 2003, from 12.23 billion km",
+        "source": 0
+      },
+      {
+        "label": "Spacecraft mass",
+        "value": "258 kg",
+        "source": 0
+      }
+    ],
+    "essay": "Pioneer 10 was NASA's first mission to the outer planets and the first spacecraft to fly past Jupiter. It was also the first to travel through the main asteroid belt, the first to fly beyond the orbit of Mars and the first to run entirely on nuclear electrical power, from two radioisotope thermoelectric generators.\n\nLaunched in March 1972, it left Earth faster than any previous human-made object. It entered the asteroid belt in July 1972 and emerged in February 1973, having met fewer dust impacts than expected. Closest approach to Jupiter came on 4 December 1973 at 130,354 km, at about 126,000 km/h. By then it was returning better pictures of the planet than any Earth-based telescope could take. Like Pioneer 11, it carries a metal plaque showing where and when it was built.\n\nJupiter's gravity put Pioneer 10 on a path out of the solar system. It crossed the orbit of Neptune on 13 June 1983. Routine tracking ended on 31 March 1997 for budget reasons, though occasional contact continued. The last signal arrived on 23 January 2003 from 12.23 billion km away, and a final attempt in February 2003 detected nothing. The spacecraft is heading in the general direction of the red star Aldebaran in Taurus, about 68 light years away.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/ARC-1973-AC73-9253/ARC-1973-AC73-9253~large.jpg",
+      "credit": "NASA",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/ARC-1973-AC73-9253",
+      "caption": "Jupiter photographed by Pioneer 10 from 2,584,000 km in December 1973, with a moon at upper right."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "complete",
+      "launch": "1972-03-03"
+    },
+    "link": {
+      "spacecraft": "Pioneer 10"
+    },
+    "sources": [
+      {
+        "title": "NASA Science: Pioneer 10",
+        "url": "https://science.nasa.gov/mission/pioneer-10/"
+      },
+      {
+        "title": "NSSDCA Master Catalog: Pioneer 10",
+        "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1972-012A"
+      }
+    ]
+  },
+  {
+    "id": "pioneer-11",
+    "section": "missions",
+    "title": "Pioneer 11",
+    "subtitle": "NASA · Jupiter and Saturn flyby, 1973–1995",
+    "facts": [
+      {
+        "label": "Agency",
+        "value": "NASA (mission managed by Ames Research Center)",
+        "source": 0
+      },
+      {
+        "label": "Launch",
+        "value": "6 April 1973, 02:11 UTC (5 April in Florida)",
+        "source": 1
+      },
+      {
+        "label": "Launch vehicle",
+        "value": "Atlas-Centaur, Cape Canaveral",
+        "source": 0
+      },
+      {
+        "label": "Jupiter flyby",
+        "value": "3 December 1974 at about 42,500 km from the cloud tops",
+        "source": 0
+      },
+      {
+        "label": "Saturn flyby",
+        "value": "1 September 1979",
+        "source": 0
+      },
+      {
+        "label": "Last engineering data",
+        "value": "24 November 1995",
+        "source": 0
+      },
+      {
+        "label": "Spacecraft mass",
+        "value": "258.5 kg",
+        "source": 0
+      }
+    ],
+    "essay": "Pioneer 11 was the second spacecraft to visit Jupiter and the first to fly past Saturn. It was launched in April 1973, about a year after its twin, Pioneer 10.\n\nMid-course corrections sent it much closer to Jupiter than Pioneer 10 and over the planet's polar regions. On 3 December 1974 it passed about 42,500 km above the cloud tops at more than 171,000 km/h, then the fastest speed of any human-made object. Because it crossed the radiation belts so quickly, it spent less time in them than its twin despite flying closer. It returned the first pictures of Jupiter's polar regions, better views of the Great Red Spot and about 200 images of Jupiter's moons.\n\nJupiter's gravity then swung Pioneer 11 back across the solar system toward Saturn. It detected Saturn's bow shock on 31 August 1979, about 1.5 million km from the planet, which was the first firm evidence that Saturn has a magnetic field. Closest approach came on 1 September 1979, when its path through the outer ring region took it within about 21,000 km of Saturn. The spacecraft crossed the orbit of Neptune in 1990. NASA Ames made last contact on 30 September 1995, and the last engineering data arrived on 24 November 1995. Pioneer 11 is on a course out of the solar system.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/9139575/9139575~large.jpg",
+      "credit": "NASA",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/9139575",
+      "caption": "Atlas-Centaur rocket launching Pioneer 11 (then called Pioneer G) from Cape Canaveral in April 1973."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "complete",
+      "launch": "1973-04-06"
+    },
+    "link": {
+      "spacecraft": "Pioneer 11"
+    },
+    "sources": [
+      {
+        "title": "NASA Science: Pioneer 11",
+        "url": "https://science.nasa.gov/mission/pioneer-11/"
+      },
+      {
+        "title": "NSSDCA Master Catalog: Pioneer 11",
+        "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1973-019A"
+      }
+    ]
+  },
+  {
+    "id": "mariner-10",
+    "section": "missions",
+    "title": "Mariner 10",
+    "subtitle": "NASA · Venus and Mercury flybys, 1973–1975",
+    "facts": [
+      {
+        "label": "Agency",
+        "value": "NASA (mission managed by JPL)",
+        "source": 0
+      },
+      {
+        "label": "Launch",
+        "value": "3 November 1973, 05:45 UTC",
+        "source": 0
+      },
+      {
+        "label": "Launch vehicle",
+        "value": "Atlas-Centaur, Cape Canaveral",
+        "source": 0
+      },
+      {
+        "label": "Venus flyby",
+        "value": "5 February 1974 at 5,768 km",
+        "source": 0
+      },
+      {
+        "label": "Mercury flybys",
+        "value": "29 March 1974, 21 September 1974, 16 March 1975",
+        "source": 0
+      },
+      {
+        "label": "Closest Mercury pass",
+        "value": "327 km (third flyby)",
+        "source": 0
+      },
+      {
+        "label": "Last contact",
+        "value": "24 March 1975",
+        "source": 0
+      }
+    ],
+    "essay": "Mariner 10 was the first spacecraft sent to Mercury and the first to explore two planets on one mission. It was also the first to use the gravity of one planet to reach another: a close pass of Venus on 5 February 1974 bent its path toward Mercury. During that flyby it returned 4,165 photographs of Venus.\n\nMariner 10 flew past Mercury three times. The first encounter, on 29 March 1974 at 703 km, showed a heavily cratered, Moon-like surface with ridges and chaotic terrain. The magnetometers found a weak magnetic field, and an occultation experiment showed no significant atmosphere. After looping around the Sun, and with further course corrections, it returned to the planet on 21 September 1974 and again on 16 March 1975, the last pass at only 327 km. Between encounters the team used the pressure of sunlight on the solar panels and high-gain antenna to control the spacecraft's orientation, the first time a probe had relied on this as a major means of attitude control.\n\nAcross the three flybys Mariner 10 took more than 2,700 pictures covering nearly half of Mercury's surface, with detail down to about 100 m. The most striking feature was the Caloris basin, a ringed impact structure about 2,500 km across. Contact ended on 24 March 1975 when the attitude-control gas ran out. No other spacecraft visited Mercury for more than 30 years.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA23791/PIA23791~orig.jpg",
+      "credit": "NASA/JPL-Caltech",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/PIA23791",
+      "caption": "Venus photographed by Mariner 10 as it sped away from the planet in February 1974, reprocessed in 2020."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "complete",
+      "launch": "1973-11-03"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Mariner 10",
+        "url": "https://science.nasa.gov/mission/mariner-10/"
+      },
+      {
+        "title": "NSSDCA Master Catalog: Mariner 10",
+        "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1973-085A"
+      }
+    ]
+  },
+  {
+    "id": "viking-1",
+    "section": "missions",
+    "title": "Viking 1",
+    "subtitle": "NASA · Mars orbiter and lander, 1975–1982",
+    "facts": [
+      {
+        "label": "Agency",
+        "value": "NASA (Langley Research Center and JPL)",
+        "source": 0
+      },
+      {
+        "label": "Launch",
+        "value": "20 August 1975, 21:22 UTC",
+        "source": 0
+      },
+      {
+        "label": "Launch vehicle",
+        "value": "Titan IIIE-Centaur, Cape Canaveral",
+        "source": 0
+      },
+      {
+        "label": "Mars orbit insertion",
+        "value": "19 June 1976",
+        "source": 0
+      },
+      {
+        "label": "Landing",
+        "value": "20 July 1976, Chryse Planitia",
+        "source": 0
+      },
+      {
+        "label": "Orbiter shut down",
+        "value": "7 August 1980",
+        "source": 0
+      },
+      {
+        "label": "Lander stopped operating",
+        "value": "11 November 1982",
+        "source": 0
+      }
+    ],
+    "essay": "Viking 1 made the first fully successful landing on Mars and returned the first images from its surface. The Soviet Mars 3 lander had reached the surface in 1971, but contact was lost seconds after touchdown.\n\nThe spacecraft had two parts: an orbiter derived from the Mariner design and a lander that resembled a much larger version of the Surveyor lunar lander, powered by two radioisotope generators. It entered Mars orbit on 19 June 1976. Orbiter photographs showed that the planned landing site in the Chryse region was rougher than expected, so the team chose a new site on the western slopes of Chryse Planitia. The lander touched down there on 20 July 1976 and took its first picture of rocks and soil minutes later.\n\nThe lander carried cameras, a weather station, a seismometer, an X-ray fluorescence spectrometer, a gas chromatograph-mass spectrometer and a biology laboratory designed to look for signs of life in the soil. With its twin Viking 2, the mission's two orbiters returned 52,663 images and mapped about 97 percent of Mars at around 300 m resolution, while the two landers sent back 4,500 photographs. The Viking 1 orbiter was shut down on 7 August 1980 after running out of attitude-control propellant. The lander kept working until 11 November 1982, when a faulty command ended contact.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA00381/PIA00381~orig.jpg",
+      "credit": "NASA/JPL",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/PIA00381",
+      "caption": "The first photograph taken on the surface of Mars, by the Viking 1 lander minutes after touchdown on 20 July 1976."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "complete",
+      "launch": "1975-08-20"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Viking 1",
+        "url": "https://science.nasa.gov/mission/viking-1/"
+      },
+      {
+        "title": "NSSDCA Master Catalog: Viking 1 Orbiter",
+        "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1975-075A"
+      }
+    ]
+  },
+  {
+    "id": "voyager-1",
+    "section": "missions",
+    "title": "Voyager 1",
+    "subtitle": "NASA · Jupiter, Saturn and interstellar space, 1977–present",
+    "facts": [
+      {
+        "label": "Agency",
+        "value": "NASA (mission managed by JPL)",
+        "source": 0
+      },
+      {
+        "label": "Launch",
+        "value": "5 September 1977, 12:56 UTC",
+        "source": 0
+      },
+      {
+        "label": "Launch vehicle",
+        "value": "Titan IIIE-Centaur, Cape Canaveral",
+        "source": 0
+      },
+      {
+        "label": "Jupiter closest approach",
+        "value": "5 March 1979",
+        "source": 0
+      },
+      {
+        "label": "Saturn closest approach",
+        "value": "12 November 1980",
+        "source": 0
+      },
+      {
+        "label": "Entered interstellar space",
+        "value": "August 2012",
+        "source": 0
+      },
+      {
+        "label": "One light-day from Earth",
+        "value": "18 November 2026 (25.902 billion km)",
+        "source": 1
+      },
+      {
+        "label": "Instruments operating (October 2026)",
+        "value": "Magnetometer and plasma wave subsystem",
+        "source": 1
+      }
+    ],
+    "essay": "Voyager 1 is the most distant human-made object. It was launched on 5 September 1977, about two weeks after its twin Voyager 2, but took a faster route and overtook it on 15 December 1977.\n\nAt Jupiter, which it passed on 5 March 1979, Voyager 1 discovered a thin ring around the planet and two new moons, Thebe and Metis. At Saturn, on 12 November 1980, it found five new moons and a new ring, the G ring. The Saturn encounter included a close pass of Titan, and the trajectory chosen for it sent the spacecraft up and out of the plane of the planets, ending its planetary tour.\n\nOn 17 February 1998 it passed Pioneer 10 to become the most distant spacecraft, and in August 2012 it crossed the heliopause into interstellar space, the first spacecraft to do so. Its radioisotope generators lose power every year, so the team has been switching instruments off in a planned order. The latest, the low-energy charged particle instrument on 17 April 2026, left the magnetometer and plasma wave subsystem running. On 18 November 2026 Voyager 1 is due to be 25.902 billion km from Earth, the distance light travels in one day.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA00144/PIA00144~orig.jpg",
+      "credit": "NASA/JPL",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/PIA00144",
+      "caption": "Jupiter with its moons Io (left) and Europa, photographed by Voyager 1 on 13 February 1979."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "active",
+      "launch": "1977-09-05"
+    },
+    "link": {
+      "spacecraft": "Voyager 1"
+    },
+    "sources": [
+      {
+        "title": "NASA Science: Voyager 1",
+        "url": "https://science.nasa.gov/mission/voyager/voyager-1/"
+      },
+      {
+        "title": "NASA Science: Where Are Voyager 1 and Voyager 2 Now?",
+        "url": "https://science.nasa.gov/mission/voyager/where-are-voyager-1-and-voyager-2-now/"
+      },
+      {
+        "title": "NSSDCA Master Catalog: Voyager 1",
+        "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1977-084A"
+      }
+    ]
+  },
+  {
+    "id": "voyager-2",
+    "section": "missions",
+    "title": "Voyager 2",
+    "subtitle": "NASA · Tour of the four giant planets, 1977–present",
+    "facts": [
+      {
+        "label": "Agency",
+        "value": "NASA (mission managed by JPL)",
+        "source": 0
+      },
+      {
+        "label": "Launch",
+        "value": "20 August 1977, 14:29 UTC",
+        "source": 0
+      },
+      {
+        "label": "Launch vehicle",
+        "value": "Titan IIIE-Centaur, Cape Canaveral",
+        "source": 0
+      },
+      {
+        "label": "Jupiter flyby",
+        "value": "9 July 1979",
+        "source": 0
+      },
+      {
+        "label": "Saturn flyby",
+        "value": "25 August 1981",
+        "source": 0
+      },
+      {
+        "label": "Uranus flyby",
+        "value": "24 January 1986",
+        "source": 0
+      },
+      {
+        "label": "Neptune flyby",
+        "value": "25 August 1989",
+        "source": 0
+      },
+      {
+        "label": "Instruments operating (October 2026)",
+        "value": "Cosmic ray subsystem, magnetometer, plasma wave subsystem",
+        "source": 2
+      }
+    ],
+    "essay": "Voyager 2 is the only spacecraft to have visited all four giant planets and the only one to have flown past Uranus and Neptune. It was launched on 20 August 1977, two weeks before Voyager 1.\n\nThe two Voyagers replaced a cancelled plan for a 'Grand Tour' of the outer planets. They were designed for Jupiter and Saturn, but in 1974 mission planners proposed that if the first spacecraft succeeded, the second could be sent on to Uranus and Neptune using gravity assists. Voyager 2 passed Jupiter on 9 July 1979, where it found a 14th moon, and Saturn on 25 August 1981. It reached Uranus on 24 January 1986, discovering 10 new moons and two new rings. At Neptune on 25 August 1989 it found five moons, four rings and a large storm called the Great Dark Spot. These remain the only close-up observations of either ice giant.\n\nVoyager 2 crossed the solar wind's termination shock on 30 August 2007 and entered interstellar space in 2018, becoming the second spacecraft to do so. Like its twin it carries the Golden Record of sounds and images from Earth. To save power, the team turned off its plasma science instrument in September 2024 and its low-energy charged particle instrument in March 2025. As of October 2026 the cosmic ray subsystem, magnetometer and plasma wave subsystem are still on.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA01492/PIA01492~large.jpg",
+      "credit": "NASA/JPL",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/PIA01492",
+      "caption": "Neptune and its Great Dark Spot, from Voyager 2 images taken four days before closest approach in August 1989."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "active",
+      "launch": "1977-08-20"
+    },
+    "link": {
+      "spacecraft": "Voyager 2"
+    },
+    "sources": [
+      {
+        "title": "NASA Science: Voyager 2",
+        "url": "https://science.nasa.gov/mission/voyager/voyager-2/"
+      },
+      {
+        "title": "NSSDCA Master Catalog: Voyager 2",
+        "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1977-076A"
+      },
+      {
+        "title": "NASA Science: Where Are Voyager 1 and Voyager 2 Now?",
+        "url": "https://science.nasa.gov/mission/voyager/where-are-voyager-1-and-voyager-2-now/"
+      }
+    ]
+  },
+  {
+    "id": "hubble-space-telescope",
+    "section": "missions",
+    "title": "Hubble Space Telescope",
+    "subtitle": "NASA · Space telescope in Earth orbit, 1990–present",
+    "facts": [
+      {
+        "label": "Agency",
+        "value": "NASA",
+        "source": 0
+      },
+      {
+        "label": "Launch",
+        "value": "24 April 1990",
+        "source": 0
+      },
+      {
+        "label": "Launch vehicle",
+        "value": "Space Shuttle Discovery",
+        "source": 1
+      },
+      {
+        "label": "Orbit",
+        "value": "About 483 km altitude, ~27,000 km/h",
+        "source": 2
+      },
+      {
+        "label": "Primary mirror",
+        "value": "2.4 m diameter",
+        "source": 2
+      },
+      {
+        "label": "Servicing missions",
+        "value": "Five, from December 1993 to May 2009",
+        "source": 3
+      },
+      {
+        "label": "Observations made",
+        "value": "More than 1.7 million",
+        "source": 1
+      },
+      {
+        "label": "Status (October 2026)",
+        "value": "Operating",
+        "source": 0
+      }
+    ],
+    "essay": "The Hubble Space Telescope is a 2.4 m reflecting telescope in low Earth orbit, about 483 km up. It was carried into space and released by the space shuttle Discovery in April 1990. It is about the size of a large school bus and weighs about 12,200 kg.\n\nIts first images were blurred. The edge of the primary mirror had been ground too flat by a fraction of the width of a human hair, because of a flaw in the test equipment used to check its shape. The first servicing mission in December 1993 installed a new camera with built-in corrective optics and a set of small mirrors to correct the other instruments. Four more servicing missions followed, the last in May 2009, replacing instruments and worn parts and extending the telescope's life.\n\nHubble has made more than 1.7 million observations, and more than 23,000 peer-reviewed papers have been published from its data. Its work ranges from measuring the composition of exoplanet atmospheres to the discovery of dark energy. It has observed galaxies more than 13.4 billion light-years away. It remains in operation, and engineers have used other sensors on the spacecraft to make up for gyroscopes that have failed.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/sts082-763-015/sts082-763-015~large.jpg",
+      "credit": "NASA",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/sts082-763-015",
+      "caption": "The Hubble Space Telescope over Earth after release from Space Shuttle Discovery in February 1997."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "active",
+      "launch": "1990-04-24"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Hubble Space Telescope",
+        "url": "https://science.nasa.gov/mission/hubble/"
+      },
+      {
+        "title": "NASA Science: About Hubble",
+        "url": "https://science.nasa.gov/mission/hubble/overview/about-hubble/"
+      },
+      {
+        "title": "NASA Science: Hubble by the Numbers",
+        "url": "https://science.nasa.gov/mission/hubble/overview/hubble-by-the-numbers/"
+      },
+      {
+        "title": "NASA Science: The History of Hubble",
+        "url": "https://science.nasa.gov/mission/hubble/overview/the-history-of-hubble/"
+      }
+    ]
+  },
+  {
+    "id": "galileo",
+    "section": "missions",
+    "title": "Galileo",
+    "subtitle": "NASA · Jupiter orbiter and probe, 1989–2003",
+    "facts": [
+      {
+        "label": "Agency",
+        "value": "NASA (mission managed by JPL)",
+        "source": 0
+      },
+      {
+        "label": "Launch",
+        "value": "18 October 1989",
+        "source": 0
+      },
+      {
+        "label": "Launch vehicle",
+        "value": "Space Shuttle Atlantis (STS-34) with Inertial Upper Stage",
+        "source": 0
+      },
+      {
+        "label": "Jupiter arrival",
+        "value": "7 December 1995 (orbit insertion and probe entry)",
+        "source": 0
+      },
+      {
+        "label": "Orbits of Jupiter",
+        "value": "34",
+        "source": 0
+      },
+      {
+        "label": "Moon flybys",
+        "value": "Io 7, Europa 11, Ganymede 8, Callisto 8, Amalthea 1",
+        "source": 0
+      },
+      {
+        "label": "End of mission",
+        "value": "21 September 2003, deliberate impact into Jupiter",
+        "source": 0
+      }
+    ],
+    "essay": "Galileo was the first spacecraft to orbit an outer planet and the first to drop a probe into a giant planet's atmosphere. It was launched from the space shuttle Atlantis on 18 October 1989 and reached Jupiter by a roundabout route that used one flyby of Venus and two of Earth.\n\nOn the way it made the first flyby of an asteroid, Gaspra, in 1991, followed by Ida in 1993, and in July 1994 it made the first, and so far only, direct observation of a comet hitting a planet, as fragments of Shoemaker-Levy 9 struck Jupiter. On 7 December 1995 it entered orbit, and its probe, released five months earlier, descended into the atmosphere at 47.6 km/s. The probe found that the relative abundances of elements in Jupiter's atmosphere differ from the Sun's.\n\nOver almost eight years the orbiter circled Jupiter 34 times and made 35 close flybys of its moons. It found that Io's volcanism may be about 100 times more active than Earth's and that Ganymede has its own magnetic field, the first moon known to have one. Its magnetic measurements pointed to salty liquid water beneath the surfaces of Europa, Ganymede and Callisto. To keep the spacecraft from ever contaminating a possible ocean on Europa, NASA sent it into Jupiter's atmosphere on 21 September 2003.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA18176/PIA18176~large.jpg",
+      "credit": "NASA",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/PIA18176",
+      "caption": "Artist's rendering of the Galileo spacecraft passing Jupiter's volcanic moon Io."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "complete",
+      "launch": "1989-10-18"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Galileo",
+        "url": "https://science.nasa.gov/mission/galileo/"
+      }
+    ]
+  },
+  {
+    "id": "ulysses",
+    "section": "missions",
+    "title": "Ulysses",
+    "subtitle": "ESA and NASA · Solar polar orbiter, 1990–2009",
+    "facts": [
+      {
+        "label": "Agencies",
+        "value": "ESA and NASA",
+        "source": 0
+      },
+      {
+        "label": "Launch",
+        "value": "6 October 1990, 11:47 UTC",
+        "source": 0
+      },
+      {
+        "label": "Launch vehicle",
+        "value": "Space Shuttle Discovery (STS-41) with IUS and PAM-S upper stages",
+        "source": 0
+      },
+      {
+        "label": "Jupiter gravity assist",
+        "value": "8 February 1992 at about 378,400 km",
+        "source": 0
+      },
+      {
+        "label": "Maximum solar latitude",
+        "value": "80.2°",
+        "source": 0
+      },
+      {
+        "label": "Loss of contact",
+        "value": "30 June 2009",
+        "source": 0
+      },
+      {
+        "label": "Spacecraft mass",
+        "value": "371 kg",
+        "source": 0
+      }
+    ],
+    "essay": "Ulysses was the first mission to study the space environment above and below the poles of the Sun. ESA built the spacecraft and NASA provided its radioisotope power source, the shuttle launch and tracking through the Deep Space Network; the instruments came from both sides.\n\nLeaving the plane of the planets takes a great deal of energy, so Ulysses first flew to Jupiter. After launch from the space shuttle Discovery in October 1990 it left Earth at about 15.4 km/s, then the fastest velocity achieved by a human-made object. Jupiter's gravity on 8 February 1992 bent its path steeply out of the ecliptic into an orbit that carried it over the Sun's south pole in 1994 and north pole in 1995, reaching 80.2° solar latitude.\n\nUlysses found that the solar wind blows faster over the poles than near the equator, and that the magnetic field at the Sun's poles is much weaker than had been assumed. It tracked the solar wind weakening to a 50-year low in 2008. By chance it flew through the tails of three comets, showing that comet tails can be much longer than expected. The mission completed nearly three orbits of the Sun over 18 years, more than four times its design life, and contact ended on 30 June 2009.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/s41-601-009/s41-601-009~large.jpg",
+      "credit": "NASA",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/s41-601-009",
+      "caption": "Ulysses and its upper stages moving away from Space Shuttle Discovery after release on 6 October 1990."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "complete",
+      "launch": "1990-10-06"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Ulysses",
+        "url": "https://science.nasa.gov/mission/ulysses/"
+      }
+    ]
+  },
+  {
+    "id": "soho",
+    "section": "missions",
+    "title": "SOHO",
+    "subtitle": "ESA and NASA · Solar observatory at L1, 1995–present",
+    "facts": [
+      {
+        "label": "Agencies",
+        "value": "ESA (lead) and NASA",
+        "source": 0
+      },
+      {
+        "label": "Launch",
+        "value": "2 December 1995, 08:08 UTC",
+        "source": 0
+      },
+      {
+        "label": "Launch vehicle",
+        "value": "Atlas IIAS-Centaur, Cape Canaveral",
+        "source": 0
+      },
+      {
+        "label": "Orbit",
+        "value": "Halo orbit around the Sun–Earth L1 point, 1.5 million km from Earth",
+        "source": 0
+      },
+      {
+        "label": "L1 orbit insertion",
+        "value": "14 February 1996",
+        "source": 0
+      },
+      {
+        "label": "Comets discovered",
+        "value": "More than 5,000 (milestone reached March 2024)",
+        "source": 0
+      },
+      {
+        "label": "Status (October 2026)",
+        "value": "Operational",
+        "source": 1
+      }
+    ],
+    "essay": "The Solar and Heliospheric Observatory, SOHO, is a joint ESA and NASA mission that has watched the Sun continuously since the 1990s. ESA leads the mission; NASA supplied three of its twelve instruments, the launch and flight operations support. SOHO sits about 1.5 million km from Earth, orbiting the Sun–Earth L1 point, where it has an uninterrupted view of the Sun.\n\nSOHO's instruments study the Sun from its core to its outer atmosphere. Helioseismology measurements probe the interior, ultraviolet telescopes image the hot corona, and the LASCO coronagraphs block the bright disc to show the outer corona and the coronal mass ejections that drive space weather at Earth. Among its findings is the origin of the fast solar wind at the edges of large magnetic cells near the Sun's poles.\n\nIts planned mission ended in 1998. In June of that year contact was lost for four months and the spacecraft was found spinning and short of power, but controllers recovered it, and after its gyroscopes failed ESA developed a way to point it using reaction wheels alone. Extended many times since, SOHO has now observed two full 11-year solar cycles and most of a third, and marked 30 years of operation in December 2025. Through LASCO, more than 70 people from 18 countries have used its images to find more than 5,000 comets, more than half of all comets known.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/9701591/9701591~orig.jpg",
+      "credit": "NASA",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/9701591",
+      "caption": "Atlas IIAS rocket launching SOHO from Cape Canaveral on 2 December 1995."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "active",
+      "launch": "1995-12-02"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: SOHO",
+        "url": "https://science.nasa.gov/mission/soho/"
+      },
+      {
+        "title": "ESA: SOHO",
+        "url": "https://www.esa.int/Science_Exploration/Space_Science/SOHO"
+      }
+    ]
+  },
+  {
+    "id": "mars-pathfinder",
+    "section": "missions",
+    "title": "Mars Pathfinder",
+    "subtitle": "NASA · Mars lander and rover, 1996–1997",
+    "facts": [
+      {
+        "label": "Agency",
+        "value": "NASA (mission managed by JPL)",
+        "source": 0
+      },
+      {
+        "label": "Launch",
+        "value": "4 December 1996",
+        "source": 0
+      },
+      {
+        "label": "Launch vehicle",
+        "value": "Delta II 7925, Cape Canaveral",
+        "source": 0
+      },
+      {
+        "label": "Landing",
+        "value": "4 July 1997, Ares Vallis",
+        "source": 0
+      },
+      {
+        "label": "Rover",
+        "value": "Sojourner, 10.6 kg",
+        "source": 0
+      },
+      {
+        "label": "Last transmission",
+        "value": "27 September 1997",
+        "source": 0
+      },
+      {
+        "label": "Images returned",
+        "value": "More than 16,500 from the lander and 550 from the rover",
+        "source": 0
+      }
+    ],
+    "essay": "Mars Pathfinder delivered the first robotic rover to Mars. It began as a technology demonstration, testing a cheaper way to land on the planet and to explore it with a small free-roaming vehicle.\n\nPathfinder entered the atmosphere directly from its approach path rather than going into orbit first. A parachute slowed its descent through the thin atmosphere, and a cluster of large airbags inflated around the lander to cushion the impact. It hit the ground on 4 July 1997 at about 14 m/s and bounced about 15 times, as high as 15 m, before rolling to a stop roughly 1 km from where it first struck. It was the first time this airbag technique had been used.\n\nThe landing site was Ares Vallis. The 10.6 kg rover Sojourner rolled off the lander on a pair of deployable ramps and studied the rocks and soil nearby, while the lander analysed the atmosphere and weather. By the final transmission on 27 September 1997 the mission had returned more than 16,500 images from the lander, 550 from the rover, more than 15 chemical analyses of rocks and soil, and extensive weather data. Its findings suggested that Mars was once warm and wet.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA00621/PIA00621~orig.jpg",
+      "credit": "NASA/JPL",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/PIA00621",
+      "caption": "The Sojourner rover, still latched to the Mars Pathfinder lander, on the first day after landing."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "complete",
+      "launch": "1996-12-04"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Mars Pathfinder",
+        "url": "https://science.nasa.gov/mission/mars-pathfinder/"
+      },
+      {
+        "title": "NSSDCA Master Catalog: Mars Pathfinder",
+        "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1996-068A"
+      }
+    ]
+  },
+  {
+    "id": "cassini-huygens",
+    "section": "missions",
+    "title": "Cassini–Huygens",
+    "subtitle": "NASA, ESA and ASI · Saturn orbiter and Titan probe, 1997–2017",
+    "facts": [
+      {
+        "label": "Agencies",
+        "value": "NASA, ESA and the Italian Space Agency (ASI)",
+        "source": 1
+      },
+      {
+        "label": "Launch",
+        "value": "15 October 1997",
+        "source": 1
+      },
+      {
+        "label": "Launch vehicle",
+        "value": "Titan IVB/Centaur, Cape Canaveral",
+        "source": 1
+      },
+      {
+        "label": "Saturn arrival",
+        "value": "1 July 2004 (UTC)",
+        "source": 1
+      },
+      {
+        "label": "Huygens descent to Titan",
+        "value": "14 January 2005",
+        "source": 1
+      },
+      {
+        "label": "Saturn orbits",
+        "value": "294",
+        "source": 1
+      },
+      {
+        "label": "End of mission",
+        "value": "15 September 2017, deliberate plunge into Saturn",
+        "source": 0
+      }
+    ],
+    "essay": "Cassini–Huygens was the first mission to orbit Saturn. NASA built the Cassini orbiter, ESA supplied the Huygens probe for Titan, and the Italian Space Agency contributed hardware. The spacecraft launched on a Titan IVB/Centaur on 15 October 1997 and reached Saturn on 1 July 2004 after gravity assists from Venus twice, Earth and Jupiter.\n\nHuygens separated on 24 December 2004 and descended through Titan's thick atmosphere on 14 January 2005. Over 13 years Cassini completed 294 orbits of Saturn, made 127 targeted flybys of Titan and 23 of Enceladus, and took 453,048 images. On Titan it found three seas and hundreds of small lakes, with methane rivers running into a methane sea. At Enceladus it found jets of ice and water vapour spraying from fractures near the south pole, fed by an ocean beneath the ice. The mission counts oceans at both Titan and Enceladus among its discoveries, along with six named moons.\n\nHaving used almost all of its propellant, Cassini ended its mission with a phase called the Grand Finale. On 15 September 2017 it was steered into Saturn's atmosphere so that it could never crash into, and contaminate, Enceladus or Titan. Lessons from its orbital tour were used to plan NASA's Europa Clipper mission.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA17172/PIA17172~large.jpg",
+      "credit": "NASA/JPL-Caltech/SSI",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/PIA17172",
+      "caption": "Saturn, its rings and, far in the background, Earth, imaged by Cassini from Saturn's shadow on 19 July 2013."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "complete",
+      "launch": "1997-10-15"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Cassini-Huygens",
+        "url": "https://science.nasa.gov/mission/cassini/"
+      },
+      {
+        "title": "NASA Science: Cassini Quick Facts",
+        "url": "https://science.nasa.gov/mission/cassini/quick-facts/"
+      }
+    ]
+  },
+  {
+    "id": "international-space-station",
+    "section": "missions",
+    "title": "International Space Station",
+    "subtitle": "NASA, Roscosmos, ESA, JAXA and CSA · Crewed station in Earth orbit, 1998–present",
+    "facts": [
+      {
+        "label": "Partner agencies",
+        "value": "NASA, Roscosmos, ESA, JAXA, CSA (15 countries)",
+        "source": 1
+      },
+      {
+        "label": "First element",
+        "value": "Zarya, launched 20 November 1998",
+        "source": 2
+      },
+      {
+        "label": "First launch vehicle",
+        "value": "Proton-K",
+        "source": 2
+      },
+      {
+        "label": "Continuously occupied since",
+        "value": "November 2000",
+        "source": 1
+      },
+      {
+        "label": "Length",
+        "value": "109 m end to end",
+        "source": 1
+      },
+      {
+        "label": "Orbit",
+        "value": "About 400 km (250 miles) up, at about 28,000 km/h (17,500 mph)",
+        "source": 0
+      },
+      {
+        "label": "Status (October 2026)",
+        "value": "Operating",
+        "source": 0
+      }
+    ],
+    "essay": "The International Space Station is a crewed laboratory in low Earth orbit, built and operated by five space agencies from 15 countries: NASA, Roscosmos, ESA, JAXA and the Canadian Space Agency. The first module, the Russian-launched Zarya, went up on a Proton-K rocket on 20 November 1998. The station has been continuously occupied since November 2000, and on 2 November 2025 it marked 25 years of uninterrupted human presence.\n\nIts large modules and other parts were delivered on 42 assembly flights, 37 of them by the US space shuttle and five by Russian Proton and Soyuz rockets. The finished structure is 109 m from end to end, close to the length of an American football field including the end zones, and its solar arrays span the same distance. It orbits about 400 km above Earth at roughly 28,000 km/h, circling the planet about every 90 minutes, or 16 times a day.\n\nA typical crew is seven people. Cargo arrives on several vehicles, including Northrop Grumman's Cygnus, SpaceX's Dragon and Russia's Progress, and up to eight spacecraft can be docked at once. Thousands of experiments have been carried out on board, leading to advances in medicine, materials science and climate research, and crews exercise at least two hours a day to limit the loss of muscle and bone in weightlessness. The station's path takes it over about 90 percent of the world's population, and NASA's Spot the Station app gives alerts for visible passes.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/iss056e201248/iss056e201248~large.jpg",
+      "credit": "NASA",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/iss056e201248",
+      "caption": "The International Space Station photographed from a departing Soyuz spacecraft on 4 October 2018."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "active",
+      "launch": "1998-11-20"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA: International Space Station",
+        "url": "https://www.nasa.gov/international-space-station/"
+      },
+      {
+        "title": "NASA: Space Station Facts and Figures",
+        "url": "https://www.nasa.gov/international-space-station/space-station-facts-and-figures/"
+      },
+      {
+        "title": "NASA: Zarya Module",
+        "url": "https://www.nasa.gov/international-space-station/zarya-module/"
+      }
+    ]
+  },
+  {
+    "id": "spirit-and-opportunity",
+    "section": "missions",
+    "title": "Spirit and Opportunity",
+    "subtitle": "NASA · Mars Exploration Rovers, 2003–2019",
+    "facts": [
+      {
+        "label": "Agency",
+        "value": "NASA (mission managed by JPL)",
+        "source": 0
+      },
+      {
+        "label": "Spirit launch",
+        "value": "10 June 2003, 17:58 UTC, Delta II, Cape Canaveral",
+        "source": 0
+      },
+      {
+        "label": "Opportunity launch",
+        "value": "8 July 2003 (UTC), Delta II, Cape Canaveral",
+        "source": 2
+      },
+      {
+        "label": "Spirit landing",
+        "value": "3 January 2004, Gusev crater",
+        "source": 0
+      },
+      {
+        "label": "Opportunity landing",
+        "value": "24 January 2004 (PST), Meridiani Planum",
+        "source": 1
+      },
+      {
+        "label": "Spirit",
+        "value": "7.73 km driven; mission ended 25 May 2011",
+        "source": 0
+      },
+      {
+        "label": "Opportunity",
+        "value": "45.16 km driven; mission ended 13 February 2019",
+        "source": 1
+      }
+    ],
+    "essay": "Spirit and Opportunity were twin rovers, each about the size of a golf cart and weighing 185 kg. They were sent to opposite sides of Mars to sites thought to have been affected by liquid water, with the job of examining rocks and soil for clues to the planet's watery past. Both landed inside protective airbags in January 2004, and both worked far longer than planned: Spirit about 25 times its intended lifetime and Opportunity about 60 times.\n\nSpirit landed in Gusev crater and spent much of its mission in the Columbia Hills. In 2007, while dragging a jammed front wheel, it scraped up a patch of nearly pure silica, strong evidence that hot springs or steam vents had once existed there. In May 2009 it became stuck in soft soil near a plateau called Home Plate. It sent its last signal in March 2010, and NASA ended efforts to contact it on 25 May 2011, after six years, two months and 19 days of work.\n\nOpportunity landed in Meridiani Planum and found evidence that Mars may once have been able to support microbial life. It later drove to the 22 km Endeavour crater, arriving in August 2011, and became the first vehicle to cover a marathon distance on another world. A planet-wide dust storm cut off communication in June 2018, and NASA declared the mission over on 13 February 2019. Its distance record of 45.16 km stood until Perseverance passed it in October 2026.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA22222/PIA22222~medium.jpg",
+      "credit": "NASA/JPL-Caltech",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/PIA22222",
+      "caption": "Self-portrait of Opportunity in Perseverance Valley on Endeavour crater, taken with its Microscopic Imager for its 5,000th Martian day."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "complete",
+      "launch": "2003-06-10"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Spirit",
+        "url": "https://science.nasa.gov/mission/mer-spirit/"
+      },
+      {
+        "title": "NASA Science: Opportunity",
+        "url": "https://science.nasa.gov/mission/mer-opportunity/"
+      },
+      {
+        "title": "NSSDCA Master Catalog: Opportunity",
+        "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2003-032A"
+      }
+    ]
+  },
+  {
+    "id": "messenger",
+    "section": "missions",
+    "title": "MESSENGER",
+    "subtitle": "NASA · Mercury orbiter, 2004–2015",
+    "facts": [
+      {
+        "label": "Agency",
+        "value": "NASA (mission managed by Johns Hopkins APL)",
+        "source": 0
+      },
+      {
+        "label": "Launch",
+        "value": "3 August 2004, 06:15:57 UTC",
+        "source": 0
+      },
+      {
+        "label": "Launch vehicle",
+        "value": "Delta II 7925H, Cape Canaveral",
+        "source": 0
+      },
+      {
+        "label": "Flybys en route",
+        "value": "Earth once, Venus twice, Mercury three times",
+        "source": 0
+      },
+      {
+        "label": "Mercury orbit insertion",
+        "value": "18 March 2011, 00:45 UTC",
+        "source": 0
+      },
+      {
+        "label": "Orbital images",
+        "value": "More than 200,000 by February 2014",
+        "source": 0
+      },
+      {
+        "label": "End of mission",
+        "value": "30 April 2015, impact on Mercury",
+        "source": 0
+      }
+    ],
+    "essay": "MESSENGER (MErcury Surface, Space ENvironment, GEochemistry, and Ranging) was the first spacecraft to orbit Mercury and the first mission to the planet since Mariner 10 three decades earlier. It was the seventh mission in NASA's Discovery programme.\n\nReaching Mercury means losing a great deal of speed, since anything falling toward the Sun accelerates. MESSENGER did this with six gravity-assist flybys over six and a half years: one of Earth, two of Venus and three of Mercury itself. It finally entered orbit on 18 March 2011 and began formal science operations in April.\n\nDuring more than four years in orbit it mapped the whole planet in monochrome and in colour, took more than 200,000 images, and measured Mercury's surface composition and its internal magnetic field, which turned out to be offset well to the north of the planet's centre. It found evidence of past volcanic activity and large amounts of water in Mercury's thin exosphere. It also confirmed that deposits in permanently shadowed craters near the poles are mostly water ice, preserved because Mercury's rotation axis is almost upright. When its propellant ran out, the spacecraft struck the surface on 30 April 2015.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA12371/PIA12371~orig.jpg",
+      "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Carnegie Institution of Washington",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/PIA12371",
+      "caption": "Mercury in true colour and in enhanced colour, from MESSENGER images."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "complete",
+      "launch": "2004-08-03"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: MESSENGER",
+        "url": "https://science.nasa.gov/mission/messenger/"
+      },
+      {
+        "title": "NSSDCA Master Catalog: MESSENGER",
+        "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2004-030A"
+      }
+    ]
+  },
+  {
+    "id": "new-horizons",
+    "section": "missions",
+    "title": "New Horizons",
+    "subtitle": "NASA · Pluto and Kuiper Belt flyby, 2006–present",
+    "facts": [
+      {
+        "label": "Agency",
+        "value": "NASA (mission managed by Johns Hopkins APL)",
+        "source": 0
+      },
+      {
+        "label": "Launch",
+        "value": "19 January 2006, 19:00 UTC",
+        "source": 0
+      },
+      {
+        "label": "Launch vehicle",
+        "value": "Atlas V 551, Cape Canaveral",
+        "source": 0
+      },
+      {
+        "label": "Jupiter gravity assist",
+        "value": "28 February 2007",
+        "source": 0
+      },
+      {
+        "label": "Pluto flyby",
+        "value": "14 July 2015, closest approach 12,500 km",
+        "source": 0
+      },
+      {
+        "label": "Arrokoth flyby",
+        "value": "1 January 2019",
+        "source": 0
+      },
+      {
+        "label": "Status (October 2026)",
+        "value": "Extended mission in the Kuiper Belt, focused on heliophysics",
+        "source": 1
+      }
+    ],
+    "essay": "New Horizons was the first spacecraft to explore Pluto and its moons up close. It was the first mission in NASA's New Frontiers programme and is powered by a radioisotope generator that was a spare from the Cassini mission.\n\nAn Atlas V and a solid-fuel upper stage sent it away from Earth on 19 January 2006 at about 58,500 km/h, the highest launch speed of any human-made object relative to Earth. A gravity assist from Jupiter on 28 February 2007 added about 14,000 km/h and cut three years off the journey. After more than nine years in flight it passed 12,500 km from Pluto on 14 July 2015. On the way it had also photographed Jupiter's moons Io, Europa and Ganymede during the 2007 flyby.\n\nOn 1 January 2019 it flew past Arrokoth, a small Kuiper Belt object that is the most distant body ever explored at close range. By October 2024 it was 60 times as far from the Sun as Earth is. NASA has extended the mission in a low-activity mode that focuses on heliophysics, measuring the outer heliosphere while preserving fuel in case a reachable flyby target is found, with operations planned until the spacecraft leaves the Kuiper Belt in 2028 or 2029.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA19952/PIA19952~large.jpg",
+      "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/PIA19952",
+      "caption": "Enhanced-colour view of Pluto taken by New Horizons on 14 July 2015."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "active",
+      "launch": "2006-01-19"
+    },
+    "link": {
+      "spacecraft": "New Horizons"
+    },
+    "sources": [
+      {
+        "title": "NASA Science: New Horizons",
+        "url": "https://science.nasa.gov/mission/new-horizons/"
+      },
+      {
+        "title": "NASA: New Horizons to Continue Exploring Outer Solar System",
+        "url": "https://www.nasa.gov/missions/new-horizons/nasas-new-horizons-to-continue-exploring-outer-solar-system"
+      }
+    ]
+  },
+  {
+    "id": "dawn",
+    "section": "missions",
+    "title": "Dawn",
+    "subtitle": "NASA · Vesta and Ceres orbiter, 2007–2018",
+    "facts": [
+      {
+        "label": "Agency",
+        "value": "NASA (mission managed by JPL)",
+        "source": 0
+      },
+      {
+        "label": "Launch",
+        "value": "27 September 2007, 11:34 UTC",
+        "source": 0
+      },
+      {
+        "label": "Launch vehicle",
+        "value": "Delta II 7925H, Cape Canaveral",
+        "source": 0
+      },
+      {
+        "label": "Vesta",
+        "value": "Arrived 16 July 2011; departed 5 September 2012",
+        "source": 0
+      },
+      {
+        "label": "Ceres",
+        "value": "Entered orbit 6 March 2015",
+        "source": 0
+      },
+      {
+        "label": "Propulsion",
+        "value": "Three xenon ion thrusters",
+        "source": 0
+      },
+      {
+        "label": "Communications ended",
+        "value": "31 October 2018",
+        "source": 0
+      }
+    ],
+    "essay": "Dawn spent long periods in orbit around two very different worlds: Vesta, a giant asteroid, and Ceres, a dwarf planet. Both lie in the main asteroid belt between Mars and Jupiter. The mission's aim was to compare two very different survivors from the early solar system and learn about the conditions in which planets formed.\n\nTo reach both, Dawn used solar-electric ion propulsion: three thrusters, based on those of Deep Space 1, that accelerated ionized xenon. Its two solar wings spanned 19.7 m tip to tip. After a Mars gravity assist in February 2009 it reached Vesta on 16 July 2011 and spent more than a year mapping it from successively lower orbits.\n\nDawn left Vesta on 5 September 2012 and entered orbit around Ceres on 6 March 2015, eventually descending to a circular orbit just 375 km above the surface. The spacecraft's cameras, a visible and infrared mapping spectrometer and a gamma-ray and neutron detector measured the shape, composition and gravity of both worlds. Communications ended on 31 October 2018. Dawn remains in an orbit around Ceres that is expected to be stable for several hundred years.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA14778/PIA14778~orig.jpg",
+      "credit": "NASA/JPL-Caltech/UCLA/MPS/DLR/IDA",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/PIA14778",
+      "caption": "Asteroid Vesta photographed by Dawn's framing camera on 24 July 2011."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "complete",
+      "launch": "2007-09-27"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NSSDCA Master Catalog: Dawn",
+        "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2007-043A"
+      },
+      {
+        "title": "NASA Science: Dawn",
+        "url": "https://science.nasa.gov/mission/dawn/"
+      }
+    ]
+  },
+  {
+    "id": "kepler",
+    "section": "missions",
+    "title": "Kepler",
+    "subtitle": "NASA · Exoplanet survey telescope, 2009–2018",
+    "facts": [
+      {
+        "label": "Agency",
+        "value": "NASA (principal investigator at Ames Research Center)",
+        "source": 0
+      },
+      {
+        "label": "Launch",
+        "value": "7 March 2009, 03:50 UTC (6 March in Florida)",
+        "source": 0
+      },
+      {
+        "label": "Launch vehicle",
+        "value": "Delta II, Cape Canaveral",
+        "source": 0
+      },
+      {
+        "label": "Orbit",
+        "value": "Earth-trailing heliocentric orbit, period 372.5 days",
+        "source": 0
+      },
+      {
+        "label": "Field of view",
+        "value": "About 150,000 stars in Cygnus and Lyra, monitored continuously",
+        "source": 1
+      },
+      {
+        "label": "Planets discovered",
+        "value": "More than 2,600",
+        "source": 1
+      },
+      {
+        "label": "Retired",
+        "value": "30 October 2018",
+        "source": 1
+      }
+    ],
+    "essay": "Kepler was NASA's first mission dedicated to finding planets around other stars. It stared at a single patch of sky in Cygnus and Lyra, watching about 150,000 stars at once for the tiny, regular dips in brightness that occur when a planet passes in front of its star. To keep that field steadily in view it orbited the Sun rather than the Earth, trailing behind our planet. Its telescope had a 1.4 m mirror and fed what was then the largest digital camera launched into space.\n\nWithin six weeks it found its first five planets, and in 2010 it found Kepler-9, the first confirmed system with more than one planet transiting the same star. In May 2013 the second of its four reaction wheels failed, ending the original mission. Engineers then used the pressure of sunlight to help stabilize the spacecraft, and the extended K2 mission surveyed fields along the ecliptic instead. It completed 19 campaigns and raised the number of stars Kepler surveyed to more than 500,000.\n\nNASA retired Kepler on 30 October 2018 when it ran out of fuel. It discovered more than 2,600 planets and showed that the most common planet size in the galaxy is between those of Earth and Neptune, a size that does not occur in our solar system. Analysis of its data suggests that 20 to 50 percent of stars visible in the night sky may have small, possibly rocky planets in their habitable zones.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA11825/PIA11825~orig.jpg",
+      "credit": "NASA/Ames/JPL-Caltech",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/PIA11825",
+      "caption": "Artist's concept of the Kepler spacecraft."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "complete",
+      "launch": "2009-03-07"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NSSDCA Master Catalog: Kepler",
+        "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2009-011A"
+      },
+      {
+        "title": "NASA Science: Kepler / K2",
+        "url": "https://science.nasa.gov/mission/kepler/"
+      }
+    ]
+  },
+  {
+    "id": "juno",
+    "section": "missions",
+    "title": "Juno",
+    "subtitle": "NASA · Jupiter polar orbiter, 2016–present",
+    "facts": [
+      {
+        "label": "Agency",
+        "value": "NASA (mission managed by JPL)",
+        "source": 1
+      },
+      {
+        "label": "Launch",
+        "value": "5 August 2011, 16:25 UTC",
+        "source": 0
+      },
+      {
+        "label": "Launch vehicle",
+        "value": "Atlas V 551, Cape Canaveral",
+        "source": 0
+      },
+      {
+        "label": "Earth flyby",
+        "value": "9 October 2013",
+        "source": 0
+      },
+      {
+        "label": "Jupiter orbit insertion",
+        "value": "5 July 2016, 03:53 UTC (4 July in US time zones)",
+        "source": 0
+      },
+      {
+        "label": "Power",
+        "value": "Solar arrays, about 400 W at Jupiter",
+        "source": 0
+      },
+      {
+        "label": "Status (October 2026)",
+        "value": "Listed by NASA as an active mission; extended mission funded to September 2025",
+        "source": 1
+      }
+    ],
+    "essay": "Juno is the first solar-powered spacecraft to operate at Jupiter and the first mission to orbit an outer planet from pole to pole. It was launched on 5 August 2011, used an Earth flyby in October 2013 to gain speed, and entered orbit around Jupiter on 5 July 2016 (4 July in the United States). Jupiter receives only about 4 percent as much sunlight as Earth, so Juno carries three large solar wings, and its electronics sit inside a titanium vault that shields them from Jupiter's intense radiation.\n\nIts long, looping orbits take it low over the cloud tops on each close pass. Juno found that the coloured bands of Jupiter's atmosphere extend about 3,000 km down into the planet, that the core is much larger than expected yet partly dissolved, and that the magnetic field is larger and more powerful than predicted. It also found previously unseen networks of large storms swirling around the poles.\n\nAfter completing its primary mission by mid-2021, Juno began an extended mission that added close flybys of three Galilean moons: Ganymede in June 2021, Europa in September 2022, where its data helped measure the thickness of the ice shell, and Io in December 2023 and February 2024. That extension was scheduled to run to September 2025. NASA's mission page still lists Juno as an active mission; when operations end, the spacecraft's orbit will decay and it will burn up in Jupiter's atmosphere.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA13746/PIA13746~large.jpg",
+      "credit": "NASA/JPL",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/PIA13746",
+      "caption": "Artist's concept of the Juno spacecraft at Jupiter."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "active",
+      "launch": "2011-08-05"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NSSDCA Master Catalog: Juno",
+        "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2011-040A"
+      },
+      {
+        "title": "NASA Science: Juno",
+        "url": "https://science.nasa.gov/mission/juno/"
+      }
+    ]
+  },
+  {
+    "id": "curiosity",
+    "section": "missions",
+    "title": "Curiosity",
+    "subtitle": "NASA · Mars Science Laboratory rover, 2012–present",
+    "facts": [
+      {
+        "label": "Agency",
+        "value": "NASA (mission managed by JPL)",
+        "source": 0
+      },
+      {
+        "label": "Launch",
+        "value": "26 November 2011",
+        "source": 1
+      },
+      {
+        "label": "Launch vehicle",
+        "value": "Atlas V, Cape Canaveral",
+        "source": 1
+      },
+      {
+        "label": "Landing",
+        "value": "6 August 2012, Gale Crater",
+        "source": 0
+      },
+      {
+        "label": "Mass",
+        "value": "899 kg",
+        "source": 0
+      },
+      {
+        "label": "Power",
+        "value": "Radioisotope thermoelectric generator, 125 W at start of mission",
+        "source": 1
+      },
+      {
+        "label": "Status (October 2026)",
+        "value": "Operating; reached 1 km of elevation gain on Mount Sharp on 26 August 2026",
+        "source": 0
+      }
+    ],
+    "essay": "Curiosity is the rover of NASA's Mars Science Laboratory mission. When it launched in November 2011 it was the largest and most capable rover sent to Mars: about the size of a small SUV, with a mass of 899 kg, a 2.2 m robotic arm, 17 cameras and 10 science instruments, including a laser that vaporizes pinpoint spots on rocks to read their chemistry. It is powered by a radioisotope generator rather than solar panels.\n\nIt landed in Gale Crater on 6 August 2012. The mission's central question is whether Mars ever had conditions able to support microbial life, and early in the mission its instruments found chemical and mineral evidence of past habitable environments in the rocks of Gale Crater. Curiosity drills into rock and delivers the powder to onboard laboratories; it has collected 42 drilled samples. In a mudstone sample called Cumberland it found decane, undecane and dodecane, the largest organic molecules yet detected on Mars, which researchers have suggested may be fragments of fatty acids.\n\nThe rover has since been climbing Mount Sharp, the mountain in the centre of Gale Crater, reading the layered rock record as it goes. On 26 August 2026 it reached an elevation gain of 1 km above its starting point. It remains in operation more than 14 years after landing.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA22207/PIA22207~large.jpg",
+      "credit": "NASA/JPL-Caltech/MSSS",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/PIA22207",
+      "caption": "Self-portrait of Curiosity on Vera Rubin Ridge, with Mount Sharp behind it."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "active",
+      "launch": "2011-11-26"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Curiosity",
+        "url": "https://science.nasa.gov/mission/msl-curiosity/"
+      },
+      {
+        "title": "NSSDCA Master Catalog: Mars Science Laboratory",
+        "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2011-070A"
+      }
+    ]
+  },
+  {
+    "id": "rosetta",
+    "section": "missions",
+    "title": "Rosetta",
+    "subtitle": "ESA · Comet orbiter and lander, 2004–2016",
+    "facts": [
+      {
+        "label": "Agency",
+        "value": "ESA, with contributions from member states and NASA",
+        "source": 0
+      },
+      {
+        "label": "Launch",
+        "value": "2 March 2004",
+        "source": 1
+      },
+      {
+        "label": "Launch vehicle",
+        "value": "Ariane 5 G+",
+        "source": 1
+      },
+      {
+        "label": "Asteroid flybys",
+        "value": "Šteins (5 September 2008), Lutetia (10 July 2010)",
+        "source": 1
+      },
+      {
+        "label": "Arrival at comet 67P",
+        "value": "6 August 2014",
+        "source": 1
+      },
+      {
+        "label": "Philae landing",
+        "value": "12 November 2014",
+        "source": 1
+      },
+      {
+        "label": "End of mission",
+        "value": "30 September 2016, controlled descent onto the comet",
+        "source": 1
+      }
+    ],
+    "essay": "Rosetta was the first mission to rendezvous with a comet, the first to follow one along its orbit around the Sun, and the first to put a lander on a comet's surface. Its target was comet 67P/Churyumov–Gerasimenko. ESA led the mission, with contributions from its member states and NASA; the Philae lander was built by a consortium led by DLR, MPS, CNES and ASI.\n\nLaunched on an Ariane 5 in March 2004, Rosetta needed three Earth flybys and one Mars flyby to match the comet's orbit, and passed the asteroids Šteins and Lutetia on the way. To save power far from the Sun it spent 31 months in hibernation, from June 2011 to January 2014. It reached the comet on 6 August 2014 and released Philae on 12 November 2014.\n\nRosetta stayed with 67P through its closest approach to the Sun in August 2015, watching how solar heating changed the nucleus and its coma. It showed how the comet got its double-lobed shape, found molecular oxygen and nitrogen, and measured water with a different composition from the water in Earth's oceans. It also detected the amino acid glycine and phosphorus, both important ingredients for life. The mission ended on 30 September 2016, when the spacecraft was guided down onto the comet's surface.",
+    "image": {
+      "url": "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2015/02/comet_on_31_january_2015_navcam/15241934-1-eng-GB/Comet_on_31_January_2015_NavCam_pillars.jpg",
+      "credit": "ESA/Rosetta/NAVCAM – CC BY-SA IGO 3.0",
+      "licence": "CC BY-SA 3.0 IGO",
+      "page": "https://www.esa.int/ESA_Multimedia/Images/2015/02/Comet_on_31_January_2015_NavCam",
+      "caption": "Comet 67P/Churyumov–Gerasimenko in a four-image mosaic from Rosetta's navigation camera, taken 28 km from the comet on 31 January 2015."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "complete",
+      "launch": "2004-03-02"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "ESA: Rosetta",
+        "url": "https://www.esa.int/Science_Exploration/Space_Science/Rosetta"
+      },
+      {
+        "title": "ESA: Rosetta factsheet",
+        "url": "https://www.esa.int/Science_Exploration/Space_Science/Rosetta/Rosetta_factsheet"
+      },
+      {
+        "title": "NASA Science: Rosetta-Philae",
+        "url": "https://science.nasa.gov/mission/rosetta-philae/"
+      }
+    ]
+  },
+  {
+    "id": "gaia",
+    "section": "missions",
+    "title": "Gaia",
+    "subtitle": "ESA · Astrometry observatory at L2, 2013–2025",
+    "facts": [
+      {
+        "label": "Agency",
+        "value": "ESA",
+        "source": 1
+      },
+      {
+        "label": "Launch",
+        "value": "19 December 2013",
+        "source": 1
+      },
+      {
+        "label": "Launch vehicle",
+        "value": "Soyuz-Fregat, Kourou",
+        "source": 1
+      },
+      {
+        "label": "Orbit",
+        "value": "Lissajous-type orbit around the Sun–Earth L2 point",
+        "source": 1
+      },
+      {
+        "label": "Science observations",
+        "value": "27 July 2014 to 15 January 2025",
+        "source": 0
+      },
+      {
+        "label": "Observations made",
+        "value": "More than three trillion, of about two billion objects",
+        "source": 0
+      },
+      {
+        "label": "Status (October 2026)",
+        "value": "Retired; data releases continue (DR4 expected December 2026)",
+        "source": 0
+      }
+    ],
+    "essay": "Gaia was an ESA observatory built to measure the positions, distances and motions of stars with very high precision. From 27 July 2014 to 15 January 2025 it made more than three trillion observations of about two billion stars and other objects, roughly 1 percent of the stars in the Milky Way. For more than 99.9 percent of those objects, no accurate distance had been measured before.\n\nThe spacecraft worked from an orbit around the Sun–Earth L2 point, about 1.5 million km from Earth. It spun slowly, sweeping two telescopes across the whole sky, and focused their light onto a single camera of nearly a billion pixels, the largest flown in space. Repeated measurements of the same stars over years revealed their tiny yearly shifts in position, from which distances follow, and their motions across the sky.\n\nGaia's data are released in stages; the latest full release came in June 2022. The results showed that the Milky Way merged with another large galaxy about 10 billion years ago, that the thick disc began forming 13 billion years ago, and that cooling white dwarfs turn solid. Gaia also improved the orbits of near-Earth asteroids and found new stellar streams, clusters and hypervelocity stars. Observations ended in January 2025. A fourth data release is expected in December 2026 and a final one not before the end of 2030.",
+    "image": {
+      "url": "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2020/12/the_colour_of_the_sky_from_gaia_s_early_data_release_3/22358049-1-eng-GB/The_colour_of_the_sky_from_Gaia_s_Early_Data_Release_3_article.png",
+      "credit": "ESA/Gaia/DPAC; CC BY-SA 3.0 IGO. Acknowledgement: A. Moitinho.",
+      "licence": "CC BY-SA 3.0 IGO",
+      "page": "https://www.esa.int/ESA_Multimedia/Images/2020/12/The_colour_of_the_sky_from_Gaia_s_Early_Data_Release_3",
+      "caption": "The whole sky in the brightness and colour of more than 1.8 billion stars measured by Gaia, from Early Data Release 3."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "complete",
+      "launch": "2013-12-19"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "ESA: Gaia",
+        "url": "https://www.esa.int/Science_Exploration/Space_Science/Gaia"
+      },
+      {
+        "title": "ESA: Gaia factsheet",
+        "url": "https://www.esa.int/Science_Exploration/Space_Science/Gaia/Gaia_factsheet"
+      },
+      {
+        "title": "NASA Science: Gaia",
+        "url": "https://science.nasa.gov/mission/gaia/"
+      }
+    ]
+  },
+  {
+    "id": "osiris-rex",
+    "section": "missions",
+    "title": "OSIRIS-REx",
+    "subtitle": "NASA · Asteroid sample return, 2016–2023; continuing as OSIRIS-APEX",
+    "facts": [
+      {
+        "label": "Agency",
+        "value": "NASA",
+        "source": 0
+      },
+      {
+        "label": "Launch",
+        "value": "8 September 2016, 23:05 UTC",
+        "source": 1
+      },
+      {
+        "label": "Launch vehicle",
+        "value": "Atlas V 411, Cape Canaveral",
+        "source": 1
+      },
+      {
+        "label": "Arrival at Bennu",
+        "value": "3 December 2018",
+        "source": 0
+      },
+      {
+        "label": "Sample collection",
+        "value": "20 October 2020",
+        "source": 0
+      },
+      {
+        "label": "Sample delivered to Earth",
+        "value": "24 September 2023, Utah",
+        "source": 0
+      },
+      {
+        "label": "Sample mass",
+        "value": "121.6 g",
+        "source": 0
+      },
+      {
+        "label": "Status (October 2026)",
+        "value": "Spacecraft operating as OSIRIS-APEX, bound for asteroid Apophis (arrival June 2029)",
+        "source": 2
+      }
+    ],
+    "essay": "OSIRIS-REx was the first US mission to collect a sample from an asteroid. Its target was Bennu, a carbonaceous near-Earth asteroid. Scientists hope the sample will show whether asteroids that struck the young Earth delivered water and other ingredients for life.\n\nLaunched in September 2016, the spacecraft reached Bennu on 3 December 2018 and entered orbit on 31 December, the smallest body ever orbited by a spacecraft. Close-up mapping showed a surface far rockier than expected, covered in boulders, which made finding a safe sampling spot difficult. The team chose a site called Nightingale inside a 140 m crater. On 20 October 2020 the spacecraft briefly touched the surface in a touch-and-go manoeuvre, firing a burst of nitrogen gas to stir loose rock and dust into its sampler head.\n\nOSIRIS-REx left Bennu in May 2021 and on 24 September 2023 released a capsule that parachuted onto the Utah Test and Training Range. It held 121.6 g of asteroid material, more than double the mission's requirement and the largest asteroid sample collected in space. The spacecraft itself was renamed OSIRIS-APEX and redirected to the asteroid Apophis. After an Earth flyby on 23 September 2025, it is due to arrive in June 2029, shortly after Apophis passes within about 32,000 km of Earth's surface.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/KSC-20160908-PH_SRJ02_0017/KSC-20160908-PH_SRJ02_0017~large.jpg",
+      "credit": "NASA/Sandy Joseph and Tim Terry",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/KSC-20160908-PH_SRJ02_0017",
+      "caption": "An Atlas V rocket lifting off from Cape Canaveral with OSIRIS-REx on 8 September 2016."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "active",
+      "launch": "2016-09-08"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: OSIRIS-REx",
+        "url": "https://science.nasa.gov/mission/osiris-rex/"
+      },
+      {
+        "title": "NSSDCA Master Catalog: OSIRIS-REx",
+        "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2016-055A"
+      },
+      {
+        "title": "NASA Science: OSIRIS-APEX",
+        "url": "https://science.nasa.gov/mission/osiris-apex/"
+      }
+    ]
+  },
+  {
+    "id": "parker-solar-probe",
+    "section": "missions",
+    "title": "Parker Solar Probe",
+    "subtitle": "NASA · Solar orbiter, 2018–present",
+    "facts": [
+      {
+        "label": "Agency",
+        "value": "NASA (Goddard Space Flight Center and Johns Hopkins APL)",
+        "source": 0
+      },
+      {
+        "label": "Launch",
+        "value": "12 August 2018, 07:31 UTC",
+        "source": 0
+      },
+      {
+        "label": "Launch vehicle",
+        "value": "Delta IV Heavy with upper stage, Cape Canaveral",
+        "source": 0
+      },
+      {
+        "label": "Venus flybys",
+        "value": "Seven, from 3 October 2018 to 6 November 2024",
+        "source": 1
+      },
+      {
+        "label": "Closest approach to the Sun",
+        "value": "About 6.2 million km from the surface",
+        "source": 0
+      },
+      {
+        "label": "Top speed",
+        "value": "About 700,000 km/h at closest approach",
+        "source": 0
+      },
+      {
+        "label": "Heat shield",
+        "value": "11.43 cm carbon-composite, rated to nearly 1,377 °C",
+        "source": 0
+      },
+      {
+        "label": "Status (October 2026)",
+        "value": "Operating",
+        "source": 0
+      }
+    ],
+    "essay": "Parker Solar Probe is the first spacecraft to fly through the Sun's corona, its outer atmosphere. NASA announced on 14 December 2021 that it had passed through the corona and sampled the particles and magnetic fields there. The mission is named for Eugene Parker, who proposed the existence of the solar wind in 1958; it was the first NASA spacecraft named after a living person.\n\nAfter launch on a Delta IV Heavy in August 2018, Parker used seven flybys of Venus, the last on 6 November 2024, to shrink its orbit step by step. Its closest passes, beginning on 24 December 2024, bring it within about 6.2 million km of the solar surface, at about 700,000 km/h.\n\nThe spacecraft survives behind an 11.43 cm carbon-composite heat shield that can withstand nearly 1,377 °C, while its solar arrays are actively cooled. Its four instrument suites measure electric and magnetic fields, energetic particles and the solar wind, and image the corona. The aim is to answer long-standing questions: why the corona is far hotter than the visible surface, how the solar wind is accelerated, and where high-energy solar particles come from. These measurements also help forecast space weather at Earth.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/NHQ201808120013/NHQ201808120013~large.jpg",
+      "credit": "NASA/Bill Ingalls",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/NHQ201808120013",
+      "caption": "A Delta IV Heavy rocket launching Parker Solar Probe from Cape Canaveral on 12 August 2018."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "active",
+      "launch": "2018-08-12"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Parker Solar Probe",
+        "url": "https://science.nasa.gov/mission/parker-solar-probe/"
+      },
+      {
+        "title": "NSSDCA Master Catalog: Parker Solar Probe",
+        "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2018-065A"
+      }
+    ]
+  },
+  {
+    "id": "tess",
+    "section": "missions",
+    "title": "TESS",
+    "subtitle": "NASA · Transiting Exoplanet Survey Satellite, 2018–present",
+    "facts": [
+      {
+        "label": "Agency",
+        "value": "NASA (Explorer programme)",
+        "source": 1
+      },
+      {
+        "label": "Launch",
+        "value": "18 April 2018",
+        "source": 1
+      },
+      {
+        "label": "Launch vehicle",
+        "value": "Falcon 9, Cape Canaveral",
+        "source": 1
+      },
+      {
+        "label": "Survey targets",
+        "value": "About 200,000 of the brightest stars near the Sun",
+        "source": 1
+      },
+      {
+        "label": "Planets and candidates",
+        "value": "Nearly 6,000 identified by September 2025",
+        "source": 0
+      },
+      {
+        "label": "Status (October 2026)",
+        "value": "Operating, extended mission",
+        "source": 0
+      }
+    ],
+    "essay": "The Transiting Exoplanet Survey Satellite, TESS, searches for planets around nearby bright stars. It looks for transits: the small, repeated dips in a star's brightness that occur when a planet passes in front of it.\n\nTESS was launched on a Falcon 9 on 18 April 2018. Its main survey targets are about 200,000 of the brightest stars near the Sun. Planets found around such nearby, bright stars give astronomers a rich set of targets for more detailed follow-up studies with other telescopes. Before launch the team expected thousands of planet candidates, around 300 of them no more than twice the size of Earth.\n\nTESS completed its two-year primary mission and has since continued in extended missions. By September 2025, at the end of its second extended mission, it had identified nearly 6,000 confirmed or candidate exoplanets. Its repeated wide-field images are also used to study many other objects that change in brightness, from nearby asteroids to pulsating stars and distant galaxies containing supernovae.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/KSC-20180418-PH_AWG07_0002/KSC-20180418-PH_AWG07_0002~large.jpg",
+      "credit": "NASA/Tony Gray",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/KSC-20180418-PH_AWG07_0002",
+      "caption": "A Falcon 9 rocket lifting off from Cape Canaveral with TESS on 18 April 2018."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "active",
+      "launch": "2018-04-18"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: TESS",
+        "url": "https://science.nasa.gov/mission/tess/"
+      },
+      {
+        "title": "NSSDCA Master Catalog: TESS",
+        "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2018-038A"
+      }
+    ]
+  },
+  {
+    "id": "perseverance",
+    "section": "missions",
+    "title": "Perseverance",
+    "subtitle": "NASA · Mars 2020 rover, 2021–present",
+    "facts": [
+      {
+        "label": "Agency",
+        "value": "NASA (mission managed by JPL)",
+        "source": 0
+      },
+      {
+        "label": "Launch",
+        "value": "30 July 2020, 11:50 UTC",
+        "source": 1
+      },
+      {
+        "label": "Launch vehicle",
+        "value": "Atlas V 541, Cape Canaveral",
+        "source": 1
+      },
+      {
+        "label": "Landing",
+        "value": "18 February 2021, Jezero Crater",
+        "source": 0
+      },
+      {
+        "label": "Ingenuity first flight",
+        "value": "19 April 2021 (first powered flight on another planet)",
+        "source": 1
+      },
+      {
+        "label": "Distance driven",
+        "value": "45.22 km by 11 October 2026, the off-world record",
+        "source": 0
+      },
+      {
+        "label": "Status (October 2026)",
+        "value": "Operating",
+        "source": 0
+      }
+    ],
+    "essay": "Perseverance is the rover of NASA's Mars 2020 mission. Its job is to look for signs of ancient microbial life and to collect cores of Martian rock and regolith that a future mission could bring back to Earth. It is based on the Curiosity design, with a mass of about 1,050 kg and a radioisotope power source.\n\nThe rover landed on 18 February 2021 in Jezero Crater, on the western edge of the Isidis Planitia basin. It carried a small helicopter, Ingenuity, which made the first powered, controlled flight on another planet on 19 April 2021, hovering for 30 seconds at 3 m. A separate experiment, MOXIE, demonstrated making oxygen from the carbon dioxide atmosphere. In its first five years the rover collected more than two dozen geologically diverse rock samples and explored the history of water and habitable environments in the crater and on its rim.\n\nIn 2024 Perseverance sampled a rock nicknamed Cheyava Falls. After a year of peer review, a study published in Nature in September 2025 reported that the sample contains potential biosignatures: features that could have a biological origin but need more study before any conclusion can be drawn. On 11 October 2026 the rover's odometer reached 45.22 km, passing Opportunity's record for the longest distance driven on another world.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA24542/PIA24542~large.jpg",
+      "credit": "NASA/JPL-Caltech/MSSS",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/PIA24542",
+      "caption": "Perseverance's selfie with the Ingenuity helicopter, about 3.9 m away, on 6 April 2021."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "active",
+      "launch": "2020-07-30"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Mars 2020 Perseverance",
+        "url": "https://science.nasa.gov/mission/mars-2020-perseverance/"
+      },
+      {
+        "title": "NSSDCA Master Catalog: Mars 2020",
+        "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2020-052A"
+      }
+    ]
+  },
+  {
+    "id": "lucy",
+    "section": "missions",
+    "title": "Lucy",
+    "subtitle": "NASA · Trojan asteroid flybys, 2021–present",
+    "facts": [
+      {
+        "label": "Agency",
+        "value": "NASA",
+        "source": 0
+      },
+      {
+        "label": "Launch",
+        "value": "16 October 2021, 09:34 UTC",
+        "source": 1
+      },
+      {
+        "label": "Launch vehicle",
+        "value": "Atlas V 401, Cape Canaveral",
+        "source": 1
+      },
+      {
+        "label": "Main-belt flybys",
+        "value": "Dinkinesh and Selam (1 November 2023); Donaldjohanson (20 April 2025)",
+        "source": 0
+      },
+      {
+        "label": "Trojan flybys planned",
+        "value": "Eurybates and Queta (11 August 2027) through Patroclus and Menoetius (3 March 2033)",
+        "source": 0
+      },
+      {
+        "label": "Asteroids to be visited",
+        "value": "11",
+        "source": 0
+      },
+      {
+        "label": "Status (October 2026)",
+        "value": "Operating, cruising toward the first Trojan flyby",
+        "source": 0
+      }
+    ],
+    "essay": "Lucy is the first mission to explore the Jupiter Trojans, two swarms of asteroids that share Jupiter's orbit around the Sun, one leading the planet by 60° and one trailing it. The Trojans are thought to be remnants of the same material that formed the outer planets, preserved since the early solar system.\n\nThe spacecraft is more than 16 m from tip to tip, mostly because of its two circular solar arrays, each over 7 m across. It carries a high-resolution camera, a colour imager and infrared spectrometer, and a thermal infrared spectrometer. Lucy launched on 16 October 2021 and returned to Earth for gravity assists before heading out. On 1 November 2023 it passed the small main-belt asteroid Dinkinesh and found that it has a moon, now named Selam, which is itself a contact binary. On 20 April 2025 it flew past a second main-belt asteroid, Donaldjohanson.\n\nLucy's tour is planned to cover 11 asteroids in total, a record for a single mission. The first Trojan encounter, with Eurybates and its satellite Queta, is scheduled for 11 August 2027, followed by Polymele in September 2027, Leucus in 2028 and Orus in 2028. The tour ends with the binary pair Patroclus and Menoetius on 3 March 2033.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/NHQ202110160012/NHQ202110160012~large.jpg",
+      "credit": "NASA/Bill Ingalls",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/NHQ202110160012",
+      "caption": "An Atlas V rocket launching Lucy from Cape Canaveral before dawn on 16 October 2021."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "active",
+      "launch": "2021-10-16"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Lucy",
+        "url": "https://science.nasa.gov/mission/lucy/"
+      },
+      {
+        "title": "NSSDCA Master Catalog: Lucy",
+        "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2021-093A"
+      }
+    ]
+  },
+  {
+    "id": "james-webb-space-telescope",
+    "section": "missions",
+    "title": "James Webb Space Telescope",
+    "subtitle": "NASA, ESA and CSA · Infrared space observatory at L2, 2021–present",
+    "facts": [
+      {
+        "label": "Agencies",
+        "value": "NASA, ESA and CSA",
+        "source": 0
+      },
+      {
+        "label": "Launch",
+        "value": "25 December 2021, 12:20 UTC",
+        "source": 1
+      },
+      {
+        "label": "Launch vehicle",
+        "value": "Ariane 5 ECA, Kourou, French Guiana",
+        "source": 1
+      },
+      {
+        "label": "Arrival at L2",
+        "value": "24 January 2022",
+        "source": 0
+      },
+      {
+        "label": "Primary mirror",
+        "value": "18 gold-coated beryllium segments, 6.6 m across flat to flat",
+        "source": 1
+      },
+      {
+        "label": "Wavelength range",
+        "value": "0.6 to 29 micrometres",
+        "source": 1
+      },
+      {
+        "label": "Status (October 2026)",
+        "value": "Operating",
+        "source": 0
+      }
+    ],
+    "essay": "The James Webb Space Telescope is a large infrared observatory built by NASA with the European and Canadian space agencies. It studies every phase of cosmic history, from the first galaxies that formed after the Big Bang to the formation of stars and planetary systems and the planets of our own solar system.\n\nWebb's primary mirror is made of 18 hexagonal segments of gold-coated beryllium that together span 6.6 m, with a collecting area of 25 square metres. The mirror and the five-layer sunshield, roughly 10 by 22 m, were folded to fit inside an Ariane 5 rocket and unfolded in space. To see faint infrared light the telescope must be very cold, so the sunshield keeps it permanently shaded from the Sun, Earth and Moon. Four main instruments cover wavelengths from 0.6 to 29 micrometres.\n\nWebb launched from Kourou on 25 December 2021. Unlike Hubble it does not orbit Earth: on 24 January 2022 it reached an orbit around the second Sun–Earth Lagrange point, L2, about 1.5 million km from Earth. Commissioning was completed and the observatory is operating normally; its station-keeping propellant is expected to last about 10 years. It is designed to look back more than 13.5 billion years to some of the first galaxies to form after the Big Bang.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/NHQ202112250015/NHQ202112250015~large.jpg",
+      "credit": "NASA/Bill Ingalls",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/NHQ202112250015",
+      "caption": "Ariane 5 rocket launching the James Webb Space Telescope from Kourou, French Guiana, on 25 December 2021."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "active",
+      "launch": "2021-12-25"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: James Webb Space Telescope",
+        "url": "https://science.nasa.gov/mission/webb/"
+      },
+      {
+        "title": "NSSDCA Master Catalog: James Webb Space Telescope",
+        "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2021-130A"
+      }
+    ]
+  },
+  {
+    "id": "dart",
+    "section": "missions",
+    "title": "DART",
+    "subtitle": "NASA · Double Asteroid Redirection Test, 2021–2022",
+    "facts": [
+      {
+        "label": "Agency",
+        "value": "NASA (built and operated by Johns Hopkins APL)",
+        "source": 1
+      },
+      {
+        "label": "Launch",
+        "value": "24 November 2021, 06:21 UTC",
+        "source": 1
+      },
+      {
+        "label": "Launch vehicle",
+        "value": "Falcon 9, Vandenberg, California",
+        "source": 1
+      },
+      {
+        "label": "Target",
+        "value": "Dimorphos (about 160 m), moon of the asteroid Didymos (about 780 m)",
+        "source": 0
+      },
+      {
+        "label": "Impact",
+        "value": "26 September 2022, 23:14 UTC, at about 6.6 km/s",
+        "source": 1
+      },
+      {
+        "label": "Result",
+        "value": "Orbit of Dimorphos shortened by 32 minutes, from 11 h 55 min to 11 h 23 min",
+        "source": 2
+      }
+    ],
+    "essay": "DART, the Double Asteroid Redirection Test, was the first mission to test a method of planetary defence: changing an asteroid's motion by deliberately crashing a spacecraft into it. Its target was Dimorphos, a moonlet about 160 m across that orbits a larger asteroid, Didymos, about 780 m across. Neither poses any threat to Earth. Because Dimorphos orbits Didymos, any change in its speed shows up as a change in its orbital period, which telescopes on Earth can measure.\n\nDART launched on a Falcon 9 from Vandenberg in November 2021. It carried one instrument, the DRACO camera, which fed images to an autonomous navigation system that steered the spacecraft onto Dimorphos during the last hours. Fifteen days before impact the Italian Space Agency's LICIACube cubesat separated to follow about three minutes behind and photograph the collision. On 26 September 2022 DART hit Dimorphos at about 6.6 km/s, about 11 million km from Earth, sending back images until about two seconds before impact.\n\nNASA had set a minimum target of shortening the orbit by 73 seconds. Measurements showed that the impact cut the orbital period by 32 minutes, from 11 hours 55 minutes to 11 hours 23 minutes. That was more than 25 times the minimum. ESA's Hera mission is planned to visit the system to study the result in more detail.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA25329/PIA25329~large.jpg",
+      "credit": "NASA/Johns Hopkins APL/Steve Gribben",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/PIA25329",
+      "caption": "Illustration of DART approaching the Didymos system before impact on Dimorphos."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "complete",
+      "launch": "2021-11-24"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: DART",
+        "url": "https://science.nasa.gov/mission/dart/"
+      },
+      {
+        "title": "NSSDCA Master Catalog: DART",
+        "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2021-110A"
+      },
+      {
+        "title": "NASA: NASA Confirms DART Mission Impact Changed Asteroid's Motion in Space",
+        "url": "https://www.nasa.gov/news-release/nasa-confirms-dart-mission-impact-changed-asteroids-motion-in-space/"
+      }
+    ]
+  },
+  {
+    "id": "artemis-i",
+    "section": "missions",
+    "title": "Artemis I",
+    "subtitle": "NASA · Uncrewed lunar flight test, 2022",
+    "facts": [
+      {
+        "label": "Agency",
+        "value": "NASA, with ESA providing Orion's service module",
+        "source": 0
+      },
+      {
+        "label": "Launch",
+        "value": "16 November 2022, 06:47 UTC, Launch Complex 39B, Kennedy Space Center",
+        "source": 0
+      },
+      {
+        "label": "Launch vehicle",
+        "value": "Space Launch System (SLS) Block 1",
+        "source": 1
+      },
+      {
+        "label": "Spacecraft",
+        "value": "Orion (uncrewed)",
+        "source": 0
+      },
+      {
+        "label": "Maximum distance from Earth",
+        "value": "432,210 km (268,563 miles)",
+        "source": 0
+      },
+      {
+        "label": "Splashdown",
+        "value": "11 December 2022, Pacific Ocean off San Diego",
+        "source": 0
+      },
+      {
+        "label": "Mission duration",
+        "value": "25 days, 10 hours, 53 minutes",
+        "source": 0
+      }
+    ],
+    "essay": "Artemis I was the first integrated flight test of NASA's new deep-space system: the Space Launch System rocket, the Orion spacecraft and the ground systems at Kennedy Space Center. It flew without a crew to prove the hardware before astronauts used it.\n\nThe SLS lifted off from Launch Complex 39B at 1:47 a.m. EST on 16 November 2022. Its upper stage sent Orion toward the Moon and released ten small cubesats on separate missions. Orion flew close past the Moon, then entered a wide orbit that took it 70,000 km (43,471 miles) beyond the lunar far side. At its farthest it was 432,210 km from Earth. It then returned and splashed down in the Pacific off San Diego on 11 December 2022, after 25 days, 10 hours and 53 minutes.\n\nThe SLS met or exceeded its performance targets, and Orion completed 161 test objectives, including 20 added during the flight. The European-built service module produced about 20 percent more power than expected. Engineers found more charring than predicted on Orion's heat shield, and the analysis fed into changes for later missions. The success of Artemis I led to Artemis II, which carried four astronauts around the Moon in 2026.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/art001e000675/art001e000675~large.jpg",
+      "credit": "NASA",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/art001e000675",
+      "caption": "Orion, with Earth and the Moon in view, on flight day 13 of Artemis I, when it reached its maximum distance from Earth."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "complete",
+      "launch": "2022-11-16"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA: Artemis I",
+        "url": "https://www.nasa.gov/mission/artemis-i/"
+      },
+      {
+        "title": "NSSDCA Master Catalog: Artemis 1",
+        "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2022-156A"
+      }
+    ]
+  },
+  {
+    "id": "europa-clipper",
+    "section": "missions",
+    "title": "Europa Clipper",
+    "subtitle": "NASA · Jupiter orbiter for Europa flybys, 2024–present",
+    "facts": [
+      {
+        "label": "Agency",
+        "value": "NASA",
+        "source": 0
+      },
+      {
+        "label": "Launch",
+        "value": "14 October 2024, 12:06 p.m. EDT",
+        "source": 0
+      },
+      {
+        "label": "Launch vehicle",
+        "value": "Falcon Heavy, Launch Complex 39A, Kennedy Space Center",
+        "source": 0
+      },
+      {
+        "label": "Gravity assists",
+        "value": "Mars (2025), Earth (planned 3 December 2026)",
+        "source": 0
+      },
+      {
+        "label": "Jupiter arrival",
+        "value": "April 2030 (planned)",
+        "source": 0
+      },
+      {
+        "label": "Europa flybys planned",
+        "value": "49",
+        "source": 0
+      },
+      {
+        "label": "Size",
+        "value": "More than 30 m across with solar arrays deployed",
+        "source": 0
+      },
+      {
+        "label": "Status (October 2026)",
+        "value": "In cruise to Jupiter",
+        "source": 0
+      }
+    ],
+    "essay": "Europa Clipper is the first mission designed to study Jupiter's moon Europa in detail. Its main goal is to find out whether there are places beneath Europa's icy surface that could support life. Scientists think a salty ocean lies under the ice that may hold more than twice as much water as all of Earth's oceans combined.\n\nThe spacecraft is solar-powered. With its arrays deployed it spans more than 30 m, about the length of a basketball court. Its main body consists of an avionics vault, a radio frequency module and a propulsion module, and it has a 3 m high-gain antenna. It carries nine science instruments plus a gravity experiment that uses its radio system, and all the instruments will operate together on every pass.\n\nEuropa Clipper launched on a Falcon Heavy on 14 October 2024. It flew past Mars in 2025 and is due to swing past Earth on 3 December 2026 for a final gravity assist before arriving at Jupiter in April 2030, after a journey of about 2.9 billion km. It will not orbit Europa itself. Instead it will orbit Jupiter and make 49 close flybys of the moon, using an orbital tour design derived from the way Cassini explored Saturn's moons.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA26445/PIA26445~orig.jpg",
+      "credit": "NASA/JPL-Caltech",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/PIA26445",
+      "caption": "Artist's concept of Europa Clipper approaching Jupiter and Europa."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "active",
+      "launch": "2024-10-14"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Europa Clipper",
+        "url": "https://science.nasa.gov/mission/europa-clipper/"
+      },
+      {
+        "title": "NASA Science: Cassini-Huygens",
+        "url": "https://science.nasa.gov/mission/cassini/"
+      }
+    ]
+  },
+  {
+    "id": "juice",
+    "section": "missions",
+    "title": "JUICE",
+    "subtitle": "ESA · Jupiter Icy Moons Explorer, 2023–present",
+    "facts": [
+      {
+        "label": "Agency",
+        "value": "ESA, with NASA participation",
+        "source": 0
+      },
+      {
+        "label": "Launch",
+        "value": "14 April 2023",
+        "source": 0
+      },
+      {
+        "label": "Launch vehicle",
+        "value": "Ariane 5, Europe's Spaceport, French Guiana",
+        "source": 0
+      },
+      {
+        "label": "Gravity assists",
+        "value": "Moon and Earth (August 2024), Venus (August 2025), Earth (28 September 2026), Earth (January 2029)",
+        "source": 0
+      },
+      {
+        "label": "Jupiter arrival",
+        "value": "July 2031 (planned)",
+        "source": 0
+      },
+      {
+        "label": "Instruments",
+        "value": "10",
+        "source": 0
+      },
+      {
+        "label": "Moon flybys planned",
+        "value": "35",
+        "source": 0
+      },
+      {
+        "label": "Status (October 2026)",
+        "value": "In cruise to Jupiter",
+        "source": 0
+      }
+    ],
+    "essay": "JUICE, the Jupiter Icy Moons Explorer, is ESA's mission to Jupiter and three of its large moons: Ganymede, Callisto and Europa. All three are thought to have oceans beneath their ice. The mission will study them both as worlds in their own right and as possible habitats, explore Jupiter's environment, and treat the Jupiter system as a model for gas giants around other stars. NASA is collaborating on the ESA-led mission.\n\nJuice launched on an Ariane 5 from French Guiana on 14 April 2023. Its route uses a series of gravity assists. In August 2024 it made a combined lunar-Earth flyby, and in August 2025 it flew past Venus. On 28 September 2026 it passed 8,640 km above the Indian Ocean, and its JANUS camera, one of 10 instruments on board, photographed a long strip of southern Africa as Earth turned below. A final Earth flyby in January 2029 will send it on to Jupiter.\n\nJuice is due to arrive in July 2031. It carries solar wings with a total area of 85 square metres to generate power so far from the Sun. The plan includes 35 close flybys of Jupiter's moons, with the aim of characterizing Ganymede, Callisto and Europa as planetary objects and as possible habitats.",
+    "image": {
+      "url": "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2026/10/fly_over_africa_with_juice/27579386-1-eng-GB/Fly_over_Africa_with_Juice_card_full.png",
+      "credit": "ESA/Juice/JANUS. Acknowledgements: Processing: L. Penasa",
+      "licence": "CC BY-SA 3.0 IGO",
+      "page": "https://www.esa.int/ESA_Multimedia/Images/2026/10/Fly_over_Africa_with_Juice",
+      "caption": "A strip of southern Africa from Madagascar to the Gulf of Guinea, imaged by Juice's JANUS camera during its Earth flyby on 28 September 2026."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "active",
+      "launch": "2023-04-14"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "ESA: Juice",
+        "url": "https://www.esa.int/Science_Exploration/Space_Science/Juice"
+      },
+      {
+        "title": "ESA: Fly over Africa with Juice",
+        "url": "https://www.esa.int/ESA_Multimedia/Images/2026/10/Fly_over_Africa_with_Juice"
+      },
+      {
+        "title": "NASA Science: JUICE",
+        "url": "https://science.nasa.gov/mission/juice/"
+      }
+    ]
+  },
+  {
+    "id": "psyche",
+    "section": "missions",
+    "title": "Psyche",
+    "subtitle": "NASA · Metal asteroid orbiter, 2023–present",
+    "facts": [
+      {
+        "label": "Agency",
+        "value": "NASA (Discovery programme; spacecraft operations by JPL)",
+        "source": 1
+      },
+      {
+        "label": "Launch",
+        "value": "13 October 2023, 14:19:43 UTC",
+        "source": 1
+      },
+      {
+        "label": "Launch vehicle",
+        "value": "Falcon Heavy, Launch Complex 39A, Kennedy Space Center",
+        "source": 0
+      },
+      {
+        "label": "Mars gravity assist",
+        "value": "15 May 2026",
+        "source": 0
+      },
+      {
+        "label": "Arrival at asteroid Psyche",
+        "value": "August 2029 (planned)",
+        "source": 0
+      },
+      {
+        "label": "Propulsion",
+        "value": "Solar-electric, four SPT-140 Hall-effect thrusters using xenon",
+        "source": 1
+      },
+      {
+        "label": "Status (October 2026)",
+        "value": "In cruise to the asteroid belt",
+        "source": 0
+      }
+    ],
+    "essay": "Psyche is a NASA mission to the asteroid of the same name, a body in the main asteroid belt whose surface appears to contain a large amount of metal rather than rock or ice. Scientists think it may be part of the metal core of a planetesimal, one of the building blocks of the early planets. Psyche is the first mission to explore such a world, and its results should improve our knowledge of iron cores, a previously unexplored building block of planet formation.\n\nThe spacecraft is box-shaped and, with its solar arrays deployed, almost as large as a tennis court. Its arrays drive a solar-electric propulsion system of Hall-effect thrusters that use xenon propellant. It carries a multispectral imager, a gamma-ray and neutron spectrometer and a magnetometer, and will measure the asteroid's gravity through its radio signal. It also carries the Deep Space Optical Communications experiment, NASA's test of laser communication beyond the Moon.\n\nPsyche launched on a Falcon Heavy on 13 October 2023. On 15 May 2026 it flew past Mars, using the planet's gravity to gain speed and tilt its trajectory, and photographed Mars to calibrate its instruments for the work ahead. It is due to reach the asteroid in August 2029 and will spend about two years in a series of orbits, mapping the surface and measuring its composition, gravity and magnetic field to test whether Psyche is an exposed core.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA24473/PIA24473~large.jpg",
+      "credit": "NASA/JPL-Caltech/ASU",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/PIA24473",
+      "caption": "Illustration of the Psyche spacecraft."
+    },
+    "drawing": {
+      "kind": "mission",
+      "status": "active",
+      "launch": "2023-10-13"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Psyche",
+        "url": "https://science.nasa.gov/mission/psyche/"
+      },
+      {
+        "title": "NSSDCA Master Catalog: Psyche",
+        "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2023-157A"
+      }
+    ]
+  }
+]

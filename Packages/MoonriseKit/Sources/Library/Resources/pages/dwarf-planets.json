@@ -1,0 +1,346 @@
+[
+  {
+    "id": "ceres",
+    "section": "dwarf-planets",
+    "title": "Ceres",
+    "subtitle": "Dwarf planet in the asteroid belt",
+    "facts": [
+      {
+        "label": "Mean distance from the Sun",
+        "value": "2.768 AU (414 million km)",
+        "source": 0
+      },
+      {
+        "label": "Dimensions",
+        "value": "965 × 961 × 891 km (mean radius about 476 km)",
+        "source": 0
+      },
+      {
+        "label": "Mass",
+        "value": "0.000157 × Earth (9.39 × 10²⁰ kg)",
+        "source": 0
+      },
+      {
+        "label": "Rotation period",
+        "value": "9.074 h",
+        "source": 0
+      },
+      {
+        "label": "Orbital period",
+        "value": "4.60 Earth years (1,682 days)",
+        "source": 0
+      },
+      {
+        "label": "Known moons",
+        "value": "0 (NASA, April 2025)",
+        "source": 1
+      },
+      {
+        "label": "Axial tilt",
+        "value": "About 4°",
+        "source": 1
+      },
+      {
+        "label": "Discovery",
+        "value": "1 January 1801, by Giuseppe Piazzi",
+        "source": 0
+      }
+    ],
+    "essay": "Ceres is the largest object in the asteroid belt, about 940 km across, and the only dwarf planet in the inner solar system. Giuseppe Piazzi found it on 1 January 1801. It was classed as an asteroid for two centuries until the International Astronomical Union made it a dwarf planet in 2006.\n\nNASA's Dawn spacecraft orbited Ceres from 2015 to 2018, the first visit to a dwarf planet. Dawn found a dark surface of rock, ice and salts, covered in small craters but with none larger than about 280 km. The shortage of large craters suggests that ice beneath the surface lets big craters slowly flatten. The bright spots in Occator Crater are salt deposits, mostly sodium carbonate, left where briny water reached the surface and evaporated. Ceres may be as much as 25 percent water, mostly as ice in a mantle around a rocky core, and it has a very thin atmosphere that contains water vapour.\n\nCeres has no moons. At a favourable opposition it reaches about magnitude 7, so it is within reach of binoculars, although it looks like a star. Plotting its position over a few nights shows it moving against the background stars.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA21906/PIA21906~medium.jpg",
+      "credit": "NASA/JPL-Caltech/UCLA/MPS/DLR/IDA",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/PIA21906",
+      "caption": "Ceres from Dawn's low-altitude mapping orbit, centred on Occator Crater and its bright salt deposits."
+    },
+    "drawing": {
+      "kind": "planet",
+      "radiusKm": 476,
+      "rings": false,
+      "axialTiltDeg": 4,
+      "color": "#8A8580"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Asteroid Fact Sheet",
+        "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/asteroidfact.html"
+      },
+      {
+        "title": "NASA Science: Ceres Facts",
+        "url": "https://science.nasa.gov/dwarf-planets/ceres/facts/"
+      }
+    ]
+  },
+  {
+    "id": "pluto",
+    "section": "dwarf-planets",
+    "title": "Pluto",
+    "subtitle": "Dwarf planet in the Kuiper Belt",
+    "facts": [
+      {
+        "label": "Mean distance from the Sun",
+        "value": "39.5 AU (5.9 billion km)",
+        "source": 0
+      },
+      {
+        "label": "Equatorial radius",
+        "value": "1,188 km",
+        "source": 0
+      },
+      {
+        "label": "Mass",
+        "value": "0.0022 × Earth",
+        "source": 0
+      },
+      {
+        "label": "Rotation period",
+        "value": "6.39 days (153.3 h), retrograde",
+        "source": 0
+      },
+      {
+        "label": "Orbital period",
+        "value": "247.94 Earth years",
+        "source": 0
+      },
+      {
+        "label": "Known moons",
+        "value": "5 (NASA, September 2026)",
+        "source": 1
+      },
+      {
+        "label": "Axial tilt",
+        "value": "119.51°",
+        "source": 0
+      },
+      {
+        "label": "Distance range",
+        "value": "About 30 to 49.3 AU from the Sun",
+        "source": 2
+      }
+    ],
+    "essay": "Pluto was discovered by Clyde Tombaugh at Lowell Observatory in 1930 and was counted as the ninth planet until 2006, when the International Astronomical Union defined the term planet and placed Pluto in the new dwarf planet category. It is the largest known object in the Kuiper Belt. Its 248-year orbit is elongated and tilted 17° to the plane of the planets, ranging from about 30 AU, slightly inside Neptune's orbit, out to 49 AU.\n\nNASA's New Horizons flew past on 14 July 2015. It found a varied, geologically active surface. The bright plain Sputnik Planitia, the western half of the heart-shaped Tombaugh Regio, is a basin filled with nitrogen ice that slowly overturns in convection cells. Mountains of water ice rise several kilometres, and a thin atmosphere of nitrogen, methane and carbon monoxide forms layers of haze. Pluto turns once every 6.4 days in the retrograde direction.\n\nPluto has five known moons. Charon is about half Pluto's diameter, so the two orbit a point in space between them and each keeps the same face toward the other. Nix, Hydra, Kerberos and Styx are much smaller. Pluto shines at around magnitude 14 to 15 and needs a telescope of about 25 cm aperture and a detailed chart.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA19952/PIA19952~medium.jpg",
+      "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/PIA19952",
+      "caption": "Enhanced-colour view of Pluto from New Horizons on 14 July 2015, with colours exaggerated to show surface variation."
+    },
+    "drawing": {
+      "kind": "planet",
+      "radiusKm": 1188,
+      "rings": false,
+      "axialTiltDeg": 119.51,
+      "color": "#CDB79E"
+    },
+    "link": {
+      "body": "pluto"
+    },
+    "sources": [
+      {
+        "title": "NASA Pluto Fact Sheet",
+        "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/plutofact.html"
+      },
+      {
+        "title": "NASA Science: Pluto Moons",
+        "url": "https://science.nasa.gov/dwarf-planets/pluto/moons/"
+      },
+      {
+        "title": "NASA Science: Pluto Facts",
+        "url": "https://science.nasa.gov/dwarf-planets/pluto/facts/"
+      }
+    ]
+  },
+  {
+    "id": "haumea",
+    "section": "dwarf-planets",
+    "title": "Haumea",
+    "subtitle": "Fast-spinning dwarf planet in the Kuiper Belt",
+    "facts": [
+      {
+        "label": "Mean distance from the Sun",
+        "value": "About 43 AU (6.5 billion km)",
+        "source": 0
+      },
+      {
+        "label": "Equatorial diameter",
+        "value": "About 1,740 km",
+        "source": 0
+      },
+      {
+        "label": "Rotation period",
+        "value": "About 4 h",
+        "source": 0
+      },
+      {
+        "label": "Orbital period",
+        "value": "285 Earth years",
+        "source": 0
+      },
+      {
+        "label": "Known moons",
+        "value": "2, Hi'iaka and Namaka (NASA, April 2025)",
+        "source": 0
+      },
+      {
+        "label": "Rings",
+        "value": "One, announced in 2017",
+        "source": 0
+      }
+    ],
+    "essay": "Haumea is a dwarf planet in the Kuiper Belt, orbiting the Sun at an average distance of about 43 AU once every 285 years. It spins once in about 4 hours, one of the fastest rotations of any large body in the solar system, and the spin has stretched it into an elongated, rugby-ball shape. Its surface is bright, and spectra show that it is covered largely in water ice.\n\nTwo teams claimed the discovery from observations made in 2003 and 2004. The IAU lists the discovery site as Sierra Nevada Observatory in Spain but names no discoverer. The object, first designated 2003 EL61, was named in 2008 after the Hawaiian goddess of fertility, and its two moons, Hi'iaka and Namaka, both discovered in 2005, after her daughters. One explanation for the fast spin and the moons is a large impact billions of years ago, which may also have produced a family of smaller icy objects that share Haumea's orbit.\n\nIn 2017, astronomers who watched Haumea pass in front of a star announced that it has a ring, the first found around a Kuiper Belt object. At about magnitude 17, Haumea is beyond the reach of small telescopes.",
+    "image": {
+      "url": "https://assets.science.nasa.gov/content/dam/science/cds/apod/apod/2008/september/haumea_nasa_big.jpg",
+      "credit": "NASA",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/image-article/apod-2008-september-23-haumea-of-the-outer-solar-system/",
+      "caption": "NASA illustration of large Kuiper Belt objects drawn before they were named; Haumea is labelled 2003 EL61, at lower left, with its two moons."
+    },
+    "drawing": {
+      "kind": "planet",
+      "radiusKm": 870,
+      "rings": true,
+      "color": "#D9D9D9"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Haumea",
+        "url": "https://science.nasa.gov/dwarf-planets/haumea/"
+      }
+    ]
+  },
+  {
+    "id": "makemake",
+    "section": "dwarf-planets",
+    "title": "Makemake",
+    "subtitle": "Dwarf planet in the Kuiper Belt",
+    "facts": [
+      {
+        "label": "Mean distance from the Sun",
+        "value": "45.8 AU (6.85 billion km)",
+        "source": 0
+      },
+      {
+        "label": "Radius",
+        "value": "About 715 km",
+        "source": 0
+      },
+      {
+        "label": "Rotation period",
+        "value": "About 22.5 h",
+        "source": 0
+      },
+      {
+        "label": "Orbital period",
+        "value": "305 Earth years",
+        "source": 0
+      },
+      {
+        "label": "Known moons",
+        "value": "1 provisional, S/2015 (136472) 1 (NASA, April 2025)",
+        "source": 0
+      },
+      {
+        "label": "Surface ices",
+        "value": "Frozen methane and ethane",
+        "source": 0
+      }
+    ],
+    "essay": "Makemake is a dwarf planet in the Kuiper Belt, about 1,430 km across and slightly smaller than Pluto. Mike Brown, Chad Trujillo and David Rabinowitz first observed it at Palomar Observatory in March 2005, a few days after Easter, and nicknamed it Easterbunny before it received the designation 2005 FY9. Together with Eris, its discovery led the International Astronomical Union to define the term planet in 2006 and create the dwarf planet category. It is named after the creator god of the Rapa Nui people of Easter Island.\n\nMakemake orbits at an average distance of 45.8 AU and takes about 305 years to go around the Sun. It rotates in about 22.5 hours, close to the length of a day on Earth or Mars. Its surface is reddish brown, like Pluto's, and coated in frozen methane and ethane. It may develop a very thin nitrogen atmosphere when it is closest to the Sun.\n\nIn Hubble images taken in April 2015, astronomers found a small, dark moon, provisionally designated S/2015 (136472) 1 and nicknamed MK 2. It is more than 1,300 times fainter than Makemake and about 160 km across. After Pluto, Makemake is the brightest Kuiper Belt object as seen from Earth, but at about magnitude 17 it requires a large telescope.",
+    "image": {
+      "url": "https://assets.science.nasa.gov/content/dam/science/cds/apod/apod/2008/september/haumea_nasa_big.jpg",
+      "credit": "NASA",
+      "licence": "Public domain",
+      "page": "https://science.nasa.gov/image-article/apod-2008-september-23-haumea-of-the-outer-solar-system/",
+      "caption": "NASA illustration of large Kuiper Belt objects drawn before they were named; Makemake is labelled 2005 FY9, at upper right."
+    },
+    "drawing": {
+      "kind": "planet",
+      "radiusKm": 715,
+      "rings": false,
+      "color": "#B5715A"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Makemake",
+        "url": "https://science.nasa.gov/dwarf-planets/makemake/"
+      }
+    ]
+  },
+  {
+    "id": "eris",
+    "section": "dwarf-planets",
+    "title": "Eris",
+    "subtitle": "Massive dwarf planet beyond the Kuiper Belt",
+    "facts": [
+      {
+        "label": "Mean distance from the Sun",
+        "value": "About 68 AU (10 billion km)",
+        "source": 0
+      },
+      {
+        "label": "Equatorial diameter",
+        "value": "About 2,400 km",
+        "source": 0
+      },
+      {
+        "label": "Mass",
+        "value": "0.00278 × Earth (1.66 × 10²² kg; 1.27 × Pluto)",
+        "source": 1
+      },
+      {
+        "label": "Rotation period",
+        "value": "25.9 h",
+        "source": 0
+      },
+      {
+        "label": "Orbital period",
+        "value": "557 Earth years",
+        "source": 0
+      },
+      {
+        "label": "Known moons",
+        "value": "1, Dysnomia (NASA, April 2025)",
+        "source": 0
+      },
+      {
+        "label": "Orbital inclination",
+        "value": "43.9°",
+        "source": 2
+      }
+    ],
+    "essay": "Eris is one of the largest dwarf planets, close to Pluto in size at about 2,400 km across but 27 percent more massive. Mike Brown, Chad Trujillo and David Rabinowitz found it on 5 January 2005 in Palomar Observatory images taken in October 2003. Because it seemed at least as large as Pluto, it forced a decision on what counts as a planet, and the International Astronomical Union vote of August 2006 classified both Eris and Pluto as dwarf planets. It is named after the Greek goddess of discord.\n\nEris follows an elongated orbit inclined about 44° to the plane of the planets. It averages about 68 AU from the Sun and takes 557 years to complete one orbit, and it is currently about three times as far from the Sun as Pluto. Its surface is probably rocky with a covering of ice, similar to Pluto's, and its thin atmosphere is thought to freeze onto the surface as snow when it is far from the Sun and thaw as it comes closer.\n\nIts one known moon, Dysnomia, was found in 2005 and circles Eris in about 16 days. Measuring Dysnomia's orbit with Hubble and the Keck telescopes in 2006 gave the mass of Eris, 1.66 × 10²² kg. Eris is around magnitude 19 and needs a large telescope to detect.",
+    "image": {
+      "url": "https://images-assets.nasa.gov/image/PIA17307/PIA17307~medium.jpg",
+      "credit": "NASA/JPL-Caltech",
+      "licence": "Public domain",
+      "page": "https://images.nasa.gov/details/PIA17307",
+      "caption": "Artist's concept of Eris and its moon Dysnomia, with the distant Sun appearing as a small star."
+    },
+    "drawing": {
+      "kind": "planet",
+      "radiusKm": 1200,
+      "rings": false,
+      "color": "#E6E6E6"
+    },
+    "link": {},
+    "sources": [
+      {
+        "title": "NASA Science: Eris",
+        "url": "https://science.nasa.gov/dwarf-planets/eris/"
+      },
+      {
+        "title": "Brown & Schaller (2007), The Mass of Dwarf Planet Eris, Science 316, 1585 (NASA-hosted copy)",
+        "url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2007/06/STScI-01EVSRQ7G3BR52R50A5AFG41M7.pdf"
+      },
+      {
+        "title": "JPL Small-Body Database: 136199 Eris",
+        "url": "https://ssd.jpl.nasa.gov/tools/sbdb_lookup.html#/?sstr=136199"
+      }
+    ]
+  }
+]

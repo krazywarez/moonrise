@@ -8,3 +8,7 @@
 | Natural Earth 1:110m coastline v5.1.2 | =Packages/MoonriseKit/Sources/SkyRenderer/Resources/coastline.json= | Public domain | https://www.naturalearthdata.com |
 | Launch Library 2 (The Space Devs) | fetched at runtime by =server/= | Free API; credit shown in the app | https://thespacedevs.com/llapi |
 | JPL Horizons spacecraft vectors (Voyager 1, 2, Pioneer 10, 11, New Horizons) | =Packages/MoonriseKit/Sources/SkyRenderer/Resources/spacecraft.json= | NASA/JPL, no published restrictions | https://ssd.jpl.nasa.gov/horizons/ |
+| Library images: NASA | =Packages/MoonriseKit/Sources/Library/Resources/pages/*.json= (remote URLs) | Public domain; credit per image | https://images.nasa.gov |
+| Library images: ESA/Hubble, NOIRLab, ESO | same | CC BY 4.0; credit per image | https://esahubble.org, https://noirlab.edu, https://eso.org |
+| Library images: ESA (Rosetta, Gaia, JUICE) | same | CC BY-SA 3.0 IGO; credit per image | https://www.esa.int |
+| Library images: Urania's Mirror (1825), Library of Congress | same | Public domain (no known restrictions) | https://www.loc.gov |
