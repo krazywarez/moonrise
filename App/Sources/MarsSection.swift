@@ -1,14 +1,18 @@
+import Feeds
 import SkyEngine
 import SwiftUI
 
-/// Local mean solar time and sol number at the active Mars rovers, ticking each second.
+/// Local mean solar time and sol number at the active Mars rovers, ticking each second, and their latest raw images.
 struct MarsSection: View {
+    @State private var images: [MarsImage] = []
+    @State private var shown: MarsImage?
+
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text("Mars now").font(.caption2.weight(.medium)).textCase(.uppercase).tracking(0.8).dimmed(0.6)
-            TimelineView(.periodic(from: .now, by: 1)) { ctx in
-                VStack(alignment: .leading, spacing: 8) {
-                    ForEach(MarsTime.Rover.active) { rover in
+            VStack(alignment: .leading, spacing: 8) {
+                ForEach(MarsTime.Rover.active) { rover in
+                    TimelineView(.periodic(from: .now, by: 1)) { ctx in
                         HStack(alignment: .firstTextBaseline) {
                             VStack(alignment: .leading, spacing: 2) {
                                 Text(rover.name).font(.subheadline.weight(.medium))
@@ -20,9 +24,63 @@ struct MarsSection: View {
                         }
                         .accessibilityElement(children: .combine)
                     }
+                    strip(rover.name)
                 }
             }
-            Text("Local mean solar time. A Mars sol is 24 h 39 m 35 s.").font(.caption2).dimmed(0.5)
+            Text("Local mean solar time. A Mars sol is 24 h 39 m 35 s. Raw images: NASA/JPL-Caltech.").font(.caption2).dimmed(0.5)
         }
+        .task { images = (try? await MarsImage.latest()) ?? [] }
+        .sheet(item: $shown) { MarsImageView(image: $0) }
+    }
+
+    @ViewBuilder
+    private func strip(_ rover: String) -> some View {
+        let mine = images.filter { $0.rover == rover }
+        if !mine.isEmpty {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 6) {
+                    ForEach(mine) { image in
+                        Button { shown = image } label: {
+                            AsyncImage(url: image.thumbnail) { phase in
+                                if case .success(let img) = phase { img.resizable().scaledToFill() } else { Color.white.opacity(0.06) }
+                            }
+                            .frame(width: 88, height: 88)
+                            .clipped()
+                        }
+                        .accessibilityLabel("\(image.camera), sol \(image.sol)")
+                    }
+                }
+            }
+            .padding(.bottom, 6)
+        }
+    }
+}
+
+struct MarsImageView: View {
+    var image: MarsImage
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 8) {
+                    AsyncImage(url: image.image) { phase in
+                        switch phase {
+                        case .success(let img): img.resizable().scaledToFit()
+                        case .failure: Color.black.frame(height: 200).overlay(Text("Image unavailable").font(.caption).dimmed(0.6))
+                        default: Color.black.frame(height: 300).overlay(ProgressView())
+                        }
+                    }
+                    Text("\(image.rover) · \(image.camera) · sol \(image.sol)").font(.subheadline.weight(.medium))
+                    Text(image.taken.formatted(date: .abbreviated, time: .shortened)).font(.footnote).dimmed(0.7)
+                    Text("Raw, unprocessed image. Credit: \(image.credit).").font(.caption2).dimmed(0.55)
+                }
+                .padding(.horizontal, 16)
+            }
+            .background(Color.black.ignoresSafeArea())
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar { ToolbarItem(placement: .cancellationAction) { Button("Done") { dismiss() } } }
+        }
+        .preferredColorScheme(.dark)
     }
 }
