@@ -3,7 +3,7 @@ import PackageDescription
 
 let package = Package(
     name: "MoonriseKit",
-    platforms: [.iOS(.v26), .macOS(.v26)],
+    platforms: [.iOS(.v26), .macOS(.v26), .watchOS(.v26)],
     products: [
         .library(name: "SkyEngine", targets: ["SkyEngine"]),
         .library(name: "SkyRenderer", targets: ["SkyRenderer"]),

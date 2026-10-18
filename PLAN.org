@@ -403,7 +403,8 @@ Sky, System, Sun, Launches, Library core (above).
 - Mars: latest rover raw images, local time at each rover.
 - Library: exoplanets, rockets to scale, exploration timeline, scale
   view. Done.
-- iPad, Mac, Apple Watch complications.
+- iPad, Mac, Apple Watch complications. Done: Mac as "Designed for iPad";
+  Watch app (Moon, Sun, planets tonight) with Moon and Planets complications.
 
 ** v3: across time and cultures
 - Sky cultures: Chinese, Polynesian, Arabic, Norse and other

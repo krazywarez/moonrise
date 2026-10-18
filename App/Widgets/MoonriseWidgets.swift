@@ -9,7 +9,9 @@ struct MoonriseWidgets: WidgetBundle {
     var body: some Widget {
         MoonWidget()
         PlanetsWidget()
+        #if os(iOS)
         LaunchLiveActivity()
+        #endif
     }
 }
 
@@ -86,6 +88,12 @@ struct MoonWidgetView: View {
             }
         case .accessoryInline:
             Text("Moon \(percent) \(entry.waxing ? "waxing" : "waning")")
+        #if os(watchOS)
+        case .accessoryCorner:
+            MoonDisc(fraction: entry.illumination, waxing: entry.waxing, light: .white, dark: .white.opacity(0.15))
+                .padding(4)
+                .widgetLabel(percent)
+        #endif
         default:
             VStack(alignment: .leading, spacing: 6) {
                 MoonDisc(fraction: entry.illumination, waxing: entry.waxing)
@@ -111,7 +119,11 @@ struct MoonWidget: Widget {
         }
         .configurationDisplayName("Moon")
         .description("Tonight's moon phase.")
+        #if os(watchOS)
+        .supportedFamilies([.accessoryCircular, .accessoryInline, .accessoryCorner])
+        #else
         .supportedFamilies([.systemSmall, .accessoryCircular, .accessoryInline])
+        #endif
     }
 }
 
@@ -158,9 +170,28 @@ struct PlanetsProvider: TimelineProvider {
 }
 
 struct PlanetsWidgetView: View {
+    @Environment(\.widgetFamily) var family
     var entry: PlanetsEntry
 
     var body: some View {
+        if family == .accessoryRectangular { compact } else { full }
+    }
+
+    /// Watch complication and Lock Screen: up to three planets, no header.
+    private var compact: some View {
+        VStack(alignment: .leading, spacing: 1) {
+            if entry.rows.isEmpty { Text("No planets tonight").font(.system(size: 13)) }
+            ForEach(entry.rows.prefix(3), id: \.self) { row in
+                HStack {
+                    Text(row.name).font(.system(size: 13, weight: .medium))
+                    Spacer()
+                    Text(row.detail).font(.system(size: 12).monospacedDigit())
+                }
+            }
+        }
+    }
+
+    private var full: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text("Planets tonight").font(.system(size: 11, weight: .medium)).textCase(.uppercase).opacity(0.6)
             if entry.rows.isEmpty {
@@ -190,6 +221,10 @@ struct PlanetsWidget: Widget {
         }
         .configurationDisplayName("Planets tonight")
         .description("Which planets are up tonight and when they rise.")
+        #if os(watchOS)
+        .supportedFamilies([.accessoryRectangular])
+        #else
         .supportedFamilies([.systemSmall, .systemMedium])
+        #endif
     }
 }
