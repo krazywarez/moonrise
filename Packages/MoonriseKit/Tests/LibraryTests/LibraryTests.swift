@@ -66,3 +66,26 @@ func linksPointAtThingsTheAppKnows(_ p: LibraryPage) {
     #expect(Library.formatSize(100_000 * 9.4607e15) == "100,000 light-years")
     #expect(Library.formatSize(93e9 * 9.4607e15) == "93 billion light-years")
 }
+
+@Test func toursPointAtKnownThings() {
+    #expect(Tour.all.count == 4)
+    let constellations = Set(Catalog.constellations.map(\.id))
+    let stars = Set(Catalog.stars.map(\.hr))
+    for tour in Tour.all {
+        #expect(!tour.steps.isEmpty)
+        for step in tour.steps {
+            let t = step.target
+            #expect([t.constellation != nil, t.hr != nil, t.body != nil].filter { $0 }.count == 1, "\(tour.id) \(step.title)")
+            if let c = t.constellation { #expect(constellations.contains(c), "\(c)") }
+            if let hr = t.hr { #expect(stars.contains(hr), "\(hr)") }
+            if let p = step.page { #expect(Library.page(id: p) != nil, "\(p)") }
+        }
+    }
+    #expect(Set(Tour.all.flatMap(\.months)) == Set(1...12))
+}
+
+@Test func toursStartWithTheSeason() {
+    #expect(Tour.ordered(month: 1).first?.id == "winter")
+    #expect(Tour.ordered(month: 7).first?.id == "summer")
+    #expect(Tour.ordered(month: 11).map(\.id) == ["autumn", "winter", "spring", "summer"])
+}

@@ -1,0 +1,220 @@
+[
+  {
+    "id": "winter",
+    "title": "December to February evenings",
+    "months": [
+      12,
+      1,
+      2
+    ],
+    "intro": "The brightest part of the year's sky, around Orion, seen from both hemispheres. Directions are for mid-northern latitudes; from the south, the figures appear upside down.",
+    "steps": [
+      {
+        "title": "Orion",
+        "target": {
+          "constellation": "Ori"
+        },
+        "text": "Start with the three stars of Orion's belt, in a short straight line. The hunter's shoulders are above the belt and his knees below it."
+      },
+      {
+        "title": "Betelgeuse",
+        "target": {
+          "hr": 2061
+        },
+        "text": "Orion's upper-left shoulder is Betelgeuse, a red supergiant about 500 light-years away. Its colour is plain to the eye next to the blue-white stars around it."
+      },
+      {
+        "title": "Rigel",
+        "target": {
+          "hr": 1713
+        },
+        "text": "Diagonally opposite, at Orion's lower right, is Rigel, a blue supergiant about 860 light-years away."
+      },
+      {
+        "title": "Sirius",
+        "target": {
+          "hr": 2491
+        },
+        "text": "Follow the belt down and to the left to Sirius, the brightest star in the night sky, only 8.6 light-years away."
+      },
+      {
+        "title": "Aldebaran and the Hyades",
+        "target": {
+          "hr": 1457
+        },
+        "text": "Follow the belt the other way, up and to the right, to orange Aldebaran. It sits in front of the Hyades, a V-shaped cluster that forms the face of Taurus."
+      },
+      {
+        "title": "The Pleiades",
+        "target": {
+          "constellation": "Tau"
+        },
+        "page": "m45",
+        "text": "Keep going past Aldebaran to the Pleiades, a small, tight cluster. Most people see six or seven stars; binoculars show dozens."
+      },
+      {
+        "title": "Castor and Pollux",
+        "target": {
+          "hr": 2990
+        },
+        "text": "Up and to the left of Orion are the twin stars of Gemini. Pollux, the brighter and more orange of the two, is 33.8 light-years away."
+      },
+      {
+        "title": "Capella",
+        "target": {
+          "hr": 1708
+        },
+        "text": "High overhead is Capella in Auriga, a yellow star 42.8 light-years away and the sixth brightest in the sky."
+      }
+    ]
+  },
+  {
+    "id": "spring",
+    "title": "March to May evenings",
+    "months": [
+      3,
+      4,
+      5
+    ],
+    "intro": "From the Big Dipper to two of the brightest stars of these months. The Dipper is low or hidden from far southern latitudes.",
+    "steps": [
+      {
+        "title": "The Big Dipper",
+        "target": {
+          "constellation": "UMa"
+        },
+        "text": "High in the north is the Big Dipper, seven stars in the shape of a ladle, part of Ursa Major."
+      },
+      {
+        "title": "Polaris",
+        "target": {
+          "hr": 424
+        },
+        "text": "The two stars at the end of the Dipper's bowl point to Polaris, the North Star, about five times their separation away. It stays nearly still while the sky turns around it."
+      },
+      {
+        "title": "Arcturus",
+        "target": {
+          "hr": 5340
+        },
+        "text": "Follow the curve of the Dipper's handle away from the bowl, an arc to Arcturus. This orange giant is 36.7 light-years away."
+      },
+      {
+        "title": "Spica",
+        "target": {
+          "hr": 5056
+        },
+        "text": "Continue the curve, a spike to Spica in Virgo, a blue-white star about 250 light-years away."
+      },
+      {
+        "title": "Leo and Regulus",
+        "target": {
+          "hr": 3982
+        },
+        "text": "To the west is Leo. A backwards question mark of stars, the Sickle, ends in Regulus, 79.3 light-years away."
+      }
+    ]
+  },
+  {
+    "id": "summer",
+    "title": "June to August evenings",
+    "months": [
+      6,
+      7,
+      8
+    ],
+    "intro": "The Summer Triangle and the Milky Way's brightest part, which passes nearly overhead from the southern hemisphere. Directions are for mid-northern latitudes.",
+    "steps": [
+      {
+        "title": "Vega",
+        "target": {
+          "hr": 7001
+        },
+        "text": "Nearly overhead is Vega in Lyra, 25 light-years away and the brightest star of the Summer Triangle."
+      },
+      {
+        "title": "Deneb",
+        "target": {
+          "hr": 7924
+        },
+        "text": "To the east of Vega is Deneb, at the tail of Cygnus. It looks fainter than Vega but is far more luminous, about 1,400 light-years away."
+      },
+      {
+        "title": "Altair",
+        "target": {
+          "hr": 7557
+        },
+        "text": "South of the two is Altair in Aquila, 16.7 light-years away. Vega, Deneb and Altair make the Summer Triangle."
+      },
+      {
+        "title": "Cygnus",
+        "target": {
+          "constellation": "Cyg"
+        },
+        "text": "Cygnus, the swan, flies down the Milky Way with Deneb at its tail. Its brightest stars are also called the Northern Cross."
+      },
+      {
+        "title": "Antares",
+        "target": {
+          "hr": 6134
+        },
+        "text": "Low in the south is Antares, the red heart of Scorpius, a supergiant about 550 light-years away."
+      },
+      {
+        "title": "Sagittarius",
+        "target": {
+          "constellation": "Sgr"
+        },
+        "text": "East of Scorpius is the teapot of Sagittarius. The centre of our galaxy lies in this direction, behind its spout."
+      }
+    ]
+  },
+  {
+    "id": "autumn",
+    "title": "September to November evenings",
+    "months": [
+      9,
+      10,
+      11
+    ],
+    "intro": "A quieter sky with the nearest large galaxy. Directions are for mid-northern latitudes.",
+    "steps": [
+      {
+        "title": "The Great Square",
+        "target": {
+          "constellation": "Peg"
+        },
+        "text": "High in the south is the Great Square of Pegasus, four stars of similar brightness in a large square with few stars inside it."
+      },
+      {
+        "title": "Andromeda",
+        "target": {
+          "constellation": "And"
+        },
+        "page": "m31",
+        "text": "From the Square's north-east corner, a line of stars runs to the east: Andromeda. Off this line is the Andromeda Galaxy, M31, visible to the eye from a dark site as a faint smudge, 2.5 million light-years away."
+      },
+      {
+        "title": "Cassiopeia",
+        "target": {
+          "constellation": "Cas"
+        },
+        "text": "North of Andromeda is the W of Cassiopeia, opposite the Big Dipper across Polaris."
+      },
+      {
+        "title": "Algol",
+        "target": {
+          "hr": 936
+        },
+        "text": "In Perseus, east of Andromeda, is Algol, an eclipsing binary. Every 2.87 days it fades for a few hours as the dimmer star passes in front of the brighter one."
+      },
+      {
+        "title": "Fomalhaut",
+        "target": {
+          "hr": 8728
+        },
+        "text": "Low in the south is Fomalhaut, the only bright star in its part of the sky, 25.1 light-years away."
+      }
+    ]
+  }
+]

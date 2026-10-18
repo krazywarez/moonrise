@@ -20,6 +20,9 @@ struct SkyScreen: View {
     @AppStorage(SettingsKey.nightActive) private var nightActive = false
     @State private var showToday = false
     @State private var showYear = false
+    @State private var showTours = false
+    @State private var tour: Tour?
+    @State private var tourStep = 0
     @Environment(\.scenePhase) private var scenePhase
     @State private var libraryPage: LibraryPage?
     @State private var selection: SkyObject?
@@ -58,7 +61,10 @@ struct SkyScreen: View {
                     header
                     if let selection { card(for: selection).padding(.horizontal, 16).padding(.top, 8) }
                     Spacer()
-                    if model.historicalYear == nil {
+                    if let tour {
+                        TourCard(tour: tour, step: $tourStep, belowHorizon: (tourTarget(tour.steps[tourStep].target)?.altitude ?? 0) < 0,
+                                 ink: ink, background: style.ground, onOpen: { libraryPage = $0 }, onEnd: { self.tour = nil })
+                    } else if model.historicalYear == nil {
                         TodayBar(model: model, ink: ink, background: style.ground) { showToday = true }
                     }
                 }
@@ -77,6 +83,10 @@ struct SkyScreen: View {
                 .preferredColorScheme(.dark)
                 .tint(.blue)
         }
+        .sheet(isPresented: $showTours) {
+            TourPicker { tour = $0; tourStep = 0; aim(at: $0.steps[0].target) }.preferredColorScheme(.dark).tint(.blue)
+        }
+        .onChange(of: tourStep) { if let tour { aim(at: tour.steps[tourStep].target) } }
         .sheet(isPresented: $showYear) {
             YearSheet(year: $model.historicalYear).preferredColorScheme(.dark).tint(.blue)
         }
@@ -104,6 +114,35 @@ struct SkyScreen: View {
                 try? await Task.sleep(for: .seconds(30))
                 model.refresh()
             }
+        }
+    }
+
+    /// Where a tour target is in the current scene; constellations use the mean direction of their stars.
+    private func tourTarget(_ t: Tour.Target) -> Horizontal? {
+        guard let scene = model.scene else { return nil }
+        if let hr = t.hr { return scene.starsByHR[hr] }
+        if let b = t.body { return scene.bodies.first { $0.body.rawValue == b }?.position }
+        guard let c = t.constellation, let figure = Catalog.constellations.first(where: { $0.id == c }) else { return nil }
+        let positions = Set(figure.lines.joined()).compactMap { scene.starsByHR[$0] }
+        guard !positions.isEmpty else { return nil }
+        var v = SIMD3<Double>.zero
+        for h in positions {
+            let alt = h.altitude * .pi / 180, az = h.azimuth * .pi / 180
+            v += SIMD3(cos(alt) * sin(az), cos(alt) * cos(az), sin(alt))
+        }
+        var az = atan2(v.x, v.y) * 180 / .pi
+        if az < 0 { az += 360 }
+        return Horizontal(altitude: asin(v.z / (v * v).sum().squareRoot()) * 180 / .pi, azimuth: az)
+    }
+
+    /// Turns the view to a tour target, keeping it at least 10° up so the horizon stays in view.
+    private func aim(at t: Tour.Target) {
+        guard let h = tourTarget(t) else { return }
+        pointer.stop()
+        withAnimation(.easeInOut(duration: 0.6)) {
+            azimuth = h.azimuth
+            altitude = max(h.altitude, 10)
+            fieldOfView = 80
         }
     }
 
@@ -184,12 +223,15 @@ struct SkyScreen: View {
                 }
                 .accessibilityLabel(pointer.active ? "Stop following the phone" : "Point the phone at the sky")
             }
-            Button { showYear = true } label: {
-                Image(systemName: "hourglass")
+            Menu {
+                Button { showTours = true } label: { Label("Guided tours", systemImage: "figure.walk") }
+                Button { showYear = true } label: { Label("Sky in another year", systemImage: "hourglass") }
+            } label: {
+                Image(systemName: "ellipsis.circle")
                     .font(.body)
                     .frame(width: 44, height: 44)
             }
-            .accessibilityLabel("Sky in another year")
+            .accessibilityLabel("More")
             Button { showLog = true } label: {
                 Image(systemName: "book.closed")
                     .font(.body)
