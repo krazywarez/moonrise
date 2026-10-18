@@ -1,0 +1,99 @@
+import SkyRenderer
+import SwiftUI
+
+struct SystemScreen: View {
+    /// Days from now shown by the slider.
+    @State private var offsetDays = 0.0
+    @State private var playing = false
+
+    private let ink = Color(red: 0.95, green: 0.95, blue: 0.93)
+    private let accent = Color(red: 0.88, green: 0.24, blue: 0.19)
+    private let background = Color(red: 0.043, green: 0.078, blue: 0.141)
+
+    private static let start = Date(timeIntervalSince1970: -378_691_200) // 1958-01-01
+    private static let end = Date(timeIntervalSince1970: 2_524_608_000) // 2050-01-01
+    private var range: ClosedRange<Double> {
+        (Self.start.timeIntervalSinceNow / 86_400)...(Self.end.timeIntervalSinceNow / 86_400)
+    }
+    private var date: Date { .now.addingTimeInterval(offsetDays * 86_400) }
+
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 0) {
+                Text("Solar system").font(.system(size: 28, weight: .medium))
+                Rectangle().fill(accent).frame(width: 48, height: 5).padding(.top, 8).padding(.bottom, 16)
+
+                OrreryView(date: date, ink: ink, accent: accent)
+
+                HStack(spacing: 12) {
+                    Button { playing.toggle() } label: {
+                        Image(systemName: playing ? "pause.fill" : "play.fill").frame(width: 32, height: 32)
+                    }
+                    .accessibilityLabel(playing ? "Pause" : "Play")
+                    Text(date.formatted(.dateTime.year().month(.abbreviated)))
+                        .font(.system(size: 15, weight: .medium).monospacedDigit())
+                        .frame(width: 80, alignment: .leading)
+                    Slider(value: $offsetDays, in: range).tint(ink)
+                    Button("Today") { playing = false; offsetDays = 0 }
+                        .font(.system(size: 13, weight: .medium))
+                        .opacity(abs(offsetDays) < 1 ? 0.4 : 1)
+                }
+                .padding(.top, 12)
+
+                Text("Distances beyond 1 AU are drawn on a logarithmic scale. Rings: planet orbits, then 50, 100 and 200 AU.")
+                    .font(.system(size: 11)).opacity(0.6).padding(.top, 8)
+
+                section("Spacecraft") {
+                    Grid(alignment: .leading, horizontalSpacing: 16, verticalSpacing: 6) {
+                        GridRow {
+                            Text("").gridColumnAlignment(.leading)
+                            Text("From Sun").opacity(0.6)
+                            Text("Light time").opacity(0.6)
+                        }
+                        .font(.system(size: 11))
+                        ForEach(Spacecraft.all) { craft in
+                            GridRow {
+                                Text(craft.name)
+                                if let d = craft.distance(at: date) {
+                                    Text(String(format: "%.1f AU", d)).monospacedDigit()
+                                    Text(lightTime(au: d)).monospacedDigit()
+                                } else {
+                                    Text("launch \(craft.launch.prefix(4))").opacity(0.5)
+                                    Text("")
+                                }
+                            }
+                            .font(.system(size: 14))
+                        }
+                    }
+                }
+                Text("Spacecraft positions: NASA/JPL Horizons. Pioneer 10 and 11 positions after contact was lost are predictions.")
+                    .font(.system(size: 10)).opacity(0.5).padding(.vertical, 16)
+            }
+            .padding(.horizontal, 20)
+        }
+        .foregroundStyle(ink)
+        .background(background.ignoresSafeArea())
+        .task(id: playing) {
+            while playing && !Task.isCancelled {
+                try? await Task.sleep(for: .milliseconds(33))
+                offsetDays = min(offsetDays + 30, range.upperBound)
+                if offsetDays >= range.upperBound { playing = false }
+            }
+        }
+    }
+
+    /// One-way light time from the Sun's distance, as hours and minutes.
+    private func lightTime(au: Double) -> String {
+        let seconds = au * 499.004784
+        let h = Int(seconds / 3600), m = Int(seconds.truncatingRemainder(dividingBy: 3600) / 60)
+        return h > 0 ? "\(h) h \(m) m" : "\(m) m"
+    }
+
+    private func section(_ title: String, @ViewBuilder content: () -> some View) -> some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text(title).font(.system(size: 11, weight: .medium)).textCase(.uppercase).tracking(0.8).opacity(0.6)
+            content()
+        }
+        .padding(.top, 24)
+    }
+}

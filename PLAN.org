@@ -361,6 +361,19 @@ MR !10.
 - Not done: rocket silhouettes to scale, push-to-start and push updates,
   "launch in one hour" notification.
 
+** M4 status (2026-10-17)
+MR !11.
+
+- System tab: orrery with planets from Astronomy Engine (ecliptic axes),
+  log radial scale beyond 1 AU, Voyager 1 and 2, Pioneer 10 and 11 and New
+  Horizons paths from bundled JPL Horizons vectors (30-day steps to 2050),
+  time slider 1958–2050 with play, distance and light-time table. Checked
+  in the simulator.
+- =SkyEngine= now holds one recursive lock around all Astronomy Engine
+  calls, so any thread can use it.
+- Not done: tap a planet or probe for its Library page, Earth–Moon inset,
+  active missions (Juno, Europa Clipper, JUICE, Psyche, Parker, Lucy).
+
 * roadmap
 ** v1: now
 Sky, System, Sun, Launches, Library core (above).

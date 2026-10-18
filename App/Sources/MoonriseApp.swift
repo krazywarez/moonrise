@@ -12,6 +12,7 @@ struct MoonriseApp: App {
         WindowGroup {
             TabView {
                 Tab("Sky", systemImage: "sparkles") { SkyScreen() }
+                Tab("System", systemImage: "circle.circle") { SystemScreen() }
                 Tab("Sun", systemImage: "sun.max") { SunScreen() }
                 Tab("Launches", systemImage: "airplane.departure") { LaunchesScreen() }
             }

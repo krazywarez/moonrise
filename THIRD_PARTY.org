@@ -7,3 +7,4 @@
 | ConstellationLines v1.4, Copyright (c) 2005-2026 Marc van der Sluys | =Packages/MoonriseKit/Sources/SkyRenderer/Resources/constellations.json= | CC BY 4.0 | https://github.com/MarcvdSluys/ConstellationLines, doi:10.5281/zenodo.10397192 |
 | Natural Earth 1:110m coastline v5.1.2 | =Packages/MoonriseKit/Sources/SkyRenderer/Resources/coastline.json= | Public domain | https://www.naturalearthdata.com |
 | Launch Library 2 (The Space Devs) | fetched at runtime by =server/= | Free API; credit shown in the app | https://thespacedevs.com/llapi |
+| JPL Horizons spacecraft vectors (Voyager 1, 2, Pioneer 10, 11, New Horizons) | =Packages/MoonriseKit/Sources/SkyRenderer/Resources/spacecraft.json= | NASA/JPL, no published restrictions | https://ssd.jpl.nasa.gov/horizons/ |

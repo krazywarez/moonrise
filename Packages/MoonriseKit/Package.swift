@@ -20,7 +20,7 @@ let package = Package(
         .target(
             name: "SkyRenderer",
             dependencies: ["SkyEngine"],
-            resources: [.copy("Resources/bsc5.json"), .copy("Resources/constellations.json"), .copy("Resources/coastline.json")]
+            resources: [.copy("Resources/bsc5.json"), .copy("Resources/constellations.json"), .copy("Resources/coastline.json"), .copy("Resources/spacecraft.json")]
         ),
         .target(name: "Feeds"),
         .testTarget(name: "SkyEngineTests", dependencies: ["SkyEngine"]),
