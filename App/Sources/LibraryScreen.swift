@@ -19,7 +19,7 @@ struct LibraryScreen: View {
                                 HStack {
                                     Text(section.title).font(.body)
                                     Spacer()
-                                    Text("\(pages.count)").font(.footnote.monospacedDigit()).opacity(0.5)
+                                    Text("\(pages.count)").font(.footnote.monospacedDigit()).dimmed(0.5)
                                 }
                             }
                             .listRowBackground(pageBackground)
@@ -66,7 +66,7 @@ struct PageRow: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
             Text(page.title).font(.body)
-            Text(page.subtitle).font(.caption).opacity(0.7)
+            Text(page.subtitle).font(.caption).dimmed(0.7)
         }
         .padding(.vertical, 2)
     }
@@ -78,9 +78,9 @@ struct LibraryPageView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                Text(page.section.title).font(.caption2.weight(.medium)).textCase(.uppercase).tracking(0.8).opacity(0.6)
+                Text(page.section.title).font(.caption2.weight(.medium)).textCase(.uppercase).tracking(0.8).dimmed(0.6)
                 Text(page.title).font(.largeTitle.weight(.medium)).padding(.top, 4)
-                Text(page.subtitle).font(.subheadline).opacity(0.75).padding(.top, 2)
+                Text(page.subtitle).font(.subheadline).dimmed(0.75).padding(.top, 2)
                 Rectangle().fill(accent).frame(width: 48, height: 5).padding(.top, 10).padding(.bottom, 16)
 
                 PageDrawing(page: page, ink: ink, accent: accent)
@@ -108,7 +108,7 @@ struct LibraryPageView: View {
         Grid(alignment: .leading, horizontalSpacing: 16, verticalSpacing: 8) {
             ForEach(page.facts, id: \.self) { f in
                 GridRow(alignment: .firstTextBaseline) {
-                    Text(f.label).font(.footnote).opacity(0.6)
+                    Text(f.label).font(.footnote).dimmed(0.6)
                     Text(f.value).font(.subheadline.monospacedDigit())
                 }
                 .accessibilityElement(children: .combine)
@@ -122,23 +122,23 @@ struct LibraryPageView: View {
             AsyncImage(url: image.url) { phase in
                 switch phase {
                 case .success(let img): img.resizable().scaledToFit()
-                case .failure: Color.black.frame(height: 120).overlay(Text("Image unavailable").font(.caption).opacity(0.6))
+                case .failure: Color.black.frame(height: 120).overlay(Text("Image unavailable").font(.caption).dimmed(0.6))
                 default: Color.black.frame(height: 200).overlay(ProgressView().tint(ink))
                 }
             }
-            Text(image.caption).font(.footnote).opacity(0.75)
+            Text(image.caption).font(.footnote).dimmed(0.75)
             Link(destination: image.page) {
-                Text("\(image.credit) · \(image.licence)").font(.caption2).opacity(0.55)
+                Text("\(image.credit) · \(image.licence)").font(.caption2).dimmed(0.55)
             }
         }
     }
 
     private var sources: some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text("Sources").font(.caption2.weight(.medium)).textCase(.uppercase).tracking(0.8).opacity(0.6)
+            Text("Sources").font(.caption2.weight(.medium)).textCase(.uppercase).tracking(0.8).dimmed(0.6)
             ForEach(Array(page.sources.enumerated()), id: \.offset) { i, s in
                 Link(destination: s.url) {
-                    Text("\(i + 1). \(s.title)").font(.caption).underline().opacity(0.8)
+                    Text("\(i + 1). \(s.title)").font(.caption).underline().dimmed(0.8)
                 }
             }
         }

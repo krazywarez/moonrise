@@ -1,3 +1,4 @@
+import SkyRenderer
 import SwiftUI
 import UIKit
 import UserNotifications
@@ -22,7 +23,7 @@ struct MoonriseApp: App {
                 Tab("Library", systemImage: "books.vertical", value: "library") { LibraryScreen() }
             }
             // Red tab highlight while the Sky tab is in night mode.
-            .tint(tab == "sky" && nightActive ? Color(red: 0.85, green: 0.12, blue: 0.08) : nil)
+            .tint(tab == "sky" && nightActive ? SkyStyle.nightRed : nil)
             .preferredColorScheme(.dark)
             .fullScreenCover(isPresented: .constant(!onboarded)) {
                 OnboardingScreen().preferredColorScheme(.dark)

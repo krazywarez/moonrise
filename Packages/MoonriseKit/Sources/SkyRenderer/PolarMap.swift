@@ -94,7 +94,7 @@ public struct AuroraMap: View {
 
             if let you = p.point(lon: observer.lon, lat: observer.lat) {
                 context.fill(Path(ellipseIn: CGRect(x: you.x - 4, y: you.y - 4, width: 8, height: 8)), with: .color(ink))
-                context.draw(Text("You").font(.system(size: 10)).foregroundStyle(ink), at: CGPoint(x: you.x, y: you.y + 12))
+                context.draw(Text("You").font(.caption2).foregroundStyle(ink), at: CGPoint(x: you.x, y: you.y + 12))
             }
         }
         .aspectRatio(1, contentMode: .fit)

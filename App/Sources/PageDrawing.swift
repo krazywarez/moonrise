@@ -55,7 +55,7 @@ struct PageDrawing: View {
             if page.id != "earth" {
                 let ec = CGPoint(x: size.width - er - 6, y: size.height - er - 16)
                 context.fill(Path(ellipseIn: CGRect(x: ec.x - er, y: ec.y - er, width: 2 * er, height: 2 * er)), with: .color(Color(red: 0.35, green: 0.6, blue: 0.95)))
-                context.draw(Text("Earth").font(.system(size: 9)).foregroundStyle(ink.opacity(0.6)), at: CGPoint(x: size.width - 2, y: size.height - 6), anchor: .trailing)
+                context.draw(Text("Earth").font(.caption2).foregroundStyle(ink.opacity(0.6)), at: CGPoint(x: size.width - 2, y: size.height - 6), anchor: .trailing)
             }
         }
         .frame(height: 200)
@@ -121,7 +121,7 @@ struct PageDrawing: View {
         return VStack(spacing: 8) {
             Circle().fill(color).frame(width: 90, height: 90)
             if let sp = page.drawing?.spectralType {
-                Text("Spectral type \(sp) · B−V \(String(format: "%.2f", bv))").font(.system(size: 11)).opacity(0.6)
+                Text("Spectral type \(sp) · B−V \(String(format: "%.2f", bv))").font(.caption2).opacity(0.6)
             }
         }
         .frame(height: 140)
@@ -151,8 +151,8 @@ struct PageDrawing: View {
                 context.fill(Path(ellipseIn: rect), with: .color(ink.opacity(0.3)))
             }
             context.stroke(Path(ellipseIn: CGRect(x: m.x - mr, y: m.y - mr, width: 2 * mr, height: 2 * mr)), with: .color(ink.opacity(0.5)), style: StrokeStyle(lineWidth: 0.8, dash: [3, 3]))
-            context.draw(Text("\(Int(size.rounded()))′").font(.system(size: 10)).foregroundStyle(ink.opacity(0.7)), at: CGPoint(x: c.x, y: canvas.height - 10))
-            context.draw(Text("Full Moon").font(.system(size: 10)).foregroundStyle(ink.opacity(0.7)), at: CGPoint(x: m.x, y: canvas.height - 10))
+            context.draw(Text("\(Int(size.rounded()))′").font(.caption2).foregroundStyle(ink.opacity(0.7)), at: CGPoint(x: c.x, y: canvas.height - 10))
+            context.draw(Text("Full Moon").font(.caption2).foregroundStyle(ink.opacity(0.7)), at: CGPoint(x: m.x, y: canvas.height - 10))
         }
         .frame(height: 170)
         .accessibilityLabel("\(page.title) apparent size compared with the full Moon")
@@ -164,11 +164,11 @@ struct PageDrawing: View {
         let d = page.drawing!
         return HStack(spacing: 10) {
             Text((d.status ?? "").uppercased())
-                .font(.system(size: 10, weight: .medium)).tracking(0.6)
+                .font(.caption2.weight(.medium)).tracking(0.6)
                 .padding(.horizontal, 6).padding(.vertical, 2)
                 .foregroundStyle(d.status == "active" ? Color.black : ink)
                 .background(d.status == "active" ? ink : ink.opacity(0.15), in: .rect(cornerRadius: 2))
-            if let launch = d.launch { Text("Launched \(launch)").font(.system(size: 13).monospacedDigit()) }
+            if let launch = d.launch { Text("Launched \(launch)").font(.footnote.monospacedDigit()) }
             Spacer()
         }
     }

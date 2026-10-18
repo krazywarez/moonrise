@@ -23,7 +23,7 @@ struct SkyScreen: View {
 
     private var night: Bool { nightMode == "on" || (nightMode == "auto" && model.sunAltitude < -12) }
     private var style: SkyStyle { night ? .night : SkyStyle() }
-    private var ink: Color { night ? Color(red: 0.85, green: 0.12, blue: 0.08) : Color(red: 0.95, green: 0.95, blue: 0.93) }
+    private var ink: Color { night ? SkyStyle.nightRed : Color(red: 0.95, green: 0.95, blue: 0.93) }
 
     var body: some View {
         GeometryReader { geo in
@@ -56,6 +56,7 @@ struct SkyScreen: View {
             }
         }
         .foregroundStyle(ink)
+        .environment(\.nightMode, night)
         .sheet(isPresented: $showSettings) {
             SettingsScreen { model.applyLocationSettings() }
                 .preferredColorScheme(.dark)
@@ -66,6 +67,7 @@ struct SkyScreen: View {
         }
         .sheet(isPresented: $showToday) {
             TodaySheet(model: model, ink: ink, background: style.ground)
+                .environment(\.nightMode, night)
                 .presentationDetents([.medium, .large])
         }
         .onChange(of: model.offsetHours) { select(selection) }
@@ -126,11 +128,11 @@ struct SkyScreen: View {
                 Text(model.offsetHours == 0 ? "Tonight" : "Sky at \(model.displayedDate.formatted(date: .omitted, time: .shortened))")
                     .font(.title2.weight(.medium))
                 Text(model.placeName)
-                    .font(.caption2).opacity(0.7)
+                    .font(.caption2).dimmed(0.7)
                 #if DEBUG
                 TimelineView(.periodic(from: .now, by: 1)) { _ in
                     Text(stats.summary(build: model.lastBuild))
-                        .font(.caption2.monospacedDigit()).opacity(0.7)
+                        .font(.caption2.monospacedDigit()).dimmed(0.7)
                 }
                 #endif
             }
@@ -177,7 +179,7 @@ struct SkyScreen: View {
             case .body:
                 if let d = details { bodyFacts(d) } else { ProgressView().tint(ink) }
             case .constellation(let id):
-                Text("Constellation · \(id)").font(.footnote).opacity(0.7)
+                Text("Constellation · \(id)").font(.footnote).dimmed(0.7)
             }
             if let page = libraryPage(for: object) {
                 Button { libraryPage = page } label: {
@@ -223,7 +225,7 @@ struct SkyScreen: View {
         return Grid(alignment: .leading, horizontalSpacing: 16, verticalSpacing: 4) {
             ForEach(rows, id: \.0) { row in
                 GridRow {
-                    Text(row.0).opacity(0.7)
+                    Text(row.0).dimmed(0.7)
                     Text(row.1).monospacedDigit()
                 }
                 .font(.footnote)

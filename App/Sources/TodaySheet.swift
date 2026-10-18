@@ -18,7 +18,7 @@ struct TodaySheet: View {
                 }
                 section("Space weather") { weather }
                 Text("Space weather data: NOAA Space Weather Prediction Center.")
-                    .font(.caption2).opacity(0.5).padding(.top, 8)
+                    .font(.caption2).dimmed(0.5).padding(.top, 8)
             }
             .padding(.horizontal, 20)
             .padding(.top, 18)
@@ -29,7 +29,7 @@ struct TodaySheet: View {
 
     private func section(_ title: String, @ViewBuilder content: () -> some View) -> some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(title).font(.caption2.weight(.medium)).textCase(.uppercase).tracking(0.8).opacity(0.6)
+            Text(title).font(.caption2.weight(.medium)).textCase(.uppercase).tracking(0.8).dimmed(0.6)
             content()
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -86,7 +86,7 @@ struct TodaySheet: View {
                 ("Updated", time(w.observedAt)),
             ])
         } else {
-            Text("Loading").font(.footnote).opacity(0.6)
+            Text("Loading").font(.footnote).dimmed(0.6)
         }
     }
 
@@ -94,7 +94,7 @@ struct TodaySheet: View {
         Grid(alignment: .leading, horizontalSpacing: 16, verticalSpacing: 6) {
             ForEach(items, id: \.0) { item in
                 GridRow {
-                    Text(item.0).opacity(0.7)
+                    Text(item.0).dimmed(0.7)
                     Text(item.1).monospacedDigit()
                 }
                 .font(.subheadline)
@@ -121,9 +121,9 @@ struct TodayBar: View {
             scrubber
             Button(action: onExpand) {
                 HStack {
-                    Text(summary).font(.footnote).opacity(0.8)
+                    Text(summary).font(.footnote).dimmed(0.8)
                     Spacer()
-                    Image(systemName: "chevron.up").font(.caption.weight(.medium)).opacity(0.6)
+                    Image(systemName: "chevron.up").font(.caption.weight(.medium)).dimmed(0.6)
                 }
                 .frame(minHeight: 44)
                 .contentShape(Rectangle())
@@ -157,7 +157,7 @@ struct TodayBar: View {
         HStack(spacing: 12) {
             Text(model.displayedDate.formatted(date: .omitted, time: .shortened))
                 .font(.footnote.monospacedDigit())
-                .frame(width: 70, alignment: .leading)
+                .fixedSize()
             Slider(value: $model.offsetHours, in: -12...12, step: 0.25).tint(ink)
             Button { model.offsetHours = 0 } label: {
                 Text("Now").frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())

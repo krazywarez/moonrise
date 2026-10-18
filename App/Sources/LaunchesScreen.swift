@@ -30,7 +30,7 @@ struct LaunchesScreen: View {
                             .buttonStyle(.plain)
                     }
                     Text("Launch data: The Space Devs, Launch Library 2.")
-                        .font(.caption2).opacity(0.5).padding(.vertical, 16)
+                        .font(.caption2).dimmed(0.5).padding(.vertical, 16)
                 } else if error == nil {
                     ProgressView().tint(ink).padding(.top, 40).frame(maxWidth: .infinity)
                 }
@@ -57,16 +57,16 @@ struct LaunchesScreen: View {
     private func row(_ l: Launch, index: Int) -> some View {
         VStack(alignment: .leading, spacing: 6) {
             HStack(alignment: .firstTextBaseline) {
-                Text(String(format: "%02d", index)).font(.caption2.monospacedDigit()).opacity(0.5)
+                Text(String(format: "%02d", index)).font(.caption2.monospacedDigit()).dimmed(0.5)
                 Text(l.net.formatted(.dateTime.weekday(.abbreviated).day().month(.abbreviated).hour().minute()))
-                    .font(.caption2).opacity(0.7)
+                    .font(.caption2).dimmed(0.7)
                 Spacer()
                 StatusTag(status: l.status, ink: ink, accent: accent)
             }
             Text(l.rocket).font(.title2.weight(.medium))
             if let m = l.mission { Text(m).font(.subheadline) }
             HStack {
-                Text("\(l.provider) · \(l.location)").font(.caption2).opacity(0.7)
+                Text("\(l.provider) · \(l.location)").font(.caption2).dimmed(0.7)
                 Spacer()
                 Countdown(to: l.net).font(.footnote.weight(.medium).monospacedDigit())
             }
@@ -121,7 +121,7 @@ struct LaunchDetail: View {
             VStack(alignment: .leading, spacing: 10) {
                 HStack {
                     StatusTag(status: launch.status, ink: ink, accent: accent)
-                    Text(launch.statusName).font(.caption).opacity(0.7)
+                    Text(launch.statusName).font(.caption).dimmed(0.7)
                 }
                 Text(launch.rocket).font(.title.weight(.medium))
                 if let m = launch.mission { Text(m).font(.body) }
@@ -139,9 +139,9 @@ struct LaunchDetail: View {
                 }
                 .font(.subheadline)
                 followButton.padding(.top, 8)
-                if let message { Text(message).font(.caption).opacity(0.7) }
+                if let message { Text(message).font(.caption).dimmed(0.7) }
                 if let d = launch.missionDescription {
-                    Text(d).font(.subheadline).opacity(0.85).padding(.top, 8)
+                    Text(d).font(.subheadline).dimmed(0.85).padding(.top, 8)
                 }
             }
             .padding(20)
@@ -200,7 +200,7 @@ struct LaunchDetail: View {
 
     private func fact(_ label: String, _ value: String) -> some View {
         GridRow {
-            Text(label).opacity(0.6)
+            Text(label).dimmed(0.6)
             Text(value)
         }
     }

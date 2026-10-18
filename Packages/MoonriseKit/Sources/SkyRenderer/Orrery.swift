@@ -100,7 +100,7 @@ public struct OrreryView: View {
                 let r = CGFloat(s.radius(au))
                 context.stroke(Path(ellipseIn: CGRect(x: c.x - r, y: c.y - r, width: 2 * r, height: 2 * r)),
                                with: .color(ink.opacity(0.12)), style: StrokeStyle(lineWidth: 0.5, dash: [2, 4]))
-                context.draw(Text("\(Int(au)) AU").font(.system(size: 9)).foregroundStyle(ink.opacity(0.4)), at: CGPoint(x: c.x, y: c.y - r - 7))
+                context.draw(Text("\(Int(au)) AU").font(.caption2).foregroundStyle(ink.opacity(0.6)), at: CGPoint(x: c.x, y: c.y - r - 7))
             }
             for (_, au) in Self.orbits {
                 let r = CGFloat(s.radius(au))
@@ -117,7 +117,7 @@ public struct OrreryView: View {
                 context.stroke(line, with: .color(accent.opacity(0.7)), lineWidth: 0.8)
                 let p = s.point(last)
                 context.fill(Path(ellipseIn: CGRect(x: p.x - 2.5, y: p.y - 2.5, width: 5, height: 5)), with: .color(accent))
-                context.draw(Text(craft.name).font(.system(size: 9)).foregroundStyle(accent), at: CGPoint(x: p.x + 6, y: p.y), anchor: .leading)
+                context.draw(Text(craft.name).font(.caption2).foregroundStyle(accent), at: CGPoint(x: p.x + 6, y: p.y), anchor: .leading)
             }
 
             for body in [SolarBody.mercury, .venus, .mars, .jupiter, .saturn, .uranus, .neptune] {
@@ -126,7 +126,7 @@ public struct OrreryView: View {
                 let r: CGFloat = [.jupiter, .saturn].contains(body) ? 4 : 3
                 context.fill(Path(ellipseIn: CGRect(x: p.x - r, y: p.y - r, width: 2 * r, height: 2 * r)), with: .color(ink))
                 if [.jupiter, .saturn, .uranus, .neptune].contains(body) {
-                    context.draw(Text(body.rawValue.capitalized).font(.system(size: 9)).foregroundStyle(ink.opacity(0.8)), at: CGPoint(x: p.x, y: p.y + 10))
+                    context.draw(Text(body.rawValue.capitalized).font(.caption2).foregroundStyle(ink.opacity(0.8)), at: CGPoint(x: p.x, y: p.y + 10))
                 }
             }
             if let earth = try? SkyEngine.heliocentricEarth(at: date) {

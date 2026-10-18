@@ -7,6 +7,7 @@ struct SystemScreen: View {
     @State private var offsetDays = 0.0
     @State private var playing = false
     @State private var libraryPage: LibraryPage?
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     private let ink = Color(red: 0.95, green: 0.95, blue: 0.93)
     private let accent = Color(red: 0.88, green: 0.24, blue: 0.19)
@@ -25,7 +26,9 @@ struct SystemScreen: View {
                 Text("Solar system").font(.title.weight(.medium))
                 Rectangle().fill(accent).frame(width: 48, height: 5).padding(.top, 8).padding(.bottom, 16)
 
+                // Labels in this dense diagram stop growing at xxLarge; the table below scales fully.
                 OrreryView(date: date, ink: ink, accent: accent)
+                    .dynamicTypeSize(...DynamicTypeSize.xxLarge)
                     .accessibilityElement()
                     .accessibilityLabel("Orrery for \(date.formatted(.dateTime.year().month(.wide))). Planets and spacecraft distances are listed below.")
 
@@ -36,7 +39,7 @@ struct SystemScreen: View {
                     .accessibilityLabel(playing ? "Pause" : "Play")
                     Text(date.formatted(.dateTime.year().month(.abbreviated)))
                         .font(.subheadline.weight(.medium).monospacedDigit())
-                        .frame(width: 80, alignment: .leading)
+                        .fixedSize()
                     Slider(value: $offsetDays, in: range).tint(ink)
                     Button { playing = false; offsetDays = 0 } label: {
                         Text("Today").frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
@@ -47,37 +50,45 @@ struct SystemScreen: View {
                 .padding(.top, 12)
 
                 Text("Distances beyond 1 AU are drawn on a logarithmic scale. Rings: planet orbits, then 50, 100 and 200 AU.")
-                    .font(.caption2).opacity(0.6).padding(.top, 8)
+                    .font(.caption2).dimmed(0.6).padding(.top, 8)
 
                 section("Spacecraft") {
-                    Grid(alignment: .leading, horizontalSpacing: 16, verticalSpacing: 6) {
-                        GridRow {
-                            Text("").gridColumnAlignment(.leading)
-                            Text("From Sun").opacity(0.6)
-                            Text("Light time").opacity(0.6)
-                        }
-                        .font(.caption2)
-                        ForEach(Spacecraft.all) { craft in
-                            GridRow {
-                                if let page = Library.page(spacecraft: craft.name) {
-                                    Button { libraryPage = page } label: { Text(craft.name).underline().frame(minHeight: 44, alignment: .leading).contentShape(Rectangle()) }.buttonStyle(.plain)
-                                } else {
-                                    Text(craft.name)
+                    if typeSize.isAccessibilitySize {
+                        VStack(alignment: .leading, spacing: 12) {
+                            ForEach(Spacecraft.all) { craft in
+                                VStack(alignment: .leading, spacing: 2) {
+                                    craftName(craft)
+                                    Text(craftDistance(craft)).monospacedDigit().dimmed(0.7)
                                 }
-                                if let d = craft.distance(at: date) {
-                                    Text(String(format: "%.1f AU", d)).monospacedDigit()
-                                    Text(lightTime(au: d)).monospacedDigit()
-                                } else {
-                                    Text("launch \(craft.launch.prefix(4))").opacity(0.5)
-                                    Text("")
-                                }
+                                .font(.subheadline)
                             }
-                            .font(.subheadline)
+                        }
+                    } else {
+                        Grid(alignment: .leading, horizontalSpacing: 16, verticalSpacing: 6) {
+                            GridRow {
+                                Text("").gridColumnAlignment(.leading)
+                                Text("From Sun").dimmed(0.6)
+                                Text("Light time").dimmed(0.6)
+                            }
+                            .font(.caption2)
+                            ForEach(Spacecraft.all) { craft in
+                                GridRow {
+                                    craftName(craft)
+                                    if let d = craft.distance(at: date) {
+                                        Text(String(format: "%.1f AU", d)).monospacedDigit()
+                                        Text(lightTime(au: d)).monospacedDigit()
+                                    } else {
+                                        Text("launch \(craft.launch.prefix(4))").dimmed(0.5)
+                                        Text("")
+                                    }
+                                }
+                                .font(.subheadline)
+                            }
                         }
                     }
                 }
                 Text("Spacecraft positions: NASA/JPL Horizons. Pioneer 10 and 11 positions after contact was lost are predictions.")
-                    .font(.caption2).opacity(0.5).padding(.vertical, 16)
+                    .font(.caption2).dimmed(0.5).padding(.vertical, 16)
             }
             .padding(.horizontal, 20)
         }
@@ -95,6 +106,20 @@ struct SystemScreen: View {
         }
     }
 
+    @ViewBuilder
+    private func craftName(_ craft: Spacecraft) -> some View {
+        if let page = Library.page(spacecraft: craft.name) {
+            Button { libraryPage = page } label: { Text(craft.name).underline().frame(minHeight: 44, alignment: .leading).contentShape(Rectangle()) }.buttonStyle(.plain)
+        } else {
+            Text(craft.name)
+        }
+    }
+
+    private func craftDistance(_ craft: Spacecraft) -> String {
+        guard let d = craft.distance(at: date) else { return "launch \(craft.launch.prefix(4))" }
+        return String(format: "%.1f AU from the Sun · light time %@", d, lightTime(au: d))
+    }
+
     /// One-way light time from the Sun's distance, as hours and minutes.
     private func lightTime(au: Double) -> String {
         let seconds = au * 499.004784
@@ -104,7 +129,7 @@ struct SystemScreen: View {
 
     private func section(_ title: String, @ViewBuilder content: () -> some View) -> some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text(title).font(.caption2.weight(.medium)).textCase(.uppercase).tracking(0.8).opacity(0.6)
+            Text(title).font(.caption2.weight(.medium)).textCase(.uppercase).tracking(0.8).dimmed(0.6)
             content()
         }
         .padding(.top, 24)

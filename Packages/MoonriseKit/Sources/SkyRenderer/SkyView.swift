@@ -45,15 +45,18 @@ public struct SkyStyle: Sendable {
 
     public init() {}
 
+    /// Night-mode red: 6.2:1 against black, 5.1:1 at 90% opacity (WCAG AA needs 4.5:1).
+    public static let nightRed = Color(red: 1.0, green: 0.27, blue: 0.2)
+
     /// Red on black, to keep night vision.
     public static let night: SkyStyle = {
         var s = SkyStyle()
-        let red = Color(red: 0.85, green: 0.12, blue: 0.08)
+        let red = SkyStyle.nightRed
         s.background = .black
         s.ground = Color(red: 0.06, green: 0, blue: 0)
         s.line = red.opacity(0.35)
         s.label = red
-        s.muted = red.opacity(0.7)
+        s.muted = red.opacity(0.9)
         s.moonLight = red
         s.moonDark = Color(red: 0.12, green: 0, blue: 0)
         s.planet = red
@@ -135,11 +138,15 @@ public struct SkyView: View {
             } else {
                 let r = max(2.0, 3.6 - 0.35 * b.magnitude)
                 context.fill(Path(ellipseIn: CGRect(x: pt.x - r, y: pt.y - r, width: 2 * r, height: 2 * r)), with: .color(style.planet))
+                // Label to the right, or to the left when it would run off the edge (large text sizes).
+                let name = b.body.rawValue.capitalized
+                let width = context.resolve(Text(name).font(.caption2)).measure(in: p.size).width
+                let side: Double = pt.x + r + 18 + width > p.size.width ? -1 : 1
                 var tick = Path()
-                tick.move(to: CGPoint(x: pt.x + r + 3, y: pt.y))
-                tick.addLine(to: CGPoint(x: pt.x + r + 15, y: pt.y))
+                tick.move(to: CGPoint(x: pt.x + side * (r + 3), y: pt.y))
+                tick.addLine(to: CGPoint(x: pt.x + side * (r + 15), y: pt.y))
                 context.stroke(tick, with: .color(style.muted), lineWidth: 0.6)
-                label(&context, b.body.rawValue.capitalized, at: CGPoint(x: pt.x + r + 18, y: pt.y), anchor: .leading)
+                label(&context, name, at: CGPoint(x: pt.x + side * (r + 18), y: pt.y), anchor: side > 0 ? .leading : .trailing)
             }
         }
     }
@@ -172,7 +179,7 @@ public struct SkyView: View {
     }
 
     func label(_ context: inout GraphicsContext, _ text: String, at point: CGPoint, anchor: UnitPoint, color: Color? = nil) {
-        let t = Text(text).font(.system(size: 11, weight: .regular)).foregroundStyle(color ?? style.label)
+        let t = Text(text).font(.caption2).foregroundStyle(color ?? style.label)
         context.draw(t, at: point, anchor: anchor)
     }
 }
