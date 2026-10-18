@@ -11,6 +11,7 @@ struct SkyScreen: View {
     @State private var altitude = 45.0
     @State private var fieldOfView = 100.0
     @AppStorage(SettingsKey.nightMode) private var nightMode = "auto"
+    @AppStorage(SettingsKey.skyCulture) private var skyCulture = "western"
     @State private var showSettings = false
     @State private var showEvents = false
     @State private var showLog = false
@@ -37,7 +38,7 @@ struct SkyScreen: View {
                 style.background.ignoresSafeArea()
                 if let scene = model.scene {
                     let view = current(width: geo.size.width)
-                    SkyView(scene: scene, centerAzimuth: view.azimuth, centerAltitude: view.altitude, fieldOfView: view.fieldOfView, style: style) { [stats] d in
+                    SkyView(scene: scene, centerAzimuth: view.azimuth, centerAltitude: view.altitude, fieldOfView: view.fieldOfView, style: style, culture: Catalog.skyCultures.first { $0.id == skyCulture }) { [stats] d in
                         stats.record(d)
                     }
                     .ignoresSafeArea()

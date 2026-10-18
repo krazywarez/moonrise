@@ -1,4 +1,5 @@
 import Library
+import SkyRenderer
 import SwiftUI
 import UserNotifications
 
@@ -13,6 +14,8 @@ enum SettingsKey {
     /// Whether the Sky tab is currently drawn in night mode (written by the Sky tab).
     static let nightActive = "nightActive"
     static let dailySummary = "dailySummary"
+    /// Sky culture id, or "western" for the IAU constellations.
+    static let skyCulture = "skyCulture"
     /// Minutes after local midnight.
     static let dailySummaryMinutes = "dailySummaryMinutes"
 }
@@ -61,6 +64,7 @@ struct SettingsScreen: View {
     @AppStorage(SettingsKey.cityLatitude) private var cityLatitude = 41.878
     @AppStorage(SettingsKey.cityLongitude) private var cityLongitude = -87.630
     @AppStorage(SettingsKey.nightMode) private var nightMode = "auto"
+    @AppStorage(SettingsKey.skyCulture) private var skyCulture = "western"
     @Environment(\.dismiss) private var dismiss
     @State private var alerts = AuroraAlerts.shared
     @AppStorage(SettingsKey.dailySummary) private var dailySummary = false
@@ -117,6 +121,10 @@ struct SettingsScreen: View {
                     Text("A note each day with the Moon, the planets up that night, the best satellite pass and any events. It is worked out on this device; nothing is sent to our server.")
                 }
                 Section {
+                    Picker("Constellations", selection: $skyCulture) {
+                        Text("Western (IAU)").tag("western")
+                        ForEach(Catalog.skyCultures) { Text($0.name).tag($0.id) }
+                    }
                     Picker("Night mode", selection: $nightMode) {
                         Text("Off").tag("off")
                         Text("On").tag("on")
@@ -125,7 +133,7 @@ struct SettingsScreen: View {
                 } header: {
                     Text("Display")
                 } footer: {
-                    Text("Night mode draws the sky in red to keep your eyes adapted to the dark. After dark turns it on once the Sun is 12° below the horizon.")
+                    Text("Constellations from other cultures come from Stellarium's sky cultures and are drawn over the same stars; figures with stars fainter than the app's catalogue are shortened. Night mode draws the sky in red to keep your eyes adapted to the dark. After dark turns it on once the Sun is 12° below the horizon.")
                 }
                 Section("About") {
                     LabeledContent("Version", value: Bundle.main.versionString)
@@ -191,6 +199,9 @@ struct CreditsScreen: View {
         Credit(name: "Images of the Sun", detail: "Courtesy of NASA/SDO and the AIA, EVE, and HMI science teams."),
         Credit(name: "Launch schedule", detail: "The Space Devs, Launch Library 2."),
         Credit(name: "Deep Space Network status", detail: "NASA/JPL, DSN Now."),
+        Credit(name: "Satellite orbits", detail: "CelesTrak."),
+        Credit(name: "Mars rover raw images", detail: "NASA/JPL-Caltech, with MSSS and ASU for some cameras."),
+        Credit(name: "Space news headlines", detail: "Spaceflight News API, The Space Devs. Articles belong to their publishers."),
     ]
 
     /// Every distinct image credit used by the Library, grouped by licence.
@@ -209,6 +220,16 @@ struct CreditsScreen: View {
             }
             Section("Live data") {
                 ForEach(feeds, id: \.self) { row($0) }
+            }
+            Section("Sky cultures") {
+                ForEach(Catalog.skyCultures) { c in
+                    Link(destination: c.source) {
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(c.name)
+                            Text("Stellarium sky cultures. \(c.licence)").font(.footnote).foregroundStyle(.secondary)
+                        }
+                    }
+                }
             }
             ForEach(imageCredits, id: \.licence) { group in
                 Section("Library images: \(group.licence)") {

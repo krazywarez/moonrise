@@ -26,6 +26,23 @@ public struct Constellation: Sendable, Decodable {
     public var lines: [[Int]]
 }
 
+/// Another culture's figures over the same stars, from Stellarium's sky cultures (CC BY-SA).
+public struct SkyCulture: Sendable, Decodable, Identifiable {
+    public struct Figure: Sendable, Decodable {
+        public var name: String
+        public var native: String?
+        /// Polylines of HR numbers.
+        public var lines: [[Int]]
+    }
+
+    public var id: String
+    public var name: String
+    public var region: String
+    public var licence: String
+    public var source: URL
+    public var constellations: [Figure]
+}
+
 public enum Catalog {
     /// Yale Bright Star Catalogue, 5th ed. (VizieR V/50): HR, RA and Dec (J2000, degrees), V, B−V,
     /// proper motion in RA (× cos dec) and Dec (arcsec/yr).
@@ -33,6 +50,12 @@ public enum Catalog {
         let url = Bundle.module.url(forResource: "bsc5", withExtension: "json")!
         let rows = try! JSONDecoder().decode([[Double]].self, from: Data(contentsOf: url))
         return rows.map { Star(hr: Int($0[0]), ra: $0[1], dec: $0[2], magnitude: $0[3], colorIndex: $0[4], pmRA: $0[5], pmDec: $0[6]) }
+    }()
+
+    /// Built by scripts/make-skycultures.py.
+    public static let skyCultures: [SkyCulture] = {
+        let url = Bundle.module.url(forResource: "skycultures", withExtension: "json")!
+        return try! JSONDecoder().decode([SkyCulture].self, from: Data(contentsOf: url))
     }()
 
     public static let constellations: [Constellation] = {

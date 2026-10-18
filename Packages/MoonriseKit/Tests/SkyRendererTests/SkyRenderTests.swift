@@ -62,3 +62,18 @@ let evening = Date(timeIntervalSince1970: 1_792_202_400) // 2026-10-17T02:00:00Z
     let renderer = ImageRenderer(content: SkyView(scene: scene, style: .night).frame(width: 393, height: 852))
     #expect(renderer.cgImage != nil)
 }
+
+@Test func skyCulturesUseCatalogueStars() {
+    let cultures = Catalog.skyCultures
+    #expect(cultures.count == 10)
+    let known = Set(Catalog.stars.map(\.hr))
+    for c in cultures {
+        #expect(!c.constellations.isEmpty, "\(c.id)")
+        #expect(c.licence.contains("BY-SA") || c.licence.contains("BY SA"), "\(c.id)")
+        for f in c.constellations {
+            #expect(f.lines.allSatisfy { $0.count > 1 && $0.allSatisfy(known.contains) }, "\(c.id) \(f.name)")
+        }
+    }
+    // The Norse Wolf's Mouth is the Hyades and includes Aldebaran (HR 1457).
+    #expect(cultures.first { $0.id == "norse" }?.constellations.contains { $0.name == "Wolf's Mouth" && $0.lines.joined().contains(1457) } == true)
+}

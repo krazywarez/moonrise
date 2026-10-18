@@ -4,6 +4,9 @@
 |-
 | Astronomy Engine v2.1.19, Copyright (c) 2019-2025 Don Cross | =Packages/MoonriseKit/Sources/CAstronomy= | MIT (=LICENSE= alongside) | https://github.com/cosinekitty/astronomy |
 | Yale Bright Star Catalogue, 5th rev. ed. (Hoffleit & Warren 1991) | =Packages/MoonriseKit/Sources/SkyRenderer/Resources/bsc5.json= | See VizieR policy; licence statement pending | https://cdsarc.cds.unistra.fr/viz-bin/cat/V/50 |
+| BSC5 proper motions (pmRA, pmDE) | same file, columns 6 and 7 | as above | https://cdsarc.cds.unistra.fr/viz-bin/cat/V/50 |
+| Stellarium sky cultures: Chinese, Indian, Mongolian, Japanese moon stations, Hawaiian starlines, Māori, Tongan, Boorong, Sámi, Norse (lines and names, converted to HR numbers by =scripts/make-skycultures.py=) | =Packages/MoonriseKit/Sources/SkyRenderer/Resources/skycultures.json= | CC BY-SA (per culture, stated in each culture's description.md); the converted file is under the same licence | https://github.com/Stellarium/stellarium-skycultures |
+| Hipparcos main catalogue positions (used only to match HIP to HR when building skycultures.json; not bundled) | — | ESA | https://cdsarc.cds.unistra.fr/viz-bin/cat/I/239 |
 | ConstellationLines v1.4, Copyright (c) 2005-2026 Marc van der Sluys | =Packages/MoonriseKit/Sources/SkyRenderer/Resources/constellations.json= | CC BY 4.0 | https://github.com/MarcvdSluys/ConstellationLines, doi:10.5281/zenodo.10397192 |
 | Natural Earth 1:110m coastline v5.1.2 | =Packages/MoonriseKit/Sources/SkyRenderer/Resources/coastline.json= | Public domain | https://www.naturalearthdata.com |
 | Launch Library 2 (The Space Devs) | fetched at runtime by =server/= | Free API; credit shown in the app | https://thespacedevs.com/llapi |

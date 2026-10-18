@@ -408,7 +408,9 @@ Sky, System, Sun, Launches, Library core (above).
 
 ** v3: across time and cultures
 - Sky cultures: Chinese, Polynesian, Arabic, Norse and other
-  constellations over the same stars.
+  constellations over the same stars. Done for the ten CC BY-SA cultures in
+  Stellarium's set; Arabic is not included (CC BY-ND, permission granted only
+  to Stellarium).
 - Historical sky for any date and place, with precession. Done: 3000 BCE
   to 3000 CE, with BSC5 proper motions and the pole star of the year.
 - 3D planets from USGS maps; immersive sky and orrery on Vision Pro.

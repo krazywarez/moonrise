@@ -78,12 +78,15 @@ public struct SkyView: View {
     public var centerAltitude: Double
     public var fieldOfView: Double
     public var style: SkyStyle
+    /// Figures to draw instead of the IAU constellation lines.
+    public var culture: SkyCulture?
     /// Called after each draw with the time the draw took.
     public var onDraw: (@Sendable (Duration) -> Void)?
 
-    public init(scene: SkyScene, centerAzimuth: Double = 180, centerAltitude: Double = 55, fieldOfView: Double = 110, style: SkyStyle = SkyStyle(), onDraw: (@Sendable (Duration) -> Void)? = nil) {
+    public init(scene: SkyScene, centerAzimuth: Double = 180, centerAltitude: Double = 55, fieldOfView: Double = 110, style: SkyStyle = SkyStyle(), culture: SkyCulture? = nil, onDraw: (@Sendable (Duration) -> Void)? = nil) {
         self.scene = scene
         self.style = style
+        self.culture = culture
         self.centerAzimuth = centerAzimuth
         self.centerAltitude = centerAltitude
         self.fieldOfView = fieldOfView
@@ -104,6 +107,10 @@ public struct SkyView: View {
     }
 
     func drawConstellations(_ context: inout GraphicsContext, _ p: Projection) {
+        if let culture {
+            drawCulture(culture, &context, p)
+            return
+        }
         var path = Path()
         for c in Catalog.constellations {
             for line in c.lines {
@@ -114,6 +121,31 @@ public struct SkyView: View {
                     path.move(to: pa)
                     path.addLine(to: pb)
                 }
+            }
+        }
+        context.stroke(path, with: .color(style.line), lineWidth: 0.6)
+    }
+
+    /// A culture's figures, named at the middle of their visible stars once zoomed in
+    /// (closer for cultures with many small figures).
+    func drawCulture(_ culture: SkyCulture, _ context: inout GraphicsContext, _ p: Projection) {
+        var path = Path()
+        let labelBelow = culture.constellations.count > 60 ? 60.0 : 110.0
+        for figure in culture.constellations {
+            var points: [CGPoint] = []
+            for line in figure.lines {
+                for (a, b) in zip(line, line.dropFirst()) {
+                    guard let ha = scene.starsByHR[a], let hb = scene.starsByHR[b],
+                          ha.altitude > -5 || hb.altitude > -5,
+                          let pa = p.point(ha), let pb = p.point(hb) else { continue }
+                    path.move(to: pa)
+                    path.addLine(to: pb)
+                    points += [pa, pb]
+                }
+            }
+            if fieldOfView <= labelBelow, points.count > 1 {
+                let c = CGPoint(x: points.map(\.x).reduce(0, +) / Double(points.count), y: points.map(\.y).reduce(0, +) / Double(points.count))
+                context.draw(Text(figure.name).font(.caption2).foregroundStyle(style.muted), at: c)
             }
         }
         context.stroke(path, with: .color(style.line), lineWidth: 0.6)
