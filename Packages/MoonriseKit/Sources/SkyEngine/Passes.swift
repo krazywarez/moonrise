@@ -11,7 +11,25 @@ public struct SatellitePass: Sendable, Identifiable, Equatable {
     public var setAzimuth: Double
     /// Sunlit while the observer's sky is dark: can be seen with the eye.
     public var visible: Bool
+    /// ISS, Tiangong, Hubble or a Starlink train, as opposed to the rest of CelesTrak's visual group.
+    public var featured = false
     public var id: String { "\(name)-\(Int(rise.timeIntervalSince1970))" }
+
+    /// "ISS" for "ISS (ZARYA)", "Tiangong" for "CSS (TIANHE)", "SL-8 rocket body" for "SL-8 R/B".
+    public var displayName: String {
+        switch name {
+        case "ISS (ZARYA)": "ISS"
+        case "CSS (TIANHE)": "Tiangong"
+        case "HST": "Hubble"
+        default: name.replacingOccurrences(of: " R/B", with: " rocket body")
+        }
+    }
+}
+
+extension OrbitalElements {
+    public static let featuredIDs: Set<Int> = [25544, 48274, 20580]
+
+    public var isFeatured: Bool { Self.featuredIDs.contains(NORAD_CAT_ID) || OBJECT_NAME.hasPrefix("Starlink train") }
 }
 
 extension SkyEngine {
@@ -92,7 +110,7 @@ extension SkyEngine {
                 lastAz = h.azimuth
             } else if let c = current {
                 if c.maxAlt >= minAltitude {
-                    out.append(SatellitePass(name: elements.OBJECT_NAME, rise: c.rise, set: t, peak: c.peak, maxAltitude: c.maxAlt, riseAzimuth: c.riseAz, setAzimuth: lastAz, visible: c.visible))
+                    out.append(SatellitePass(name: elements.OBJECT_NAME, rise: c.rise, set: t, peak: c.peak, maxAltitude: c.maxAlt, riseAzimuth: c.riseAz, setAzimuth: lastAz, visible: c.visible, featured: elements.isFeatured))
                 }
                 current = nil
             }

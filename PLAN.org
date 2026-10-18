@@ -395,7 +395,9 @@ Sky, System, Sun, Launches, Library core (above).
   2027 total eclipse (Spain, North Africa, Egypt) is a launch target.
 - Deep Space Network Now: which DSN dishes are talking to which
   spacecraft.
-- More satellites: Tiangong, Hubble, Starlink trains, bright passes.
+- More satellites: Tiangong, Hubble, Starlink trains, bright passes. Done:
+  CelesTrak visual group plus one element set per Starlink launch still
+  below about 400 km.
 - Observing log stored as plain text or Org.
 - Mars: latest rover raw images, local time at each rover.
 - Library: exoplanets, rockets to scale, exploration timeline, scale

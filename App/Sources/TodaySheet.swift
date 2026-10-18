@@ -81,7 +81,7 @@ struct TodaySheet: View {
 
     @ViewBuilder
     private var satellites: some View {
-        let shown = model.passes.prefix(8)
+        let shown = model.passes.filter(\.featured).prefix(8)
         if shown.isEmpty {
             Text("No passes above 10° in the next three days.").font(.subheadline).dimmed(0.6)
         } else {
@@ -89,7 +89,7 @@ struct TodaySheet: View {
                 ForEach(Array(shown)) { p in
                     VStack(alignment: .leading, spacing: 2) {
                         HStack {
-                            Text(p.name.replacingOccurrences(of: " (ZARYA)", with: "")).font(.subheadline.weight(.medium))
+                            Text(p.displayName).font(.subheadline.weight(.medium))
                             if p.visible {
                                 Text("Visible").font(.caption2.weight(.medium)).padding(.horizontal, 5).padding(.vertical, 1)
                                     .overlay(RoundedRectangle(cornerRadius: 3).stroke(lineWidth: 1))
@@ -100,9 +100,27 @@ struct TodaySheet: View {
                     }
                     .accessibilityElement(children: .combine)
                 }
+                let others = alsoVisible
+                if !others.isEmpty {
+                    Text("Also visible tonight").font(.caption2.weight(.medium)).textCase(.uppercase).tracking(0.8).dimmed(0.6).padding(.top, 6)
+                    ForEach(others) { p in
+                        Text("\(p.displayName) · \(p.rise.formatted(date: .omitted, time: .shortened)), highest \(Int(p.maxAltitude.rounded()))°")
+                            .font(.footnote.monospacedDigit()).dimmed(0.8)
+                    }
+                }
                 Text("Visible means sunlit while your sky is dark. Orbits: CelesTrak.").font(.caption2).dimmed(0.6)
             }
         }
+    }
+
+    /// The five highest passes tonight of other bright satellites (rocket bodies, old satellites), in time order.
+    private var alsoVisible: [SatellitePass] {
+        guard let t = model.tonight else { return [] }
+        return Array(model.passes
+            .filter { !$0.featured && $0.visible && $0.rise >= t.start && $0.rise <= t.end && $0.maxAltitude >= 30 }
+            .sorted { $0.maxAltitude > $1.maxAltitude }
+            .prefix(5))
+            .sorted { $0.rise < $1.rise }
     }
 
     @ViewBuilder

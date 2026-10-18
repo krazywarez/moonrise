@@ -45,10 +45,10 @@ public struct DailySummary: Sendable, Equatable {
         }
 
         if let pass = passes
-            .filter({ $0.visible && $0.rise >= tonight.start.addingTimeInterval(-3600) && $0.rise <= tonight.end })
+            .filter({ $0.visible && $0.featured && $0.rise >= tonight.start.addingTimeInterval(-3600) && $0.rise <= tonight.end })
             .max(by: { $0.maxAltitude < $1.maxAltitude }) {
             let when = pass.rise.formatted(time) + (calendar.isDate(pass.rise, inSameDayAs: date) ? "" : " tomorrow")
-            lines.append("\(pass.name) passes at \(when), \(Int(pass.maxAltitude.rounded()))° high.")
+            lines.append("\(pass.displayName) passes at \(when), \(Int(pass.maxAltitude.rounded()))° high.")
         }
 
         if let sunset = tonight.sunset {
