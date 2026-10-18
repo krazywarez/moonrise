@@ -6,10 +6,21 @@ import SwiftUI
 let apiBase: URL? = (Bundle.main.object(forInfoDictionaryKey: "MoonriseAPIURL") as? String)
     .flatMap { $0.isEmpty ? nil : URL(string: $0) }
 
+/// Tab and News/Launches switch that a notification tap can change.
+@MainActor
+@Observable
+final class Router {
+    static let shared = Router()
+    var tab = "sky"
+    var showNews = false
+}
+
 struct LaunchesScreen: View {
+    @State private var router = Router.shared
     @State private var list: LaunchList?
     @State private var error: String?
     @State private var selected: Launch?
+    @State private var newsReload = 0
 
     private let ink = Color(red: 0.95, green: 0.95, blue: 0.93)
     private let accent = Color(red: 0.88, green: 0.24, blue: 0.19)
@@ -18,9 +29,33 @@ struct LaunchesScreen: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                Text("Launches").font(.title.weight(.medium))
-                Rectangle().fill(accent).frame(width: 48, height: 5).padding(.top, 8).padding(.bottom, 8)
+                Text("News & launches").font(.title.weight(.medium))
+                Rectangle().fill(accent).frame(width: 48, height: 5).padding(.top, 8).padding(.bottom, 12)
+                Picker("Show", selection: $router.showNews) {
+                    Text("Launches").tag(false)
+                    Text("News").tag(true)
+                }
+                .pickerStyle(.segmented)
+                .padding(.bottom, 8)
 
+                if router.showNews {
+                    NewsList(ink: ink, accent: accent, reload: newsReload)
+                } else {
+                    launches
+                }
+            }
+            .padding(.horizontal, 20)
+            .readableWidth()
+        }
+        .foregroundStyle(ink)
+        .background(background.ignoresSafeArea())
+        .refreshable { if router.showNews { newsReload += 1 } else { await load() } }
+        .task { await load() }
+        .sheet(item: $selected) { LaunchDetail(launch: $0, ink: ink, accent: accent, background: background) }
+    }
+
+    @ViewBuilder
+    private var launches: some View {
                 if let error {
                     Text(error).font(.footnote).foregroundStyle(accent).padding(.vertical, 12)
                 }
@@ -34,15 +69,6 @@ struct LaunchesScreen: View {
                 } else if error == nil {
                     ProgressView().tint(ink).padding(.top, 40).frame(maxWidth: .infinity)
                 }
-            }
-            .padding(.horizontal, 20)
-            .readableWidth()
-        }
-        .foregroundStyle(ink)
-        .background(background.ignoresSafeArea())
-        .refreshable { await load() }
-        .task { await load() }
-        .sheet(item: $selected) { LaunchDetail(launch: $0, ink: ink, accent: accent, background: background) }
     }
 
     private func load() async {

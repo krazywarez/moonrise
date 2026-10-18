@@ -4,17 +4,20 @@ import SkyEngine
 import UIKit
 import UserNotifications
 
-/// Registers this device with the backend for aurora pushes. Sends only the push
-/// token, a 5° geomagnetic latitude band and the UTC offset.
+/// Registers this device with the backend for aurora and news pushes. Sends only the push
+/// token, a 5° geomagnetic latitude band, the UTC offset and which alerts are on.
 @MainActor
 @Observable
 final class AuroraAlerts {
     static let shared = AuroraAlerts()
 
     private static let enabledKey = "auroraAlerts"
+    private static let newsKey = "newsAlerts"
     private static let tokenKey = "apnsToken"
 
     private(set) var enabled = UserDefaults.standard.bool(forKey: AuroraAlerts.enabledKey)
+    /// The daily news digest at 09:00.
+    private(set) var news = UserDefaults.standard.bool(forKey: AuroraAlerts.newsKey)
     private(set) var status: String?
     private var observer: Observer?
 
@@ -40,30 +43,41 @@ final class AuroraAlerts {
     }
 
     func setEnabled(_ on: Bool) async {
-        if on {
-            let granted = (try? await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound])) ?? false
-            guard granted else {
-                status = "Notifications are off for Moonrise. Turn them on in the Settings app."
-                return
-            }
-            UIApplication.shared.registerForRemoteNotifications()
-        }
+        if on, !(await permitted()) { return }
         enabled = on
         UserDefaults.standard.set(on, forKey: Self.enabledKey)
         await sync()
     }
 
+    func setNews(_ on: Bool) async {
+        if on, !(await permitted()) { return }
+        news = on
+        UserDefaults.standard.set(on, forKey: Self.newsKey)
+        await sync()
+    }
+
+    private func permitted() async -> Bool {
+        let granted = (try? await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound])) ?? false
+        if granted {
+            UIApplication.shared.registerForRemoteNotifications()
+        } else {
+            status = "Notifications are off for Moonrise. Turn them on in the Settings app."
+        }
+        return granted
+    }
+
     /// Registers or unregisters to match `enabled`.
     func sync() async {
         guard let apiBase, let token else { return }
-        if enabled {
+        if enabled || news {
             guard let observer else { return }
             let body: [String: Any] = [
                 "token": token,
                 "environment": environment,
                 "band": Geomagnetic.band(observer),
                 "utcOffsetMinutes": TimeZone.current.secondsFromGMT() / 60,
-                "aurora": true,
+                "aurora": enabled,
+                "news": news,
             ]
             var req = URLRequest(url: apiBase.appending(path: "v1/devices"))
             req.httpMethod = "POST"

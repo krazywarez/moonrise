@@ -2,6 +2,7 @@ import { send, type ApnsConfig } from "./apns";
 import { actionableKp, alertBands, eventKey, isNight } from "./aurora";
 import { fetchElements } from "./celestrak";
 import { fetchUpcoming, type Launch } from "./ll2";
+import { digestDue, digestPayload, fetchLatest, localDate, pickHeadlines } from "./news";
 import { PRIVACY_HTML } from "./privacy";
 import { fetchSpaceWeather, next24h, type SpaceWeather } from "./swpc";
 
@@ -21,6 +22,7 @@ interface DeviceRequest {
   band: number;
   utcOffsetMinutes: number;
   aurora?: boolean;
+  news?: boolean;
 }
 
 const LAUNCH_CRON = "*/10 * * * *";
@@ -69,9 +71,9 @@ export default {
       const d = (await request.json().catch(() => ({}))) as Partial<DeviceRequest>;
       if (!validDevice(d)) return json({ error: "invalid device" }, 400);
       await env.DB.prepare(
-        `INSERT INTO devices (token, environment, band, utc_offset_minutes, aurora, last_seen) VALUES (?1, ?2, ?3, ?4, ?5, ?6)
-         ON CONFLICT (token) DO UPDATE SET environment = ?2, band = ?3, utc_offset_minutes = ?4, aurora = ?5, last_seen = ?6`,
-      ).bind(d.token.toLowerCase(), d.environment, d.band, d.utcOffsetMinutes, d.aurora === false ? 0 : 1, now.toISOString()).run();
+        `INSERT INTO devices (token, environment, band, utc_offset_minutes, aurora, news, last_seen) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)
+         ON CONFLICT (token) DO UPDATE SET environment = ?2, band = ?3, utc_offset_minutes = ?4, aurora = ?5, news = ?6, last_seen = ?7`,
+      ).bind(d.token.toLowerCase(), d.environment, d.band, d.utcOffsetMinutes, d.aurora === false ? 0 : 1, d.news === true ? 1 : 0, now.toISOString()).run();
       return json({ ok: true });
     }
 
@@ -90,7 +92,7 @@ export default {
   async scheduled(controller: ScheduledController, env: Env, ctx: ExecutionContext): Promise<void> {
     const now = new Date(controller.scheduledTime);
     // Launches every 10 minutes: 6 of the 15 anonymous Launch Library 2 requests per hour.
-    if (controller.cron === LAUNCH_CRON) ctx.waitUntil(pollLaunches(env, now));
+    if (controller.cron === LAUNCH_CRON) ctx.waitUntil(Promise.all([pollLaunches(env, now), sendNewsDigests(env, now)]));
     else if (controller.cron === SATELLITE_CRON) ctx.waitUntil(pollSatellites(env, now));
     else ctx.waitUntil(pollSpaceWeather(env, now));
   },
@@ -105,7 +107,7 @@ async function sendTest(env: Env, token: string, now: Date): Promise<Response> {
     .bind(window, now.toISOString()).run();
   if (!claimed.meta.changes) return json({ error: "try again in a few minutes" }, 429);
   const config: ApnsConfig = { keyId: env.APNS_KEY_ID, teamId: env.APNS_TEAM_ID, privateKey: env.APNS_KEY, topic: env.APNS_TOPIC };
-  const payload = { aps: { alert: { title: "Moonrise test alert", body: "Aurora alerts reach this device." }, sound: "default" } };
+  const payload = { aps: { alert: { title: "Moonrise test alert", body: "Alerts reach this device." }, sound: "default" } };
   const r = await send(config, token, payload, device.environment === "sandbox");
   if (r.status === 410) await env.DB.prepare("DELETE FROM devices WHERE token = ?1").bind(token).run();
   return json({ apnsStatus: r.status, reason: r.reason }, r.status === 200 ? 200 : 502);
@@ -198,4 +200,34 @@ async function sendAuroraAlerts(env: Env, w: SpaceWeather, now: Date): Promise<v
       else if (r.status !== 200) console.error("apns", r.status, r.reason);
     }
   }
+}
+
+/** The daily news digest, sent at 09:00 local time to devices that opted in, once per local day. */
+async function sendNewsDigests(env: Env, now: Date): Promise<void> {
+  if (!env.APNS_KEY) return;
+  const rows = await env.DB.prepare("SELECT token, environment, utc_offset_minutes FROM devices WHERE news = 1")
+    .all<{ token: string; environment: string; utc_offset_minutes: number }>();
+  const due = rows.results.filter((d) => digestDue(now, d.utc_offset_minutes));
+  if (!due.length) return;
+
+  let payload;
+  try {
+    const headlines = pickHeadlines(await fetchLatest(), now);
+    if (!headlines.length) return;
+    payload = digestPayload(headlines);
+  } catch (e) {
+    console.error("snapi", String(e));
+    return;
+  }
+
+  const config: ApnsConfig = { keyId: env.APNS_KEY_ID, teamId: env.APNS_TEAM_ID, privateKey: env.APNS_KEY, topic: env.APNS_TOPIC };
+  for (const d of due) {
+    const claimed = await env.DB.prepare("INSERT OR IGNORE INTO alerts_sent (kind, band, event, sent_at) VALUES ('news', 0, ?1, ?2)")
+      .bind(`${d.token}:${localDate(now, d.utc_offset_minutes)}`, now.toISOString()).run();
+    if (!claimed.meta.changes) continue;
+    const r = await send(config, d.token, payload, d.environment === "sandbox");
+    if (r.status === 410) await env.DB.prepare("DELETE FROM devices WHERE token = ?1").bind(d.token).run();
+    else if (r.status !== 200) console.error("apns", r.status, r.reason);
+  }
+  await env.DB.prepare("DELETE FROM alerts_sent WHERE kind = 'news' AND sent_at < ?1").bind(new Date(now.getTime() - 3 * 86400_000).toISOString()).run();
 }

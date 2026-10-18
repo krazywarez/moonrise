@@ -87,7 +87,11 @@ struct SettingsScreen: View {
                         get: { alerts.enabled },
                         set: { on in Task { await alerts.setEnabled(on) } }
                     ))
-                    if alerts.enabled {
+                    Toggle("News alerts", isOn: Binding(
+                        get: { alerts.news },
+                        set: { on in Task { await alerts.setNews(on) } }
+                    ))
+                    if alerts.enabled || alerts.news {
                         Button("Send a test alert") { Task { await alerts.sendTest() } }
                     }
                     if let status = alerts.status {
@@ -96,7 +100,7 @@ struct SettingsScreen: View {
                 } header: {
                     Text("Alerts")
                 } footer: {
-                    Text("Moonrise notifies you when the aurora may be visible from your area at night. To do this it sends our server this device's notification token, a 5° band of geomagnetic latitude and your time zone offset, not your location.")
+                    Text("Aurora alerts tell you when the aurora may be visible from your area at night. News alerts send three of the day's space headlines at 9 a.m. For these, Moonrise sends our server this device's notification token, a 5° band of geomagnetic latitude, your time zone offset and which alerts are on, not your location.")
                 }
                 Section {
                     Toggle("Daily summary", isOn: Binding(

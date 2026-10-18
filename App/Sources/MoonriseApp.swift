@@ -11,20 +11,20 @@ struct MoonriseApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @AppStorage(SettingsKey.onboarded) private var onboarded = false
     @AppStorage(SettingsKey.nightActive) private var nightActive = false
-    @State private var tab = "sky"
+    @State private var router = Router.shared
 
     var body: some Scene {
         WindowGroup {
-            TabView(selection: $tab) {
+            TabView(selection: $router.tab) {
                 Tab("Sky", systemImage: "sparkles", value: "sky") { SkyScreen() }
                 Tab("System", systemImage: "circle.circle", value: "system") { SystemScreen() }
                 Tab("Sun", systemImage: "sun.max", value: "sun") { SunScreen() }
-                Tab("Launches", systemImage: "airplane.departure", value: "launches") { LaunchesScreen() }
+                Tab("News & launches", systemImage: "airplane.departure", value: "launches") { LaunchesScreen() }
                 Tab("Library", systemImage: "books.vertical", value: "library") { LibraryScreen() }
             }
             .tabViewStyle(.sidebarAdaptable)
             // Red tab highlight while the Sky tab is in night mode.
-            .tint(tab == "sky" && nightActive ? SkyStyle.nightRed : nil)
+            .tint(router.tab == "sky" && nightActive ? SkyStyle.nightRed : nil)
             .preferredColorScheme(.dark)
             .fullScreenCover(isPresented: .constant(!onboarded)) {
                 OnboardingScreen().preferredColorScheme(.dark)
@@ -44,6 +44,15 @@ final class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCent
         let token = deviceToken.map { String(format: "%02x", $0) }.joined()
         log.info("APNs device token: \(token, privacy: .public)")
         Task { @MainActor in AuroraAlerts.shared.receivedToken(token) }
+    }
+
+    /// A news digest opens News & launches on the News switch.
+    nonisolated func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
+        guard response.notification.request.content.userInfo["tab"] as? String == "news" else { return }
+        await MainActor.run {
+            Router.shared.tab = "launches"
+            Router.shared.showNews = true
+        }
     }
 
     /// Show alerts as banners while the app is open.
