@@ -51,6 +51,9 @@ final class SkyModel: NSObject, CLLocationManagerDelegate {
     private(set) var lastBuild: Duration = .zero
     private(set) var tonight: Tonight?
     private(set) var spaceWeather: SpaceWeather?
+    private(set) var passes: [SatellitePass] = []
+    private var elements: [OrbitalElements] = []
+    private var elementsFetched: Date?
     private var weatherFetched: Date?
     /// Hours from now shown by the time scrubber.
     var offsetHours = 0.0 { didSet { refresh() } }
@@ -107,6 +110,23 @@ final class SkyModel: NSObject, CLLocationManagerDelegate {
             building = false
             if pending { pending = false; refresh() }
         }
+    }
+
+    private struct SatelliteList: Decodable { var satellites: [OrbitalElements] }
+
+    /// Orbital elements from the backend (refreshed hourly), then passes for the next three days.
+    func refreshPasses() async {
+        if elementsFetched.map({ Date.now.timeIntervalSince($0) > 3600 }) ?? true, let apiBase {
+            if let (data, _) = try? await URLSession.shared.data(from: apiBase.appending(path: "v1/satellites")),
+               let list = try? JSONDecoder().decode(SatelliteList.self, from: data), !list.satellites.isEmpty {
+                elements = list.satellites
+                elementsFetched = .now
+            }
+        }
+        let elements = elements, observer = observer
+        passes = await Task.detached {
+            elements.flatMap { SkyEngine.passes(of: $0, from: .now, hours: 72, observer: observer) }.sorted { $0.rise < $1.rise }
+        }.value
     }
 
     /// SWPC asks for no more than once a minute; this checks every 10.

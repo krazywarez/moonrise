@@ -2,7 +2,7 @@
   "name": "moonrise-server",
   "main": "src/index.ts",
   "compatibility_date": "2026-10-01",
-  "triggers": { "crons": ["*/5 * * * *", "*/10 * * * *"] },
+  "triggers": { "crons": ["*/5 * * * *", "*/10 * * * *", "7 */2 * * *"] },
   "d1_databases": [
     {
       "binding": "DB",

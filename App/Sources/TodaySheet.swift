@@ -16,6 +16,7 @@ struct TodaySheet: View {
                     section("Planets tonight") { planets(t) }
                     section("Sun") { sun(t) }
                 }
+                section("Satellite passes") { satellites }
                 section("Space weather") { weather }
                 Text("Space weather data: NOAA Space Weather Prediction Center.")
                     .font(.caption2).dimmed(0.5).padding(.top, 8)
@@ -25,6 +26,7 @@ struct TodaySheet: View {
         }
         .foregroundStyle(ink)
         .presentationBackground(background)
+        .task { await model.refreshPasses() }
     }
 
     private func section(_ title: String, @ViewBuilder content: () -> some View) -> some View {
@@ -75,6 +77,32 @@ struct TodaySheet: View {
             ("Sunset", t.sunset.map(time) ?? "already set"),
             ("Sunrise", t.sunrise.map(time) ?? "–"),
         ])
+    }
+
+    @ViewBuilder
+    private var satellites: some View {
+        let shown = model.passes.prefix(8)
+        if shown.isEmpty {
+            Text("No passes above 10° in the next three days.").font(.subheadline).dimmed(0.6)
+        } else {
+            VStack(alignment: .leading, spacing: 10) {
+                ForEach(Array(shown)) { p in
+                    VStack(alignment: .leading, spacing: 2) {
+                        HStack {
+                            Text(p.name.replacingOccurrences(of: " (ZARYA)", with: "")).font(.subheadline.weight(.medium))
+                            if p.visible {
+                                Text("Visible").font(.caption2.weight(.medium)).padding(.horizontal, 5).padding(.vertical, 1)
+                                    .overlay(RoundedRectangle(cornerRadius: 3).stroke(lineWidth: 1))
+                            }
+                        }
+                        Text(p.rise.formatted(.dateTime.weekday(.abbreviated).hour().minute()) + String(format: " · rises %@, highest %.0f°, sets %@", compass(p.riseAzimuth), p.maxAltitude, compass(p.setAzimuth)))
+                            .font(.footnote.monospacedDigit()).dimmed(0.8)
+                    }
+                    .accessibilityElement(children: .combine)
+                }
+                Text("Visible means sunlit while your sky is dark. Orbits: CelesTrak.").font(.caption2).dimmed(0.6)
+            }
+        }
     }
 
     @ViewBuilder

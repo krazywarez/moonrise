@@ -1,5 +1,6 @@
 import { send, type ApnsConfig } from "./apns";
 import { actionableKp, alertBands, eventKey, isNight } from "./aurora";
+import { fetchElements } from "./celestrak";
 import { fetchUpcoming, type Launch } from "./ll2";
 import { PRIVACY_HTML } from "./privacy";
 import { fetchSpaceWeather, next24h, type SpaceWeather } from "./swpc";
@@ -23,6 +24,7 @@ interface DeviceRequest {
 }
 
 const LAUNCH_CRON = "*/10 * * * *";
+const SATELLITE_CRON = "7 */2 * * *";
 
 const json = (body: unknown, status = 200) => Response.json(body, { status });
 
@@ -58,6 +60,10 @@ export default {
       return new Response(PRIVACY_HTML, { headers: { "content-type": "text/html; charset=utf-8", "cache-control": "public, max-age=3600" } });
     if (request.method === "GET" && url.pathname === "/v1/today") return today(env, now);
     if (request.method === "GET" && url.pathname === "/v1/launches") return launches(env, now);
+    if (request.method === "GET" && url.pathname === "/v1/satellites") {
+      const row = await env.DB.prepare("SELECT fetched_at, body FROM feed_snapshots WHERE feed = 'celestrak' AND ok = 1").first<{ fetched_at: string; body: string }>();
+      return json({ fetchedAt: row?.fetched_at ?? null, satellites: row ? JSON.parse(row.body) : [] });
+    }
 
     if (request.method === "POST" && url.pathname === "/v1/devices") {
       const d = (await request.json().catch(() => ({}))) as Partial<DeviceRequest>;
@@ -85,6 +91,7 @@ export default {
     const now = new Date(controller.scheduledTime);
     // Launches every 10 minutes: 6 of the 15 anonymous Launch Library 2 requests per hour.
     if (controller.cron === LAUNCH_CRON) ctx.waitUntil(pollLaunches(env, now));
+    else if (controller.cron === SATELLITE_CRON) ctx.waitUntil(pollSatellites(env, now));
     else ctx.waitUntil(pollSpaceWeather(env, now));
   },
 } satisfies ExportedHandler<Env>;
@@ -140,6 +147,17 @@ async function pollLaunches(env: Env, now: Date): Promise<void> {
     env.DB.prepare("DELETE FROM launches WHERE net < ?1").bind(new Date(now.getTime() - 7 * 86400_000).toISOString()),
     env.DB.prepare("INSERT INTO feed_snapshots (feed, fetched_at, ok) VALUES ('ll2', ?1, 1) ON CONFLICT (feed) DO UPDATE SET fetched_at = ?1, ok = 1").bind(now.toISOString()),
   ]);
+}
+
+async function pollSatellites(env: Env, now: Date): Promise<void> {
+  try {
+    const elements = await fetchElements();
+    await env.DB.prepare("INSERT INTO feed_snapshots (feed, fetched_at, ok, body) VALUES ('celestrak', ?1, 1, ?2) ON CONFLICT (feed) DO UPDATE SET fetched_at = ?1, ok = 1, body = ?2")
+      .bind(now.toISOString(), JSON.stringify(elements)).run();
+  } catch (e) {
+    console.error("celestrak", String(e));
+    await env.DB.prepare("INSERT INTO feed_snapshots (feed, fetched_at, ok) VALUES ('celestrak:error', ?1, 0) ON CONFLICT (feed) DO UPDATE SET fetched_at = ?1").bind(now.toISOString()).run();
+  }
 }
 
 async function pollSpaceWeather(env: Env, now: Date): Promise<void> {
