@@ -1,5 +1,6 @@
 import Library
 import SwiftUI
+import UserNotifications
 
 /// UserDefaults keys shared by the settings screen and the models that read them.
 enum SettingsKey {
@@ -11,6 +12,9 @@ enum SettingsKey {
     static let onboarded = "onboarded"
     /// Whether the Sky tab is currently drawn in night mode (written by the Sky tab).
     static let nightActive = "nightActive"
+    static let dailySummary = "dailySummary"
+    /// Minutes after local midnight.
+    static let dailySummaryMinutes = "dailySummaryMinutes"
 }
 
 struct City: Hashable, Identifiable {
@@ -59,6 +63,9 @@ struct SettingsScreen: View {
     @AppStorage(SettingsKey.nightMode) private var nightMode = "auto"
     @Environment(\.dismiss) private var dismiss
     @State private var alerts = AuroraAlerts.shared
+    @AppStorage(SettingsKey.dailySummary) private var dailySummary = false
+    @AppStorage(SettingsKey.dailySummaryMinutes) private var dailySummaryMinutes = DailySummaryNotifications.defaultMinutes
+    @State private var summaryStatus: String?
     var onChange: () -> Void
 
     var body: some View {
@@ -92,6 +99,20 @@ struct SettingsScreen: View {
                     Text("Moonrise notifies you when the aurora may be visible from your area at night. To do this it sends our server this device's notification token, a 5° band of geomagnetic latitude and your time zone offset, not your location.")
                 }
                 Section {
+                    Toggle("Daily summary", isOn: Binding(
+                        get: { dailySummary },
+                        set: { on in Task { await setDailySummary(on) } }
+                    ))
+                    if dailySummary {
+                        DatePicker("Time", selection: summaryTime, displayedComponents: .hourAndMinute)
+                    }
+                    if let summaryStatus {
+                        Text(summaryStatus).font(.footnote).foregroundStyle(.secondary)
+                    }
+                } footer: {
+                    Text("A note each day with the Moon, the planets up that night, the best satellite pass and any events. It is worked out on this device; nothing is sent to our server.")
+                }
+                Section {
                     Picker("Night mode", selection: $nightMode) {
                         Text("Off").tag("off")
                         Text("On").tag("on")
@@ -122,6 +143,28 @@ struct SettingsScreen: View {
             }
             .onChange(of: locationMode) { onChange() }
         }
+    }
+
+    private var summaryTime: Binding<Date> {
+        Binding(
+            get: { Calendar.current.startOfDay(for: .now).addingTimeInterval(Double(dailySummaryMinutes) * 60) },
+            set: { d in
+                let c = Calendar.current.dateComponents([.hour, .minute], from: d)
+                dailySummaryMinutes = (c.hour ?? 0) * 60 + (c.minute ?? 0)
+            }
+        )
+    }
+
+    private func setDailySummary(_ on: Bool) async {
+        if on {
+            let granted = (try? await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound])) ?? false
+            guard granted else {
+                summaryStatus = "Notifications are off for Moonrise. Turn them on in the Settings app."
+                return
+            }
+        }
+        summaryStatus = nil
+        dailySummary = on
     }
 }
 

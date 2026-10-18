@@ -18,6 +18,7 @@ struct SkyScreen: View {
     @AppStorage(SettingsKey.onboarded) private var onboarded = false
     @AppStorage(SettingsKey.nightActive) private var nightActive = false
     @State private var showToday = false
+    @Environment(\.scenePhase) private var scenePhase
     @State private var libraryPage: LibraryPage?
     @State private var selection: SkyObject?
     @State private var details: BodyDetails?
@@ -72,7 +73,7 @@ struct SkyScreen: View {
                 .preferredColorScheme(.dark)
                 .tint(.blue)
         }
-        .sheet(isPresented: $showSettings) {
+        .sheet(isPresented: $showSettings, onDismiss: rescheduleSummary) {
             SettingsScreen { model.applyLocationSettings() }
                 .preferredColorScheme(.dark)
                 .tint(.blue)
@@ -88,6 +89,8 @@ struct SkyScreen: View {
         .onChange(of: model.offsetHours) { select(selection) }
         .onChange(of: onboarded) { if onboarded { model.start() } }
         .onChange(of: night, initial: true) { nightActive = night }
+        .onChange(of: model.observer) { rescheduleSummary() }
+        .onChange(of: scenePhase) { if scenePhase == .active { rescheduleSummary() } }
         .task {
             if onboarded { model.start() }
             while !Task.isCancelled {
@@ -95,6 +98,10 @@ struct SkyScreen: View {
                 model.refresh()
             }
         }
+    }
+
+    private func rescheduleSummary() {
+        Task { await DailySummaryNotifications.reschedule(model) }
     }
 
     private func select(_ object: SkyObject?) {
