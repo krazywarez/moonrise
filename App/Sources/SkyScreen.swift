@@ -1,4 +1,5 @@
 import Library
+import ObservingLog
 import SkyEngine
 import SkyRenderer
 import SwiftUI
@@ -12,6 +13,8 @@ struct SkyScreen: View {
     @AppStorage(SettingsKey.nightMode) private var nightMode = "auto"
     @State private var showSettings = false
     @State private var showEvents = false
+    @State private var showLog = false
+    @State private var logEntry: Observation?
     @AppStorage(SettingsKey.onboarded) private var onboarded = false
     @AppStorage(SettingsKey.nightActive) private var nightActive = false
     @State private var showToday = false
@@ -58,6 +61,12 @@ struct SkyScreen: View {
         }
         .foregroundStyle(ink)
         .environment(\.nightMode, night)
+        .sheet(isPresented: $showLog) {
+            LogScreen { newObservation("") }.preferredColorScheme(.dark).tint(.blue)
+        }
+        .sheet(item: $logEntry) { o in
+            ObservationEditor(observation: o) {}.preferredColorScheme(.dark).tint(.blue)
+        }
         .sheet(isPresented: $showEvents) {
             EventsScreen(observer: model.observer, placeName: model.placeName)
                 .preferredColorScheme(.dark)
@@ -153,6 +162,12 @@ struct SkyScreen: View {
                 }
                 .accessibilityLabel(pointer.active ? "Stop following the phone" : "Point the phone at the sky")
             }
+            Button { showLog = true } label: {
+                Image(systemName: "book.closed")
+                    .font(.body)
+                    .frame(width: 44, height: 44)
+            }
+            .accessibilityLabel("Observing log")
             Button { showEvents = true } label: {
                 Image(systemName: "calendar")
                     .font(.body)
@@ -193,17 +208,29 @@ struct SkyScreen: View {
             case .constellation(let id):
                 Text("Constellation · \(id)").font(.footnote).dimmed(0.7)
             }
-            if let page = libraryPage(for: object) {
-                Button { libraryPage = page } label: {
-                    Label("Read more", systemImage: "book").font(.footnote.weight(.medium))
+            HStack(spacing: 20) {
+                Button { logEntry = newObservation(title(for: object)) } label: {
+                    Label("Log", systemImage: "square.and.pencil").font(.footnote.weight(.medium))
                 }
                 .buttonStyle(.plain)
-                .padding(.top, 4)
+                .frame(minHeight: 44)
+                if let page = libraryPage(for: object) {
+                    Button { libraryPage = page } label: {
+                        Label("Read more", systemImage: "book").font(.footnote.weight(.medium))
+                    }
+                    .buttonStyle(.plain)
+                    .frame(minHeight: 44)
+                }
             }
         }
         .padding(16)
         .background(style.background.opacity(0.92), in: .rect(cornerRadius: 12))
         .overlay(RoundedRectangle(cornerRadius: 12).stroke(ink.opacity(0.25), lineWidth: 0.5))
+    }
+
+    private func newObservation(_ object: String) -> Observation {
+        Observation(object: object, date: model.displayedDate, place: model.placeName == "Your location" ? "" : model.placeName,
+                    latitude: model.observer.latitude, longitude: model.observer.longitude)
     }
 
     private func libraryPage(for object: SkyObject) -> LibraryPage? {
