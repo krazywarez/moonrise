@@ -66,7 +66,7 @@ struct PageRow: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
             Text(page.title).font(.body)
-            Text(page.subtitle).font(.caption).opacity(0.6).lineLimit(1)
+            Text(page.subtitle).font(.caption).opacity(0.7)
         }
         .padding(.vertical, 2)
     }
@@ -111,6 +111,7 @@ struct LibraryPageView: View {
                     Text(f.label).font(.footnote).opacity(0.6)
                     Text(f.value).font(.subheadline.monospacedDigit())
                 }
+                .accessibilityElement(children: .combine)
                 Divider().overlay(ink.opacity(0.15))
             }
         }

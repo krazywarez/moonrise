@@ -59,6 +59,7 @@ struct SkyScreen: View {
         .sheet(isPresented: $showSettings) {
             SettingsScreen { model.applyLocationSettings() }
                 .preferredColorScheme(.dark)
+                .tint(.blue)
         }
         .sheet(item: $libraryPage) { page in
             NavigationStack { LibraryPageView(page: page) }

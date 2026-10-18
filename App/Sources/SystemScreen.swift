@@ -38,9 +38,11 @@ struct SystemScreen: View {
                         .font(.subheadline.weight(.medium).monospacedDigit())
                         .frame(width: 80, alignment: .leading)
                     Slider(value: $offsetDays, in: range).tint(ink)
-                    Button("Today") { playing = false; offsetDays = 0 }
-                        .font(.footnote.weight(.medium))
-                        .opacity(abs(offsetDays) < 1 ? 0.4 : 1)
+                    Button { playing = false; offsetDays = 0 } label: {
+                        Text("Today").frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
+                    }
+                    .font(.footnote.weight(.medium))
+                    .opacity(abs(offsetDays) < 1 ? 0.6 : 1)
                 }
                 .padding(.top, 12)
 
@@ -58,7 +60,7 @@ struct SystemScreen: View {
                         ForEach(Spacecraft.all) { craft in
                             GridRow {
                                 if let page = Library.page(spacecraft: craft.name) {
-                                    Button { libraryPage = page } label: { Text(craft.name).underline() }.buttonStyle(.plain)
+                                    Button { libraryPage = page } label: { Text(craft.name).underline().frame(minHeight: 44, alignment: .leading).contentShape(Rectangle()) }.buttonStyle(.plain)
                                 } else {
                                     Text(craft.name)
                                 }

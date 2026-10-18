@@ -64,9 +64,9 @@ struct LaunchesScreen: View {
                 StatusTag(status: l.status, ink: ink, accent: accent)
             }
             Text(l.rocket).font(.title2.weight(.medium))
-            if let m = l.mission { Text(m).font(.subheadline).lineLimit(1) }
+            if let m = l.mission { Text(m).font(.subheadline) }
             HStack {
-                Text("\(l.provider) · \(l.location)").font(.caption2).opacity(0.6).lineLimit(1)
+                Text("\(l.provider) · \(l.location)").font(.caption2).opacity(0.7)
                 Spacer()
                 Countdown(to: l.net).font(.footnote.weight(.medium).monospacedDigit())
             }

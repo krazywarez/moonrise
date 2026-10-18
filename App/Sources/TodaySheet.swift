@@ -121,10 +121,12 @@ struct TodayBar: View {
             scrubber
             Button(action: onExpand) {
                 HStack {
-                    Text(summary).font(.footnote).opacity(0.75).lineLimit(2)
+                    Text(summary).font(.footnote).opacity(0.8)
                     Spacer()
                     Image(systemName: "chevron.up").font(.caption.weight(.medium)).opacity(0.6)
                 }
+                .frame(minHeight: 44)
+                .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
             .accessibilityHint("Shows tonight's details")
@@ -157,9 +159,11 @@ struct TodayBar: View {
                 .font(.footnote.monospacedDigit())
                 .frame(width: 70, alignment: .leading)
             Slider(value: $model.offsetHours, in: -12...12, step: 0.25).tint(ink)
-            Button("Now") { model.offsetHours = 0 }
-                .font(.footnote.weight(.medium))
-                .opacity(model.offsetHours == 0 ? 0.4 : 1)
+            Button { model.offsetHours = 0 } label: {
+                Text("Now").frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
+            }
+            .font(.footnote.weight(.medium))
+            .opacity(model.offsetHours == 0 ? 0.6 : 1)
         }
     }
 

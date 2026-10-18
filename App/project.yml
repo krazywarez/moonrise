@@ -10,6 +10,8 @@ targets:
   Moonrise:
     type: application
     platform: iOS
+    scheme:
+      testTargets: [MoonriseUITests]
     sources: [Sources, Shared]
     dependencies:
       - package: MoonriseKit
@@ -81,3 +83,17 @@ targets:
         TARGETED_DEVICE_FAMILY: "1"
         MARKETING_VERSION: "1.0"
         CURRENT_PROJECT_VERSION: "1"
+  MoonriseUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: [UITests]
+    dependencies:
+      - target: Moonrise
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: sh.krz.moonrise.uitests
+        DEVELOPMENT_TEAM: ZCNAX3VL9D
+        CODE_SIGN_STYLE: Automatic
+        SWIFT_VERSION: "5.0"
+        TARGETED_DEVICE_FAMILY: "1"
+        GENERATE_INFOPLIST_FILE: YES
