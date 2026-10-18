@@ -1,6 +1,7 @@
 import CoreLocation
 import Feeds
 import Foundation
+import Library
 import Observation
 import SkyEngine
 import SkyRenderer
@@ -57,7 +58,37 @@ final class SkyModel: NSObject, CLLocationManagerDelegate {
     private var weatherFetched: Date?
     /// Hours from now shown by the time scrubber.
     var offsetHours = 0.0 { didSet { refresh() } }
-    var displayedDate: Date { .now.addingTimeInterval(offsetHours * 3600) }
+    /// Year shown instead of this one (astronomical numbering: 0 is 1 BCE), or nil for now.
+    var historicalYear: Int? { didSet { refresh(); poleStar = historicalYear.flatMap { _ in SkyModel.poleStar(at: displayedDate, south: observer.latitude < 0) } } }
+    /// Brightest-nearest star to the visible celestial pole in the historical year, and its distance from the pole.
+    private(set) var poleStar: (name: String, degrees: Double)?
+    var displayedDate: Date {
+        let d = Date.now.addingTimeInterval(offsetHours * 3600)
+        guard let y = historicalYear else { return d }
+        return SkyModel.date(d, inYear: y)
+    }
+
+    /// The same month, day and time in year `y` (Julian calendar before 1582, as Foundation's Gregorian calendar does).
+    static func date(_ d: Date, inYear y: Int) -> Date {
+        let calendar = Calendar(identifier: .gregorian)
+        var c = calendar.dateComponents([.month, .day, .hour, .minute, .second], from: d)
+        c.era = y > 0 ? 1 : 0
+        c.year = y > 0 ? y : 1 - y
+        return calendar.date(from: c) ?? d
+    }
+
+    /// The star brighter than magnitude 3.7 (so Thuban, 3.65, counts) closest to the north (or south) celestial pole at `date`.
+    static func poleStar(at date: Date, south: Bool) -> (name: String, degrees: Double)? {
+        let best = Catalog.stars.filter { $0.magnitude < 3.7 }.map { star -> (Star, Double) in
+            let dec = SkyEngine.equatorOfDate(j2000: star.position(at: date), at: date).dec
+            return (star, south ? 90 + dec : 90 - dec)
+        }.min { $0.1 < $1.1 }
+        guard let (star, d) = best else { return nil }
+        return (Library.page(hr: star.hr)?.title ?? formerPoleStars[star.hr] ?? "HR \(star.hr)", d)
+    }
+
+    /// Stars near the north celestial pole between 3000 BCE and 3000 CE that have no Library page.
+    static let formerPoleStars = [5291: "Thuban", 5563: "Kochab", 5735: "Pherkad", 8974: "Errai", 8162: "Alderamin"]
 
     let astronomer = Astronomer()
     private let manager = CLLocationManager()
@@ -105,7 +136,7 @@ final class SkyModel: NSObject, CLLocationManagerDelegate {
             scene = try? await astronomer.scene(at: date, from: observer)
             lastBuild = clock.now - start
             if let scene { self.scene = scene }
-            if offsetHours == 0 { tonight = try? await astronomer.tonight(at: date, from: observer) }
+            if offsetHours == 0, historicalYear == nil { tonight = try? await astronomer.tonight(at: date, from: observer) }
             sunAltitude = (try? SkyEngine.horizontal(.sun, at: date, from: observer, refraction: true).altitude) ?? 0
             building = false
             if pending { pending = false; refresh() }

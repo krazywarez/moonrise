@@ -409,7 +409,8 @@ Sky, System, Sun, Launches, Library core (above).
 ** v3: across time and cultures
 - Sky cultures: Chinese, Polynesian, Arabic, Norse and other
   constellations over the same stars.
-- Historical sky for any date and place, with precession.
+- Historical sky for any date and place, with precession. Done: 3000 BCE
+  to 3000 CE, with BSC5 proper motions and the pole star of the year.
 - 3D planets from USGS maps; immersive sky and orrery on Vision Pro.
 - Guided seasonal sky tours and mission stories.
 - Live coverage of major events (e.g. an Artemis landing) on the orrery

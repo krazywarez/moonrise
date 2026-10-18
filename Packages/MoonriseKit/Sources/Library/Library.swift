@@ -131,6 +131,10 @@ public enum Library {
         pages.first { $0.link.spacecraft == spacecraft }
     }
 
+    public static func page(hr: Int) -> LibraryPage? {
+        pages.first { $0.link.hr == hr }
+    }
+
     /// Case- and diacritic-insensitive match on title and subtitle first, then facts and essay.
     public static func search(_ query: String) -> [LibraryPage] {
         let q = query.trimmingCharacters(in: .whitespaces)

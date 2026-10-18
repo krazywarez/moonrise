@@ -104,6 +104,22 @@ public enum SkyEngine {
 
     /// Horizontal positions for many fixed objects at once, from J2000 RA and declination in degrees.
     /// Applies precession and nutation; no aberration or refraction.
+    /// 2000-01-01 12:00 TT.
+    public static let j2000 = Date(timeIntervalSince1970: 946_727_935.816)
+
+    /// Right ascension and declination on the equator and equinox of `date` (precession and nutation applied), degrees.
+    public static func equatorOfDate(j2000 c: (ra: Double, dec: Double), at date: Date) -> (ra: Double, dec: Double) {
+        lock.lock()
+        defer { lock.unlock() }
+        var t = time(date)
+        let rotation = Astronomy_Rotation_EQJ_EQD(&t)
+        let ra = c.ra * .pi / 180, dec = c.dec * .pi / 180
+        let v = Astronomy_RotateVector(rotation, astro_vector_t(status: ASTRO_SUCCESS, x: cos(dec) * cos(ra), y: cos(dec) * sin(ra), z: sin(dec), t: t))
+        var r = atan2(v.y, v.x) * 180 / .pi
+        if r < 0 { r += 360 }
+        return (r, asin(v.z) * 180 / .pi)
+    }
+
     public static func horizontal(j2000 coordinates: [(ra: Double, dec: Double)], at date: Date, from observer: Observer) -> [Horizontal] {
         lock.lock()
         defer { lock.unlock() }

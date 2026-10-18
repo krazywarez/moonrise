@@ -18,6 +18,7 @@ struct SkyScreen: View {
     @AppStorage(SettingsKey.onboarded) private var onboarded = false
     @AppStorage(SettingsKey.nightActive) private var nightActive = false
     @State private var showToday = false
+    @State private var showYear = false
     @Environment(\.scenePhase) private var scenePhase
     @State private var libraryPage: LibraryPage?
     @State private var selection: SkyObject?
@@ -56,7 +57,9 @@ struct SkyScreen: View {
                     header
                     if let selection { card(for: selection).padding(.horizontal, 16).padding(.top, 8) }
                     Spacer()
-                    TodayBar(model: model, ink: ink, background: style.ground) { showToday = true }
+                    if model.historicalYear == nil {
+                        TodayBar(model: model, ink: ink, background: style.ground) { showToday = true }
+                    }
                 }
             }
         }
@@ -72,6 +75,9 @@ struct SkyScreen: View {
             EventsScreen(observer: model.observer, placeName: model.placeName)
                 .preferredColorScheme(.dark)
                 .tint(.blue)
+        }
+        .sheet(isPresented: $showYear) {
+            YearSheet(year: $model.historicalYear).preferredColorScheme(.dark).tint(.blue)
         }
         .sheet(isPresented: $showSettings, onDismiss: rescheduleSummary) {
             SettingsScreen { model.applyLocationSettings() }
@@ -147,8 +153,16 @@ struct SkyScreen: View {
     private var header: some View {
         HStack(alignment: .top) {
             VStack(alignment: .leading, spacing: 4) {
-                Text(model.offsetHours == 0 ? "Tonight" : "Sky at \(model.displayedDate.formatted(date: .omitted, time: .shortened))")
-                    .font(.title2.weight(.medium))
+                if let y = model.historicalYear {
+                    Text("Sky in \(YearSheet.label(y))").font(.title2.weight(.medium))
+                    if let p = model.poleStar {
+                        Text(String(format: "Pole star: %@, %.1f° from the pole", p.name, p.degrees)).font(.caption2).dimmed(0.8)
+                    }
+                    Button("Back to today") { model.historicalYear = nil }.font(.caption.weight(.medium))
+                } else {
+                    Text(model.offsetHours == 0 ? "Tonight" : "Sky at \(model.displayedDate.formatted(date: .omitted, time: .shortened))")
+                        .font(.title2.weight(.medium))
+                }
                 Text(model.placeName)
                     .font(.caption2).dimmed(0.7)
                 #if DEBUG
@@ -169,6 +183,12 @@ struct SkyScreen: View {
                 }
                 .accessibilityLabel(pointer.active ? "Stop following the phone" : "Point the phone at the sky")
             }
+            Button { showYear = true } label: {
+                Image(systemName: "hourglass")
+                    .font(.body)
+                    .frame(width: 44, height: 44)
+            }
+            .accessibilityLabel("Sky in another year")
             Button { showLog = true } label: {
                 Image(systemName: "book.closed")
                     .font(.body)
