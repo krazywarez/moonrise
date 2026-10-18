@@ -413,7 +413,11 @@ Sky, System, Sun, Launches, Library core (above).
   to Stellarium).
 - Historical sky for any date and place, with precession. Done: 3000 BCE
   to 3000 CE, with BSC5 proper motions and the pole star of the year.
-- 3D planets from USGS maps; immersive sky and orrery on Vision Pro.
+- 3D planets from USGS maps; immersive sky and orrery on Vision Pro. Done:
+  globes for the Sun, planets, dwarf planets and moons (NASA/USGS maps for 13,
+  colour for the rest); visionOS app with globes, an orrery volume and an
+  immersive star field. visionOS is compiled but not yet run (no simulator
+  runtime installed).
 - Guided seasonal sky tours and mission stories. Tours done: four, by
   months, 5 to 8 stops each, in Library/Resources/tours. Mission stories
   done for Voyager 1 and 2, Pioneer 10 and 11 and New Horizons, on the orrery.

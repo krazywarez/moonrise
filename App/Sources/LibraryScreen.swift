@@ -104,6 +104,12 @@ struct LibraryPageView: View {
                     }
                     .padding(.top, 10)
                 }
+                if page.drawing?.kind == "planet" {
+                    NavigationLink { GlobeView(page: page, credit: GlobeMaps.credit[page.id]) } label: {
+                        Label("View as a globe", systemImage: "globe").font(.subheadline)
+                    }
+                    .padding(.top, 10)
+                }
 
                 facts.padding(.top, 16)
 

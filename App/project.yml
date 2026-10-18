@@ -4,6 +4,7 @@ options:
   deploymentTarget:
     iOS: "26.0"
     watchOS: "26.0"
+    visionOS: "26.0"
 packages:
   MoonriseKit:
     path: ../Packages/MoonriseKit
@@ -13,7 +14,11 @@ targets:
     platform: iOS
     scheme:
       testTargets: [MoonriseUITests]
-    sources: [Sources, Shared]
+    sources:
+      - Sources
+      - Shared
+      - path: Globes
+        type: folder
     dependencies:
       - package: MoonriseKit
         product: SkyEngine
@@ -141,6 +146,34 @@ targets:
         SWIFT_VERSION: "6.0"
         MARKETING_VERSION: "1.0"
         CURRENT_PROJECT_VERSION: "1"
+  MoonriseVision:
+    type: application
+    platform: visionOS
+    sources:
+      - Vision
+      - Sources/GlobeView.swift
+      - Sources/GlobeMaps.swift
+      - Sources/ColorHex.swift
+      - path: Globes
+        type: folder
+    dependencies:
+      - package: MoonriseKit
+        product: SkyEngine
+      - package: MoonriseKit
+        product: SkyRenderer
+      - package: MoonriseKit
+        product: Library
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: sh.krz.moonrise.vision
+        DEVELOPMENT_TEAM: ZCNAX3VL9D
+        CODE_SIGN_STYLE: Automatic
+        SWIFT_VERSION: "6.0"
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: Moonrise
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
   MoonriseUITests:
     type: bundle.ui-testing
     platform: iOS
