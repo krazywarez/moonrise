@@ -26,7 +26,7 @@ let package = Package(
         .target(name: "Feeds"),
         .target(name: "Library", resources: [.copy("Resources/pages")]),
         .testTarget(name: "SkyEngineTests", dependencies: ["SkyEngine"]),
-        .testTarget(name: "FeedsTests", dependencies: ["Feeds"]),
+        .testTarget(name: "FeedsTests", dependencies: ["Feeds"], resources: [.copy("Fixtures")]),
         .testTarget(name: "LibraryTests", dependencies: ["Library", "SkyRenderer", "SkyEngine"]),
         .testTarget(name: "SkyRendererTests", dependencies: ["SkyRenderer"]),
     ]

@@ -143,6 +143,7 @@ struct CreditsScreen: View {
         Credit(name: "Space weather and aurora forecast", detail: "NOAA Space Weather Prediction Center."),
         Credit(name: "Images of the Sun", detail: "Courtesy of NASA/SDO and the AIA, EVE, and HMI science teams."),
         Credit(name: "Launch schedule", detail: "The Space Devs, Launch Library 2."),
+        Credit(name: "Deep Space Network status", detail: "NASA/JPL, DSN Now."),
     ]
 
     /// Every distinct image credit used by the Library, grouped by licence.

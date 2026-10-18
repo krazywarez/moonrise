@@ -87,6 +87,7 @@ struct SystemScreen: View {
                         }
                     }
                 }
+                DSNSection(ink: ink, accent: accent).padding(.top, 24)
                 Text("Spacecraft positions: NASA/JPL Horizons. Pioneer 10 and 11 positions after contact was lost are predictions.")
                     .font(.caption2).dimmed(0.5).padding(.vertical, 16)
             }
