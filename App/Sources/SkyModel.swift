@@ -91,6 +91,7 @@ final class SkyModel: NSObject, CLLocationManagerDelegate {
     /// Rebuilds the scene for the displayed time. Requests made during a build
     /// collapse into one rebuild when it finishes.
     func refresh() {
+        AuroraAlerts.shared.update(observer: observer)
         guard !building else { pending = true; return }
         building = true
         let date = displayedDate, observer = observer, astronomer = astronomer

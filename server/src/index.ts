@@ -65,9 +65,12 @@ export default {
       await env.DB.prepare(
         `INSERT INTO devices (token, environment, band, utc_offset_minutes, aurora, last_seen) VALUES (?1, ?2, ?3, ?4, ?5, ?6)
          ON CONFLICT (token) DO UPDATE SET environment = ?2, band = ?3, utc_offset_minutes = ?4, aurora = ?5, last_seen = ?6`,
-      ).bind(d.token, d.environment, d.band, d.utcOffsetMinutes, d.aurora === false ? 0 : 1, now.toISOString()).run();
+      ).bind(d.token.toLowerCase(), d.environment, d.band, d.utcOffsetMinutes, d.aurora === false ? 0 : 1, now.toISOString()).run();
       return json({ ok: true });
     }
+
+    const test = url.pathname.match(/^\/v1\/devices\/([0-9a-f]{64,200})\/test$/i);
+    if (request.method === "POST" && test) return sendTest(env, test[1].toLowerCase(), now);
 
     const del = url.pathname.match(/^\/v1\/devices\/([0-9a-f]{64,200})$/i);
     if (request.method === "DELETE" && del) {
@@ -85,6 +88,21 @@ export default {
     else ctx.waitUntil(pollSpaceWeather(env, now));
   },
 } satisfies ExportedHandler<Env>;
+
+/** One test push to a registered device, at most once per 10 minutes per device. */
+async function sendTest(env: Env, token: string, now: Date): Promise<Response> {
+  const device = await env.DB.prepare("SELECT environment FROM devices WHERE token = ?1").bind(token).first<{ environment: string }>();
+  if (!device) return json({ error: "not registered" }, 404);
+  const window = `${token}:${now.toISOString().slice(0, 15)}`; // 10-minute bucket
+  const claimed = await env.DB.prepare("INSERT OR IGNORE INTO alerts_sent (kind, band, event, sent_at) VALUES ('test', 0, ?1, ?2)")
+    .bind(window, now.toISOString()).run();
+  if (!claimed.meta.changes) return json({ error: "try again in a few minutes" }, 429);
+  const config: ApnsConfig = { keyId: env.APNS_KEY_ID, teamId: env.APNS_TEAM_ID, privateKey: env.APNS_KEY, topic: env.APNS_TOPIC };
+  const payload = { aps: { alert: { title: "Moonrise test alert", body: "Aurora alerts reach this device." }, sound: "default" } };
+  const r = await send(config, token, payload, device.environment === "sandbox");
+  if (r.status === 410) await env.DB.prepare("DELETE FROM devices WHERE token = ?1").bind(token).run();
+  return json({ apnsStatus: r.status, reason: r.reason }, r.status === 200 ? 200 : 502);
+}
 
 async function launches(env: Env, now: Date): Promise<Response> {
   const since = new Date(now.getTime() - 6 * 3600_000).toISOString();

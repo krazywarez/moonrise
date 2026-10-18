@@ -18,11 +18,11 @@ struct LaunchesScreen: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                Text("Launches").font(.system(size: 28, weight: .medium))
+                Text("Launches").font(.title.weight(.medium))
                 Rectangle().fill(accent).frame(width: 48, height: 5).padding(.top, 8).padding(.bottom, 8)
 
                 if let error {
-                    Text(error).font(.system(size: 13)).foregroundStyle(accent).padding(.vertical, 12)
+                    Text(error).font(.footnote).foregroundStyle(accent).padding(.vertical, 12)
                 }
                 if let list {
                     ForEach(Array(list.launches.enumerated()), id: \.element.id) { i, launch in
@@ -30,7 +30,7 @@ struct LaunchesScreen: View {
                             .buttonStyle(.plain)
                     }
                     Text("Launch data: The Space Devs, Launch Library 2.")
-                        .font(.system(size: 10)).opacity(0.5).padding(.vertical, 16)
+                        .font(.caption2).opacity(0.5).padding(.vertical, 16)
                 } else if error == nil {
                     ProgressView().tint(ink).padding(.top, 40).frame(maxWidth: .infinity)
                 }
@@ -57,18 +57,18 @@ struct LaunchesScreen: View {
     private func row(_ l: Launch, index: Int) -> some View {
         VStack(alignment: .leading, spacing: 6) {
             HStack(alignment: .firstTextBaseline) {
-                Text(String(format: "%02d", index)).font(.system(size: 10).monospacedDigit()).opacity(0.5)
+                Text(String(format: "%02d", index)).font(.caption2.monospacedDigit()).opacity(0.5)
                 Text(l.net.formatted(.dateTime.weekday(.abbreviated).day().month(.abbreviated).hour().minute()))
-                    .font(.system(size: 11)).opacity(0.7)
+                    .font(.caption2).opacity(0.7)
                 Spacer()
                 StatusTag(status: l.status, ink: ink, accent: accent)
             }
-            Text(l.rocket).font(.system(size: 22, weight: .medium))
-            if let m = l.mission { Text(m).font(.system(size: 14)).lineLimit(1) }
+            Text(l.rocket).font(.title2.weight(.medium))
+            if let m = l.mission { Text(m).font(.subheadline).lineLimit(1) }
             HStack {
-                Text("\(l.provider) · \(l.location)").font(.system(size: 11)).opacity(0.6).lineLimit(1)
+                Text("\(l.provider) · \(l.location)").font(.caption2).opacity(0.6).lineLimit(1)
                 Spacer()
-                Countdown(to: l.net).font(.system(size: 13, weight: .medium).monospacedDigit())
+                Countdown(to: l.net).font(.footnote.weight(.medium).monospacedDigit())
             }
         }
         .padding(.vertical, 14)
@@ -84,7 +84,7 @@ struct StatusTag: View {
 
     var body: some View {
         Text(status.uppercased())
-            .font(.system(size: 10, weight: .medium))
+            .font(.caption2.weight(.medium))
             .tracking(0.6)
             .padding(.horizontal, 6).padding(.vertical, 2)
             .foregroundStyle(status == "Go" ? Color.black : ink)
@@ -121,11 +121,11 @@ struct LaunchDetail: View {
             VStack(alignment: .leading, spacing: 10) {
                 HStack {
                     StatusTag(status: launch.status, ink: ink, accent: accent)
-                    Text(launch.statusName).font(.system(size: 12)).opacity(0.7)
+                    Text(launch.statusName).font(.caption).opacity(0.7)
                 }
-                Text(launch.rocket).font(.system(size: 28, weight: .medium))
-                if let m = launch.mission { Text(m).font(.system(size: 17)) }
-                Countdown(to: launch.net).font(.system(size: 34, weight: .medium).monospacedDigit()).padding(.vertical, 6)
+                Text(launch.rocket).font(.title.weight(.medium))
+                if let m = launch.mission { Text(m).font(.body) }
+                Countdown(to: launch.net).font(.largeTitle.weight(.medium).monospacedDigit()).padding(.vertical, 6)
                 Grid(alignment: .leading, horizontalSpacing: 16, verticalSpacing: 6) {
                     fact("Provider", launch.provider)
                     fact("Launch time", launch.net.formatted(date: .abbreviated, time: .shortened))
@@ -137,11 +137,11 @@ struct LaunchDetail: View {
                     fact("Pad", launch.pad)
                     fact("Location", launch.location)
                 }
-                .font(.system(size: 14))
+                .font(.subheadline)
                 followButton.padding(.top, 8)
-                if let message { Text(message).font(.system(size: 12)).opacity(0.7) }
+                if let message { Text(message).font(.caption).opacity(0.7) }
                 if let d = launch.missionDescription {
-                    Text(d).font(.system(size: 14)).opacity(0.85).padding(.top, 8)
+                    Text(d).font(.subheadline).opacity(0.85).padding(.top, 8)
                 }
             }
             .padding(20)
@@ -160,7 +160,7 @@ struct LaunchDetail: View {
             following ? unfollow() : follow()
         } label: {
             Label(following ? "Stop following" : "Follow on Lock Screen", systemImage: following ? "bell.slash" : "bell")
-                .font(.system(size: 15, weight: .medium))
+                .font(.subheadline.weight(.medium))
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 10)
                 .overlay(RoundedRectangle(cornerRadius: 6).stroke(ink.opacity(0.5), lineWidth: 0.5))

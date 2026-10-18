@@ -12,6 +12,7 @@ struct SkyScreen: View {
     @AppStorage(SettingsKey.nightMode) private var nightMode = "auto"
     @State private var showSettings = false
     @AppStorage(SettingsKey.onboarded) private var onboarded = false
+    @AppStorage(SettingsKey.nightActive) private var nightActive = false
     @State private var showToday = false
     @State private var libraryPage: LibraryPage?
     @State private var selection: SkyObject?
@@ -68,6 +69,7 @@ struct SkyScreen: View {
         }
         .onChange(of: model.offsetHours) { select(selection) }
         .onChange(of: onboarded) { if onboarded { model.start() } }
+        .onChange(of: night, initial: true) { nightActive = night }
         .task {
             if onboarded { model.start() }
             while !Task.isCancelled {
@@ -121,13 +123,15 @@ struct SkyScreen: View {
         HStack(alignment: .top) {
             VStack(alignment: .leading, spacing: 4) {
                 Text(model.offsetHours == 0 ? "Tonight" : "Sky at \(model.displayedDate.formatted(date: .omitted, time: .shortened))")
-                    .font(.system(size: 22, weight: .medium))
+                    .font(.title2.weight(.medium))
                 Text(model.placeName)
-                    .font(.system(size: 11)).opacity(0.7)
+                    .font(.caption2).opacity(0.7)
+                #if DEBUG
                 TimelineView(.periodic(from: .now, by: 1)) { _ in
                     Text(stats.summary(build: model.lastBuild))
-                        .font(.system(size: 10).monospacedDigit()).opacity(0.7)
+                        .font(.caption2.monospacedDigit()).opacity(0.7)
                 }
+                #endif
             }
             Spacer()
             if pointer.available {
@@ -135,14 +139,14 @@ struct SkyScreen: View {
                     pointer.active ? pointer.stop() : pointer.start()
                 } label: {
                     Image(systemName: pointer.active ? "scope" : "hand.draw")
-                        .font(.system(size: 17))
+                        .font(.body)
                         .frame(width: 44, height: 44)
                 }
                 .accessibilityLabel(pointer.active ? "Stop following the phone" : "Point the phone at the sky")
             }
             Button { showSettings = true } label: {
                 Image(systemName: "gearshape")
-                    .font(.system(size: 17))
+                    .font(.body)
                     .frame(width: 44, height: 44)
             }
             .accessibilityLabel("Settings")
@@ -150,7 +154,7 @@ struct SkyScreen: View {
                 nightMode = night ? "off" : "on"
             } label: {
                 Image(systemName: night ? "eye.fill" : "eye")
-                    .font(.system(size: 17))
+                    .font(.body)
                     .frame(width: 44, height: 44)
             }
             .accessibilityLabel(night ? "Turn off night mode" : "Turn on night mode")
@@ -163,7 +167,7 @@ struct SkyScreen: View {
     private func card(for object: SkyObject) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
-                Text(title(for: object)).font(.system(size: 20, weight: .medium))
+                Text(title(for: object)).font(.title3.weight(.medium))
                 Spacer()
                 Button { selection = nil } label: { Image(systemName: "xmark").frame(width: 32, height: 32) }
                     .accessibilityLabel("Close")
@@ -172,11 +176,11 @@ struct SkyScreen: View {
             case .body:
                 if let d = details { bodyFacts(d) } else { ProgressView().tint(ink) }
             case .constellation(let id):
-                Text("Constellation · \(id)").font(.system(size: 13)).opacity(0.7)
+                Text("Constellation · \(id)").font(.footnote).opacity(0.7)
             }
             if let page = libraryPage(for: object) {
                 Button { libraryPage = page } label: {
-                    Label("Read more", systemImage: "book").font(.system(size: 13, weight: .medium))
+                    Label("Read more", systemImage: "book").font(.footnote.weight(.medium))
                 }
                 .buttonStyle(.plain)
                 .padding(.top, 4)
@@ -221,7 +225,7 @@ struct SkyScreen: View {
                     Text(row.0).opacity(0.7)
                     Text(row.1).monospacedDigit()
                 }
-                .font(.system(size: 13))
+                .font(.footnote)
             }
         }
     }

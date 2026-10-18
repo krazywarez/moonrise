@@ -22,7 +22,7 @@ struct SystemScreen: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                Text("Solar system").font(.system(size: 28, weight: .medium))
+                Text("Solar system").font(.title.weight(.medium))
                 Rectangle().fill(accent).frame(width: 48, height: 5).padding(.top, 8).padding(.bottom, 16)
 
                 OrreryView(date: date, ink: ink, accent: accent)
@@ -35,17 +35,17 @@ struct SystemScreen: View {
                     }
                     .accessibilityLabel(playing ? "Pause" : "Play")
                     Text(date.formatted(.dateTime.year().month(.abbreviated)))
-                        .font(.system(size: 15, weight: .medium).monospacedDigit())
+                        .font(.subheadline.weight(.medium).monospacedDigit())
                         .frame(width: 80, alignment: .leading)
                     Slider(value: $offsetDays, in: range).tint(ink)
                     Button("Today") { playing = false; offsetDays = 0 }
-                        .font(.system(size: 13, weight: .medium))
+                        .font(.footnote.weight(.medium))
                         .opacity(abs(offsetDays) < 1 ? 0.4 : 1)
                 }
                 .padding(.top, 12)
 
                 Text("Distances beyond 1 AU are drawn on a logarithmic scale. Rings: planet orbits, then 50, 100 and 200 AU.")
-                    .font(.system(size: 11)).opacity(0.6).padding(.top, 8)
+                    .font(.caption2).opacity(0.6).padding(.top, 8)
 
                 section("Spacecraft") {
                     Grid(alignment: .leading, horizontalSpacing: 16, verticalSpacing: 6) {
@@ -54,7 +54,7 @@ struct SystemScreen: View {
                             Text("From Sun").opacity(0.6)
                             Text("Light time").opacity(0.6)
                         }
-                        .font(.system(size: 11))
+                        .font(.caption2)
                         ForEach(Spacecraft.all) { craft in
                             GridRow {
                                 if let page = Library.page(spacecraft: craft.name) {
@@ -70,12 +70,12 @@ struct SystemScreen: View {
                                     Text("")
                                 }
                             }
-                            .font(.system(size: 14))
+                            .font(.subheadline)
                         }
                     }
                 }
                 Text("Spacecraft positions: NASA/JPL Horizons. Pioneer 10 and 11 positions after contact was lost are predictions.")
-                    .font(.system(size: 10)).opacity(0.5).padding(.vertical, 16)
+                    .font(.caption2).opacity(0.5).padding(.vertical, 16)
             }
             .padding(.horizontal, 20)
         }
@@ -102,7 +102,7 @@ struct SystemScreen: View {
 
     private func section(_ title: String, @ViewBuilder content: () -> some View) -> some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text(title).font(.system(size: 11, weight: .medium)).textCase(.uppercase).tracking(0.8).opacity(0.6)
+            Text(title).font(.caption2.weight(.medium)).textCase(.uppercase).tracking(0.8).opacity(0.6)
             content()
         }
         .padding(.top, 24)

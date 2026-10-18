@@ -11,17 +11,18 @@
 | Privacy policy URL | https://moonrise-server.audit-labs.workers.dev/privacy |
 
 * App Privacy ("nutrition label")
-Answer: *Data Not Collected*.
+Aurora alerts (opt-in) send the push token, a 5° geomagnetic latitude
+band and the UTC offset to the backend, so the answer is *Data Collected*:
 
-- Location: used on device only; never sent. Apple's definition of
-  "collect" is transmitting data off the device, so it is not collected.
-- Network requests (backend, NOAA, NASA, image hosts) carry no
+| Data type | Collected | Linked to identity | Tracking | Purpose |
+|-
+| Coarse Location | Yes (5° geomagnetic band) | No | No | App Functionality |
+| Device ID | Yes (APNs push token) | No | No | App Functionality |
+
+- Precise location: used on device only, never sent.
+- Other network requests (backend, NOAA, NASA, image hosts) carry no
   identifiers.
 - No analytics, advertising, accounts, crash reporting SDKs or tracking.
-- Revisit when aurora alerts ship: the push token, a 5° geomagnetic
-  latitude band and UTC offset are sent to the backend. That is
-  likely "Coarse Location" and "Device ID", used for "App
-  Functionality", not linked to identity, not used for tracking.
 
 * Export compliance
 =ITSAppUsesNonExemptEncryption = NO= (HTTPS only), set in =project.yml=.

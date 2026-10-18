@@ -19,7 +19,7 @@ struct SunScreen: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                Text("Sun").font(.system(size: 28, weight: .medium))
+                Text("Sun").font(.title.weight(.medium))
                 Rectangle().fill(accent).frame(width: 48, height: 5).padding(.top, 8).padding(.bottom, 16)
 
                 image
@@ -28,17 +28,17 @@ struct SunScreen: View {
                 }
                 .pickerStyle(.segmented)
                 .padding(.top, 12)
-                Text(wavelength.caption).font(.system(size: 13)).opacity(0.75).padding(.top, 8)
-                Text(SolarImage.credit).font(.system(size: 10)).opacity(0.5).padding(.top, 4)
+                Text(wavelength.caption).font(.footnote).opacity(0.75).padding(.top, 8)
+                Text(SolarImage.credit).font(.caption2).opacity(0.5).padding(.top, 4)
 
                 section("Aurora") { auroraMap }
                 section("Solar flares, last 24 h") { flares }
                 section("Geomagnetic activity (Kp)") { kpChart }
 
                 if failed {
-                    Text("Couldn't load space weather. Pull to retry.").font(.system(size: 13)).foregroundStyle(accent).padding(.top, 12)
+                    Text("Couldn't load space weather. Pull to retry.").font(.footnote).foregroundStyle(accent).padding(.top, 12)
                 }
-                Text("Space weather data: NOAA Space Weather Prediction Center. Coastlines: Natural Earth.").font(.system(size: 10)).opacity(0.5).padding(.vertical, 16)
+                Text("Space weather data: NOAA Space Weather Prediction Center. Coastlines: Natural Earth.").font(.caption2).opacity(0.5).padding(.vertical, 16)
             }
             .padding(.horizontal, 20)
         }
@@ -64,7 +64,7 @@ struct SunScreen: View {
         AsyncImage(url: wavelength.url(size: 1024)) { phase in
             switch phase {
             case .success(let img): img.resizable().scaledToFit()
-            case .failure: Color.black.overlay(Text("Image unavailable").font(.system(size: 13)).opacity(0.6))
+            case .failure: Color.black.overlay(Text("Image unavailable").font(.footnote).opacity(0.6))
             default: Color.black.overlay(ProgressView().tint(ink))
             }
         }
@@ -75,7 +75,7 @@ struct SunScreen: View {
 
     private func section(_ title: String, @ViewBuilder content: () -> some View) -> some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text(title).font(.system(size: 11, weight: .medium)).textCase(.uppercase).tracking(0.8).opacity(0.6)
+            Text(title).font(.caption2.weight(.medium)).textCase(.uppercase).tracking(0.8).opacity(0.6)
             content()
         }
         .padding(.top, 24)
@@ -94,9 +94,9 @@ struct SunScreen: View {
                 .accessibilityElement()
                 .accessibilityLabel(auroraDescription(ovation))
             Text("Chance of visible aurora overhead, OVATION model, for \(ovation.forecastTime.formatted(date: .omitted, time: .shortened)). Brighter green is more likely.")
-                .font(.system(size: 11)).opacity(0.6)
+                .font(.caption2).opacity(0.6)
         } else {
-            Text("Loading").font(.system(size: 13)).opacity(0.6)
+            Text("Loading").font(.footnote).opacity(0.6)
         }
     }
 
@@ -127,7 +127,7 @@ struct SunScreen: View {
                         .foregroundStyle(c.0 == "C" ? ink.opacity(0.25) : accent.opacity(0.6))
                         .lineStyle(StrokeStyle(lineWidth: 0.5, dash: [3, 3]))
                         .annotation(position: .top, alignment: .leading) {
-                            Text(c.0).font(.system(size: 10)).opacity(0.7)
+                            Text(c.0).font(.caption2).opacity(0.7)
                         }
                 }
             }
@@ -141,14 +141,14 @@ struct SunScreen: View {
             }
             .frame(height: 160)
         } else {
-            Text("Loading").font(.system(size: 13)).opacity(0.6)
+            Text("Loading").font(.footnote).opacity(0.6)
         }
     }
 
     @ViewBuilder
     private var kpChart: some View {
         if kp.isEmpty {
-            Text("Loading").font(.system(size: 13)).opacity(0.6)
+            Text("Loading").font(.footnote).opacity(0.6)
         } else {
             Chart(kp) { bar in
                 BarMark(x: .value("Start", bar.start, unit: .hour), y: .value("Kp", bar.kp), width: .ratio(0.8))
@@ -169,14 +169,14 @@ struct SunScreen: View {
             }
             .frame(height: 140)
             Text("Solid: observed. Faint: forecast. Red: storm level (Kp 5 or more).")
-                .font(.system(size: 11)).opacity(0.6)
+                .font(.caption2).opacity(0.6)
         }
     }
 
     private func stat(_ label: String, _ value: String) -> some View {
         VStack(alignment: .leading, spacing: 2) {
-            Text(label).font(.system(size: 10)).opacity(0.6)
-            Text(value).font(.system(size: 20, weight: .medium).monospacedDigit())
+            Text(label).font(.caption2).opacity(0.6)
+            Text(value).font(.title3.weight(.medium).monospacedDigit())
         }
     }
 }

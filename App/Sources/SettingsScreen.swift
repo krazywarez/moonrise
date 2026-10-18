@@ -9,6 +9,8 @@ enum SettingsKey {
     static let cityLongitude = "cityLongitude"
     static let nightMode = "nightMode" // "off", "on" or "auto"
     static let onboarded = "onboarded"
+    /// Whether the Sky tab is currently drawn in night mode (written by the Sky tab).
+    static let nightActive = "nightActive"
 }
 
 struct City: Hashable, Identifiable {
@@ -56,6 +58,7 @@ struct SettingsScreen: View {
     @AppStorage(SettingsKey.cityLongitude) private var cityLongitude = -87.630
     @AppStorage(SettingsKey.nightMode) private var nightMode = "auto"
     @Environment(\.dismiss) private var dismiss
+    @State private var alerts = AuroraAlerts.shared
     var onChange: () -> Void
 
     var body: some View {
@@ -71,6 +74,22 @@ struct SettingsScreen: View {
                             ForEach(City.all) { Text($0.name).tag($0.name) }
                         }
                     }
+                }
+                Section {
+                    Toggle("Aurora alerts", isOn: Binding(
+                        get: { alerts.enabled },
+                        set: { on in Task { await alerts.setEnabled(on) } }
+                    ))
+                    if alerts.enabled {
+                        Button("Send a test alert") { Task { await alerts.sendTest() } }
+                    }
+                    if let status = alerts.status {
+                        Text(status).font(.footnote).foregroundStyle(.secondary)
+                    }
+                } header: {
+                    Text("Alerts")
+                } footer: {
+                    Text("Moonrise notifies you when the aurora may be visible from your area at night. To do this it sends our server this device's notification token, a 5° band of geomagnetic latitude and your time zone offset, not your location.")
                 }
                 Section {
                     Picker("Night mode", selection: $nightMode) {
