@@ -11,6 +11,7 @@ struct SkyScreen: View {
     @State private var fieldOfView = 100.0
     @AppStorage(SettingsKey.nightMode) private var nightMode = "auto"
     @State private var showSettings = false
+    @State private var showEvents = false
     @AppStorage(SettingsKey.onboarded) private var onboarded = false
     @AppStorage(SettingsKey.nightActive) private var nightActive = false
     @State private var showToday = false
@@ -57,6 +58,11 @@ struct SkyScreen: View {
         }
         .foregroundStyle(ink)
         .environment(\.nightMode, night)
+        .sheet(isPresented: $showEvents) {
+            EventsScreen(observer: model.observer, placeName: model.placeName)
+                .preferredColorScheme(.dark)
+                .tint(.blue)
+        }
         .sheet(isPresented: $showSettings) {
             SettingsScreen { model.applyLocationSettings() }
                 .preferredColorScheme(.dark)
@@ -147,6 +153,12 @@ struct SkyScreen: View {
                 }
                 .accessibilityLabel(pointer.active ? "Stop following the phone" : "Point the phone at the sky")
             }
+            Button { showEvents = true } label: {
+                Image(systemName: "calendar")
+                    .font(.body)
+                    .frame(width: 44, height: 44)
+            }
+            .accessibilityLabel("Events")
             Button { showSettings = true } label: {
                 Image(systemName: "gearshape")
                     .font(.body)
