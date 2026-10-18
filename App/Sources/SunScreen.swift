@@ -14,7 +14,7 @@ struct SunScreen: View {
 
     private let ink = Color(red: 0.95, green: 0.95, blue: 0.93)
     private let accent = Color(red: 0.88, green: 0.24, blue: 0.19)
-    private let background = Color(red: 0.043, green: 0.078, blue: 0.141)
+    private let background = Color.black
 
     var body: some View {
         ScrollView {

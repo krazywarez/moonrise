@@ -10,7 +10,7 @@ struct SystemScreen: View {
 
     private let ink = Color(red: 0.95, green: 0.95, blue: 0.93)
     private let accent = Color(red: 0.88, green: 0.24, blue: 0.19)
-    private let background = Color(red: 0.043, green: 0.078, blue: 0.141)
+    private let background = Color.black
 
     private static let start = Date(timeIntervalSince1970: -378_691_200) // 1958-01-01
     private static let end = Date(timeIntervalSince1970: 2_524_608_000) // 2050-01-01
