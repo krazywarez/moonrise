@@ -98,13 +98,14 @@ async function launches(env: Env, now: Date): Promise<Response> {
   });
 }
 
+// Failures are recorded under "<feed>:error" so the last good snapshot and its time survive.
 async function pollLaunches(env: Env, now: Date): Promise<void> {
   let list: Launch[];
   try {
     list = await fetchUpcoming(env.LL2_API_KEY);
   } catch (e) {
     console.error("ll2", String(e));
-    await env.DB.prepare("INSERT INTO feed_snapshots (feed, fetched_at, ok) VALUES ('ll2', ?1, 0) ON CONFLICT (feed) DO UPDATE SET fetched_at = ?1, ok = 0").bind(now.toISOString()).run();
+    await env.DB.prepare("INSERT INTO feed_snapshots (feed, fetched_at, ok) VALUES ('ll2:error', ?1, 0) ON CONFLICT (feed) DO UPDATE SET fetched_at = ?1").bind(now.toISOString()).run();
     return;
   }
   const upsert = env.DB.prepare(
@@ -126,7 +127,7 @@ async function pollSpaceWeather(env: Env, now: Date): Promise<void> {
     w = await fetchSpaceWeather();
   } catch (e) {
     console.error("swpc", String(e));
-    await env.DB.prepare("INSERT INTO feed_snapshots (feed, fetched_at, ok) VALUES ('swpc', ?1, 0) ON CONFLICT (feed) DO UPDATE SET fetched_at = ?1, ok = 0").bind(now.toISOString()).run();
+    await env.DB.prepare("INSERT INTO feed_snapshots (feed, fetched_at, ok) VALUES ('swpc:error', ?1, 0) ON CONFLICT (feed) DO UPDATE SET fetched_at = ?1").bind(now.toISOString()).run();
     return;
   }
   await env.DB.prepare(
