@@ -7,8 +7,7 @@
     {
       "binding": "DB",
       "database_name": "moonrise",
-      // Replace with the id from `wrangler d1 create moonrise` before deploying.
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      "database_id": "54a0c50d-2150-47ae-aa22-449e8204ad7b",
       "migrations_dir": "migrations"
     }
   ],

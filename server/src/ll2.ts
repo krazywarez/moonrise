@@ -63,8 +63,11 @@ export function normalize(r: Raw): Launch {
   };
 }
 
-export async function fetchUpcoming(): Promise<Launch[]> {
-  const res = await fetch(UPCOMING_URL, { headers: { "user-agent": "moonrise-server (sh.krz.moonrise)" } });
+/** `apiKey` lifts the anonymous per-IP limit, which Cloudflare's shared egress IPs often exhaust (HTTP 429). */
+export async function fetchUpcoming(apiKey?: string): Promise<Launch[]> {
+  const headers: Record<string, string> = { "user-agent": "moonrise-server (sh.krz.moonrise)" };
+  if (apiKey) headers.authorization = `Token ${apiKey}`;
+  const res = await fetch(UPCOMING_URL, { headers });
   if (!res.ok) throw new Error(`LL2 ${res.status}`);
   const body = (await res.json()) as { results: Raw[] };
   return body.results.map(normalize);

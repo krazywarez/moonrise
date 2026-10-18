@@ -32,9 +32,9 @@ targets:
     settings:
       configs:
         Debug:
-          MOONRISE_API_URL: http://localhost:8787
+          MOONRISE_API_URL: https://moonrise-server.audit-labs.workers.dev
         Release:
-          MOONRISE_API_URL: ""
+          MOONRISE_API_URL: https://moonrise-server.audit-labs.workers.dev
       base:
         PRODUCT_BUNDLE_IDENTIFIER: sh.krz.moonrise
         DEVELOPMENT_TEAM: ZCNAX3VL9D

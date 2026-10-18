@@ -9,6 +9,8 @@ interface Env {
   APNS_TEAM_ID: string;
   APNS_TOPIC: string;
   APNS_KEY: string;
+  /** Optional Launch Library 2 API key. */
+  LL2_API_KEY?: string;
 }
 
 interface DeviceRequest {
@@ -99,7 +101,7 @@ async function launches(env: Env, now: Date): Promise<Response> {
 async function pollLaunches(env: Env, now: Date): Promise<void> {
   let list: Launch[];
   try {
-    list = await fetchUpcoming();
+    list = await fetchUpcoming(env.LL2_API_KEY);
   } catch (e) {
     console.error("ll2", String(e));
     await env.DB.prepare("INSERT INTO feed_snapshots (feed, fetched_at, ok) VALUES ('ll2', ?1, 0) ON CONFLICT (feed) DO UPDATE SET fetched_at = ?1, ok = 0").bind(now.toISOString()).run();

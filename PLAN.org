@@ -374,6 +374,17 @@ MR !11.
 - Not done: tap a planet or probe for its Library page, Earth–Moon inset,
   active missions (Juno, Europa Clipper, JUICE, Psyche, Parker, Lucy).
 
+** Deployment (2026-10-18)
+- Worker =moonrise-server= at https://moonrise-server.audit-labs.workers.dev,
+  D1 =moonrise=, crons =*/5= (SWPC) and =*/10= (LL2), APNS_KEY set.
+- SWPC polling confirmed in production (=/v1/today= serving Kp).
+- LL2 from Cloudflare returned 429 on the first run: the anonymous limit
+  is per IP and Workers share egress IPs. Needs an LL2 API key
+  (=LL2_API_KEY= secret, supported). Launches stay empty until then.
+- App Debug and Release builds use the deployed URL.
+- The app does not register devices with the backend yet, so no aurora
+  pushes are sent.
+
 * roadmap
 ** v1: now
 Sky, System, Sun, Launches, Library core (above).

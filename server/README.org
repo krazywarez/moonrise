@@ -15,11 +15,21 @@ APNs cannot be reached from =wrangler dev= (no HTTP/2); test pushes
 against a deployed Worker.
 
 * deploy
+Deployed 2026-10-17: https://moonrise-server.audit-labs.workers.dev
+(D1 =moonrise= 54a0c50d-2150-47ae-aa22-449e8204ad7b, APNS_KEY set).
+
 #+begin_src sh
 wrangler d1 create moonrise          # put the id in wrangler.jsonc
 wrangler d1 migrations apply moonrise --remote
 wrangler deploy
 wrangler secret put APNS_KEY < AuthKey_644XS4F2RG.p8
+#+end_src
+
+Launch Library 2's anonymous limit is per IP, and Workers share egress IPs,
+so anonymous requests from Cloudflare often get HTTP 429. With an API key:
+
+#+begin_src sh
+wrangler secret put LL2_API_KEY
 #+end_src
 
 * API
