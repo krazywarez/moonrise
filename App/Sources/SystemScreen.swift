@@ -1,3 +1,4 @@
+import Library
 import SkyRenderer
 import SwiftUI
 
@@ -5,6 +6,7 @@ struct SystemScreen: View {
     /// Days from now shown by the slider.
     @State private var offsetDays = 0.0
     @State private var playing = false
+    @State private var libraryPage: LibraryPage?
 
     private let ink = Color(red: 0.95, green: 0.95, blue: 0.93)
     private let accent = Color(red: 0.88, green: 0.24, blue: 0.19)
@@ -53,7 +55,11 @@ struct SystemScreen: View {
                         .font(.system(size: 11))
                         ForEach(Spacecraft.all) { craft in
                             GridRow {
-                                Text(craft.name)
+                                if let page = Library.page(spacecraft: craft.name) {
+                                    Button { libraryPage = page } label: { Text(craft.name).underline() }.buttonStyle(.plain)
+                                } else {
+                                    Text(craft.name)
+                                }
                                 if let d = craft.distance(at: date) {
                                     Text(String(format: "%.1f AU", d)).monospacedDigit()
                                     Text(lightTime(au: d)).monospacedDigit()
@@ -73,6 +79,9 @@ struct SystemScreen: View {
         }
         .foregroundStyle(ink)
         .background(background.ignoresSafeArea())
+        .sheet(item: $libraryPage) { page in
+            NavigationStack { LibraryPageView(page: page) }
+        }
         .task(id: playing) {
             while playing && !Task.isCancelled {
                 try? await Task.sleep(for: .milliseconds(33))

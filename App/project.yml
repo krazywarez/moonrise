@@ -18,6 +18,8 @@ targets:
         product: SkyRenderer
       - package: MoonriseKit
         product: Feeds
+      - package: MoonriseKit
+        product: Library
       - target: MoonriseWidgets
     entitlements:
       path: Sources/Moonrise.entitlements

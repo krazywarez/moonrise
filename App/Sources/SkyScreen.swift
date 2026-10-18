@@ -1,3 +1,4 @@
+import Library
 import SkyEngine
 import SkyRenderer
 import SwiftUI
@@ -10,6 +11,7 @@ struct SkyScreen: View {
     @State private var fieldOfView = 100.0
     @State private var night = false
     @State private var showToday = false
+    @State private var libraryPage: LibraryPage?
     @State private var selection: SkyObject?
     @State private var details: BodyDetails?
     @GestureState private var drag: CGSize = .zero
@@ -44,6 +46,9 @@ struct SkyScreen: View {
             }
         }
         .foregroundStyle(ink)
+        .sheet(item: $libraryPage) { page in
+            NavigationStack { LibraryPageView(page: page) }
+        }
         .sheet(isPresented: $showToday) {
             TodaySheet(model: model, ink: ink, background: style.ground)
                 .presentationDetents([.medium, .large])
@@ -149,10 +154,24 @@ struct SkyScreen: View {
             case .constellation(let id):
                 Text("Constellation · \(id)").font(.system(size: 13)).opacity(0.7)
             }
+            if let page = libraryPage(for: object) {
+                Button { libraryPage = page } label: {
+                    Label("Read more", systemImage: "book").font(.system(size: 13, weight: .medium))
+                }
+                .buttonStyle(.plain)
+                .padding(.top, 4)
+            }
         }
         .padding(16)
         .background(style.background.opacity(0.92), in: .rect(cornerRadius: 12))
         .overlay(RoundedRectangle(cornerRadius: 12).stroke(ink.opacity(0.25), lineWidth: 0.5))
+    }
+
+    private func libraryPage(for object: SkyObject) -> LibraryPage? {
+        switch object {
+        case .body(let b): Library.page(body: b.rawValue)
+        case .constellation(let id): Library.page(constellation: id)
+        }
     }
 
     private func title(for object: SkyObject) -> String {

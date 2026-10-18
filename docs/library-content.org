@@ -1,0 +1,76 @@
+#+title: Library content brief
+
+Pages live in =Packages/MoonriseKit/Sources/Library/Resources/pages/<section>.json=,
+one file per section, each a JSON array of pages.
+
+* Page schema
+#+begin_src json
+{
+  "id": "mars",
+  "section": "planets",
+  "title": "Mars",
+  "subtitle": "Fourth planet from the Sun",
+  "facts": [
+    { "label": "Mean distance from the Sun", "value": "1.524 AU (227.9 million km)", "source": 0 }
+  ],
+  "essay": "Plain text, paragraphs separated by a blank line.",
+  "image": {
+    "url": "https://… direct .jpg or .png",
+    "credit": "NASA/JPL-Caltech",
+    "licence": "Public domain",
+    "page": "https://… page the image is published on",
+    "caption": "One sentence on what the image shows."
+  },
+  "drawing": { "kind": "planet", "radiusKm": 3389.5, "rings": false, "axialTiltDeg": 25.19, "color": "#C1440E" },
+  "link": { "body": "mars" },
+  "sources": [
+    { "title": "NASA Mars Fact Sheet", "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html" }
+  ]
+}
+#+end_src
+
+- =id=: lowercase, hyphenated, unique across all sections (e.g. =m42=, =ori=, =sirius=, =voyager-1=).
+- =section=: one of =sun=, =planets=, =dwarf-planets=, =moons=, =constellations=, =stars=, =deep-sky=, =missions=.
+- =facts=: 4–8 items. Every fact has =source=, an index into =sources=. Units in SI or AU, with conversions where helpful. Use tabular style: "10 h 33 m", "29.4 Earth years".
+- =sources=: 1–5 items, primary or authoritative (NASA NSSDC fact sheets, NASA science pages, JPL, IAU, ESA, NOIRLab, SIMBAD). Every URL must return HTTP 200 when checked.
+- =image=: optional only for constellations, stars and missions when no verifiable image exists (set to =null=).
+- =drawing=: per section:
+  - planets, dwarf planets, moons, sun: ={"kind": "planet", "radiusKm", "rings", "axialTiltDeg", "color"}=; =color= is a representative hex.
+  - constellations: ={"kind": "constellation"}= (the app draws the figure from its line data).
+  - stars: ={"kind": "star", "spectralType": "A1V", "colorIndex": 0.0}= (B−V).
+  - deep sky: ={"kind": "deep-sky", "type": "galaxy|globular|open|nebula|planetary|supernova-remnant", "sizeArcmin": 90}=.
+  - missions: ={"kind": "mission", "status": "active|complete|lost", "launch": "1977-09-05"}=.
+- =link=: what the page describes in the rest of the app: ={"body": "mars"}=, ={"constellation": "Ori"}= (IAU abbreviation), ={"hr": 2491}= (Bright Star Catalogue number), ={"messier": 42}=, ={"spacecraft": "Voyager 1"}=, or ={}=.
+
+* Essay voice
+- 150–250 words, two or three short paragraphs.
+- Plain, direct English, as a knowledgeable colleague would write. No hype,
+  no dramatic framing, no rhetorical questions, no "fascinating",
+  "stunning", "mysterious", "breathtaking".
+- Concrete facts over adjectives: what it is, how we know, one or two
+  things that make it distinctive, and for observable objects how to find
+  it or what it looks like to the eye or a small telescope.
+- Original wording. Draw on public-domain NASA/JPL text and on facts
+  from other sources, but never copy sentences from Wikipedia (CC BY-SA)
+  or any copyrighted text.
+- Present tense for current facts; dates as "1977", "2034".
+
+* Images and licences
+Allowed, in order of preference:
+1. NASA (images-api.nasa.gov, images-assets.nasa.gov, science.nasa.gov,
+   photojournal.jpl.nasa.gov): =licence: "Public domain"=. Skip images
+   whose NASA page credits a third party or says they are copyrighted.
+2. ESA/Hubble (esahubble.org), ESA/Webb (esawebb.org), NOIRLab
+   (noirlab.edu), ESO (eso.org): =licence: "CC BY 4.0"=, =credit= copied
+   exactly from the image page. No images showing identifiable people.
+3. Historical star atlas plates in the public domain (Library of
+   Congress, Linda Hall Library) for constellations: =licence: "Public domain"=.
+
+Use a direct file URL of a moderate size (roughly 800–2000 px; NASA
+=~medium.jpg= or =~large.jpg=, ESA "large"/"screen" sizes). Check every
+image URL with =curl -sI= and keep only HTTP 200 with an image content type.
+
+* Do not
+- Invent values. If a fact cannot be sourced, leave it out.
+- Use Wikipedia as a =sources= entry.
+- Touch any file other than your own section file. No git commands.

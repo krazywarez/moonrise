@@ -8,6 +8,7 @@ let package = Package(
         .library(name: "SkyEngine", targets: ["SkyEngine"]),
         .library(name: "SkyRenderer", targets: ["SkyRenderer"]),
         .library(name: "Feeds", targets: ["Feeds"]),
+        .library(name: "Library", targets: ["Library"]),
     ],
     targets: [
         // Astronomy Engine v2.1.19 (MIT), https://github.com/cosinekitty/astronomy
@@ -23,8 +24,10 @@ let package = Package(
             resources: [.copy("Resources/bsc5.json"), .copy("Resources/constellations.json"), .copy("Resources/coastline.json"), .copy("Resources/spacecraft.json")]
         ),
         .target(name: "Feeds"),
+        .target(name: "Library", resources: [.copy("Resources/pages")]),
         .testTarget(name: "SkyEngineTests", dependencies: ["SkyEngine"]),
         .testTarget(name: "FeedsTests", dependencies: ["Feeds"]),
+        .testTarget(name: "LibraryTests", dependencies: ["Library", "SkyRenderer", "SkyEngine"]),
         .testTarget(name: "SkyRendererTests", dependencies: ["SkyRenderer"]),
     ]
 )

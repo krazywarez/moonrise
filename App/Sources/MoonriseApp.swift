@@ -15,6 +15,7 @@ struct MoonriseApp: App {
                 Tab("System", systemImage: "circle.circle") { SystemScreen() }
                 Tab("Sun", systemImage: "sun.max") { SunScreen() }
                 Tab("Launches", systemImage: "airplane.departure") { LaunchesScreen() }
+                Tab("Library", systemImage: "books.vertical") { LibraryScreen() }
             }
             .preferredColorScheme(.dark)
         }
