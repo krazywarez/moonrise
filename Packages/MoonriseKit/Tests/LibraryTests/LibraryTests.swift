@@ -89,3 +89,17 @@ func linksPointAtThingsTheAppKnows(_ p: LibraryPage) {
     #expect(Tour.ordered(month: 7).first?.id == "summer")
     #expect(Tour.ordered(month: 11).map(\.id) == ["autumn", "winter", "spring", "summer"])
 }
+
+@Test func storiesMatchSpacecraftAndPages() {
+    #expect(MissionStory.all.count == 5)
+    let craft = Set(Spacecraft.all.map(\.name))
+    for s in MissionStory.all {
+        #expect(craft.contains(s.spacecraft), "\(s.spacecraft)")
+        #expect(Library.page(id: s.page)?.link.spacecraft == s.spacecraft, "\(s.page)")
+        let days = s.chapters.map(\.day)
+        #expect(days == days.sorted(), "\(s.page) chapters out of order")
+        // After launch, every chapter falls within the trajectory data (which starts up to 30 days after launch).
+        let craftData = Spacecraft.all.first { $0.name == s.spacecraft }!
+        for c in s.chapters.dropFirst() { #expect(craftData.position(at: c.day) != nil, "\(s.page) \(c.date)") }
+    }
+}

@@ -1,0 +1,51 @@
+[
+  {
+    "spacecraft": "Voyager 2", "page": "voyager-2",
+    "chapters": [
+      {"date": "1977-08-20", "title": "Launch", "text": "Voyager 2 launched first, sixteen days before Voyager 1, on a slower path that could reach all four giant planets."},
+      {"date": "1979-07-09", "title": "Jupiter", "text": "It passed Jupiter four months after Voyager 1, and Jupiter's gravity bent its path towards Saturn."},
+      {"date": "1981-08-25", "title": "Saturn", "text": "At Saturn the planets were lined up for one more assist, a chance that comes about once every 175 years."},
+      {"date": "1986-01-24", "title": "Uranus", "text": "The first and still the only spacecraft to visit Uranus. It found ten new moons and two new rings."},
+      {"date": "1989-08-25", "title": "Neptune", "text": "The only visit to Neptune so far, passing about 4,950 km above its north pole and then close to its moon Triton."},
+      {"date": "2018-11-05", "title": "Interstellar space", "text": "Voyager 2 crossed the heliopause, the edge of the Sun's bubble of solar wind, six years after Voyager 1."}
+    ]
+  },
+  {
+    "spacecraft": "Voyager 1", "page": "voyager-1",
+    "chapters": [
+      {"date": "1977-09-05", "title": "Launch", "text": "Voyager 1 launched on a faster path than Voyager 2 and reached Jupiter first."},
+      {"date": "1979-03-05", "title": "Jupiter", "text": "Its images showed active volcanoes on Io, the first seen anywhere beyond Earth."},
+      {"date": "1980-11-12", "title": "Saturn and Titan", "text": "A close pass of Titan bent its path up out of the plane of the planets, ending its planetary tour."},
+      {"date": "1990-02-14", "title": "The Pale Blue Dot", "text": "Looking back from about 6 billion km, it photographed Earth as a single pixel."},
+      {"date": "2012-08-25", "title": "Interstellar space", "text": "The first spacecraft to cross the heliopause into interstellar space."},
+      {"date": "2026-11-18", "title": "One light-day", "text": "Voyager 1 reaches one light-day from Earth: a signal takes 24 hours each way."}
+    ]
+  },
+  {
+    "spacecraft": "Pioneer 10", "page": "pioneer-10",
+    "chapters": [
+      {"date": "1972-03-03", "title": "Launch", "text": "Pioneer 10 was the first spacecraft sent to the outer planets."},
+      {"date": "1972-07-15", "title": "Asteroid belt", "text": "It became the first to cross the asteroid belt, which took about seven months and showed the belt was safe to pass."},
+      {"date": "1973-12-04", "title": "Jupiter", "text": "The first flyby of Jupiter, at 130,354 km, measuring its intense radiation belts."},
+      {"date": "2003-01-23", "title": "Last signal", "text": "The last, faint signal came from 12.23 billion km. Pioneer 10 continues towards the constellation Taurus."}
+    ]
+  },
+  {
+    "spacecraft": "Pioneer 11", "page": "pioneer-11",
+    "chapters": [
+      {"date": "1973-04-06", "title": "Launch", "text": "Pioneer 11 followed Pioneer 10 a year later."},
+      {"date": "1974-12-03", "title": "Jupiter", "text": "It passed much closer than Pioneer 10, about 42,500 km from the cloud tops, and Jupiter's gravity sent it across the solar system to Saturn."},
+      {"date": "1979-09-01", "title": "Saturn", "text": "The first spacecraft at Saturn, scouting the route through the rings for the Voyagers."},
+      {"date": "1995-11-24", "title": "Last data", "text": "Its power fell too low to run the instruments, and the last engineering data came in November 1995."}
+    ]
+  },
+  {
+    "spacecraft": "New Horizons", "page": "new-horizons",
+    "chapters": [
+      {"date": "2006-01-19", "title": "Launch", "text": "New Horizons left Earth faster than any spacecraft before it."},
+      {"date": "2007-02-28", "title": "Jupiter", "text": "A gravity assist from Jupiter cut about three years off the trip to Pluto."},
+      {"date": "2015-07-14", "title": "Pluto", "text": "The first visit to Pluto, passing 12,500 km from the surface and showing its nitrogen-ice plains and mountains of water ice."},
+      {"date": "2019-01-01", "title": "Arrokoth", "text": "The most distant object yet visited, a small, two-lobed body in the Kuiper Belt."}
+    ]
+  }
+]

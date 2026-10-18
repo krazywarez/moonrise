@@ -98,6 +98,12 @@ struct LibraryPageView: View {
                 Rectangle().fill(accent).frame(width: 48, height: 5).padding(.top, 10).padding(.bottom, 16)
 
                 PageDrawing(page: page, ink: ink, accent: accent)
+                if let story = MissionStory.story(page: page.id) {
+                    NavigationLink { StoryScreen(story: story) } label: {
+                        Label("Follow the mission", systemImage: "point.topleft.down.to.point.bottomright.curvepath").font(.subheadline)
+                    }
+                    .padding(.top, 10)
+                }
 
                 facts.padding(.top, 16)
 

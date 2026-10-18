@@ -81,11 +81,14 @@ public struct OrreryView: View {
     public var date: Date
     public var ink: Color
     public var accent: Color
+    /// Spacecraft name to draw in full; the others are drawn faint and unlabelled.
+    public var highlight: String?
 
-    public init(date: Date, ink: Color, accent: Color) {
+    public init(date: Date, ink: Color, accent: Color, highlight: String? = nil) {
         self.date = date
         self.ink = ink
         self.accent = accent
+        self.highlight = highlight
     }
 
     /// Mean distances (AU) for orbit rings.
@@ -111,13 +114,16 @@ public struct OrreryView: View {
             for craft in Spacecraft.all {
                 let path = craft.path(until: date)
                 guard let last = path.last else { continue }
+                let faint = highlight != nil && craft.name != highlight
                 var line = Path()
                 line.move(to: s.point(path[0]))
                 for v in path.dropFirst() { line.addLine(to: s.point(v)) }
-                context.stroke(line, with: .color(accent.opacity(0.7)), lineWidth: 0.8)
+                context.stroke(line, with: .color(accent.opacity(faint ? 0.2 : 0.7)), lineWidth: faint ? 0.5 : 0.8)
                 let p = s.point(last)
-                context.fill(Path(ellipseIn: CGRect(x: p.x - 2.5, y: p.y - 2.5, width: 5, height: 5)), with: .color(accent))
-                context.draw(Text(craft.name).font(.caption2).foregroundStyle(accent), at: CGPoint(x: p.x + 6, y: p.y), anchor: .leading)
+                context.fill(Path(ellipseIn: CGRect(x: p.x - 2.5, y: p.y - 2.5, width: 5, height: 5)), with: .color(accent.opacity(faint ? 0.3 : 1)))
+                if !faint {
+                    context.draw(Text(craft.name).font(.caption2).foregroundStyle(accent), at: CGPoint(x: p.x + 6, y: p.y), anchor: .leading)
+                }
             }
 
             for body in [SolarBody.mercury, .venus, .mars, .jupiter, .saturn, .uranus, .neptune] {
