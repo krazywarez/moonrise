@@ -65,7 +65,7 @@ struct PageRow: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
-            Text(page.title).font(.system(size: 17))
+            Text(page.title).font(.body)
             Text(page.subtitle).font(.system(size: 12)).opacity(0.6).lineLimit(1)
         }
         .padding(.vertical, 2)
@@ -79,8 +79,8 @@ struct LibraryPageView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 Text(page.section.title).font(.system(size: 11, weight: .medium)).textCase(.uppercase).tracking(0.8).opacity(0.6)
-                Text(page.title).font(.system(size: 34, weight: .medium)).padding(.top, 4)
-                Text(page.subtitle).font(.system(size: 15)).opacity(0.75).padding(.top, 2)
+                Text(page.title).font(.largeTitle.weight(.medium)).padding(.top, 4)
+                Text(page.subtitle).font(.subheadline).opacity(0.75).padding(.top, 2)
                 Rectangle().fill(accent).frame(width: 48, height: 5).padding(.top, 10).padding(.bottom, 16)
 
                 PageDrawing(page: page, ink: ink, accent: accent)
@@ -88,7 +88,7 @@ struct LibraryPageView: View {
                 facts.padding(.top, 16)
 
                 VStack(alignment: .leading, spacing: 12) {
-                    ForEach(page.paragraphs, id: \.self) { Text($0).font(.system(size: 16)).lineSpacing(3) }
+                    ForEach(page.paragraphs, id: \.self) { Text($0).font(.body).lineSpacing(3) }
                 }
                 .padding(.top, 20)
 
@@ -108,8 +108,8 @@ struct LibraryPageView: View {
         Grid(alignment: .leading, horizontalSpacing: 16, verticalSpacing: 8) {
             ForEach(page.facts, id: \.self) { f in
                 GridRow(alignment: .firstTextBaseline) {
-                    Text(f.label).font(.system(size: 12)).opacity(0.6)
-                    Text(f.value).font(.system(size: 15).monospacedDigit())
+                    Text(f.label).font(.footnote).opacity(0.6)
+                    Text(f.value).font(.subheadline.monospacedDigit())
                 }
                 Divider().overlay(ink.opacity(0.15))
             }
@@ -125,7 +125,7 @@ struct LibraryPageView: View {
                 default: Color.black.frame(height: 200).overlay(ProgressView().tint(ink))
                 }
             }
-            Text(image.caption).font(.system(size: 12)).opacity(0.75)
+            Text(image.caption).font(.footnote).opacity(0.75)
             Link(destination: image.page) {
                 Text("\(image.credit) · \(image.licence)").font(.system(size: 10)).opacity(0.55)
             }

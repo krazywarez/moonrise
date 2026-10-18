@@ -1,6 +1,7 @@
 import { send, type ApnsConfig } from "./apns";
 import { actionableKp, alertBands, eventKey, isNight } from "./aurora";
 import { fetchUpcoming, type Launch } from "./ll2";
+import { PRIVACY_HTML } from "./privacy";
 import { fetchSpaceWeather, next24h, type SpaceWeather } from "./swpc";
 
 interface Env {
@@ -53,6 +54,8 @@ export default {
       const rows = await env.DB.prepare("SELECT feed, fetched_at, ok FROM feed_snapshots").all();
       return json({ ok: true, feeds: rows.results });
     }
+    if (request.method === "GET" && url.pathname === "/privacy")
+      return new Response(PRIVACY_HTML, { headers: { "content-type": "text/html; charset=utf-8", "cache-control": "public, max-age=3600" } });
     if (request.method === "GET" && url.pathname === "/v1/today") return today(env, now);
     if (request.method === "GET" && url.pathname === "/v1/launches") return launches(env, now);
 

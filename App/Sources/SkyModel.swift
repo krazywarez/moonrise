@@ -43,6 +43,10 @@ final class SkyModel: NSObject, CLLocationManagerDelegate {
 
     private(set) var observer = SkyModel.fallback
     private(set) var hasLocation = false
+    /// Name shown under the title: "Your location", a chosen city, or the fallback.
+    private(set) var placeName = "Chicago (location unavailable)"
+    /// Sun's altitude at the displayed time, for automatic night mode.
+    private(set) var sunAltitude = 0.0
     private(set) var scene: SkyScene?
     private(set) var lastBuild: Duration = .zero
     private(set) var tonight: Tonight?
@@ -64,8 +68,23 @@ final class SkyModel: NSObject, CLLocationManagerDelegate {
     }
 
     func start() {
-        manager.requestWhenInUseAuthorization()
-        manager.requestLocation()
+        applyLocationSettings()
+    }
+
+    /// Uses the chosen city, or asks Core Location for the current position.
+    func applyLocationSettings() {
+        let d = UserDefaults.standard
+        if d.string(forKey: SettingsKey.locationMode) == "city" {
+            let lat = d.object(forKey: SettingsKey.cityLatitude) as? Double ?? Self.fallback.latitude
+            let lon = d.object(forKey: SettingsKey.cityLongitude) as? Double ?? Self.fallback.longitude
+            observer = Observer(latitude: lat, longitude: lon)
+            placeName = d.string(forKey: SettingsKey.cityName) ?? "Chicago"
+            hasLocation = true
+        } else {
+            if !hasLocation { placeName = "Chicago (location unavailable)" }
+            manager.requestWhenInUseAuthorization()
+            manager.requestLocation()
+        }
         refresh()
     }
 
@@ -83,6 +102,7 @@ final class SkyModel: NSObject, CLLocationManagerDelegate {
             lastBuild = clock.now - start
             if let scene { self.scene = scene }
             if offsetHours == 0 { tonight = try? await astronomer.tonight(at: date, from: observer) }
+            sunAltitude = (try? SkyEngine.horizontal(.sun, at: date, from: observer, refraction: true).altitude) ?? 0
             building = false
             if pending { pending = false; refresh() }
         }
@@ -106,8 +126,10 @@ final class SkyModel: NSObject, CLLocationManagerDelegate {
     nonisolated func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let c = locations.last?.coordinate else { return }
         Task { @MainActor in
+            guard UserDefaults.standard.string(forKey: SettingsKey.locationMode) != "city" else { return }
             self.observer = Observer(latitude: c.latitude, longitude: c.longitude)
             self.hasLocation = true
+            self.placeName = "Your location"
             self.refresh()
         }
     }

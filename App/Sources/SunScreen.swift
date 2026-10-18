@@ -91,11 +91,20 @@ struct SunScreen: View {
     private var auroraMap: some View {
         if let ovation {
             AuroraMap(cells: ovation.cells.map { GridValue(lon: $0.lon, lat: $0.lat, value: $0.probability) }, observer: observer, ink: ink)
+                .accessibilityElement()
+                .accessibilityLabel(auroraDescription(ovation))
             Text("Chance of visible aurora overhead, OVATION model, for \(ovation.forecastTime.formatted(date: .omitted, time: .shortened)). Brighter green is more likely.")
                 .font(.system(size: 11)).opacity(0.6)
         } else {
             Text("Loading").font(.system(size: 13)).opacity(0.6)
         }
+    }
+
+    /// Highest aurora probability at or poleward of the observer's latitude in their hemisphere.
+    private func auroraDescription(_ o: Ovation) -> String {
+        let lat = observer.lat
+        let near = o.cells.filter { abs($0.lat - lat) <= 5 && (($0.lat >= 0) == (lat >= 0)) }.map(\.probability).max() ?? 0
+        return "Aurora forecast map. Highest chance within 5 degrees of your latitude: \(Int(near)) percent."
     }
 
     @ViewBuilder

@@ -26,6 +26,8 @@ struct SystemScreen: View {
                 Rectangle().fill(accent).frame(width: 48, height: 5).padding(.top, 8).padding(.bottom, 16)
 
                 OrreryView(date: date, ink: ink, accent: accent)
+                    .accessibilityElement()
+                    .accessibilityLabel("Orrery for \(date.formatted(.dateTime.year().month(.wide))). Planets and spacecraft distances are listed below.")
 
                 HStack(spacing: 12) {
                     Button { playing.toggle() } label: {

@@ -7,6 +7,7 @@ let log = Logger(subsystem: "sh.krz.moonrise", category: "app")
 @main
 struct MoonriseApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @AppStorage(SettingsKey.onboarded) private var onboarded = false
 
     var body: some Scene {
         WindowGroup {
@@ -18,6 +19,9 @@ struct MoonriseApp: App {
                 Tab("Library", systemImage: "books.vertical") { LibraryScreen() }
             }
             .preferredColorScheme(.dark)
+            .fullScreenCover(isPresented: .constant(!onboarded)) {
+                OnboardingScreen().preferredColorScheme(.dark)
+            }
         }
     }
 }

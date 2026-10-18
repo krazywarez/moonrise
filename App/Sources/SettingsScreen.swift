@@ -1,0 +1,173 @@
+import Library
+import SwiftUI
+
+/// UserDefaults keys shared by the settings screen and the models that read them.
+enum SettingsKey {
+    static let locationMode = "locationMode" // "current" or "city"
+    static let cityName = "cityName"
+    static let cityLatitude = "cityLatitude"
+    static let cityLongitude = "cityLongitude"
+    static let nightMode = "nightMode" // "off", "on" or "auto"
+    static let onboarded = "onboarded"
+}
+
+struct City: Hashable, Identifiable {
+    var name: String
+    var latitude: Double
+    var longitude: Double
+    var id: String { name }
+
+    static let all: [City] = [
+        City(name: "Anchorage", latitude: 61.218, longitude: -149.900),
+        City(name: "Auckland", latitude: -36.849, longitude: 174.763),
+        City(name: "Berlin", latitude: 52.520, longitude: 13.405),
+        City(name: "Buenos Aires", latitude: -34.604, longitude: -58.382),
+        City(name: "Cairo", latitude: 30.044, longitude: 31.236),
+        City(name: "Cape Town", latitude: -33.925, longitude: 18.424),
+        City(name: "Chicago", latitude: 41.878, longitude: -87.630),
+        City(name: "Denver", latitude: 39.739, longitude: -104.990),
+        City(name: "Honolulu", latitude: 21.307, longitude: -157.858),
+        City(name: "Houston", latitude: 29.760, longitude: -95.370),
+        City(name: "London", latitude: 51.507, longitude: -0.128),
+        City(name: "Los Angeles", latitude: 34.052, longitude: -118.244),
+        City(name: "Mexico City", latitude: 19.433, longitude: -99.133),
+        City(name: "Mumbai", latitude: 19.076, longitude: 72.878),
+        City(name: "New York", latitude: 40.713, longitude: -74.006),
+        City(name: "Paris", latitude: 48.857, longitude: 2.352),
+        City(name: "Reykjavík", latitude: 64.147, longitude: -21.942),
+        City(name: "Santiago", latitude: -33.449, longitude: -70.669),
+        City(name: "São Paulo", latitude: -23.551, longitude: -46.633),
+        City(name: "Seattle", latitude: 47.606, longitude: -122.332),
+        City(name: "Singapore", latitude: 1.352, longitude: 103.820),
+        City(name: "Stockholm", latitude: 59.329, longitude: 18.069),
+        City(name: "Sydney", latitude: -33.869, longitude: 151.209),
+        City(name: "Tokyo", latitude: 35.676, longitude: 139.650),
+        City(name: "Toronto", latitude: 43.653, longitude: -79.383),
+    ]
+}
+
+/// Privacy policy served by the backend.
+let privacyPolicyURL = URL(string: "https://moonrise-server.audit-labs.workers.dev/privacy")!
+
+struct SettingsScreen: View {
+    @AppStorage(SettingsKey.locationMode) private var locationMode = "current"
+    @AppStorage(SettingsKey.cityName) private var cityName = "Chicago"
+    @AppStorage(SettingsKey.cityLatitude) private var cityLatitude = 41.878
+    @AppStorage(SettingsKey.cityLongitude) private var cityLongitude = -87.630
+    @AppStorage(SettingsKey.nightMode) private var nightMode = "auto"
+    @Environment(\.dismiss) private var dismiss
+    var onChange: () -> Void
+
+    var body: some View {
+        NavigationStack {
+            Form {
+                Section("Location") {
+                    Picker("Sky for", selection: $locationMode) {
+                        Text("Current location").tag("current")
+                        Text("A city").tag("city")
+                    }
+                    if locationMode == "city" {
+                        Picker("City", selection: $cityName) {
+                            ForEach(City.all) { Text($0.name).tag($0.name) }
+                        }
+                    }
+                }
+                Section {
+                    Picker("Night mode", selection: $nightMode) {
+                        Text("Off").tag("off")
+                        Text("On").tag("on")
+                        Text("After dark").tag("auto")
+                    }
+                } header: {
+                    Text("Display")
+                } footer: {
+                    Text("Night mode draws the sky in red to keep your eyes adapted to the dark. After dark turns it on once the Sun is 12° below the horizon.")
+                }
+                Section("About") {
+                    LabeledContent("Version", value: Bundle.main.versionString)
+                    NavigationLink("Credits and licences") { CreditsScreen() }
+                    Link("Privacy policy", destination: privacyPolicyURL)
+                }
+            }
+            .navigationTitle("Settings")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) { Button("Done") { dismiss() } }
+            }
+            .onChange(of: cityName) {
+                if let c = City.all.first(where: { $0.name == cityName }) {
+                    cityLatitude = c.latitude
+                    cityLongitude = c.longitude
+                }
+                onChange()
+            }
+            .onChange(of: locationMode) { onChange() }
+        }
+    }
+}
+
+struct CreditsScreen: View {
+    private struct Credit: Hashable {
+        var name: String
+        var detail: String
+    }
+
+    private let software: [Credit] = [
+        Credit(name: "Astronomy Engine", detail: "Don Cross. MIT licence."),
+        Credit(name: "Yale Bright Star Catalogue, 5th ed.", detail: "Hoffleit & Warren (1991), via VizieR V/50."),
+        Credit(name: "Constellation lines", detail: "Marc van der Sluys, ConstellationLines (doi:10.5281/zenodo.10397192). CC BY 4.0."),
+        Credit(name: "Coastlines", detail: "Natural Earth. Public domain."),
+        Credit(name: "Spacecraft trajectories", detail: "NASA/JPL Horizons."),
+    ]
+
+    private let feeds: [Credit] = [
+        Credit(name: "Space weather and aurora forecast", detail: "NOAA Space Weather Prediction Center."),
+        Credit(name: "Images of the Sun", detail: "Courtesy of NASA/SDO and the AIA, EVE, and HMI science teams."),
+        Credit(name: "Launch schedule", detail: "The Space Devs, Launch Library 2."),
+    ]
+
+    /// Every distinct image credit used by the Library, grouped by licence.
+    private var imageCredits: [(licence: String, credits: [String])] {
+        let images = Library.pages.compactMap(\.image)
+        let grouped = Dictionary(grouping: images, by: \.licence)
+        return grouped.keys.sorted().map { licence in
+            (licence, Array(Set(grouped[licence]!.map(\.credit))).sorted())
+        }
+    }
+
+    var body: some View {
+        List {
+            Section("Data and software") {
+                ForEach(software, id: \.self) { row($0) }
+            }
+            Section("Live data") {
+                ForEach(feeds, id: \.self) { row($0) }
+            }
+            ForEach(imageCredits, id: \.licence) { group in
+                Section("Library images: \(group.licence)") {
+                    ForEach(group.credits, id: \.self) { Text($0).font(.footnote) }
+                }
+            }
+            Section {
+                Text("Each Library page lists its sources, and each image links to the page it is published on. CC BY images are used under the Creative Commons Attribution 4.0 licence; ESA images marked CC BY-SA 3.0 IGO under that licence. NASA does not endorse this app.")
+                    .font(.footnote)
+            }
+        }
+        .navigationTitle("Credits and licences")
+    }
+
+    private func row(_ c: Credit) -> some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text(c.name)
+            Text(c.detail).font(.footnote).foregroundStyle(.secondary)
+        }
+    }
+}
+
+extension Bundle {
+    var versionString: String {
+        let v = object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "?"
+        let b = object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "?"
+        return "\(v) (\(b))"
+    }
+}

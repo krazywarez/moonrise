@@ -9,7 +9,9 @@ struct SkyScreen: View {
     @State private var azimuth = 180.0
     @State private var altitude = 45.0
     @State private var fieldOfView = 100.0
-    @State private var night = false
+    @AppStorage(SettingsKey.nightMode) private var nightMode = "auto"
+    @State private var showSettings = false
+    @AppStorage(SettingsKey.onboarded) private var onboarded = false
     @State private var showToday = false
     @State private var libraryPage: LibraryPage?
     @State private var selection: SkyObject?
@@ -18,6 +20,7 @@ struct SkyScreen: View {
     @GestureState private var zoom: CGFloat = 1
     private let stats = DrawStats()
 
+    private var night: Bool { nightMode == "on" || (nightMode == "auto" && model.sunAltitude < -12) }
     private var style: SkyStyle { night ? .night : SkyStyle() }
     private var ink: Color { night ? Color(red: 0.85, green: 0.12, blue: 0.08) : Color(red: 0.95, green: 0.95, blue: 0.93) }
 
@@ -36,6 +39,12 @@ struct SkyScreen: View {
                         let p = Projection(centerAzimuth: view.azimuth, centerAltitude: view.altitude, fieldOfView: view.fieldOfView, size: geo.size)
                         select(scene.object(at: location, projection: p))
                     }
+                    .accessibilityElement()
+                    .accessibilityLabel(skyDescription(scene, azimuth: view.azimuth))
+                    .accessibilityHint("Swipe up or down to turn. Planets and the Moon are listed in the Tonight summary.")
+                    .accessibilityAdjustableAction { direction in
+                        azimuth = (azimuth + (direction == .increment ? 45 : -45) + 360).truncatingRemainder(dividingBy: 360)
+                    }
                 }
                 VStack(spacing: 0) {
                     header
@@ -46,6 +55,10 @@ struct SkyScreen: View {
             }
         }
         .foregroundStyle(ink)
+        .sheet(isPresented: $showSettings) {
+            SettingsScreen { model.applyLocationSettings() }
+                .preferredColorScheme(.dark)
+        }
         .sheet(item: $libraryPage) { page in
             NavigationStack { LibraryPageView(page: page) }
         }
@@ -54,8 +67,9 @@ struct SkyScreen: View {
                 .presentationDetents([.medium, .large])
         }
         .onChange(of: model.offsetHours) { select(selection) }
+        .onChange(of: onboarded) { if onboarded { model.start() } }
         .task {
-            model.start()
+            if onboarded { model.start() }
             while !Task.isCancelled {
                 try? await Task.sleep(for: .seconds(30))
                 model.refresh()
@@ -108,7 +122,7 @@ struct SkyScreen: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(model.offsetHours == 0 ? "Tonight" : "Sky at \(model.displayedDate.formatted(date: .omitted, time: .shortened))")
                     .font(.system(size: 22, weight: .medium))
-                Text(model.hasLocation ? "Your location" : "Chicago (location unavailable)")
+                Text(model.placeName)
                     .font(.system(size: 11)).opacity(0.7)
                 TimelineView(.periodic(from: .now, by: 1)) { _ in
                     Text(stats.summary(build: model.lastBuild))
@@ -126,8 +140,14 @@ struct SkyScreen: View {
                 }
                 .accessibilityLabel(pointer.active ? "Stop following the phone" : "Point the phone at the sky")
             }
+            Button { showSettings = true } label: {
+                Image(systemName: "gearshape")
+                    .font(.system(size: 17))
+                    .frame(width: 44, height: 44)
+            }
+            .accessibilityLabel("Settings")
             Button {
-                night.toggle()
+                nightMode = night ? "off" : "on"
             } label: {
                 Image(systemName: night ? "eye.fill" : "eye")
                     .font(.system(size: 17))
@@ -204,6 +224,16 @@ struct SkyScreen: View {
                 .font(.system(size: 13))
             }
         }
+    }
+
+    /// VoiceOver summary: which way the view faces and what bright bodies are up.
+    private func skyDescription(_ scene: SkyScene, azimuth: Double) -> String {
+        let up = scene.bodies.filter { $0.position.altitude > 0 && $0.magnitude <= 6 }.map { b -> String in
+            let name = b.body.rawValue.capitalized
+            return "\(name), \(Int(b.position.altitude.rounded())) degrees up in the \(compass(b.position.azimuth))"
+        }
+        let facing = "Sky facing \(compass(azimuth))."
+        return up.isEmpty ? facing + " No planets or Moon above the horizon." : facing + " Above the horizon: " + up.joined(separator: "; ") + "."
     }
 
     private func compass(_ azimuth: Double) -> String {

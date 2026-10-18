@@ -1,0 +1,35 @@
+#+title: App Store Connect
+
+* Identity
+| Field | Value |
+|-
+| Name | Moonrise |
+| Subtitle | Sky, Sun and Space |
+| Bundle ID | =sh.krz.moonrise= (widgets: =sh.krz.moonrise.widgets=) |
+| Team | ZCNAX3VL9D |
+| Category | Education (secondary: Weather) |
+| Privacy policy URL | https://moonrise-server.audit-labs.workers.dev/privacy |
+
+* App Privacy ("nutrition label")
+Answer: *Data Not Collected*.
+
+- Location: used on device only; never sent. Apple's definition of
+  "collect" is transmitting data off the device, so it is not collected.
+- Network requests (backend, NOAA, NASA, image hosts) carry no
+  identifiers.
+- No analytics, advertising, accounts, crash reporting SDKs or tracking.
+- Revisit when aurora alerts ship: the push token, a 5° geomagnetic
+  latitude band and UTC offset are sent to the backend. That is
+  likely "Coarse Location" and "Device ID", used for "App
+  Functionality", not linked to identity, not used for tracking.
+
+* Export compliance
+=ITSAppUsesNonExemptEncryption = NO= (HTTPS only), set in =project.yml=.
+
+* Age rating
+No objectionable content: 4+.
+
+* Review notes
+- Location is optional; Settings offers a city instead.
+- Launch data and space weather come from the app's own backend and
+  NOAA; no sign-in.
