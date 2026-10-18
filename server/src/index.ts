@@ -1,6 +1,7 @@
 import { send, type ApnsConfig } from "./apns";
 import { actionableKp, alertBands, eventKey, isNight } from "./aurora";
 import { fetchElements } from "./celestrak";
+import { activeEvent, fetchTrajectory, STEP_MINUTES } from "./live";
 import { fetchUpcoming, type Launch } from "./ll2";
 import { digestDue, digestPayload, fetchLatest, localDate, pickHeadlines } from "./news";
 import { PRIVACY_HTML } from "./privacy";
@@ -62,6 +63,7 @@ export default {
       return new Response(PRIVACY_HTML, { headers: { "content-type": "text/html; charset=utf-8", "cache-control": "public, max-age=3600" } });
     if (request.method === "GET" && url.pathname === "/v1/today") return today(env, now);
     if (request.method === "GET" && url.pathname === "/v1/launches") return launches(env, now);
+    if (request.method === "GET" && url.pathname === "/v1/live") return live(env, url, now);
     if (request.method === "GET" && url.pathname === "/v1/satellites") {
       const row = await env.DB.prepare("SELECT fetched_at, body FROM feed_snapshots WHERE feed = 'celestrak' AND ok = 1").first<{ fetched_at: string; body: string }>();
       return json({ fetchedAt: row?.fetched_at ?? null, satellites: row ? JSON.parse(row.body) : [] });
@@ -111,6 +113,38 @@ async function sendTest(env: Env, token: string, now: Date): Promise<Response> {
   const r = await send(config, token, payload, device.environment === "sandbox");
   if (r.status === 410) await env.DB.prepare("DELETE FROM devices WHERE token = ?1").bind(token).run();
   return json({ apnsStatus: r.status, reason: r.reason }, r.status === 200 ? 200 : 502);
+}
+
+/**
+ * The live event at `?at=` (default now) and its geocentric ecliptic trajectory up to then:
+ * points are [unix seconds, x, y, z] km. The cached trajectory is refreshed from Horizons at most
+ * every 10 minutes while the event runs.
+ */
+async function live(env: Env, url: URL, now: Date): Promise<Response> {
+  const atParam = url.searchParams.get("at");
+  const at = atParam ? new Date(atParam) : now;
+  if (Number.isNaN(at.getTime())) return json({ error: "invalid at" }, 400);
+  const event = activeEvent(at);
+  if (!event) return json({ event: null });
+
+  const key = `live:${event.id}`;
+  const row = await env.DB.prepare("SELECT fetched_at, body FROM feed_snapshots WHERE feed = ?1 AND ok = 1").bind(key).first<{ fetched_at: string; body: string }>();
+  let points: number[][] = row ? JSON.parse(row.body) : [];
+  const covered = (points.at(-1)?.[0] ?? 0) * 1000;
+  const wanted = Math.min(now.getTime(), Date.parse(event.end)) - 2 * STEP_MINUTES * 60_000;
+  const stale = !row || points.length === 0 || now.getTime() - Date.parse(row.fetched_at) > 10 * 60_000;
+  if (covered < wanted && stale) {
+    try {
+      const fresh = await fetchTrajectory(event, now);
+      if (fresh.length === 0) throw new Error("no Horizons data");
+      points = fresh;
+      await env.DB.prepare("INSERT INTO feed_snapshots (feed, fetched_at, ok, body) VALUES (?1, ?2, 1, ?3) ON CONFLICT (feed) DO UPDATE SET fetched_at = ?2, ok = 1, body = ?3")
+        .bind(key, now.toISOString(), JSON.stringify(points)).run();
+    } catch (e) {
+      console.error("horizons", String(e));
+    }
+  }
+  return json({ event, at: at.toISOString(), points: points.filter((p) => p[0] * 1000 <= at.getTime()) });
 }
 
 async function launches(env: Env, now: Date): Promise<Response> {

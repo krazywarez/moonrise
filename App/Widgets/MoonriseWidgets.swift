@@ -11,6 +11,7 @@ struct MoonriseWidgets: WidgetBundle {
         PlanetsWidget()
         #if os(iOS)
         LaunchLiveActivity()
+        EventLiveActivity()
         #endif
     }
 }

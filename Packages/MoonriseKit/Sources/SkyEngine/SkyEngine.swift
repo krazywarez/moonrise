@@ -156,6 +156,14 @@ public enum SkyEngine {
         return ecliptic(SIMD3(v.x, v.y, v.z))
     }
 
+    /// The Moon's geocentric position in km on J2000 ecliptic axes (as JPL Horizons gives with REF_PLANE ECLIPTIC).
+    public static func geocentricMoonEcliptic(at date: Date) -> SIMD3<Double> {
+        lock.lock()
+        defer { lock.unlock() }
+        let v = Astronomy_GeoMoon(time(date))
+        return ecliptic(SIMD3(v.x, v.y, v.z)) * 1.495978707e8
+    }
+
     /// J2000 equatorial to J2000 ecliptic axes.
     static func ecliptic(_ v: SIMD3<Double>) -> SIMD3<Double> {
         let e = 23.4392911 * Double.pi / 180

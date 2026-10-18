@@ -422,7 +422,11 @@ Sky, System, Sun, Launches, Library core (above).
   months, 5 to 8 stops each, in Library/Resources/tours. Mission stories
   done for Voyager 1 and 2, Pioneer 10 and 11 and New Horizons, on the orrery.
 - Live coverage of major events (e.g. an Artemis landing) on the orrery
-  with a Live Activity.
+  with a Live Activity. Done: GET /v1/live with a Horizons trajectory, an
+  Earth–Moon map on the System tab and a Live Activity. Artemis I is configured
+  as a past event for replay; add Artemis II and later missions to
+  server/src/live.ts (Horizons ID, window, phases) once their Horizons IDs are
+  published.
 - Maybe: smart-telescope pointing (Seestar and similar).
 
 * risks

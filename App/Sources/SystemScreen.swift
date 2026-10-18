@@ -26,6 +26,8 @@ struct SystemScreen: View {
                 Text("Solar system").font(.title.weight(.medium))
                 Rectangle().fill(accent).frame(width: 48, height: 5).padding(.top, 8).padding(.bottom, 16)
 
+                LiveSection(ink: ink, accent: accent)
+
                 // Labels in this dense diagram stop growing at xxLarge; the table below scales fully.
                 OrreryView(date: date, ink: ink, accent: accent)
                     .dynamicTypeSize(...DynamicTypeSize.xxLarge)

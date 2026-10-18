@@ -45,3 +45,12 @@ private func km(_ a: (lat: Double, lon: Double), _ b: (lat: Double, lon: Double)
     #expect(madrid.obscuration > 0.8 && madrid.obscuration < 0.95)
     #expect(LocalEclipse.at(Observer(latitude: 41.88, longitude: -87.63), near: peak) == nil) // Chicago: night
 }
+
+@Test func moonMatchesHorizonsFrame() {
+    // Artemis I from JPL Horizons (geocentric, J2000 ecliptic, km) at 12:47 UTC on 21 November 2022,
+    // ten minutes before its closest approach, about 130 km above the Moon.
+    let craft = SIMD3<Double>(-337_632.7, -172_437.2, 9_689.0)
+    let moon = SkyEngine.geocentricMoonEcliptic(at: Date(timeIntervalSince1970: 1_669_034_820))
+    let d = ((craft - moon) * (craft - moon)).sum().squareRoot()
+    #expect(d < 3_000)
+}
