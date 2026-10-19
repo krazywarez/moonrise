@@ -7,6 +7,8 @@ struct SystemScreen: View {
     @State private var offsetDays = 0.0
     @State private var playing = false
     @State private var libraryPage: LibraryPage?
+    @AppStorage("systemMode") private var mode = "2d"
+    @AppStorage("solarScale") private var solarScale = SolarScale.compressed
     @Environment(\.dynamicTypeSize) private var typeSize
 
     private let ink = Color(red: 0.95, green: 0.95, blue: 0.93)
@@ -21,12 +23,85 @@ struct SystemScreen: View {
     private var date: Date { .now.addingTimeInterval(offsetDays * 86_400) }
 
     var body: some View {
+        Group {
+            if mode == "3d" { threeD } else { twoD }
+        }
+        .foregroundStyle(ink)
+        .background(background.ignoresSafeArea())
+        .sheet(item: $libraryPage) { page in
+            NavigationStack { LibraryPageView(page: page) }
+        }
+        .task(id: playing) {
+            while playing && !Task.isCancelled {
+                try? await Task.sleep(for: .milliseconds(33))
+                offsetDays = min(offsetDays + (mode == "3d" ? 2 : 30), range.upperBound)
+                if offsetDays >= range.upperBound { playing = false }
+            }
+        }
+    }
+
+    private var modePicker: some View {
+        Picker("View", selection: $mode) {
+            Text("Map").tag("2d")
+            Text("3D").tag("3d")
+        }
+        .pickerStyle(.segmented)
+    }
+
+    private var threeD: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            VStack(alignment: .leading, spacing: 0) {
+                Text("Solar system").font(.title.weight(.medium))
+                Rectangle().fill(accent).frame(width: 48, height: 5).padding(.top, 8).padding(.bottom, 12)
+                modePicker.padding(.bottom, 8)
+                Picker("Scale", selection: $solarScale) {
+                    ForEach(SolarScale.allCases) { Text($0.name).tag($0) }
+                }
+                .pickerStyle(.segmented)
+                Text(solarScale == .compressed
+                     ? "Distances squeezed and planets enlarged so everything fits. Drag to turn, pinch to zoom, tap a planet."
+                     : "Real distances and sizes: the planets are specks, so circles mark them. Tap one to fly to it.")
+                    .font(.caption).dimmed(0.7).padding(.top, 8)
+            }
+            .padding(.horizontal, 20)
+            SolarSystem3DView(date: date, live: abs(offsetDays) < 1, scale: $solarScale, ink: ink, accent: accent) { libraryPage = $0 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .clipped()
+                .contentShape(Rectangle())
+            timeControls
+                .padding(.horizontal, 20)
+                .padding(.vertical, 6)
+                .background(background)
+                .zIndex(1)
+        }
+    }
+
+    private var timeControls: some View {
+        HStack(spacing: 12) {
+            Button { playing.toggle() } label: {
+                Image(systemName: playing ? "pause.fill" : "play.fill").frame(width: 32, height: 32)
+            }
+            .accessibilityLabel(playing ? "Pause" : "Play")
+            Text(date.formatted(.dateTime.year().month(.abbreviated)))
+                .font(.subheadline.weight(.medium).monospacedDigit())
+                .fixedSize()
+            Slider(value: $offsetDays, in: range).tint(ink)
+            Button { playing = false; offsetDays = 0 } label: {
+                Text("Today").frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
+            }
+            .font(.footnote.weight(.medium))
+            .opacity(abs(offsetDays) < 1 ? 0.6 : 1)
+        }
+    }
+
+    private var twoD: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 Text("Solar system").font(.title.weight(.medium))
                 Rectangle().fill(accent).frame(width: 48, height: 5).padding(.top, 8).padding(.bottom, 12)
                 Text("The planets, and the five spacecraft travelling out of the solar system, seen from above. Drag the slider or press play to watch them move between 1958 and 2050.")
-                    .font(.subheadline).dimmed(0.75).padding(.bottom, 16)
+                    .font(.subheadline).dimmed(0.75).padding(.bottom, 12)
+                modePicker.padding(.bottom, 16)
 
                 LiveSection(ink: ink, accent: accent)
 
@@ -36,22 +111,7 @@ struct SystemScreen: View {
                     .accessibilityElement()
                     .accessibilityLabel("Orrery for \(date.formatted(.dateTime.year().month(.wide))). Planets and spacecraft distances are listed below.")
 
-                HStack(spacing: 12) {
-                    Button { playing.toggle() } label: {
-                        Image(systemName: playing ? "pause.fill" : "play.fill").frame(width: 32, height: 32)
-                    }
-                    .accessibilityLabel(playing ? "Pause" : "Play")
-                    Text(date.formatted(.dateTime.year().month(.abbreviated)))
-                        .font(.subheadline.weight(.medium).monospacedDigit())
-                        .fixedSize()
-                    Slider(value: $offsetDays, in: range).tint(ink)
-                    Button { playing = false; offsetDays = 0 } label: {
-                        Text("Today").frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
-                    }
-                    .font(.footnote.weight(.medium))
-                    .opacity(abs(offsetDays) < 1 ? 0.6 : 1)
-                }
-                .padding(.top, 12)
+                timeControls.padding(.top, 12)
 
                 Text("Distances beyond 1 AU are drawn on a logarithmic scale. Rings: planet orbits, then 50, 100 and 200 AU.")
                     .font(.caption2).dimmed(0.6).padding(.top, 8)
@@ -98,18 +158,6 @@ struct SystemScreen: View {
             }
             .padding(.horizontal, 20)
             .readableWidth()
-        }
-        .foregroundStyle(ink)
-        .background(background.ignoresSafeArea())
-        .sheet(item: $libraryPage) { page in
-            NavigationStack { LibraryPageView(page: page) }
-        }
-        .task(id: playing) {
-            while playing && !Task.isCancelled {
-                try? await Task.sleep(for: .milliseconds(33))
-                offsetDays = min(offsetDays + 30, range.upperBound)
-                if offsetDays >= range.upperBound { playing = false }
-            }
         }
     }
 
