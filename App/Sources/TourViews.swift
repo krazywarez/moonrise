@@ -54,8 +54,9 @@ struct TourCard: View {
                 Text("Below your horizon at this time. Try later in the evening or another month.").font(.footnote).dimmed(0.7)
             }
             HStack {
-                Button { step -= 1 } label: { Label("Back", systemImage: "chevron.left") }
-                    .disabled(step == 0)
+                if step > 0 {
+                    Button { step -= 1 } label: { Label("Back", systemImage: "chevron.left") }
+                }
                 Spacer()
                 if let page = s.libraryPage {
                     Button("Read more") { onOpen(page) }
