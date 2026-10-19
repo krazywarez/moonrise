@@ -8,13 +8,15 @@ public struct Observation: Sendable, Identifiable, Equatable {
     public var place: String
     public var latitude: Double?
     public var longitude: Double?
-    /// e.g. "Naked eye", "10x50 binoculars", "8-inch Dobsonian".
+    /// Readable names, e.g. "Naked eye" or "8-inch Dobsonian, 25 mm Plössl". Older entries have only this.
     public var equipment: String
+    /// Inventory item IDs, in the order of `equipment`.
+    public var equipmentIDs: [String]
     /// 1 (poor) to 5 (excellent); nil when not noted.
     public var seeing: Int?
     public var notes: String
 
-    public init(id: String = UUID().uuidString, object: String, date: Date, place: String, latitude: Double? = nil, longitude: Double? = nil, equipment: String = "", seeing: Int? = nil, notes: String = "") {
+    public init(id: String = UUID().uuidString, object: String, date: Date, place: String, latitude: Double? = nil, longitude: Double? = nil, equipment: String = "", equipmentIDs: [String] = [], seeing: Int? = nil, notes: String = "") {
         self.id = id
         self.object = object
         self.date = date
@@ -22,6 +24,7 @@ public struct Observation: Sendable, Identifiable, Equatable {
         self.latitude = latitude
         self.longitude = longitude
         self.equipment = equipment
+        self.equipmentIDs = equipmentIDs
         self.seeing = seeing
         self.notes = notes
     }
@@ -33,6 +36,7 @@ public struct Observation: Sendable, Identifiable, Equatable {
         var props = [(":ID:", id), (":PLACE:", place)]
         if let latitude, let longitude { props.append((":COORDINATES:", String(format: "%.4f, %.4f", latitude, longitude))) }
         if !equipment.isEmpty { props.append((":EQUIPMENT:", equipment)) }
+        if !equipmentIDs.isEmpty { props.append((":EQUIPMENT_IDS:", equipmentIDs.joined(separator: " "))) }
         if let seeing { props.append((":SEEING:", "\(seeing)/5")) }
         var lines = ["* \(object)", "[\(date.formatted(Self.orgDate))]", ":PROPERTIES:"]
         lines += props.map { "\($0.0) \($0.1)" }
@@ -69,6 +73,7 @@ public struct Observation: Sendable, Identifiable, Equatable {
             latitude: coords?.count == 2 ? coords![0] : nil,
             longitude: coords?.count == 2 ? coords![1] : nil,
             equipment: props[":EQUIPMENT:"] ?? "",
+            equipmentIDs: props[":EQUIPMENT_IDS:"]?.split(separator: " ").map(String.init) ?? [],
             seeing: props[":SEEING:"].flatMap { Int($0.prefix(1)) },
             notes: notes
         )

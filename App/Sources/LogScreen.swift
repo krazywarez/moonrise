@@ -37,6 +37,10 @@ struct LogScreen: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) { Button("Done") { dismiss() } }
                 ToolbarItem(placement: .primaryAction) {
+                    NavigationLink { EquipmentScreen() } label: { Image(systemName: "binoculars") }
+                        .accessibilityLabel("Equipment")
+                }
+                ToolbarItem(placement: .primaryAction) {
                     Button { editing = newEntry() } label: { Image(systemName: "plus") }
                         .accessibilityLabel("New observation")
                 }
@@ -60,8 +64,14 @@ struct ObservationEditor: View {
     var onSave: () -> Void
     @Environment(\.dismiss) private var dismiss
     @State private var error: String?
+    @State private var names: [String: String] = [:]
 
-    private static let equipmentChoices = ["Naked eye", "Binoculars", "Telescope", "Camera"]
+    /// Current inventory names for linked items, else the text stored with the entry.
+    private var equipmentSummary: String {
+        let current = observation.equipmentIDs.compactMap { names[$0] }
+        if !current.isEmpty, current.count == observation.equipmentIDs.count { return current.joined(separator: ", ") }
+        return observation.equipment.isEmpty ? "Not noted" : observation.equipment
+    }
 
     var body: some View {
         NavigationStack {
@@ -72,12 +82,8 @@ struct ObservationEditor: View {
                     TextField("Place", text: $observation.place)
                 }
                 Section("Conditions") {
-                    Picker("Equipment", selection: $observation.equipment) {
-                        Text("Not noted").tag("")
-                        ForEach(Self.equipmentChoices, id: \.self) { Text($0).tag($0) }
-                        if !observation.equipment.isEmpty, !Self.equipmentChoices.contains(observation.equipment) {
-                            Text(observation.equipment).tag(observation.equipment)
-                        }
+                    NavigationLink { EquipmentPicker(observation: $observation) } label: {
+                        LabeledContent("Equipment", value: equipmentSummary)
                     }
                     Picker("Seeing", selection: $observation.seeing) {
                         Text("Not noted").tag(Int?.none)
@@ -105,6 +111,9 @@ struct ObservationEditor: View {
                     }
                     .disabled(observation.object.trimmingCharacters(in: .whitespaces).isEmpty)
                 }
+            }
+            .onAppear {
+                names = Dictionary(equipmentInventory.all().map { ($0.id, $0.name) }, uniquingKeysWith: { a, _ in a })
             }
         }
     }
