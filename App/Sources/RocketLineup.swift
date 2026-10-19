@@ -70,20 +70,22 @@ struct RocketLineup: View {
         let mine = r.id == highlight
         let h = d.heightM! * scale
         let w = max((d.diameterM ?? 3) * scale, 4)
+        // Fins reach 0.35 × width past each side, so wide rockets get a wider column.
+        let width = max(column, w * 1.7 + 14)
         return VStack(spacing: 4) {
             Text(String(format: "%.0f m", d.heightM!)).font(.caption2.monospacedDigit()).foregroundStyle(ink.opacity(0.7))
                 .frame(height: top - 4)
             RocketShape()
                 .fill(mine ? accent : ink.opacity(0.75))
                 .frame(width: w, height: h)
-            Rectangle().fill(ink.opacity(0.35)).frame(width: column, height: 0.5)
+            Rectangle().fill(ink.opacity(0.35)).frame(width: width, height: 0.5)
             Text(r.title).font(.caption2.weight(mine ? .semibold : .regular))
                 .foregroundStyle(mine ? accent : ink.opacity(0.85))
                 .multilineTextAlignment(.center)
                 .lineLimit(2)
-                .frame(width: column - 6, height: bottom - 6, alignment: .top)
+                .frame(width: width - 6, height: bottom - 6, alignment: .top)
         }
-        .frame(width: column)
+        .frame(width: width)
         .contentShape(Rectangle())
         .accessibilityElement(children: .ignore)
         .accessibilityLabel("\(r.title), \(Int(d.heightM!)) metres")
