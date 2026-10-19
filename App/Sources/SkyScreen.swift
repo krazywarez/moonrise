@@ -23,6 +23,7 @@ struct SkyScreen: View {
     @State private var showTours = false
     @State private var tour: Tour?
     @State private var tourStep = 0
+    @State private var turning: Task<Void, Never>?
     @Environment(\.scenePhase) private var scenePhase
     @State private var libraryPage: LibraryPage?
     @State private var selection: SkyObject?
@@ -41,7 +42,7 @@ struct SkyScreen: View {
                 style.background.ignoresSafeArea()
                 if let scene = model.scene {
                     let view = current(width: geo.size.width)
-                    SkyView(scene: scene, centerAzimuth: view.azimuth, centerAltitude: view.altitude, fieldOfView: view.fieldOfView, style: style, culture: Catalog.skyCultures.first { $0.id == skyCulture }) { [stats] d in
+                    SkyView(scene: scene, centerAzimuth: view.azimuth, centerAltitude: view.altitude, fieldOfView: view.fieldOfView, style: style, culture: Catalog.skyCultures.first { $0.id == skyCulture }, highlight: tour.flatMap { highlight($0.steps[tourStep].target) }) { [stats] d in
                         stats.record(d)
                     }
                     .ignoresSafeArea()
@@ -59,6 +60,16 @@ struct SkyScreen: View {
                 }
                 VStack(spacing: 0) {
                     header
+                    if pointer.active {
+                        Button { pointer.stop() } label: {
+                            Label("Following your phone · Stop", systemImage: "iphone.gen3.radiowaves.left.and.right")
+                                .font(.caption.weight(.medium))
+                                .padding(.horizontal, 12).padding(.vertical, 8)
+                                .glassEffect(in: .capsule)
+                        }
+                        .buttonStyle(.plain)
+                        .padding(.top, 4)
+                    }
                     if let selection { card(for: selection).padding(.horizontal, 16).padding(.top, 8) }
                     Spacer()
                     if let tour {
@@ -81,14 +92,13 @@ struct SkyScreen: View {
         .sheet(isPresented: $showEvents) {
             EventsScreen(observer: model.observer, placeName: model.placeName)
                 .preferredColorScheme(.dark)
-                .tint(.blue)
         }
         .sheet(isPresented: $showTours) {
             TourPicker { tour = $0; tourStep = 0; aim(at: $0.steps[0].target) }.preferredColorScheme(.dark).tint(.blue)
         }
         .onChange(of: tourStep) { if let tour { aim(at: tour.steps[tourStep].target) } }
         .sheet(isPresented: $showYear) {
-            YearSheet(year: $model.historicalYear).preferredColorScheme(.dark).tint(.blue)
+            YearSheet(year: $model.historicalYear, south: model.observer.latitude < 0).preferredColorScheme(.dark)
         }
         .sheet(isPresented: $showSettings, onDismiss: rescheduleSummary) {
             SettingsScreen { model.applyLocationSettings() }
@@ -135,14 +145,33 @@ struct SkyScreen: View {
         return Horizontal(altitude: asin(v.z / (v * v).sum().squareRoot()) * 180 / .pi, azimuth: az)
     }
 
-    /// Turns the view to a tour target, keeping it at least 10° up so the horizon stays in view.
+    private func highlight(_ t: Tour.Target) -> SkyHighlight? {
+        if let c = t.constellation { return .constellation(c) }
+        if let hr = t.hr { return .star(hr) }
+        if let b = t.body.flatMap(SkyBody.init(rawValue:)) { return .body(b) }
+        return nil
+    }
+
+    /// Pans the view to a tour target over a second, the short way round, keeping it at least
+    /// 10° up so the horizon stays in view. The Canvas redraws each frame, so the turn is stepped by hand.
     private func aim(at t: Tour.Target) {
         guard let h = tourTarget(t) else { return }
         pointer.stop()
-        withAnimation(.easeInOut(duration: 0.6)) {
-            azimuth = h.azimuth
-            altitude = max(h.altitude, 10)
-            fieldOfView = 80
+        turning?.cancel()
+        let from = (az: azimuth, alt: altitude, fov: fieldOfView)
+        let dAz = (h.azimuth - from.az + 540).truncatingRemainder(dividingBy: 360) - 180
+        let to = (alt: max(h.altitude, 10), fov: 80.0)
+        turning = Task {
+            let frames = 60
+            for f in 1...frames {
+                try? await Task.sleep(for: .milliseconds(16))
+                if Task.isCancelled { return }
+                let x = Double(f) / Double(frames)
+                let e = x < 0.5 ? 4 * x * x * x : 1 - pow(-2 * x + 2, 3) / 2
+                azimuth = (from.az + dAz * e + 360).truncatingRemainder(dividingBy: 360)
+                altitude = from.alt + (to.alt - from.alt) * e
+                fieldOfView = from.fov + (to.fov - from.fov) * e
+            }
         }
     }
 
@@ -170,6 +199,7 @@ struct SkyScreen: View {
     private func panGesture(width: CGFloat) -> some Gesture {
         DragGesture(minimumDistance: 6)
             .onChanged { _ in
+                turning?.cancel()
                 if pointer.active {
                     azimuth = pointer.direction.azimuth
                     altitude = min(max(pointer.direction.altitude, 0), 90)
@@ -213,51 +243,34 @@ struct SkyScreen: View {
                 #endif
             }
             Spacer()
-            if pointer.available {
-                Button {
-                    pointer.active ? pointer.stop() : pointer.start()
-                } label: {
-                    Image(systemName: pointer.active ? "scope" : "hand.draw")
-                        .font(.body)
-                        .frame(width: 44, height: 44)
-                }
-                .accessibilityLabel(pointer.active ? "Stop following the phone" : "Point the phone at the sky")
-            }
             Menu {
-                Button { showTours = true } label: { Label("Guided tours", systemImage: "figure.walk") }
-                Button { showYear = true } label: { Label("Sky in another year", systemImage: "hourglass") }
+                Section("Tonight") {
+                    Button { showTours = true } label: { Label("Guided tours", systemImage: "figure.walk") }
+                    Button { showEvents = true } label: { Label("Events and eclipses", systemImage: "calendar") }
+                    if pointer.available {
+                        Button { pointer.active ? pointer.stop() : pointer.start() } label: {
+                            Label(pointer.active ? "Stop following the phone" : "Point the phone at the sky", systemImage: "iphone.gen3.radiowaves.left.and.right")
+                        }
+                    }
+                }
+                Section("Explore") {
+                    Button { showYear = true } label: { Label("Sky in another year", systemImage: "hourglass") }
+                    Button { showLog = true } label: { Label("Observing log", systemImage: "book.closed") }
+                }
+                Section {
+                    Button { nightMode = night ? "off" : "on" } label: {
+                        Label(night ? "Turn off night mode" : "Night mode (red light)", systemImage: night ? "eye.slash" : "eye")
+                    }
+                    Button { showSettings = true } label: { Label("Settings", systemImage: "gearshape") }
+                }
             } label: {
-                Image(systemName: "ellipsis.circle")
-                    .font(.body)
-                    .frame(width: 44, height: 44)
+                Label("Explore", systemImage: "sparkle.magnifyingglass")
+                    .font(.subheadline.weight(.medium))
+                    .padding(.horizontal, 14)
+                    .frame(minHeight: 44)
+                    .glassEffect(in: .capsule)
             }
-            .accessibilityLabel("More")
-            Button { showLog = true } label: {
-                Image(systemName: "book.closed")
-                    .font(.body)
-                    .frame(width: 44, height: 44)
-            }
-            .accessibilityLabel("Observing log")
-            Button { showEvents = true } label: {
-                Image(systemName: "calendar")
-                    .font(.body)
-                    .frame(width: 44, height: 44)
-            }
-            .accessibilityLabel("Events")
-            Button { showSettings = true } label: {
-                Image(systemName: "gearshape")
-                    .font(.body)
-                    .frame(width: 44, height: 44)
-            }
-            .accessibilityLabel("Settings")
-            Button {
-                nightMode = night ? "off" : "on"
-            } label: {
-                Image(systemName: night ? "eye.fill" : "eye")
-                    .font(.body)
-                    .frame(width: 44, height: 44)
-            }
-            .accessibilityLabel(night ? "Turn off night mode" : "Turn on night mode")
+            .accessibilityHint("Tours, events, night mode, settings and more")
         }
         .padding(.horizontal, 20)
         .padding(.top, 8)
@@ -378,3 +391,6 @@ final class DrawStats: @unchecked Sendable {
         return String(format: "draw %.1f ms median, %.1f ms max · scene %.0f ms", median, worst, b)
     }
 }
+
+/// SkyEngine's Body, named so it isn't shadowed by View.Body.
+private typealias SkyBody = Body

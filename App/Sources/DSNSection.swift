@@ -15,6 +15,8 @@ struct DSNSection: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text("Deep Space Network now").font(.caption2.weight(.medium)).textCase(.uppercase).tracking(0.8).dimmed(0.6)
+            Text("NASA talks to its deep-space probes through giant dishes at three sites spaced around the world, so one always faces any spacecraft. This is who each site is talking to now.")
+                .font(.footnote).dimmed(0.75)
             if let status {
                 ForEach(["Goldstone", "Madrid", "Canberra"], id: \.self) { station in
                     let dishes = activeDishes.filter { $0.station == station }

@@ -26,6 +26,7 @@ struct MoonriseApp: App {
             // Red tab highlight while the Sky tab is in night mode.
             .tint(router.tab == "sky" && nightActive ? SkyStyle.nightRed : nil)
             .preferredColorScheme(.dark)
+            .environment(\.openURL, InAppBrowser.action)
             .fullScreenCover(isPresented: .constant(!onboarded)) {
                 OnboardingScreen().preferredColorScheme(.dark)
             }

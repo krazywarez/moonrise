@@ -40,6 +40,8 @@ public struct SkyStyle: Sendable {
     public var moonLight = Color(red: 0.93, green: 0.91, blue: 0.85)
     public var moonDark = Color(red: 0.16, green: 0.20, blue: 0.27)
     public var planet = Color(red: 0.95, green: 0.84, blue: 0.60)
+    /// Rings and lines for whatever a tour is pointing at.
+    public var highlight = Color(red: 1.0, green: 0.78, blue: 0.35)
     /// Draw stars in a single red, for dark-adapted eyes.
     public var monochromeStars: Color?
 
@@ -58,6 +60,7 @@ public struct SkyStyle: Sendable {
         s.label = red
         s.muted = red.opacity(0.9)
         s.moonLight = red
+        s.highlight = red
         s.moonDark = Color(red: 0.12, green: 0, blue: 0)
         s.planet = red
         s.monochromeStars = red
@@ -72,6 +75,15 @@ public struct SkyStyle: Sendable {
     }
 }
 
+/// Something to draw attention to, e.g. the current stop of a guided tour.
+public enum SkyHighlight: Sendable, Equatable {
+    /// IAU abbreviation.
+    case constellation(String)
+    /// Bright Star Catalogue HR number.
+    case star(Int)
+    case body(Body)
+}
+
 public struct SkyView: View {
     public var scene: SkyScene
     public var centerAzimuth: Double
@@ -80,13 +92,15 @@ public struct SkyView: View {
     public var style: SkyStyle
     /// Figures to draw instead of the IAU constellation lines.
     public var culture: SkyCulture?
+    public var highlight: SkyHighlight?
     /// Called after each draw with the time the draw took.
     public var onDraw: (@Sendable (Duration) -> Void)?
 
-    public init(scene: SkyScene, centerAzimuth: Double = 180, centerAltitude: Double = 55, fieldOfView: Double = 110, style: SkyStyle = SkyStyle(), culture: SkyCulture? = nil, onDraw: (@Sendable (Duration) -> Void)? = nil) {
+    public init(scene: SkyScene, centerAzimuth: Double = 180, centerAltitude: Double = 55, fieldOfView: Double = 110, style: SkyStyle = SkyStyle(), culture: SkyCulture? = nil, highlight: SkyHighlight? = nil, onDraw: (@Sendable (Duration) -> Void)? = nil) {
         self.scene = scene
         self.style = style
         self.culture = culture
+        self.highlight = highlight
         self.centerAzimuth = centerAzimuth
         self.centerAltitude = centerAltitude
         self.fieldOfView = fieldOfView
@@ -101,6 +115,7 @@ public struct SkyView: View {
             drawConstellations(&context, p)
             drawStars(&context, p)
             drawBodies(&context, p)
+            if let highlight { drawHighlight(highlight, &context, p) }
             drawHorizon(&context, p, size: size)
             onDraw?(ContinuousClock.now - start)
         }
@@ -149,6 +164,33 @@ public struct SkyView: View {
             }
         }
         context.stroke(path, with: .color(style.line), lineWidth: 0.6)
+    }
+
+    /// A constellation's IAU lines drawn bright and thick; a star or body ringed.
+    func drawHighlight(_ h: SkyHighlight, _ context: inout GraphicsContext, _ p: Projection) {
+        func ring(_ position: Horizontal?, radius: Double) {
+            guard let position, let pt = p.point(position) else { return }
+            context.stroke(Path(ellipseIn: CGRect(x: pt.x - radius, y: pt.y - radius, width: 2 * radius, height: 2 * radius)),
+                           with: .color(style.highlight), lineWidth: 2)
+        }
+        switch h {
+        case .star(let hr):
+            ring(scene.starsByHR[hr], radius: 14)
+        case .body(let body):
+            ring(scene.bodies.first { $0.body == body }?.position, radius: 18)
+        case .constellation(let id):
+            guard let figure = Catalog.constellations.first(where: { $0.id == id }) else { return }
+            var path = Path()
+            for line in figure.lines {
+                for (a, b) in zip(line, line.dropFirst()) {
+                    guard let ha = scene.starsByHR[a], let hb = scene.starsByHR[b],
+                          let pa = p.point(ha), let pb = p.point(hb) else { continue }
+                    path.move(to: pa)
+                    path.addLine(to: pb)
+                }
+            }
+            context.stroke(path, with: .color(style.highlight.opacity(0.9)), style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
+        }
     }
 
     func drawStars(_ context: inout GraphicsContext, _ p: Projection) {

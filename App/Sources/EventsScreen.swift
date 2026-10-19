@@ -24,67 +24,91 @@ struct EventsScreen: View {
 
     var body: some View {
         NavigationStack {
-            List {
-                Section {
+            ScrollView {
+                LazyVStack(alignment: .leading, spacing: 0, pinnedViews: .sectionHeaders) {
+                    Text("Events").font(.title.weight(.medium))
+                    Rectangle().fill(accent).frame(width: 48, height: 5).padding(.top, 8).padding(.bottom, 12)
+                    Text("Eclipses, meteor showers and planets at their best over the next year, as seen \(placeName == "Your location" ? "from where you are" : "from \(placeName)"). Tap a solar eclipse for its path and local times.")
+                        .font(.subheadline).foregroundStyle(ink.opacity(0.75))
                     Picker("Show", selection: $filter) {
-                        Text("Notable").tag("notable")
+                        Text("Highlights").tag("notable")
                         Text("Everything").tag("all")
                     }
                     .pickerStyle(.segmented)
-                    .listRowBackground(Color.clear)
-                } footer: {
-                    Text("Visibility is for \(placeName). Meteor shower peaks are typical dates and can shift by a day.")
-                }
-                if events.isEmpty {
-                    ProgressView().frame(maxWidth: .infinity).listRowBackground(Color.clear)
-                }
-                ForEach(months, id: \.0) { month, items in
-                    Section(month) {
-                        ForEach(items) { e in
-                            if e.kind == .solarEclipse {
-                                Button { eclipse = e } label: { row(e) }
-                                    .buttonStyle(.plain)
-                                    .accessibilityHint("Shows the path and local times")
-                            } else {
-                                row(e)
+                    .padding(.vertical, 16)
+
+                    if events.isEmpty {
+                        ProgressView().tint(ink).frame(maxWidth: .infinity).padding(.top, 40)
+                    }
+                    ForEach(months, id: \.0) { month, items in
+                        Section {
+                            ForEach(items) { e in
+                                if e.kind == .solarEclipse {
+                                    Button { eclipse = e } label: { row(e, link: true) }
+                                        .buttonStyle(.plain)
+                                        .accessibilityHint("Shows the path and local times")
+                                } else {
+                                    row(e, link: false)
+                                }
                             }
+                        } header: {
+                            Text(month).font(.caption2.weight(.medium)).textCase(.uppercase).tracking(0.8)
+                                .foregroundStyle(ink.opacity(0.6))
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(.top, 20).padding(.bottom, 6)
+                                .background(Color.black)
                         }
                     }
+                    Text("Meteor shower peaks are typical dates and can shift by a day.")
+                        .font(.caption2).foregroundStyle(ink.opacity(0.5)).padding(.vertical, 20)
                 }
+                .padding(.horizontal, 20)
+                .readableWidth()
             }
-            .listStyle(.insetGrouped)
-            .scrollContentBackground(.hidden)
             .background(Color.black.ignoresSafeArea())
-            .navigationTitle("Events")
-            .navigationBarTitleDisplayMode(.inline)
             .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done") { dismiss() } } }
             .sheet(item: $eclipse) { e in EclipseScreen(date: e.date, observer: observer, placeName: placeName) }
         }
         .foregroundStyle(ink)
+        .tint(accent)
         .task {
             let observer = observer
             events = await Task.detached { SkyEngine.events(from: .now, observer: observer) }.value
         }
     }
 
-    private func row(_ e: SkyEvent) -> some View {
-        HStack(alignment: .firstTextBaseline, spacing: 12) {
-            Image(systemName: symbol(e.kind)).frame(width: 22).dimmed(0.8).accessibilityHidden(true)
-            VStack(alignment: .leading, spacing: 3) {
-                Text(e.title).font(.body)
-                Text(e.date.formatted(.dateTime.weekday(.abbreviated).day().month(.abbreviated).hour().minute()))
-                    .font(.footnote.monospacedDigit()).dimmed(0.7)
-                if !e.detail.isEmpty { Text(e.detail).font(.footnote).dimmed(0.8) }
+    private func row(_ e: SkyEvent, link: Bool) -> some View {
+        HStack(alignment: .top, spacing: 14) {
+            VStack(spacing: 0) {
+                Text(e.date.formatted(.dateTime.day())).font(.title2.weight(.medium).monospacedDigit())
+                Text(e.date.formatted(.dateTime.weekday(.abbreviated))).font(.caption2).textCase(.uppercase).foregroundStyle(ink.opacity(0.6))
+            }
+            .frame(width: 40)
+            VStack(alignment: .leading, spacing: 4) {
+                HStack(alignment: .firstTextBaseline, spacing: 6) {
+                    Image(systemName: symbol(e.kind)).font(.subheadline).foregroundStyle(e.visibleHere == true ? accent : ink.opacity(0.7))
+                        .accessibilityHidden(true)
+                    Text(e.title).font(.body.weight(.medium))
+                }
+                Text(e.date.formatted(date: .omitted, time: .shortened)).font(.footnote.monospacedDigit()).foregroundStyle(ink.opacity(0.6))
+                if !e.detail.isEmpty { Text(e.detail).font(.footnote).foregroundStyle(ink.opacity(0.8)) }
                 if let v = e.visibleHere {
-                    Text(v ? "Visible from here" : "Not visible from here")
-                        .font(.caption.weight(.medium))
-                        .foregroundStyle(v ? ink : ink.opacity(0.7))
-                        .padding(.horizontal, 6).padding(.vertical, 2)
-                        .overlay(RoundedRectangle(cornerRadius: 3).stroke(v ? accent : ink.opacity(0.4), lineWidth: 1))
+                    HStack(spacing: 5) {
+                        Circle().fill(v ? accent : ink.opacity(0.35)).frame(width: 6, height: 6)
+                        Text(v ? "Visible from here" : "Not visible from here").font(.caption.weight(.medium))
+                            .foregroundStyle(v ? ink : ink.opacity(0.6))
+                    }
+                    .padding(.top, 2)
                 }
             }
+            Spacer(minLength: 0)
+            if link {
+                Image(systemName: "chevron.right").font(.footnote.weight(.semibold)).foregroundStyle(ink.opacity(0.4)).padding(.top, 6)
+            }
         }
-        .padding(.vertical, 4)
+        .padding(.vertical, 12)
+        .overlay(alignment: .bottom) { Rectangle().fill(ink.opacity(0.12)).frame(height: 0.5) }
+        .contentShape(Rectangle())
         .accessibilityElement(children: .combine)
     }
 

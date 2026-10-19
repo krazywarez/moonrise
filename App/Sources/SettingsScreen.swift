@@ -65,6 +65,7 @@ struct SettingsScreen: View {
     @AppStorage(SettingsKey.cityLongitude) private var cityLongitude = -87.630
     @AppStorage(SettingsKey.nightMode) private var nightMode = "auto"
     @AppStorage(SettingsKey.skyCulture) private var skyCulture = "western"
+    @AppStorage(SettingsKey.onboarded) private var onboarded = true
     @Environment(\.dismiss) private var dismiss
     @State private var alerts = AuroraAlerts.shared
     @AppStorage(SettingsKey.dailySummary) private var dailySummary = false
@@ -137,6 +138,11 @@ struct SettingsScreen: View {
                 }
                 Section("About") {
                     LabeledContent("Version", value: Bundle.main.versionString)
+                    Button("Show the introduction again") {
+                        dismiss()
+                        // After the sheet has gone, so the full-screen introduction can present.
+                        Task { try? await Task.sleep(for: .milliseconds(600)); onboarded = false }
+                    }
                     NavigationLink("Credits and licences") { CreditsScreen() }
                     Link("Privacy policy", destination: privacyPolicyURL)
                 }

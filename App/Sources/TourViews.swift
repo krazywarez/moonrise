@@ -61,14 +61,16 @@ struct TourCard: View {
                     Button("Read more") { onOpen(page) }
                     Spacer()
                 }
-                Button { step += 1 } label: { Label("Next", systemImage: "chevron.right").labelStyle(.titleAndIcon) }
-                    .disabled(step == tour.steps.count - 1)
+                if step < tour.steps.count - 1 {
+                    Button { step += 1 } label: { Label("Next", systemImage: "chevron.right").labelStyle(.titleAndIcon) }
+                }
             }
             .font(.subheadline.weight(.medium))
             .padding(.top, 2)
         }
         .padding(16)
-        .background(background.opacity(0.92), in: RoundedRectangle(cornerRadius: 16))
+        .background(background, in: RoundedRectangle(cornerRadius: 16))
+        .overlay(RoundedRectangle(cornerRadius: 16).stroke(ink.opacity(0.15), lineWidth: 0.5))
         .foregroundStyle(ink)
         .padding(.horizontal, 12)
         .padding(.bottom, 8)

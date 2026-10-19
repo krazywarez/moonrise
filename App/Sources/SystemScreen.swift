@@ -24,7 +24,9 @@ struct SystemScreen: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 Text("Solar system").font(.title.weight(.medium))
-                Rectangle().fill(accent).frame(width: 48, height: 5).padding(.top, 8).padding(.bottom, 16)
+                Rectangle().fill(accent).frame(width: 48, height: 5).padding(.top, 8).padding(.bottom, 12)
+                Text("The planets, and the five spacecraft travelling out of the solar system, seen from above. Drag the slider or press play to watch them move between 1958 and 2050.")
+                    .font(.subheadline).dimmed(0.75).padding(.bottom, 16)
 
                 LiveSection(ink: ink, accent: accent)
 
@@ -54,7 +56,7 @@ struct SystemScreen: View {
                 Text("Distances beyond 1 AU are drawn on a logarithmic scale. Rings: planet orbits, then 50, 100 and 200 AU.")
                     .font(.caption2).dimmed(0.6).padding(.top, 8)
 
-                section("Spacecraft") {
+                section("Spacecraft", note: "How far each probe is from the Sun, and how long its radio signal takes to reach us. Tap one to read about it.") {
                     if typeSize.isAccessibilitySize {
                         VStack(alignment: .leading, spacing: 12) {
                             ForEach(Spacecraft.all) { craft in
@@ -132,9 +134,10 @@ struct SystemScreen: View {
         return h > 0 ? "\(h) h \(m) m" : "\(m) m"
     }
 
-    private func section(_ title: String, @ViewBuilder content: () -> some View) -> some View {
+    private func section(_ title: String, note: String? = nil, @ViewBuilder content: () -> some View) -> some View {
         VStack(alignment: .leading, spacing: 10) {
             Text(title).font(.caption2.weight(.medium)).textCase(.uppercase).tracking(0.8).dimmed(0.6)
+            if let note { Text(note).font(.footnote).dimmed(0.75) }
             content()
         }
         .padding(.top, 24)

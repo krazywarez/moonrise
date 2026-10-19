@@ -10,6 +10,8 @@ struct MarsSection: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text("Mars now").font(.caption2.weight(.medium)).textCase(.uppercase).tracking(0.8).dimmed(0.6)
+            Text("The time of day where NASA's two rovers are working, and their newest raw photos, usually a few hours old.")
+                .font(.footnote).dimmed(0.75)
             VStack(alignment: .leading, spacing: 8) {
                 ForEach(MarsTime.Rover.active) { rover in
                     TimelineView(.periodic(from: .now, by: 1)) { ctx in

@@ -20,7 +20,9 @@ struct SunScreen: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 Text("Sun").font(.title.weight(.medium))
-                Rectangle().fill(accent).frame(width: 48, height: 5).padding(.top, 8).padding(.bottom, 16)
+                Rectangle().fill(accent).frame(width: 48, height: 5).padding(.top, 8).padding(.bottom, 12)
+                Text("The Sun as NASA's Solar Dynamics Observatory sees it now, and the space weather it sends our way: flares, magnetic storms and the aurora.")
+                    .font(.subheadline).dimmed(0.75).padding(.bottom, 16)
 
                 image
                 Picker("Wavelength", selection: $wavelength) {
@@ -31,9 +33,9 @@ struct SunScreen: View {
                 Text(wavelength.caption).font(.footnote).dimmed(0.75).padding(.top, 8)
                 Text(SolarImage.credit).font(.caption2).dimmed(0.5).padding(.top, 4)
 
-                section("Aurora") { auroraMap }
-                section("Solar flares, last 24 h") { flares }
-                section("Geomagnetic activity (Kp)") { kpChart }
+                section("Aurora tonight", note: "NOAA's forecast of where the aurora may be overhead in the next hour; brighter green is more likely. From a few hundred kilometres further from the pole it can still be seen low on the horizon.") { auroraMap }
+                section("Solar flares, last 24 h", note: "X-rays from the Sun, measured by NOAA's GOES satellites. Spikes are flares: M and X class can disrupt radio and GPS, and the biggest can bring a storm a day or two later.") { flares }
+                section("Geomagnetic activity (Kp)", note: "How disturbed Earth's magnetic field is, from 0 (quiet) to 9. At 5 or more it is a storm and the aurora reaches lower latitudes.") { kpChart }
 
                 if failed {
                     Text("Couldn't load space weather. Pull to retry.").font(.footnote).foregroundStyle(accent).padding(.top, 12)
@@ -74,9 +76,10 @@ struct SunScreen: View {
         .accessibilityLabel("The Sun at \(wavelength.name)")
     }
 
-    private func section(_ title: String, @ViewBuilder content: () -> some View) -> some View {
+    private func section(_ title: String, note: String? = nil, @ViewBuilder content: () -> some View) -> some View {
         VStack(alignment: .leading, spacing: 10) {
             Text(title).font(.caption2.weight(.medium)).textCase(.uppercase).tracking(0.8).dimmed(0.6)
+            if let note { Text(note).font(.footnote).dimmed(0.75) }
             content()
         }
         .padding(.top, 24)
