@@ -28,8 +28,8 @@ The lead on every tab is a picture computed from real data or a real
 image: the sky above you, the solar system today, the sun this hour, a
 rocket on its pad. Text sits underneath, a swipe or tap away.
 
-Free of accounts. Works offline for anything that can be computed;
-fetches only live feeds.
+Free, with no purchases. Free of accounts. Works offline for anything
+that can be computed; fetches only live feeds.
 
 * design
 After NASA's 1975 Graphics Standards Manual.
@@ -443,8 +443,6 @@ Sky, System, Sun, Launches, Library core (above).
   designed well, not depth in any one area.
 
 * open questions
-- Pricing: free, paid up front, or free with a one-time unlock for the
-  Library and alerts.
 - Fallback for APNs if Workers' HTTP/2 stops working: Containers sender
   vs. a separate small VPS. The M0 probe worked, so this is a contingency.
 - Whether the Sky tab needs AR camera overlay at all (current lean: no).
