@@ -59,7 +59,7 @@ struct SystemScreen: View {
                 }
                 .pickerStyle(.segmented)
                 Text(solarScale == .compressed
-                     ? "Distances squeezed and planets enlarged so everything fits. Drag to turn, pinch to zoom, tap a planet."
+                     ? "Distances squeezed and bodies enlarged so everything fits. Drag to turn, pinch to zoom, tap anything. Moons appear as you zoom in to their planet."
                      : "Real distances and sizes: the planets are specks, so circles mark them. Tap one to fly to it.")
                     .font(.caption).dimmed(0.7).padding(.top, 8)
             }
