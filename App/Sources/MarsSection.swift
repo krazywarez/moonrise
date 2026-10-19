@@ -31,7 +31,11 @@ struct MarsSection: View {
             }
             Text("Local mean solar time. A Mars sol is 24 h 39 m 35 s. Raw images: NASA/JPL-Caltech.").font(.caption2).dimmed(0.5)
         }
-        .task { images = (try? await MarsImage.latest()) ?? [] }
+        .task {
+            // The rovers send a few batches a day; reuse a fetch from the last 30 minutes.
+            if let cached: [MarsImage] = FeedMemo.get("mars", maxAge: 1800) { images = cached; return }
+            if let fresh = try? await MarsImage.latest() { images = fresh; FeedMemo.set("mars", fresh) }
+        }
         .sheet(item: $shown) { MarsImageView(image: $0) }
     }
 
@@ -43,9 +47,7 @@ struct MarsSection: View {
                 HStack(spacing: 6) {
                     ForEach(mine) { image in
                         Button { shown = image } label: {
-                            AsyncImage(url: image.thumbnail) { phase in
-                                if case .success(let img) = phase { img.resizable().scaledToFill() } else { Color.white.opacity(0.06) }
-                            }
+                            RemoteImage(url: image.thumbnail, points: 130) { Color.white.opacity(0.06) }
                             .frame(width: 88, height: 88)
                             .clipped()
                         }

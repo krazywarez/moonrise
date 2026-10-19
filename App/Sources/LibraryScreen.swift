@@ -39,10 +39,9 @@ private struct TonightPicks: Sendable {
         }
         // Constellations whose stars are on average more than 25° up two hours into the night.
         let when = t.start.addingTimeInterval(2 * 3600)
-        let byHR = Dictionary(uniqueKeysWithValues: Catalog.stars.map { ($0.hr, $0) })
         let scored: [(LibraryPage, Double)] = Catalog.constellations.compactMap { c in
             guard let page = Library.page(constellation: c.id) else { return nil }
-            let stars = Set(c.lines.joined()).compactMap { byHR[$0] }
+            let stars = Set(c.lines.joined()).compactMap { Catalog.starsByHR[$0] }
             guard !stars.isEmpty else { return nil }
             let alts = SkyEngine.horizontal(j2000: stars.map { $0.position(at: when) }, at: when, from: observer).map(\.altitude)
             return (page, alts.reduce(0, +) / Double(alts.count))
@@ -283,14 +282,9 @@ struct PageThumb: View {
         ZStack {
             tile
             if let image = page.image {
-                AsyncImage(url: image.url) { phase in
-                    if case .success(let img) = phase {
-                        // Library of Congress scans carry a frame and colour bars; crop to the plate.
-                        img.resizable().scaledToFill().scaleEffect(image.url.host() == "tile.loc.gov" ? 1.45 : 1)
-                    } else {
-                        fallback
-                    }
-                }
+                // Library of Congress scans carry a frame and colour bars; crop to the plate.
+                RemoteImage(url: image.url, points: large ? 640 : 260) { fallback }
+                    .scaleEffect(image.url.host() == "tile.loc.gov" ? 1.45 : 1)
             } else {
                 fallback
             }
@@ -529,13 +523,7 @@ struct LibraryPageView: View {
                 Color(white: 0.06)
                     .frame(height: 340)
                     .overlay {
-                        AsyncImage(url: image.url) { phase in
-                            switch phase {
-                            case .success(let img): img.resizable().scaledToFill()
-                            case .failure: Text("Image unavailable").font(.caption).dimmed(0.6)
-                            default: ProgressView().tint(ink)
-                            }
-                        }
+                        RemoteImage(url: image.url, points: 900) { ProgressView().tint(ink) }
                     }
                     .clipped()
                     .accessibilityLabel(image.caption)

@@ -55,6 +55,7 @@ final class SkyModel: NSObject, CLLocationManagerDelegate {
     private(set) var passes: [SatellitePass] = []
     private var elements: [OrbitalElements] = []
     private var elementsFetched: Date?
+    private var passesComputed: (at: Date, observer: Observer, elementsFetched: Date?)?
     private var weatherFetched: Date?
     /// Hours from now shown by the time scrubber.
     var offsetHours = 0.0 { didSet { refresh() } }
@@ -154,10 +155,17 @@ final class SkyModel: NSObject, CLLocationManagerDelegate {
                 elementsFetched = .now
             }
         }
+        // Reuse the last result for an hour unless the place or the orbits changed (about 1 s of work for 158 objects).
+        if let last = passesComputed, last.observer == observer, last.elementsFetched == elementsFetched,
+           Date.now.timeIntervalSince(last.at) < 3600 {
+            passes.removeAll { $0.set < .now }
+            return
+        }
         let elements = elements, observer = observer
         passes = await Task.detached {
             elements.flatMap { SkyEngine.passes(of: $0, from: .now, hours: 72, observer: observer) }.sorted { $0.rise < $1.rise }
         }.value
+        passesComputed = (.now, observer, elementsFetched)
     }
 
     /// SWPC asks for no more than once a minute; this checks every 10.

@@ -49,7 +49,7 @@ struct LaunchesScreen: View {
         }
         .foregroundStyle(ink)
         .background(background.ignoresSafeArea())
-        .refreshable { if router.showNews { newsReload += 1 } else { await load() } }
+        .refreshable { if router.showNews { newsReload += 1 } else { await load(force: true) } }
         .task { await load() }
         .sheet(item: $selected) { LaunchDetail(launch: $0, ink: ink, accent: accent, background: background) }
     }
@@ -71,10 +71,13 @@ struct LaunchesScreen: View {
                 }
     }
 
-    private func load() async {
+    /// The backend polls every 10 minutes; a visit within 5 minutes of the last load reuses it.
+    private func load(force: Bool = false) async {
         guard let apiBase else { error = "No backend configured for this build."; return }
+        if !force, let cached: LaunchList = FeedMemo.get("launches", maxAge: 300) { list = cached; return }
         do {
             list = try await LaunchFeed.fetch(base: apiBase)
+            if let list { FeedMemo.set("launches", list) }
             error = nil
         } catch {
             self.error = "Couldn't load launches. Pull to retry."

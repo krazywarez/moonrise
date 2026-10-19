@@ -36,6 +36,7 @@ struct MoonriseApp: App {
 
 final class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
+        ImageLoader.configureURLCache()
         UNUserNotificationCenter.current().delegate = self
         application.registerForRemoteNotifications()
         return true

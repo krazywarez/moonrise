@@ -47,11 +47,16 @@ struct SunScreen: View {
         }
         .foregroundStyle(ink)
         .background(background.ignoresSafeArea())
-        .refreshable { await load() }
-        .task { await load() }
+        .refreshable { await load(force: true) }
+        .task { await load(force: false) }
     }
 
-    private func load() async {
+    /// NOAA updates these every minute or so; a visit within 5 minutes of the last load reuses it.
+    private func load(force: Bool) async {
+        if !force, let cached: ([KpBar], [XRaySample], Ovation?) = FeedMemo.get("sun", maxAge: 300) {
+            (kp, xray, ovation) = cached
+            return
+        }
         imageID = .now
         async let k = try? SpaceWeather.fetchKpBars()
         async let x = try? XRay.fetch()
@@ -61,6 +66,7 @@ struct SunScreen: View {
         xray = xrayResult ?? xray
         ovation = ovationResult ?? ovation
         failed = kpResult == nil || xrayResult == nil || ovationResult == nil
+        if !failed { FeedMemo.set("sun", (kp, xray, ovation)) }
     }
 
     private var image: some View {

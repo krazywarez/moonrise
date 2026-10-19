@@ -29,7 +29,11 @@ interface DeviceRequest {
 const LAUNCH_CRON = "*/10 * * * *";
 const SATELLITE_CRON = "7 */2 * * *";
 
-const json = (body: unknown, status = 200) => Response.json(body, { status });
+const json = (body: unknown, status = 200, maxAge?: number) =>
+  Response.json(body, { status, headers: maxAge && status === 200 ? { "cache-control": `public, max-age=${maxAge}` } : {} });
+
+/** How long clients may reuse each GET response, matched to how often its source is polled. */
+export const MAX_AGE = { today: 60, launches: 300, satellites: 3600, live: 300 } as const;
 
 function validDevice(d: Partial<DeviceRequest>): d is DeviceRequest {
   return (
@@ -42,12 +46,12 @@ function validDevice(d: Partial<DeviceRequest>): d is DeviceRequest {
 
 async function today(env: Env, now: Date): Promise<Response> {
   const row = await env.DB.prepare("SELECT fetched_at, body FROM feed_snapshots WHERE feed = 'swpc' AND ok = 1").first<{ fetched_at: string; body: string }>();
-  if (!row) return json({ spaceWeather: null });
+  if (!row) return json({ spaceWeather: null }, 200, MAX_AGE.today);
   const w = JSON.parse(row.body) as SpaceWeather;
   w.forecast = w.forecast.map((f) => ({ ...f, start: new Date(f.start) }));
   return json({
     spaceWeather: { kpNow: w.kpNow, observedAt: w.observedAt, kpNext24h: next24h(w, now), fetchedAt: row.fetched_at },
-  });
+  }, 200, MAX_AGE.today);
 }
 
 export default {
@@ -66,7 +70,7 @@ export default {
     if (request.method === "GET" && url.pathname === "/v1/live") return live(env, url, now);
     if (request.method === "GET" && url.pathname === "/v1/satellites") {
       const row = await env.DB.prepare("SELECT fetched_at, body FROM feed_snapshots WHERE feed = 'celestrak' AND ok = 1").first<{ fetched_at: string; body: string }>();
-      return json({ fetchedAt: row?.fetched_at ?? null, satellites: row ? JSON.parse(row.body) : [] });
+      return json({ fetchedAt: row?.fetched_at ?? null, satellites: row ? JSON.parse(row.body) : [] }, 200, MAX_AGE.satellites);
     }
 
     if (request.method === "POST" && url.pathname === "/v1/devices") {
@@ -125,7 +129,7 @@ async function live(env: Env, url: URL, now: Date): Promise<Response> {
   const at = atParam ? new Date(atParam) : now;
   if (Number.isNaN(at.getTime())) return json({ error: "invalid at" }, 400);
   const event = activeEvent(at);
-  if (!event) return json({ event: null });
+  if (!event) return json({ event: null }, 200, MAX_AGE.live);
 
   const key = `live:${event.id}`;
   const row = await env.DB.prepare("SELECT fetched_at, body FROM feed_snapshots WHERE feed = ?1 AND ok = 1").bind(key).first<{ fetched_at: string; body: string }>();
@@ -144,7 +148,7 @@ async function live(env: Env, url: URL, now: Date): Promise<Response> {
       console.error("horizons", String(e));
     }
   }
-  return json({ event, at: at.toISOString(), points: points.filter((p) => p[0] * 1000 <= at.getTime()) });
+  return json({ event, at: at.toISOString(), points: points.filter((p) => p[0] * 1000 <= at.getTime()) }, 200, MAX_AGE.live);
 }
 
 async function launches(env: Env, now: Date): Promise<Response> {
@@ -159,7 +163,7 @@ async function launches(env: Env, now: Date): Promise<Response> {
       mission: r.mission, missionType: r.mission_type, missionDescription: r.mission_description, orbit: r.orbit,
       pad: r.pad, location: r.location, padLatitude: r.pad_latitude, padLongitude: r.pad_longitude,
     })),
-  });
+  }, 200, MAX_AGE.launches);
 }
 
 // Failures are recorded under "<feed>:error" so the last good snapshot and its time survive.

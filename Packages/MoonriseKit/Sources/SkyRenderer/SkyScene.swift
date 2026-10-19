@@ -52,6 +52,9 @@ public enum Catalog {
         return rows.map { Star(hr: Int($0[0]), ra: $0[1], dec: $0[2], magnitude: $0[3], colorIndex: $0[4], pmRA: $0[5], pmDec: $0[6]) }
     }()
 
+    /// Stars by HR number.
+    public static let starsByHR: [Int: Star] = Dictionary(uniqueKeysWithValues: stars.map { ($0.hr, $0) })
+
     /// Built by scripts/make-skycultures.py.
     public static let skyCultures: [SkyCulture] = {
         let url = Bundle.module.url(forResource: "skycultures", withExtension: "json")!

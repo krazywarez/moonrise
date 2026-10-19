@@ -194,8 +194,7 @@ struct ConstellationFigure: View {
 
     var body: some View {
         let lines = Catalog.constellations.first { $0.id == id }?.lines ?? []
-        let byHR = Dictionary(uniqueKeysWithValues: Catalog.stars.map { ($0.hr, $0) })
-        let stars = Set(lines.joined()).compactMap { byHR[$0] }
+        let stars = Set(lines.joined()).compactMap { Catalog.starsByHR[$0] }
         Canvas { context, size in
             guard !stars.isEmpty else { return }
             // Gnomonic projection about the figure's centre.

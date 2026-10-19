@@ -382,10 +382,7 @@ struct SolarSystem3DView: View {
         e.camera.camera.fieldOfViewInDegrees = SolarCamera.fovDegrees
         e.root.addChild(e.camera)
 
-        var sunMaterial = UnlitMaterial(color: UIColor(red: 1, green: 0.86, blue: 0.5, alpha: 1))
-        if let url = Bundle.main.url(forResource: "sun", withExtension: "jpg", subdirectory: "Globes"), let t = try? TextureResource.load(contentsOf: url) {
-            sunMaterial.color = .init(tint: .white, texture: .init(t))
-        }
+        let sunMaterial = UnlitMaterial(color: UIColor(red: 1, green: 0.86, blue: 0.5, alpha: 1))
         e.sun.model = ModelComponent(mesh: .generateSphere(radius: 1), materials: [sunMaterial])
         e.root.addChild(e.sun)
         // Glow: nested translucent shells, fainter outward.
@@ -404,12 +401,8 @@ struct SolarSystem3DView: View {
         spheres += SolarMoon.all.map { ($0.id, $0.color, 0) }
         for s in spheres {
             let body = ModelEntity()
-            var m = UnlitMaterial()
-            if let url = GlobeView.mapURL(s.id), let texture = try? TextureResource.load(contentsOf: url) {
-                m.color = .init(texture: .init(texture))
-            } else {
-                m.color = .init(tint: UIColor(Color(hex: s.color) ?? .gray))
-            }
+            // Plain colour first; the map, if there is one, is swapped in once it has loaded.
+            let m = UnlitMaterial(color: UIColor(Color(hex: s.color) ?? .gray))
             body.model = ModelComponent(mesh: .generateSphere(radius: 1), materials: [m])
             body.orientation = simd_quatf(angle: Float(s.tilt * .pi / 180), axis: [1, 0, 0])
             if s.id == "saturn" { body.addChild(Self.annulus(inner: 1.24, outer: 2.27, color: UIColor(red: 0.85, green: 0.78, blue: 0.62, alpha: 0.7))) }
@@ -460,6 +453,24 @@ struct SolarSystem3DView: View {
         }
         e.bodies["earth"]?.addChild(e.aurora)
         place()
+        loadTextures()
+    }
+
+    /// Loads surface maps off the main thread (about 0.6 s for all of them) and applies each as it arrives.
+    private func loadTextures() {
+        let e = entities
+        var jobs: [(entity: ModelEntity, url: URL, tint: UIColor)] = e.bodies.compactMap { id, entity in
+            GlobeView.mapURL(id).map { (entity, $0, .white) }
+        }
+        if let sun = Bundle.main.url(forResource: "sun", withExtension: "jpg", subdirectory: "Globes") { jobs.append((e.sun, sun, .white)) }
+        for job in jobs {
+            Task {
+                guard let texture = try? await TextureResource(contentsOf: job.url) else { return }
+                var m = UnlitMaterial()
+                m.color = .init(tint: job.tint, texture: .init(texture))
+                job.entity.model?.materials = [m]
+            }
+        }
     }
 
     /// Moves everything for the current date, scale, layers and camera.

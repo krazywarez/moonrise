@@ -137,14 +137,37 @@ public enum Library {
 
     /// Case- and diacritic-insensitive match on title and subtitle first, then facts and essay.
     public static func search(_ query: String) -> [LibraryPage] {
-        let q = query.trimmingCharacters(in: .whitespaces)
+        let q = fold(query.trimmingCharacters(in: .whitespaces))
         guard !q.isEmpty else { return [] }
-        let opts: String.CompareOptions = [.caseInsensitive, .diacriticInsensitive]
-        let strong = pages.filter { $0.title.range(of: q, options: opts) != nil || $0.subtitle.range(of: q, options: opts) != nil || $0.id == q.lowercased() }
-        let weak = pages.filter { p in
-            !strong.contains(p) && (p.essay.range(of: q, options: opts) != nil || p.facts.contains { $0.value.range(of: q, options: opts) != nil })
+        var strong: [LibraryPage] = [], weak: [LibraryPage] = []
+        for entry in searchIndex {
+            if entry.head.contains(q) || entry.page.id == q { strong.append(entry.page) } else if entry.body.contains(q) { weak.append(entry.page) }
         }
         return strong + weak
+    }
+
+    /// Lowercased, diacritic-free text per page, built once: title and subtitle, then essay and facts.
+    private static let searchIndex: [(page: LibraryPage, head: String, body: String)] = pages.map { p in
+        (p, fold(p.title + "\n" + p.subtitle), fold(p.essay + "\n" + p.facts.map(\.value).joined(separator: "\n")))
+    }
+
+    static func fold(_ s: String) -> String {
+        s.folding(options: [.caseInsensitive, .diacriticInsensitive], locale: nil)
+    }
+
+    private static let relatedLock = NSLock()
+    nonisolated(unsafe) private static var relatedCache: [String: [LibraryPage]] = [:]
+
+    /// `page.related()` computed once per page.
+    static func cachedRelated(_ page: LibraryPage, compute: () -> [LibraryPage]) -> [LibraryPage] {
+        relatedLock.lock()
+        if let hit = relatedCache[page.id] { relatedLock.unlock(); return hit }
+        relatedLock.unlock()
+        let value = compute()
+        relatedLock.lock()
+        relatedCache[page.id] = value
+        relatedLock.unlock()
+        return value
     }
 }
 
@@ -153,6 +176,10 @@ extension LibraryPage {
     /// A title also matches by its part before a dash or bracket ("Cassini" for "Cassini–Huygens").
     /// Titles shorter than five characters ("Sun", "Moon", "Io") only count when they are mentioned here.
     public func related(limit: Int = 10) -> [LibraryPage] {
+        Library.cachedRelated(self) { uncachedRelated(limit: limit) }
+    }
+
+    private func uncachedRelated(limit: Int) -> [LibraryPage] {
         func mentions(_ text: String, _ title: String) -> Bool {
             var search = text.startIndex..<text.endIndex
             while let r = text.range(of: title, range: search) {
