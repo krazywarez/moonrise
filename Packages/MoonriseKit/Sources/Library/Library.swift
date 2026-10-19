@@ -147,3 +147,35 @@ public enum Library {
         return strong + weak
     }
 }
+
+extension LibraryPage {
+    /// Pages named in this page's facts, then in its essay, then pages that mention this one, up to `limit`.
+    /// A title also matches by its part before a dash or bracket ("Cassini" for "Cassini–Huygens").
+    /// Titles shorter than five characters ("Sun", "Moon", "Io") only count when they are mentioned here.
+    public func related(limit: Int = 10) -> [LibraryPage] {
+        func mentions(_ text: String, _ title: String) -> Bool {
+            var search = text.startIndex..<text.endIndex
+            while let r = text.range(of: title, range: search) {
+                let before = r.lowerBound == text.startIndex ? nil : text[text.index(before: r.lowerBound)]
+                let after = r.upperBound == text.endIndex ? nil : text[r.upperBound]
+                if !(before?.isLetter ?? false), !(after?.isLetter ?? false) { return true }
+                search = r.upperBound..<text.endIndex
+            }
+            return false
+        }
+        func names(_ title: String) -> [String] {
+            let short = title.components(separatedBy: CharacterSet(charactersIn: "–(")).first!.trimmingCharacters(in: .whitespaces)
+            return short.count >= 5 && short != title ? [title, short] : [title]
+        }
+        let others = Library.pages.filter { $0.id != id }
+        let factText = facts.map(\.value).joined(separator: " ")
+        let values = Set(facts.map(\.value))
+        let inFacts = others.filter { p in names(p.title).contains { mentions(factText, $0) } }
+            .sorted { values.contains($0.title) && !values.contains($1.title) }
+        let inEssay = others.filter { p in !inFacts.contains(p) && names(p.title).contains { mentions(essay, $0) } }
+        let mentioned = inFacts + inEssay
+        let mine = names(title).filter { $0.count >= 5 }
+        let mentioning = others.filter { p in !mentioned.contains(p) && mine.contains { mentions(p.essay, $0) } }
+        return Array((mentioned + mentioning).prefix(limit))
+    }
+}

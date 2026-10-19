@@ -67,51 +67,9 @@ struct PageDrawing: View {
     // MARK: Constellations
 
     private var constellation: some View {
-        let lines = Catalog.constellations.first { $0.id == page.link.constellation }?.lines ?? []
-        let byHR = Dictionary(uniqueKeysWithValues: Catalog.stars.map { ($0.hr, $0) })
-        let stars = Set(lines.joined()).compactMap { byHR[$0] }
-        return Canvas { context, size in
-            guard !stars.isEmpty else { return }
-            // Gnomonic projection about the figure's centre.
-            func unit(_ s: Star) -> SIMD3<Double> {
-                let ra = s.ra * .pi / 180, dec = s.dec * .pi / 180
-                return SIMD3(cos(dec) * cos(ra), cos(dec) * sin(ra), sin(dec))
-            }
-            var c = stars.map(unit).reduce(SIMD3<Double>(repeating: 0), +)
-            c /= (c * c).sum().squareRoot()
-            let e0 = SIMD3(-c.y, c.x, 0)
-            let east = simd_length(e0) < 1e-6 ? SIMD3<Double>(0, 1, 0) : simd_normalize(e0)
-            let north = SIMD3(c.y * east.z - c.z * east.y, c.z * east.x - c.x * east.z, c.x * east.y - c.y * east.x)
-            func plane(_ s: Star) -> SIMD2<Double> {
-                let v = unit(s), k = (v * c).sum()
-                // East to the left, as on the sky.
-                return SIMD2(-(v * east).sum() / k, (v * north).sum() / k)
-            }
-            let pts = Dictionary(uniqueKeysWithValues: stars.map { ($0.hr, plane($0)) })
-            let xs = pts.values.map(\.x), ys = pts.values.map(\.y)
-            let span = max(xs.max()! - xs.min()!, ys.max()! - ys.min()!, 1e-6)
-            let scale = (min(size.width, size.height) - 24) / span
-            let mid = SIMD2((xs.max()! + xs.min()!) / 2, (ys.max()! + ys.min()!) / 2)
-            func point(_ hr: Int) -> CGPoint? {
-                pts[hr].map { CGPoint(x: size.width / 2 + ($0.x - mid.x) * scale, y: size.height / 2 - ($0.y - mid.y) * scale) }
-            }
-            var path = Path()
-            for line in lines {
-                for (a, b) in zip(line, line.dropFirst()) {
-                    guard let pa = point(a), let pb = point(b) else { continue }
-                    path.move(to: pa)
-                    path.addLine(to: pb)
-                }
-            }
-            context.stroke(path, with: .color(ink.opacity(0.45)), lineWidth: 0.8)
-            for s in stars {
-                guard let p = point(s.hr) else { continue }
-                let r = max(1.2, 4.2 - 0.6 * s.magnitude)
-                context.fill(Path(ellipseIn: CGRect(x: p.x - r, y: p.y - r, width: 2 * r, height: 2 * r)), with: .color(ink))
-            }
-        }
-        .frame(height: 240)
-        .accessibilityLabel("Figure of \(page.title)")
+        ConstellationFigure(id: page.link.constellation, ink: ink)
+            .frame(height: 240)
+            .accessibilityLabel("Figure of \(page.title)")
     }
 
     // MARK: Stars
@@ -225,6 +183,58 @@ struct PageDrawing: View {
                 .background(d.status == "active" ? ink : ink.opacity(0.15), in: .rect(cornerRadius: 2))
             if let launch = d.launch { Text("Launched \(launch)").font(.footnote.monospacedDigit()) }
             Spacer()
+        }
+    }
+}
+
+/// A constellation's IAU figure, drawn to fit the view (gnomonic projection about its centre).
+struct ConstellationFigure: View {
+    var id: String?
+    var ink: Color
+
+    var body: some View {
+        let lines = Catalog.constellations.first { $0.id == id }?.lines ?? []
+        let byHR = Dictionary(uniqueKeysWithValues: Catalog.stars.map { ($0.hr, $0) })
+        let stars = Set(lines.joined()).compactMap { byHR[$0] }
+        Canvas { context, size in
+            guard !stars.isEmpty else { return }
+            // Gnomonic projection about the figure's centre.
+            func unit(_ s: Star) -> SIMD3<Double> {
+                let ra = s.ra * .pi / 180, dec = s.dec * .pi / 180
+                return SIMD3(cos(dec) * cos(ra), cos(dec) * sin(ra), sin(dec))
+            }
+            var c = stars.map(unit).reduce(SIMD3<Double>(repeating: 0), +)
+            c /= (c * c).sum().squareRoot()
+            let e0 = SIMD3(-c.y, c.x, 0)
+            let east = simd_length(e0) < 1e-6 ? SIMD3<Double>(0, 1, 0) : simd_normalize(e0)
+            let north = SIMD3(c.y * east.z - c.z * east.y, c.z * east.x - c.x * east.z, c.x * east.y - c.y * east.x)
+            func plane(_ s: Star) -> SIMD2<Double> {
+                let v = unit(s), k = (v * c).sum()
+                // East to the left, as on the sky.
+                return SIMD2(-(v * east).sum() / k, (v * north).sum() / k)
+            }
+            let pts = Dictionary(uniqueKeysWithValues: stars.map { ($0.hr, plane($0)) })
+            let xs = pts.values.map(\.x), ys = pts.values.map(\.y)
+            let span = max(xs.max()! - xs.min()!, ys.max()! - ys.min()!, 1e-6)
+            let scale = (min(size.width, size.height) - 24) / span
+            let mid = SIMD2((xs.max()! + xs.min()!) / 2, (ys.max()! + ys.min()!) / 2)
+            func point(_ hr: Int) -> CGPoint? {
+                pts[hr].map { CGPoint(x: size.width / 2 + ($0.x - mid.x) * scale, y: size.height / 2 - ($0.y - mid.y) * scale) }
+            }
+            var path = Path()
+            for line in lines {
+                for (a, b) in zip(line, line.dropFirst()) {
+                    guard let pa = point(a), let pb = point(b) else { continue }
+                    path.move(to: pa)
+                    path.addLine(to: pb)
+                }
+            }
+            context.stroke(path, with: .color(ink.opacity(0.45)), lineWidth: 0.8)
+            for s in stars {
+                guard let p = point(s.hr) else { continue }
+                let r = max(1.2, 4.2 - 0.6 * s.magnitude)
+                context.fill(Path(ellipseIn: CGRect(x: p.x - r, y: p.y - r, width: 2 * r, height: 2 * r)), with: .color(ink))
+            }
         }
     }
 }

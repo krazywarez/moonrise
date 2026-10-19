@@ -103,3 +103,13 @@ func linksPointAtThingsTheAppKnows(_ p: LibraryPage) {
         for c in s.chapters.dropFirst() { #expect(craftData.position(at: c.day) != nil, "\(s.page) \(c.date)") }
     }
 }
+
+@Test func relatedPages() throws {
+    let saturn = try #require(Library.page(id: "saturn"))
+    let related = saturn.related().map(\.id)
+    #expect(related.contains("titan"))
+    #expect(related.contains("cassini-huygens"))
+    #expect(!related.contains("saturn"))
+    #expect(related.count <= 10)
+    #expect(Library.page(id: "europa")!.related().first?.id == "jupiter")
+}
