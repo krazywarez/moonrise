@@ -15,6 +15,22 @@ struct ScaleScreen: View {
 
     private var width: Double { pow(10, exponent) }
 
+    /// Zooms by a factor of ten per tap, snapping to the nearest whole power of ten first.
+    private func zoomButton(_ symbol: String, _ label: String, by step: Double) -> some View {
+        Button {
+            withAnimation(.easeInOut(duration: 0.35)) {
+                let snapped = step < 0 ? ceil(exponent) - 1 : floor(exponent) + 1
+                exponent = min(max(snapped, range.lowerBound), range.upperBound)
+            }
+        } label: {
+            Image(systemName: symbol).font(.title3).frame(width: 48, height: 48)
+                .background(ink.opacity(0.1), in: Circle())
+        }
+        .buttonStyle(.plain)
+        .accessibilityLabel(label)
+        .disabled(step < 0 ? exponent <= range.lowerBound : exponent >= range.upperBound)
+    }
+
     /// The width to two significant figures, for the label.
     private var roundedWidth: Double {
         let p = pow(10, floor(exponent) - 1)
@@ -41,7 +57,7 @@ struct ScaleScreen: View {
                                 selected = o.page.flatMap { Library.page(id: $0) }
                             } label: {
                                 VStack(spacing: 6) {
-                                    Circle().fill(o.page == nil ? ink.opacity(0.18) : ink.opacity(0.55))
+                                    Circle().fill(o.page == nil ? ink.opacity(0.18) : (Color(hex: o.page.flatMap { Library.page(id: $0) }?.drawing?.color) ?? ink.opacity(0.55)))
                                         .overlay(Circle().stroke(ink.opacity(0.5), lineWidth: 0.5))
                                         .frame(width: d, height: d)
                                     Text(o.name).font(.caption2).lineLimit(1)
@@ -67,13 +83,13 @@ struct ScaleScreen: View {
                     exponent = min(max(pinchStart! - log10(g.magnification), range.lowerBound), range.upperBound)
                 }
                 .onEnded { _ in pinchStart = nil })
-            Slider(value: $exponent, in: range) { Text("Width shown") } minimumValueLabel: {
-                Image(systemName: "plus.magnifyingglass")
-            } maximumValueLabel: {
-                Image(systemName: "minus.magnifyingglass")
+            HStack(spacing: 12) {
+                zoomButton("plus.magnifyingglass", "Zoom in", by: -1)
+                Slider(value: $exponent, in: range) { Text("Width shown") }
+                    .accessibilityValue(Library.formatSize(roundedWidth))
+                zoomButton("minus.magnifyingglass", "Zoom out", by: 1)
             }
-            .accessibilityValue(Library.formatSize(roundedWidth))
-            Text("The slider spans 300 m to the observable universe; each tenth of it is a factor of ten. Pinch to zoom. Objects without a Library page are drawn faint.")
+            Text("Each tap of + or − is a factor of ten. You can also drag the slider or pinch. Objects without a Library page are drawn faint.")
                 .font(.caption2).dimmed(0.5)
         }
         .padding(20)
