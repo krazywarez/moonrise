@@ -9,7 +9,6 @@ enum InAppBrowser {
     static let action = OpenURLAction { url in
         guard url.scheme == "https" || url.scheme == "http", let top = topViewController() else { return .systemAction }
         let safari = SFSafariViewController(url: url)
-        safari.preferredControlTintColor = UIColor(red: 0.88, green: 0.24, blue: 0.19, alpha: 1)
         safari.dismissButtonStyle = .done
         top.present(safari, animated: true)
         return .handled

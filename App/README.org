@@ -15,3 +15,17 @@ subsystem =sh.krz.moonrise=.
 Backend: both configurations use https://moonrise-server.audit-labs.workers.dev
 (=MOONRISE_API_URL= in =project.yml=). For a local Worker, set it to
 =http://localhost:8787= and regenerate.
+
+* Release
+
+#+begin_src sh
+scripts/release-ios.sh
+#+end_src
+
+Run from a clean =main=. It regenerates the project, archives the iPhone
+app with its widgets and the Watch app, and uploads it to App Store
+Connect, signed through the Apple ID in Xcode. The version is
+=MARKETING_VERSION= in =project.yml=; the build number is
+=git rev-list --count HEAD=, so each build maps to a commit.
+=MOONRISE_PUBLISH=0= exports the =.ipa= to =.build/ios-release= without
+uploading. The visionOS app is a separate product and is not uploaded.
