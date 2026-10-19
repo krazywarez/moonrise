@@ -178,7 +178,12 @@ struct LibraryScreen: View {
         }
         if !Library.pages(in: .rockets).isEmpty {
             ExploreCard(title: "Rockets to scale", subtitle: "\(Library.pages(in: .rockets).count) rockets side by side", symbol: "chart.bar.xaxis", tint: Color(red: 0.2, green: 0.1, blue: 0.08)) {
-                ScrollView { RocketLineup(highlight: nil, ink: ink, accent: accent).frame(height: 420).padding(.vertical, 20) }
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Every rocket in the Library at the same scale, shortest to tallest. Scroll sideways; tap one to read about it.")
+                        .font(.subheadline).dimmed(0.75).padding(.horizontal, 20)
+                    RocketLineup(highlight: nil, ink: ink, accent: accent)
+                }
+                .padding(.vertical, 12)
                     .background(Color.black.ignoresSafeArea())
                     .navigationTitle("Rockets to scale")
             }
