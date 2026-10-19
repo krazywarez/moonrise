@@ -94,7 +94,7 @@ struct SkyScreen: View {
                 .preferredColorScheme(.dark)
         }
         .sheet(isPresented: $showTours) {
-            TourPicker { tour = $0; tourStep = 0; aim(at: $0.steps[0].target) }.preferredColorScheme(.dark).tint(.blue)
+            TourPicker { tour = $0; tourStep = 0; aim(at: $0.steps[0].target) }.preferredColorScheme(.dark)
         }
         .onChange(of: tourStep) { if let tour { aim(at: tour.steps[tourStep].target) } }
         .sheet(isPresented: $showYear) {

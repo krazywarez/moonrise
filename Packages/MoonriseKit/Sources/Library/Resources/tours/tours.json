@@ -1,7 +1,7 @@
 [
   {
     "id": "winter",
-    "title": "December to February evenings",
+    "title": "Dec–Feb evenings",
     "months": [
       12,
       1,
@@ -70,7 +70,7 @@
   },
   {
     "id": "spring",
-    "title": "March to May evenings",
+    "title": "Mar–May evenings",
     "months": [
       3,
       4,
@@ -117,7 +117,7 @@
   },
   {
     "id": "summer",
-    "title": "June to August evenings",
+    "title": "Jun–Aug evenings",
     "months": [
       6,
       7,
@@ -171,7 +171,7 @@
   },
   {
     "id": "autumn",
-    "title": "September to November evenings",
+    "title": "Sep–Nov evenings",
     "months": [
       9,
       10,
