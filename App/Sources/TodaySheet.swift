@@ -99,6 +99,9 @@ struct TodaySheet: View {
                             .font(.footnote.monospacedDigit()).dimmed(0.8)
                     }
                     .accessibilityElement(children: .combine)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.trailing, 44)
+                    .overlay(alignment: .trailing) { PassFollowButton(pass: p) }
                 }
                 let others = alsoVisible
                 if !others.isEmpty {

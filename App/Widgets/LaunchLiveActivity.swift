@@ -8,26 +8,8 @@ struct LaunchLiveActivity: Widget {
 
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: LaunchActivityAttributes.self) { context in
-            HStack(alignment: .center, spacing: 12) {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(context.attributes.rocket).font(.system(size: 17, weight: .medium))
-                    Text(context.attributes.mission).font(.system(size: 13)).lineLimit(1).opacity(0.8)
-                    Text(context.attributes.location).font(.system(size: 11)).lineLimit(1).opacity(0.6)
-                }
-                Spacer()
-                VStack(alignment: .trailing, spacing: 2) {
-                    Text(context.state.status.uppercased()).font(.system(size: 10, weight: .medium)).tracking(0.6)
-                        .foregroundStyle(context.state.status == "Hold" ? accent : ink)
-                    HStack(spacing: 2) {
-                        Text(context.state.net > .now ? "T−" : "T+")
-                        countdown(context.state.net)
-                    }
-                    .font(.system(size: 22, weight: .medium).monospacedDigit())
-                }
-            }
-            .padding(16)
-            .foregroundStyle(ink)
-            .activityBackgroundTint(Color(red: 0.043, green: 0.078, blue: 0.141))
+            LaunchActivityView(context: context, ink: ink, accent: accent)
+                .foregroundStyle(ink)
         } dynamicIsland: { context in
             DynamicIsland {
                 DynamicIslandExpandedRegion(.leading) {
@@ -40,17 +22,82 @@ struct LaunchLiveActivity: Widget {
                     Text(context.attributes.mission).font(.system(size: 12)).lineLimit(1).opacity(0.8)
                 }
             } compactLeading: {
-                Text("T−").font(.system(size: 12, weight: .medium))
+                IslandWidth {
+                    Text("T−").font(.system(size: 12, weight: .medium))
+                } limited: {
+                    Image(systemName: "arrow.up").foregroundStyle(context.state.status == "Hold" ? accent : ink)
+                }
             } compactTrailing: {
-                countdown(context.state.net).font(.system(size: 12).monospacedDigit()).frame(maxWidth: 64)
+                IslandWidth {
+                    liveTimer(context.state.net).font(.system(size: 12).monospacedDigit())
+                } limited: {
+                    if context.state.status == "Hold" {
+                        Text("HOLD").font(.system(size: 12, weight: .medium)).foregroundStyle(accent)
+                    } else {
+                        liveTimer(context.state.net).font(.system(size: 12).monospacedDigit())
+                    }
+                }
             } minimal: {
                 Image(systemName: "arrow.up")
             }
         }
+        .supplementalActivityFamilies([.small])
+    }
+}
+
+private struct LaunchActivityView: View {
+    @Environment(\.activityFamily) private var family
+    @Environment(\.isActivityFullscreen) private var fullscreen
+    var context: ActivityViewContext<LaunchActivityAttributes>
+    var ink: Color
+    var accent: Color
+
+    var body: some View {
+        Group {
+            if family == .small { small } else { medium }
+        }
+        // StandBy: black, to blend with the clock face.
+        .activityBackgroundTint(fullscreen ? .black : Color(red: 0.043, green: 0.078, blue: 0.141))
     }
 
-    /// Counts down to T-0, then shows elapsed time.
-    private func countdown(_ net: Date) -> Text {
-        net > .now ? Text(timerInterval: Date.now...net, countsDown: true) : Text(net, style: .timer)
+    /// Apple Watch Smart Stack and CarPlay.
+    private var small: some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text(context.attributes.rocket).font(.system(size: 13, weight: .medium)).lineLimit(1)
+            HStack(spacing: 2) {
+                Text(context.state.net > .now ? "T−" : "T+")
+                liveTimer(context.state.net)
+            }
+            .font(.system(size: 17, weight: .medium).monospacedDigit())
+            .foregroundStyle(context.state.status == "Hold" ? accent : ink)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(12)
     }
+
+    private var medium: some View {
+        HStack(alignment: .center, spacing: 12) {
+            VStack(alignment: .leading, spacing: 2) {
+                Text(context.attributes.rocket).font(.system(size: 17, weight: .medium))
+                Text(context.attributes.mission).font(.system(size: 13)).lineLimit(1).opacity(0.8)
+                Text(context.attributes.location).font(.system(size: 11)).lineLimit(1).opacity(0.6)
+            }
+            Spacer()
+            VStack(alignment: .trailing, spacing: 2) {
+                Text(context.state.status.uppercased()).font(.system(size: 10, weight: .medium)).tracking(0.6)
+                    .foregroundStyle(context.state.status == "Hold" ? accent : ink)
+                HStack(spacing: 2) {
+                    Text(context.state.net > .now ? "T−" : "T+")
+                    countdown(context.state.net)
+                }
+                .font(.system(size: 22, weight: .medium).monospacedDigit())
+            }
+        }
+        .padding(16)
+    }
+}
+
+/// Counts down to T-0, then shows elapsed time.
+private func countdown(_ net: Date) -> Text {
+    net > .now ? Text(timerInterval: Date.now...net, countsDown: true) : Text(net, style: .timer)
 }

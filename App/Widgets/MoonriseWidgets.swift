@@ -13,6 +13,7 @@ struct MoonriseWidgets: WidgetBundle {
         LaunchLiveActivity()
         EventLiveActivity()
         EclipseLiveActivity()
+        PassLiveActivity()
         #endif
     }
 }

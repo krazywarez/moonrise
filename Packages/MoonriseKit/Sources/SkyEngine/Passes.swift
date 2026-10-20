@@ -24,6 +24,13 @@ public struct SatellitePass: Sendable, Identifiable, Equatable {
         default: name.replacingOccurrences(of: " R/B", with: " rocket body")
         }
     }
+
+    /// When a Lock Screen activity for this pass starts: 10 minutes before rise, or `now` if that has passed.
+    /// Nil once the pass has set, or when rise is more than a day away and the elements will have drifted.
+    public func activityStart(now: Date) -> Date? {
+        guard set > now, rise.timeIntervalSince(now) <= 86_400 else { return nil }
+        return max(now, rise.addingTimeInterval(-600))
+    }
 }
 
 extension OrbitalElements {
@@ -33,6 +40,11 @@ extension OrbitalElements {
 }
 
 extension SkyEngine {
+    /// Eight-point compass direction for an azimuth in degrees.
+    public static func compass(_ azimuth: Double) -> String {
+        ["N", "NE", "E", "SE", "S", "SW", "W", "NW"][Int(((azimuth + 22.5) / 45).rounded(.down)) % 8]
+    }
+
     /// Greenwich mean sidereal time in radians (IAU 1982, as used with SGP4's TEME frame).
     static func gmst(_ date: Date) -> Double {
         let jd = date.timeIntervalSince1970 / 86_400 + 2_440_587.5
