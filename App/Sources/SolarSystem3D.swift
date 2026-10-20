@@ -140,26 +140,13 @@ struct SolarWeather: Equatable {
     var kp: Double?
     /// Strongest X-ray flux in the last three hours and when it peaked.
     var flare: (flux: Double, time: Date)?
+    /// From `SunFeeds.summary`, the same text as the Sun tab.
+    var summary: String?
 
-    static func == (a: SolarWeather, b: SolarWeather) -> Bool { a.kp == b.kp && a.flare?.flux == b.flare?.flux }
+    static func == (a: SolarWeather, b: SolarWeather) -> Bool { a.kp == b.kp && a.flare?.flux == b.flare?.flux && a.summary == b.summary }
 
     var showsFlare: Bool { (flare?.flux ?? 0) >= 1e-5 }
     var showsAurora: Bool { (kp ?? 0) >= 4 }
-
-    var summary: String {
-        var parts: [String] = []
-        if let f = flare {
-            parts.append(showsFlare
-                ? "\(XRay.flareClass(f.flux)) solar flare at \(f.time.formatted(date: .omitted, time: .shortened))"
-                : "No large flares in the last 3 h (peak \(XRay.flareClass(f.flux)))")
-        }
-        if let kp {
-            parts.append(showsAurora
-                ? String(format: "Kp %.1f: aurora ring around Earth's poles", kp)
-                : String(format: "Kp %.1f: geomagnetic field quiet", kp))
-        }
-        return parts.isEmpty ? "Loading space weather" : parts.joined(separator: " · ")
-    }
 }
 
 /// Which optional layers are drawn.
@@ -285,7 +272,7 @@ struct SolarSystem3DView: View {
             let when = abs(d) < 1 ? "peak today" : d > 0 ? "peak in \(Int(d.rounded())) days" : "peaked \(Int((-d).rounded())) days ago"
             lines.append("\(s.name) \(when): Earth is crossing debris from \(parent.name).")
         }
-        lines.append(live ? weather.summary : "Live space weather is shown only for today.")
+        lines.append(live ? weather.summary ?? "Loading space weather" : "Live space weather is shown only for today.")
         return lines.joined(separator: "\n")
     }
 
@@ -926,12 +913,13 @@ struct SolarSystem3DView: View {
     private func loadWeather() async {
         while !Task.isCancelled {
             async let kp = try? SpaceWeather.fetch()
-            async let xray = try? XRay.fetch()
-            let (k, x) = await (kp, xray)
+            async let sun = SunFeeds.load(force: false)
+            let (k, s) = await (kp, sun)
             var w = SolarWeather(kp: k?.kpNow)
-            if let samples = x {
-                let recent = samples.filter { $0.time > .now.addingTimeInterval(-3 * 3600) }
+            if let s {
+                let recent = s.snapshot.xray.filter { $0.time > .now.addingTimeInterval(-3 * 3600) }
                 if let peak = recent.max(by: { $0.flux < $1.flux }) { w.flare = (peak.flux, peak.time) }
+                w.summary = SunFeeds.summary(s.snapshot).map { s.complete ? $0 : "\($0) (\(SunFeeds.source(s.snapshot)))" }
             }
             #if DEBUG
             if UserDefaults.standard.bool(forKey: "debugSolarEvents") { w.kp = 6.3; w.flare = (2.4e-5, .now) }

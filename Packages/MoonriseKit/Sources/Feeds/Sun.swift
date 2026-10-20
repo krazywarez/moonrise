@@ -37,7 +37,7 @@ public enum SolarImage: String, CaseIterable, Sendable, Identifiable {
 }
 
 /// Three-hour planetary Kp, observed and predicted (SWPC 3-day forecast product).
-public struct KpBar: Sendable, Equatable, Identifiable {
+public struct KpBar: Sendable, Equatable, Identifiable, Codable {
     public var start: Date
     public var kp: Double
     public var predicted: Bool
@@ -57,7 +57,7 @@ extension SpaceWeather {
 }
 
 /// GOES long-channel (0.1–0.8 nm) X-ray flux, which defines flare classes.
-public struct XRaySample: Sendable, Equatable, Identifiable {
+public struct XRaySample: Sendable, Equatable, Identifiable, Codable {
     public var time: Date
     /// W/m².
     public var flux: Double
@@ -96,8 +96,8 @@ public enum XRay {
 }
 
 /// NOAA SWPC OVATION aurora model: probability of visible aurora (0–100) on a 1° grid.
-public struct Ovation: Sendable {
-    public struct Cell: Sendable, Equatable {
+public struct Ovation: Sendable, Equatable, Codable {
+    public struct Cell: Sendable, Equatable, Codable {
         public var lon: Double
         public var lat: Double
         public var probability: Double
