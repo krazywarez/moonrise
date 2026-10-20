@@ -10,7 +10,14 @@ struct EclipseScreen: View {
     @State private var path: EclipsePath?
     @State private var local: LocalEclipse?
     @State private var loaded = false
+    @State private var location = EclipseLocation()
+    /// Time zone at the site, from Apple Maps; times are also given in UTC, and only in UTC when this is unknown.
+    @State private var zone: TimeZone?
+    @AppStorage(SettingsKey.locationMode) private var locationMode = "current"
     @Environment(\.dismiss) private var dismiss
+
+    /// The latest precise fix, or the place the screen was opened for (a chosen city, or the last coarse fix).
+    private var site: Observer { locationMode == "city" ? observer : location.fix?.observer ?? observer }
 
     private let ink = Color(red: 0.95, green: 0.95, blue: 0.93)
     private let accent = Color(red: 0.88, green: 0.24, blue: 0.19)
@@ -20,7 +27,7 @@ struct EclipseScreen: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
                     if let path {
-                        EclipseMap(path: path, observer: observer, ink: ink, accent: accent)
+                        EclipseMap(path: path, observer: site, ink: ink, accent: accent)
                             .aspectRatio(1.6, contentMode: .fit)
                             .accessibilityLabel("Map of the path of the eclipse")
                         facts(path)
@@ -41,17 +48,26 @@ struct EclipseScreen: View {
             .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done") { dismiss() } } }
         }
         .task {
-            let date = date, observer = observer
-            (path, local) = await Task.detached { (EclipsePath.compute(near: date), LocalEclipse.at(observer, near: date)) }.value
+            let date = date
+            path = await Task.detached { EclipsePath.compute(near: date) }.value
             loaded = true
         }
+        .task(id: site) {
+            let date = date, site = site
+            local = await Task.detached { LocalEclipse.at(site, near: date) }.value
+        }
+        .task(id: [(site.latitude * 10).rounded(), (site.longitude * 10).rounded()]) {
+            if let z = await EclipseLocation.timeZone(at: site) { zone = z }
+        }
+        .onAppear { if locationMode != "city" { location.start() } }
+        .onDisappear { location.stop() }
     }
 
     private func facts(_ p: EclipsePath) -> some View {
         let middle = p.points.min { abs($0.date.timeIntervalSince(p.peak)) < abs($1.date.timeIntervalSince(p.peak)) }
         var rows: [(String, String)] = [
-            ("Date", p.peak.formatted(date: .long, time: .omitted)),
-            ("Greatest eclipse", "\(p.peak.formatted(date: .omitted, time: .shortened)) at \(latLon(p.greatest))"),
+            ("Date", p.peak.formatted(Date.FormatStyle(date: .long, time: .omitted, timeZone: .gmt))),
+            ("Greatest eclipse", "\(p.peak.formatted(Date.FormatStyle(date: .omitted, time: .shortened, timeZone: .gmt))) UTC at \(latLon(p.greatest))"),
         ]
         if let d = p.centralDuration { rows.append(("\(p.kind == "Total" ? "Totality" : "Annularity") there", minutes(d))) }
         if let m = middle { rows.append(("Path width there", "\(Int(m.widthKm.rounded())) km")) }
@@ -65,18 +81,33 @@ struct EclipseScreen: View {
     @ViewBuilder
     private var here: some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text("From \(placeName)").font(.caption2.weight(.medium)).textCase(.uppercase).tracking(0.8).dimmed(0.6)
+            Text(placeLabel).font(.caption2.weight(.medium)).textCase(.uppercase).tracking(0.8).dimmed(0.6)
             if let l = local {
                 let central = l.kind == "Total" ? "Totality" : "Annular phase"
+                let zones = [zone, .gmt].compactMap { $0 }
                 Grid(alignment: .leading, horizontalSpacing: 16, verticalSpacing: 6) {
-                    GridRow { Text("Begins").dimmed(0.7); Text(time(l.partialBegin)) }
-                    if let b = l.centralBegin, let e = l.centralEnd {
-                        GridRow { Text(central).dimmed(0.7); Text("\(time(b))–\(time(e)), \(minutes(e.timeIntervalSince(b)))") }
+                    GridRow {
+                        Text("")
+                        if let zone { Text("Local, \(utcOffset(zone, at: l.peak))").dimmed(0.6) }
+                        Text("UTC").dimmed(0.6)
                     }
-                    GridRow { Text("Maximum").dimmed(0.7); Text("\(time(l.peak)), \(Int((l.obscuration * 100).rounded()))% of the Sun covered") }
-                    GridRow { Text("Ends").dimmed(0.7); Text(time(l.partialEnd)) }
+                    .font(.caption)
+                    GridRow { Text("Begins").dimmed(0.7); ForEach(zones, id: \.self) { Text(time(l.partialBegin, $0)) } }
+                    if let b = l.centralBegin, let e = l.centralEnd {
+                        GridRow { Text("\(central) begins").dimmed(0.7); ForEach(zones, id: \.self) { Text(time(b, $0)) } }
+                        GridRow { Text("\(central) ends").dimmed(0.7); ForEach(zones, id: \.self) { Text(time(e, $0)) } }
+                    }
+                    GridRow { Text("Maximum").dimmed(0.7); ForEach(zones, id: \.self) { Text(time(l.peak, $0)) } }
+                    GridRow { Text("Ends").dimmed(0.7); ForEach(zones, id: \.self) { Text(time(l.partialEnd, $0)) } }
                 }
                 .font(.subheadline.monospacedDigit())
+                if let b = l.centralBegin, let e = l.centralEnd {
+                    Text("\(central) lasts \(minutes(e.timeIntervalSince(b))).").font(.subheadline)
+                }
+                Text("\(Int((l.obscuration * 100).rounded()))% of the Sun covered at maximum.").font(.subheadline)
+                if zone == nil {
+                    Text("Local time at this site needs a connection to look up, so times are in UTC.").font(.footnote).dimmed(0.7)
+                }
                 if l.peakAltitude < 10 {
                     Text("The Sun is low at maximum (\(Int(l.peakAltitude.rounded()))°). Find a clear horizon.").font(.footnote).dimmed(0.7)
                 }
@@ -88,7 +119,15 @@ struct EclipseScreen: View {
         }
     }
 
-    private func time(_ d: Date) -> String { d.formatted(date: .omitted, time: .standard) }
+    private var placeLabel: String {
+        if locationMode != "city", let fix = location.fix { return "From your location, ±\(Int(fix.accuracy.rounded())) m" }
+        return "From \(placeName)"
+    }
+
+    /// To the nearest second in `zone`.
+    private func time(_ d: Date, _ zone: TimeZone) -> String {
+        Date(timeIntervalSinceReferenceDate: d.timeIntervalSinceReferenceDate.rounded()).formatted(Date.FormatStyle(date: .omitted, time: .standard, timeZone: zone))
+    }
 
     private func minutes(_ s: TimeInterval) -> String { "\(Int(s) / 60) m \(Int(s) % 60) s" }
 

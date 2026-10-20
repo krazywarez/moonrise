@@ -71,8 +71,9 @@ public enum SkyEngine {
     static let lock = NSRecursiveLock()
 
     static func time(_ date: Date) -> astro_time_t {
+        DeltaT.installed
         // Days since J2000 (2000-01-01 12:00 UTC).
-        Astronomy_TimeFromDays((date.timeIntervalSince1970 - 946_728_000) / 86_400)
+        return Astronomy_TimeFromDays((date.timeIntervalSince1970 - 946_728_000) / 86_400)
     }
 
     static func check(_ status: astro_status_t) throws {

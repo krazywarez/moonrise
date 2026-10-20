@@ -141,14 +141,57 @@ public struct LocalEclipse: Sendable {
         guard abs(peak.timeIntervalSince(date)) < 6 * 3600 else { return nil }
         guard l.partial_begin.altitude > 0 || l.peak.altitude > 0 || l.partial_end.altitude > 0 else { return nil }
         let central = l.kind == ECLIPSE_TOTAL || l.kind == ECLIPSE_ANNULAR
+        let partial = { (s: Shadow) in s.p - s.r }, inner = { (s: Shadow) in abs(s.k) - s.r }
         return LocalEclipse(
             kind: SkyEngine.eclipseKind(l.kind), obscuration: l.obscuration,
-            partialBegin: SkyEngine.date(l.partial_begin.time),
-            centralBegin: central ? SkyEngine.date(l.total_begin.time) : nil,
+            partialBegin: refine(SkyEngine.date(l.partial_begin.time), observer, partial),
+            centralBegin: central ? refine(SkyEngine.date(l.total_begin.time), observer, inner) : nil,
             peak: peak,
-            centralEnd: central ? SkyEngine.date(l.total_end.time) : nil,
-            partialEnd: SkyEngine.date(l.partial_end.time),
+            centralEnd: central ? refine(SkyEngine.date(l.total_end.time), observer, inner) : nil,
+            partialEnd: refine(SkyEngine.date(l.partial_end.time), observer, partial),
             peakAltitude: l.peak.altitude
         )
+    }
+
+    /// Moon radii for the partial and total contacts, km: k = 0.2725076 and the smaller k = 0.272281 that NASA's
+    /// eclipse predictions use for totality to allow for valleys on the limb, times 6378.137 km.
+    /// Astronomy Engine uses 1737.4 km for both.
+    static let moonRadiusPartialKm = 1_738.09, moonRadiusTotalKm = 1_736.64
+
+    /// The Moon's shadow at the observer, as Astronomy Engine computes it for local eclipses: the observer's
+    /// distance from the shadow axis and the umbra and penumbra radii at the observer, km.
+    struct Shadow {
+        var r: Double
+        var k: Double
+        var p: Double
+    }
+
+    static func shadow(at date: Date, from observer: Observer) -> Shadow {
+        var t = SkyEngine.time(date)
+        let o = Astronomy_ObserverVector(&t, observer.astro, EQUATOR_J2000)
+        let s = Astronomy_GeoVector(BODY_SUN, t, ABERRATION)
+        let m = Astronomy_GeoMoon(t)
+        let target = SIMD3(o.x - m.x, o.y - m.y, o.z - m.z), dir = SIMD3(m.x - s.x, m.y - s.y, m.z - s.z)
+        let u = dot(dir, target) / dot(dir, dir)
+        let sun = EclipsePath.sunRadiusKm
+        return Shadow(
+            r: length(dir * u - target) * EclipsePath.kmPerAU,
+            k: sun - (1 + u) * (sun - moonRadiusTotalKm),
+            p: -sun + (1 + u) * (sun + moonRadiusPartialKm)
+        )
+    }
+
+    /// Moves a contact found to Astronomy Engine's 1 s search tolerance, with its single Moon radius, to the radii above,
+    /// to 0.05 s, by bisecting where `edge` changes sign.
+    static func refine(_ near: Date, _ observer: Observer, _ edge: (Shadow) -> Double) -> Date {
+        var a = near.addingTimeInterval(-5), b = near.addingTimeInterval(5)
+        var fa = edge(shadow(at: a, from: observer))
+        guard fa * edge(shadow(at: b, from: observer)) < 0 else { return near }
+        while b.timeIntervalSince(a) > 0.05 {
+            let mid = a.addingTimeInterval(b.timeIntervalSince(a) / 2)
+            let f = edge(shadow(at: mid, from: observer))
+            if (f < 0) == (fa < 0) { a = mid; fa = f } else { b = mid }
+        }
+        return a.addingTimeInterval(b.timeIntervalSince(a) / 2)
     }
 }
