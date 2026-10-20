@@ -16,6 +16,10 @@ public struct Tonight: Sendable {
     public var end: Date
     public var sunset: Date?
     public var sunrise: Date?
+    /// Astronomical dusk to dawn (Sun below −18°) within start...end; nil where it never gets that dark.
+    public var dark: DateInterval?
+    /// When the Moon is above the horizon within start...end.
+    public var moonUp: [DateInterval]
     public var moonIllumination: Double
     public var moonPhase: Double
     public var nextQuarter: (quarter: SkyEngine.MoonQuarter, date: Date)
@@ -34,6 +38,8 @@ public struct Tonight: Sendable {
         }
         sunrise = SkyEngine.riseSet(.sun, after: start, from: observer).rise
         end = sunrise ?? start.addingTimeInterval(12 * 3600)
+        dark = try SkyEngine.darkness(from: start, to: end, observer: observer)
+        moonUp = try SkyEngine.moonUp(from: start, to: end, observer: observer)
 
         moonIllumination = try SkyEngine.illumination(.moon, at: date).phaseFraction
         moonPhase = try SkyEngine.moonPhase(at: date)
@@ -57,5 +63,20 @@ public struct Tonight: Sendable {
             )
         }
         .sorted { ($0.best != nil ? 0 : 1, $0.magnitude) < ($1.best != nil ? 0 : 1, $1.magnitude) }
+    }
+
+    /// Moonrise and moonset during the night, if any.
+    public var moonrise: Date? { moonUp.first { $0.start > start }?.start }
+    public var moonset: Date? { moonUp.first { $0.end < end }?.end }
+
+    /// Whether the Moon is up during darkness (or the night, where it never gets fully dark) and lit enough to hide faint objects.
+    public var moonlit: Bool {
+        let window = dark ?? DateInterval(start: start, end: end)
+        return moonIllumination >= SkyEngine.moonlightLimit && moonUp.contains { ($0.intersection(with: window)?.duration ?? 0) > 0 }
+    }
+
+    /// "Dark 20:05–05:42. Moon 62% lit, sets 23:10."
+    public func moonAndDarkness(time: Date.FormatStyle = .init(date: .omitted, time: .shortened)) -> String {
+        SkyEngine.moonAndDarkness(night: DateInterval(start: start, end: end), dark: dark, moonUp: moonUp, moonIllumination: moonIllumination, time: time)
     }
 }

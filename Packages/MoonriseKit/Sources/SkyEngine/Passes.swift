@@ -31,6 +31,15 @@ public struct SatellitePass: Sendable, Identifiable, Equatable {
         guard set > now, rise.timeIntervalSince(now) <= 86_400 else { return nil }
         return max(now, rise.addingTimeInterval(-600))
     }
+
+    /// "Moon up, 80% lit" for a visible pass with the Moon above the horizon at its peak and lit past `moonlightLimit`, when
+    /// moonlight can hide a faint satellite. Nil for the ISS and Tiangong, which are bright enough that it does not matter.
+    public func moonNote(from observer: Observer) -> String? {
+        guard visible, name != "ISS (ZARYA)", name != "CSS (TIANHE)",
+              let moon = try? SkyEngine.horizontal(.moon, at: peak, from: observer, refraction: true), moon.altitude > 0,
+              let lit = try? SkyEngine.illumination(.moon, at: peak).phaseFraction, lit >= SkyEngine.moonlightLimit else { return nil }
+        return "Moon up, \(Int((lit * 100).rounded()))% lit"
+    }
 }
 
 extension OrbitalElements {

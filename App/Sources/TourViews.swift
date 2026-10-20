@@ -1,8 +1,10 @@
 import Library
+import SkyEngine
 import SwiftUI
 
 /// The tours, starting with the one for this month.
 struct TourPicker: View {
+    var tonight: Tonight?
     var onPick: (Tour) -> Void
     @Environment(\.dismiss) private var dismiss
 
@@ -19,6 +21,11 @@ struct TourPicker: View {
                     Text("A walk around the evening sky, one sight at a time. The view turns to each stop and marks what to look for. Best outside after dark, but they work anywhere.")
                         .font(.subheadline).foregroundStyle(ink.opacity(0.75))
                         .padding(.bottom, 20)
+                    if let tonight, tonight.moonlit {
+                        Text("Tonight: \(tonight.moonAndDarkness()) Fainter stars are harder to see while the Moon is up.")
+                            .font(.footnote).foregroundStyle(ink.opacity(0.75))
+                            .padding(.bottom, 20)
+                    }
                     ForEach(Tour.ordered(month: month)) { tour in card(tour) }
                 }
                 .padding(20)

@@ -12,6 +12,7 @@ struct TodaySheet: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 if let t = model.tonight {
+                    section("Tonight") { Text(t.moonAndDarkness()).font(.subheadline.monospacedDigit()) }
                     section("Moon") { moon(t) }
                     section("Planets tonight") { planets(t) }
                     section("Sun") { sun(t) }
@@ -95,7 +96,8 @@ struct TodaySheet: View {
                                     .overlay(RoundedRectangle(cornerRadius: 3).stroke(lineWidth: 1))
                             }
                         }
-                        Text(p.rise.formatted(.dateTime.weekday(.abbreviated).hour().minute()) + String(format: " · rises %@, highest %.0f°, sets %@", compass(p.riseAzimuth), p.maxAltitude, compass(p.setAzimuth)))
+                        Text(p.rise.formatted(.dateTime.weekday(.abbreviated).hour().minute()) + String(format: " · rises %@, highest %.0f°, sets %@", compass(p.riseAzimuth), p.maxAltitude, compass(p.setAzimuth))
+                             + (p.moonNote(from: model.observer).map { " · \($0)" } ?? ""))
                             .font(.footnote.monospacedDigit()).dimmed(0.8)
                     }
                     .accessibilityElement(children: .combine)
@@ -107,7 +109,7 @@ struct TodaySheet: View {
                 if !others.isEmpty {
                     Text("Also visible tonight").font(.caption2.weight(.medium)).textCase(.uppercase).tracking(0.8).dimmed(0.6).padding(.top, 6)
                     ForEach(others) { p in
-                        Text("\(p.displayName) · \(p.rise.formatted(date: .omitted, time: .shortened)), highest \(Int(p.maxAltitude.rounded()))°")
+                        Text("\(p.displayName) · \(p.rise.formatted(date: .omitted, time: .shortened)), highest \(Int(p.maxAltitude.rounded()))°" + (p.moonNote(from: model.observer).map { " · \($0)" } ?? ""))
                             .font(.footnote.monospacedDigit()).dimmed(0.8)
                     }
                 }
