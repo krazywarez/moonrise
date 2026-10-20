@@ -136,14 +136,28 @@ extension SkyEngine {
             }
         }
 
-        // Meteor showers, with how much moonlight there is at peak
+        // Meteor showers, with the Moon on the observer's night of the peak
+        func altitude(_ body: astro_body_t, _ d: Date) -> Double {
+            var t = time(d)
+            let eq = Astronomy_Equator(body, &t, observer.astro, EQUATOR_OF_DATE, ABERRATION)
+            return Astronomy_Horizon(&t, observer.astro, eq.ra, eq.dec, REFRACTION_NORMAL).altitude
+        }
         var utc = Calendar(identifier: .gregorian)
         utc.timeZone = TimeZone(identifier: "UTC")!
         for y in y0...(y0 + 1) {
             for m in MeteorShower.major {
                 guard let d = utc.date(from: DateComponents(year: y, month: m.month, day: m.day, hour: 12)), d >= start, d <= end else { continue }
-                let lit = Astronomy_Illumination(BODY_MOON, time(d)).phase_fraction
-                out.append(SkyEvent(kind: .meteorShower, date: d, title: "\(m.name) peak", detail: String(format: "Up to about %d meteors an hour under dark skies. Moon %.0f%% lit.", m.zhr, lit * 100), visibleHere: nil))
+                // Local solar midnight after the evening of the peak date.
+                let midnight = d.addingTimeInterval((12 - observer.longitude / 15) * 3600)
+                let lit = Astronomy_Illumination(BODY_MOON, time(midnight)).phase_fraction
+                // Dark hours: Sun below -18°, or just midnight where it never gets that dark.
+                var dark = stride(from: -12.0, through: 12.0, by: 0.25).map { midnight.addingTimeInterval($0 * 3600) }.filter { altitude(BODY_SUN, $0) < -18 }
+                if dark.isEmpty { dark = [midnight] }
+                let up = dark.map { altitude(BODY_MOON, $0) > 0 }
+                let moon = !up.contains(true) ? "below the horizon during the dark hours"
+                    : !up.contains(false) ? "up all through the dark hours"
+                    : up[0] ? "sets during the dark hours" : "rises during the dark hours"
+                out.append(SkyEvent(kind: .meteorShower, date: d, title: "\(m.name) peak", detail: String(format: "Up to about %d meteors an hour under dark skies. Moon %.0f%% lit, %@.", m.zhr, lit * 100, moon), visibleHere: nil))
             }
         }
 

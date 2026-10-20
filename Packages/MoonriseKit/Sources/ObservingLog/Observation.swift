@@ -1,5 +1,26 @@
 import Foundation
 
+/// A property-drawer entry the app does not use, kept so saving does not drop it.
+public struct OrgProperty: Sendable, Equatable, Hashable {
+    /// With colons, e.g. ":TRANSPARENCY:".
+    public var key: String
+    public var value: String
+
+    public init(key: String, value: String) {
+        self.key = key
+        self.value = value
+    }
+
+    var line: String { value.isEmpty ? key : "\(key) \(value)" }
+
+    /// Splits a drawer line into key and value; nil for lines that are not a property.
+    static func parse(_ line: String) -> OrgProperty? {
+        let parts = line.split(separator: " ", maxSplits: 1).map(String.init)
+        guard let key = parts.first, key.count > 2, key.hasPrefix(":"), key.hasSuffix(":") else { return nil }
+        return OrgProperty(key: key, value: parts.count == 2 ? parts[1] : "")
+    }
+}
+
 /// One logged observation, stored as an Org file that Emacs and orgstar can read.
 public struct Observation: Sendable, Identifiable, Equatable {
     public var id: String
@@ -15,8 +36,12 @@ public struct Observation: Sendable, Identifiable, Equatable {
     /// 1 (poor) to 5 (excellent); nil when not noted.
     public var seeing: Int?
     public var notes: String
+    /// Properties added by hand, in file order.
+    public var otherProperties: [OrgProperty]
 
-    public init(id: String = UUID().uuidString, object: String, date: Date, place: String, latitude: Double? = nil, longitude: Double? = nil, equipment: String = "", equipmentIDs: [String] = [], seeing: Int? = nil, notes: String = "") {
+    static let knownKeys: Set = [":ID:", ":PLACE:", ":COORDINATES:", ":EQUIPMENT:", ":EQUIPMENT_IDS:", ":SEEING:"]
+
+    public init(id: String = UUID().uuidString, object: String, date: Date, place: String, latitude: Double? = nil, longitude: Double? = nil, equipment: String = "", equipmentIDs: [String] = [], seeing: Int? = nil, notes: String = "", otherProperties: [OrgProperty] = []) {
         self.id = id
         self.object = object
         self.date = date
@@ -27,6 +52,7 @@ public struct Observation: Sendable, Identifiable, Equatable {
         self.equipmentIDs = equipmentIDs
         self.seeing = seeing
         self.notes = notes
+        self.otherProperties = otherProperties
     }
 
     static let orgDate: Date.VerbatimFormatStyle = .init(format: "\(year: .defaultDigits)-\(month: .twoDigits)-\(day: .twoDigits) \(weekday: .abbreviated) \(hour: .twoDigits(clock: .twentyFourHour, hourCycle: .zeroBased)):\(minute: .twoDigits)", locale: Locale(identifier: "en_US_POSIX"), timeZone: .current, calendar: Calendar(identifier: .gregorian))
@@ -40,6 +66,7 @@ public struct Observation: Sendable, Identifiable, Equatable {
         if let seeing { props.append((":SEEING:", "\(seeing)/5")) }
         var lines = ["* \(object)", "[\(date.formatted(Self.orgDate))]", ":PROPERTIES:"]
         lines += props.map { "\($0.0) \($0.1)" }
+        lines += otherProperties.map(\.line)
         lines.append(":END:")
         let body = notes.trimmingCharacters(in: .whitespacesAndNewlines)
         if !body.isEmpty { lines += ["", body] }
@@ -53,12 +80,14 @@ public struct Observation: Sendable, Identifiable, Equatable {
               lines.count > 1, lines[1].hasPrefix("["), lines[1].hasSuffix("]"),
               let date = try? Date(String(lines[1].dropFirst().dropLast()), strategy: Self.orgDate.parseStrategy) else { return nil }
         var props: [String: String] = [:]
+        var other: [OrgProperty] = []
         var i = 2
         if i < lines.count, lines[i] == ":PROPERTIES:" {
             i += 1
             while i < lines.count, lines[i] != ":END:" {
-                let parts = lines[i].split(separator: " ", maxSplits: 1).map(String.init)
-                if parts.count == 2 { props[parts[0]] = parts[1] }
+                if let p = OrgProperty.parse(lines[i]) {
+                    if !Self.knownKeys.contains(p.key) { other.append(p) } else if !p.value.isEmpty { props[p.key] = p.value }
+                }
                 i += 1
             }
             i += 1
@@ -75,7 +104,8 @@ public struct Observation: Sendable, Identifiable, Equatable {
             equipment: props[":EQUIPMENT:"] ?? "",
             equipmentIDs: props[":EQUIPMENT_IDS:"]?.split(separator: " ").map(String.init) ?? [],
             seeing: props[":SEEING:"].flatMap { Int($0.prefix(1)) },
-            notes: notes
+            notes: notes,
+            otherProperties: other
         )
     }
 }

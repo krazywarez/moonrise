@@ -124,3 +124,21 @@ let when = Date(timeIntervalSince1970: 1_792_202_400) // 2026-10-17T02:00:00Z
     let none = EquipmentUsage(of: "camera", in: log, calendar: cal)
     #expect(none.observations == 0 && none.first == nil && none.averageSeeing == nil && none.usedWith.isEmpty)
 }
+
+@Test func observationKeepsHandAddedProperties() throws {
+    let text = "* Saturn\n[2026-10-16 Fri 21:00]\n:PROPERTIES:\n:ID: abc\n:TRANSPARENCY: 4/5\n:PLACE: Chicago\n:CATEGORY: planet\n:BORTLE:\n:END:\n\nRings.\n"
+    var o = try #require(Observation(org: text))
+    o.notes = "Rings and Titan."
+    let out = o.org
+    #expect(out.contains(":PLACE: Chicago\n:TRANSPARENCY: 4/5\n:CATEGORY: planet\n:BORTLE:\n:END:\n"))
+    #expect(Observation(org: out) == o)
+}
+
+@Test func equipmentKeepsHandAddedProperties() throws {
+    let text = "* Dob\n:PROPERTIES:\n:ID: scope-1\n:TYPE: telescope\n:PURCHASED: 2019-05-02\n:APERTURE: 203 mm\n:FOCAL_RATIO: f/5.9\n:SERIAL: X123\n:END:\n"
+    var scope = try #require(Equipment(org: text))
+    scope.focalLength = 1200
+    let out = scope.org
+    #expect(out.contains(":FOCAL_RATIO: f/5.9\n:PURCHASED: 2019-05-02\n:SERIAL: X123\n:END:\n"))
+    #expect(Equipment(org: out) == scope)
+}

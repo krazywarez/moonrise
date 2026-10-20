@@ -51,8 +51,12 @@ public struct Equipment: Sendable, Identifiable, Equatable, Hashable {
     public var notes: String
     /// Retired items stay in the inventory for old entries but leave the picker.
     public var retired: Bool
+    /// Properties added by hand, in file order.
+    public var otherProperties: [OrgProperty]
 
-    public init(id: String = UUID().uuidString, kind: Kind, name: String, aperture: Double? = nil, focalLength: Double? = nil, magnification: Double? = nil, fieldOfView: Double? = nil, sensor: String = "", notes: String = "", retired: Bool = false) {
+    static let knownKeys: Set = [":ID:", ":TYPE:", ":APERTURE:", ":FOCAL_LENGTH:", ":FOCAL_RATIO:", ":MAGNIFICATION:", ":FIELD_OF_VIEW:", ":SENSOR:", ":RETIRED:"]
+
+    public init(id: String = UUID().uuidString, kind: Kind, name: String, aperture: Double? = nil, focalLength: Double? = nil, magnification: Double? = nil, fieldOfView: Double? = nil, sensor: String = "", notes: String = "", retired: Bool = false, otherProperties: [OrgProperty] = []) {
         self.id = id
         self.kind = kind
         self.name = name
@@ -63,6 +67,7 @@ public struct Equipment: Sendable, Identifiable, Equatable, Hashable {
         self.sensor = sensor
         self.notes = notes
         self.retired = retired
+        self.otherProperties = otherProperties
     }
 
     /// Focal length over aperture, when both are known.
@@ -87,6 +92,7 @@ public struct Equipment: Sendable, Identifiable, Equatable, Hashable {
         if retired { props.append((":RETIRED:", "t")) }
         var lines = ["* \(name)", ":PROPERTIES:"]
         lines += props.map { "\($0.0) \($0.1)" }
+        lines += otherProperties.map(\.line)
         lines.append(":END:")
         let body = notes.trimmingCharacters(in: .whitespacesAndNewlines)
         if !body.isEmpty { lines += ["", body] }
@@ -98,12 +104,14 @@ public struct Equipment: Sendable, Identifiable, Equatable, Hashable {
         let lines = text.components(separatedBy: "\n")
         guard let head = lines.first, head.hasPrefix("* ") else { return nil }
         var props: [String: String] = [:]
+        var other: [OrgProperty] = []
         var i = 1
         if i < lines.count, lines[i] == ":PROPERTIES:" {
             i += 1
             while i < lines.count, lines[i] != ":END:" {
-                let parts = lines[i].split(separator: " ", maxSplits: 1).map(String.init)
-                if parts.count == 2 { props[parts[0]] = parts[1] }
+                if let p = OrgProperty.parse(lines[i]) {
+                    if !Self.knownKeys.contains(p.key) { other.append(p) } else if !p.value.isEmpty { props[p.key] = p.value }
+                }
                 i += 1
             }
             i += 1
@@ -122,7 +130,8 @@ public struct Equipment: Sendable, Identifiable, Equatable, Hashable {
             fieldOfView: leadingNumber(":FIELD_OF_VIEW:"),
             sensor: props[":SENSOR:"] ?? "",
             notes: lines.dropFirst(i).joined(separator: "\n").trimmingCharacters(in: .whitespacesAndNewlines),
-            retired: props[":RETIRED:"] == "t"
+            retired: props[":RETIRED:"] == "t",
+            otherProperties: other
         )
     }
 }

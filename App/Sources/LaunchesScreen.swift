@@ -208,10 +208,19 @@ struct LaunchDetail: View {
         }
         let attributes = LaunchActivityAttributes(launchID: launch.id, rocket: launch.rocket, mission: launch.mission ?? launch.name, location: launch.location)
         let state = LaunchActivityAttributes.ContentState(net: launch.net, status: launch.status)
+        let content = ActivityContent(state: state, staleDate: launch.net.addingTimeInterval(3600))
+        // Live Activities end after 8 hours, so one for a later launch starts an hour before it.
+        let start = launch.net.addingTimeInterval(-3600)
         do {
-            _ = try Activity.request(attributes: attributes, content: .init(state: state, staleDate: launch.net.addingTimeInterval(3600)))
+            if start > .now {
+                let alert = AlertConfiguration(title: "\(attributes.rocket) launches in an hour", body: "\(attributes.mission)", sound: .default)
+                _ = try Activity.request(attributes: attributes, content: content, style: .standard, alertConfiguration: alert, start: start)
+                message = "Countdown will appear on the Lock Screen an hour before launch."
+            } else {
+                _ = try Activity.request(attributes: attributes, content: content)
+                message = "Countdown added to the Lock Screen."
+            }
             following = true
-            message = "Countdown added to the Lock Screen."
         } catch {
             message = "Couldn't start the countdown: \(error.localizedDescription)"
         }

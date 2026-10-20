@@ -33,3 +33,14 @@ func utc(_ s: String) -> Date { try! Date(s, strategy: .iso8601) }
     let kinds = Set(events.map(\.kind))
     #expect(kinds.isSuperset(of: [.moonPhase, .lunarEclipse, .solarEclipse, .opposition, .elongation, .season, .meteorShower]))
 }
+
+@Test func meteorShowerMoonIsForTheLocalNight() throws {
+    let events = SkyEngine.events(from: utc("2026-08-01T00:00:00Z"), days: 180, observer: chicago)
+    func detail(_ name: String) throws -> String { try #require(events.first { $0.title == "\(name) peak" }).detail }
+    // New moon on 12 August 2026.
+    #expect(try detail("Perseids").hasSuffix("Moon 0% lit, below the horizon during the dark hours."))
+    // 76% at 12:00 UTC on the 21st; 82% at Chicago midnight, setting about 03:00 CDT.
+    #expect(try detail("Orionids").hasSuffix("Moon 82% lit, sets during the dark hours."))
+    // 16% at 12:00 UTC on the 3rd; 11% at Chicago midnight, rising about 05:00 CST before dawn.
+    #expect(try detail("Quadrantids").hasSuffix("Moon 11% lit, rises during the dark hours."))
+}
