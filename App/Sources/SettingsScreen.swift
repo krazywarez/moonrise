@@ -18,6 +18,8 @@ enum SettingsKey {
     static let skyCulture = "skyCulture"
     /// Minutes after local midnight.
     static let dailySummaryMinutes = "dailySummaryMinutes"
+    /// Messier objects on the sky chart.
+    static let showDeepSky = "showDeepSky"
 }
 
 struct City: Hashable, Identifiable {
@@ -65,6 +67,7 @@ struct SettingsScreen: View {
     @AppStorage(SettingsKey.cityLongitude) private var cityLongitude = -87.630
     @AppStorage(SettingsKey.nightMode) private var nightMode = "auto"
     @AppStorage(SettingsKey.skyCulture) private var skyCulture = "western"
+    @AppStorage(SettingsKey.showDeepSky) private var showDeepSky = true
     @AppStorage(SettingsKey.onboarded) private var onboarded = true
     @Environment(\.dismiss) private var dismiss
     @State private var alerts = AuroraAlerts.shared
@@ -126,6 +129,7 @@ struct SettingsScreen: View {
                         Text("Western (IAU)").tag("western")
                         ForEach(Catalog.skyCultures) { Text($0.name).tag($0.id) }
                     }
+                    Toggle("Messier objects", isOn: $showDeepSky)
                     Picker("Night mode", selection: $nightMode) {
                         Text("Off").tag("off")
                         Text("On").tag("on")
@@ -134,7 +138,7 @@ struct SettingsScreen: View {
                 } header: {
                     Text("Display")
                 } footer: {
-                    Text("Constellations from other cultures come from Stellarium's sky cultures and are drawn over the same stars; figures with stars fainter than the app's catalogue are shortened. Night mode draws the sky in red to keep your eyes adapted to the dark. After dark turns it on once the Sun is 12° below the horizon.")
+                    Text("Constellations from other cultures come from Stellarium's sky cultures and are drawn over the same stars; figures with stars fainter than the app's catalogue are shortened. Messier objects are galaxies, clusters and nebulae, drawn with atlas symbols; most need binoculars. Night mode draws the sky in red to keep your eyes adapted to the dark. After dark turns it on once the Sun is 12° below the horizon.")
                 }
                 Section("About") {
                     LabeledContent("Version", value: Bundle.main.versionString)
@@ -197,6 +201,7 @@ struct CreditsScreen: View {
         Credit(name: "Yale Bright Star Catalogue, 5th ed.", detail: "Hoffleit & Warren (1991), via VizieR V/50."),
         Credit(name: "Constellation lines", detail: "Marc van der Sluys, ConstellationLines (doi:10.5281/zenodo.10397192). CC BY 4.0."),
         Credit(name: "Coastlines", detail: "Natural Earth. Public domain."),
+        Credit(name: "Messier objects", detail: "Mattia Verga, OpenNGC. CC BY-SA 4.0."),
         Credit(name: "Spacecraft trajectories", detail: "NASA/JPL Horizons."),
     ]
 

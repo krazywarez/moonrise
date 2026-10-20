@@ -42,6 +42,12 @@ func linksPointAtThingsTheAppKnows(_ p: LibraryPage) {
     if let s = l.spacecraft { #expect(Spacecraft.all.contains { $0.name == s }, "\(p.id): spacecraft \(s)") }
 }
 
+@Test func chartMessierObjectsOpenTheirPages() {
+    for o in Catalog.deepSky {
+        #expect(Library.page(id: o.page)?.link.messier == o.messier, "M\(o.messier): page \(o.page)")
+    }
+}
+
 @Test func searchFindsByTitleBeforeEssay() {
     guard let first = Library.pages.first else { return }
     #expect(Library.search(first.title).first?.id == first.id)

@@ -12,6 +12,7 @@ struct SkyScreen: View {
     @State private var fieldOfView = 100.0
     @AppStorage(SettingsKey.nightMode) private var nightMode = "auto"
     @AppStorage(SettingsKey.skyCulture) private var skyCulture = "western"
+    @AppStorage(SettingsKey.showDeepSky) private var showDeepSky = true
     @State private var showSettings = false
     @State private var showEvents = false
     @State private var showLog = false
@@ -45,14 +46,14 @@ struct SkyScreen: View {
                 style.background.ignoresSafeArea()
                 if let scene = model.scene {
                     let view = current(width: geo.size.width)
-                    SkyView(scene: scene, centerAzimuth: view.azimuth, centerAltitude: view.altitude, fieldOfView: view.fieldOfView, style: style, culture: Catalog.skyCultures.first { $0.id == skyCulture }, highlight: (tour.map { $0.steps[tourStep].target } ?? shown).flatMap(highlight)) { [stats] d in
+                    SkyView(scene: scene, centerAzimuth: view.azimuth, centerAltitude: view.altitude, fieldOfView: view.fieldOfView, style: style, culture: Catalog.skyCultures.first { $0.id == skyCulture }, highlight: (tour.map { $0.steps[tourStep].target } ?? shown).flatMap(highlight), showDeepSky: showDeepSky) { [stats] d in
                         stats.record(d)
                     }
                     .ignoresSafeArea()
                     .gesture(panGesture(width: geo.size.width).simultaneously(with: zoomGesture))
                     .onTapGesture(coordinateSpace: .local) { location in
                         let p = Projection(centerAzimuth: view.azimuth, centerAltitude: view.altitude, fieldOfView: view.fieldOfView, size: geo.size)
-                        select(scene.object(at: location, projection: p))
+                        select(scene.object(at: location, projection: p, deepSky: showDeepSky))
                     }
                     .accessibilityElement()
                     .accessibilityLabel(skyDescription(scene, azimuth: view.azimuth))
@@ -305,6 +306,8 @@ struct SkyScreen: View {
                 if let d = details { bodyFacts(d) } else { ProgressView().tint(ink) }
             case .constellation(let id):
                 Text("Constellation · \(id)").font(.footnote).dimmed(0.7)
+            case .deepSky(let m):
+                if let d = model.scene?.deepSky.first(where: { $0.object.messier == m }) { deepSkyFacts(d) }
             }
             HStack(spacing: 20) {
                 Button { logEntry = newObservation(title(for: object)) } label: {
@@ -335,6 +338,7 @@ struct SkyScreen: View {
         switch object {
         case .body(let b): Library.page(body: b.rawValue)
         case .constellation(let id): Library.page(constellation: id)
+        case .deepSky(let m): Catalog.deepSky.first { $0.messier == m }.flatMap { Library.page(id: $0.page) }
         }
     }
 
@@ -342,6 +346,7 @@ struct SkyScreen: View {
         switch object {
         case .body(let b): b.rawValue.capitalized
         case .constellation(let id): constellationNames[id] ?? id
+        case .deepSky(let m): "M\(m)"
         }
     }
 
@@ -366,6 +371,31 @@ struct SkyScreen: View {
                     Text(row.1).monospacedDigit()
                 }
                 .font(.footnote)
+            }
+        }
+    }
+
+    private func deepSkyFacts(_ d: PlacedDeepSky) -> some View {
+        let o = d.object
+        var rows: [(String, String)] = [
+            ("Altitude", String(format: "%.0f°", d.position.altitude)),
+            ("Direction", String(format: "%.0f° %@", d.position.azimuth, compass(d.position.azimuth))),
+        ]
+        if let m = o.magnitude { rows.append(("Magnitude", String(format: "%.1f", m))) }
+        if let a = o.majorAxis {
+            let b = o.minorAxis.map { String(format: " × %.0f", $0) } ?? ""
+            rows.append(("Size", String(format: "%.0f%@′", a, b)))
+        }
+        return VStack(alignment: .leading, spacing: 8) {
+            if let page = Library.page(id: o.page) { Text(page.subtitle).font(.footnote).dimmed(0.7) }
+            Grid(alignment: .leading, horizontalSpacing: 16, verticalSpacing: 4) {
+                ForEach(rows, id: \.0) { row in
+                    GridRow {
+                        Text(row.0).dimmed(0.7)
+                        Text(row.1).monospacedDigit()
+                    }
+                    .font(.footnote)
+                }
             }
         }
     }

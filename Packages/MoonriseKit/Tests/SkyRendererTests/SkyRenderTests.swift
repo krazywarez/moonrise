@@ -56,6 +56,18 @@ let evening = Date(timeIntervalSince1970: 1_792_202_400) // 2026-10-17T02:00:00Z
     #expect(scene.object(at: a, projection: p) == .constellation("Aql"))
 }
 
+@Test func starBinsStayCloseToEachStar() {
+    var used = Set<Int>()
+    for star in Catalog.stars where star.magnitude <= 6.5 {
+        let bin = StarBin(magnitude: star.magnitude, colorIndex: star.colorIndex)
+        #expect(abs(bin.magnitude - star.magnitude) <= 0.25, "HR \(star.hr)")
+        let tint = min(max((star.colorIndex + 0.3) / 2, 0), 1)
+        #expect(abs(bin.tint - tint) <= 1.0 / 6 + 1e-9, "HR \(star.hr)")
+        used.insert(bin.index)
+    }
+    #expect(used.allSatisfy { (0..<StarBin.count).contains($0) })
+}
+
 @MainActor
 @Test func nightStyleRenders() throws {
     let scene = try SkyScene(date: evening, observer: chicago)

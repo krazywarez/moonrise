@@ -43,6 +43,37 @@ public struct SkyCulture: Sendable, Decodable, Identifiable {
     public var constellations: [Figure]
 }
 
+/// A Messier object from OpenNGC (CC BY-SA 4.0).
+public struct DeepSkyObject: Sendable, Decodable {
+    public enum Kind: Sendable { case galaxy, openCluster, globularCluster, nebula, planetaryNebula }
+
+    public var messier: Int
+    /// OpenNGC type code, e.g. "G", "OCl", "GCl", "PN", "Neb".
+    public var type: String
+    /// J2000, degrees.
+    public var ra: Double
+    public var dec: Double
+    public var magnitude: Double?
+    /// Arcminutes.
+    public var majorAxis: Double?
+    public var minorAxis: Double?
+    /// Degrees east of north.
+    public var positionAngle: Double?
+    /// Library page id.
+    public var page: String
+
+    public var kind: Kind {
+        switch type {
+        case "G": .galaxy
+        case "GCl": .globularCluster
+        case "PN": .planetaryNebula
+        case "Neb", "HII", "RfN", "Cl+N", "SNR": .nebula
+        // OCl, and the star cloud M24, double star M40 and asterism M73.
+        default: .openCluster
+        }
+    }
+}
+
 public enum Catalog {
     /// Yale Bright Star Catalogue, 5th ed. (VizieR V/50): HR, RA and Dec (J2000, degrees), V, B−V,
     /// proper motion in RA (× cos dec) and Dec (arcsec/yr).
@@ -65,11 +96,24 @@ public enum Catalog {
         let url = Bundle.module.url(forResource: "constellations", withExtension: "json")!
         return try! JSONDecoder().decode([Constellation].self, from: Data(contentsOf: url))
     }()
+
+    /// Built by scripts/make-messier.py.
+    public static let deepSky: [DeepSkyObject] = {
+        let url = Bundle.module.url(forResource: "messier", withExtension: "json")!
+        return try! JSONDecoder().decode([DeepSkyObject].self, from: Data(contentsOf: url))
+    }()
 }
 
 public struct PlacedStar: Sendable {
     public var star: Star
     public var position: Horizontal
+}
+
+public struct PlacedDeepSky: Sendable {
+    public var object: DeepSkyObject
+    public var position: Horizontal
+    /// A point 0.1° north (J2000), for the symbol's scale and orientation on screen.
+    public var north: Horizontal
 }
 
 public struct PlacedBody: Sendable {
@@ -86,6 +130,7 @@ public struct SkyScene: Sendable {
     public var stars: [PlacedStar]
     public var starsByHR: [Int: Horizontal]
     public var bodies: [PlacedBody]
+    public var deepSky: [PlacedDeepSky]
     /// Moon's elongation east of the sun, degrees (0 new, 180 full).
     public var moonPhase: Double
 
@@ -96,6 +141,8 @@ public struct SkyScene: Sendable {
         let positions = SkyEngine.horizontal(j2000: visible.map { $0.position(at: date) }, at: date, from: observer)
         stars = zip(visible, positions).map { PlacedStar(star: $0, position: $1) }
         starsByHR = Dictionary(uniqueKeysWithValues: stars.map { ($0.star.hr, $0.position) })
+        let dso = SkyEngine.horizontal(j2000: Catalog.deepSky.flatMap { [($0.ra, $0.dec), ($0.ra, $0.dec + 0.1)] }, at: date, from: observer)
+        deepSky = Catalog.deepSky.enumerated().map { i, o in PlacedDeepSky(object: o, position: dso[2 * i], north: dso[2 * i + 1]) }
         bodies = try ([.moon] + Body.planets).map { body in
             let i = try SkyEngine.illumination(body, at: date)
             return PlacedBody(

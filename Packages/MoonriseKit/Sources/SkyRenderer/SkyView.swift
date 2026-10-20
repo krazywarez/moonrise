@@ -67,12 +67,30 @@ public struct SkyStyle: Sendable {
         return s
     }()
 
-    /// Star tint from B−V colour index, kept pale.
-    func starColor(_ bv: Double) -> Color {
+    /// Star colour for a tint from 0 (blue-white) to 1 (orange), kept pale.
+    func starColor(tint t: Double) -> Color {
         if let monochromeStars { return monochromeStars }
-        let t = min(max((bv + 0.3) / 2.0, 0), 1)
         return Color(red: 0.80 + 0.20 * t, green: 0.86 - 0.06 * t, blue: 1.0 - 0.32 * t)
     }
+}
+
+/// Stars are filled one path per bin: half a magnitude by four tints from B−V.
+struct StarBin {
+    static let tints = 4
+    /// Magnitudes −2 to 6.5.
+    static let count = 18 * tints
+    var index: Int
+
+    init(index: Int) { self.index = index }
+
+    init(magnitude: Double, colorIndex: Double) {
+        let m = min(max(Int(((magnitude + 2) * 2).rounded()), 0), 17)
+        let t = min(max(Int(((colorIndex + 0.3) / 2 * Double(Self.tints - 1)).rounded()), 0), Self.tints - 1)
+        index = m * Self.tints + t
+    }
+
+    var magnitude: Double { Double(index / Self.tints) / 2 - 2 }
+    var tint: Double { Double(index % Self.tints) / Double(Self.tints - 1) }
 }
 
 /// Something to draw attention to, e.g. the current stop of a guided tour.
@@ -93,14 +111,16 @@ public struct SkyView: View {
     /// Figures to draw instead of the IAU constellation lines.
     public var culture: SkyCulture?
     public var highlight: SkyHighlight?
+    public var showDeepSky: Bool
     /// Called after each draw with the time the draw took.
     public var onDraw: (@Sendable (Duration) -> Void)?
 
-    public init(scene: SkyScene, centerAzimuth: Double = 180, centerAltitude: Double = 55, fieldOfView: Double = 110, style: SkyStyle = SkyStyle(), culture: SkyCulture? = nil, highlight: SkyHighlight? = nil, onDraw: (@Sendable (Duration) -> Void)? = nil) {
+    public init(scene: SkyScene, centerAzimuth: Double = 180, centerAltitude: Double = 55, fieldOfView: Double = 110, style: SkyStyle = SkyStyle(), culture: SkyCulture? = nil, highlight: SkyHighlight? = nil, showDeepSky: Bool = true, onDraw: (@Sendable (Duration) -> Void)? = nil) {
         self.scene = scene
         self.style = style
         self.culture = culture
         self.highlight = highlight
+        self.showDeepSky = showDeepSky
         self.centerAzimuth = centerAzimuth
         self.centerAltitude = centerAltitude
         self.fieldOfView = fieldOfView
@@ -114,6 +134,7 @@ public struct SkyView: View {
             context.fill(Path(CGRect(origin: .zero, size: size)), with: .color(style.background))
             drawConstellations(&context, p)
             drawStars(&context, p)
+            if showDeepSky { drawDeepSky(&context, p) }
             drawBodies(&context, p)
             if let highlight { drawHighlight(highlight, &context, p) }
             drawHorizon(&context, p, size: size)
@@ -193,13 +214,73 @@ public struct SkyView: View {
         }
     }
 
+    /// Each star at its own radius; colour and opacity per `StarBin`, faintest bins first.
     func drawStars(_ context: inout GraphicsContext, _ p: Projection) {
+        var bins = [Path](repeating: Path(), count: StarBin.count)
         for s in scene.stars where s.position.altitude > 0 {
             guard let pt = p.point(s.position) else { continue }
             let r = max(0.3, 2.6 - 0.42 * s.star.magnitude)
-            let opacity = min(1, max(0.25, 1.15 - 0.13 * s.star.magnitude))
-            context.fill(Path(ellipseIn: CGRect(x: pt.x - r, y: pt.y - r, width: 2 * r, height: 2 * r)), with: .color(style.starColor(s.star.colorIndex).opacity(opacity)))
+            bins[StarBin(magnitude: s.star.magnitude, colorIndex: s.star.colorIndex).index]
+                .addEllipse(in: CGRect(x: pt.x - r, y: pt.y - r, width: 2 * r, height: 2 * r))
         }
+        for i in bins.indices.reversed() where !bins[i].isEmpty {
+            let bin = StarBin(index: i)
+            let opacity = min(1, max(0.25, 1.15 - 0.13 * bin.magnitude))
+            context.fill(bins[i], with: .color(style.starColor(tint: bin.tint).opacity(opacity)))
+        }
+    }
+
+    /// Screen centre of a deep-sky object, and the screen vectors of one degree north and east there.
+    func symbolFrame(_ d: PlacedDeepSky, _ p: Projection) -> (center: CGPoint, north: CGVector, east: CGVector)? {
+        guard let c = p.point(d.position), let n = p.point(d.north) else { return nil }
+        let north = CGVector(dx: (n.x - c.x) * 10, dy: (n.y - c.y) * 10)
+        // Seen from inside the sphere, east is 90° anticlockwise from north; with y down that is (n.y, −n.x).
+        return (c, north, CGVector(dx: north.dy, dy: -north.dx))
+    }
+
+    /// Atlas symbols at true size, or at least `minimum` points in radius: galaxy as an ellipse at its
+    /// position angle, open cluster as a dashed circle, globular as a circle with a cross, nebula as
+    /// a square, planetary nebula as a small circle with four ticks. Labelled at 60° field of view and closer.
+    func drawDeepSky(_ context: inout GraphicsContext, _ p: Projection) {
+        let minimum = 4.0
+        var solid = Path(), dashed = Path()
+        for d in scene.deepSky where d.position.altitude > 0 {
+            guard let f = symbolFrame(d, p) else { continue }
+            let o = d.object, c = f.center
+            let perArcmin = hypot(f.north.dx, f.north.dy) / 60
+            let r = max(minimum, (o.majorAxis ?? 0) / 2 * perArcmin)
+            let circle = CGRect(x: c.x - r, y: c.y - r, width: 2 * r, height: 2 * r)
+            switch o.kind {
+            case .galaxy:
+                let ratio = (o.minorAxis ?? o.majorAxis ?? 1) / (o.majorAxis ?? 1)
+                let pa = (o.positionAngle ?? 0) * .pi / 180
+                let axis = CGVector(dx: cos(pa) * f.north.dx + sin(pa) * f.east.dx, dy: cos(pa) * f.north.dy + sin(pa) * f.east.dy)
+                let rotation = CGAffineTransform(rotationAngle: atan2(axis.dy, axis.dx)).concatenating(CGAffineTransform(translationX: c.x, y: c.y))
+                solid.addPath(Path(ellipseIn: CGRect(x: -r, y: -max(1.5, r * ratio), width: 2 * r, height: 2 * max(1.5, r * ratio))), transform: rotation)
+            case .openCluster:
+                dashed.addEllipse(in: circle)
+            case .globularCluster:
+                solid.addEllipse(in: circle)
+                solid.move(to: CGPoint(x: c.x - r, y: c.y))
+                solid.addLine(to: CGPoint(x: c.x + r, y: c.y))
+                solid.move(to: CGPoint(x: c.x, y: c.y - r))
+                solid.addLine(to: CGPoint(x: c.x, y: c.y + r))
+            case .nebula:
+                solid.addRect(circle)
+            case .planetaryNebula:
+                let small = minimum * 0.6
+                solid.addEllipse(in: CGRect(x: c.x - small, y: c.y - small, width: 2 * small, height: 2 * small))
+                for (dx, dy) in [(1.0, 0.0), (-1, 0), (0, 1), (0, -1)] {
+                    solid.move(to: CGPoint(x: c.x + dx * small, y: c.y + dy * small))
+                    solid.addLine(to: CGPoint(x: c.x + dx * 2 * small, y: c.y + dy * 2 * small))
+                }
+            }
+            if fieldOfView <= 60 {
+                label(&context, "M\(o.messier)", at: CGPoint(x: c.x, y: c.y + r + 2), anchor: .top, color: style.muted)
+            }
+        }
+        context.stroke(solid, with: .color(style.line), lineWidth: 0.8)
+        context.stroke(dashed, with: .color(style.line), style: StrokeStyle(lineWidth: 0.8, dash: [2, 2]))
     }
 
     func drawBodies(_ context: inout GraphicsContext, _ p: Projection) {
