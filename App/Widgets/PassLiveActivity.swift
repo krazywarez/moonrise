@@ -126,3 +126,37 @@ private func summary(_ pass: PassActivityAttributes) -> String {
 }
 
 private func time(_ date: Date) -> String { date.formatted(date: .omitted, time: .shortened) }
+
+#if DEBUG
+private extension PassActivityAttributes {
+    static var preview: Self {
+        PassActivityAttributes(name: "ISS", rise: .now.addingTimeInterval(4 * 60), peak: .now.addingTimeInterval(7.5 * 60),
+                               set: .now.addingTimeInterval(11 * 60), riseAzimuth: 236, setAzimuth: 52, maxAltitude: 64,
+                               visible: true)
+    }
+}
+
+#Preview("Lock Screen", as: .content, using: PassActivityAttributes.preview) {
+    PassLiveActivity()
+} contentStates: {
+    PassActivityAttributes.ContentState()
+}
+
+#Preview("Compact", as: .dynamicIsland(.compact), using: PassActivityAttributes.preview) {
+    PassLiveActivity()
+} contentStates: {
+    PassActivityAttributes.ContentState()
+}
+
+#Preview("Minimal", as: .dynamicIsland(.minimal), using: PassActivityAttributes.preview) {
+    PassLiveActivity()
+} contentStates: {
+    PassActivityAttributes.ContentState()
+}
+
+#Preview("Expanded", as: .dynamicIsland(.expanded), using: PassActivityAttributes.preview) {
+    PassLiveActivity()
+} contentStates: {
+    PassActivityAttributes.ContentState()
+}
+#endif

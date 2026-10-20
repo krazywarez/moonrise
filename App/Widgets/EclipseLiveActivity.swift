@@ -127,3 +127,40 @@ private func contacts(_ a: EclipseActivityAttributes) -> [(String, Date)] {
 private func clock(_ date: Date, _ a: EclipseActivityAttributes) -> String {
     date.formatted(Date.FormatStyle(date: .omitted, time: .standard, timeZone: a.timeZone.flatMap(TimeZone.init(identifier:)) ?? .gmt))
 }
+
+#if DEBUG
+private extension EclipseActivityAttributes {
+    /// A long totality, as at Luxor on 2 August 2027, with first contact 20 minutes from now.
+    static var preview: Self {
+        let c1 = Date.now.addingTimeInterval(20 * 60)
+        return EclipseActivityAttributes(
+            kind: "Total", site: "Luxor", c1: c1, c2: c1.addingTimeInterval(3_655), peak: c1.addingTimeInterval(3_844),
+            c3: c1.addingTimeInterval(4_033), c4: c1.addingTimeInterval(7_590), timeZone: "Africa/Cairo"
+        )
+    }
+}
+
+#Preview("Lock Screen", as: .content, using: EclipseActivityAttributes.preview) {
+    EclipseLiveActivity()
+} contentStates: {
+    EclipseActivityAttributes.ContentState()
+}
+
+#Preview("Compact", as: .dynamicIsland(.compact), using: EclipseActivityAttributes.preview) {
+    EclipseLiveActivity()
+} contentStates: {
+    EclipseActivityAttributes.ContentState()
+}
+
+#Preview("Minimal", as: .dynamicIsland(.minimal), using: EclipseActivityAttributes.preview) {
+    EclipseLiveActivity()
+} contentStates: {
+    EclipseActivityAttributes.ContentState()
+}
+
+#Preview("Expanded", as: .dynamicIsland(.expanded), using: EclipseActivityAttributes.preview) {
+    EclipseLiveActivity()
+} contentStates: {
+    EclipseActivityAttributes.ContentState()
+}
+#endif

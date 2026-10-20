@@ -150,6 +150,9 @@ struct SettingsScreen: View {
                     NavigationLink("Credits and licences") { CreditsScreen() }
                     Link("Privacy policy", destination: privacyPolicyURL)
                 }
+                #if DEBUG
+                SampleActivitiesSection()
+                #endif
             }
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)

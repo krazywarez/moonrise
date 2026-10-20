@@ -101,3 +101,45 @@ private struct LaunchActivityView: View {
 private func countdown(_ net: Date) -> Text {
     net > .now ? Text(timerInterval: Date.now...net, countsDown: true) : Text(net, style: .timer)
 }
+
+#if DEBUG
+private extension LaunchActivityAttributes {
+    static var preview: Self {
+        LaunchActivityAttributes(launchID: "preview", rocket: "Falcon 9 Block 5", mission: "Starlink Group 10-12",
+                                 location: "SLC-40, Cape Canaveral SFS, Florida")
+    }
+}
+
+private extension LaunchActivityAttributes.ContentState {
+    static var go: Self { .init(net: .now.addingTimeInterval(12 * 60), status: "Go") }
+    static var hold: Self { .init(net: .now.addingTimeInterval(12 * 60), status: "Hold") }
+}
+
+#Preview("Lock Screen", as: .content, using: LaunchActivityAttributes.preview) {
+    LaunchLiveActivity()
+} contentStates: {
+    LaunchActivityAttributes.ContentState.go
+    LaunchActivityAttributes.ContentState.hold
+}
+
+#Preview("Compact", as: .dynamicIsland(.compact), using: LaunchActivityAttributes.preview) {
+    LaunchLiveActivity()
+} contentStates: {
+    LaunchActivityAttributes.ContentState.go
+    LaunchActivityAttributes.ContentState.hold
+}
+
+#Preview("Minimal", as: .dynamicIsland(.minimal), using: LaunchActivityAttributes.preview) {
+    LaunchLiveActivity()
+} contentStates: {
+    LaunchActivityAttributes.ContentState.go
+    LaunchActivityAttributes.ContentState.hold
+}
+
+#Preview("Expanded", as: .dynamicIsland(.expanded), using: LaunchActivityAttributes.preview) {
+    LaunchLiveActivity()
+} contentStates: {
+    LaunchActivityAttributes.ContentState.go
+    LaunchActivityAttributes.ContentState.hold
+}
+#endif

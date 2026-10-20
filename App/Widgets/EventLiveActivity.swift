@@ -84,3 +84,46 @@ private struct EventActivityView: View {
         .padding(16)
     }
 }
+
+#if DEBUG
+private extension EventActivityAttributes {
+    static var preview: Self {
+        EventActivityAttributes(eventID: "preview", title: "Artemis II", launch: .now.addingTimeInterval(-2.5 * 86_400))
+    }
+}
+
+private extension EventActivityAttributes.ContentState {
+    static var outbound: Self {
+        .init(phase: "Outbound coast", next: "Lunar flyby", nextAt: .now.addingTimeInterval(30 * 3600), distanceKm: 287_400)
+    }
+    static var flyby: Self {
+        .init(phase: "Lunar flyby", next: "Return coast", nextAt: .now.addingTimeInterval(3 * 3600), distanceKm: 401_800)
+    }
+}
+
+#Preview("Lock Screen", as: .content, using: EventActivityAttributes.preview) {
+    EventLiveActivity()
+} contentStates: {
+    EventActivityAttributes.ContentState.outbound
+    EventActivityAttributes.ContentState.flyby
+}
+
+#Preview("Compact", as: .dynamicIsland(.compact), using: EventActivityAttributes.preview) {
+    EventLiveActivity()
+} contentStates: {
+    EventActivityAttributes.ContentState.outbound
+}
+
+#Preview("Minimal", as: .dynamicIsland(.minimal), using: EventActivityAttributes.preview) {
+    EventLiveActivity()
+} contentStates: {
+    EventActivityAttributes.ContentState.outbound
+}
+
+#Preview("Expanded", as: .dynamicIsland(.expanded), using: EventActivityAttributes.preview) {
+    EventLiveActivity()
+} contentStates: {
+    EventActivityAttributes.ContentState.outbound
+    EventActivityAttributes.ContentState.flyby
+}
+#endif
