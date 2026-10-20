@@ -429,6 +429,42 @@ Sky, System, Sun, Launches, Library core (above).
   published.
 - Maybe: smart-telescope pointing (Seestar and similar).
 
+** v4: connect the areas
+- Eclipse day for 2 August 2027. Done: IERS ΔT, contacts to 0.1 s, site
+  time zone, precise location; cue script with safety rules, foreground
+  spoken countdown, rehearsal, sun diagram, contact-time Live Activity.
+  Not done: background audio (App Review risk), Watch haptics, drive to
+  totality, cloud climatology, field test on 6 February 2027.
+- Siri, Shortcuts and Spotlight. Done: 9 App Shortcuts over a MoonriseKit
+  =Answers= target; all Library pages in Spotlight; open page and show in
+  sky. Not done: widgets and controls from the same intents, App Group,
+  phrase testing on a device.
+- Sun tab. Done: offline snapshot, plain-language summary, NOAA R/S/G
+  scales, flare and proton probabilities. Not done: solar wind (SOLAR-1
+  RTSW, reduce on the Worker), active-region labels, sun path, CCOR-2.
+- Sky chart. Done: star fills batched by bin; 109 Messier objects from
+  OpenNGC v20260501 with atlas symbols and cards. Not done: Milky Way
+  (ESA "Gaia's sky in colour", CC BY-SA; Gaia data itself is CC BY-NC),
+  comets (JPL SBDB; needs a parabolic/hyperbolic solver), NGC, deeper stars.
+- Launch visibility. Done: payload first visible pass and labelled Starlink
+  trains from CelesTrak SupGP, 7 LL2 requests an hour. Run migration
+  =0004_launch_designator.sql= on the remote D1 before deploying the Worker.
+  Not done: seeing the ascent (needs a trajectory model).
+- Live Activities. Done: satellite pass activity; small, limited-width and
+  StandBy layouts for all activities; scheduled launch start at T−60 min.
+  Not done: push updates (broadcast channels; channel API from a Worker
+  untested), storms, meteor peaks.
+- Observing conditions. Done: dark window and Moon times in the Today
+  sheet, Moon notes on meteor peaks, passes and tours. Not done: WeatherKit
+  cloud (portal capability, opt-in decision, privacy text), light pollution
+  (licence), meteor radiant altitude.
+- Observing programs. Done: =:CATALOG:= and =:UTC_OFFSET:= in the log,
+  catalogue name matching, Messier progress, user program lists as Org
+  files, "not yet logged, up tonight". Not done: Astronomical League and
+  Lunar 100 lists (permission), IMO/COBS/AAVSO exports.
+- AR camera overlay: later. First measure draw time and pointing on a
+  device and add one-object alignment with a gyroscope heading.
+
 * risks
 - Library scope: 320 pages is most of the effort. Ship 1.0 with fewer
   pages before adding more.
