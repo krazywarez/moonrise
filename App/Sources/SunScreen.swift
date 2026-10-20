@@ -13,6 +13,7 @@ struct SunScreen: View {
     @State private var imageID = Date.now
     @State private var picture: Picture?
     @State private var imageFailed = false
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     private var kp: [KpBar] { data?.kp ?? [] }
     private var xray: [XRaySample] { data?.xray ?? [] }
@@ -29,7 +30,7 @@ struct SunScreen: View {
                 Rectangle().fill(accent).frame(width: 48, height: 5).padding(.top, 8).padding(.bottom, 12)
                 if let summary, let data {
                     Text(summary)
-                    Text(SunFeeds.source(data)).font(.caption2).dimmed(0.5).padding(.top, 4)
+                    Text(SunFeeds.source(data)).font(.caption).dimmed(0.5).padding(.top, 4)
                 } else if !failed {
                     Text("Loading").font(.footnote).dimmed(0.6)
                 }
@@ -137,12 +138,15 @@ struct SunScreen: View {
         }
     }
 
+    /// Three columns, stacked at accessibility text sizes.
     private func scalesStrip(_ s: NOAAScales) -> some View {
-        HStack(alignment: .top, spacing: 12) {
+        let stacked = typeSize.isAccessibilitySize
+        let layout = stacked ? AnyLayout(VStackLayout(alignment: .leading, spacing: 12)) : AnyLayout(HStackLayout(alignment: .top, spacing: 12))
+        return layout {
             scale("R", "Radio", s.current.r, s.past24h.r)
-            Rectangle().fill(ink.opacity(0.25)).frame(width: 0.5)
+            Rectangle().fill(ink.opacity(0.25)).frame(width: stacked ? nil : 0.5, height: stacked ? 0.5 : nil)
             scale("S", "Radiation", s.current.s, s.past24h.s)
-            Rectangle().fill(ink.opacity(0.25)).frame(width: 0.5)
+            Rectangle().fill(ink.opacity(0.25)).frame(width: stacked ? nil : 0.5, height: stacked ? 0.5 : nil)
             scale("G", "Geomagnetic", s.current.g, s.past24h.g)
         }
         .fixedSize(horizontal: false, vertical: true)
@@ -150,11 +154,11 @@ struct SunScreen: View {
 
     private func scale(_ letter: String, _ title: String, _ level: Int, _ past: Int) -> some View {
         VStack(alignment: .leading, spacing: 2) {
-            Text(title).font(.caption2).dimmed(0.6)
+            Text(title).font(.caption).dimmed(0.6)
             Text("\(letter)\(level)").font(.title.weight(.medium).monospacedDigit())
                 .foregroundStyle(level >= 1 ? accent : ink)
             Text(NOAAScales.levelName(level)).font(.footnote)
-            Text("24 h max \(letter)\(past)").font(.caption2).dimmed(0.6)
+            Text("24 h max \(letter)\(past)").font(.caption).dimmed(0.6)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .accessibilityElement(children: .combine)

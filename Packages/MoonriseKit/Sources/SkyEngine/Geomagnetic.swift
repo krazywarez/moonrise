@@ -36,6 +36,11 @@ public enum Geomagnetic {
 
     /// Kp at which aurora may be seen on the horizon from here; 0 under or poleward of the quiet oval.
     public static func kpNeeded(_ observer: Observer) -> Double {
-        max(0, (visibleFrom(kp: 0) - abs(latitude(observer))) / 2.04)
+        kpNeeded(geomagneticLatitude: latitude(observer))
+    }
+
+    /// `kpNeeded(_:)` for a geomagnetic latitude in degrees.
+    public static func kpNeeded(geomagneticLatitude: Double) -> Double {
+        max(0, (visibleFrom(kp: 0) - abs(geomagneticLatitude)) / 2.04)
     }
 }

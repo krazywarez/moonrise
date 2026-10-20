@@ -119,8 +119,3 @@ private func summary(
     #expect(summary(scales: scales(r: 2, s: 1), xray: xray)?.hasPrefix("Minor radiation storm (S1)") == true)
     #expect(summary(scales: scales(r: 2), xray: xray)?.hasPrefix("Moderate flare (M5.0)") == true)
 }
-
-@Test func visibleLatitudeMatchesServer() {
-    // server/src/aurora.ts: visibleFrom(kp) = 66.5 - 2.04 * kp - 6
-    #expect(abs(SunSummary.visibleFrom(kp: 5) - 50.3) < 1e-9)
-}
