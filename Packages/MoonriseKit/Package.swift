@@ -10,6 +10,7 @@ let package = Package(
         .library(name: "Feeds", targets: ["Feeds"]),
         .library(name: "Library", targets: ["Library"]),
         .library(name: "ObservingLog", targets: ["ObservingLog"]),
+        .library(name: "Answers", targets: ["Answers"]),
     ],
     targets: [
         // Astronomy Engine v2.1.19 (MIT), https://github.com/cosinekitty/astronomy
@@ -27,10 +28,12 @@ let package = Package(
         .target(name: "Feeds"),
         .target(name: "ObservingLog"),
         .target(name: "Library", resources: [.copy("Resources/pages"), .copy("Resources/tours"), .copy("Resources/stories")]),
+        .target(name: "Answers", dependencies: ["SkyEngine", "SkyRenderer", "Feeds", "Library"]),
         .testTarget(name: "SkyEngineTests", dependencies: ["SkyEngine"]),
         .testTarget(name: "FeedsTests", dependencies: ["Feeds"], resources: [.copy("Fixtures")]),
         .testTarget(name: "ObservingLogTests", dependencies: ["ObservingLog"]),
         .testTarget(name: "LibraryTests", dependencies: ["Library", "SkyRenderer", "SkyEngine"]),
         .testTarget(name: "SkyRendererTests", dependencies: ["SkyRenderer"]),
+        .testTarget(name: "AnswersTests", dependencies: ["Answers"]),
     ]
 )

@@ -30,6 +30,8 @@ targets:
         product: Library
       - package: MoonriseKit
         product: ObservingLog
+      - package: MoonriseKit
+        product: Answers
       - target: MoonriseWidgets
       - target: MoonriseWatch
     entitlements:

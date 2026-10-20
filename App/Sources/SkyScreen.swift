@@ -24,6 +24,9 @@ struct SkyScreen: View {
     @State private var tour: Tour?
     @State private var tourStep = 0
     @State private var turning: Task<Void, Never>?
+    @State private var router = Router.shared
+    /// Object asked for from Siri or Shortcuts, highlighted until the view is dragged.
+    @State private var shown: Tour.Target?
     @Environment(\.scenePhase) private var scenePhase
     @State private var libraryPage: LibraryPage?
     @State private var selection: SkyObject?
@@ -42,7 +45,7 @@ struct SkyScreen: View {
                 style.background.ignoresSafeArea()
                 if let scene = model.scene {
                     let view = current(width: geo.size.width)
-                    SkyView(scene: scene, centerAzimuth: view.azimuth, centerAltitude: view.altitude, fieldOfView: view.fieldOfView, style: style, culture: Catalog.skyCultures.first { $0.id == skyCulture }, highlight: tour.flatMap { highlight($0.steps[tourStep].target) }) { [stats] d in
+                    SkyView(scene: scene, centerAzimuth: view.azimuth, centerAltitude: view.altitude, fieldOfView: view.fieldOfView, style: style, culture: Catalog.skyCultures.first { $0.id == skyCulture }, highlight: (tour.map { $0.steps[tourStep].target } ?? shown).flatMap(highlight)) { [stats] d in
                         stats.record(d)
                     }
                     .ignoresSafeArea()
@@ -114,6 +117,8 @@ struct SkyScreen: View {
                 .presentationDetents([.medium, .large])
         }
         .onChange(of: model.offsetHours) { select(selection) }
+        .onChange(of: router.skyTarget, initial: true) { showRequestedTarget() }
+        .onChange(of: model.scene == nil) { showRequestedTarget() }
         .onChange(of: onboarded) { if onboarded { model.start() } }
         .onChange(of: night, initial: true) { nightActive = night }
         .onChange(of: model.observer) { rescheduleSummary() }
@@ -175,6 +180,15 @@ struct SkyScreen: View {
         }
     }
 
+    /// Turns to the object in `router.skyTarget` once there is a scene to find it in.
+    private func showRequestedTarget() {
+        guard let t = router.skyTarget, model.scene != nil else { return }
+        router.skyTarget = nil
+        tour = nil
+        shown = t
+        aim(at: t)
+    }
+
     private func rescheduleSummary() {
         Task { await DailySummaryNotifications.reschedule(model) }
     }
@@ -200,6 +214,7 @@ struct SkyScreen: View {
         DragGesture(minimumDistance: 6)
             .onChanged { _ in
                 turning?.cancel()
+                shown = nil
                 if pointer.active {
                     azimuth = pointer.direction.azimuth
                     altitude = min(max(pointer.direction.altitude, 0), 90)

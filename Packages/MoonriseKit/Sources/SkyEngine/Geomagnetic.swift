@@ -21,4 +21,21 @@ public enum Geomagnetic {
         let b = Int((abs(m) / 5).rounded(.down)) * 5
         return m < 0 ? -(b + 5) : b
     }
+
+    /// Geomagnetic latitude of the auroral oval's equatorward edge for a Kp value.
+    /// Must match `ovalEdge` in server/src/aurora.ts.
+    public static func ovalEdge(kp: Double) -> Double {
+        66.5 - 2.04 * kp
+    }
+
+    /// Lowest geomagnetic latitude (absolute) where aurora may be seen low on the poleward horizon.
+    /// Must match `visibleFrom` in server/src/aurora.ts.
+    public static func visibleFrom(kp: Double) -> Double {
+        ovalEdge(kp: kp) - 6
+    }
+
+    /// Kp at which aurora may be seen on the horizon from here; 0 under or poleward of the quiet oval.
+    public static func kpNeeded(_ observer: Observer) -> Double {
+        max(0, (visibleFrom(kp: 0) - abs(latitude(observer))) / 2.04)
+    }
 }

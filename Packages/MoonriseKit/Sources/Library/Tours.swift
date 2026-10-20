@@ -8,6 +8,12 @@ public struct Tour: Sendable, Decodable, Identifiable {
         public var hr: Int?
         /// Body raw value, e.g. "jupiter".
         public var body: String?
+
+        public init(constellation: String? = nil, hr: Int? = nil, body: String? = nil) {
+            self.constellation = constellation
+            self.hr = hr
+            self.body = body
+        }
     }
 
     public struct Step: Sendable, Decodable, Hashable {

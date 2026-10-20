@@ -1,18 +1,25 @@
 import ActivityKit
 import Feeds
+import Library
 import SwiftUI
 
 /// Backend base URL from Info.plist (MOONRISE_API_URL build setting); nil when unset.
 let apiBase: URL? = (Bundle.main.object(forInfoDictionaryKey: "MoonriseAPIURL") as? String)
     .flatMap { $0.isEmpty ? nil : URL(string: $0) }
 
-/// Tab and News/Launches switch that a notification tap can change.
+/// Tab and News/Launches switch that a notification tap can change, and what Siri or Spotlight asked to show.
 @MainActor
 @Observable
 final class Router {
     static let shared = Router()
     var tab = "sky"
     var showNews = false
+    /// Presented as a sheet over any tab.
+    var libraryPage: LibraryPage?
+    /// Typed into the Library's search field.
+    var libraryQuery: String?
+    /// Turned to by the Sky tab once its scene exists.
+    var skyTarget: Tour.Target?
 }
 
 struct LaunchesScreen: View {

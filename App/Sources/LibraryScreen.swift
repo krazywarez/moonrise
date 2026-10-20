@@ -55,6 +55,7 @@ private struct TonightPicks: Sendable {
 
 struct LibraryScreen: View {
     @State private var query = ""
+    @State private var router = Router.shared
     @State private var picks = TonightPicks()
 
     private var rows: [(String, LibrarySection, [LibraryPage])] {
@@ -106,6 +107,9 @@ struct LibraryScreen: View {
         }
         .foregroundStyle(ink)
         .tint(ink)
+        .onChange(of: router.libraryQuery, initial: true) {
+            if let q = router.libraryQuery { query = q; router.libraryQuery = nil }
+        }
         .task {
             if picks.planet == nil, picks.constellations.isEmpty {
                 picks = await Task.detached { TonightPicks.compute() }.value

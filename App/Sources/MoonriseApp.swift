@@ -1,3 +1,4 @@
+import AppIntents
 import SkyRenderer
 import SwiftUI
 import UIKit
@@ -30,6 +31,9 @@ struct MoonriseApp: App {
             .fullScreenCover(isPresented: .constant(!onboarded)) {
                 OnboardingScreen().preferredColorScheme(.dark)
             }
+            .sheet(item: $router.libraryPage) { page in
+                NavigationStack { LibraryPageView(page: page) }
+            }
         }
     }
 }
@@ -39,6 +43,8 @@ final class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCent
         ImageLoader.configureURLCache()
         UNUserNotificationCenter.current().delegate = self
         application.registerForRemoteNotifications()
+        MoonriseShortcuts.updateAppShortcutParameters()
+        Task.detached(priority: .background) { await SpotlightIndexer.indexIfNeeded() }
         return true
     }
 

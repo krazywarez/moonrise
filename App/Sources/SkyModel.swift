@@ -1,3 +1,4 @@
+import Answers
 import CoreLocation
 import Feeds
 import Foundation
@@ -115,6 +116,7 @@ final class SkyModel: NSObject, CLLocationManagerDelegate {
             observer = Observer(latitude: lat, longitude: lon)
             placeName = d.string(forKey: SettingsKey.cityName) ?? "Chicago"
             hasLocation = true
+            Place(latitude: lat, longitude: lon, name: placeName, kind: .city).save(to: d)
         } else {
             if !hasLocation { placeName = "Chicago (location unavailable)" }
             manager.requestWhenInUseAuthorization()
@@ -190,6 +192,7 @@ final class SkyModel: NSObject, CLLocationManagerDelegate {
             self.observer = Observer(latitude: c.latitude, longitude: c.longitude)
             self.hasLocation = true
             self.placeName = "Your location"
+            Place(latitude: c.latitude, longitude: c.longitude, name: self.placeName, kind: .located).save(to: .standard)
             self.refresh()
         }
     }
