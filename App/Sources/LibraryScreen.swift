@@ -10,7 +10,7 @@ private let pageBackground = Color.black
 private let tile = Color(white: 0.08)
 
 /// The observer from Settings (a chosen city) or the last known location, else Chicago.
-private func libraryObserver() -> Observer {
+func libraryObserver() -> Observer {
     let d = UserDefaults.standard
     if d.string(forKey: SettingsKey.locationMode) == "city", d.object(forKey: SettingsKey.cityLatitude) != nil {
         return Observer(latitude: d.double(forKey: SettingsKey.cityLatitude), longitude: d.double(forKey: SettingsKey.cityLongitude))

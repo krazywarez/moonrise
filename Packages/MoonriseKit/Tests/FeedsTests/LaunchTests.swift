@@ -18,4 +18,23 @@ import Testing
     #expect(list.launches[0].net == (try Date("2026-10-19T10:30:00Z", strategy: .iso8601)))
     #expect(list.launches[1].mission == nil)
     #expect(list.fetchedAt != nil)
+    #expect(list.recent == nil)
+    #expect(list.launches[0].elements == nil)
+}
+
+@Test func decodesRecentLaunchesWithElements() throws {
+    // Shape of GET /v1/launches with launch element sets, 2026-10-19.
+    let data = Data("""
+    {"fetchedAt":"2026-10-19T12:00:00.000Z","launches":[],"recent":[{"id":"97c6f5e1","name":"Falcon 9 Block 5 | Starlink Group 15-25",
+     "net":"2026-10-13T00:28:11Z","windowStart":null,"windowEnd":null,"status":"Success","statusName":"Launch Successful","provider":"SpaceX",
+     "rocket":"Falcon 9 Block 5","mission":"Starlink Group 15-25","missionType":"Communications","missionDescription":null,"orbit":"LEO",
+     "pad":"Space Launch Complex 4E","location":"Vandenberg SFB, CA, USA","padLatitude":34.632,"padLongitude":-120.611,
+     "elements":[{"OBJECT_NAME":"Starlink train (Group 15-25)","NORAD_CAT_ID":66001,"EPOCH":"2026-10-18T22:10:01.123456","MEAN_MOTION":15.91,
+      "ECCENTRICITY":0.0001,"INCLINATION":70.0,"RA_OF_ASC_NODE":120.5,"ARG_OF_PERICENTER":90.1,"MEAN_ANOMALY":270.2,"BSTAR":0.0012}],
+     "elementsSource":"gp"}]}
+    """.utf8)
+    let list = try LaunchFeed.decode(data)
+    let launch = try #require(list.recent?.first)
+    #expect(launch.elements?.first?.OBJECT_NAME == "Starlink train (Group 15-25)")
+    #expect(launch.elementsSource == "gp")
 }

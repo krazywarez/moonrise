@@ -1,6 +1,7 @@
 import ActivityKit
 import Feeds
 import Library
+import SkyEngine
 import SwiftUI
 
 /// Backend base URL from Info.plist (MOONRISE_API_URL build setting); nil when unset.
@@ -71,6 +72,13 @@ struct LaunchesScreen: View {
                         Button { selected = launch } label: { row(launch, index: i + 1) }
                             .buttonStyle(.plain)
                     }
+                    if let recent = list.recent, !recent.isEmpty {
+                        Text("Recent").font(.caption2.weight(.medium)).textCase(.uppercase).tracking(0.8).dimmed(0.6).padding(.top, 20).padding(.bottom, 4)
+                        ForEach(Array(recent.enumerated()), id: \.element.id) { i, launch in
+                            Button { selected = launch } label: { row(launch, index: i + 1) }
+                                .buttonStyle(.plain)
+                        }
+                    }
                     Text("Launch data: The Space Devs, Launch Library 2.")
                         .font(.caption2).dimmed(0.5).padding(.vertical, 16)
                 } else if error == nil {
@@ -84,7 +92,10 @@ struct LaunchesScreen: View {
         if !force, let cached: LaunchList = FeedMemo.get("launches", maxAge: 300) { list = cached; return }
         do {
             list = try await LaunchFeed.fetch(base: apiBase)
-            if let list { FeedMemo.set("launches", list) }
+            if let list {
+                FeedMemo.set("launches", list)
+                await LaunchPassNotifications.reschedule(list.launches + (list.recent ?? []))
+            }
             error = nil
         } catch {
             self.error = "Couldn't load launches. Pull to retry."
@@ -175,6 +186,7 @@ struct LaunchDetail: View {
                     fact("Location", launch.location)
                 }
                 .font(.subheadline)
+                visibility.padding(.top, 8)
                 followButton.padding(.top, 8)
                 if let message { Text(message).font(.caption).dimmed(0.7) }
                 if let d = launch.missionDescription {
@@ -191,6 +203,76 @@ struct LaunchDetail: View {
 
     @State private var message: String?
     @State private var following = false
+    @State private var passes: [SatellitePass]?
+    @State private var notifying = false
+    @State private var notifyMessage: String?
+
+    /// First visible passes over the observer, worked out on the device.
+    @ViewBuilder
+    private var visibility: some View {
+        if let elements = launch.elements, !elements.isEmpty {
+            VStack(alignment: .leading, spacing: 6) {
+                Text("Visibility").font(.caption2.weight(.medium)).textCase(.uppercase).tracking(0.8).dimmed(0.6)
+                if let passes {
+                    if let first = passes.first {
+                        Grid(alignment: .leading, horizontalSpacing: 16, verticalSpacing: 6) {
+                            fact("First visible pass", describe(first))
+                            ForEach(passes.filter { $0.name == first.name }.dropFirst().prefix(2)) { fact("Later", describe($0)) }
+                        }
+                        .font(.subheadline)
+                        Text("\(first.displayName). Sunlit while your sky is dark; it may still be too faint to see\(elements.contains { $0.OBJECT_NAME.hasPrefix("Starlink train") } ? ", though new trains are often visible" : "").")
+                            .font(.caption).dimmed(0.7)
+                        Text(source).font(.caption2).dimmed(0.5)
+                        notifyButton
+                        if let notifyMessage { Text(notifyMessage).font(.caption).dimmed(0.7) }
+                    } else {
+                        Text("No visible pass from here in the next three days.").font(.subheadline).dimmed(0.7)
+                    }
+                } else {
+                    ProgressView().tint(ink)
+                }
+            }
+            .task {
+                notifying = LaunchPassNotifications.followed.contains(launch.id)
+                passes = await LaunchPassNotifications.passes(of: launch, observer: libraryObserver())
+            }
+        } else if launch.net < .now {
+            Text("No orbit published for this launch yet.").font(.caption).dimmed(0.7)
+        }
+    }
+
+    private var source: String {
+        let credit = launch.elementsSource == "supgp" ? "SpaceX via CelesTrak" : "CelesTrak"
+        return launch.elementsSource == "supgp" && launch.net > .now ? "Predicted before launch · \(credit)" : "Orbit: \(credit)"
+    }
+
+    private func describe(_ p: SatellitePass) -> String {
+        p.rise.formatted(.dateTime.weekday(.abbreviated).day().month(.abbreviated).hour().minute())
+            + " · \(LaunchPassNotifications.compass(p.riseAzimuth)) → \(LaunchPassNotifications.compass(p.setAzimuth)), highest \(Int(p.maxAltitude.rounded()))°"
+    }
+
+    private var notifyButton: some View {
+        Button {
+            if notifying {
+                LaunchPassNotifications.unfollow(launch)
+                notifying = false
+                notifyMessage = nil
+            } else {
+                Task {
+                    notifying = await LaunchPassNotifications.follow(launch)
+                    notifyMessage = notifying ? nil : "Notifications are off for Moonrise. Turn them on in the Settings app."
+                }
+            }
+        } label: {
+            Label(notifying ? "Don't notify me" : "Notify me 15 minutes before", systemImage: notifying ? "bell.slash" : "bell")
+                .font(.subheadline.weight(.medium))
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 10)
+                .overlay(RoundedRectangle(cornerRadius: 6).stroke(ink.opacity(0.5), lineWidth: 0.5))
+        }
+        .buttonStyle(.plain)
+        .padding(.top, 4)
+    }
 
     private var followButton: some View {
         Button {

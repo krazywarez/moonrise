@@ -1,8 +1,8 @@
 import { send, type ApnsConfig } from "./apns";
 import { actionableKp, alertBands, eventKey, isNight } from "./aurora";
-import { fetchElements } from "./celestrak";
+import { compose, fetchGroups, fetchSupGP, fitsLaunch, supgpFile, supgpLaunches, type LaunchElements, type LaunchRef, type Row } from "./celestrak";
 import { activeEvent, fetchTrajectory, STEP_MINUTES } from "./live";
-import { fetchUpcoming, type Launch } from "./ll2";
+import { fetchLaunches, PREVIOUS_URL, UPCOMING_URL, type Launch } from "./ll2";
 import { digestDue, digestPayload, fetchLatest, localDate, pickHeadlines } from "./news";
 import { PRIVACY_HTML } from "./privacy";
 import { fetchSpaceWeather, next24h, type SpaceWeather } from "./swpc";
@@ -28,6 +28,8 @@ interface DeviceRequest {
 
 const LAUNCH_CRON = "*/10 * * * *";
 const SATELLITE_CRON = "7 */2 * * *";
+/** Launches are kept this long after NET, so a launch page and its first pass outlive liftoff. */
+const RETENTION_MS = 14 * 86400_000;
 
 const json = (body: unknown, status = 200, maxAge?: number) =>
   Response.json(body, { status, headers: maxAge && status === 200 ? { "cache-control": `public, max-age=${maxAge}` } : {} });
@@ -97,7 +99,7 @@ export default {
 
   async scheduled(controller: ScheduledController, env: Env, ctx: ExecutionContext): Promise<void> {
     const now = new Date(controller.scheduledTime);
-    // Launches every 10 minutes: 6 of the 15 anonymous Launch Library 2 requests per hour.
+    // Upcoming launches every 10 minutes and previous launches hourly: 7 of the 15 anonymous Launch Library 2 requests per hour.
     if (controller.cron === LAUNCH_CRON) ctx.waitUntil(Promise.all([pollLaunches(env, now), sendNewsDigests(env, now)]));
     else if (controller.cron === SATELLITE_CRON) ctx.waitUntil(pollSatellites(env, now));
     else ctx.waitUntil(pollSpaceWeather(env, now));
@@ -154,15 +156,22 @@ async function live(env: Env, url: URL, now: Date): Promise<Response> {
 async function launches(env: Env, now: Date): Promise<Response> {
   const since = new Date(now.getTime() - 6 * 3600_000).toISOString();
   const rows = await env.DB.prepare("SELECT * FROM launches WHERE net >= ?1 ORDER BY net LIMIT 20").bind(since).all<Record<string, unknown>>();
+  const recent = await env.DB.prepare("SELECT * FROM launches WHERE net < ?1 AND net >= ?2 ORDER BY net DESC LIMIT 20")
+    .bind(since, new Date(now.getTime() - RETENTION_MS).toISOString()).all<Record<string, unknown>>();
   const fetched = await env.DB.prepare("SELECT fetched_at FROM feed_snapshots WHERE feed = 'll2' AND ok = 1").first<{ fetched_at: string }>();
+  const els = await env.DB.prepare("SELECT body FROM feed_snapshots WHERE feed = 'launch-elements' AND ok = 1").first<{ body: string }>();
+  const elements: Record<string, LaunchElements> = els ? JSON.parse(els.body) : {};
+  const shape = (r: Record<string, unknown>) => ({
+    id: r.id, name: r.name, net: r.net, windowStart: r.window_start, windowEnd: r.window_end,
+    status: r.status, statusName: r.status_name, provider: r.provider, rocket: r.rocket,
+    mission: r.mission, missionType: r.mission_type, missionDescription: r.mission_description, orbit: r.orbit,
+    pad: r.pad, location: r.location, padLatitude: r.pad_latitude, padLongitude: r.pad_longitude,
+    elements: elements[String(r.id)]?.elements ?? [], elementsSource: elements[String(r.id)]?.source ?? null,
+  });
   return json({
     fetchedAt: fetched?.fetched_at ?? null,
-    launches: rows.results.map((r) => ({
-      id: r.id, name: r.name, net: r.net, windowStart: r.window_start, windowEnd: r.window_end,
-      status: r.status, statusName: r.status_name, provider: r.provider, rocket: r.rocket,
-      mission: r.mission, missionType: r.mission_type, missionDescription: r.mission_description, orbit: r.orbit,
-      pad: r.pad, location: r.location, padLatitude: r.pad_latitude, padLongitude: r.pad_longitude,
-    })),
+    launches: rows.results.map(shape),
+    recent: recent.results.map(shape),
   }, 200, MAX_AGE.launches);
 }
 
@@ -170,34 +179,72 @@ async function launches(env: Env, now: Date): Promise<Response> {
 async function pollLaunches(env: Env, now: Date): Promise<void> {
   let list: Launch[];
   try {
-    list = await fetchUpcoming(env.LL2_API_KEY);
+    list = await fetchLaunches(UPCOMING_URL, env.LL2_API_KEY);
   } catch (e) {
     console.error("ll2", String(e));
     await env.DB.prepare("INSERT INTO feed_snapshots (feed, fetched_at, ok) VALUES ('ll2:error', ?1, 0) ON CONFLICT (feed) DO UPDATE SET fetched_at = ?1").bind(now.toISOString()).run();
     return;
   }
+  // Previous launches on the first run of each hour: designators and outcomes arrive after a launch leaves the upcoming list.
+  if (now.getUTCMinutes() < 10) {
+    try {
+      list = [...list, ...(await fetchLaunches(PREVIOUS_URL, env.LL2_API_KEY))];
+    } catch (e) {
+      console.error("ll2 previous", String(e));
+    }
+  }
   const upsert = env.DB.prepare(
-    `INSERT INTO launches (id, name, net, window_start, window_end, status, status_name, provider, rocket, mission, mission_type, mission_description, orbit, pad, location, pad_latitude, pad_longitude, last_updated)
-     VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17, ?18)
+    `INSERT INTO launches (id, name, net, window_start, window_end, status, status_name, provider, rocket, mission, mission_type, mission_description, orbit, pad, location, pad_latitude, pad_longitude, last_updated, launch_designator)
+     VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17, ?18, ?19)
      ON CONFLICT (id) DO UPDATE SET name = ?2, net = ?3, window_start = ?4, window_end = ?5, status = ?6, status_name = ?7, provider = ?8, rocket = ?9,
-       mission = ?10, mission_type = ?11, mission_description = ?12, orbit = ?13, pad = ?14, location = ?15, pad_latitude = ?16, pad_longitude = ?17, last_updated = ?18`,
+       mission = ?10, mission_type = ?11, mission_description = ?12, orbit = ?13, pad = ?14, location = ?15, pad_latitude = ?16, pad_longitude = ?17, last_updated = ?18,
+       launch_designator = COALESCE(?19, launch_designator)`,
   );
   await env.DB.batch([
-    ...list.map((l) => upsert.bind(l.id, l.name, l.net, l.windowStart, l.windowEnd, l.status, l.statusName, l.provider, l.rocket, l.mission, l.missionType, l.missionDescription, l.orbit, l.pad, l.location, l.padLatitude, l.padLongitude, l.lastUpdated)),
-    env.DB.prepare("DELETE FROM launches WHERE net < ?1").bind(new Date(now.getTime() - 7 * 86400_000).toISOString()),
+    ...list.map((l) => upsert.bind(l.id, l.name, l.net, l.windowStart, l.windowEnd, l.status, l.statusName, l.provider, l.rocket, l.mission, l.missionType, l.missionDescription, l.orbit, l.pad, l.location, l.padLatitude, l.padLongitude, l.lastUpdated, l.designator)),
+    env.DB.prepare("DELETE FROM launches WHERE net < ?1").bind(new Date(now.getTime() - RETENTION_MS).toISOString()),
     env.DB.prepare("INSERT INTO feed_snapshots (feed, fetched_at, ok) VALUES ('ll2', ?1, 1) ON CONFLICT (feed) DO UPDATE SET fetched_at = ?1, ok = 1").bind(now.toISOString()),
   ]);
 }
 
 async function pollSatellites(env: Env, now: Date): Promise<void> {
+  let groups: { visual: Row[]; recent: Row[] };
   try {
-    const elements = await fetchElements();
-    await env.DB.prepare("INSERT INTO feed_snapshots (feed, fetched_at, ok, body) VALUES ('celestrak', ?1, 1, ?2) ON CONFLICT (feed) DO UPDATE SET fetched_at = ?1, ok = 1, body = ?2")
-      .bind(now.toISOString(), JSON.stringify(elements)).run();
+    groups = await fetchGroups();
   } catch (e) {
     console.error("celestrak", String(e));
     await env.DB.prepare("INSERT INTO feed_snapshots (feed, fetched_at, ok) VALUES ('celestrak:error', ?1, 0) ON CONFLICT (feed) DO UPDATE SET fetched_at = ?1").bind(now.toISOString()).run();
+    return;
   }
+  const launches = await env.DB.prepare("SELECT id, mission, provider, net, launch_designator AS designator FROM launches WHERE net >= ?1")
+    .bind(new Date(now.getTime() - RETENTION_MS).toISOString()).all<LaunchRef>();
+  const supgp = await pollSupGP(env, launches.results, now);
+  const fitting = Object.fromEntries(launches.results.map((l) => [l.id, fitsLaunch(supgp[l.id] ?? [], l.net, now)]));
+  const out = compose(groups.visual, groups.recent, launches.results, fitting, now);
+  const save = env.DB.prepare("INSERT INTO feed_snapshots (feed, fetched_at, ok, body) VALUES (?1, ?2, 1, ?3) ON CONFLICT (feed) DO UPDATE SET fetched_at = ?2, ok = 1, body = ?3");
+  await env.DB.batch([
+    save.bind("celestrak", now.toISOString(), JSON.stringify(out.satellites)),
+    save.bind("launch-elements", now.toISOString(), JSON.stringify(out.launches)),
+  ]);
+}
+
+/**
+ * SupGP sets by launch id, fetched after the GP groups and kept in their own snapshot: on any failure no more
+ * requests are made and the last good sets are used, so the GP data is never lost to a SupGP problem.
+ */
+async function pollSupGP(env: Env, launches: LaunchRef[], now: Date): Promise<Record<string, Row[]>> {
+  const sets: Record<string, Row[]> = {};
+  try {
+    for (const l of supgpLaunches(launches, now)) sets[l.id] = await fetchSupGP(supgpFile(l.mission)!);
+  } catch (e) {
+    console.error("supgp", String(e));
+    await env.DB.prepare("INSERT INTO feed_snapshots (feed, fetched_at, ok) VALUES ('supgp:error', ?1, 0) ON CONFLICT (feed) DO UPDATE SET fetched_at = ?1").bind(now.toISOString()).run();
+    const last = await env.DB.prepare("SELECT body FROM feed_snapshots WHERE feed = 'supgp' AND ok = 1").first<{ body: string }>();
+    return last ? JSON.parse(last.body) : {};
+  }
+  await env.DB.prepare("INSERT INTO feed_snapshots (feed, fetched_at, ok, body) VALUES ('supgp', ?1, 1, ?2) ON CONFLICT (feed) DO UPDATE SET fetched_at = ?1, ok = 1, body = ?2")
+    .bind(now.toISOString(), JSON.stringify(sets)).run();
+  return sets;
 }
 
 async function pollSpaceWeather(env: Env, now: Date): Promise<void> {

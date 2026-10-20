@@ -130,4 +130,13 @@ extension SkyEngine {
         }
         return out
     }
+
+    /// Visible passes of any of `elements`, earliest first, each set searched for `hours` from the later of `start`
+    /// and its epoch: a set published before launch is epoched at deployment and means nothing earlier.
+    public static func visiblePasses(of elements: [OrbitalElements], from start: Date, hours: Double = 72, observer: Observer) -> [SatellitePass] {
+        elements.flatMap { e in
+            passes(of: e, from: max(start, e.epochDate ?? start), hours: hours, observer: observer).filter(\.visible)
+        }
+        .sorted { $0.rise < $1.rise }
+    }
 }

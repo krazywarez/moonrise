@@ -1,4 +1,5 @@
 import Foundation
+import SkyEngine
 
 /// An upcoming launch as served by the Moonrise backend (from Launch Library 2).
 public struct Launch: Codable, Sendable, Identifiable, Hashable {
@@ -20,11 +21,17 @@ public struct Launch: Codable, Sendable, Identifiable, Hashable {
     public var location: String
     public var padLatitude: Double?
     public var padLongitude: Double?
+    /// Element sets for this launch's objects (a Starlink train, rocket bodies, payloads), once known.
+    public var elements: [OrbitalElements]?
+    /// "supgp" (SpaceX data via CelesTrak, possibly predicted before launch) or "gp" (CelesTrak catalogue).
+    public var elementsSource: String?
 }
 
 public struct LaunchList: Codable, Sendable {
     public var fetchedAt: Date?
     public var launches: [Launch]
+    /// Launched in the last 14 days, latest first.
+    public var recent: [Launch]?
 }
 
 public enum LaunchFeed {

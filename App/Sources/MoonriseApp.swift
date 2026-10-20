@@ -13,6 +13,7 @@ struct MoonriseApp: App {
     @AppStorage(SettingsKey.onboarded) private var onboarded = false
     @AppStorage(SettingsKey.nightActive) private var nightActive = false
     @State private var router = Router.shared
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some Scene {
         WindowGroup {
@@ -34,6 +35,7 @@ struct MoonriseApp: App {
             .sheet(item: $router.libraryPage) { page in
                 NavigationStack { LibraryPageView(page: page) }
             }
+            .onChange(of: scenePhase) { if scenePhase == .active { Task { await LaunchPassNotifications.refresh() } } }
         }
     }
 }
