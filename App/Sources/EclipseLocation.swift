@@ -16,6 +16,8 @@ final class EclipseLocation: NSObject, CLLocationManagerDelegate {
 
     private(set) var fix: Fix?
     private let manager = CLLocationManager()
+    /// Screens using the fixes; updates stop when the last one goes.
+    private var users = 0
 
     override init() {
         super.init()
@@ -25,12 +27,15 @@ final class EclipseLocation: NSObject, CLLocationManagerDelegate {
     }
 
     func start() {
+        users += 1
+        guard users == 1 else { return }
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
     }
 
     func stop() {
-        manager.stopUpdatingLocation()
+        users -= 1
+        if users == 0 { manager.stopUpdatingLocation() }
     }
 
     nonisolated func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -46,10 +51,11 @@ final class EclipseLocation: NSObject, CLLocationManagerDelegate {
         Task { @MainActor in log.error("Eclipse location failed: \(error.localizedDescription, privacy: .public)") }
     }
 
-    /// The time zone at `observer` from Apple Maps, or nil offline.
-    static func timeZone(at observer: Observer) async -> TimeZone? {
-        guard let request = MKReverseGeocodingRequest(location: CLLocation(latitude: observer.latitude, longitude: observer.longitude)) else { return nil }
-        return try? await request.mapItems.first?.timeZone
+    /// The time zone and town at `observer` from Apple Maps, or nil offline.
+    static func site(at observer: Observer) async -> (zone: TimeZone, city: String?)? {
+        guard let request = MKReverseGeocodingRequest(location: CLLocation(latitude: observer.latitude, longitude: observer.longitude)),
+              let item = try? await request.mapItems.first, let zone = item.timeZone else { return nil }
+        return (zone, item.addressRepresentations?.cityName)
     }
 }
 

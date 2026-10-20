@@ -1,3 +1,4 @@
+import ActivityKit
 import SkyEngine
 import SkyRenderer
 import SwiftUI
@@ -9,10 +10,14 @@ struct EclipseScreen: View {
     var placeName: String
     @State private var path: EclipsePath?
     @State private var local: LocalEclipse?
+    @State private var timeline: EclipseTimeline?
     @State private var loaded = false
     @State private var location = EclipseLocation()
     /// Time zone at the site, from Apple Maps; times are also given in UTC, and only in UTC when this is unknown.
     @State private var zone: TimeZone?
+    @State private var city: String?
+    @State private var day: Day?
+    @State private var activityNote: String?
     @AppStorage(SettingsKey.locationMode) private var locationMode = "current"
     @Environment(\.dismiss) private var dismiss
 
@@ -21,6 +26,11 @@ struct EclipseScreen: View {
 
     private let ink = Color(red: 0.95, green: 0.95, blue: 0.93)
     private let accent = Color(red: 0.88, green: 0.24, blue: 0.19)
+
+    private enum Day: Identifiable {
+        case live, rehearsal
+        var id: Self { self }
+    }
 
     var body: some View {
         NavigationStack {
@@ -37,6 +47,10 @@ struct EclipseScreen: View {
                         ProgressView().tint(ink).frame(maxWidth: .infinity, minHeight: 200)
                     }
                     if loaded { here }
+                    if let timeline {
+                        SunDiagram(timeline: timeline, ink: ink, accent: accent)
+                        dayTools(timeline)
+                    }
                 }
                 .padding(20)
                 .readableWidth()
@@ -46,6 +60,9 @@ struct EclipseScreen: View {
             .navigationTitle(path.map { "\($0.kind) solar eclipse" } ?? "Solar eclipse")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done") { dismiss() } } }
+            .fullScreenCover(item: $day) { d in
+                EclipseDayScreen(date: date, observer: observer, placeName: placeName, zone: zone, rehearsal: d == .rehearsal, location: location)
+            }
         }
         .task {
             let date = date
@@ -53,14 +70,17 @@ struct EclipseScreen: View {
             loaded = true
         }
         .task(id: site) {
-            let date = date, site = site
-            local = await Task.detached { LocalEclipse.at(site, near: date) }.value
+            let date = date, site = site, accuracy = locationMode == "city" ? nil : location.fix?.accuracy
+            (local, timeline) = await Task.detached {
+                let l = LocalEclipse.at(site, near: date)
+                return (l, l.flatMap { try? EclipseTimeline($0, observer: site, accuracy: accuracy) })
+            }.value
         }
         .task(id: [(site.latitude * 10).rounded(), (site.longitude * 10).rounded()]) {
-            if let z = await EclipseLocation.timeZone(at: site) { zone = z }
+            if let s = await EclipseLocation.site(at: site) { (zone, city) = s }
         }
         .onAppear { if locationMode != "city" { location.start() } }
-        .onDisappear { location.stop() }
+        .onDisappear { if locationMode != "city" { location.stop() } }
     }
 
     private func facts(_ p: EclipsePath) -> some View {
@@ -116,6 +136,50 @@ struct EclipseScreen: View {
             }
             Text("Never look at the Sun without certified eclipse glasses, except during totality itself.")
                 .font(.footnote).foregroundStyle(accent).padding(.top, 6)
+        }
+    }
+
+    private func dayTools(_ t: EclipseTimeline) -> some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("Eclipse day").font(.caption2.weight(.medium)).textCase(.uppercase).tracking(0.8).dimmed(0.6)
+            if t.eclipse.partialEnd > .now {
+                Button("Start the countdown") { day = .live }
+                Button("Show contact times on the Lock Screen") { scheduleActivity(t) }
+            }
+            Button("Rehearse from three minutes before \(t.eclipse.kind == "Total" ? "totality" : "maximum")") { day = .rehearsal }
+            if let activityNote { Text(activityNote).font(.footnote).dimmed(0.7) }
+            Text("The countdown speaks each cue and taps at the contacts while Moonrise is open, and keeps the screen on.")
+                .font(.footnote).dimmed(0.7)
+        }
+        .tint(accent)
+    }
+
+    /// Adds a Live Activity that appears 30 minutes before first contact, or now if that has passed.
+    private func scheduleActivity(_ t: EclipseTimeline) {
+        let e = t.eclipse
+        let attributes = EclipseActivityAttributes(
+            kind: e.kind, site: locationMode == "city" ? placeName : city ?? "your location",
+            c1: e.partialBegin, c2: e.centralBegin, peak: e.peak, c3: e.centralEnd, c4: e.partialEnd, timeZone: zone?.identifier
+        )
+        let content = ActivityContent(state: EclipseActivityAttributes.ContentState(), staleDate: e.partialEnd)
+        let start = e.partialBegin.addingTimeInterval(-1800)
+        let clock = { (d: Date, date: Date.FormatStyle.DateStyle) in
+            d.formatted(Date.FormatStyle(date: date, time: .shortened, timeZone: zone ?? .gmt)) + (zone == nil ? " UTC" : "")
+        }
+        Task {
+            for a in Activity<EclipseActivityAttributes>.activities { await a.end(nil, dismissalPolicy: .immediate) }
+            do {
+                if start > .now {
+                    let alert = AlertConfiguration(title: "\(e.kind) eclipse today", body: "First contact at \(clock(e.partialBegin, .omitted)).", sound: .default)
+                    _ = try Activity.request(attributes: attributes, content: content, style: .standard, alertConfiguration: alert, start: start)
+                    activityNote = "It will appear on the Lock Screen on \(clock(start, .abbreviated)), 30 minutes before first contact."
+                } else {
+                    _ = try Activity.request(attributes: attributes, content: content)
+                    activityNote = "Contact times are on the Lock Screen."
+                }
+            } catch {
+                activityNote = "Could not add it to the Lock Screen: \(error.localizedDescription)"
+            }
         }
     }
 
@@ -199,5 +263,69 @@ struct EclipseMap: View {
             Text("Shaded: where the eclipse is \(path.kind.lowercased()). Ring: greatest eclipse.")
                 .font(.caption2).dimmed(0.7).padding(6)
         }
+    }
+}
+
+/// The Sun's path across the sky from first to last contact: altitude against compass bearing,
+/// with a line every fist width (about 10° at arm's length) above the horizon.
+struct SunDiagram: View {
+    var timeline: EclipseTimeline
+    var ink: Color
+    var accent: Color
+
+    var body: some View {
+        let path = (try? timeline.sunPath(every: 300)) ?? []
+        let key = timeline.contacts.first { $0.name == (timeline.eclipse.kind == "Total" ? "C2" : "Max") } ?? timeline.contacts[0]
+        VStack(alignment: .leading, spacing: 8) {
+            Canvas { context, size in draw(path, context: &context, size: size) }
+                .frame(height: 180)
+                .accessibilityHidden(true)
+            Text("At \(timeline.eclipse.kind == "Total" ? "totality" : "maximum") the Sun is \(Int(key.sun.altitude.rounded()))° up, about \(Int((key.sun.altitude / 10).rounded())) fists above the horizon at arm's length, bearing \(Int(key.sun.azimuth.rounded()))° \(compass(key.sun.azimuth)). Check that no trees or buildings will be in the way.")
+                .font(.footnote).dimmed(0.8)
+        }
+    }
+
+    private func draw(_ samples: [(date: Date, sun: Horizontal)], context: inout GraphicsContext, size: CGSize) {
+        guard let first = samples.first else { return }
+        // Azimuths unwrapped so a path through north stays continuous.
+        func unwrap(_ a: Double) -> Double { first.sun.azimuth + remainder(a - first.sun.azimuth, 360) }
+        let az = samples.map { unwrap($0.sun.azimuth) }
+        let mid = (az.min()! + az.max()!) / 2, half = max(45, (az.max()! - az.min()!) / 2 + 20)
+        let top = min(90, ((samples.map(\.sun.altitude).max() ?? 0) / 10).rounded(.up) * 10 + 10)
+        let base = size.height - 16
+        func pt(_ alt: Double, _ azimuth: Double) -> CGPoint {
+            CGPoint(x: (azimuth - (mid - half)) / (2 * half) * size.width, y: base - max(alt, 0) / top * (base - 8))
+        }
+
+        var grid = Path()
+        for alt in stride(from: 10.0, through: top, by: 10) {
+            grid.move(to: pt(alt, mid - half)); grid.addLine(to: pt(alt, mid + half))
+        }
+        context.stroke(grid, with: .color(ink.opacity(0.12)), style: StrokeStyle(lineWidth: 0.5, dash: [2, 3]))
+        for alt in stride(from: 20.0, through: top, by: 20) {
+            context.draw(Text("\(Int(alt))°").font(.system(size: 9)).foregroundStyle(ink.opacity(0.5)), at: pt(alt, mid - half), anchor: .bottomLeading)
+        }
+        var horizon = Path()
+        horizon.move(to: CGPoint(x: 0, y: base)); horizon.addLine(to: CGPoint(x: size.width, y: base))
+        context.stroke(horizon, with: .color(ink.opacity(0.6)), lineWidth: 1)
+        for bearing in stride(from: ((mid - half) / 45).rounded(.up) * 45, through: mid + half, by: 45) {
+            context.draw(Text(compass(bearing)).font(.system(size: 10)).foregroundStyle(ink.opacity(0.7)), at: CGPoint(x: pt(0, bearing).x, y: base + 8))
+        }
+
+        var arc = Path()
+        arc.addLines(zip(samples, az).map { pt($0.0.sun.altitude, $0.1) })
+        context.stroke(arc, with: .color(ink.opacity(0.5)), lineWidth: 1)
+        for c in timeline.contacts where c.name == "C1" || c.name == "C4" || c.name == (timeline.eclipse.kind == "Total" ? "C2" : "Max") {
+            let p = pt(c.sun.altitude, unwrap(c.sun.azimuth))
+            let key = c.name == "C2" || c.name == "Max"
+            context.fill(Path(ellipseIn: CGRect(x: p.x - 4, y: p.y - 4, width: 8, height: 8)), with: .color(key ? accent : ink))
+            context.draw(Text(c.name == "C2" ? "Totality" : c.name).font(.system(size: 10)).foregroundStyle(ink), at: CGPoint(x: p.x, y: p.y - 11))
+        }
+    }
+
+    private func compass(_ azimuth: Double) -> String {
+        let points = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"]
+        let a = (azimuth.truncatingRemainder(dividingBy: 360) + 360).truncatingRemainder(dividingBy: 360)
+        return points[Int(((a + 11.25) / 22.5).rounded(.down)) % 16]
     }
 }

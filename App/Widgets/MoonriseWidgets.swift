@@ -12,6 +12,7 @@ struct MoonriseWidgets: WidgetBundle {
         #if os(iOS)
         LaunchLiveActivity()
         EventLiveActivity()
+        EclipseLiveActivity()
         #endif
     }
 }
