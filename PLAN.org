@@ -433,8 +433,9 @@ Sky, System, Sun, Launches, Library core (above).
 - Eclipse day for 2 August 2027. Done: IERS ΔT, contacts to 0.1 s, site
   time zone, precise location; cue script with safety rules, foreground
   spoken countdown, rehearsal, sun diagram, contact-time Live Activity.
-  Not done: background audio (App Review risk), Watch haptics, drive to
-  totality, cloud climatology, field test on 6 February 2027.
+  Decided: the countdown stays in the foreground (no background audio
+  mode) and in English. Not done: Watch haptics, drive to totality, cloud
+  climatology, field test on 6 February 2027.
 - Siri, Shortcuts and Spotlight. Done: 9 App Shortcuts over a MoonriseKit
   =Answers= target; all Library pages in Spotlight; open page and show in
   sky. Not done: widgets and controls from the same intents, App Group,
@@ -451,19 +452,40 @@ Sky, System, Sun, Launches, Library core (above).
   =0004_launch_designator.sql= on the remote D1 before deploying the Worker.
   Not done: seeing the ascent (needs a trajectory model).
 - Live Activities. Done: satellite pass activity; small, limited-width and
-  StandBy layouts for all activities; scheduled launch start at T−60 min.
-  Not done: push updates (broadcast channels; channel API from a Worker
-  untested), storms, meteor peaks.
+  StandBy layouts for all activities; scheduled launch start at T−60 min;
+  launch updates pushed over APNs broadcast channels, one per launch, with a
+  focused LL2 poll every 5 min from T−60 to T+15 (at most 13 anonymous
+  requests an hour); previews and DEBUG sample activities for testing. Not
+  done: storms, meteor peaks.
 - Observing conditions. Done: dark window and Moon times in the Today
-  sheet, Moon notes on meteor peaks, passes and tours. Not done: WeatherKit
-  cloud (portal capability, opt-in decision, privacy text), light pollution
-  (licence), meteor radiant altitude.
+  sheet, Moon notes on meteor peaks, passes and tours; opt-in WeatherKit
+  cloud (off by default, location rounded to 0.1°, sent only to Apple) with
+  a go/marginal/no rating for tonight, passes and events. Not done: light
+  pollution (licence), meteor radiant altitude.
 - Observing programs. Done: =:CATALOG:= and =:UTC_OFFSET:= in the log,
   catalogue name matching, Messier progress, user program lists as Org
   files, "not yet logged, up tonight". Not done: Astronomical League and
   Lunar 100 lists (permission), IMO/COBS/AAVSO exports.
 - AR camera overlay: later. First measure draw time and pointing on a
   device and add one-object alignment with a gyroscope heading.
+
+* before publishing
+- Launch Library 2 API key as the =LL2_API_KEY= secret. Anonymous calls from
+  Workers' shared IPs get HTTP 429 for hours at a time.
+- Decide on the Astronomical League lists (Herschel 400, Double Star, Lunar,
+  Binocular Messier) and Lunar 100 (Charles Wood, Sky & Telescope): ask for
+  permission or leave them to user program files.
+- Review of the eclipse safety wording outside engineering.
+- App Store Connect privacy label: Location, Coarse Location, App
+  Functionality, not linked, not used for tracking (WeatherKit).
+- WeatherKit: check a real forecast on a signed device build.
+- Launch push: Broadcast capability for =sh.krz.moonrise=; run the channel
+  trial in =spikes/apns-channels/README.org=; then either set
+  =APNS_MANAGE_CHANNELS= or fill the pool with =server/scripts/channels.ts=;
+  apply =0005_launch_channels.sql= on the remote D1 before deploying.
+- Device checks: Siri phrases, Live Activity layouts (Lock Screen, Dynamic
+  Island, Watch, CarPlay, StandBy), eclipse rehearsal with the silent
+  switch on, sky draw time and pointing.
 
 * risks
 - Library scope: 320 pages is most of the effort. Ship 1.0 with fewer
