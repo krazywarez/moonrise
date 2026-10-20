@@ -1,0 +1,11 @@
+{
+  "name": "moonrise-apns-channels-spike",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-01",
+  "vars": {
+    "APNS_KEY_ID": "644XS4F2RG",
+    "APNS_TEAM_ID": "ZCNAX3VL9D",
+    "APNS_TOPIC": "sh.krz.moonrise"
+  }
+  // Secret: APNS_KEY (.p8 contents). Set with `wrangler secret put`.
+}

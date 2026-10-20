@@ -32,10 +32,36 @@ so anonymous requests from Cloudflare often get HTTP 429. With an API key:
 wrangler secret put LL2_API_KEY
 #+end_src
 
+* launch Live Activity channels
+Launch Live Activities get status and NET changes over APNs broadcast
+channels, one per launch and APNs environment, handed out a day before NET
+from the =launch_channels= table (migration =0005_launch_channels.sql=).
+Needs the Broadcast capability on for =sh.krz.moonrise= in the developer
+portal.
+
+With =APNS_MANAGE_CHANNELS= set to ="1"= (once =spikes/apns-channels= shows
+the Worker reaches the management ports), the Worker creates and deletes
+channels itself. Otherwise keep the pool filled from a computer; the log
+says =launch channel pool empty= when it runs out.
+
+#+begin_src sh
+export APNS_KEY_PATH=AuthKey_644XS4F2RG.p8
+node scripts/channels.ts create production 30 > pool.sql
+node scripts/channels.ts create sandbox 30 >> pool.sql
+wrangler d1 execute moonrise --remote --file pool.sql
+
+# Ended more than 8 hours ago: delete at APNs, then the rows.
+wrangler d1 execute moonrise --remote --command \
+  "SELECT environment, channel_id FROM launch_channels WHERE ended_at < strftime('%Y-%m-%dT%H:%M:%fZ', 'now', '-8 hours')"
+node scripts/channels.ts delete production <channel id>... > deleted.sql
+wrangler d1 execute moonrise --remote --file deleted.sql
+#+end_src
+
 * API
 | Method and path | Body / result |
 |-
 | =GET /v1/today= | ={spaceWeather: {kpNow, observedAt, kpNext24h, fetchedAt}}= |
+| =GET /v1/launches?environment=sandbox= | ={fetchedAt, launches, recent}=; each launch has =channelId= for that APNs environment (default production) |
 | =POST /v1/devices= | ={token, environment, band, utcOffsetMinutes, aurora?}=; band is a 5° geomagnetic latitude band, south negative |
 | =DELETE /v1/devices/{token}= | |
 | =GET /healthz= | feed status |

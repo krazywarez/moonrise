@@ -4,6 +4,8 @@
 export const UPCOMING_URL = "https://ll.thespacedevs.com/2.3.0/launches/upcoming/?limit=20&mode=normal";
 /** Recent launches, for the international designator, which is assigned only after liftoff. */
 export const PREVIOUS_URL = "https://ll.thespacedevs.com/2.3.0/launches/previous/?limit=10&mode=normal";
+/** One launch, polled on its own around liftoff. */
+export const launchURL = (id: string) => `https://ll.thespacedevs.com/2.3.0/launches/${encodeURIComponent(id)}/?mode=normal`;
 
 export interface Launch {
   id: string;
@@ -70,11 +72,18 @@ export function normalize(r: Raw): Launch {
 }
 
 /** `apiKey` lifts the anonymous per-IP limit, which Cloudflare's shared egress IPs often exhaust (HTTP 429). */
-export async function fetchLaunches(url: string, apiKey?: string): Promise<Launch[]> {
+async function get<T>(url: string, apiKey?: string): Promise<T> {
   const headers: Record<string, string> = { "user-agent": "moonrise-server (sh.krz.moonrise)" };
   if (apiKey) headers.authorization = `Token ${apiKey}`;
   const res = await fetch(url, { headers });
   if (!res.ok) throw new Error(`LL2 ${res.status}`);
-  const body = (await res.json()) as { results: Raw[] };
-  return body.results.map(normalize);
+  return (await res.json()) as T;
+}
+
+export async function fetchLaunches(url: string, apiKey?: string): Promise<Launch[]> {
+  return (await get<{ results: Raw[] }>(url, apiKey)).results.map(normalize);
+}
+
+export async function fetchLaunch(id: string, apiKey?: string): Promise<Launch> {
+  return normalize(await get<Raw>(launchURL(id), apiKey));
 }

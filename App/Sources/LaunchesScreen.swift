@@ -8,6 +8,13 @@ import SwiftUI
 let apiBase: URL? = (Bundle.main.object(forInfoDictionaryKey: "MoonriseAPIURL") as? String)
     .flatMap { $0.isEmpty ? nil : URL(string: $0) }
 
+/// APNs environment of this build, which picks the launch broadcast channels it can listen on.
+#if DEBUG
+private let apnsEnvironment = "sandbox"
+#else
+private let apnsEnvironment = "production"
+#endif
+
 /// Tab and News/Launches switch that a notification tap can change, and what Siri or Spotlight asked to show.
 @MainActor
 @Observable
@@ -91,7 +98,7 @@ struct LaunchesScreen: View {
         guard let apiBase else { error = "No backend configured for this build."; return }
         if !force, let cached: LaunchList = FeedMemo.get("launches", maxAge: 300) { list = cached; return }
         do {
-            list = try await LaunchFeed.fetch(base: apiBase)
+            list = try await LaunchFeed.fetch(base: apiBase, environment: apnsEnvironment)
             if let list {
                 FeedMemo.set("launches", list)
                 await LaunchPassNotifications.reschedule(list.launches + (list.recent ?? []))
@@ -300,14 +307,23 @@ struct LaunchDetail: View {
         let content = ActivityContent(state: state, staleDate: launch.net.addingTimeInterval(3600))
         // Live Activities end after 8 hours, so one for a later launch starts an hour before it.
         let start = launch.net.addingTimeInterval(-3600)
-        do {
+        // Status and NET changes arrive on the launch's broadcast channel; the server never sees who listens.
+        func request(_ pushType: PushType?) throws {
             if start > .now {
                 let alert = AlertConfiguration(title: "\(attributes.rocket) launches in an hour", body: "\(attributes.mission)", sound: .default)
-                _ = try Activity.request(attributes: attributes, content: content, style: .standard, alertConfiguration: alert, start: start)
+                _ = try Activity.request(attributes: attributes, content: content, pushType: pushType, style: .standard, alertConfiguration: alert, start: start)
                 message = "Countdown will appear on the Lock Screen an hour before launch."
             } else {
-                _ = try Activity.request(attributes: attributes, content: content)
+                _ = try Activity.request(attributes: attributes, content: content, pushType: pushType)
                 message = "Countdown added to the Lock Screen."
+            }
+        }
+        do {
+            if let channel = launch.channelId {
+                // An invalid channel stops the activity from starting, so fall back to a countdown without updates.
+                do { try request(.channel(channel)) } catch { try request(nil) }
+            } else {
+                try request(nil)
             }
             following = true
         } catch {

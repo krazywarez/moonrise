@@ -1,0 +1,8 @@
+{
+  "name": "moonrise-apns-channels-spike",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "deploy": "wrangler deploy"
+  }
+}

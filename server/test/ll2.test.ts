@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { normalize, PREVIOUS_URL } from "../src/ll2.ts";
+import { launchURL, normalize, PREVIOUS_URL } from "../src/ll2.ts";
 
 // Trimmed from /2.3.0/launches/upcoming/?mode=normal on 2026-10-17.
 const raw = {
@@ -55,4 +55,8 @@ test("keeps the international designator once launched", () => {
 
 test("previous launches are fetched ten at a time", () => {
   assert.match(PREVIOUS_URL, /\/launches\/previous\/\?limit=10&mode=normal$/);
+});
+
+test("a single launch is fetched by id", () => {
+  assert.equal(launchURL(raw.id), `https://ll.thespacedevs.com/2.3.0/launches/${raw.id}/?mode=normal`);
 });

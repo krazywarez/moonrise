@@ -1,8 +1,9 @@
-import { send, type ApnsConfig } from "./apns";
+import { activityPush, focusPick, inFocus, needsChannel, sinceNet } from "./activity";
+import { broadcast, createChannel, deleteChannel, send, type ApnsConfig } from "./apns";
 import { actionableKp, alertBands, eventKey, isNight } from "./aurora";
 import { compose, fetchGroups, fetchSupGP, fitsLaunch, supgpFile, supgpLaunches, type LaunchElements, type LaunchRef, type Row } from "./celestrak";
 import { activeEvent, fetchTrajectory, STEP_MINUTES } from "./live";
-import { fetchLaunches, PREVIOUS_URL, UPCOMING_URL, type Launch } from "./ll2";
+import { fetchLaunch, fetchLaunches, PREVIOUS_URL, UPCOMING_URL, type Launch } from "./ll2";
 import { digestDue, digestPayload, fetchLatest, localDate, pickHeadlines } from "./news";
 import { PRIVACY_HTML } from "./privacy";
 import { fetchSpaceWeather, next24h, type SpaceWeather } from "./swpc";
@@ -15,6 +16,8 @@ interface Env {
   APNS_KEY: string;
   /** Optional Launch Library 2 API key. */
   LL2_API_KEY?: string;
+  /** "1": the Worker creates and deletes launch channels itself. Otherwise scripts/channels.ts fills the pool. */
+  APNS_MANAGE_CHANNELS?: string;
 }
 
 interface DeviceRequest {
@@ -26,7 +29,7 @@ interface DeviceRequest {
   news?: boolean;
 }
 
-const LAUNCH_CRON = "*/10 * * * *";
+const NEWS_CRON = "*/10 * * * *";
 const SATELLITE_CRON = "7 */2 * * *";
 /** Launches are kept this long after NET, so a launch page and its first pass outlive liftoff. */
 const RETENTION_MS = 14 * 86400_000;
@@ -68,7 +71,7 @@ export default {
     if (request.method === "GET" && url.pathname === "/privacy")
       return new Response(PRIVACY_HTML, { headers: { "content-type": "text/html; charset=utf-8", "cache-control": "public, max-age=3600" } });
     if (request.method === "GET" && url.pathname === "/v1/today") return today(env, now);
-    if (request.method === "GET" && url.pathname === "/v1/launches") return launches(env, now);
+    if (request.method === "GET" && url.pathname === "/v1/launches") return launches(env, url, now);
     if (request.method === "GET" && url.pathname === "/v1/live") return live(env, url, now);
     if (request.method === "GET" && url.pathname === "/v1/satellites") {
       const row = await env.DB.prepare("SELECT fetched_at, body FROM feed_snapshots WHERE feed = 'celestrak' AND ok = 1").first<{ fetched_at: string; body: string }>();
@@ -99,10 +102,9 @@ export default {
 
   async scheduled(controller: ScheduledController, env: Env, ctx: ExecutionContext): Promise<void> {
     const now = new Date(controller.scheduledTime);
-    // Upcoming launches every 10 minutes and previous launches hourly: 7 of the 15 anonymous Launch Library 2 requests per hour.
-    if (controller.cron === LAUNCH_CRON) ctx.waitUntil(Promise.all([pollLaunches(env, now), sendNewsDigests(env, now)]));
+    if (controller.cron === NEWS_CRON) ctx.waitUntil(sendNewsDigests(env, now));
     else if (controller.cron === SATELLITE_CRON) ctx.waitUntil(pollSatellites(env, now));
-    else ctx.waitUntil(pollSpaceWeather(env, now));
+    else ctx.waitUntil(Promise.all([pollSpaceWeather(env, now), launchTick(env, now)]));
   },
 } satisfies ExportedHandler<Env>;
 
@@ -153,7 +155,8 @@ async function live(env: Env, url: URL, now: Date): Promise<Response> {
   return json({ event, at: at.toISOString(), points: points.filter((p) => p[0] * 1000 <= at.getTime()) }, 200, MAX_AGE.live);
 }
 
-async function launches(env: Env, now: Date): Promise<Response> {
+/** `?environment=sandbox` gives Debug builds the channels of the APNs sandbox. */
+async function launches(env: Env, url: URL, now: Date): Promise<Response> {
   const since = new Date(now.getTime() - 6 * 3600_000).toISOString();
   const rows = await env.DB.prepare("SELECT * FROM launches WHERE net >= ?1 ORDER BY net LIMIT 20").bind(since).all<Record<string, unknown>>();
   const recent = await env.DB.prepare("SELECT * FROM launches WHERE net < ?1 AND net >= ?2 ORDER BY net DESC LIMIT 20")
@@ -161,18 +164,44 @@ async function launches(env: Env, now: Date): Promise<Response> {
   const fetched = await env.DB.prepare("SELECT fetched_at FROM feed_snapshots WHERE feed = 'll2' AND ok = 1").first<{ fetched_at: string }>();
   const els = await env.DB.prepare("SELECT body FROM feed_snapshots WHERE feed = 'launch-elements' AND ok = 1").first<{ body: string }>();
   const elements: Record<string, LaunchElements> = els ? JSON.parse(els.body) : {};
+  const ch = await env.DB.prepare("SELECT launch_id, channel_id FROM launch_channels WHERE environment = ?1 AND launch_id IS NOT NULL AND ended_at IS NULL")
+    .bind(url.searchParams.get("environment") === "sandbox" ? "sandbox" : "production").all<{ launch_id: string; channel_id: string }>();
+  const channels = Object.fromEntries(ch.results.map((c) => [c.launch_id, c.channel_id]));
   const shape = (r: Record<string, unknown>) => ({
     id: r.id, name: r.name, net: r.net, windowStart: r.window_start, windowEnd: r.window_end,
     status: r.status, statusName: r.status_name, provider: r.provider, rocket: r.rocket,
     mission: r.mission, missionType: r.mission_type, missionDescription: r.mission_description, orbit: r.orbit,
     pad: r.pad, location: r.location, padLatitude: r.pad_latitude, padLongitude: r.pad_longitude,
     elements: elements[String(r.id)]?.elements ?? [], elementsSource: elements[String(r.id)]?.source ?? null,
+    channelId: channels[String(r.id)] ?? null,
   });
   return json({
     fetchedAt: fetched?.fetched_at ?? null,
     launches: rows.results.map(shape),
     recent: recent.results.map(shape),
   }, 200, MAX_AGE.launches);
+}
+
+/**
+ * Launch Library 2 within the anonymous 15 requests per hour. Every 5 minutes: the launch in focus (T−60 to T+15)
+ * on its own, with the list paused; otherwise the upcoming list every 10 minutes and previous launches hourly.
+ * At most 12 + 1 requests in any hour.
+ */
+async function launchTick(env: Env, now: Date): Promise<void> {
+  const near = await env.DB.prepare("SELECT id, net, status FROM launches WHERE net >= ?1 ORDER BY net").bind(sinceNet(now)).all<{ id: string; net: string; status: string }>();
+  const focus = near.results.filter((l) => inFocus(l, now)).map((l) => l.id);
+  if (focus.length) await pollLaunch(env, focusPick(focus, now), now);
+  else if (now.getUTCMinutes() % 10 === 0) await pollLaunches(env, now);
+  if (env.APNS_KEY) await launchChannels(env, now);
+}
+
+async function pollLaunch(env: Env, id: string, now: Date): Promise<void> {
+  try {
+    await env.DB.batch(upsertLaunches(env, [await fetchLaunch(id, env.LL2_API_KEY)]));
+  } catch (e) {
+    console.error("ll2 launch", String(e));
+    await env.DB.prepare("INSERT INTO feed_snapshots (feed, fetched_at, ok) VALUES ('ll2:error', ?1, 0) ON CONFLICT (feed) DO UPDATE SET fetched_at = ?1").bind(now.toISOString()).run();
+  }
 }
 
 // Failures are recorded under "<feed>:error" so the last good snapshot and its time survive.
@@ -193,6 +222,14 @@ async function pollLaunches(env: Env, now: Date): Promise<void> {
       console.error("ll2 previous", String(e));
     }
   }
+  await env.DB.batch([
+    ...upsertLaunches(env, list),
+    env.DB.prepare("DELETE FROM launches WHERE net < ?1").bind(new Date(now.getTime() - RETENTION_MS).toISOString()),
+    env.DB.prepare("INSERT INTO feed_snapshots (feed, fetched_at, ok) VALUES ('ll2', ?1, 1) ON CONFLICT (feed) DO UPDATE SET fetched_at = ?1, ok = 1").bind(now.toISOString()),
+  ]);
+}
+
+function upsertLaunches(env: Env, list: Launch[]): D1PreparedStatement[] {
   const upsert = env.DB.prepare(
     `INSERT INTO launches (id, name, net, window_start, window_end, status, status_name, provider, rocket, mission, mission_type, mission_description, orbit, pad, location, pad_latitude, pad_longitude, last_updated, launch_designator)
      VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17, ?18, ?19)
@@ -200,11 +237,72 @@ async function pollLaunches(env: Env, now: Date): Promise<void> {
        mission = ?10, mission_type = ?11, mission_description = ?12, orbit = ?13, pad = ?14, location = ?15, pad_latitude = ?16, pad_longitude = ?17, last_updated = ?18,
        launch_designator = COALESCE(?19, launch_designator)`,
   );
-  await env.DB.batch([
-    ...list.map((l) => upsert.bind(l.id, l.name, l.net, l.windowStart, l.windowEnd, l.status, l.statusName, l.provider, l.rocket, l.mission, l.missionType, l.missionDescription, l.orbit, l.pad, l.location, l.padLatitude, l.padLongitude, l.lastUpdated, l.designator)),
-    env.DB.prepare("DELETE FROM launches WHERE net < ?1").bind(new Date(now.getTime() - RETENTION_MS).toISOString()),
-    env.DB.prepare("INSERT INTO feed_snapshots (feed, fetched_at, ok) VALUES ('ll2', ?1, 1) ON CONFLICT (feed) DO UPDATE SET fetched_at = ?1, ok = 1").bind(now.toISOString()),
-  ]);
+  return list.map((l) => upsert.bind(l.id, l.name, l.net, l.windowStart, l.windowEnd, l.status, l.statusName, l.provider, l.rocket, l.mission, l.missionType, l.missionDescription, l.orbit, l.pad, l.location, l.padLatitude, l.padLongitude, l.lastUpdated, l.designator));
+}
+
+/**
+ * Broadcast channels for launch Live Activities: hands one per APNs environment to each launch within 24 hours
+ * (from the pool, or created here with APNS_MANAGE_CHANNELS), broadcasts each change of status or NET, and
+ * retires a channel once its launch is over. Nothing about who follows a launch reaches the server.
+ */
+async function launchChannels(env: Env, now: Date): Promise<void> {
+  const config: ApnsConfig = { keyId: env.APNS_KEY_ID, teamId: env.APNS_TEAM_ID, privateKey: env.APNS_KEY, topic: env.APNS_TOPIC };
+  const manage = env.APNS_MANAGE_CHANNELS === "1";
+  const iso = now.toISOString();
+
+  const near = await env.DB.prepare("SELECT id, net, status FROM launches WHERE net >= ?1").bind(sinceNet(now)).all<{ id: string; net: string; status: string }>();
+  const assigned = await env.DB.prepare("SELECT launch_id, environment FROM launch_channels WHERE launch_id IS NOT NULL").all<{ launch_id: string; environment: string }>();
+  const has = new Set(assigned.results.map((c) => `${c.launch_id}:${c.environment}`));
+  for (const l of near.results.filter((l) => needsChannel(l, now))) {
+    for (const environment of ["sandbox", "production"]) {
+      if (has.has(`${l.id}:${environment}`)) continue;
+      const pooled = await env.DB.prepare(
+        `UPDATE launch_channels SET launch_id = ?1, net = ?2, status = ?3
+         WHERE channel_id = (SELECT channel_id FROM launch_channels WHERE launch_id IS NULL AND environment = ?4 ORDER BY created_at LIMIT 1)`,
+      ).bind(l.id, l.net, l.status, environment).run();
+      if (pooled.meta.changes) continue;
+      if (!manage) {
+        console.error("launch channel pool empty", environment);
+        continue;
+      }
+      const c = await createChannel(config, environment === "sandbox");
+      if (!c.channelId) {
+        console.error("apns channel", c.status, c.reason);
+        continue;
+      }
+      await env.DB.prepare("INSERT INTO launch_channels (channel_id, environment, launch_id, net, status, created_at) VALUES (?1, ?2, ?3, ?4, ?5, ?6)")
+        .bind(c.channelId, environment, l.id, l.net, l.status, iso).run();
+    }
+  }
+
+  const changed = await env.DB.prepare(
+    `SELECT c.channel_id, c.environment, c.net AS sent_net, c.status AS sent_status, l.net, l.status
+     FROM launch_channels c JOIN launches l ON l.id = c.launch_id WHERE c.ended_at IS NULL AND (c.net != l.net OR c.status != l.status)`,
+  ).all<{ channel_id: string; environment: string; sent_net: string; sent_status: string; net: string; status: string }>();
+  for (const c of changed.results) {
+    const push = activityPush({ net: c.sent_net, status: c.sent_status }, c, now)!;
+    // APNs keeps the latest message for devices that are offline, for at most 8 hours.
+    const r = await broadcast(config, c.channel_id, push.payload, c.environment === "sandbox", push.priority, Math.floor(now.getTime() / 1000) + 8 * 3600)
+      .catch((e) => ({ status: 0, reason: String(e) }));
+    if (r.status !== 200) {
+      console.error("apns broadcast", r.status, r.reason);
+      continue;
+    }
+    await env.DB.prepare("UPDATE launch_channels SET net = ?2, status = ?3, ended_at = ?4 WHERE channel_id = ?1").bind(c.channel_id, c.net, c.status, push.end ? iso : null).run();
+  }
+
+  // A day past NET without an outcome, or gone from the table: ended without a push, as activities last 8 hours at most.
+  await env.DB.prepare("UPDATE launch_channels SET ended_at = ?1 WHERE launch_id IS NOT NULL AND ended_at IS NULL AND launch_id NOT IN (SELECT id FROM launches WHERE net >= ?2)")
+    .bind(iso, new Date(now.getTime() - 86400_000).toISOString()).run();
+  if (!manage) return;
+  // Deleted once the stored end message has expired.
+  const done = await env.DB.prepare("SELECT channel_id, environment FROM launch_channels WHERE ended_at < ?1")
+    .bind(new Date(now.getTime() - 8 * 3600_000).toISOString()).all<{ channel_id: string; environment: string }>();
+  for (const c of done.results) {
+    const r = await deleteChannel(config, c.channel_id, c.environment === "sandbox");
+    if (r.status === 204 || r.status === 404) await env.DB.prepare("DELETE FROM launch_channels WHERE channel_id = ?1").bind(c.channel_id).run();
+    else console.error("apns channel delete", r.status, r.reason);
+  }
 }
 
 async function pollSatellites(env: Env, now: Date): Promise<void> {

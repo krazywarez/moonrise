@@ -22,6 +22,27 @@ import Testing
     #expect(list.launches[0].elements == nil)
 }
 
+@Test func decodesBroadcastChannel() throws {
+    // Shape of GET /v1/launches?environment=sandbox with a launch channel, 2026-10-20.
+    let data = Data("""
+    {"fetchedAt":"2026-10-20T12:00:00.000Z","launches":[{"id":"fake-near","name":"Test | Near","net":"2026-10-20T22:46:46Z","windowStart":null,
+     "windowEnd":null,"status":"Go","statusName":"Go","provider":"X","rocket":"Rocket","mission":null,"missionType":null,"missionDescription":null,
+     "orbit":null,"pad":"Pad","location":"Loc","padLatitude":null,"padLongitude":null,"elements":[],"elementsSource":null,"channelId":"U0FOREJPWDE="},
+     {"id":"fake-far","name":"Test | Far","net":"2026-10-21T03:16:46Z","windowStart":null,"windowEnd":null,"status":"TBC","statusName":"TBC",
+     "provider":"X","rocket":"Rocket","mission":null,"missionType":null,"missionDescription":null,"orbit":null,"pad":"Pad","location":"Loc",
+     "padLatitude":null,"padLongitude":null,"elements":[],"elementsSource":null,"channelId":null}],"recent":[]}
+    """.utf8)
+    let list = try LaunchFeed.decode(data)
+    #expect(list.launches[0].channelId == "U0FOREJPWDE=")
+    #expect(list.launches[1].channelId == nil)
+}
+
+@Test func launchesURLNamesTheAPNsEnvironment() {
+    let base = URL(string: "https://example.com")!
+    #expect(LaunchFeed.url(base: base, environment: "sandbox").absoluteString == "https://example.com/v1/launches?environment=sandbox")
+    #expect(LaunchFeed.url(base: base, environment: "production").absoluteString == "https://example.com/v1/launches?environment=production")
+}
+
 @Test func decodesRecentLaunchesWithElements() throws {
     // Shape of GET /v1/launches with launch element sets, 2026-10-19.
     let data = Data("""

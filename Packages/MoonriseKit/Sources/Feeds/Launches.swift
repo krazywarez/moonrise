@@ -25,6 +25,8 @@ public struct Launch: Codable, Sendable, Identifiable, Hashable {
     public var elements: [OrbitalElements]?
     /// "supgp" (SpaceX data via CelesTrak, possibly predicted before launch) or "gp" (CelesTrak catalogue).
     public var elementsSource: String?
+    /// APNs broadcast channel for this launch's Live Activity updates, within a day of launch.
+    public var channelId: String?
 }
 
 public struct LaunchList: Codable, Sendable {
@@ -50,7 +52,14 @@ public enum LaunchFeed {
         try decoder.decode(LaunchList.self, from: data)
     }
 
-    public static func fetch(base: URL, session: URLSession = .shared) async throws -> LaunchList {
-        try decode(await session.data(from: base.appending(path: "v1/launches")).0)
+    /// `environment` ("sandbox" or "production") picks the APNs environment of each launch's `channelId`.
+    static func url(base: URL, environment: String?) -> URL {
+        let url = base.appending(path: "v1/launches")
+        guard let environment else { return url }
+        return url.appending(queryItems: [URLQueryItem(name: "environment", value: environment)])
+    }
+
+    public static func fetch(base: URL, environment: String? = nil, session: URLSession = .shared) async throws -> LaunchList {
+        try decode(await session.data(from: url(base: base, environment: environment)).0)
     }
 }

@@ -1,0 +1,32 @@
+#+title: apns-channels spike
+
+Checks that a deployed Cloudflare Worker can reach APNs channel management,
+which runs on its own hosts and ports:
+=api-manage-broadcast.sandbox.push.apple.com:2195= and
+=api-manage-broadcast.push.apple.com:2196=. =/probe= lists the app's
+channels with the request code in =server/src/apns.ts=. Test deployed: =wrangler
+dev= has no HTTP/2.
+
+* run
+Needs the Broadcast capability on for =sh.krz.moonrise= in the developer
+portal.
+
+#+begin_src sh
+cd spikes/apns-channels
+wrangler deploy
+wrangler secret put APNS_KEY < AuthKey_644XS4F2RG.p8
+curl https://moonrise-apns-channels-spike.audit-labs.workers.dev/probe
+curl "https://moonrise-apns-channels-spike.audit-labs.workers.dev/probe?env=production"
+wrangler delete
+#+end_src
+
+* reading the result
+- =status= 200 and a =body= of ={"channels": [...]}=: the Worker can manage
+  channels. Set =APNS_MANAGE_CHANNELS= to ="1"= in
+  =server/wrangler.jsonc= =vars=.
+- Another =status= with a =requestId= and an APNs =reason= in =body= (for
+  example 403 =InvalidProviderToken=): the Worker reached APNs; fix the key,
+  team or capability and probe again.
+- =error=, or a body that is not APNs JSON: the Worker cannot reach the
+  port. Fill the channel pool with =server/scripts/channels.ts= (see
+  =server/README.org=).
