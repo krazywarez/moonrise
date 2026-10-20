@@ -142,3 +142,61 @@ let when = Date(timeIntervalSince1970: 1_792_202_400) // 2026-10-17T02:00:00Z
     #expect(out.contains(":FOCAL_RATIO: f/5.9\n:PURCHASED: 2019-05-02\n:SERIAL: X123\n:END:\n"))
     #expect(Equipment(org: out) == scope)
 }
+
+@Test func catalogAndOffsetRoundTrip() throws {
+    let o = Observation(object: "M31", date: when, place: "Chicago", catalog: ["M31", "NGC224"], utcOffset: -5 * 3600)
+    let text = o.org
+    #expect(text.hasPrefix("* M31\n[2026-10-16 Fri 21:00]\n:PROPERTIES:\n"))
+    #expect(text.contains(":CATALOG: M31 NGC224\n:PLACE: Chicago\n:UTC_OFFSET: -05:00\n"))
+    #expect(Observation(org: text) == o)
+
+    let india = try #require(Observation(org: "* M42\n[2026-10-17 Sat 07:30]\n:PROPERTIES:\n:ID: x\n:UTC_OFFSET: +05:30\n:END:\n"))
+    #expect(india.date == when)
+    #expect(india.utcOffset == 19_800)
+    #expect(india.otherProperties.isEmpty)
+}
+
+@Test func entryWithoutOffsetReadsInDeviceZone() throws {
+    let text = "* Saturn\n[2026-10-16 Fri 21:00]\n:PROPERTIES:\n:ID: abc\n:END:\n"
+    let o = try #require(Observation(org: text))
+    #expect(o.utcOffset == nil)
+    #expect(o.date.formatted(Observation.orgDate(.current)) == "2026-10-16 Fri 21:00")
+    #expect(!o.org.contains(":UTC_OFFSET:"))
+}
+
+@Test func saveStampsOffsetAndCatalog() throws {
+    let dir = FileManager.default.temporaryDirectory.appending(path: "obs-\(UUID().uuidString)")
+    defer { try? FileManager.default.removeItem(at: dir) }
+    let log = ObservingLog(folder: dir)
+    let resolver = CatalogResolver(names: ["andromeda galaxy": "M31"])
+
+    try log.save(Observation(id: "a", object: "Messier 31", date: when, place: ""), resolver: resolver)
+    let a = try #require(log.all().first)
+    #expect(a.catalog == ["M31"])
+    #expect(a.utcOffset == TimeZone.current.secondsFromGMT(for: when))
+
+    // A name that doesn't resolve keeps the IDs it was logged with; one that does replaces them.
+    var b = Observation(id: "b", object: "Andromeda core", date: when, place: "", catalog: ["M31"], utcOffset: 3600)
+    try log.save(b, resolver: resolver)
+    b = try #require(log.all().first { $0.id == "b" })
+    #expect(b.catalog == ["M31"] && b.utcOffset == 3600)
+    b.object = "M 33"
+    try log.save(b, resolver: resolver)
+    #expect(log.all().first { $0.id == "b" }?.catalog == ["M33"])
+
+    try log.save(Observation(id: "c", object: "Saturn", date: when, place: ""), resolver: resolver)
+    #expect(log.all().first { $0.id == "c" }?.catalog == [])
+}
+
+@Test func equipmentUsageGroupsByCatalogue() throws {
+    let resolver = CatalogResolver(names: ["andromeda galaxy": "M31"])
+    let log = [
+        Observation(object: "M31", date: when, place: "", equipmentIDs: ["scope"]),
+        Observation(object: "Andromeda Galaxy", date: when, place: "", equipmentIDs: ["scope"]),
+        Observation(object: "Core of Andromeda", date: when, place: "", equipmentIDs: ["scope"], catalog: ["M31"]),
+        Observation(object: "Saturn", date: when, place: "", equipmentIDs: ["scope"]),
+    ]
+    let u = EquipmentUsage(of: "scope", in: log, resolver: resolver)
+    #expect(u.distinctObjects == 2)
+    #expect(u.topObjects == [.init(key: "M31", count: 3), .init(key: "Saturn", count: 1)])
+}

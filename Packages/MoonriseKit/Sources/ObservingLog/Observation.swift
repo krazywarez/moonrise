@@ -36,12 +36,16 @@ public struct Observation: Sendable, Identifiable, Equatable {
     /// 1 (poor) to 5 (excellent); nil when not noted.
     public var seeing: Int?
     public var notes: String
+    /// Catalogue IDs, e.g. ["M31"]; see `CatalogResolver`.
+    public var catalog: [String]
+    /// Seconds east of UTC that the timestamp is written in. Nil for older entries, which are read in the device's zone.
+    public var utcOffset: Int?
     /// Properties added by hand, in file order.
     public var otherProperties: [OrgProperty]
 
-    static let knownKeys: Set = [":ID:", ":PLACE:", ":COORDINATES:", ":EQUIPMENT:", ":EQUIPMENT_IDS:", ":SEEING:"]
+    static let knownKeys: Set = [":ID:", ":CATALOG:", ":PLACE:", ":COORDINATES:", ":UTC_OFFSET:", ":EQUIPMENT:", ":EQUIPMENT_IDS:", ":SEEING:"]
 
-    public init(id: String = UUID().uuidString, object: String, date: Date, place: String, latitude: Double? = nil, longitude: Double? = nil, equipment: String = "", equipmentIDs: [String] = [], seeing: Int? = nil, notes: String = "", otherProperties: [OrgProperty] = []) {
+    public init(id: String = UUID().uuidString, object: String, date: Date, place: String, latitude: Double? = nil, longitude: Double? = nil, equipment: String = "", equipmentIDs: [String] = [], seeing: Int? = nil, notes: String = "", catalog: [String] = [], utcOffset: Int? = nil, otherProperties: [OrgProperty] = []) {
         self.id = id
         self.object = object
         self.date = date
@@ -52,19 +56,39 @@ public struct Observation: Sendable, Identifiable, Equatable {
         self.equipmentIDs = equipmentIDs
         self.seeing = seeing
         self.notes = notes
+        self.catalog = catalog
+        self.utcOffset = utcOffset
         self.otherProperties = otherProperties
     }
 
-    static let orgDate: Date.VerbatimFormatStyle = .init(format: "\(year: .defaultDigits)-\(month: .twoDigits)-\(day: .twoDigits) \(weekday: .abbreviated) \(hour: .twoDigits(clock: .twentyFourHour, hourCycle: .zeroBased)):\(minute: .twoDigits)", locale: Locale(identifier: "en_US_POSIX"), timeZone: .current, calendar: Calendar(identifier: .gregorian))
+    static func orgDate(_ zone: TimeZone) -> Date.VerbatimFormatStyle {
+        .init(format: "\(year: .defaultDigits)-\(month: .twoDigits)-\(day: .twoDigits) \(weekday: .abbreviated) \(hour: .twoDigits(clock: .twentyFourHour, hourCycle: .zeroBased)):\(minute: .twoDigits)", locale: Locale(identifier: "en_US_POSIX"), timeZone: zone, calendar: Calendar(identifier: .gregorian))
+    }
+
+    private var zone: TimeZone { utcOffset.flatMap(TimeZone.init(secondsFromGMT:)) ?? .current }
+
+    /// "-05:00" for -18000.
+    static func offsetText(_ seconds: Int) -> String {
+        let m = abs(seconds) / 60
+        return String(format: "%@%02d:%02d", seconds < 0 ? "-" : "+", m / 60, m % 60)
+    }
+
+    static func offset(_ text: String) -> Int? {
+        guard let m = text.wholeMatch(of: /([+-])(\d\d):(\d\d)/), let h = Int(m.2), let min = Int(m.3) else { return nil }
+        return (m.1 == "-" ? -1 : 1) * (h * 3600 + min * 60)
+    }
 
     /// Org text: one heading with an inactive timestamp, a property drawer and the notes.
     public var org: String {
-        var props = [(":ID:", id), (":PLACE:", place)]
+        var props = [(":ID:", id)]
+        if !catalog.isEmpty { props.append((":CATALOG:", catalog.joined(separator: " "))) }
+        props.append((":PLACE:", place))
         if let latitude, let longitude { props.append((":COORDINATES:", String(format: "%.4f, %.4f", latitude, longitude))) }
+        if let utcOffset { props.append((":UTC_OFFSET:", Self.offsetText(utcOffset))) }
         if !equipment.isEmpty { props.append((":EQUIPMENT:", equipment)) }
         if !equipmentIDs.isEmpty { props.append((":EQUIPMENT_IDS:", equipmentIDs.joined(separator: " "))) }
         if let seeing { props.append((":SEEING:", "\(seeing)/5")) }
-        var lines = ["* \(object)", "[\(date.formatted(Self.orgDate))]", ":PROPERTIES:"]
+        var lines = ["* \(object)", "[\(date.formatted(Self.orgDate(zone)))]", ":PROPERTIES:"]
         lines += props.map { "\($0.0) \($0.1)" }
         lines += otherProperties.map(\.line)
         lines.append(":END:")
@@ -77,8 +101,7 @@ public struct Observation: Sendable, Identifiable, Equatable {
     public init?(org text: String) {
         let lines = text.components(separatedBy: "\n")
         guard let head = lines.first, head.hasPrefix("* "),
-              lines.count > 1, lines[1].hasPrefix("["), lines[1].hasSuffix("]"),
-              let date = try? Date(String(lines[1].dropFirst().dropLast()), strategy: Self.orgDate.parseStrategy) else { return nil }
+              lines.count > 1, lines[1].hasPrefix("["), lines[1].hasSuffix("]") else { return nil }
         var props: [String: String] = [:]
         var other: [OrgProperty] = []
         var i = 2
@@ -92,6 +115,8 @@ public struct Observation: Sendable, Identifiable, Equatable {
             }
             i += 1
         }
+        let offset = props[":UTC_OFFSET:"].flatMap(Self.offset)
+        guard let date = try? Date(String(lines[1].dropFirst().dropLast()), strategy: Self.orgDate(offset.flatMap(TimeZone.init(secondsFromGMT:)) ?? .current).parseStrategy) else { return nil }
         let notes = lines.dropFirst(i).joined(separator: "\n").trimmingCharacters(in: .whitespacesAndNewlines)
         let coords = props[":COORDINATES:"]?.split(separator: ",").compactMap { Double($0.trimmingCharacters(in: .whitespaces)) }
         self.init(
@@ -105,6 +130,8 @@ public struct Observation: Sendable, Identifiable, Equatable {
             equipmentIDs: props[":EQUIPMENT_IDS:"]?.split(separator: " ").map(String.init) ?? [],
             seeing: props[":SEEING:"].flatMap { Int($0.prefix(1)) },
             notes: notes,
+            catalog: props[":CATALOG:"]?.split(separator: " ").map(String.init) ?? [],
+            utcOffset: offset,
             otherProperties: other
         )
     }
@@ -129,11 +156,28 @@ public struct ObservingLog: Sendable {
             .sorted { $0.date > $1.date }
     }
 
-    /// Writes the observation, replacing any earlier file with the same ID.
-    public func save(_ o: Observation) throws {
+    /// Writes the observation, replacing any earlier file with the same ID. Sets `utcOffset` from the device's zone
+    /// when missing, and `catalog` when the object's name resolves to an ID not already in it; a name that doesn't
+    /// resolve keeps the IDs already set.
+    public func save(_ o: Observation, resolver: CatalogResolver = .messier) throws {
+        var o = o
+        if o.utcOffset == nil { o.utcOffset = TimeZone.current.secondsFromGMT(for: o.date) }
+        if let id = resolver.id(for: o.object), !o.catalog.contains(where: { (CatalogResolver.designation($0) ?? $0) == id }) { o.catalog = [id] }
         try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
         try delete(id: o.id)
         try o.org.write(to: fileURL(for: o), atomically: true, encoding: .utf8)
+    }
+
+    /// User-defined program lists, one Org file each; see `ObservingProgram`.
+    public var programsFolder: URL { folder.appending(path: "Programs") }
+
+    /// Messier, then the files in `programsFolder` by title.
+    public func programs() -> [ObservingProgram] {
+        let files = (try? FileManager.default.contentsOfDirectory(at: programsFolder, includingPropertiesForKeys: nil)) ?? []
+        let mine = files.filter { $0.pathExtension == "org" }.compactMap { url in
+            (try? String(contentsOf: url, encoding: .utf8)).map { ObservingProgram(org: $0, id: url.deletingPathExtension().lastPathComponent) }
+        }
+        return [.messier] + mine.sorted { $0.title.localizedStandardCompare($1.title) == .orderedAscending }
     }
 
     public func delete(id: String) throws {

@@ -26,7 +26,7 @@ let package = Package(
             resources: [.copy("Resources/bsc5.json"), .copy("Resources/constellations.json"), .copy("Resources/coastline.json"), .copy("Resources/spacecraft.json"), .copy("Resources/skycultures.json"), .copy("Resources/messier.json")]
         ),
         .target(name: "Feeds", dependencies: ["SkyEngine"]),
-        .target(name: "ObservingLog"),
+        .target(name: "ObservingLog", dependencies: ["Library", "SkyRenderer"]),
         .target(name: "Library", resources: [.copy("Resources/pages"), .copy("Resources/tours"), .copy("Resources/stories")]),
         .target(name: "Answers", dependencies: ["SkyEngine", "SkyRenderer", "Feeds", "Library"]),
         .testTarget(name: "SkyEngineTests", dependencies: ["SkyEngine"]),

@@ -13,6 +13,7 @@ struct LogScreen: View {
     var body: some View {
         NavigationStack {
             List {
+                NavigationLink("Programs") { ProgramsScreen(newEntry: newEntry) }
                 if entries.isEmpty {
                     Text("No observations yet. Add one here, or use Log on an object's card in the Sky tab.")
                         .font(.footnote).foregroundStyle(.secondary)
@@ -102,7 +103,7 @@ struct ObservationEditor: View {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") {
                         do {
-                            try observingLog.save(observation)
+                            try observingLog.save(observation, resolver: CatalogResolver(programs: observingLog.programs()))
                             onSave()
                             dismiss()
                         } catch {

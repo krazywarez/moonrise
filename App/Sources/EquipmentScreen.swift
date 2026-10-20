@@ -150,7 +150,7 @@ struct EquipmentDetail: View {
 
     private func reload() {
         names = Dictionary(equipmentInventory.all().map { ($0.id, $0.name) }, uniquingKeysWith: { a, _ in a })
-        usage = EquipmentUsage(of: item.id, in: observingLog.all())
+        usage = EquipmentUsage(of: item.id, in: observingLog.all(), resolver: CatalogResolver(programs: observingLog.programs()))
     }
 }
 

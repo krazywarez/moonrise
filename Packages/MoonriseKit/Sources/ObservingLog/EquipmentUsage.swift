@@ -27,8 +27,9 @@ public struct EquipmentUsage: Sendable, Equatable {
     /// IDs of other items logged alongside this one, most frequent first.
     public var usedWith: [Tally]
 
-    /// Usage of the item `id` in `log`. `calendar` decides month and season boundaries.
-    public init(of id: String, in log: [Observation], calendar: Calendar = .current) {
+    /// Usage of the item `id` in `log`. `calendar` decides month and season boundaries. Objects are counted by
+    /// catalogue ID where `resolver` finds one, else by name.
+    public init(of id: String, in log: [Observation], calendar: Calendar = .current, resolver: CatalogResolver = .messier) {
         let mine = log.filter { $0.equipmentIDs.contains(id) }
         observations = mine.count
         first = mine.map(\.date).min()
@@ -37,7 +38,8 @@ public struct EquipmentUsage: Sendable, Equatable {
         var objects: [String: (name: String, count: Int)] = [:]
         for o in mine {
             let name = o.object.trimmingCharacters(in: .whitespaces)
-            objects[name.lowercased(), default: (name, 0)].count += 1
+            let key = resolver.keys(for: o)[0]
+            objects[key, default: (key == CatalogResolver.fold(name) ? name : key, 0)].count += 1
         }
         distinctObjects = objects.count
         topObjects = objects.values.map { Tally(key: $0.name, count: $0.count) }.sorted(by: Self.order)
