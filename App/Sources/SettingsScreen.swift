@@ -1,3 +1,4 @@
+import Feeds
 import Library
 import SkyRenderer
 import SwiftUI
@@ -20,6 +21,8 @@ enum SettingsKey {
     static let dailySummaryMinutes = "dailySummaryMinutes"
     /// Messier objects on the sky chart.
     static let showDeepSky = "showDeepSky"
+    /// Cloud forecasts from Apple Weather; off unless turned on.
+    static let cloudForecast = "cloudForecast"
 }
 
 struct City: Hashable, Identifiable {
@@ -74,6 +77,7 @@ struct SettingsScreen: View {
     @AppStorage(SettingsKey.dailySummary) private var dailySummary = false
     @AppStorage(SettingsKey.dailySummaryMinutes) private var dailySummaryMinutes = DailySummaryNotifications.defaultMinutes
     @State private var summaryStatus: String?
+    @AppStorage(SettingsKey.cloudForecast) private var cloudForecast = false
     var onChange: () -> Void
 
     var body: some View {
@@ -125,6 +129,11 @@ struct SettingsScreen: View {
                     Text("A note each day with the Moon, the planets up that night, the best satellite pass and any events. It is worked out on this device; nothing is sent to our server.")
                 }
                 Section {
+                    Toggle("Cloud forecasts", isOn: $cloudForecast)
+                } footer: {
+                    Text(LocalizedStringKey("Shows cloud for tonight, satellite passes and events. To get the forecast, Moonrise sends Apple's weather service your location rounded to about 10 km. [Privacy policy](\(privacyPolicyURL.absoluteString)#cloud-forecasts)"))
+                }
+                Section {
                     Picker("Constellations", selection: $skyCulture) {
                         Text("Western (IAU)").tag("western")
                         ForEach(Catalog.skyCultures) { Text($0.name).tag($0.id) }
@@ -167,6 +176,7 @@ struct SettingsScreen: View {
                 onChange()
             }
             .onChange(of: locationMode) { onChange() }
+            .onChange(of: cloudForecast) { if !cloudForecast { SavedForecast.delete() } }
         }
     }
 

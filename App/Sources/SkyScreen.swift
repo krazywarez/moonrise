@@ -94,7 +94,7 @@ struct SkyScreen: View {
             ObservationEditor(observation: o) {}.preferredColorScheme(.dark).tint(.blue)
         }
         .sheet(isPresented: $showEvents) {
-            EventsScreen(observer: model.observer, placeName: model.placeName)
+            EventsScreen(observer: model.observer, placeName: model.placeName, forecast: model.forecast)
                 .preferredColorScheme(.dark)
         }
         .sheet(isPresented: $showTours) {

@@ -12,7 +12,7 @@ struct TodaySheet: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 if let t = model.tonight {
-                    section("Tonight") { Text(t.moonAndDarkness()).font(.subheadline.monospacedDigit()) }
+                    section("Tonight") { tonight(t) }
                     section("Moon") { moon(t) }
                     section("Planets tonight") { planets(t) }
                     section("Sun") { sun(t) }
@@ -28,6 +28,7 @@ struct TodaySheet: View {
         .foregroundStyle(ink)
         .presentationBackground(background)
         .task { await model.refreshPasses() }
+        .task { await model.refreshForecast() }
     }
 
     private func section(_ title: String, @ViewBuilder content: () -> some View) -> some View {
@@ -38,6 +39,31 @@ struct TodaySheet: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.vertical, 12)
         .overlay(alignment: .top) { Rectangle().fill(ink.opacity(0.25)).frame(height: 0.5) }
+    }
+
+    /// The rating and cloud strip, when cloud forecasts are on, around the Moon and darkness line.
+    private func tonight(_ t: Tonight) -> some View {
+        let night = t.dark ?? DateInterval(start: t.start, end: t.end)
+        let saved = model.forecast
+        let stale = saved?.forecast.isStale(now: .now) ?? false
+        return VStack(alignment: .leading, spacing: 8) {
+            if let saved, let o = saved.forecast.outlook(over: night, target: .faint, moonUp: t.moonUp, moonIllumination: t.moonIllumination, now: .now) {
+                OutlookLine(outlook: o).font(.subheadline.monospacedDigit()).dimmed(stale ? 0.6 : 1)
+            }
+            Text(t.moonAndDarkness()).font(.subheadline.monospacedDigit())
+            if let saved {
+                if saved.forecast.hour(at: night.start) != nil {
+                    CloudStrip(forecast: saved.forecast, window: night, moonUp: t.moonUp, ink: ink).dimmed(stale ? 0.6 : 1)
+                }
+                WeatherCreditLine(saved: saved)
+            }
+        }
+    }
+
+    /// "20% low and mid cloud" at a visible pass's peak; nil without a forecast, or before the Tonight section and its credit show.
+    private func cloudAtPeak(_ p: SatellitePass) -> Outlook? {
+        guard p.visible, model.tonight != nil else { return nil }
+        return model.forecast?.forecast.outlook(at: p.peak, target: .bright, now: .now)
     }
 
     private func moon(_ t: Tonight) -> some View {
@@ -88,6 +114,7 @@ struct TodaySheet: View {
         } else {
             VStack(alignment: .leading, spacing: 10) {
                 ForEach(Array(shown)) { p in
+                    let cloud = cloudAtPeak(p)
                     VStack(alignment: .leading, spacing: 2) {
                         HStack {
                             Text(p.displayName).font(.subheadline.weight(.medium))
@@ -97,9 +124,10 @@ struct TodaySheet: View {
                             }
                         }
                         Text(p.rise.formatted(.dateTime.weekday(.abbreviated).hour().minute()) + String(format: " · rises %@, highest %.0f°, sets %@", compass(p.riseAzimuth), p.maxAltitude, compass(p.setAzimuth))
-                             + (p.moonNote(from: model.observer).map { " · \($0)" } ?? ""))
+                             + (p.moonNote(from: model.observer).map { " · \($0)" } ?? "") + (cloud.map { " · \($0.reason)" } ?? ""))
                             .font(.footnote.monospacedDigit()).dimmed(0.8)
                     }
+                    .dimmed(cloud?.rating == .no ? 0.5 : 1)
                     .accessibilityElement(children: .combine)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.trailing, 44)
@@ -109,8 +137,10 @@ struct TodaySheet: View {
                 if !others.isEmpty {
                     Text("Also visible tonight").font(.caption2.weight(.medium)).textCase(.uppercase).tracking(0.8).dimmed(0.6).padding(.top, 6)
                     ForEach(others) { p in
-                        Text("\(p.displayName) · \(p.rise.formatted(date: .omitted, time: .shortened)), highest \(Int(p.maxAltitude.rounded()))°" + (p.moonNote(from: model.observer).map { " · \($0)" } ?? ""))
-                            .font(.footnote.monospacedDigit()).dimmed(0.8)
+                        let cloud = cloudAtPeak(p)
+                        Text("\(p.displayName) · \(p.rise.formatted(date: .omitted, time: .shortened)), highest \(Int(p.maxAltitude.rounded()))°" + (p.moonNote(from: model.observer).map { " · \($0)" } ?? "")
+                             + (cloud.map { " · \($0.reason)" } ?? ""))
+                            .font(.footnote.monospacedDigit()).dimmed(cloud?.rating == .no ? 0.4 : 0.8)
                     }
                 }
                 Text("Visible means sunlit while your sky is dark. Orbits: CelesTrak.").font(.caption2).dimmed(0.6)
@@ -188,6 +218,7 @@ struct TodayBar: View {
         .task {
             while !Task.isCancelled {
                 await model.refreshSpaceWeather()
+                await model.refreshForecast()
                 try? await Task.sleep(for: .seconds(600))
             }
         }

@@ -38,6 +38,7 @@ targets:
       path: Sources/Moonrise.entitlements
       properties:
         aps-environment: development
+        com.apple.developer.weatherkit: true
     info:
       path: Sources/Info.plist
       properties:

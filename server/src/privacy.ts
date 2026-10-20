@@ -17,13 +17,16 @@ h2 { font-weight: 500; font-size: 1.1em; margin-top: 1.8em; border-top: 1px soli
 <body>
 <h1>Moonrise privacy policy</h1>
 <div class="rule"></div>
-<p>Last updated 18 October 2026.</p>
+<p>Last updated 20 October 2026.</p>
 
 <h2>Summary</h2>
-<p>Moonrise has no accounts, no advertising, no analytics and no tracking. If you turn on aurora alerts or news alerts, it sends our server four things needed to deliver them, described below. Nothing else is collected.</p>
+<p>Moonrise has no accounts, no advertising, no analytics and no tracking. Your location is never sent to our server. If you turn on aurora alerts or news alerts, it sends our server four things needed to deliver them, described below. If you turn on cloud forecasts, it sends a rounded location to Apple's weather service. Nothing else is collected.</p>
 
 <h2>Location</h2>
-<p>If you allow it, Moonrise uses your location to work out where the Sun, Moon, planets and stars are in your sky. This happens on your device. Your location is not sent to us or to anyone else. You can choose a city instead in Settings.</p>
+<p>If you allow it, Moonrise uses your location to work out where the Sun, Moon, planets and stars are in your sky. This happens on your device. Your location is never sent to us. You can choose a city instead in Settings.</p>
+
+<h2 id="cloud-forecasts">Cloud forecasts</h2>
+<p>Cloud forecasts are off until you turn them on in Settings. When they are on, the app asks Apple's weather service (WeatherKit) for an hourly forecast, sending your location or chosen city rounded to 0.1° of latitude and longitude, about 10 km. It asks at most once every three hours for each place, and only while the app is open. The request goes from your device to Apple, not through our server. Apple states that this location is used only to provide the forecast, is not associated with personally identifiable information and is not tracked between requests. The forecast is kept on your device. Turning cloud forecasts off deletes it.</p>
 
 <h2>Network requests</h2>
 <p>To show live data, the app requests:</p>

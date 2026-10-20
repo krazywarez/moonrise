@@ -12,6 +12,9 @@ public struct SkyEvent: Sendable, Identifiable, Equatable {
     public var detail: String
     /// Whether it can be seen from the observer's location; nil when that does not apply.
     public var visibleHere: Bool?
+    /// When to look, for a forecast: the dark part of a meteor shower's peak night (the whole night where it never gets
+    /// fully dark), or greatest eclipse here as a zero-length interval. Nil for other events and eclipses not seen here.
+    public var window: DateInterval?
     public var id: String { "\(kind.rawValue)-\(title)-\(Int(date.timeIntervalSince1970))" }
 }
 
@@ -75,7 +78,8 @@ extension SkyEngine {
             let alt = Astronomy_Horizon(&peak, observer.astro, moon.ra, moon.dec, REFRACTION_NORMAL).altitude
             let minutes = lunar.sd_total > 0 ? lunar.sd_total * 2 : lunar.sd_partial * 2
             let length = minutes > 0 ? String(format: " %@ phase lasts %.0f minutes.", lunar.sd_total > 0 ? "Total" : "Partial", minutes) : ""
-            out.append(SkyEvent(kind: .lunarEclipse, date: date(lunar.peak), title: "\(eclipseKind(lunar.kind)) lunar eclipse", detail: (alt > 0 ? "The Moon is up here at mid-eclipse." : "The Moon is below the horizon here at mid-eclipse.") + length, visibleHere: alt > 0))
+            out.append(SkyEvent(kind: .lunarEclipse, date: date(lunar.peak), title: "\(eclipseKind(lunar.kind)) lunar eclipse", detail: (alt > 0 ? "The Moon is up here at mid-eclipse." : "The Moon is below the horizon here at mid-eclipse.") + length, visibleHere: alt > 0,
+                                window: alt > 0 ? DateInterval(start: date(lunar.peak), duration: 0) : nil))
             lunar = Astronomy_NextLunarEclipse(lunar.peak)
         }
 
@@ -92,8 +96,10 @@ extension SkyEngine {
             let here = local.first { abs($0.key.timeIntervalSince(peakDate)) < 6 * 3600 }?.value
             var detail: String
             var visible = false
+            var window: DateInterval?
             if let here, here.peak.altitude > 0 {
                 visible = true
+                window = DateInterval(start: date(here.peak.time), duration: 0)
                 detail = String(format: "From here: %@, %.0f%% of the Sun covered at %@.", eclipseKind(here.kind).lowercased(), here.obscuration * 100, date(here.peak.time).formatted(date: .omitted, time: .shortened))
             } else {
                 detail = "Not visible from here."
@@ -101,7 +107,7 @@ extension SkyEngine {
             if solar.kind == ECLIPSE_TOTAL || solar.kind == ECLIPSE_ANNULAR {
                 detail += String(format: " Greatest eclipse at %.1f°%@, %.1f°%@.", abs(solar.latitude), solar.latitude >= 0 ? "N" : "S", abs(solar.longitude), solar.longitude >= 0 ? "E" : "W")
             }
-            out.append(SkyEvent(kind: .solarEclipse, date: peakDate, title: "\(eclipseKind(solar.kind)) solar eclipse", detail: detail, visibleHere: visible))
+            out.append(SkyEvent(kind: .solarEclipse, date: peakDate, title: "\(eclipseKind(solar.kind)) solar eclipse", detail: detail, visibleHere: visible, window: window))
             solar = Astronomy_NextGlobalSolarEclipse(solar.peak)
         }
 
@@ -148,9 +154,10 @@ extension SkyEngine {
                 let noon = midnight.addingTimeInterval(-12 * 3600)
                 let sunset = riseSet(.sun, after: noon, from: observer).set ?? noon
                 let night = DateInterval(start: sunset, end: riseSet(.sun, after: sunset, from: observer).rise ?? sunset.addingTimeInterval(12 * 3600))
-                let moon = moonAndDarkness(night: night, dark: try? darkness(from: night.start, to: night.end, observer: observer),
+                let dark = try? darkness(from: night.start, to: night.end, observer: observer)
+                let moon = moonAndDarkness(night: night, dark: dark,
                                            moonUp: (try? moonUp(from: night.start, to: night.end, observer: observer)) ?? [], moonIllumination: lit)
-                out.append(SkyEvent(kind: .meteorShower, date: d, title: "\(m.name) peak", detail: "Up to about \(m.zhr) meteors an hour under dark skies. \(moon)", visibleHere: nil))
+                out.append(SkyEvent(kind: .meteorShower, date: d, title: "\(m.name) peak", detail: "Up to about \(m.zhr) meteors an hour under dark skies. \(moon)", visibleHere: nil, window: dark ?? night))
             }
         }
 

@@ -58,6 +58,8 @@ final class SkyModel: NSObject, CLLocationManagerDelegate {
     private var elementsFetched: Date?
     private var passesComputed: (at: Date, observer: Observer, elementsFetched: Date?)?
     private var weatherFetched: Date?
+    private var savedForecast: SavedForecast?
+    private var fetchingForecast = false
     /// Hours from now shown by the time scrubber.
     var offsetHours = 0.0 { didSet { refresh() } }
     /// Year shown instead of this one (astronomical numbering: 0 is 1 BCE), or nil for now.
@@ -178,6 +180,29 @@ final class SkyModel: NSObject, CLLocationManagerDelegate {
             weatherFetched = .now
         } catch {
             log.error("Space weather failed: \(error.localizedDescription, privacy: .public)")
+        }
+    }
+
+    /// The cloud forecast for the current place, while cloud forecasts are turned on.
+    var forecast: SavedForecast? {
+        guard UserDefaults.standard.bool(forKey: SettingsKey.cloudForecast), let f = savedForecast, f.isFor(observer) else { return nil }
+        return f
+    }
+
+    /// Apple Weather for the rounded place, at most once every three hours, and only while cloud forecasts are on.
+    func refreshForecast() async {
+        guard UserDefaults.standard.bool(forKey: SettingsKey.cloudForecast) else { savedForecast = nil; return }
+        if savedForecast == nil { savedForecast = SavedForecast.load() }
+        if let f = savedForecast, f.isFor(observer), Date.now.timeIntervalSince(f.forecast.fetched) < 3 * 3600 { return }
+        guard hasLocation, !fetchingForecast else { return }
+        fetchingForecast = true
+        defer { fetchingForecast = false }
+        do {
+            let f = try await SavedForecast.fetch(for: observer)
+            savedForecast = f
+            try f.save()
+        } catch {
+            log.error("Cloud forecast failed: \(error.localizedDescription, privacy: .public)")
         }
     }
 
