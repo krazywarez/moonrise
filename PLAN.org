@@ -479,10 +479,9 @@ Sky, System, Sun, Launches, Library core (above).
 - App Store Connect privacy label: Location, Coarse Location, App
   Functionality, not linked, not used for tracking (WeatherKit).
 - WeatherKit: check a real forecast on a signed device build.
-- Launch push: Broadcast capability for =sh.krz.moonrise=; run the channel
-  trial in =spikes/apns-channels/README.org=; then either set
-  =APNS_MANAGE_CHANNELS= or fill the pool with =server/scripts/channels.ts=;
-  apply =0005_launch_channels.sql= on the remote D1 before deploying.
+- Launch push: Broadcast capability for =sh.krz.moonrise=. The channel
+  trial passed on 2026-10-21 (sandbox and production returned 200 from a
+  Worker), so the Worker creates channels itself (=APNS_MANAGE_CHANNELS=).
 - Device checks: Siri phrases, Live Activity layouts (Lock Screen, Dynamic
   Island, Watch, CarPlay, StandBy), eclipse rehearsal with the silent
   switch on, sky draw time and pointing.
