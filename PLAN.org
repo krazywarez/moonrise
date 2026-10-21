@@ -416,75 +416,126 @@ Sky, System, Sun, Launches, Library core (above).
 - 3D planets from USGS maps; immersive sky and orrery on Vision Pro. Done:
   globes for the Sun, planets, dwarf planets and moons (NASA/USGS maps for 13,
   colour for the rest); visionOS app with globes, an orrery volume and an
-  immersive star field. visionOS is compiled but not yet run (no simulator
-  runtime installed).
+  immersive star field.
 - Guided seasonal sky tours and mission stories. Tours done: four, by
   months, 5 to 8 stops each, in Library/Resources/tours. Mission stories
   done for Voyager 1 and 2, Pioneer 10 and 11 and New Horizons, on the orrery.
 - Live coverage of major events (e.g. an Artemis landing) on the orrery
   with a Live Activity. Done: GET /v1/live with a Horizons trajectory, an
   Earth–Moon map on the System tab and a Live Activity. Artemis I is configured
-  as a past event for replay; add Artemis II and later missions to
-  server/src/live.ts (Horizons ID, window, phases) once their Horizons IDs are
-  published.
+  as a past event for replay.
 
 ** v4: connect the areas
 - Eclipse day for 2 August 2027. Done: IERS ΔT, contacts to 0.1 s, site
   time zone, precise location; cue script with safety rules, foreground
   spoken countdown, rehearsal, sun diagram, contact-time Live Activity.
   Decided: the countdown stays in the foreground (no background audio
-  mode) and in English. Not done: Watch haptics, drive to totality, cloud
-  climatology, field test on 6 February 2027.
+  mode) and in English.
 - Siri, Shortcuts and Spotlight. Done: 9 App Shortcuts over a MoonriseKit
   =Answers= target; all Library pages in Spotlight; open page and show in
-  sky. Not done: widgets and controls from the same intents, App Group,
-  phrase testing on a device.
+  sky.
 - Sun tab. Done: offline snapshot, plain-language summary, NOAA R/S/G
-  scales, flare and proton probabilities. Not done: solar wind (SOLAR-1
-  RTSW, reduce on the Worker), active-region labels, sun path, CCOR-2.
+  scales, flare and proton probabilities; X-ray chart from 5-minute maxima;
+  black and partly covered SDO frames skipped for the latest complete one.
 - Sky chart. Done: star fills batched by bin; 109 Messier objects from
-  OpenNGC v20260501 with atlas symbols and cards. Not done: Milky Way
-  (ESA "Gaia's sky in colour", CC BY-SA; Gaia data itself is CC BY-NC),
-  comets (JPL SBDB; needs a parabolic/hyperbolic solver), NGC, deeper stars.
+  OpenNGC v20260501 with atlas symbols and cards; off-screen labels
+  skipped.
 - Launch visibility. Done: payload first visible pass and labelled Starlink
-  trains from CelesTrak SupGP, 7 LL2 requests an hour. Run migration
-  =0004_launch_designator.sql= on the remote D1 before deploying the Worker.
-  Not done: seeing the ascent (needs a trajectory model).
+  trains from CelesTrak SupGP.
 - Live Activities. Done: satellite pass activity; small, limited-width and
   StandBy layouts for all activities; scheduled launch start at T−60 min;
   launch updates pushed over APNs broadcast channels, one per launch, with a
-  focused LL2 poll every 5 min from T−60 to T+15 (at most 13 anonymous
-  requests an hour); previews and DEBUG sample activities for testing. Not
-  done: storms, meteor peaks.
+  focused LL2 poll every 2 min from T−60 to T+15 with the API key (at most
+  31 requests an hour); previews and DEBUG sample activities for testing.
 - Observing conditions. Done: dark window and Moon times in the Today
   sheet, Moon notes on meteor peaks, passes and tours; opt-in WeatherKit
   cloud (off by default, location rounded to 0.1°, sent only to Apple) with
-  a go/marginal/no rating for tonight, passes and events. Not done: light
-  pollution (licence), meteor radiant altitude.
+  a go/marginal/no rating for tonight, passes and events.
 - Observing programs. Done: =:CATALOG:= and =:UTC_OFFSET:= in the log,
   catalogue name matching, Messier progress, user program lists as Org
-  files, "not yet logged, up tonight". Not done: Astronomical League lists
-  (Herschel 400, Double Star, Lunar, Binocular Messier) and Lunar 100
-  (Charles Wood, Sky & Telescope): ask for permission or leave them to user
-  program files; IMO/COBS/AAVSO exports.
-- AR camera overlay: later. First measure draw time and pointing on a
-  device and add one-object alignment with a gyroscope heading.
+  files, "not yet logged, up tonight".
+- Backend. Done: moonrise.krz.sh with edge-cached GETs; LL2 API key
+  (Regular Supporter, 45 requests an hour); Workers Paid; CelesTrak retry;
+  pushes sent in slices of 200, recorded only once APNs answers; alerts
+  pruned after 3 days, devices after 180.
 
 ** v5: next version
+Platforms
 - visionOS: run the app (globes, orrery volume, immersive star field) on a
   visionOS simulator or a Vision Pro. It compiles but has never run.
 - Smart-telescope pointing (Seestar and similar).
+- AR camera overlay on the Sky tab. First measure draw time and pointing on
+  a device. Heading from the gyroscope with a one-object alignment, not the
+  compass; a pinhole projection matching the camera; refraction.
+- Widgets from the original plan: Kp and next launch on the Lock Screen,
+  Voyager distance and today's Sun image on the Home Screen. Widgets and
+  Control Center controls backed by the App Intents, with an App Group.
+- Siri on the Watch; phrase translations.
+
+Sky
+- Milky Way from ESA's "Gaia's sky in colour" (CC BY-SA), clipped before
+  projection. Gaia data itself is CC BY-NC and can't be used.
+- Comets from JPL SBDB, fetched daily by the Worker; needs a parabolic and
+  hyperbolic orbit solver. Then bright asteroids.
+- NGC objects and stars fainter than V 6.5, with a deeper zoom and eyepiece
+  field-of-view circles from the equipment inventory.
+- Horizon profile.
+
+System
+- Active missions on the orrery: Juno, Europa Clipper, JUICE, Psyche,
+  Parker Solar Probe, Lucy (JPL Horizons vectors).
+- Live coverage: add Artemis II and later missions to =server/src/live.ts=
+  (Horizons ID, window, phases) once their Horizons IDs are published.
+
+Sun
+- Solar wind from SOLAR-1 RTSW, reduced on the Worker; earlier aurora alerts
+  from Bz.
+- Active-region labels on the SDO image.
+- Sun path, golden and blue hour, day length.
+- CCOR-2 coronagraph loop, WSA-Enlil forecast line, solar cycle progress.
+
+Launches and Live Activities
+- Seeing the ascent from the ground: needs a trajectory model per rocket;
+  Flight Club data needs an agreement with its author.
+- Push-to-start for followed launches: needs per-device tokens and a change
+  to the privacy policy.
+- Geomagnetic storm and meteor shower peak Live Activities.
+- Opt-in notification for a visible ISS pass in 15 minutes.
+
+Eclipse, 2 August 2027
+- Watch haptics at second and third contact.
+- Drive to totality: nearest point with 95% of the centre-line duration,
+  handed to Apple Maps.
+- Cloud climatology along the path (NASA MODIS or ERA5).
+- Photographer cue mode: filter off and on cues, an exposure table.
+- Field test on the 6 February 2027 annular eclipse.
+
+Observing
+- Light pollution: Lorenz's atlas needs permission; otherwise a model from
+  NASA Black Marble (CC0).
+- Meteor radiant altitude (radiant coordinates for the major showers).
+- Astronomical League lists (Herschel 400, Double Star, Lunar, Binocular
+  Messier) and Lunar 100 (Charles Wood, Sky & Telescope), with permission;
+  user program files cover them meanwhile.
+- IMO, COBS and AAVSO exports; a program log PDF.
+
+Performance
+- Sun tab first open still has frames over 100 ms (SwiftUI and Charts
+  start-up).
+- RealityKit's first start (about 1.4 s) when switching to 3D; check on a
+  device.
+- Sun snapshot: compress the OVATION grid (156 KB to about 90 KB).
+
+Backend and design
+- App Attest verification on device registration.
+- Typeface: the design calls for Helvetica Neue; the app uses the system
+  font. Pick one.
 
 * before publishing
 - App Store Connect: privacy policy URL https://krz.sh/privacy/moonrise/.
 - App Store Connect privacy label: Location, Coarse Location, App
   Functionality, not linked, not used for tracking (WeatherKit).
-- WeatherKit: check a real forecast on a signed device build.
-- Launch push: Broadcast capability for =sh.krz.moonrise=. The channel
-  trial passed on 2026-10-21 (sandbox and production returned 200 from a
-  Worker), so the Worker creates channels itself (=APNS_MANAGE_CHANNELS=).
-- Device checks: Siri phrases, Live Activity layouts (Lock Screen, Dynamic
-  Island, Watch, CarPlay, StandBy), sky draw time and pointing.
+- Ask The Space Devs about Launch Library 2 attribution terms.
 
 * risks
 - Library scope: 320 pages is most of the effort. Ship 1.0 with fewer
