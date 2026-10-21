@@ -470,8 +470,13 @@ Sky, System, Sun, Launches, Library core (above).
   device and add one-object alignment with a gyroscope heading.
 
 * before publishing
-- Launch Library 2 API key as the =LL2_API_KEY= secret. Anonymous calls from
-  Workers' shared IPs get HTTP 429 for hours at a time.
+- Workers Paid ($5/month) before real users register, then raise
+  =PUSH_SLICE= in =server/src/index.ts= (sized for Free's 50 subrequests per
+  invocation). The */5 cron already goes over Free's 10 ms CPU now and then.
+- Decide on server-side caching: a custom domain with the Cache API, D1 read
+  replication or Smart Placement. =workers.dev= does not cache Worker
+  responses, and every D1 round trip goes to San Jose (about 85 ms from the
+  US east coast).
 - Decide on the Astronomical League lists (Herschel 400, Double Star, Lunar,
   Binocular Messier) and Lunar 100 (Charles Wood, Sky & Telescope): ask for
   permission or leave them to user program files.
