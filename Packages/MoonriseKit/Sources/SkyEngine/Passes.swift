@@ -105,15 +105,13 @@ extension SkyEngine {
         return (perp * perp).sum().squareRoot() > 6378.135
     }
 
-    /// Passes above `minAltitude` in the next `hours`, sampled every 20 s.
+    /// Passes above `minAltitude` in the next `hours`, sampled every 20 s from 8° below the horizon up.
     public static func passes(of elements: OrbitalElements, from start: Date, hours: Double = 72, observer: Observer, minAltitude: Double = 10) -> [SatellitePass] {
         guard let sgp = try? SGP4(elements) else { return [] }
-        lock.lock()
-        defer { lock.unlock() }
         var out: [SatellitePass] = []
         var current: (rise: Date, riseAz: Double, peak: Date, maxAlt: Double, visible: Bool)?
         var lastAz = 0.0
-        let step = 20.0
+        var i = 0
         var t = start
         let end = start.addingTimeInterval(hours * 3600)
         while t <= end {
@@ -123,10 +121,12 @@ extension SkyEngine {
                 if current == nil { current = (t, h.azimuth, t, h.altitude, false) }
                 if h.altitude > current!.maxAlt { current!.maxAlt = h.altitude; current!.peak = t }
                 if !current!.visible, h.altitude >= minAltitude {
+                    lock.lock()
                     var tt = time(t)
                     let sun = Astronomy_Equator(BODY_SUN, &tt, observer.astro, EQUATOR_OF_DATE, ABERRATION)
                     let sunAlt = Astronomy_Horizon(&tt, observer.astro, sun.ra, sun.dec, REFRACTION_NORMAL).altitude
                     if sunAlt < -6, sunlit(r, sun: sunDirection(t)) { current!.visible = true }
+                    lock.unlock()
                 }
                 lastAz = h.azimuth
             } else if let c = current {
@@ -135,7 +135,12 @@ extension SkyEngine {
                 }
                 current = nil
             }
-            t = t.addingTimeInterval(step)
+            // Below the horizon altitude changes no faster than the satellite moves around Earth's centre relative to the
+            // observer: about 4°/min in low orbit, under 6.5°/min for any orbit above the surface. A 60 s step from below
+            // -8° skips 40 s (at most 4.3°) and a 180 s step from below -30° skips 160 s (at most 17.3°), so no 20 s sample
+            // at or above the horizon is skipped and the passes are those of plain 20 s steps.
+            i += h.altitude > -8 ? 1 : h.altitude > -30 ? 3 : 9
+            t = start.addingTimeInterval(Double(i) * 20)
         }
         return out
     }
