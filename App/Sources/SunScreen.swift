@@ -107,7 +107,7 @@ struct SunScreen: View {
         if let (data, response) = try? await URLSession.shared.data(from: w.url(size: 1024)),
            let http = response as? HTTPURLResponse, http.statusCode == 200, let image = UIImage(data: data) {
             if w.isUsable(data) {
-                picture = Picture(wavelength: w, image: image, loaded: .now)
+                picture = Picture(wavelength: w, image: await decoded(image), loaded: .now)
                 let modified = http.value(forHTTPHeaderField: "Last-Modified").flatMap { try? Date($0, strategy: .http) }
                 save(data, time: modified ?? .now, to: file)
                 return
@@ -119,18 +119,23 @@ struct SunScreen: View {
             }
             guard !Task.isCancelled else { return }
             if let frame, let saved = UIImage(data: frame.data) {
-                picture = Picture(wavelength: w, image: saved, loaded: .now, frame: frame.time)
+                picture = Picture(wavelength: w, image: await decoded(saved), loaded: .now, frame: frame.time)
             } else {
-                picture = Picture(wavelength: w, image: image, loaded: .now)
+                picture = Picture(wavelength: w, image: await decoded(image), loaded: .now)
             }
             return
         }
         guard !Task.isCancelled else { return }
         if let frame = savedFrame(file, w), let image = UIImage(data: frame.data) {
-            picture = Picture(wavelength: w, image: image, loaded: .now, saved: frame.time)
+            picture = Picture(wavelength: w, image: await decoded(image), loaded: .now, saved: frame.time)
         } else {
             imageFailed = true
         }
+    }
+
+    /// The image decoded off the main thread, so its first draw does not decode the JPEG there.
+    private func decoded(_ image: UIImage) async -> UIImage {
+        await image.byPreparingForDisplay() ?? image
     }
 
     /// The saved image and its frame time, if it is usable: images saved before the check may be black.
