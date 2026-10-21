@@ -1,4 +1,5 @@
 import AppIntents
+import Library
 import SkyRenderer
 import SwiftUI
 import UIKit
@@ -46,6 +47,7 @@ final class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCent
         UNUserNotificationCenter.current().delegate = self
         application.registerForRemoteNotifications()
         MoonriseShortcuts.updateAppShortcutParameters()
+        Task.detached(priority: .utility) { Library.prepareSearch() }
         Task.detached(priority: .background) { await SpotlightIndexer.indexIfNeeded() }
         return true
     }

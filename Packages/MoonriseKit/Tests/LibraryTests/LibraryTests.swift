@@ -54,6 +54,31 @@ func linksPointAtThingsTheAppKnows(_ p: LibraryPage) {
     #expect(Library.search("   ").isEmpty)
 }
 
+@Test func searchMatchesFoldedStringContains() {
+    let index = Library.pages.map { p in
+        (p, Library.fold(p.title + "\n" + p.subtitle), Library.fold(p.essay + "\n" + p.facts.map(\.value).joined(separator: "\n")))
+    }
+    func reference(_ query: String) -> [String] {
+        let q = Library.fold(query.trimmingCharacters(in: .whitespaces))
+        guard !q.isEmpty else { return [] }
+        let strong = index.filter { $0.1.contains(q) || $0.0.id == q }
+        let weak = index.filter { !($0.1.contains(q) || $0.0.id == q) && $0.2.contains(q) }
+        return (strong + weak).map(\.0.id)
+    }
+    let queries = [
+        "a", "m", "z", "q", "x", "1", ".", "-", "–", "°", "(",
+        "Señor", "señor", "SENOR", "Cygnus", "cygnus", "CYGNUS", "Cýgnus", "Méchain", "Ångström", "Tycho Brahe", "Kuiper",
+        "andromeda galaxy", "  Orion Nebula  ", "great red spot", "black hole", "light-years", "main sequence", "Hubble's",
+        "zzzz", "xyzzy", "qqqq q",
+        "M1", "M31", "m42", "M 13", "Messier 101", "NGC 224", "HR 2491",
+        "α", "α Centauri", "Alpha Centauri", "β", "ω Centauri", "Omega", "ε Eridani", "η Carinae", "Σ", "σ",
+        Library.pages[0].id, Library.pages.last!.id,
+    ] + stride(from: 0, to: Library.pages.count, by: 10).map { Library.pages[$0].title }
+    for q in queries {
+        #expect(Library.search(q).map(\.id) == reference(q), "\(q)")
+    }
+}
+
 @Test func scaleObjectsComeFromPages() {
     let objects = Library.scaleObjects
     #expect(objects.first?.name == "ISS")

@@ -139,16 +139,26 @@ public enum Library {
     public static func search(_ query: String) -> [LibraryPage] {
         let q = fold(query.trimmingCharacters(in: .whitespaces))
         guard !q.isEmpty else { return [] }
+        let needle = Array(q.utf8)
         var strong: [LibraryPage] = [], weak: [LibraryPage] = []
         for entry in searchIndex {
-            if entry.head.contains(q) || entry.page.id == q { strong.append(entry.page) } else if entry.body.contains(q) { weak.append(entry.page) }
+            if contains(entry.head, needle) || entry.page.id == q { strong.append(entry.page) } else if contains(entry.body, needle) { weak.append(entry.page) }
         }
         return strong + weak
     }
 
-    /// Lowercased, diacritic-free text per page, built once: title and subtitle, then essay and facts.
-    private static let searchIndex: [(page: LibraryPage, head: String, body: String)] = pages.map { p in
-        (p, fold(p.title + "\n" + p.subtitle), fold(p.essay + "\n" + p.facts.map(\.value).joined(separator: "\n")))
+    /// Builds the search index. Call off the main thread so the first search does not pay for it.
+    public static func prepareSearch() {
+        _ = searchIndex
+    }
+
+    /// Lowercased, diacritic-free UTF-8 per page, built once: title and subtitle, then essay and facts.
+    private static let searchIndex: [(page: LibraryPage, head: [UInt8], body: [UInt8])] = pages.map { p in
+        (p, Array(fold(p.title + "\n" + p.subtitle).utf8), Array(fold(p.essay + "\n" + p.facts.map(\.value).joined(separator: "\n")).utf8))
+    }
+
+    private static func contains(_ haystack: [UInt8], _ needle: [UInt8]) -> Bool {
+        haystack.withUnsafeBytes { h in needle.withUnsafeBytes { n in memmem(h.baseAddress, h.count, n.baseAddress, n.count) != nil } }
     }
 
     static func fold(_ s: String) -> String {
