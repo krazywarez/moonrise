@@ -186,6 +186,10 @@ final class SolarSceneEntities {
     var debrisBuilt: (SolarScale, Float, String)?
     let flare = ModelEntity()
     let aurora = Entity()
+
+    /// RealityView's ARView can outlive the 3D view; detach the scene so its meshes, materials and
+    /// textures are freed when 3D is left.
+    isolated deinit { root.removeFromParent() }
 }
 
 struct SolarSystem3DView: View {
@@ -205,6 +209,7 @@ struct SolarSystem3DView: View {
     @State private var flight: Task<Void, Never>?
     @State private var pulse = false
     @State private var viewSize = CGSize(width: 400, height: 600)
+    @State private var ready = false
     @AppStorage("solar.moons") private var showMoons = true
     @AppStorage("solar.dwarfs") private var showDwarfs = true
     @AppStorage("solar.craft") private var showCraft = true
@@ -224,16 +229,20 @@ struct SolarSystem3DView: View {
     var body: some View {
         GeometryReader { geo in
             ZStack {
-                RealityView { content in
-                    content.camera = .virtual
-                    build(content)
-                } update: { _ in
-                    place()
-                }
-                .gesture(dragGesture.simultaneously(with: pinchGesture))
-                .onTapGesture(coordinateSpace: .local) { tap($0, size: geo.size) }
+                if ready {
+                    RealityView { content in
+                        content.camera = .virtual
+                        build(content)
+                    } update: { _ in
+                        place()
+                    }
+                    .gesture(dragGesture.simultaneously(with: pinchGesture))
+                    .onTapGesture(coordinateSpace: .local) { tap($0, size: geo.size) }
 
-                labels(size: geo.size).allowsHitTesting(false)
+                    labels(size: geo.size).allowsHitTesting(false)
+                } else {
+                    Color.black.overlay(ProgressView().tint(ink))
+                }
 
                 VStack(spacing: 8) {
                     if let s = selected { card(s) }
@@ -256,6 +265,11 @@ struct SolarSystem3DView: View {
         .accessibilityElement(children: .contain)
         .accessibilityLabel("3D solar system. Drag to turn, pinch to zoom, tap a body to learn about it.")
         .onChange(of: scale) { resetView() }
+        .task {
+            // RealityKit's start-up blocks the main thread; let the placeholder reach the screen first.
+            try? await Task.sleep(for: .milliseconds(1))
+            ready = true
+        }
         .task { await loadWeather() }
         .task {
             while !Task.isCancelled {
@@ -369,8 +383,10 @@ struct SolarSystem3DView: View {
         e.camera.camera.fieldOfViewInDegrees = SolarCamera.fovDegrees
         e.root.addChild(e.camera)
 
+        // One unit sphere for every round body; entities are scaled to size.
+        let sphere = MeshResource.generateSphere(radius: 1)
         let sunMaterial = UnlitMaterial(color: UIColor(red: 1, green: 0.86, blue: 0.5, alpha: 1))
-        e.sun.model = ModelComponent(mesh: .generateSphere(radius: 1), materials: [sunMaterial])
+        e.sun.model = ModelComponent(mesh: sphere, materials: [sunMaterial])
         e.root.addChild(e.sun)
         // Glow: nested translucent shells, fainter outward.
         for i in 1...10 {
@@ -378,7 +394,9 @@ struct SolarSystem3DView: View {
             let a = CGFloat(0.09 * pow(0.78, Double(i - 1)))
             var g = UnlitMaterial(color: UIColor(red: 1, green: 0.72, blue: 0.32, alpha: a))
             g.blending = .transparent(opacity: .init(floatLiteral: Float(a)))
-            e.sun.addChild(ModelEntity(mesh: .generateSphere(radius: r), materials: [g]))
+            let shell = ModelEntity(mesh: sphere, materials: [g])
+            shell.scale = .init(repeating: r)
+            e.sun.addChild(shell)
         }
 
         // Planets, dwarf planets and moons: textured where there is a map, with a night side.
@@ -386,36 +404,45 @@ struct SolarSystem3DView: View {
         if let pluto = SolarPlanet.pluto { spheres.append(("pluto", pluto.color, pluto.tiltDeg)) }
         spheres += KeplerOrbit.dwarfPlanets.map { ($0.id, Library.page(id: $0.id)?.drawing?.color ?? "#999999", 0) }
         spheres += SolarMoon.all.map { ($0.id, $0.color, 0) }
+        let nightMesh = Self.nightShell()
+        var nightMaterial = UnlitMaterial(color: .black)
+        nightMaterial.blending = .transparent(opacity: .init(floatLiteral: 0.88))
+        nightMaterial.faceCulling = .none
         for s in spheres {
             let body = ModelEntity()
             // Plain colour first; the map, if there is one, is swapped in once it has loaded.
             let m = UnlitMaterial(color: UIColor(Color(hex: s.color) ?? .gray))
-            body.model = ModelComponent(mesh: .generateSphere(radius: 1), materials: [m])
+            body.model = ModelComponent(mesh: sphere, materials: [m])
             body.orientation = simd_quatf(angle: Float(s.tilt * .pi / 180), axis: [1, 0, 0])
             if s.id == "saturn" { body.addChild(Self.annulus(inner: 1.24, outer: 2.27, color: UIColor(red: 0.85, green: 0.78, blue: 0.62, alpha: 0.7))) }
             e.bodies[s.id] = body
             e.root.addChild(body)
-            let night = Self.nightShell()
+            let night = ModelEntity(mesh: nightMesh, materials: [nightMaterial])
             e.nights[s.id] = night
             e.root.addChild(night)
         }
 
         // Spacecraft and comet nuclei: dots sized each frame to stay visible.
+        let craftMaterial = UnlitMaterial(color: Self.craftColor)
         for craft in Spacecraft.all {
-            let dot = ModelEntity(mesh: .generateSphere(radius: 1), materials: [UnlitMaterial(color: Self.craftColor)])
+            let dot = ModelEntity(mesh: sphere, materials: [craftMaterial])
             e.bodies["craft:\(craft.name)"] = dot
             e.root.addChild(dot)
         }
+        let nucleusMaterial = UnlitMaterial(color: UIColor(white: 0.92, alpha: 1))
+        // A soft tail: nested cones, wider and fainter outward.
+        let tailParts = ([(0.025, 0.3), (0.06, 0.14), (0.11, 0.06)] as [(Float, Float)]).map { radius, alpha in
+            var t = UnlitMaterial(color: UIColor(red: 0.7, green: 0.88, blue: 1, alpha: 1))
+            t.blending = .transparent(opacity: .init(floatLiteral: alpha))
+            return (mesh: MeshResource.generateCone(height: 1, radius: radius), material: t)
+        }
         for c in KeplerOrbit.comets {
-            let nucleus = ModelEntity(mesh: .generateSphere(radius: 1), materials: [UnlitMaterial(color: UIColor(white: 0.92, alpha: 1))])
+            let nucleus = ModelEntity(mesh: sphere, materials: [nucleusMaterial])
             e.bodies["comet:\(c.id)"] = nucleus
             e.root.addChild(nucleus)
-            // A soft tail: nested cones, wider and fainter outward.
             let tail = ModelEntity()
-            for (radius, alpha) in [(0.025, 0.3), (0.06, 0.14), (0.11, 0.06)] as [(Float, Float)] {
-                var t = UnlitMaterial(color: UIColor(red: 0.7, green: 0.88, blue: 1, alpha: 1))
-                t.blending = .transparent(opacity: .init(floatLiteral: alpha))
-                tail.addChild(ModelEntity(mesh: .generateCone(height: 1, radius: radius), materials: [t]))
+            for part in tailParts {
+                tail.addChild(ModelEntity(mesh: part.mesh, materials: [part.material]))
             }
             e.tails[c.id] = tail
             e.root.addChild(tail)
@@ -429,7 +456,7 @@ struct SolarSystem3DView: View {
 
         var flareMaterial = UnlitMaterial(color: UIColor(red: 1, green: 1, blue: 0.85, alpha: 0.9))
         flareMaterial.blending = .transparent(opacity: .init(floatLiteral: 0.9))
-        e.flare.model = ModelComponent(mesh: .generateSphere(radius: 1), materials: [flareMaterial])
+        e.flare.model = ModelComponent(mesh: sphere, materials: [flareMaterial])
         e.root.addChild(e.flare)
         for y: Float in [0.86, -0.86] {
             for (inner, outer, alpha) in [(0.36, 0.66, 0.22), (0.45, 0.56, 0.5)] as [(Float, Float, CGFloat)] {
@@ -535,13 +562,19 @@ struct SolarSystem3DView: View {
         if let (s, w) = e.orbitsBuilt, s == scale, w / width < 1.6, width / w < 1.6 { return }
         e.orbitsBuilt = (scale, width)
         let map = mapping
+        // Orbits of the same colour and opacity share a material, made when the first of them is created.
+        var materials: [String: UnlitMaterial] = [:]
         func set(_ id: String, _ points: [SIMD3<Float>], color: UIColor, opacity: Float) {
             let mesh = Self.ribbon(points, width: width, closed: true)
             if let existing = e.orbits[id] { existing.model?.mesh = mesh; return }
-            var m = UnlitMaterial(color: color)
-            m.blending = .transparent(opacity: .init(floatLiteral: opacity))
-            m.faceCulling = .none
-            let orbit = ModelEntity(mesh: mesh, materials: [m])
+            let key = "\(color) \(opacity)"
+            if materials[key] == nil {
+                var m = UnlitMaterial(color: color)
+                m.blending = .transparent(opacity: .init(floatLiteral: opacity))
+                m.faceCulling = .none
+                materials[key] = m
+            }
+            let orbit = ModelEntity(mesh: mesh, materials: [materials[key]!])
             e.orbits[id] = orbit
             e.root.addChild(orbit)
         }
@@ -567,6 +600,7 @@ struct SolarSystem3DView: View {
         e.pathsBuilt = (scale, width, bucket)
         let map = mapping
         let day = date.timeIntervalSince1970 / 86_400
+        var material: UnlitMaterial?
         for craft in Spacecraft.all {
             var pts = craft.points.filter { $0[0] <= day }.map { map.point(SIMD3($0[1], $0[2], $0[3])) }
             if let now = craft.position3(at: date) { pts.append(map.point(now)) }
@@ -574,10 +608,13 @@ struct SolarSystem3DView: View {
             if let existing = e.paths[craft.name] {
                 existing.model?.mesh = mesh
             } else {
-                var m = UnlitMaterial(color: Self.craftColor)
-                m.blending = .transparent(opacity: .init(floatLiteral: 0.4))
-                m.faceCulling = .none
-                let path = ModelEntity(mesh: mesh, materials: [m])
+                if material == nil {
+                    var m = UnlitMaterial(color: Self.craftColor)
+                    m.blending = .transparent(opacity: .init(floatLiteral: 0.4))
+                    m.faceCulling = .none
+                    material = m
+                }
+                let path = ModelEntity(mesh: mesh, materials: [material!])
                 e.paths[craft.name] = path
                 e.root.addChild(path)
             }
@@ -666,7 +703,7 @@ struct SolarSystem3DView: View {
     }
 
     /// The half of a unit sphere below y = 0, drawn dark and mostly opaque over a body's night side.
-    private static func nightShell() -> ModelEntity {
+    private static func nightShell() -> MeshResource {
         let rings = 24, segments = 64
         var positions: [SIMD3<Float>] = []
         var indices: [UInt32] = []
@@ -686,10 +723,7 @@ struct SolarSystem3DView: View {
         var d = MeshDescriptor(name: "night")
         d.positions = MeshBuffer(positions)
         d.primitives = .triangles(indices)
-        var m = UnlitMaterial(color: .black)
-        m.blending = .transparent(opacity: .init(floatLiteral: 0.88))
-        m.faceCulling = .none
-        return ModelEntity(mesh: (try? MeshResource.generate(from: [d])) ?? .generateBox(size: 0.001), materials: [m])
+        return (try? MeshResource.generate(from: [d])) ?? .generateBox(size: 0.001)
     }
 
     // MARK: Labels, taps and the card
