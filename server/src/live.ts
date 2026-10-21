@@ -26,6 +26,18 @@ export const EVENTS: LiveEvent[] = [
       { at: "2022-12-11T17:40:00Z", label: "Splashdown" },
     ],
   },
+  {
+    // Past mission, kept for replay with /v1/live?at=2026-04-06T23:00:00Z.
+    id: "artemis-2", title: "Artemis II", horizonsId: "-1024",
+    launch: "2026-04-01T22:35:12Z", end: "2026-04-11T00:07:00Z",
+    phases: [
+      { at: "2026-04-01T22:35:12Z", label: "Launch" },
+      { at: "2026-04-02T23:49:00Z", label: "Translunar injection" },
+      { at: "2026-04-06T23:01:00Z", label: "Lunar flyby" },
+      { at: "2026-04-10T23:53:00Z", label: "Entry interface" },
+      { at: "2026-04-11T00:07:00Z", label: "Splashdown" },
+    ],
+  },
 ];
 
 export const STEP_MINUTES = 30;

@@ -5,6 +5,8 @@ import { activeEvent, ephemerisLimit, parseVectors } from "../src/live.ts";
 test("finds the event covering a time", () => {
   assert.equal(activeEvent(new Date("2022-11-21T12:00:00Z"))?.id, "artemis-1");
   assert.equal(activeEvent(new Date("2022-12-12T00:00:00Z")), undefined);
+  assert.equal(activeEvent(new Date("2026-04-06T23:00:00Z"))?.id, "artemis-2");
+  assert.equal(activeEvent(new Date("2026-04-11T01:00:00Z")), undefined);
   assert.equal(activeEvent(new Date("2026-10-18T00:00:00Z")), undefined);
 });
 
