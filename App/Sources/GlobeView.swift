@@ -65,6 +65,13 @@ struct GlobeView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
 
+    private static var isiOSAppOnVision: Bool {
+        #if os(iOS)
+        if #available(iOS 26.1, *) { return ProcessInfo.processInfo.isiOSAppOnVision }
+        #endif
+        return false
+    }
+
     @MainActor
     static func makeGlobe(_ page: LibraryPage) async -> Entity {
         var material = PhysicallyBasedMaterial()
@@ -74,6 +81,14 @@ struct GlobeView: View {
             material.baseColor = .init(texture: .init(texture))
         } else {
             material.baseColor = .init(tint: UIColor(Color(hex: page.drawing?.color ?? "") ?? .gray))
+        }
+        // The iPhone app on Vision Pro draws the lit material black, so the globe is unlit there.
+        if page.id != "sun" && isiOSAppOnVision {
+            var unlit = UnlitMaterial()
+            unlit.color = .init(tint: material.baseColor.tint, texture: material.baseColor.texture)
+            let globe = ModelEntity(mesh: .generateSphere(radius: 0.5), materials: [unlit])
+            globe.name = "globe"
+            return globe
         }
         if page.id == "sun" {
             var glow = UnlitMaterial(color: UIColor(Color(hex: page.drawing?.color ?? "") ?? .yellow))
