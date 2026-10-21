@@ -58,3 +58,18 @@ import Testing
     #expect(o.cells.last == Ovation.Cell(lon: 0, lat: 65, probability: 12))
     #expect(o.forecastTime == (try Date("2026-10-18T00:37:00Z", strategy: .iso8601)))
 }
+
+@Test func ovationSavesAsGrid() throws {
+    let rows = (0..<360).flatMap { lon in (-90...90).map { lat in "[\(lon),\(lat),\(abs(lat) >= 55 && abs(lat) <= 80 ? (lon + lat + 90) % 101 : 0)]" } }
+    let feed = Data(#"{"Forecast Time": "2026-10-18T00:37:00Z", "coordinates": [\#(rows.joined(separator: ","))]}"#.utf8)
+    let o = try Ovation.decode(feed)
+    let data = try JSONEncoder().encode(o)
+    #expect(data.count < 90_000)
+    #expect(try JSONDecoder().decode(Ovation.self, from: data) == o)
+}
+
+@Test func ovationReadsCellsFromOlderSnapshots() throws {
+    let data = Data(#"{"forecastTime": 782614800, "cells": [{"lon": 0, "lat": 65, "probability": 12}, {"lon": 359, "lat": -60, "probability": 3}]}"#.utf8)
+    let o = try JSONDecoder().decode(Ovation.self, from: data)
+    #expect(o.cells == [Ovation.Cell(lon: 0, lat: 65, probability: 12), Ovation.Cell(lon: 359, lat: -60, probability: 3)])
+}

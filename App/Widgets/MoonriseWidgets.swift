@@ -149,26 +149,30 @@ struct PlanetsProvider: TimelineProvider {
     }
 
     func getSnapshot(in context: Context, completion: @escaping (PlanetsEntry) -> Void) {
-        completion(entry(at: .now))
+        completion(entries(at: [.now])[0])
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<PlanetsEntry>) -> Void) {
-        completion(Timeline(entries: hourly(from: .now).map(entry), policy: .atEnd))
+        completion(Timeline(entries: entries(at: hourly(from: .now)), policy: .atEnd))
     }
 
-    func entry(at date: Date) -> PlanetsEntry {
+    func entries(at dates: [Date]) -> [PlanetsEntry] {
         let (observer, located) = widgetObserver()
         engineLock.lock()
         defer { engineLock.unlock() }
-        guard let t = try? Tonight(at: date, from: observer) else { return PlanetsEntry(date: date, rows: [], located: located) }
-        let time: (Date) -> String = { $0.formatted(date: .omitted, time: .shortened) }
-        let rows = t.planets.filter { $0.best != nil }.map { p -> PlanetsEntry.Row in
-            let name = p.body.rawValue.capitalized
-            if p.now.altitude > 0 { return .init(name: name, detail: String(format: "up, %.0f°", p.now.altitude)) }
-            if let rise = p.rise, rise < t.end { return .init(name: name, detail: "rises \(time(rise))") }
-            return .init(name: name, detail: "tonight")
+        guard let nights = try? Tonight.visiblePlanets(at: dates, from: observer) else {
+            return dates.map { PlanetsEntry(date: $0, rows: [], located: located) }
         }
-        return PlanetsEntry(date: date, rows: rows, located: located)
+        let time: (Date) -> String = { $0.formatted(date: .omitted, time: .shortened) }
+        return zip(dates, nights).map { date, night in
+            let rows = night.planets.map { p -> PlanetsEntry.Row in
+                let name = p.body.rawValue.capitalized
+                if p.now.altitude > 0 { return .init(name: name, detail: String(format: "up, %.0f°", p.now.altitude)) }
+                if let rise = p.rise, rise < night.end { return .init(name: name, detail: "rises \(time(rise))") }
+                return .init(name: name, detail: "tonight")
+            }
+            return PlanetsEntry(date: date, rows: rows, located: located)
+        }
     }
 }
 

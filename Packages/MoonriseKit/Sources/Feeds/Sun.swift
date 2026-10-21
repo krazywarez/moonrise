@@ -148,3 +148,35 @@ public struct Ovation: Sendable, Equatable, Codable {
         try decode(await session.data(from: url).0)
     }
 }
+
+/// Saved as the feed's grid, one byte per cell in the feed's order (longitude 0...359, then latitude −90...90).
+/// Snapshots saved before the grid hold `cells`.
+extension Ovation {
+    enum CodingKeys: String, CodingKey {
+        case forecastTime, grid, cells
+    }
+
+    public init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        forecastTime = try c.decode(Date.self, forKey: .forecastTime)
+        if let grid = try c.decodeIfPresent(Data.self, forKey: .grid) {
+            cells = grid.enumerated().compactMap { i, p in
+                p > 0 ? Cell(lon: Double(i / 181), lat: Double(i % 181 - 90), probability: Double(p)) : nil
+            }
+        } else {
+            cells = try c.decode([Cell].self, forKey: .cells)
+        }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var grid = Data(count: 360 * 181)
+        for cell in cells {
+            let lon = Int(cell.lon), lat = Int(cell.lat) + 90
+            guard (0..<360).contains(lon), (0...180).contains(lat) else { continue }
+            grid[lon * 181 + lat] = UInt8(clamping: Int(cell.probability.rounded()))
+        }
+        var c = encoder.container(keyedBy: CodingKeys.self)
+        try c.encode(forecastTime, forKey: .forecastTime)
+        try c.encode(grid, forKey: .grid)
+    }
+}
