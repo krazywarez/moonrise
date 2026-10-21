@@ -1,13 +1,19 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { digestDue, digestPayload, localDate, pickHeadlines, type Article } from "../src/news.ts";
+import { digestPayload, dueOffsets, localDate, pickHeadlines, type Article } from "../src/news.ts";
 
-test("digest is due in the first 10 minutes of 09:00 local", () => {
-  const at = (iso: string) => new Date(iso);
-  assert.equal(digestDue(at("2026-10-18T14:00:00Z"), -300), true); // 09:00 CDT
-  assert.equal(digestDue(at("2026-10-18T14:09:59Z"), -300), true);
-  assert.equal(digestDue(at("2026-10-18T14:10:00Z"), -300), false);
-  assert.equal(digestDue(at("2026-10-17T23:30:00Z"), 570), true); // 09:00 ACST, next day
+test("digest is due for the UTC offsets whose local time is in the 09:00 hour", () => {
+  for (let minute = 0; minute < 1440; minute += 5) {
+    const now = new Date(Date.UTC(2026, 9, 18, 0, minute));
+    const ranges = dueOffsets(now);
+    for (let offset = -840; offset <= 840; offset++) {
+      const local = (((minute + offset) % 1440) + 1440) % 1440;
+      const due = ranges.some(([lo, hi]) => offset >= lo && offset < hi);
+      assert.equal(due, local >= 540 && local < 600, `${now.toISOString()} ${offset}`);
+    }
+  }
+  assert.deepEqual(dueOffsets(new Date("2026-10-18T14:00:00Z")), [[-300, -240], [1140, 841]]); // 09:00 CDT
+  assert.deepEqual(dueOffsets(new Date("2026-10-17T23:30:00Z")), [[-840, -810], [570, 630]]); // 09:00 ACST, next day
 });
 
 test("local date follows the offset", () => {

@@ -41,14 +41,20 @@ export async function providerToken(keyId: string, teamId: string, key: CryptoKe
   return `${input}.${base64url(new Uint8Array(sig))}`;
 }
 
-/** Apple accepts a token for up to 60 minutes and rejects refreshes more often than every 20. */
-let cached: { token: string; issuedAt: number; keyId: string } | null = null;
+/**
+ * Apple accepts a token for up to 60 minutes and rejects refreshes more often than every 20. The promise is
+ * cached, so concurrent sends share one token.
+ */
+let cached: { token: Promise<string>; issuedAt: number; keyId: string } | null = null;
 
-async function token(config: ApnsConfig): Promise<string> {
+function token(config: ApnsConfig): Promise<string> {
   const now = Math.floor(Date.now() / 1000);
   if (cached && cached.keyId === config.keyId && now - cached.issuedAt < 50 * 60) return cached.token;
-  const t = await providerToken(config.keyId, config.teamId, await importKey(config.privateKey), now);
+  const t = importKey(config.privateKey).then((key) => providerToken(config.keyId, config.teamId, key, now));
   cached = { token: t, issuedAt: now, keyId: config.keyId };
+  t.catch(() => {
+    if (cached?.token === t) cached = null;
+  });
   return t;
 }
 
@@ -67,6 +73,23 @@ export async function send(config: ApnsConfig, deviceToken: string, payload: unk
   });
   return result(res, "apns-id");
 }
+
+/** `send` to each device, at most `concurrency` at a time. Results are in input order; a network error is status 0. */
+export async function sendAll(config: ApnsConfig, sends: { token: string; payload: unknown; sandbox: boolean }[], concurrency: number): Promise<ApnsResult[]> {
+  const out: ApnsResult[] = new Array(sends.length);
+  let next = 0;
+  const worker = async () => {
+    while (next < sends.length) {
+      const i = next++;
+      out[i] = await send(config, sends[i].token, sends[i].payload, sends[i].sandbox).catch((e) => ({ status: 0, apnsId: null, reason: String(e) }));
+    }
+  };
+  await Promise.all(Array.from({ length: Math.min(concurrency, sends.length) }, worker));
+  return out;
+}
+
+/** Failures that may pass: network errors, 429 and 5xx. Other statuses are final for that device. */
+export const retryable = (status: number) => status === 0 || status === 429 || status >= 500;
 
 async function result(res: Response, idHeader: string): Promise<ApnsResult> {
   let reason: string | null = null;

@@ -1,5 +1,6 @@
 // CelesTrak GP data. CelesTrak updates every 2 hours and blocks IPs that fetch more
 // often or keep requesting after errors, so poll every 2 hours and stop on any non-200.
+// A failed poll is tried once more 33 minutes later: at most 2 errors in 2 hours.
 
 /** ISS, Tiangong (CSS Tianhe) and Hubble; all three are in the visual group. */
 export const FEATURED = [25544, 48274, 20580];
@@ -154,10 +155,21 @@ export function compose(visual: Row[], recent: Row[], launches: LaunchRef[], sup
   return { satellites: [...pick(visual), ...starlinkTrains(groups)], launches: out };
 }
 
+/** The 5-minute tick 33 minutes after each 2-hourly poll, which runs at minute 7 of even UTC hours. */
+export const retryTick = (now: Date) => now.getUTCHours() % 2 === 0 && now.getUTCMinutes() === 40;
+
+/** Whether this tick's 2-hourly poll failed and nothing has succeeded since. A failed retry is not retried. */
+export function retryDue(now: Date, lastOk: string | null, lastError: string | null): boolean {
+  if (!retryTick(now) || !lastError) return false;
+  const error = Date.parse(lastError);
+  return error >= now.getTime() - 33 * 60_000 && error < now.getTime() && (!lastOk || Date.parse(lastOk) < error);
+}
+
 const HEADERS = { "user-agent": "moonrise-server (sh.krz.moonrise)" };
+const TIMEOUT_MS = 10_000;
 
 async function group(name: string): Promise<Row[]> {
-  const res = await fetch(`https://celestrak.org/NORAD/elements/gp.php?GROUP=${name}&FORMAT=JSON`, { headers: HEADERS });
+  const res = await fetch(`https://celestrak.org/NORAD/elements/gp.php?GROUP=${name}&FORMAT=JSON`, { headers: HEADERS, signal: AbortSignal.timeout(TIMEOUT_MS) });
   if (res.status !== 200) throw new Error(`CelesTrak ${res.status} for ${name}`);
   return (await res.json()) as Row[];
 }
@@ -171,7 +183,7 @@ export async function fetchGroups(): Promise<{ visual: Row[]; recent: Row[] }> {
 
 /** One SupGP file; throws on a non-200 so the caller stops. */
 export async function fetchSupGP(file: string): Promise<Row[]> {
-  const res = await fetch(`https://celestrak.org/NORAD/elements/supplemental/sup-gp.php?FILE=${file}&FORMAT=JSON`, { headers: HEADERS });
+  const res = await fetch(`https://celestrak.org/NORAD/elements/supplemental/sup-gp.php?FILE=${file}&FORMAT=JSON`, { headers: HEADERS, signal: AbortSignal.timeout(TIMEOUT_MS) });
   if (res.status !== 200) throw new Error(`CelesTrak SupGP ${res.status} for ${file}`);
   return parseSupGP(await res.text());
 }

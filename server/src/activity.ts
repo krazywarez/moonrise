@@ -2,7 +2,7 @@
 // so the server never learns who follows a launch.
 
 const MINUTE = 60_000;
-/** A launch is polled on its own every 5 minutes from T−60 to T+15. */
+/** A launch is polled on its own from T−60 to T+15. */
 const FOCUS_BEFORE = 60 * MINUTE;
 const FOCUS_AFTER = 15 * MINUTE;
 /** Launch Library 2 status abbreviations that end the activity. */
@@ -31,9 +31,21 @@ export function inFocus(l: ActivityState, now: Date): boolean {
   return !OUTCOMES.includes(l.status) && t - FOCUS_BEFORE <= now.getTime() && now.getTime() <= t + FOCUS_AFTER;
 }
 
-/** One launch per 5-minute tick; launches in focus at the same time take turns. */
-export function focusPick(ids: string[], now: Date): string {
-  return ids[Math.floor(now.getTime() / (5 * MINUTE)) % ids.length];
+/** Minutes between polls of the launch in focus: 5 anonymously (15 requests/hour), 2 with a Launch Library 2 key. */
+export const focusEvery = (keyed: boolean) => (keyed ? 2 : 5);
+
+/**
+ * Whether the 5-minute or the 2-minute cron polls the launch in focus on this tick. With a key the 2-minute cron
+ * takes the even minutes the 5-minute cron does not run on.
+ */
+export function focusPollDue(cron: 2 | 5, now: Date, keyed: boolean): boolean {
+  const m = now.getUTCMinutes();
+  return cron === 5 ? m % focusEvery(keyed) === 0 : keyed && m % 5 !== 0;
+}
+
+/** One launch per poll; launches in focus at the same time take turns. */
+export function focusPick(ids: string[], now: Date, every = 5): string {
+  return ids[Math.floor(now.getTime() / (every * MINUTE)) % ids.length];
 }
 
 /** Channels are handed out a day ahead, so a follow at any time before launch can subscribe. */

@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { broadcast, createChannel, deleteChannel, listChannels, send, type ApnsConfig } from "../src/apns.ts";
+import { broadcast, createChannel, deleteChannel, listChannels, retryable, send, sendAll, type ApnsConfig } from "../src/apns.ts";
 
 async function config(): Promise<ApnsConfig> {
   const pair = await crypto.subtle.generateKey({ name: "ECDSA", namedCurve: "P-256" }, true, ["sign"]);
@@ -91,4 +91,44 @@ test("errors report APNs' reason", async () => {
   assert.equal(r.status, 403);
   assert.equal(r.reason, "InvalidProviderToken");
   assert.deepEqual(r.channels, []);
+});
+
+test("concurrent sends share one provider token", async () => {
+  const { seen, fetcher } = recorder(() => new Response(null, { status: 200 }));
+  const real = globalThis.fetch;
+  globalThis.fetch = fetcher;
+  try {
+    const c = { ...(await config()), keyId: "SHARED0001" };
+    await Promise.all(Array.from({ length: 6 }, (_, i) => send(c, i.toString(16).padStart(64, "0"), {}, false)));
+  } finally {
+    globalThis.fetch = real;
+  }
+  assert.equal(new Set(seen.map((s) => s.headers.authorization)).size, 1);
+});
+
+test("sendAll keeps order, bounds concurrency and turns network errors into status 0", async () => {
+  let inFlight = 0;
+  let max = 0;
+  const real = globalThis.fetch;
+  globalThis.fetch = (async (url: string) => {
+    inFlight++;
+    max = Math.max(max, inFlight);
+    await new Promise((r) => setTimeout(r, 2));
+    inFlight--;
+    if (url.endsWith("1".padStart(64, "0"))) throw new Error("network");
+    return new Response(null, { status: url.includes("sandbox") ? 410 : 200 });
+  }) as typeof fetch;
+  let results;
+  try {
+    const c = await config();
+    results = await sendAll(c, Array.from({ length: 10 }, (_, i) => ({ token: i.toString(16).padStart(64, "0"), payload: {}, sandbox: i === 2 })), 3);
+  } finally {
+    globalThis.fetch = real;
+  }
+  assert.equal(max, 3);
+  assert.deepEqual(results.map((r) => r.status), [200, 0, 410, 200, 200, 200, 200, 200, 200, 200]);
+});
+
+test("only network errors, 429 and 5xx are worth retrying", () => {
+  assert.deepEqual([0, 200, 400, 403, 410, 429, 500, 503].map(retryable), [true, false, false, false, false, true, true, true]);
 });

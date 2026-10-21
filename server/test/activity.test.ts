@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { activityPush, focusPick, inFocus, needsChannel, sinceNet } from "../src/activity.ts";
+import { activityPush, focusEvery, focusPick, focusPollDue, inFocus, needsChannel, sinceNet } from "../src/activity.ts";
 
 const now = new Date("2026-10-20T12:00:00Z");
 const unix = (iso: string) => Date.parse(iso) / 1000;
@@ -21,6 +21,22 @@ test("overlapping launches take turns, one request per 5-minute tick", () => {
   assert.equal(focusPick(ids, new Date("2026-10-20T12:05:00Z")), "b");
   assert.equal(focusPick(ids, new Date("2026-10-20T12:10:00Z")), "a");
   assert.equal(focusPick(["a"], new Date("2026-10-20T12:05:00Z")), "a");
+  assert.deepEqual([0, 2, 4, 6].map((m) => focusPick(ids, new Date(Date.UTC(2026, 9, 20, 12, m)), 2)), ["a", "b", "a", "b"]);
+});
+
+test("the launch in focus is polled every 5 minutes anonymously and every even minute with a key", () => {
+  for (const keyed of [false, true]) {
+    const polled: number[] = [];
+    for (let m = 0; m < 60; m++) {
+      const at = new Date(Date.UTC(2026, 9, 20, 12, m));
+      const five = m % 5 === 0 && focusPollDue(5, at, keyed);
+      const two = m % 2 === 0 && focusPollDue(2, at, keyed);
+      assert.ok(!(five && two), `both crons poll at minute ${m}`);
+      if (five || two) polled.push(m);
+    }
+    const every = focusEvery(keyed);
+    assert.deepEqual(polled, Array.from({ length: 60 / every }, (_, i) => i * every));
+  }
 });
 
 test("a launch needs a channel within 24 hours of NET until it has an outcome", () => {

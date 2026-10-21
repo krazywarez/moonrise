@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { byDesignator, compose, fitsLaunch, parseSupGP, pick, starlinkTrains, supgpFile, supgpLaunches } from "../src/celestrak.ts";
+import { byDesignator, compose, fetchGroups, fitsLaunch, parseSupGP, pick, retryDue, retryTick, starlinkTrains, supgpFile, supgpLaunches } from "../src/celestrak.ts";
 
 test("keeps only the SGP4 fields", () => {
   // CelesTrak GP JSON for the ISS, 2026-10-18.
@@ -134,4 +134,34 @@ test("other launches list rocket bodies first, skip debris and stop at eight", (
   assert.equal(names.length, 8);
   assert.equal(names[0], "FALCON 9 R/B");
   assert.ok(!names.includes("FALCON 9 DEB"));
+});
+
+test("a failed 2-hourly poll gets one retry, at minute 40 of the same even hour", () => {
+  const at = (iso: string) => new Date(iso);
+  assert.equal(retryTick(at("2026-10-21T02:40:00Z")), true);
+  assert.equal(retryTick(at("2026-10-21T03:40:00Z")), false);
+  assert.equal(retryTick(at("2026-10-21T02:35:00Z")), false);
+  const now = at("2026-10-21T02:40:00Z");
+  assert.equal(retryDue(now, "2026-10-21T00:07:00.000Z", "2026-10-21T02:07:00.000Z"), true);
+  assert.equal(retryDue(now, null, "2026-10-21T02:07:00.000Z"), true);
+  assert.equal(retryDue(now, "2026-10-21T02:07:00.000Z", "2026-10-20T22:07:00.000Z"), false);
+  assert.equal(retryDue(now, "2026-10-20T22:07:00.000Z", "2026-10-21T00:40:00.000Z"), false);
+  assert.equal(retryDue(now, null, null), false);
+  assert.equal(retryDue(at("2026-10-21T02:45:00Z"), null, "2026-10-21T02:07:00.000Z"), false);
+});
+
+test("CelesTrak requests carry a timeout", async () => {
+  const signals: (AbortSignal | null | undefined)[] = [];
+  const real = globalThis.fetch;
+  globalThis.fetch = (async (_url: string, init: RequestInit) => {
+    signals.push(init.signal);
+    return Response.json([]);
+  }) as typeof fetch;
+  try {
+    await fetchGroups();
+  } finally {
+    globalThis.fetch = real;
+  }
+  assert.equal(signals.length, 2);
+  assert.ok(signals.every((s) => s instanceof AbortSignal && !s.aborted));
 });

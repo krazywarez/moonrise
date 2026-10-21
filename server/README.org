@@ -32,6 +32,9 @@ so anonymous requests from Cloudflare often get HTTP 429. With an API key:
 wrangler secret put LL2_API_KEY
 #+end_src
 
+With the key, the launch in focus (T−60 to T+15) is polled every 2 minutes
+(at most 31 requests an hour); without it, every 5 (at most 13).
+
 * launch Live Activity channels
 Launch Live Activities get status and NET changes over APNs broadcast
 channels, one per launch and APNs environment, handed out a day before NET

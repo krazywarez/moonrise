@@ -34,7 +34,7 @@ export function isNight(now: Date, utcOffsetMinutes: number): boolean {
   return hour >= 20 || hour < 4;
 }
 
-/** One alert per band per 12-hour UTC window. */
+/** One alert per device per 12-hour UTC window. */
 export function eventKey(now: Date): string {
   const d = now.toISOString().slice(0, 10);
   return `${d}${now.getUTCHours() < 12 ? "a" : "b"}`;

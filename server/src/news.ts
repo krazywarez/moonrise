@@ -9,10 +9,14 @@ export interface Article {
 
 export const DIGEST_HOUR = 9;
 
-/** Whether the device's local time is in the first 10 minutes of the digest hour (the 10-minute cron fires once in it). */
-export function digestDue(now: Date, utcOffsetMinutes: number): boolean {
-  const minutes = (((now.getUTCHours() * 60 + now.getUTCMinutes() + utcOffsetMinutes) % 1440) + 1440) % 1440;
-  return minutes >= DIGEST_HOUR * 60 && minutes < DIGEST_HOUR * 60 + 10;
+/**
+ * UTC offsets in minutes whose local time is in the digest hour, as two half-open ranges within ±14 hours
+ * (either may be empty). The whole hour, so devices one run did not reach get the digest on a later run.
+ */
+export function dueOffsets(now: Date): [[number, number], [number, number]] {
+  const start = DIGEST_HOUR * 60 - now.getUTCHours() * 60 - now.getUTCMinutes();
+  const clip = (lo: number): [number, number] => [Math.max(lo, -840), Math.min(lo + 60, 841)];
+  return [clip(start), clip(start + 1440)];
 }
 
 /** The device's local date, so each device gets one digest per local day. */
