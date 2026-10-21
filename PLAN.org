@@ -473,7 +473,9 @@ Sky, System, Sun, Launches, Library core (above).
 - iPhone app on Vision Pro (iPad compatibility mode): "View as a globe" was
   black. Done: unlit globe when =isiOSAppOnVision= (iOS 26.1+).
 - Small text: 9–10 pt Canvas labels in EclipseScreen ignore Dynamic Type;
-  10 pt uppercase at 0.6 opacity in the Pass and Launch Live Activities.
+  10 pt uppercase at 0.6 opacity in the Pass and Launch Live Activities. Done: chart
+  labels in caption2 (Dynamic Type up to xxLarge); widget and Live Activity
+  labels 10 → 11 pt, faintest opacity 0.5–0.6 → 0.7.
 - App Shortcuts phrases tested on a device.
 - Artemis II (Horizons =-1024=, 1–11 April 2026) in =server/src/live.ts= as
   a past event for replay. Done: Horizons data 2 April 01:59 to 10 April

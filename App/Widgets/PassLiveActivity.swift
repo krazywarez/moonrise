@@ -77,9 +77,9 @@ private struct PassActivityView: View {
     private var medium: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack(alignment: .firstTextBaseline) {
-                Text("\(pass.name) pass").font(.system(size: 10, weight: .medium)).textCase(.uppercase).tracking(0.6).opacity(0.8)
+                Text("\(pass.name) pass").font(.system(size: 11, weight: .medium)).textCase(.uppercase).tracking(0.6).opacity(0.8)
                 if pass.visible {
-                    Text("Visible").font(.system(size: 10, weight: .medium)).textCase(.uppercase).tracking(0.6)
+                    Text("Visible").font(.system(size: 11, weight: .medium)).textCase(.uppercase).tracking(0.6)
                 }
                 Spacer()
                 if !context.isStale {
@@ -105,7 +105,7 @@ private struct PassActivityView: View {
 
     private func column(_ label: String, _ value: String, _ detail: String) -> some View {
         VStack(alignment: .leading, spacing: 1) {
-            Text(label).font(.system(size: 10, weight: .medium)).textCase(.uppercase).tracking(0.6).opacity(0.6)
+            Text(label).font(.system(size: 11, weight: .medium)).textCase(.uppercase).tracking(0.6).opacity(0.7)
             Text("\(value) \(detail)").font(.system(size: 15, weight: .medium).monospacedDigit())
         }
     }

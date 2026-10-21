@@ -213,7 +213,7 @@ struct PlanetsWidgetView: View {
             }
             Spacer(minLength: 0)
             if !entry.located {
-                Text("Open Moonrise to set location").font(.system(size: 10)).opacity(0.5)
+                Text("Open Moonrise to set location").font(.system(size: 11)).opacity(0.7)
             }
         }
         .foregroundStyle(Color(red: 0.95, green: 0.95, blue: 0.93))

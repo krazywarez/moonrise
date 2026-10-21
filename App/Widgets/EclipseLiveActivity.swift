@@ -102,13 +102,13 @@ private struct EclipseActivityView: View {
             HStack {
                 ForEach(contacts(a), id: \.0) { name, date in
                     VStack(alignment: .leading, spacing: 0) {
-                        Text(name).font(.system(size: 10)).opacity(0.6)
+                        Text(name).font(.system(size: 11)).opacity(0.7)
                         Text(clock(date, a)).font(.system(size: 11).monospacedDigit())
                     }
                     if name != "C4" { Spacer(minLength: 4) }
                 }
             }
-            Text(a.timeZone == nil ? "Times in UTC" : "Local time at the site").font(.system(size: 10)).opacity(0.6)
+            Text(a.timeZone == nil ? "Times in UTC" : "Local time at the site").font(.system(size: 11)).opacity(0.7)
         }
         .padding(16)
     }

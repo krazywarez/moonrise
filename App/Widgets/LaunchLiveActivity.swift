@@ -84,7 +84,7 @@ private struct LaunchActivityView: View {
             }
             Spacer()
             VStack(alignment: .trailing, spacing: 2) {
-                Text(context.state.status.uppercased()).font(.system(size: 10, weight: .medium)).tracking(0.6)
+                Text(context.state.status.uppercased()).font(.system(size: 11, weight: .medium)).tracking(0.6)
                     .foregroundStyle(context.state.status == "Hold" ? accent : ink)
                 HStack(spacing: 2) {
                     Text(context.state.net > .now ? "T−" : "T+")

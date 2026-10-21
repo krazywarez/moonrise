@@ -296,6 +296,7 @@ struct SunDiagram: View {
         VStack(alignment: .leading, spacing: 8) {
             Canvas { context, size in draw(path, context: &context, size: size) }
                 .frame(height: 180)
+                .dynamicTypeSize(...DynamicTypeSize.xxLarge)
                 .accessibilityHidden(true)
             Text("At \(timeline.eclipse.kind == "Total" ? "totality" : "maximum") the Sun is \(Int(key.sun.altitude.rounded()))° up, about \(Int((key.sun.altitude / 10).rounded())) fists above the horizon at arm's length, bearing \(Int(key.sun.azimuth.rounded()))° \(compass(key.sun.azimuth)). Check that no trees or buildings will be in the way.")
                 .font(.footnote).dimmed(0.8)
@@ -320,13 +321,13 @@ struct SunDiagram: View {
         }
         context.stroke(grid, with: .color(ink.opacity(0.12)), style: StrokeStyle(lineWidth: 0.5, dash: [2, 3]))
         for alt in stride(from: 20.0, through: top, by: 20) {
-            context.draw(Text("\(Int(alt))°").font(.system(size: 9)).foregroundStyle(ink.opacity(0.5)), at: pt(alt, mid - half), anchor: .bottomLeading)
+            context.draw(Text("\(Int(alt))°").font(.caption2).foregroundStyle(ink.opacity(0.6)), at: pt(alt, mid - half), anchor: .bottomLeading)
         }
         var horizon = Path()
         horizon.move(to: CGPoint(x: 0, y: base)); horizon.addLine(to: CGPoint(x: size.width, y: base))
         context.stroke(horizon, with: .color(ink.opacity(0.6)), lineWidth: 1)
         for bearing in stride(from: ((mid - half) / 45).rounded(.up) * 45, through: mid + half, by: 45) {
-            context.draw(Text(compass(bearing)).font(.system(size: 10)).foregroundStyle(ink.opacity(0.7)), at: CGPoint(x: pt(0, bearing).x, y: base + 8))
+            context.draw(Text(compass(bearing)).font(.caption2).foregroundStyle(ink.opacity(0.7)), at: CGPoint(x: pt(0, bearing).x, y: base + 8))
         }
 
         var arc = Path()
@@ -336,7 +337,7 @@ struct SunDiagram: View {
             let p = pt(c.sun.altitude, unwrap(c.sun.azimuth))
             let key = c.name == "C2" || c.name == "Max"
             context.fill(Path(ellipseIn: CGRect(x: p.x - 4, y: p.y - 4, width: 8, height: 8)), with: .color(key ? accent : ink))
-            context.draw(Text(c.name == "C2" ? "Totality" : c.name).font(.system(size: 10)).foregroundStyle(ink), at: CGPoint(x: p.x, y: p.y - 11))
+            context.draw(Text(c.name == "C2" ? "Totality" : c.name).font(.caption2).foregroundStyle(ink), at: CGPoint(x: p.x, y: p.y - 11))
         }
     }
 
