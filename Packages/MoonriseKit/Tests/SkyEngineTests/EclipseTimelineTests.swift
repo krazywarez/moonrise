@@ -17,15 +17,15 @@ private func offCues(_ t: EclipseTimeline) -> [EclipseTimeline.Cue] { t.cues.fil
     let off = offCues(t)
     #expect(off.count == 1)
     #expect(off.first?.date == t.eclipse.centralBegin)
-    #expect(off.first?.text.contains("last bead") == true)
+    #expect(off.first?.text.contains("not even one bead") == true)
 }
 
-@Test func glassesOnTenSecondsBeforeThirdContact() throws {
+@Test func glassesOnFifteenSecondsBeforeThirdContact() throws {
     for accuracy in [5.0, 500, nil] {
         let t = try timeline(tarifa, accuracy: accuracy)
         let c3 = try #require(t.eclipse.centralEnd)
         let on = t.cues.filter { $0.text.hasPrefix("Glasses on") }
-        #expect(on.map(\.date) == [c3.addingTimeInterval(-10)])
+        #expect(on.map(\.date) == [c3.addingTimeInterval(-15)])
         #expect(on.first?.warning == true)
     }
 }

@@ -93,7 +93,7 @@ public struct EclipseTimeline: Sendable {
         for n in 1...5 { cues.append(cue(c2.addingTimeInterval(-Double(n)), "\(n)")) }
         switch withheld {
         case nil:
-            cues.append(cue(c2, "Totality. Wait until the last bead of sunlight has gone, then glasses off.", .long))
+            cues.append(cue(c2, "Totality. Once no sunlight shows through your glasses, not even one bead, glasses off.", .long))
         case .short:
             cues.append(cue(c2, "Totality here is under \(Int(Self.minimumTotality)) seconds. Keep your glasses on.", .long, warning: true))
         case .imprecise:
@@ -103,7 +103,7 @@ public struct EclipseTimeline: Sendable {
         }
         let duration = c3.timeIntervalSince(c2)
         if duration >= 60 { cues.append(cue(c3.addingTimeInterval(-30), "Thirty seconds of totality left.")) }
-        cues.append(cue(c3.addingTimeInterval(-10), "Glasses on.", .long, warning: true))
+        cues.append(cue(c3.addingTimeInterval(-15), "Glasses on, and filters back on cameras and binoculars.", .long, warning: true))
         cues.append(cue(c3, "Third contact. Beads and the diamond ring on the other side, through your glasses.", .double))
         cues.append(cue(c3.addingTimeInterval(30), "Watch the white sheet for shadow bands again."))
         cues.append(cue(e.partialEnd, "Last contact. The eclipse is over."))

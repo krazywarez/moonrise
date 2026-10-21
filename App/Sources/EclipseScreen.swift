@@ -18,6 +18,10 @@ struct EclipseScreen: View {
     @State private var city: String?
     @State private var day: Day?
     @State private var activityNote: String?
+    @State private var showSafety = false
+    /// Started when the safety note closes.
+    @State private var pending: Day?
+    @AppStorage(SettingsKey.eclipseSafetyShown) private var safetyShown = false
     @AppStorage(SettingsKey.locationMode) private var locationMode = "current"
     @Environment(\.dismiss) private var dismiss
 
@@ -62,6 +66,12 @@ struct EclipseScreen: View {
             .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done") { dismiss() } } }
             .fullScreenCover(item: $day) { d in
                 EclipseDayScreen(date: date, observer: observer, placeName: placeName, zone: zone, rehearsal: d == .rehearsal, location: location)
+            }
+            .sheet(isPresented: $showSafety, onDismiss: {
+                if let pending { safetyShown = true; day = pending }
+                pending = nil
+            }) {
+                EclipseSafetyNote(starting: pending != nil)
             }
         }
         .task {
@@ -134,8 +144,10 @@ struct EclipseScreen: View {
             } else {
                 Text("Not visible from here.").font(.subheadline).dimmed(0.7)
             }
-            Text("Never look at the Sun without certified eclipse glasses, except during totality itself.")
+            Text("Never look at the Sun without eclipse glasses that meet ISO 12312-2. Only in totality, once no sunlight shows through them, is it safe to take them off.")
                 .font(.footnote).foregroundStyle(accent).padding(.top, 6)
+            Button { showSafety = true } label: { Text("Eye safety").frame(minHeight: 44).contentShape(Rectangle()) }
+                .font(.footnote)
         }
     }
 
@@ -143,15 +155,20 @@ struct EclipseScreen: View {
         VStack(alignment: .leading, spacing: 10) {
             Text("Eclipse day").font(.caption2.weight(.medium)).textCase(.uppercase).tracking(0.8).dimmed(0.6)
             if t.eclipse.partialEnd > .now {
-                Button("Start the countdown") { day = .live }
+                Button("Start the countdown") { start(.live) }
                 Button("Show contact times on the Lock Screen") { scheduleActivity(t) }
             }
-            Button("Rehearse from three minutes before \(t.eclipse.kind == "Total" ? "totality" : "maximum")") { day = .rehearsal }
+            Button("Rehearse from three minutes before \(t.eclipse.kind == "Total" ? "totality" : "maximum")") { start(.rehearsal) }
             if let activityNote { Text(activityNote).font(.footnote).dimmed(0.7) }
             Text("The countdown speaks each cue and taps at the contacts while Moonrise is open, and keeps the screen on.")
                 .font(.footnote).dimmed(0.7)
         }
         .tint(accent)
+    }
+
+    /// Shows the safety note first, the first time.
+    private func start(_ d: Day) {
+        if safetyShown { day = d } else { pending = d; showSafety = true }
     }
 
     /// Adds a Live Activity that appears 30 minutes before first contact, or now if that has passed.

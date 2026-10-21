@@ -464,17 +464,17 @@ Sky, System, Sun, Launches, Library core (above).
   pollution (licence), meteor radiant altitude.
 - Observing programs. Done: =:CATALOG:= and =:UTC_OFFSET:= in the log,
   catalogue name matching, Messier progress, user program lists as Org
-  files, "not yet logged, up tonight". Not done: Astronomical League and
-  Lunar 100 lists (permission), IMO/COBS/AAVSO exports.
+  files, "not yet logged, up tonight". Not done: Astronomical League lists
+  (Herschel 400, Double Star, Lunar, Binocular Messier) and Lunar 100
+  (Charles Wood, Sky & Telescope): ask for permission or leave them to user
+  program files; IMO/COBS/AAVSO exports.
 - AR camera overlay: later. First measure draw time and pointing on a
   device and add one-object alignment with a gyroscope heading.
 
 * before publishing
 - App Store Connect: privacy policy URL https://krz.sh/privacy/moonrise/.
-- Decide on the Astronomical League lists (Herschel 400, Double Star, Lunar,
-  Binocular Messier) and Lunar 100 (Charles Wood, Sky & Telescope): ask for
-  permission or leave them to user program files.
-- Review of the eclipse safety wording outside engineering.
+- Eclipse safety wording checked against AAS Solar Eclipse Task Force and
+  NASA guidance on 2026-10-21; an outside reviewer would still be welcome.
 - App Store Connect privacy label: Location, Coarse Location, App
   Functionality, not linked, not used for tracking (WeatherKit).
 - WeatherKit: check a real forecast on a signed device build.

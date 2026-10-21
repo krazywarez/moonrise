@@ -153,7 +153,7 @@ struct EclipseDayScreen: View {
     private func status(_ t: EclipseTimeline) -> some View {
         let position = fix.map { "Position from GPS, ±\(Int($0.accuracy.rounded())) m." } ?? "Position: \(placeName), not a GPS fix."
         let off: String = switch t.glassesOffWithheld {
-        case nil: "The totality cue tells you to take your glasses off only once the last bead of sunlight has gone."
+        case nil: "The totality cue says glasses off only once no sunlight shows through them."
         case .partial: "No totality here: keep your glasses on the whole time."
         case .short: "Totality here is under \(Int(EclipseTimeline.minimumTotality)) s, so there is no glasses-off cue."
         case .imprecise: locationMode == "city"
@@ -173,8 +173,7 @@ struct EclipseDayScreen: View {
     private var safety: some View {
         VStack(alignment: .leading, spacing: 6) {
             Text("Safety").font(.caption2.weight(.medium)).textCase(.uppercase).tracking(0.8).dimmed(0.6)
-            Text("Look at the Sun only through eclipse glasses or a viewer made to ISO 12312-2, except during totality itself.")
-            Text("Cameras, binoculars and telescopes need their own solar filters. Never look through them with glasses alone.")
+            ForEach(eclipseSafetyLines, id: \.self) { Text($0) }
             Text("Do not drive during totality. Keep the phone in the shade: in direct sun it can overheat and shut down.")
         }
         .font(.footnote)

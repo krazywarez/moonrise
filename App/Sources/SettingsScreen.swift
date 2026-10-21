@@ -23,6 +23,8 @@ enum SettingsKey {
     static let showDeepSky = "showDeepSky"
     /// Cloud forecasts from Apple Weather; off unless turned on.
     static let cloudForecast = "cloudForecast"
+    /// The eclipse eye-safety note has been shown before a countdown or rehearsal.
+    static let eclipseSafetyShown = "eclipseSafetyShown"
 }
 
 struct City: Hashable, Identifiable {
