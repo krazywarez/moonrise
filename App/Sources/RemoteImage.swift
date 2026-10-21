@@ -5,12 +5,24 @@ import UIKit
 /// Images from the network, decoded at the size they are shown rather than full size, and kept in memory.
 /// Downloads go through URLSession.shared, so the disk cache set up in `configureURLCache` applies.
 enum ImageLoader {
-    // NSCache is thread-safe.
+    // NSCache is thread-safe. The Library front page alone is about 90 MB of thumbnails, so the limit holds it,
+    // the news list and a few searches; NSCache gives memory back under pressure.
     nonisolated(unsafe) private static let cache: NSCache<NSString, UIImage> = {
         let c = NSCache<NSString, UIImage>()
-        c.totalCostLimit = 60 * 1024 * 1024
+        c.totalCostLimit = 150 * 1024 * 1024
         return c
     }()
+
+    // Two decodes at a time; a list otherwise starts one per row at once.
+    nonisolated(unsafe) private static let decodes: OperationQueue = {
+        let q = OperationQueue()
+        q.maxConcurrentOperationCount = 2
+        q.qualityOfService = .userInitiated
+        return q
+    }()
+
+    /// Bodies over this size are never stored by URLCache (5% of its disk size).
+    private static let largeBody: Int64 = 20 * 1024 * 1024
 
     static func cached(_ url: URL, maxPixels: Int) -> UIImage? {
         cache.object(forKey: key(url, maxPixels))
@@ -18,8 +30,19 @@ enum ImageLoader {
 
     static func load(_ url: URL, maxPixels: Int) async throws -> UIImage {
         if let hit = cached(url, maxPixels: maxPixels) { return hit }
-        let (data, _) = try await URLSession.shared.data(from: url)
-        let image = try await Task.detached(priority: .userInitiated) { try downsample(data, maxPixels: maxPixels) }.value
+        let data: Data
+        do {
+            data = try await URLSession.shared.data(for: URLRequest(url: url), delegate: CancelLargeBody(limit: largeBody)).0
+        } catch let error as URLError where error.code == .cancelled && !Task.isCancelled {
+            // A data task holds the whole body in memory, twice while it finishes. Download to a file instead
+            // and map it, so ImageIO reads it from disk.
+            let (file, _) = try await URLSession.shared.download(from: url)
+            data = try Data(contentsOf: file, options: .alwaysMapped)
+            try? FileManager.default.removeItem(at: file)
+        }
+        let image = try await withCheckedThrowingContinuation { c in
+            decodes.addOperation { c.resume(with: Result { try downsample(data, maxPixels: maxPixels) }) }
+        }
         let cost = Int(image.size.width * image.size.height * image.scale * image.scale * 4)
         cache.setObject(image, forKey: key(url, maxPixels), cost: cost)
         return image
@@ -44,6 +67,20 @@ enum ImageLoader {
     /// feed responses survive between visits. Responses over 5% of the disk size are never stored.
     static func configureURLCache() {
         URLCache.shared = URLCache(memoryCapacity: 24 * 1024 * 1024, diskCapacity: 400 * 1024 * 1024)
+    }
+}
+
+/// Cancels a data task as soon as its response announces a body over `limit` bytes.
+private final class CancelLargeBody: NSObject, URLSessionTaskDelegate, @unchecked Sendable {
+    let limit: Int64
+    private var observation: NSKeyValueObservation?
+
+    init(limit: Int64) { self.limit = limit }
+
+    func urlSession(_ session: URLSession, didCreateTask task: URLSessionTask) {
+        observation = task.observe(\.countOfBytesExpectedToReceive) { [limit] task, _ in
+            if task.countOfBytesExpectedToReceive > limit { task.cancel() }
+        }
     }
 }
 
