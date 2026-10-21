@@ -34,7 +34,8 @@ that can be computed; fetches only live feeds.
 * design
 After NASA's 1975 Graphics Standards Manual.
 
-- Helvetica Neue (ships with iOS). Tabular figures for all numbers.
+- SF Pro, the system font (decided 2026-10-21 over Helvetica Neue for
+  small-size legibility and Dynamic Type). Tabular figures for all numbers.
 - Strict grid, flush left, black hairlines, numbered modules.
 - Off-white and ink by day. Near-black with white line work at night.
 - One red accent for alerts and emphasis. Not NASA's exact red, no NASA
@@ -135,7 +136,9 @@ Checked 2026-10-17 against primary sources unless marked unconfirmed.
 |-
 | Astronomy Engine v2.1.19 (Don Cross) | Sun, moon, planet positions; rise, set, phases, eclipses, conjunctions | MIT, keep notice. No Swift package; C source vendored as an SPM target. Last release 2023-12. |
 | Yale Bright Star Catalogue (VizieR V/50) | 9,096 stars with V mag, bundled | No licence in ReadMe; VizieR says "free in a scientific context", check per catalogue. US-government origin (NSSDC); public domain unconfirmed. |
-| HYG database | Star names, distances | CC BY-SA 4.0; use only if BSC5 is not enough |
+| HYG database | Star names, distances | CC BY-SA 4.0, but built from ESA (NC) data; not used |
+| Tycho-2 (VizieR I/259) | Stars V 6.5–9: positions, proper motions, BT/VT → V, B−V; HIP cross-IDs | ESA archive data, CC BY-NC 3.0 IGO (inferred: ReadMe not read). Credit: "ESA". |
+| Hipparcos, Gaia | Fallback for Tycho-2 | CC BY-NC 3.0 IGO (https://www.cosmos.esa.int/web/esdc/terms-and-conditions). Commercial use means any direct or indirect financial gain; the free app qualifies. Credits: "ESA"; "ESA, Gaia DPAC". |
 | IAU boundaries (VizieR VI/49) | Boundaries | Same VizieR ambiguity as BSC5 |
 | Constellation lines: van der Sluys ConstellationLines v1.4 | Stick figures by HR number, bundled | CC BY 4.0. Credit: "Constellation lines: Marc van der Sluys, ConstellationLines (doi:10.5281/zenodo.10397192), CC BY 4.0." Stellarium (CC BY-SA, AGPL repo) and d3-celestial (no data licence) rejected. |
 | OpenNGC | Messier and NGC object data | CC BY-SA 4.0; ShareAlike on the data file. Decide before M5. |
@@ -462,7 +465,13 @@ Sky, System, Sun, Launches, Library core (above).
 
 ** v4.1: run and check
 - visionOS: run the app (globes, orrery volume, immersive star field) in the
-  visionOS simulator. It compiles but has never run.
+  visionOS simulator. Done: globes, orrery volume and immersive star field
+  checked in the visionOS 27.0 simulator.
+- iPhone app on Vision Pro (iPad compatibility mode): "View as a globe" is
+  black. GlobeView's non-visionOS branch (virtual camera, own light) draws
+  nothing there; fall back when =isiOSAppOnVisionOS=.
+- Small text: 9–10 pt Canvas labels in EclipseScreen ignore Dynamic Type;
+  10 pt uppercase at 0.6 opacity in the Pass and Launch Live Activities.
 - App Shortcuts phrases tested on a device.
 - Artemis II (Horizons =-1024=, 1–10 April 2026) in =server/src/live.ts= as
   a past event for replay.
@@ -470,8 +479,6 @@ Sky, System, Sun, Launches, Library core (above).
   Charts start-up); RealityKit's first start (about 1.4 s) when switching to
   3D, checked on a device; Sun snapshot OVATION grid compressed (156 KB to
   about 90 KB).
-- Typeface: the design calls for Helvetica Neue; the app uses the system
-  font. Pick one after a design review, before App Store screenshots.
 
 ** v4.2: widgets and controls
 - Lock Screen: Kp, next launch. Home Screen: Voyager 1 distance, today's Sun
@@ -499,13 +506,14 @@ Sky, System, Sun, Launches, Library core (above).
 
 ** v5.2: Sky
 - Milky Way from ESA's "Gaia's sky in colour" (CC BY-SA), clipped before
-  projection. Gaia data itself is CC BY-NC and can't be used.
+  projection.
 - Comets in the Sky tab and the orrery from JPL SBDB, fetched daily by the
   Worker. The orrery has periodic comets (Kepler.swift); needs parabolic and
   hyperbolic orbits. Then bright asteroids.
-- Stars fainter than V 6.5, NGC objects, a deeper zoom and eyepiece
-  field-of-view circles from the equipment inventory. Catalogue not chosen:
-  Tycho-2 (VizieR licence question as BSC5) or HYG (CC BY-SA).
+- Stars fainter than V 6.5 from Tycho-2 to V 9 (about 110k stars, about
+  1.6 MB binary), NGC objects, a deeper zoom and eyepiece field-of-view
+  circles from the equipment inventory. Merge: drop Tycho-2 stars matched to
+  BSC5 by HIP/HD, then by position (10″, ΔV 0.5); BSC5 keeps HR numbers.
 - Horizon profile.
 
 ** v5.3: AR camera overlay
@@ -565,3 +573,7 @@ Sky, System, Sun, Launches, Library core (above).
 * open questions
 - Fallback for APNs if Workers' HTTP/2 stops working: Containers sender
   vs. a separate small VPS. The M0 probe worked, so this is a contingency.
+- Vision Pro: keep the iPhone app in compatibility mode (MoonriseVision
+  stays an experiment), or add visionOS to the main app so it runs natively
+  with globes, orrery and immersive sky as extras. The immersive sky is
+  fixed to Chicago and stars brighter than magnitude 4.5.
