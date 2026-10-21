@@ -1,4 +1,6 @@
+import CoreGraphics
 import Foundation
+import ImageIO
 
 /// Latest full-disk images from NASA's Solar Dynamics Observatory.
 /// Credit: "Courtesy of NASA/SDO and the AIA, EVE, and HMI science teams."
@@ -34,6 +36,79 @@ public enum SolarImage: String, CaseIterable, Sendable, Identifiable {
     }
 
     public static let credit = "Courtesy of NASA/SDO and the AIA, EVE, and HMI science teams."
+
+    /// Disk radius as a fraction of the frame's width.
+    var diskRadius: Double { self == .visible ? 0.45 : 0.39 }
+
+    /// Whether a frame shows the whole disk. SDO publishes AIA frames that are black apart from the label along the
+    /// bottom, and some with part of the disk behind a curved dark edge. On a 64 px thumbnail, the share of the disk
+    /// (above the label) brighter than 16/255: whole frames measure 0.99 or more, 193 Å with its coronal holes being the
+    /// lowest, and covered ones 0.6 or less, so 0.95 is the cut.
+    public func isUsable(_ data: Data) -> Bool {
+        let n = 64
+        guard let source = CGImageSourceCreateWithData(data as CFData, nil),
+              let image = CGImageSourceCreateThumbnailAtIndex(source, 0, [kCGImageSourceCreateThumbnailFromImageAlways: true, kCGImageSourceThumbnailMaxPixelSize: n] as CFDictionary),
+              let context = CGContext(data: nil, width: n, height: n, bitsPerComponent: 8, bytesPerRow: n, space: CGColorSpaceCreateDeviceGray(), bitmapInfo: CGImageAlphaInfo.none.rawValue)
+        else { return false }
+        context.draw(image, in: CGRect(x: 0, y: 0, width: n, height: n))
+        guard let pixels = context.data?.assumingMemoryBound(to: UInt8.self) else { return false }
+        let r = diskRadius * Double(n), c = Double(n) / 2
+        var disk = 0, lit = 0
+        for y in 0..<n * 95 / 100 {
+            for x in 0..<n {
+                let dx = Double(x) + 0.5 - c, dy = Double(y) + 0.5 - c
+                guard dx * dx + dy * dy <= r * r else { continue }
+                disk += 1
+                if pixels[y * n + x] > 16 { lit += 1 }
+            }
+        }
+        return Double(lit) >= 0.95 * Double(disk)
+    }
+
+    /// SDO's dated archive for the UTC day of `day`, listing only this channel's frames at `size`.
+    public func archiveURL(day: Date, size: Int = 1024) -> URL {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = TimeZone(identifier: "UTC")!
+        let d = calendar.dateComponents([.year, .month, .day], from: day)
+        let path = String(format: "%04d/%02d/%02d", d.year!, d.month!, d.day!)
+        return URL(string: "https://sdo.gsfc.nasa.gov/assets/img/browse/\(path)/?P=*_\(size)_\(rawValue).jpg")!
+    }
+
+    /// This channel's frames named in an archive listing, as `YYYYMMDD_HHMMSS_<size>_<channel>.jpg`, newest first.
+    public func frames(inListing html: String, at listing: URL, size: Int = 1024) -> [SolarFrame] {
+        let style = Date.ISO8601FormatStyle(dateSeparator: .omitted, timeSeparator: .omitted)
+        var frames: [String: SolarFrame] = [:]
+        for m in html.matches(of: /(\d{8})_(\d{6})_(\d+)_(\w+)\.jpg/) where m.3 == "\(size)" && m.4 == rawValue {
+            guard let time = try? Date("\(m.1)T\(m.2)Z", strategy: style),
+                  let url = URL(string: String(m.0), relativeTo: listing)?.absoluteURL else { continue }
+            frames[String(m.0)] = SolarFrame(url: url, time: time)
+        }
+        return frames.values.sorted { $0.time > $1.time }
+    }
+
+    /// The newest usable 1024 px frame in the archive for the UTC day of `date`, and the day before when that day
+    /// lists fewer than `tries` frames. Downloads at most `tries` frames.
+    public func lastUsableFrame(at date: Date = .now, tries: Int = 6, session: URLSession = .shared) async -> (data: Data, time: Date)? {
+        var frames: [SolarFrame] = []
+        for day in [date, date.addingTimeInterval(-86_400)] where frames.count < tries {
+            let listing = archiveURL(day: day)
+            guard let (html, _) = try? await session.data(from: listing) else { continue }
+            frames += self.frames(inListing: String(decoding: html, as: UTF8.self), at: listing)
+        }
+        for frame in frames.prefix(tries) {
+            if let (data, response) = try? await session.data(from: frame.url),
+               (response as? HTTPURLResponse)?.statusCode == 200, isUsable(data) {
+                return (data, frame.time)
+            }
+        }
+        return nil
+    }
+}
+
+/// A frame in SDO's dated archive.
+public struct SolarFrame: Sendable, Equatable {
+    public var url: URL
+    public var time: Date
 }
 
 /// Three-hour planetary Kp, observed and predicted (SWPC 3-day forecast product).

@@ -47,6 +47,47 @@ import Testing
     #expect(SolarImage.corona.url().absoluteString == "https://sdo.gsfc.nasa.gov/assets/img/latest/latest_1024_0171.jpg")
 }
 
+/// SDO frames from 2026-10-21, downscaled to 256 px.
+@Test(arguments: [
+    ("sdo-0171", SolarImage.corona, true),
+    ("sdo-HMIIC", .visible, true),
+    ("sdo-0193-black", .hotCorona, false),
+    ("sdo-0304-black", .chromosphere, false),
+    ("sdo-0193-covered-151634", .hotCorona, false),
+    ("sdo-0193-covered-163614", .hotCorona, false),
+])
+func solarFrameUsable(name: String, image: SolarImage, usable: Bool) throws {
+    let url = try #require(Bundle.module.url(forResource: "Fixtures/\(name)", withExtension: "jpg"))
+    #expect(image.isUsable(try Data(contentsOf: url)) == usable)
+}
+
+@Test func solarFrameUsableRejectsNonImages() {
+    #expect(!SolarImage.corona.isUsable(Data("<html></html>".utf8)))
+}
+
+@Test func solarArchiveListing() throws {
+    let day = try Date("2026-10-21T17:00:00Z", strategy: .iso8601)
+    let listing = SolarImage.hotCorona.archiveURL(day: day)
+    #expect(listing.absoluteString == "https://sdo.gsfc.nasa.gov/assets/img/browse/2026/10/21/?P=*_1024_0193.jpg")
+    // Lines from the listing on 2026-10-21.
+    let html = """
+    <img src="/icons/back.gif" alt="[PARENTDIR]"> <a href="/assets/img/browse/2026/10/">Parent Directory</a>                                          -
+    <img src="/icons/image2.gif" alt="[IMG]"> <a href="20261021_000653_1024_0193.jpg">20261021_000653_1024_0193.jpg</a>        2026-10-20 19:13  138K
+    <img src="/icons/image2.gif" alt="[IMG]"> <a href="20261021_000653_512_0193.jpg">20261021_000653_512_0193.jpg</a>         2026-10-20 19:13   45K
+    <img src="/icons/image2.gif" alt="[IMG]"> <a href="20261021_000658_1024_0171.jpg">20261021_000658_1024_0171.jpg</a>        2026-10-20 19:12  182K
+    <img src="/icons/image2.gif" alt="[IMG]"> <a href="20261021_162634_1024_0193.jpg">20261021_162634_1024_0193.jpg</a>        2026-10-21 11:33   90K
+    <img src="/icons/image2.gif" alt="[IMG]"> <a href="20261021_172654_1024_0193.jpg">20261021_172654_1024_0193.jpg</a>        2026-10-21 12:33  134K
+    """
+    let frames = SolarImage.hotCorona.frames(inListing: html, at: listing)
+    #expect(frames.map(\.url.absoluteString) == [
+        "https://sdo.gsfc.nasa.gov/assets/img/browse/2026/10/21/20261021_172654_1024_0193.jpg",
+        "https://sdo.gsfc.nasa.gov/assets/img/browse/2026/10/21/20261021_162634_1024_0193.jpg",
+        "https://sdo.gsfc.nasa.gov/assets/img/browse/2026/10/21/20261021_000653_1024_0193.jpg",
+    ])
+    #expect(frames[1].time == (try Date("2026-10-21T16:26:34Z", strategy: .iso8601)))
+    #expect(SolarImage.hotCorona.frames(inListing: "<html>Not Found</html>", at: listing).isEmpty)
+}
+
 @Test func ovationKeepsNonZeroCells() throws {
     // Shape from ovation_aurora_latest.json on 2026-10-17.
     let data = Data("""

@@ -85,16 +85,19 @@ struct SunScreen: View {
         summary = await SunFeeds.summary(snapshot)
     }
 
-    /// An SDO image, with the time it was saved when it comes from the cache.
+    /// An SDO image, with the frame's time when it comes from the cache because nothing loaded (`saved`) or because
+    /// SDO's latest frame was not usable (`frame`).
     private struct Picture {
         var wavelength: SolarImage
         var image: UIImage
         var loaded: Date
         var saved: Date?
+        var frame: Date?
     }
 
-    /// SDO sends no-store, so the last image of each wavelength is saved to Caches for use offline.
-    /// A fresh image of the same wavelength under 5 minutes old is kept.
+    /// SDO sends no-store, so the last usable image of each wavelength is saved to Caches for use offline, dated with
+    /// the frame's time. When the latest frame is black or partly covered, the saved one or one from SDO's archive is
+    /// shown instead. A fresh image of the same wavelength under 5 minutes old is kept.
     private func loadImage() async {
         let w = wavelength
         if let p = picture, p.wavelength == w, p.saved == nil, p.loaded > imageID, Date.now.timeIntervalSince(p.loaded) < 300 { return }
@@ -102,19 +105,56 @@ struct SunScreen: View {
         picture = nil
         imageFailed = false
         if let (data, response) = try? await URLSession.shared.data(from: w.url(size: 1024)),
-           (response as? HTTPURLResponse)?.statusCode == 200, let image = UIImage(data: data) {
-            picture = Picture(wavelength: w, image: image, loaded: .now)
-            try? FileManager.default.createDirectory(at: file.deletingLastPathComponent(), withIntermediateDirectories: true)
-            try? data.write(to: file, options: .atomic)
+           let http = response as? HTTPURLResponse, http.statusCode == 200, let image = UIImage(data: data) {
+            if w.isUsable(data) {
+                picture = Picture(wavelength: w, image: image, loaded: .now)
+                let modified = http.value(forHTTPHeaderField: "Last-Modified").flatMap { try? Date($0, strategy: .http) }
+                save(data, time: modified ?? .now, to: file)
+                return
+            }
+            var frame = savedFrame(file, w)
+            if frame == nil, let found = await w.lastUsableFrame() {
+                frame = found
+                save(found.data, time: found.time, to: file)
+            }
+            guard !Task.isCancelled else { return }
+            if let frame, let saved = UIImage(data: frame.data) {
+                picture = Picture(wavelength: w, image: saved, loaded: .now, frame: frame.time)
+            } else {
+                picture = Picture(wavelength: w, image: image, loaded: .now)
+            }
             return
         }
         guard !Task.isCancelled else { return }
-        if let image = UIImage(contentsOfFile: file.path(percentEncoded: false)) {
-            let saved = (try? file.resourceValues(forKeys: [.contentModificationDateKey]))?.contentModificationDate
-            picture = Picture(wavelength: w, image: image, loaded: .now, saved: saved ?? .distantPast)
+        if let frame = savedFrame(file, w), let image = UIImage(data: frame.data) {
+            picture = Picture(wavelength: w, image: image, loaded: .now, saved: frame.time)
         } else {
             imageFailed = true
         }
+    }
+
+    /// The saved image and its frame time, if it is usable: images saved before the check may be black.
+    private func savedFrame(_ file: URL, _ w: SolarImage) -> (data: Data, time: Date)? {
+        guard let data = try? Data(contentsOf: file), w.isUsable(data) else { return nil }
+        let time = (try? file.resourceValues(forKeys: [.contentModificationDateKey]))?.contentModificationDate
+        return (data, time ?? .distantPast)
+    }
+
+    private func save(_ data: Data, time: Date, to file: URL) {
+        try? FileManager.default.createDirectory(at: file.deletingLastPathComponent(), withIntermediateDirectories: true)
+        try? data.write(to: file, options: .atomic)
+        try? FileManager.default.setAttributes([.modificationDate: time], ofItemAtPath: file.path(percentEncoded: false))
+    }
+
+    /// "16:26 UT", with the day when it is not today in UT.
+    private func universalTime(_ date: Date) -> String {
+        let utc = TimeZone(identifier: "UTC")!
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = utc
+        let format: Date.FormatString = calendar.isDate(date, inSameDayAs: .now)
+            ? "\(hour: .twoDigits(clock: .twentyFourHour, hourCycle: .zeroBased)):\(minute: .twoDigits)"
+            : "\(day: .defaultDigits) \(month: .abbreviated) \(hour: .twoDigits(clock: .twentyFourHour, hourCycle: .zeroBased)):\(minute: .twoDigits)"
+        return date.formatted(Date.VerbatimFormatStyle(format: format, locale: .current, timeZone: utc, calendar: calendar)) + " UT"
     }
 
     private var image: some View {
@@ -131,8 +171,10 @@ struct SunScreen: View {
             .aspectRatio(1, contentMode: .fit)
             .accessibilityLabel("The Sun at \(wavelength.name)")
             if let saved = picture?.saved {
-                Text("Couldn't load a new image. This one was saved \(saved.formatted(.relative(presentation: .named))).")
+                Text("Couldn't load a new image. This one is from \(saved.formatted(.relative(presentation: .named))).")
                     .font(.caption2).foregroundStyle(accent)
+            } else if let frame = picture?.frame {
+                Text("Latest complete frame from \(universalTime(frame))").font(.caption).dimmed(0.6)
             }
         }
     }
