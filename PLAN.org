@@ -427,7 +427,6 @@ Sky, System, Sun, Launches, Library core (above).
   as a past event for replay; add Artemis II and later missions to
   server/src/live.ts (Horizons ID, window, phases) once their Horizons IDs are
   published.
-- Maybe: smart-telescope pointing (Seestar and similar).
 
 ** v4: connect the areas
 - Eclipse day for 2 August 2027. Done: IERS ΔT, contacts to 0.1 s, site
@@ -471,10 +470,13 @@ Sky, System, Sun, Launches, Library core (above).
 - AR camera overlay: later. First measure draw time and pointing on a
   device and add one-object alignment with a gyroscope heading.
 
+** v5: next version
+- visionOS: run the app (globes, orrery volume, immersive star field) on a
+  visionOS simulator or a Vision Pro. It compiles but has never run.
+- Smart-telescope pointing (Seestar and similar).
+
 * before publishing
 - App Store Connect: privacy policy URL https://krz.sh/privacy/moonrise/.
-- Eclipse safety wording checked against AAS Solar Eclipse Task Force and
-  NASA guidance on 2026-10-21; an outside reviewer would still be welcome.
 - App Store Connect privacy label: Location, Coarse Location, App
   Functionality, not linked, not used for tracking (WeatherKit).
 - WeatherKit: check a real forecast on a signed device build.
@@ -482,8 +484,7 @@ Sky, System, Sun, Launches, Library core (above).
   trial passed on 2026-10-21 (sandbox and production returned 200 from a
   Worker), so the Worker creates channels itself (=APNS_MANAGE_CHANNELS=).
 - Device checks: Siri phrases, Live Activity layouts (Lock Screen, Dynamic
-  Island, Watch, CarPlay, StandBy), eclipse rehearsal with the silent
-  switch on, sky draw time and pointing.
+  Island, Watch, CarPlay, StandBy), sky draw time and pointing.
 
 * risks
 - Library scope: 320 pages is most of the effort. Ship 1.0 with fewer
