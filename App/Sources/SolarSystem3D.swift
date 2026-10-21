@@ -919,7 +919,7 @@ struct SolarSystem3DView: View {
             if let s {
                 let recent = s.snapshot.xray.filter { $0.time > .now.addingTimeInterval(-3 * 3600) }
                 if let peak = recent.max(by: { $0.flux < $1.flux }) { w.flare = (peak.flux, peak.time) }
-                w.summary = SunFeeds.summary(s.snapshot).map { s.complete ? $0 : "\($0) (\(SunFeeds.source(s.snapshot)))" }
+                w.summary = await SunFeeds.summary(s.snapshot).map { s.complete ? $0 : "\($0) (\(SunFeeds.source(s.snapshot)))" }
             }
             #if DEBUG
             if UserDefaults.standard.bool(forKey: "debugSolarEvents") { w.kp = 6.3; w.flare = (2.4e-5, .now) }

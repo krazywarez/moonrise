@@ -5,7 +5,7 @@ import SkyRenderer
 import SwiftUI
 
 struct SkyScreen: View {
-    @State private var model = SkyModel()
+    @State private var model = SkyModel.shared
     @State private var pointer = MotionPointer()
     @State private var azimuth = 180.0
     @State private var altitude = 45.0

@@ -40,6 +40,8 @@ struct BodyDetails: Sendable {
 @MainActor
 @Observable
 final class SkyModel: NSObject, CLLocationManagerDelegate {
+    /// The Sky tab's model. The Sun tab reads its place and night from here.
+    static let shared = SkyModel()
     /// Used until a location fix arrives or when location is denied.
     static let fallback = Observer(latitude: 41.8781, longitude: -87.6298)
 

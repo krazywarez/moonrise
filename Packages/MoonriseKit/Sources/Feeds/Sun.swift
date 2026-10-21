@@ -85,6 +85,23 @@ public enum XRay {
         try decode(await session.data(from: dayURL).0)
     }
 
+    /// The highest sample in each `interval` of time-ordered samples, for charting: a day of minutes becomes
+    /// 288 points and every flare peak keeps its flux and time.
+    public static func maxima(_ samples: [XRaySample], every interval: TimeInterval = 300) -> [XRaySample] {
+        var out: [XRaySample] = []
+        var bin = -Double.infinity
+        for s in samples {
+            let b = (s.time.timeIntervalSince1970 / interval).rounded(.down)
+            if b != bin {
+                out.append(s)
+                bin = b
+            } else if s.flux > out[out.count - 1].flux {
+                out[out.count - 1] = s
+            }
+        }
+        return out
+    }
+
     /// Flare class for a flux, e.g. 1.5e-6 → "C1.5".
     public static func flareClass(_ flux: Double) -> String {
         let classes: [(String, Double)] = [("X", 1e-4), ("M", 1e-5), ("C", 1e-6), ("B", 1e-7), ("A", 1e-8)]

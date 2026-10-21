@@ -21,6 +21,21 @@ import Testing
     #expect(samples[0].flux == 6.5876e-07)
 }
 
+@Test func xrayMaximaKeepPeaks() throws {
+    let start = try Date("2026-10-17T00:00:00Z", strategy: .iso8601)
+    var samples = (0..<1440).map { XRaySample(time: start.addingTimeInterval(Double($0) * 60), flux: 1e-7 * (1 + Double($0 % 7) / 10)) }
+    samples[733].flux = 2.4e-5  // one-minute M2.4 at 12:13
+    samples[1001].flux = 3.1e-6  // C3.1 at 16:41
+    let m = XRay.maxima(samples)
+    #expect(m.count == 288)
+    #expect(m.contains(samples[733]))
+    #expect(m.contains(samples[1001]))
+    #expect(m.max { $0.flux < $1.flux } == samples[733])
+    for (i, s) in m.enumerated() {
+        #expect(s.flux == samples[i * 5..<i * 5 + 5].map(\.flux).max())
+    }
+}
+
 @Test func kpBarsMarkPredicted() throws {
     let bars = try SpaceWeather.decodeKpBars(forecast)
     #expect(bars.count == 4)

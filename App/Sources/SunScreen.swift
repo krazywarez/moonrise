@@ -1,5 +1,4 @@
 import Charts
-import CoreLocation
 import Feeds
 import SkyEngine
 import SkyRenderer
@@ -73,17 +72,17 @@ struct SunScreen: View {
     }
 
     private func load(force: Bool) async {
-        if data == nil { show(await SunFeeds.lastSaved()) }
+        if data == nil { await show(SunFeeds.lastSaved()) }
         if force { imageID = .now }
         let result = await SunFeeds.load(force: force)
-        show(result?.snapshot)
+        await show(result?.snapshot)
         failed = !(result?.complete ?? false)
     }
 
-    private func show(_ snapshot: SunSnapshot?) {
+    private func show(_ snapshot: SunSnapshot?) async {
         guard let snapshot else { return }
         data = snapshot
-        summary = SunFeeds.summary(snapshot)
+        summary = await SunFeeds.summary(snapshot)
     }
 
     /// An SDO image, with the time it was saved when it comes from the cache.
@@ -205,10 +204,10 @@ struct SunScreen: View {
         .padding(.top, 24)
     }
 
-    /// Last known location, or Chicago.
+    /// The Sky tab's place.
     private var observer: (lat: Double, lon: Double) {
-        let c = CLLocationManager().location?.coordinate
-        return (c?.latitude ?? 41.8781, c?.longitude ?? -87.6298)
+        let o = SkyModel.shared.observer
+        return (o.latitude, o.longitude)
     }
 
     @ViewBuilder
@@ -241,7 +240,7 @@ struct SunScreen: View {
                 stat("Peak at", peak.time.formatted(date: .omitted, time: .shortened))
             }
             Chart {
-                ForEach(xray) { s in
+                ForEach(XRay.maxima(xray)) { s in
                     LineMark(x: .value("Time", s.time), y: .value("Flux", s.flux))
                         .foregroundStyle(ink)
                         .lineStyle(StrokeStyle(lineWidth: 1))
@@ -256,6 +255,8 @@ struct SunScreen: View {
                 }
             }
             .chartYScale(domain: 1e-8...1e-3, type: .log)
+            // The whole day, not just the first and last 5-minute maxima.
+            .chartXScale(domain: xray[0].time...last.time)
             .chartYAxis(.hidden)
             .chartXAxis {
                 AxisMarks(values: .stride(by: .hour, count: 6)) { _ in
@@ -353,10 +354,12 @@ enum SunFeeds {
         return saved
     }
 
-    /// Summary for the last known location, or Chicago.
-    static func summary(_ s: SunSnapshot, at date: Date = .now) -> String? {
-        let observer = CLLocationManager().location.map { Observer(latitude: $0.coordinate.latitude, longitude: $0.coordinate.longitude) } ?? SkyModel.fallback
-        let night = (try? Tonight(at: date, from: observer)).map { DateInterval(start: $0.start, end: $0.end) } ?? DateInterval(start: date, duration: 0)
+    /// Summary for the Sky tab's place and night. A night that has ended is worked out again on the `Astronomer` actor.
+    static func summary(_ s: SunSnapshot, at date: Date = .now) async -> String? {
+        let sky = SkyModel.shared, observer = sky.observer
+        var tonight = sky.tonight
+        if tonight.map({ $0.end <= date }) ?? true { tonight = try? await sky.astronomer.tonight(at: date, from: observer) }
+        let night = tonight.map { DateInterval(start: $0.start, end: $0.end) } ?? DateInterval(start: date, duration: 0)
         return SunSummary.text(
             scales: s.scales, kp: s.kp, probabilities: s.probabilities, xray: s.xray,
             geomagneticLatitude: Geomagnetic.latitude(observer), night: night, at: date
