@@ -61,7 +61,7 @@ struct City: Hashable, Identifiable {
 }
 
 /// Privacy policy served by the backend.
-let privacyPolicyURL = URL(string: "https://moonrise-server.audit-labs.workers.dev/privacy")!
+let privacyPolicyURL = URL(string: "https://moonrise.krz.sh/privacy")!
 
 struct SettingsScreen: View {
     @AppStorage(SettingsKey.locationMode) private var locationMode = "current"

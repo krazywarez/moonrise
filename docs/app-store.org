@@ -8,7 +8,7 @@
 | Bundle ID | =sh.krz.moonrise= (widgets: =sh.krz.moonrise.widgets=) |
 | Team | ZCNAX3VL9D |
 | Category | Education (secondary: Weather) |
-| Privacy policy URL | https://moonrise-server.audit-labs.workers.dev/privacy |
+| Privacy policy URL | https://moonrise.krz.sh/privacy |
 
 * App Privacy ("nutrition label")
 Aurora alerts (opt-in) send the push token, a 5° geomagnetic latitude

@@ -281,6 +281,51 @@ test("GET /v1/launches reads everything in one D1 batch", async () => {
   assert.equal(sandbox.launches[0].channelId, null);
 });
 
+test("GET API responses are served from the edge cache until they expire", async () => {
+  const { db, env, calls } = await setup();
+  db.exec("INSERT INTO feed_snapshots (feed, fetched_at, ok, body) VALUES ('celestrak', '2026-10-20T10:07:00.000Z', 1, '[]')");
+  const store = new Map<string, Response>();
+  const puts: string[] = [];
+  (globalThis as { caches?: unknown }).caches = {
+    default: {
+      match: async (r: Request) => store.get(r.url)?.clone(),
+      put: async (r: Request, res: Response) => { puts.push(r.url); store.set(r.url, res); },
+    },
+  };
+  const pending: Promise<unknown>[] = [];
+  const ctx = { waitUntil: (p: Promise<unknown>) => pending.push(p), passThroughOnException() {} };
+  const get = async (path: string) => {
+    const res = await worker.fetch(new Request(`https://moonrise.test${path}`), env as never, ctx as never);
+    await Promise.all(pending);
+    return res;
+  };
+  try {
+    const first = await (await get("/v1/satellites")).json();
+    const queries = calls.length;
+    assert.ok(queries > 0);
+    const second = await (await get("/v1/satellites")).json();
+    assert.equal(calls.length, queries, "second request read D1");
+    assert.deepEqual(second, first);
+
+    await get("/v1/launches");
+    await get("/v1/launches?environment=sandbox");
+    assert.deepEqual(puts, ["https://moonrise.test/v1/satellites", "https://moonrise.test/v1/launches", "https://moonrise.test/v1/launches?environment=sandbox"]);
+
+    await get("/v1/live?at=nonsense");
+    await get("/healthz");
+    await worker.fetch(new Request("https://moonrise.test/v1/devices", { method: "POST", body: "{}" }), env as never, ctx as never);
+    assert.equal(puts.length, 3, "error, health or POST response was cached");
+  } finally {
+    delete (globalThis as { caches?: unknown }).caches;
+  }
+});
+
+test("GET API responses work without an edge cache", async () => {
+  const { env } = await setup();
+  const res = await worker.fetch(new Request("https://moonrise.test/v1/today"), env as never);
+  assert.equal(res.status, 200);
+});
+
 const ID = "3b430f81-0ff1-4d85-8a1a-cef0de326198";
 const raw = (net: string, status: string, designator: string | null = null) => ({
   id: ID, name: "Falcon 9 Block 5 | Bandwagon 5", net, window_start: net, window_end: net, last_updated: "2026-10-17T20:00:00Z", launch_designator: designator,

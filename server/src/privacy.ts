@@ -17,7 +17,7 @@ h2 { font-weight: 500; font-size: 1.1em; margin-top: 1.8em; border-top: 1px soli
 <body>
 <h1>Moonrise privacy policy</h1>
 <div class="rule"></div>
-<p>Last updated 20 October 2026.</p>
+<p>Last updated 21 October 2026.</p>
 
 <h2>Summary</h2>
 <p>Moonrise has no accounts, no advertising, no analytics and no tracking. Your location is never sent to our server. If you turn on aurora alerts or news alerts, it sends our server four things needed to deliver them, described below. If you turn on cloud forecasts, it sends a rounded location to Apple's weather service. Nothing else is collected.</p>
@@ -31,7 +31,7 @@ h2 { font-weight: 500; font-size: 1.1em; margin-top: 1.8em; border-top: 1px soli
 <h2>Network requests</h2>
 <p>To show live data, the app requests:</p>
 <ul>
-<li>space weather and launch schedules from our server, moonrise-server.audit-labs.workers.dev, which runs on Cloudflare Workers;</li>
+<li>space weather and launch schedules from our server, moonrise.krz.sh, which runs on Cloudflare Workers;</li>
 <li>space weather and aurora data directly from NOAA's Space Weather Prediction Center;</li>
 <li>images of the Sun from NASA's Solar Dynamics Observatory;</li>
 <li>images in the Library from NASA, ESA, ESO, NOIRLab and the Library of Congress;</li>

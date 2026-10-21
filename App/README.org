@@ -12,7 +12,7 @@ Simulator: an iOS 26+ runtime is required. Push registration needs a
 signed build (team =ZCNAX3VL9D=); the APNs device token is logged under
 subsystem =sh.krz.moonrise=.
 
-Backend: both configurations use https://moonrise-server.audit-labs.workers.dev
+Backend: both configurations use https://moonrise.krz.sh
 (=MOONRISE_API_URL= in =project.yml=). For a local Worker, set it to
 =http://localhost:8787= and regenerate.
 

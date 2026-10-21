@@ -470,10 +470,7 @@ Sky, System, Sun, Launches, Library core (above).
   device and add one-object alignment with a gyroscope heading.
 
 * before publishing
-- Decide on server-side caching: a custom domain with the Cache API, D1 read
-  replication or Smart Placement. =workers.dev= does not cache Worker
-  responses, and every D1 round trip goes to San Jose (about 85 ms from the
-  US east coast).
+- App Store Connect: privacy policy URL https://moonrise.krz.sh/privacy.
 - Decide on the Astronomical League lists (Herschel 400, Double Star, Lunar,
   Binocular Messier) and Lunar 100 (Charles Wood, Sky & Telescope): ask for
   permission or leave them to user program files.

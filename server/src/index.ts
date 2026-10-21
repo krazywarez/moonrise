@@ -46,6 +46,40 @@ const PUSH_CONCURRENCY = 6;
 const json = (body: unknown, status = 200, maxAge?: number) =>
   Response.json(body, { status, headers: maxAge && status === 200 ? { "cache-control": `public, max-age=${maxAge}` } : {} });
 
+/** Read-only endpoints whose responses are the same for everyone. */
+const API = new Set(["/v1/today", "/v1/launches", "/v1/live", "/v1/satellites"]);
+
+function api(url: URL, env: Env, now: Date): Promise<Response> {
+  switch (url.pathname) {
+    case "/v1/today": return today(env, now);
+    case "/v1/launches": return launches(env, url, now);
+    case "/v1/live": return live(env, url, now);
+    default: return satellites(env);
+  }
+}
+
+async function satellites(env: Env): Promise<Response> {
+  const row = await env.DB.prepare("SELECT fetched_at, body FROM feed_snapshots WHERE feed = 'celestrak' AND ok = 1").first<{ fetched_at: string; body: string }>();
+  return json({ fetchedAt: row?.fetched_at ?? null, satellites: row ? JSON.parse(row.body) : [] }, 200, MAX_AGE.satellites);
+}
+
+/**
+ * Answers from the data centre's cache when it holds a fresh copy, keyed by URL (so ?environment= and ?at= are
+ * separate), and stores 200 responses for their max-age. The Cache API does nothing on workers.dev.
+ */
+async function cached(request: Request, ctx: ExecutionContext | undefined, respond: () => Promise<Response>): Promise<Response> {
+  const cache = typeof caches === "undefined" ? undefined : caches.default;
+  const hit = await cache?.match(request);
+  if (hit) return hit;
+  const res = await respond();
+  if (cache && res.status === 200 && res.headers.has("cache-control")) {
+    const put = cache.put(request, res.clone());
+    if (ctx) ctx.waitUntil(put);
+    else await put;
+  }
+  return res;
+}
+
 /** How long clients may reuse each GET response, matched to how often its source is polled. */
 export const MAX_AGE = { today: 60, launches: 300, satellites: 3600, live: 300 } as const;
 
@@ -69,9 +103,10 @@ async function today(env: Env, now: Date): Promise<Response> {
 }
 
 export default {
-  async fetch(request: Request, env: Env): Promise<Response> {
+  async fetch(request: Request, env: Env, ctx?: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
     const now = new Date();
+    if (request.method === "GET" && API.has(url.pathname)) return cached(request, ctx, () => api(url, env, now));
 
     if (request.method === "GET" && url.pathname === "/healthz") {
       const rows = await env.DB.prepare("SELECT feed, fetched_at, ok FROM feed_snapshots").all();
@@ -79,13 +114,6 @@ export default {
     }
     if (request.method === "GET" && url.pathname === "/privacy")
       return new Response(PRIVACY_HTML, { headers: { "content-type": "text/html; charset=utf-8", "cache-control": "public, max-age=3600" } });
-    if (request.method === "GET" && url.pathname === "/v1/today") return today(env, now);
-    if (request.method === "GET" && url.pathname === "/v1/launches") return launches(env, url, now);
-    if (request.method === "GET" && url.pathname === "/v1/live") return live(env, url, now);
-    if (request.method === "GET" && url.pathname === "/v1/satellites") {
-      const row = await env.DB.prepare("SELECT fetched_at, body FROM feed_snapshots WHERE feed = 'celestrak' AND ok = 1").first<{ fetched_at: string; body: string }>();
-      return json({ fetchedAt: row?.fetched_at ?? null, satellites: row ? JSON.parse(row.body) : [] }, 200, MAX_AGE.satellites);
-    }
 
     if (request.method === "POST" && url.pathname === "/v1/devices") {
       const d = (await request.json().catch(() => ({}))) as Partial<DeviceRequest>;

@@ -2,6 +2,9 @@
   "name": "moonrise-server",
   "main": "src/index.ts",
   "compatibility_date": "2026-10-01",
+  "routes": [{ "pattern": "moonrise.krz.sh", "custom_domain": true }],
+  // Kept for builds that still call moonrise-server.audit-labs.workers.dev; workers.dev has no edge cache.
+  "workers_dev": true,
   "triggers": { "crons": ["*/5 * * * *", "*/2 * * * *", "*/10 * * * *", "7 */2 * * *"] },
   "d1_databases": [
     {
