@@ -163,9 +163,11 @@ public struct SkyView: View {
     }
 
     /// A culture's figures, named at the middle of their visible stars once zoomed in
-    /// (closer for cultures with many small figures).
-    func drawCulture(_ culture: SkyCulture, _ context: inout GraphicsContext, _ p: Projection) {
+    /// (closer for cultures with many small figures). Returns the names drawn.
+    @discardableResult
+    func drawCulture(_ culture: SkyCulture, _ context: inout GraphicsContext, _ p: Projection) -> [String] {
         var path = Path()
+        var labelled: [String] = []
         let labelBelow = culture.constellations.count > 60 ? 60.0 : 110.0
         for figure in culture.constellations {
             var points: [CGPoint] = []
@@ -181,10 +183,11 @@ public struct SkyView: View {
             }
             if fieldOfView <= labelBelow, points.count > 1 {
                 let c = CGPoint(x: points.map(\.x).reduce(0, +) / Double(points.count), y: points.map(\.y).reduce(0, +) / Double(points.count))
-                context.draw(Text(figure.name).font(.caption2).foregroundStyle(style.muted), at: c)
+                if label(&context, figure.name, at: c, anchor: .center, color: style.muted) { labelled.append(figure.name) }
             }
         }
         context.stroke(path, with: .color(style.line), lineWidth: 0.6)
+        return labelled
     }
 
     /// A constellation's IAU lines drawn bright and thick; a star or body ringed.
@@ -333,9 +336,50 @@ public struct SkyView: View {
         }
     }
 
-    func label(_ context: inout GraphicsContext, _ text: String, at point: CGPoint, anchor: UnitPoint, color: Color? = nil) {
-        let t = Text(text).font(.caption2).foregroundStyle(color ?? style.label)
+    /// Draws a label unless it falls wholly outside the canvas; returns whether it was drawn.
+    @discardableResult
+    func label(_ context: inout GraphicsContext, _ text: String, at point: CGPoint, anchor: UnitPoint, color: Color? = nil) -> Bool {
+        let t = LabelCache.shared.resolve(text, color: color ?? style.label, in: context)
+        let size = t.measure(in: CGSize(width: CGFloat.infinity, height: .infinity))
+        let frame = CGRect(x: point.x - anchor.x * size.width, y: point.y - anchor.y * size.height, width: size.width, height: size.height)
+        guard frame.intersects(context.clipBoundingRect) else { return false }
         context.draw(t, at: point, anchor: anchor)
+        return true
+    }
+}
+
+/// Labels resolved once and drawn again on later frames; laying out a `Text` is most of the cost of drawing it.
+/// Resolved text depends on the environment, so the cache is emptied when the parts that change at run time do.
+@MainActor
+final class LabelCache {
+    static let shared = LabelCache()
+
+    private struct Key: Hashable {
+        var text: String
+        var color: Color
+    }
+
+    private struct TextEnvironment: Equatable {
+        var dynamicTypeSize: DynamicTypeSize
+        var legibilityWeight: LegibilityWeight?
+        var displayScale: CGFloat
+    }
+
+    private var texts: [Key: GraphicsContext.ResolvedText] = [:]
+    private var environment: TextEnvironment?
+
+    func resolve(_ text: String, color: Color, in context: GraphicsContext) -> GraphicsContext.ResolvedText {
+        let e = context.environment
+        let current = TextEnvironment(dynamicTypeSize: e.dynamicTypeSize, legibilityWeight: e.legibilityWeight, displayScale: e.displayScale)
+        if current != environment {
+            texts = [:]
+            environment = current
+        }
+        let key = Key(text: text, color: color)
+        if let t = texts[key] { return t }
+        let t = context.resolve(Text(text).font(.caption2).foregroundStyle(color))
+        texts[key] = t
+        return t
     }
 }
 
