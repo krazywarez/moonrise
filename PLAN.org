@@ -140,6 +140,7 @@ Checked 2026-10-17 against primary sources unless marked unconfirmed.
 | Constellation lines: van der Sluys ConstellationLines v1.4 | Stick figures by HR number, bundled | CC BY 4.0. Credit: "Constellation lines: Marc van der Sluys, ConstellationLines (doi:10.5281/zenodo.10397192), CC BY 4.0." Stellarium (CC BY-SA, AGPL repo) and d3-celestial (no data licence) rejected. |
 | OpenNGC | Messier and NGC object data | CC BY-SA 4.0; ShareAlike on the data file. Decide before M5. |
 | NOAA SWPC JSON | Kp (=json/planetary_k_index_1m.json=), Kp forecast (=products/noaa-planetary-k-index-forecast.json=, array of objects), OVATION (=json/ovation_aurora_latest.json=, ~900 KB), GOES X-ray (=json/goes/primary/xrays-6-hour.json=), alerts (=products/alerts.json=) | No terms page; US government. =cache-control: max-age=60=: poll at most once a minute. |
+| NOAA SWPC RTSW | Solar wind: =json/rtsw/rtsw_mag_1m.json= (~1.5 MB), =json/rtsw/rtsw_wind_1m.json= (~2.5 MB), 1-minute rows from SOLAR-1, ACE or IMAP (=source=, =active=) | As SWPC JSON; =max-age=60=. Too large for the app; reduce on the Worker. |
 | NASA SDO | =assets/img/latest/latest_{512,1024,...}_{0171,0193,0304,HMIIC}.jpg= | Not copyrighted unless noted. Credit: "Courtesy of NASA/SDO and the AIA, EVE, and HMI science teams." |
 | JPL Horizons API | Spacecraft positions (Voyager 1 = -31) | No published limit; errors come back as HTTP 200, check payload. Cache server-side. |
 | CelesTrak GP | =celestrak.org/NORAD/elements/gp.php?CATNR=25544&FORMAT=JSON= | Updates every 2 h; one download per update. >50 HTTP errors in 2 h blocks the IP. Fetch only from the Worker; stop on any non-200. |
@@ -459,77 +460,88 @@ Sky, System, Sun, Launches, Library core (above).
   pushes sent in slices of 200, recorded only once APNs answers; alerts
   pruned after 3 days, devices after 180.
 
-** v5: next version
-Platforms
-- visionOS: run the app (globes, orrery volume, immersive star field) on a
-  visionOS simulator or a Vision Pro. It compiles but has never run.
-- Smart-telescope pointing (Seestar and similar).
-- AR camera overlay on the Sky tab. First measure draw time and pointing on
-  a device. Heading from the gyroscope with a one-object alignment, not the
-  compass; a pinhole projection matching the camera; refraction.
-- Widgets from the original plan: Kp and next launch on the Lock Screen,
-  Voyager distance and today's Sun image on the Home Screen. Widgets and
-  Control Center controls backed by the App Intents, with an App Group.
-- Siri on the Watch; phrase translations.
+** v4.1: run and check
+- visionOS: run the app (globes, orrery volume, immersive star field) in the
+  visionOS simulator. It compiles but has never run.
+- App Shortcuts phrases tested on a device.
+- Artemis II (Horizons =-1024=, 1–10 April 2026) in =server/src/live.ts= as
+  a past event for replay.
+- Performance: Sun tab first open still has frames over 100 ms (SwiftUI and
+  Charts start-up); RealityKit's first start (about 1.4 s) when switching to
+  3D, checked on a device; Sun snapshot OVATION grid compressed (156 KB to
+  about 90 KB).
+- Typeface: the design calls for Helvetica Neue; the app uses the system
+  font. Pick one after a design review, before App Store screenshots.
 
-Sky
-- Milky Way from ESA's "Gaia's sky in colour" (CC BY-SA), clipped before
-  projection. Gaia data itself is CC BY-NC and can't be used.
-- Comets from JPL SBDB, fetched daily by the Worker; needs a parabolic and
-  hyperbolic orbit solver. Then bright asteroids.
-- NGC objects and stars fainter than V 6.5, with a deeper zoom and eyepiece
-  field-of-view circles from the equipment inventory.
-- Horizon profile.
+** v4.2: widgets and controls
+- Lock Screen: Kp, next launch. Home Screen: Voyager 1 distance, today's Sun
+  image.
+- Widgets and Control Center controls backed by the App Intents, with an
+  App Group.
+- Opt-in notification for a visible ISS pass in 15 minutes (local).
 
-System
-- Active missions on the orrery: Juno, Europa Clipper, JUICE, Psyche,
-  Parker Solar Probe, Lucy (JPL Horizons vectors).
-- Live coverage: add Artemis II and later missions to =server/src/live.ts=
-  (Horizons ID, window, phases) once their Horizons IDs are published.
-
-Sun
-- Solar wind from SOLAR-1 RTSW, reduced on the Worker; earlier aurora alerts
-  from Bz.
-- Active-region labels on the SDO image.
-- Sun path, golden and blue hour, day length.
-- CCOR-2 coronagraph loop, WSA-Enlil forecast line, solar cycle progress.
-
-Launches and Live Activities
-- Seeing the ascent from the ground: needs a trajectory model per rocket;
-  Flight Club data needs an agreement with its author.
-- Push-to-start for followed launches: needs per-device tokens and a change
-  to the privacy policy.
-- Geomagnetic storm and meteor shower peak Live Activities.
-- Opt-in notification for a visible ISS pass in 15 minutes.
-
-Eclipse, 2 August 2027
+** v5.0: eclipse, 2 August 2027
 - Watch haptics at second and third contact.
 - Drive to totality: nearest point with 95% of the centre-line duration,
   handed to Apple Maps.
 - Cloud climatology along the path (NASA MODIS or ERA5).
 - Photographer cue mode: filter off and on cues, an exposure table.
-- Field test on the 6 February 2027 annular eclipse.
+- Field test on the 6 February 2027 annular eclipse by testers on the path
+  (Chile, Argentina, West Africa) with a TestFlight build.
 
-Observing
-- Light pollution: Lorenz's atlas needs permission; otherwise a model from
-  NASA Black Marble (CC0).
+** v5.1: Sun
+- Solar wind from SWPC RTSW (=json/rtsw/rtsw_mag_1m.json=,
+  =rtsw_wind_1m.json=), reduced on the Worker; earlier aurora alerts from
+  Bz.
+- Active-region labels on the SDO image.
+- Sun path, golden and blue hour, day length.
+- CCOR-2 coronagraph loop, WSA-Enlil forecast line, solar cycle progress.
+
+** v5.2: Sky
+- Milky Way from ESA's "Gaia's sky in colour" (CC BY-SA), clipped before
+  projection. Gaia data itself is CC BY-NC and can't be used.
+- Comets in the Sky tab and the orrery from JPL SBDB, fetched daily by the
+  Worker. The orrery has periodic comets (Kepler.swift); needs parabolic and
+  hyperbolic orbits. Then bright asteroids.
+- Stars fainter than V 6.5, NGC objects, a deeper zoom and eyepiece
+  field-of-view circles from the equipment inventory. Catalogue not chosen:
+  Tycho-2 (VizieR licence question as BSC5) or HYG (CC BY-SA).
+- Horizon profile.
+
+** v5.3: AR camera overlay
+- First measure draw time and pointing on a device. Heading from the
+  gyroscope with a one-object alignment, not the compass; a pinhole
+  projection matching the camera; refraction.
+
+** v5.4: System
+- Juno, Europa Clipper, JUICE, Psyche, Parker Solar Probe, Lucy on the
+  orrery (Horizons =-61=, =-159=, =-28=, =-255=, =-96=, =-49=; all have
+  current ephemerides).
+- Later crewed and lunar missions in =server/src/live.ts= as they launch.
+
+** v5.5: Live Activities
+- Geomagnetic storm and meteor shower peak Live Activities.
+- Push-to-start for followed launches: needs per-device tokens stored on the
+  Worker, a privacy policy change and a matching App Store privacy label.
+
+** v5.6: Observing
 - Meteor radiant altitude (radiant coordinates for the major showers).
+- IMO, COBS and AAVSO exports; a program log PDF.
 - Astronomical League lists (Herschel 400, Double Star, Lunar, Binocular
   Messier) and Lunar 100 (Charles Wood, Sky & Telescope), with permission;
   user program files cover them meanwhile.
-- IMO, COBS and AAVSO exports; a program log PDF.
 
-Performance
-- Sun tab first open still has frames over 100 ms (SwiftUI and Charts
-  start-up).
-- RealityKit's first start (about 1.4 s) when switching to 3D; check on a
-  device.
-- Sun snapshot: compress the OVATION grid (156 KB to about 90 KB).
-
-Backend and design
+** v5.7: backend
 - App Attest verification on device registration.
-- Typeface: the design calls for Helvetica Neue; the app uses the system
-  font. Pick one.
+
+** on hold
+- Smart-telescope pointing (Seestar and similar): until there is a
+  telescope to test with. Protocol not chosen (ASCOM Alpaca or the vendor's
+  own).
+- Seeing the ascent from the ground: needs a trajectory model per rocket;
+  Flight Club data needs an agreement with its author.
+- Light pollution: Lorenz's atlas needs permission; otherwise a model from
+  NASA Black Marble (CC0).
 
 * before publishing
 - App Store Connect: privacy policy URL https://krz.sh/privacy/moonrise/.
@@ -553,4 +565,3 @@ Backend and design
 * open questions
 - Fallback for APNs if Workers' HTTP/2 stops working: Containers sender
   vs. a separate small VPS. The M0 probe worked, so this is a contingency.
-- Whether the Sky tab needs AR camera overlay at all (current lean: no).
