@@ -482,8 +482,8 @@ Sky, System, Sun, Launches, Library core (above).
   23:29 UTC.
 - Performance: Sun tab first open still has frames over 100 ms (SwiftUI and
   Charts start-up); RealityKit's first start (about 1.4 s) when switching to
-  3D, checked on a device; Sun snapshot OVATION grid compressed (156 KB to
-  about 90 KB).
+  3D, checked on a device. Done: Sun snapshot OVATION grid zlib-compressed
+  (grid 87 KB to 9 KB base64; snapshot 156 KB to about 78 KB).
 
 ** v4.2: widgets and controls
 - Lock Screen: Kp, next launch. Home Screen: Voyager 1 distance, today's Sun

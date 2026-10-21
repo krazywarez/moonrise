@@ -224,17 +224,18 @@ public struct Ovation: Sendable, Equatable, Codable {
     }
 }
 
-/// Saved as the feed's grid, one byte per cell in the feed's order (longitude 0...359, then latitude −90...90).
-/// Snapshots saved before the grid hold `cells`.
+/// Saved as the feed's grid, one byte per cell in the feed's order (longitude 0...359, then latitude −90...90),
+/// zlib-compressed. Older snapshots hold the grid uncompressed (`grid`) or as `cells`.
 extension Ovation {
     enum CodingKeys: String, CodingKey {
-        case forecastTime, grid, cells
+        case forecastTime, gridz, grid, cells
     }
 
     public init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
         forecastTime = try c.decode(Date.self, forKey: .forecastTime)
-        if let grid = try c.decodeIfPresent(Data.self, forKey: .grid) {
+        let packed = try c.decodeIfPresent(Data.self, forKey: .gridz).map { try ($0 as NSData).decompressed(using: .zlib) as Data }
+        if let grid = try packed ?? c.decodeIfPresent(Data.self, forKey: .grid) {
             cells = grid.enumerated().compactMap { i, p in
                 p > 0 ? Cell(lon: Double(i / 181), lat: Double(i % 181 - 90), probability: Double(p)) : nil
             }
@@ -252,6 +253,6 @@ extension Ovation {
         }
         var c = encoder.container(keyedBy: CodingKeys.self)
         try c.encode(forecastTime, forKey: .forecastTime)
-        try c.encode(grid, forKey: .grid)
+        try c.encode(try (grid as NSData).compressed(using: .zlib) as Data, forKey: .gridz)
     }
 }

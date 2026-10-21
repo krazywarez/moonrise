@@ -105,8 +105,17 @@ func solarFrameUsable(name: String, image: SolarImage, usable: Bool) throws {
     let feed = Data(#"{"Forecast Time": "2026-10-18T00:37:00Z", "coordinates": [\#(rows.joined(separator: ","))]}"#.utf8)
     let o = try Ovation.decode(feed)
     let data = try JSONEncoder().encode(o)
-    #expect(data.count < 90_000)
+    #expect(data.count < 20_000)
     #expect(try JSONDecoder().decode(Ovation.self, from: data) == o)
+}
+
+@Test func ovationReadsUncompressedGridFromOlderSnapshots() throws {
+    var grid = Data(count: 360 * 181)
+    grid[0 * 181 + 155] = 12
+    grid[359 * 181 + 30] = 3
+    let data = Data(#"{"forecastTime": 782614800, "grid": "\#(grid.base64EncodedString())"}"#.utf8)
+    let o = try JSONDecoder().decode(Ovation.self, from: data)
+    #expect(o.cells == [Ovation.Cell(lon: 0, lat: 65, probability: 12), Ovation.Cell(lon: 359, lat: -60, probability: 3)])
 }
 
 @Test func ovationReadsCellsFromOlderSnapshots() throws {
