@@ -4,17 +4,91 @@ import SwiftUI
 /// The observing log lives in Documents/Observations, one Org file per entry, visible in the Files app.
 let observingLog = ObservingLog(folder: URL.documentsDirectory.appending(path: "Observations"))
 
+@MainActor let observingLogStore = ObservingLogStore(log: observingLog)
+
+/// The parsed log and programs, shared by the log screens. Files are read off the main thread. Screens call
+/// `reload` when they appear, so files changed in the Files app are picked up.
+@MainActor final class ObservingLogStore: ObservableObject {
+    struct Snapshot: Sendable {
+        var entries: [Observation]
+        var programs: [ObservingProgram]
+        var resolver: CatalogResolver
+        var progress: [String: ProgramProgress]
+    }
+
+    /// Newest first.
+    @Published private(set) var entries: [Observation] = []
+    /// Messier, then the files in the Programs folder.
+    @Published private(set) var programs: [ObservingProgram] = []
+    @Published private(set) var resolver = CatalogResolver()
+    /// By program ID.
+    @Published private(set) var progress: [String: ProgramProgress] = [:]
+    /// False until the first read finishes.
+    @Published private(set) var loaded = false
+    private let log: ObservingLog
+    /// Results of reads started before the latest reload or delete are dropped.
+    private var generation = 0
+    /// The read the published values were last set from.
+    private var shown: Snapshot?
+
+    init(log: ObservingLog) { self.log = log }
+
+    func reload() {
+        generation += 1
+        let g = generation, log = log
+        Task {
+            let s = await Task.detached(priority: .userInitiated) { ObservingLogStore.read(log) }.value
+            guard g == generation, s.entries != shown?.entries || s.programs != shown?.programs else { return }
+            shown = s
+            entries = s.entries
+            programs = s.programs
+            resolver = s.resolver
+            progress = s.progress
+            loaded = true
+        }
+    }
+
+    /// Writes as `ObservingLog.save`, with names resolved against the current programs, then reloads.
+    func save(_ o: Observation) async throws {
+        let log = log
+        try await Task.detached(priority: .userInitiated) { try log.save(o, resolver: CatalogResolver(programs: log.programs())) }.value
+        reload()
+    }
+
+    /// Removes the entries from `entries` at once, then deletes their files and reloads.
+    func delete(ids: [String]) {
+        entries.removeAll { ids.contains($0.id) }
+        generation += 1
+        let log = log
+        Task {
+            await Task.detached(priority: .userInitiated) { for id in ids { try? log.delete(id: id) } }.value
+            reload()
+        }
+    }
+
+    nonisolated private static func read(_ log: ObservingLog) -> Snapshot {
+        let programs = log.programs()
+        let resolver = CatalogResolver(programs: programs)
+        let entries = log.all()
+        let index = LogIndex(log: entries, resolver: resolver)
+        let progress = Dictionary(programs.map { ($0.id, ProgramProgress(program: $0, index: index)) }, uniquingKeysWith: { a, _ in a })
+        return Snapshot(entries: entries, programs: programs, resolver: resolver, progress: progress)
+    }
+}
+
 struct LogScreen: View {
-    @State private var entries: [Observation] = []
+    @ObservedObject private var store = observingLogStore
     @State private var editing: Observation?
     var newEntry: () -> Observation
     @Environment(\.dismiss) private var dismiss
+
+    private var entries: [Observation] { store.entries }
 
     var body: some View {
         NavigationStack {
             List {
                 NavigationLink("Programs") { ProgramsScreen(newEntry: newEntry) }
-                if entries.isEmpty {
+                if store.loaded, entries.isEmpty {
                     Text("No observations yet. Add one here, or use Log on an object's card in the Sky tab.")
                         .font(.footnote).foregroundStyle(.secondary)
                 }
@@ -28,10 +102,7 @@ struct LogScreen: View {
                     }
                     .buttonStyle(.plain)
                 }
-                .onDelete { idx in
-                    for i in idx { try? observingLog.delete(id: entries[i].id) }
-                    reload()
-                }
+                .onDelete { idx in store.delete(ids: idx.map { entries[$0].id }) }
             }
             .navigationTitle("Observing log")
             .navigationBarTitleDisplayMode(.inline)
@@ -51,18 +122,15 @@ struct LogScreen: View {
                     .font(.caption2).foregroundStyle(.secondary).padding(8)
             }
             .sheet(item: $editing) { o in
-                ObservationEditor(observation: o) { reload() }
+                ObservationEditor(observation: o)
             }
         }
-        .onAppear(perform: reload)
+        .onAppear { store.reload() }
     }
-
-    private func reload() { entries = observingLog.all() }
 }
 
 struct ObservationEditor: View {
     @State var observation: Observation
-    var onSave: () -> Void
     @Environment(\.dismiss) private var dismiss
     @State private var error: String?
     @State private var names: [String: String] = [:]
@@ -102,12 +170,13 @@ struct ObservationEditor: View {
                 ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") {
-                        do {
-                            try observingLog.save(observation, resolver: CatalogResolver(programs: observingLog.programs()))
-                            onSave()
-                            dismiss()
-                        } catch {
-                            self.error = "Couldn't save: \(error.localizedDescription)"
+                        Task {
+                            do {
+                                try await observingLogStore.save(observation)
+                                dismiss()
+                            } catch {
+                                self.error = "Couldn't save: \(error.localizedDescription)"
+                            }
                         }
                     }
                     .disabled(observation.object.trimmingCharacters(in: .whitespaces).isEmpty)

@@ -27,10 +27,18 @@ public struct CatalogResolver: Sendable {
     public static let messier = CatalogResolver(programs: [.messier])
 
     /// "M 31", "Messier 31" and "m031" give "M31"; "NGC 6205" gives "NGC6205". Nil when `s` is not letters then a number.
+    /// Letters are ASCII, then optional spaces, then one or more `Character.isNumber` characters.
     public static func designation(_ s: String) -> String? {
-        guard let m = s.trimmingCharacters(in: .whitespaces).wholeMatch(of: /([A-Za-z]+) *0*(\d+)/) else { return nil }
-        let prefix = m.1.uppercased()
-        return (prefix == "MESSIER" ? "M" : prefix) + m.2
+        let t = s.trimmingCharacters(in: .whitespaces)
+        var i = t.startIndex
+        while i < t.endIndex, t[i].isASCII, t[i].isLetter { t.formIndex(after: &i) }
+        guard i > t.startIndex else { return nil }
+        let prefix = t[..<i].uppercased()
+        while i < t.endIndex, t[i] == " " { t.formIndex(after: &i) }
+        var number = t[i...]
+        guard !number.isEmpty, number.allSatisfy(\.isNumber) else { return nil }
+        while number.count > 1, number.first == "0" { number = number.dropFirst() }
+        return (prefix == "MESSIER" ? "M" : prefix) + number
     }
 
     /// Case, diacritics, curly apostrophes and runs of spaces ignored.
@@ -69,8 +77,8 @@ public struct CatalogResolver: Sendable {
 /// `CatalogResolver`, else the object is matched by name. `:RA:` and `:DEC:` are J2000 degrees; Messier
 /// objects without them take the bundled position. Other lines and lower-level headings are ignored.
 /// Without `#+TITLE:` the file name is the title.
-public struct ObservingProgram: Sendable, Identifiable {
-    public struct Object: Sendable, Identifiable {
+public struct ObservingProgram: Sendable, Identifiable, Equatable {
+    public struct Object: Sendable, Identifiable, Equatable {
         /// Catalogue IDs; the first is `id`. Empty when the object is matched by name.
         public var ids: [String]
         public var name: String
@@ -148,6 +156,19 @@ public struct ObservingProgram: Sendable, Identifiable {
     }
 }
 
+/// Earliest entry for each catalogue key in a log. Build it once per log and share it between programs.
+public struct LogIndex: Sendable {
+    public var earliest: [String: Observation]
+
+    public init(log: [Observation], resolver: CatalogResolver) {
+        var earliest: [String: Observation] = [:]
+        for o in log {
+            for k in resolver.keys(for: o) where o.date < earliest[k]?.date ?? .distantFuture { earliest[k] = o }
+        }
+        self.earliest = earliest
+    }
+}
+
 /// Which objects of a program the log has, derived each time and never stored.
 public struct ProgramProgress: Sendable {
     /// Earliest entry for each logged object, by object ID.
@@ -156,13 +177,13 @@ public struct ProgramProgress: Sendable {
     public var count: Int { first.count }
 
     public init(program: ObservingProgram, log: [Observation], resolver: CatalogResolver) {
-        var byKey: [String: Observation] = [:]
-        for o in log {
-            for k in resolver.keys(for: o) where o.date < byKey[k]?.date ?? .distantFuture { byKey[k] = o }
-        }
+        self.init(program: program, index: LogIndex(log: log, resolver: resolver))
+    }
+
+    public init(program: ObservingProgram, index: LogIndex) {
         var first: [String: Observation] = [:]
         for object in program.objects {
-            if let o = object.keys.compactMap({ byKey[$0] }).min(by: { $0.date < $1.date }) { first[object.id] = o }
+            if let o = object.keys.compactMap({ index.earliest[$0] }).min(by: { $0.date < $1.date }) { first[object.id] = o }
         }
         self.first = first
     }

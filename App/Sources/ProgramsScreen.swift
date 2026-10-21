@@ -5,15 +5,13 @@ import SwiftUI
 /// Observing programs: the bundled Messier list plus Org files in Documents/Observations/Programs.
 struct ProgramsScreen: View {
     var newEntry: () -> Observation
-    @State private var programs: [ObservingProgram] = []
-    @State private var log: [Observation] = []
+    @ObservedObject private var store = observingLogStore
 
     var body: some View {
-        let resolver = CatalogResolver(programs: programs)
         List {
             Section {
-                ForEach(programs) { p in
-                    let n = ProgramProgress(program: p, log: log, resolver: resolver).count
+                ForEach(store.programs) { p in
+                    let n = store.progress[p.id]?.count ?? 0
                     NavigationLink { ProgramDetail(program: p, newEntry: newEntry) } label: {
                         VStack(alignment: .leading, spacing: 6) {
                             HStack {
@@ -34,9 +32,9 @@ struct ProgramsScreen: View {
         .navigationTitle("Programs")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
-            try? FileManager.default.createDirectory(at: observingLog.programsFolder, withIntermediateDirectories: true)
-            programs = observingLog.programs()
-            log = observingLog.all()
+            let folder = observingLog.programsFolder
+            Task.detached { try? FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true) }
+            store.reload()
         }
     }
 }
@@ -50,18 +48,21 @@ struct ProgramDetail: View {
 
     var program: ObservingProgram
     var newEntry: () -> Observation
-    @State private var progress: ProgramProgress?
+    @ObservedObject private var store = observingLogStore
     @State private var upTonight: [Candidate]?
     @State private var editing: Observation?
+
+    private var progress: ProgramProgress? { store.progress[program.id] }
 
     var body: some View {
         List {
             Section {
                 if let upTonight {
-                    if upTonight.isEmpty {
+                    let pending = upTonight.filter { progress?.first[$0.object.id] == nil }
+                    if pending.isEmpty {
                         Text("None of the objects still to log gets 25° up in full darkness tonight.").font(.footnote).foregroundStyle(.secondary)
                     }
-                    ForEach(Array(upTonight.enumerated()), id: \.offset) { _, c in
+                    ForEach(Array(pending.enumerated()), id: \.offset) { _, c in
                         row(c.object, trailing: "\(c.best.formatted(date: .omitted, time: .shortened)) · \(Int(c.position.altitude.rounded()))° \(SkyEngine.compass(c.position.azimuth))")
                     }
                 } else {
@@ -81,9 +82,9 @@ struct ProgramDetail: View {
         .navigationTitle(program.title)
         .navigationBarTitleDisplayMode(.inline)
         .sheet(item: $editing) { o in
-            ObservationEditor(observation: o) { reload() }
+            ObservationEditor(observation: o)
         }
-        .onAppear(perform: reload)
+        .onAppear { store.reload() }
         .task { await findUpTonight() }
     }
 
@@ -112,12 +113,6 @@ struct ProgramDetail: View {
         }
         .buttonStyle(.plain)
         .accessibilityHint(logged == nil ? "Logs this object" : "Opens the entry")
-    }
-
-    private func reload() {
-        let programs = observingLog.programs()
-        progress = ProgramProgress(program: program, log: observingLog.all(), resolver: CatalogResolver(programs: programs))
-        if let upTonight, let progress { self.upTonight = upTonight.filter { progress.first[$0.object.id] == nil } }
     }
 
     private func findUpTonight() async {

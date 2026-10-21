@@ -1,4 +1,5 @@
 import Foundation
+import Library
 import Testing
 @testable import ObservingLog
 
@@ -11,6 +12,32 @@ import Testing
     #expect(CatalogResolver.designation("ic434") == "IC434")
     #expect(CatalogResolver.designation("Saturn") == nil)
     #expect(CatalogResolver.designation("M31 and M32") == nil)
+}
+
+/// The regex `designation` used to be, as the reference for the hand-written parser.
+private func regexDesignation(_ s: String) -> String? {
+    guard let m = s.trimmingCharacters(in: .whitespaces).wholeMatch(of: /([A-Za-z]+) *0*(\d+)/) else { return nil }
+    let prefix = m.1.uppercased()
+    return (prefix == "MESSIER" ? "M" : prefix) + m.2
+}
+
+@Test func designationMatchesRegex() {
+    var inputs = Library.pages.flatMap { [$0.title, $0.subtitle] + $0.subtitle.components(separatedBy: " · ") }
+    inputs += ObservingProgram.messier.objects.flatMap { [$0.name] + $0.aliases }
+    inputs += ["M 31", "Messier 31", "m031", "NGC 6205", "NGC6205A", "M", "31", "", " ", "M000", "M00 7", "M 0", "messier 0031",
+               "MESSIER31", "M  31", "M\t31", "\tM31\n", "M\r\n31", "M31 ", " M31", "M-31", "M.31", "M31.5", "M31a", "Sh2-155",
+               "M\u{00A0}31", "\u{00A0}M31\u{2009}", "M\u{2009}31", "M\u{3000}31", "\u{3000}M31\u{3000}", "M\u{200B}31", "\u{200B}M31",
+               "M\u{FEFF}31", "\u{FEFF}M31", "M\u{202F}31",
+               "M٣١", "M३१", "M３１", "M𝟑𝟏", "M0٣", "M²", "M①", "M½", "MⅫ", "M三", "Ｍ31", "ß31", "ǅ1", "ﬀ1",
+               "M3\u{0301}", "M0\u{0301}31", "M31\u{0301}", "M \u{0301}31", "M\u{0301}31", "e\u{0301}31", "A\u{0308}1", "M 3\u{20E3}"]
+    for v in 0..<0x3000 {
+        guard let u = Unicode.Scalar(v) else { continue }
+        let c = String(Character(u))
+        inputs += ["M" + c + "1", "M0" + c, c + "31", "M " + c]
+    }
+    for s in inputs {
+        #expect(CatalogResolver.designation(s) == regexDesignation(s), "\(s.unicodeScalars.map { String($0.value, radix: 16) })")
+    }
 }
 
 @Test func messierNamesResolve() {

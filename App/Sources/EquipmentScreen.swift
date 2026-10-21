@@ -90,9 +90,13 @@ struct EquipmentScreen: View {
 struct EquipmentDetail: View {
     @State var item: Equipment
     var onChange: () -> Void
-    @State private var usage: EquipmentUsage?
+    @ObservedObject private var store = observingLogStore
     @State private var names: [String: String] = [:]
     @State private var editing: Equipment?
+
+    private var usage: EquipmentUsage? {
+        store.loaded ? EquipmentUsage(of: item.id, in: store.entries, resolver: store.resolver) : nil
+    }
 
     var body: some View {
         List {
@@ -150,7 +154,7 @@ struct EquipmentDetail: View {
 
     private func reload() {
         names = Dictionary(equipmentInventory.all().map { ($0.id, $0.name) }, uniquingKeysWith: { a, _ in a })
-        usage = EquipmentUsage(of: item.id, in: observingLog.all(), resolver: CatalogResolver(programs: observingLog.programs()))
+        store.reload()
     }
 }
 
