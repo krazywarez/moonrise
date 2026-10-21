@@ -470,7 +470,7 @@ Sky, System, Sun, Launches, Library core (above).
   device and add one-object alignment with a gyroscope heading.
 
 * before publishing
-- App Store Connect: privacy policy URL https://moonrise.krz.sh/privacy.
+- App Store Connect: privacy policy URL https://krz.sh/privacy/moonrise/.
 - Decide on the Astronomical League lists (Herschel 400, Double Star, Lunar,
   Binocular Messier) and Lunar 100 (Charles Wood, Sky & Telescope): ask for
   permission or leave them to user program files.

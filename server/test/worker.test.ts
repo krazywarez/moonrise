@@ -320,6 +320,13 @@ test("GET API responses are served from the edge cache until they expire", async
   }
 });
 
+test("/privacy redirects to the policy on krz.sh", async () => {
+  const { env } = await setup();
+  const res = await worker.fetch(new Request("https://moonrise.test/privacy"), env as never);
+  assert.equal(res.status, 301);
+  assert.equal(res.headers.get("location"), "https://krz.sh/privacy/moonrise/");
+});
+
 test("GET API responses work without an edge cache", async () => {
   const { env } = await setup();
   const res = await worker.fetch(new Request("https://moonrise.test/v1/today"), env as never);

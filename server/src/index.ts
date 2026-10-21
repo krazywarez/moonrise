@@ -5,7 +5,6 @@ import { compose, fetchGroups, fetchSupGP, fitsLaunch, retryDue, retryTick, supg
 import { activeEvent, fetchTrajectory, STEP_MINUTES } from "./live";
 import { fetchLaunch, fetchLaunches, PREVIOUS_URL, UPCOMING_URL, type Launch } from "./ll2";
 import { digestPayload, dueOffsets, fetchLatest, localDate, pickHeadlines } from "./news";
-import { PRIVACY_HTML } from "./privacy";
 import { fetchSpaceWeather, next24h, type SpaceWeather } from "./swpc";
 
 interface Env {
@@ -45,6 +44,8 @@ const PUSH_CONCURRENCY = 6;
 
 const json = (body: unknown, status = 200, maxAge?: number) =>
   Response.json(body, { status, headers: maxAge && status === 200 ? { "cache-control": `public, max-age=${maxAge}` } : {} });
+
+const PRIVACY_URL = "https://krz.sh/privacy/moonrise/";
 
 /** Read-only endpoints whose responses are the same for everyone. */
 const API = new Set(["/v1/today", "/v1/launches", "/v1/live", "/v1/satellites"]);
@@ -112,8 +113,8 @@ export default {
       const rows = await env.DB.prepare("SELECT feed, fetched_at, ok FROM feed_snapshots").all();
       return json({ ok: true, feeds: rows.results });
     }
-    if (request.method === "GET" && url.pathname === "/privacy")
-      return new Response(PRIVACY_HTML, { headers: { "content-type": "text/html; charset=utf-8", "cache-control": "public, max-age=3600" } });
+    // The policy lives on krz.sh; older builds link here.
+    if (request.method === "GET" && url.pathname === "/privacy") return Response.redirect(PRIVACY_URL, 301);
 
     if (request.method === "POST" && url.pathname === "/v1/devices") {
       const d = (await request.json().catch(() => ({}))) as Partial<DeviceRequest>;
