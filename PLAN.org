@@ -467,6 +467,9 @@ Sky, System, Sun, Launches, Library core (above).
 - visionOS: run the app (globes, orrery volume, immersive star field) in the
   visionOS simulator. Done: globes, orrery volume and immersive star field
   checked in the visionOS 27.0 simulator.
+  Decided 2026-10-21: Vision Pro gets the iPhone app in compatibility mode;
+  MoonriseVision stays an unpublished experiment (immersive sky fixed to
+  Chicago, stars brighter than magnitude 4.5).
 - iPhone app on Vision Pro (iPad compatibility mode): "View as a globe" was
   black. Done: unlit globe when =isiOSAppOnVision= (iOS 26.1+).
 - Small text: 9–10 pt Canvas labels in EclipseScreen ignore Dynamic Type;
@@ -572,7 +575,3 @@ Sky, System, Sun, Launches, Library core (above).
 * open questions
 - Fallback for APNs if Workers' HTTP/2 stops working: Containers sender
   vs. a separate small VPS. The M0 probe worked, so this is a contingency.
-- Vision Pro: keep the iPhone app in compatibility mode (MoonriseVision
-  stays an experiment), or add visionOS to the main app so it runs natively
-  with globes, orrery and immersive sky as extras. The immersive sky is
-  fixed to Chicago and stars brighter than magnitude 4.5.
