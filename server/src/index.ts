@@ -37,10 +37,10 @@ const RETENTION_MS = 14 * 86400_000;
 /** Devices are dropped after this long without registering; the app registers whenever iOS hands it a token. */
 const DEVICE_RETENTION_MS = 180 * 86400_000;
 /**
- * Alert pushes per run; the rest go on later runs. Sized for the Free plan's 50 subrequests per invocation, shared
- * with the rest of the run; raise it on Paid. Workers keep at most 6 connections open at once.
+ * Alert pushes per run; the rest go on later runs. The Paid plan allows 10,000 subrequests per invocation; at 6
+ * connections open at once, 200 sends take a few seconds of the five-minute run.
  */
-const PUSH_SLICE = 20;
+export const PUSH_SLICE = 200;
 const PUSH_CONCURRENCY = 6;
 
 const json = (body: unknown, status = 200, maxAge?: number) =>

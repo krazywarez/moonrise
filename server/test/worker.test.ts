@@ -15,7 +15,7 @@ registerHooks({
     }
   },
 });
-const { default: worker } = await import("../src/index.ts");
+const { default: worker, PUSH_SLICE } = await import("../src/index.ts");
 
 const FIVE = "*/5 * * * *";
 const TWO = "*/2 * * * *";
@@ -172,21 +172,21 @@ test("a failed CelesTrak poll is tried once more 33 minutes later, from the 5-mi
 
 test("aurora alerts go out in bounded slices and are recorded per device once answered", async () => {
   const { db, env, calls } = await setup();
-  for (let i = 0; i < 30; i++) device(db, i);
-  device(db, 30, { offset: 720 }); // 10:05 local: not night
+  for (let i = 0; i < PUSH_SLICE + 10; i++) device(db, i);
+  device(db, PUSH_SLICE + 10, { offset: 720 }); // 10:05 local: not night
   const push = apns({ [token(3)]: 503, [token(4)]: 410, [token(5)]: 400 });
   const hosts = network({ ...swpc(6), ...push.handlers });
 
   await run(env, FIVE, "2026-10-20T22:05:00Z");
-  assert.equal(push.state.sent.length, 20);
+  assert.equal(push.state.sent.length, PUSH_SLICE);
   assert.ok(push.state.maxInFlight <= 6, `max in flight ${push.state.maxInFlight}`);
-  assert.ok(hosts.length + calls.length <= 50, `${hosts.length} fetches + ${calls.length} D1 calls`);
-  assert.equal(count(db, "SELECT count(*) AS n FROM alerts_sent WHERE kind = 'aurora'"), 18);
+  assert.ok(hosts.length + calls.length <= PUSH_SLICE + 30, `${hosts.length} fetches + ${calls.length} D1 calls`);
+  assert.equal(count(db, "SELECT count(*) AS n FROM alerts_sent WHERE kind = 'aurora'"), PUSH_SLICE - 2);
   assert.equal(count(db, `SELECT count(*) AS n FROM devices WHERE token = '${token(4)}'`), 0);
 
   push.state.sent = [];
   await run(env, FIVE, "2026-10-20T22:10:00Z");
-  assert.deepEqual(push.state.sent.sort(), [3, ...Array.from({ length: 10 }, (_, i) => 20 + i)].map(token).sort());
+  assert.deepEqual(push.state.sent.sort(), [3, ...Array.from({ length: 10 }, (_, i) => PUSH_SLICE + i)].map(token).sort());
 
   push.state.sent = [];
   await run(env, FIVE, "2026-10-20T22:15:00Z");
@@ -213,22 +213,22 @@ test("an aurora run cut short leaves the remaining devices for the next run", as
 
 test("news digests go out in slices during the local 09:00 hour, once per local day", async () => {
   const { db, env, calls } = await setup();
-  for (let i = 0; i < 25; i++) device(db, i, { offset: -300, aurora: 0, news: 1 });
-  device(db, 25, { offset: 330, aurora: 0, news: 1 });
+  for (let i = 0; i < PUSH_SLICE + 5; i++) device(db, i, { offset: -300, aurora: 0, news: 1 });
+  device(db, PUSH_SLICE + 5, { offset: 330, aurora: 0, news: 1 });
   const push = apns();
   const articles = [{ id: 1, title: "t1", news_site: "ESA", published_at: "2026-10-20T13:00:00Z" }];
   const hosts = network({ ...push.handlers, "api.spaceflightnewsapi.net": () => Response.json({ results: articles }) });
   const snapi = () => hosts.filter((h) => h === "api.spaceflightnewsapi.net").length;
 
   await run(env, NEWS, "2026-10-20T14:00:00Z");
-  assert.equal(push.state.sent.length, 20);
+  assert.equal(push.state.sent.length, PUSH_SLICE);
   await run(env, NEWS, "2026-10-20T14:10:00Z");
-  assert.equal(push.state.sent.length, 25);
-  assert.equal(new Set(push.state.sent).size, 25);
+  assert.equal(push.state.sent.length, PUSH_SLICE + 5);
+  assert.equal(new Set(push.state.sent).size, PUSH_SLICE + 5);
   await run(env, NEWS, "2026-10-20T14:20:00Z");
-  assert.equal(push.state.sent.length, 25);
+  assert.equal(push.state.sent.length, PUSH_SLICE + 5);
   assert.equal(snapi(), 2);
-  assert.equal(count(db, "SELECT count(*) AS n FROM alerts_sent WHERE kind = 'news' AND event LIKE '%:2026-10-20'"), 25);
+  assert.equal(count(db, "SELECT count(*) AS n FROM alerts_sent WHERE kind = 'news' AND event LIKE '%:2026-10-20'"), PUSH_SLICE + 5);
 
   const q = calls.find((c) => c.sql.includes("news = 1"))!;
   const plan = db.prepare(`EXPLAIN QUERY PLAN ${q.sql}`).all(...q.params).map((r) => String(r.detail)).join("\n");
