@@ -467,9 +467,8 @@ Sky, System, Sun, Launches, Library core (above).
 - visionOS: run the app (globes, orrery volume, immersive star field) in the
   visionOS simulator. Done: globes, orrery volume and immersive star field
   checked in the visionOS 27.0 simulator.
-- iPhone app on Vision Pro (iPad compatibility mode): "View as a globe" is
-  black. GlobeView's non-visionOS branch (virtual camera, own light) draws
-  nothing there; fall back when =isiOSAppOnVisionOS=.
+- iPhone app on Vision Pro (iPad compatibility mode): "View as a globe" was
+  black. Done: unlit globe when =isiOSAppOnVision= (iOS 26.1+).
 - Small text: 9–10 pt Canvas labels in EclipseScreen ignore Dynamic Type;
   10 pt uppercase at 0.6 opacity in the Pass and Launch Live Activities.
 - App Shortcuts phrases tested on a device.
