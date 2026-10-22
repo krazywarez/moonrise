@@ -45,7 +45,8 @@ public struct EclipseTimeline: Sendable {
     public var glassesOffWithheld: Withheld?
 
     /// `accuracy`: horizontal accuracy of the location fix in metres, or nil for a chosen place.
-    public init(_ eclipse: LocalEclipse, observer: Observer, accuracy: Double?) throws {
+    /// `photographer` adds camera filter cues; filters come off only with the glasses-off cue.
+    public init(_ eclipse: LocalEclipse, observer: Observer, accuracy: Double?, photographer: Bool = false) throws {
         self.eclipse = eclipse
         self.observer = observer
         var named = [("C1", eclipse.partialBegin)]
@@ -64,17 +65,18 @@ public struct EclipseTimeline: Sendable {
         } else if contacts[1].sun.altitude <= 0 {
             glassesOffWithheld = .sunDown
         }
-        cues = Self.script(eclipse, withheld: glassesOffWithheld).sorted { $0.date < $1.date }
+        cues = Self.script(eclipse, withheld: glassesOffWithheld, photographer: photographer).sorted { $0.date < $1.date }
     }
 
-    static func script(_ e: LocalEclipse, withheld: Withheld?) -> [Cue] {
+    static func script(_ e: LocalEclipse, withheld: Withheld?, photographer: Bool = false) -> [Cue] {
         func cue(_ date: Date, _ text: String, _ haptic: Haptic = .tap, warning: Bool = false) -> Cue {
             Cue(date: date, text: text, haptic: haptic, warning: warning)
         }
         var cues: [Cue] = []
+        let filtersStay = photographer ? " Filters stay on." : ""
         guard e.kind == "Total", let c2 = e.centralBegin, let c3 = e.centralEnd else {
             let annular = e.kind == "Annular"
-            cues.append(cue(e.partialBegin, "First contact. This eclipse is \(annular ? "annular" : "partial") here, so keep your glasses on the whole time.", warning: true))
+            cues.append(cue(e.partialBegin, "First contact. This eclipse is \(annular ? "annular" : "partial") here, so keep your glasses on the whole time." + (photographer ? " Filters stay on cameras the whole time too." : ""), warning: true))
             if annular, let c2 = e.centralBegin, let c3 = e.centralEnd {
                 cues.append(cue(c2, "The ring of the Sun is complete. Glasses stay on.", .long))
                 cues.append(cue(c3, "The ring is breaking. Glasses stay on."))
@@ -89,17 +91,18 @@ public struct EclipseTimeline: Sendable {
         if c2.timeIntervalSince(e.partialBegin) > 360 { cues.append(cue(c2.addingTimeInterval(-300), "Five minutes to totality.")) }
         cues.append(cue(c2.addingTimeInterval(-120), "Two minutes. Lay out a white sheet and watch it for shadow bands."))
         cues.append(cue(c2.addingTimeInterval(-60), "One minute to totality. Glasses stay on.", .double))
+        if photographer { cues.append(cue(c2.addingTimeInterval(-30), "Cameras: filters stay on through the diamond ring.")) }
         cues.append(cue(c2.addingTimeInterval(-15), "Watch for Baily's beads and the diamond ring, through your glasses.", .double))
         for n in 1...5 { cues.append(cue(c2.addingTimeInterval(-Double(n)), "\(n)")) }
         switch withheld {
         case nil:
-            cues.append(cue(c2, "Totality. Once no sunlight shows through your glasses, not even one bead, glasses off.", .long))
+            cues.append(cue(c2, "Totality. Once no sunlight shows through your glasses, not even one bead, glasses off" + (photographer ? ", and filters off cameras." : "."), .long))
         case .short:
-            cues.append(cue(c2, "Totality here is under \(Int(Self.minimumTotality)) seconds. Keep your glasses on.", .long, warning: true))
+            cues.append(cue(c2, "Totality here is under \(Int(Self.minimumTotality)) seconds. Keep your glasses on." + filtersStay, .long, warning: true))
         case .imprecise:
-            cues.append(cue(c2, "Totality is due, but your position is not precise enough to call it. Keep your glasses on.", .long, warning: true))
+            cues.append(cue(c2, "Totality is due, but your position is not precise enough to call it. Keep your glasses on." + filtersStay, .long, warning: true))
         case .sunDown, .partial:
-            cues.append(cue(c2, "Keep your glasses on.", .long, warning: true))
+            cues.append(cue(c2, "Keep your glasses on." + filtersStay, .long, warning: true))
         }
         let duration = c3.timeIntervalSince(c2)
         if duration >= 60 { cues.append(cue(c3.addingTimeInterval(-30), "Thirty seconds of totality left.")) }

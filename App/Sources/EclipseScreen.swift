@@ -22,6 +22,7 @@ struct EclipseScreen: View {
     /// Started when the safety note closes.
     @State private var pending: Day?
     @AppStorage(SettingsKey.eclipseSafetyShown) private var safetyShown = false
+    @AppStorage(SettingsKey.eclipsePhotographer) private var photographer = false
     @AppStorage(SettingsKey.locationMode) private var locationMode = "current"
     @Environment(\.dismiss) private var dismiss
 
@@ -54,6 +55,7 @@ struct EclipseScreen: View {
                     if let timeline {
                         SunDiagram(timeline: timeline, ink: ink, accent: accent)
                         dayTools(timeline)
+                        ExposureGuide(total: timeline.eclipse.kind == "Total", accent: accent)
                     }
                 }
                 .padding(20)
@@ -161,6 +163,11 @@ struct EclipseScreen: View {
             Button("Rehearse from three minutes before \(t.eclipse.kind == "Total" ? "totality" : "maximum")") { start(.rehearsal) }
             if let activityNote { Text(activityNote).font(.footnote).dimmed(0.7) }
             Text("The countdown speaks each cue and taps at the contacts while Moonrise is open, and keeps the screen on.")
+                .font(.footnote).dimmed(0.7)
+            Toggle("Photographer cues", isOn: $photographer).tint(accent)
+            Text(t.eclipse.kind == "Total"
+                 ? "Adds camera filter cues. Filters come off only with the glasses-off cue, and go back on 15 s before third contact."
+                 : "Adds camera filter cues. This eclipse is not total here, so filters stay on the whole time.")
                 .font(.footnote).dimmed(0.7)
         }
         .tint(accent)

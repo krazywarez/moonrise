@@ -82,3 +82,29 @@ private func offCues(_ t: EclipseTimeline) -> [EclipseTimeline.Cue] { t.cues.fil
     let path = try t.sunPath(every: 300)
     #expect(path.first?.date == t.eclipse.partialBegin && path.last?.date == t.eclipse.partialEnd)
 }
+
+@Test func photographerFiltersComeOffOnlyWithGlasses() throws {
+    let site = try #require(LocalEclipse.at(tarifa, near: peak2027))
+    let precise = try EclipseTimeline(site, observer: tarifa, accuracy: 5, photographer: true)
+    let c2 = try #require(precise.eclipse.centralBegin)
+    let off = precise.cues.filter { $0.text.contains("filters off") }
+    #expect(off.map(\.date) == [c2])
+    #expect(off.first?.text.contains("glasses off") == true)
+    #expect(precise.cues.contains { $0.date == c2.addingTimeInterval(-30) && $0.text.contains("filters stay on") })
+    for accuracy in [500.0, nil] {
+        let withheld = try EclipseTimeline(site, observer: tarifa, accuracy: accuracy, photographer: true)
+        #expect(!withheld.cues.contains { $0.text.contains("filters off") })
+        #expect(withheld.cues.contains { $0.date == c2 && $0.text.hasSuffix("Filters stay on.") })
+    }
+    let plain = try EclipseTimeline(site, observer: tarifa, accuracy: 5)
+    #expect(!plain.cues.contains { $0.text.contains("filters off") || $0.text.contains("Filters stay on") })
+}
+
+@Test func exposureMatchesEspenaksTable() {
+    // Table 2 at ISO 100, f/8: corona at 1 solar radius 1/4, at 8 solar radii 4 s; ND 5.0 partial phases
+    // 1/400 s, so 1/500. Faster than 1/4000 is a dash in the table, nil here.
+    #expect(EclipseExposure.shutter(fNumber: 8, iso: 100, q: 1) == "1/4")
+    #expect(EclipseExposure.shutter(fNumber: 8, iso: 100, q: -3) == "4 s")
+    #expect(EclipseExposure.shutter(fNumber: 8, iso: 100, q: 8) == "1/500")
+    #expect(EclipseExposure.shutter(fNumber: 2.8, iso: 100, q: 11) == nil)
+}

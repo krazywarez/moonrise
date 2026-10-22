@@ -19,6 +19,7 @@ struct EclipseDayScreen: View {
     @State private var player = CuePlayer()
     @State private var spoken: EclipseTimeline.Cue?
     @AppStorage(SettingsKey.locationMode) private var locationMode = "current"
+    @AppStorage(SettingsKey.eclipsePhotographer) private var photographer = false
     @Environment(\.dismiss) private var dismiss
 
     private let ink = Color(red: 0.95, green: 0.95, blue: 0.93)
@@ -56,9 +57,11 @@ struct EclipseDayScreen: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done") { dismiss() } } }
         }
-        .task(id: [site.latitude, site.longitude, site.height, (fix?.accuracy ?? .infinity) < EclipseTimeline.maximumAccuracy ? 1 : 0]) {
-            let date = date, site = site, accuracy = fix?.accuracy
-            let t = await Task.detached { LocalEclipse.at(site, near: date).flatMap { try? EclipseTimeline($0, observer: site, accuracy: accuracy) } }.value
+        .task(id: [site.latitude, site.longitude, site.height, (fix?.accuracy ?? .infinity) < EclipseTimeline.maximumAccuracy ? 1 : 0, photographer ? 1 : 0]) {
+            let date = date, site = site, accuracy = fix?.accuracy, photographer = photographer
+            let t = await Task.detached {
+                LocalEclipse.at(site, near: date).flatMap { try? EclipseTimeline($0, observer: site, accuracy: accuracy, photographer: photographer) }
+            }.value
             timeline = t
             if rehearsal, shift == nil, let t { shift = t.rehearsalStart.timeIntervalSinceNow }
         }

@@ -27,6 +27,8 @@ enum SettingsKey {
     static let cloudForecast = "cloudForecast"
     /// The eclipse eye-safety note has been shown before a countdown or rehearsal.
     static let eclipseSafetyShown = "eclipseSafetyShown"
+    /// Camera filter cues in the eclipse-day countdown.
+    static let eclipsePhotographer = "eclipsePhotographer"
 }
 
 struct City: Hashable, Identifiable {
