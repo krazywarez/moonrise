@@ -21,6 +21,7 @@ struct MoonriseWidgets: WidgetBundle {
         EventLiveActivity()
         EclipseLiveActivity()
         PassLiveActivity()
+        StormLiveActivity()
         #endif
     }
 }

@@ -504,3 +504,45 @@ test("a list poll leaves unchanged launches alone; a tick without a poll runs th
   assert.equal(count(db, "SELECT count(*) AS n FROM writes"), 2);
   assert.deepEqual({ ...db.prepare("SELECT status, launch_designator FROM launches").get() }, { status: "TBC", launch_designator: "2026-232" });
 });
+
+test("a storm opens a channel pair, updates it, and ends it after 3 calm hours; /v1/today names the channels", async () => {
+  const { db, env } = await setup({ APNS_MANAGE_CHANNELS: "1" });
+  const push = apns();
+  const managed: string[] = [];
+  const bodies: string[] = [];
+  let kp = 5.3;
+  const manage: Handler = (_url, init) => {
+    managed.push(String(init.method));
+    return new Response(null, { status: init.method === "DELETE" ? 204 : 201, headers: { "apns-channel-id": `storm-${managed.length}` } });
+  };
+  network({
+    ...push.handlers,
+    "api.push.apple.com": (url, init) => { bodies.push(String(init.body)); return push.handlers["api.push.apple.com"](url, init); },
+    "api-manage-broadcast.push.apple.com": manage,
+    "api-manage-broadcast.sandbox.push.apple.com": manage,
+    "services.swpc.noaa.gov": (url) =>
+      Response.json(url.pathname.includes("planetary_k_index_1m") ? [{ time_tag: "2026-10-20T22:00:00", estimated_kp: kp }] : []),
+  });
+  await run(env, FIVE, "2026-10-20T22:00:00Z");
+  assert.deepEqual(managed, ["POST", "POST"]);
+  assert.equal(push.state.broadcasts, 2);
+  const today = await (await worker.fetch(new Request("https://moonrise.krz.sh/v1/today"), env as never)).json() as { storm: { channels: Record<string, string>; state: { kp: number } } };
+  assert.deepEqual(today.storm.channels, { sandbox: "storm-1", production: "storm-2" });
+  assert.equal(today.storm.state.kp, 5.3);
+
+  await run(env, FIVE, "2026-10-20T22:05:00Z");
+  assert.equal(push.state.broadcasts, 2, "no change within 30 minutes");
+  kp = 3;
+  await run(env, FIVE, "2026-10-20T22:10:00Z");
+  assert.equal(push.state.broadcasts, 4, "fell below G1");
+  await run(env, FIVE, "2026-10-21T01:00:00Z");
+  assert.equal(count(db, "SELECT COUNT(*) AS n FROM storm_channels WHERE ended_at IS NULL"), 2, "calm for under 3 hours since 22:05");
+  await run(env, FIVE, "2026-10-21T01:05:00Z");
+  assert.match(bodies.at(-1)!, /"event":"end"/);
+  assert.equal(count(db, "SELECT COUNT(*) AS n FROM storm_channels WHERE ended_at IS NULL"), 0);
+  const after = await (await worker.fetch(new Request("https://moonrise.krz.sh/v1/today?x"), env as never)).json() as { storm: unknown };
+  assert.equal(after.storm, null);
+  await run(env, FIVE, "2026-10-21T09:15:00Z");
+  assert.deepEqual(managed, ["POST", "POST", "DELETE", "DELETE"]);
+  assert.equal(count(db, "SELECT COUNT(*) AS n FROM storm_channels"), 0);
+});

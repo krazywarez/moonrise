@@ -45,6 +45,16 @@ let forecast = Data("""
     #expect(try SolarWind.decodeToday(Data(#"{"spaceWeather":null}"#.utf8)) == nil)
 }
 
+@Test func decodesBackendStorm() throws {
+    let data = Data(#"{"spaceWeather":null,"solarWind":null,"storm":{"startedAt":"2026-10-20T22:00:00.000Z","channels":{"sandbox":"c1","production":"c2"},"state":{"kp":5.33,"expectedKp":5.67,"early":false,"bz":null,"speed":610}}}"#.utf8)
+    let s = try #require(try StormCoverage.decodeToday(data))
+    #expect(s.channels["production"] == "c2")
+    #expect(s.state.expectedKp == 5.67)
+    #expect(s.state.bz == nil)
+    #expect(s.startedAt == (try Date("2026-10-20T22:00:00Z", strategy: .iso8601)))
+    #expect(try StormCoverage.decodeToday(Data(#"{"spaceWeather":null,"storm":null}"#.utf8)) == nil)
+}
+
 @Test func decodesBackendSun() throws {
     let data = Data(#"{"enlil":{"fetchedAt":"x","points":[{"t":"2026-10-22T00:00:00.000Z","speed":410,"density":5,"cloud":false}]},"ccor2":{"fetchedAt":"x","frames":[{"t":"2026-10-22T03:30:00.000Z","url":"https://services.swpc.noaa.gov/images/animations/ccor2/20261022_0330_ccor2_1024by960.jpg"}]},"cycle":{"fetchedAt":null,"months":null}}"#.utf8)
     let s = try SunForecast.decode(data)

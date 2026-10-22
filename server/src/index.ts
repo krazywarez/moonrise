@@ -7,6 +7,7 @@ import { fetchLaunch, fetchLaunches, PREVIOUS_URL, throttleSeconds, Throttled, U
 import { digestPayload, dueOffsets, fetchLatest, localDate, pickHeadlines, type Article } from "./news";
 import { fetchSolarWind, STORM_KP, stormLikely, type SolarWind } from "./solarwind";
 import { fetchSmallBodies } from "./smallbodies";
+import { CALM_MS, stormActive, stormEnd, stormUpdate, type StormPush, type StormState } from "./storm";
 import { fetchCcor2, fetchCycle, fetchEnlil } from "./sun";
 import { fetchSpaceWeather, next24h, type SpaceWeather } from "./swpc";
 
@@ -126,9 +127,17 @@ async function today(env: Env, now: Date): Promise<Response> {
   const w = JSON.parse(row.body) as SpaceWeather;
   w.forecast = w.forecast.map((f) => ({ ...f, start: new Date(f.start) }));
   const wind = await env.DB.prepare("SELECT body FROM feed_snapshots WHERE feed = 'rtsw' AND ok = 1").first<{ body: string }>();
+  const storm = await env.DB.prepare("SELECT channel_id, environment, started_at, sent FROM storm_channels WHERE ended_at IS NULL AND sent IS NOT NULL")
+    .all<{ channel_id: string; environment: string; started_at: string; sent: string }>();
   return json({
     spaceWeather: { kpNow: w.kpNow, observedAt: w.observedAt, kpNext24h: next24h(w, now), fetchedAt: row.fetched_at },
     solarWind: wind ? JSON.parse(wind.body) : null,
+    // The storm Live Activity's channel for each APNs environment and the state last broadcast on it.
+    storm: storm.results.length ? {
+      startedAt: storm.results[0].started_at,
+      channels: Object.fromEntries(storm.results.map((c) => [c.environment, c.channel_id])),
+      state: JSON.parse(storm.results[0].sent),
+    } : null,
   }, 200, MAX_AGE.today);
 }
 
@@ -491,7 +500,59 @@ async function pollSpaceWeather(env: Env, now: Date): Promise<void> {
   await env.DB.prepare(
     "INSERT INTO feed_snapshots (feed, fetched_at, ok, body) VALUES ('swpc', ?1, 1, ?2) ON CONFLICT (feed) DO UPDATE SET fetched_at = ?1, ok = 1, body = ?2",
   ).bind(now.toISOString(), JSON.stringify(w)).run();
-  await sendAuroraAlerts(env, w, await pollSolarWind(env, now), now);
+  const wind = await pollSolarWind(env, now);
+  await sendAuroraAlerts(env, w, wind, now);
+  await stormChannels(env, {
+    kp: w.kpNow, expectedKp: actionableKp(w.kpNow, w.forecast, now), early: stormLikely(wind, now),
+    bz: wind?.series.findLast((p) => p.bz !== null)?.bz ?? null, speed: wind?.series.findLast((p) => p.speed !== null)?.speed ?? null,
+  }, now);
+}
+
+/**
+ * Broadcast channels for the storm Live Activity: a pair (sandbox, production) opens when a storm starts, carries
+ * its updates, and closes with an end message after 3 calm hours. Channels are deleted once that message expires.
+ */
+async function stormChannels(env: Env, state: StormState, now: Date): Promise<void> {
+  if (!env.APNS_KEY) return;
+  const config: ApnsConfig = { keyId: env.APNS_KEY_ID, teamId: env.APNS_TEAM_ID, privateKey: env.APNS_KEY, topic: env.APNS_TOPIC };
+  const iso = now.toISOString();
+  const active = stormActive(state);
+  let open = (await env.DB.prepare("SELECT channel_id, environment, active_at, sent, sent_at FROM storm_channels WHERE ended_at IS NULL")
+    .all<{ channel_id: string; environment: string; active_at: string; sent: string | null; sent_at: string | null }>()).results;
+  if (!open.length && active && env.APNS_MANAGE_CHANNELS === "1") {
+    for (const environment of ["sandbox", "production"]) {
+      const c = await createChannel(config, environment === "sandbox");
+      if (!c.channelId) {
+        console.error("apns storm channel", c.status, c.reason);
+        continue;
+      }
+      await env.DB.prepare("INSERT INTO storm_channels (channel_id, environment, started_at, active_at) VALUES (?1, ?2, ?3, ?3)").bind(c.channelId, environment, iso).run();
+      open.push({ channel_id: c.channelId, environment, active_at: iso, sent: null, sent_at: null });
+    }
+  }
+  for (const c of open) {
+    const end = !active && now.getTime() - Date.parse(c.active_at) >= CALM_MS;
+    const push: StormPush | null = end ? stormEnd(state, now)
+      : stormUpdate(c.sent && c.sent_at ? { state: JSON.parse(c.sent), at: new Date(c.sent_at) } : null, state, now);
+    if (active) await env.DB.prepare("UPDATE storm_channels SET active_at = ?2 WHERE channel_id = ?1").bind(c.channel_id, iso).run();
+    if (!push) continue;
+    const r = await broadcast(config, c.channel_id, push.payload, c.environment === "sandbox", push.priority, Math.floor(now.getTime() / 1000) + 8 * 3600)
+      .catch((e) => ({ status: 0, reason: String(e) }));
+    if (r.status !== 200) {
+      console.error("apns storm broadcast", r.status, r.reason);
+      continue;
+    }
+    await env.DB.prepare("UPDATE storm_channels SET sent = ?2, sent_at = ?3, ended_at = ?4 WHERE channel_id = ?1")
+      .bind(c.channel_id, JSON.stringify(state), iso, end ? iso : null).run();
+  }
+  if (env.APNS_MANAGE_CHANNELS !== "1") return;
+  const done = await env.DB.prepare("SELECT channel_id, environment FROM storm_channels WHERE ended_at < ?1")
+    .bind(new Date(now.getTime() - 8 * 3600_000).toISOString()).all<{ channel_id: string; environment: string }>();
+  for (const c of done.results) {
+    const r = await deleteChannel(config, c.channel_id, c.environment === "sandbox");
+    if (r.status === 204 || r.status === 404) await env.DB.prepare("DELETE FROM storm_channels WHERE channel_id = ?1").bind(c.channel_id).run();
+    else console.error("apns storm channel delete", r.status, r.reason);
+  }
 }
 
 /** RTSW, reduced; the last good copy is kept on failure, and null is returned so no alert rests on old wind. */

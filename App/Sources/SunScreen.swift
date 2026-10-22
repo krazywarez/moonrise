@@ -13,6 +13,7 @@ struct SunScreen: View {
     @State private var picture: Picture?
     @State private var imageFailed = false
     @State private var solarWind: SolarWind?
+    @State private var storm: StormCoverage?
     @State private var regions: [SolarRegion] = []
     @State private var forecast: SunForecast?
     @AppStorage("sunRegionLabels") private var regionLabels = true
@@ -75,7 +76,10 @@ struct SunScreen: View {
                 if let c = forecast?.cycle {
                     section("Solar cycle 25", note: "Monthly sunspot numbers since the cycle began in December 2019 (bars), smoothed (red), and NOAA's prediction with its range.") { CycleChart(cycle: c, ink: ink, accent: accent) }
                 }
-                section("Geomagnetic activity (Kp)", note: "How disturbed Earth's magnetic field is, from 0 (quiet) to 9. At 5 or more it is a storm and the aurora reaches lower latitudes.") { kpChart }
+                section("Geomagnetic activity (Kp)", note: "How disturbed Earth's magnetic field is, from 0 (quiet) to 9. At 5 or more it is a storm and the aurora reaches lower latitudes.") {
+                    kpChart
+                    if let storm { StormFollowButton(storm: storm, ink: ink) }
+                }
 
                 Text("The Sun as NASA's Solar Dynamics Observatory sees it now, and the space weather it sends our way: flares, magnetic storms and the aurora.")
                     .font(.footnote).dimmed(0.6).padding(.top, 24)
@@ -94,6 +98,7 @@ struct SunScreen: View {
     private func load(force: Bool) async {
         if data == nil { await show(SunFeeds.lastSaved()) }
         if let apiBase { solarWind = (try? await SolarWind.fetch(base: apiBase)) ?? solarWind }
+        if let apiBase { do { storm = try await StormCoverage.fetch(base: apiBase) } catch {} }
         regions = (try? await SolarRegion.fetch()) ?? regions
         if let apiBase { forecast = (try? await SunForecast.fetch(base: apiBase)) ?? forecast }
         if force { imageID = .now }

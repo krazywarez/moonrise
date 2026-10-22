@@ -12,6 +12,7 @@ struct SampleActivitiesSection: View {
             Button("Pass rising in 2 minutes") { startPass() }
             Button("Launch at T−5 minutes") { startLaunch() }
             Button("Eclipse, first contact in 3 minutes") { startEclipse() }
+            Button("G2 storm") { startStorm() }
             Button("End all sample activities", role: .destructive) { Task { await endAll() } }
             if let message {
                 Text(message).font(.footnote).foregroundStyle(.secondary)
@@ -45,6 +46,11 @@ struct SampleActivitiesSection: View {
             c3: c1.addingTimeInterval(420), c4: c1.addingTimeInterval(900), timeZone: TimeZone.current.identifier
         )
         request(attributes, ActivityContent(state: .init(), staleDate: attributes.c4))
+    }
+
+    private func startStorm() {
+        let state = StormActivityAttributes.ContentState(kp: 6.33, expectedKp: 7, early: false, bz: -14, speed: 640, updated: .now)
+        request(StormActivityAttributes(startedAt: .now), ActivityContent(state: state, staleDate: .now.addingTimeInterval(45 * 60)))
     }
 
     private func request<A: ActivityAttributes>(_ attributes: A, _ content: ActivityContent<A.ContentState>) {
