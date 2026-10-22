@@ -14,6 +14,8 @@ struct MoonriseWatchApp: App {
 struct TonightView: View {
     @State private var location = WatchLocation()
     @State private var tonight: Tonight?
+    @State private var eclipse: WatchEclipse?
+    @State private var haptics = EclipseHaptics()
 
     var body: some View {
         ScrollView {
@@ -29,6 +31,7 @@ struct TonightView: View {
                         }
                     }
                     .accessibilityElement(children: .combine)
+                    if let eclipse { EclipseSection(eclipse: eclipse, haptics: haptics).padding(.vertical, 4) }
                     if let s = t.sunset { row("Sunset", time(s)) }
                     if let r = t.sunrise { row("Sunrise", time(r)) }
                     Text("Planets").font(.footnote.weight(.medium)).foregroundStyle(.secondary).padding(.top, 4)
@@ -50,6 +53,7 @@ struct TonightView: View {
         .task(id: location.observer) {
             let observer = location.observer
             tonight = await Task.detached { try? Tonight(at: .now, from: observer) }.value
+            eclipse = await Task.detached { WatchEclipse.next(from: .now, observer: observer) }.value
         }
         .onAppear { location.start() }
     }
