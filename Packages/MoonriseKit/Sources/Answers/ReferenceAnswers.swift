@@ -3,7 +3,7 @@ import Library
 import SkyEngine
 import SkyRenderer
 
-/// The five deep-space probes in `Spacecraft.all`, by name.
+/// The deep-space probes in `Spacecraft.all` that answers cover, by name.
 public enum Probe: String, CaseIterable, Sendable {
     case voyager1 = "Voyager 1", voyager2 = "Voyager 2", pioneer10 = "Pioneer 10", pioneer11 = "Pioneer 11", newHorizons = "New Horizons"
 }

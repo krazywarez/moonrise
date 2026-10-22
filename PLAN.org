@@ -565,8 +565,11 @@ Worker; DSN Now freshness; NASA/ESA image licences; 26 LoC plates bundled.
 ** v5.4: System
 - Juno, Europa Clipper, JUICE, Psyche, Parker Solar Probe, Lucy on the
   orrery (Horizons =-61=, =-159=, =-28=, =-255=, =-96=, =-49=; all have
-  current ephemerides).
+  current ephemerides). Done: =scripts/make-spacecraft.py= adds them to
+  =spacecraft.json= from launch to five years ahead (10-day steps, 2 for
+  Parker).
 - Later crewed and lunar missions in =server/src/live.ts= as they launch.
+  Ongoing: none due as of 2026-10-22.
 
 ** v5.5: Live Activities
 - Geomagnetic storm and meteor shower peak Live Activities.

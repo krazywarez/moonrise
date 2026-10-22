@@ -6,7 +6,12 @@ import Testing
 let october2026 = Date(timeIntervalSince1970: 1_792_195_200) // 2026-10-17T00:00:00Z
 
 @Test func spacecraftLoadAndInterpolate() throws {
-    #expect(Spacecraft.all.map(\.name) == ["Voyager 1", "Voyager 2", "Pioneer 10", "Pioneer 11", "New Horizons"])
+    #expect(Spacecraft.all.map(\.name) == ["Voyager 1", "Voyager 2", "Pioneer 10", "Pioneer 11", "New Horizons",
+                                           "Juno", "Parker Solar Probe", "Lucy", "JUICE", "Psyche", "Europa Clipper"])
+    // Juno orbits Jupiter.
+    let juno = try #require(Spacecraft.all.first { $0.name == "Juno" }?.position3(at: october2026))
+    let jupiter = try SkyEngine.heliocentricEcliptic(.jupiter, at: october2026)
+    #expect(((juno - jupiter) * (juno - jupiter)).sum().squareRoot() < 0.05)
     let v1 = try #require(Spacecraft.all.first { $0.name == "Voyager 1" })
     let p = try #require(v1.position(at: october2026))
     let au = (p * p).sum().squareRoot()
