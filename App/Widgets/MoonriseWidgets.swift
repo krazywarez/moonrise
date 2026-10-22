@@ -12,6 +12,8 @@ struct MoonriseWidgets: WidgetBundle {
         #if os(iOS)
         KpWidget()
         NextLaunchWidget()
+        VoyagerWidget()
+        SunWidget()
         LaunchLiveActivity()
         EventLiveActivity()
         EclipseLiveActivity()
