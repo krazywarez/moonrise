@@ -535,7 +535,11 @@ Worker; DSN Now freshness; NASA/ESA image licences; 26 LoC plates bundled.
   projection, drawn as blurred discs; Settings switch.
 - Comets in the Sky tab and the orrery from JPL SBDB, fetched daily by the
   Worker. The orrery has periodic comets (Kepler.swift); needs parabolic and
-  hyperbolic orbits. Then bright asteroids.
+  hyperbolic orbits. Then bright asteroids. Done: =/v1/smallbodies= (comets with q < 3 AU and perihelion
+  within 400 days, numbered asteroids H < 7 inside 6 AU; two SBDB requests a
+  day); =SmallBody= propagates elliptic, near-parabolic and hyperbolic orbits
+  (Ceres 23″ and 0.001 mag from Horizons); shown to magnitude 9 on the sky
+  chart and as comet markers on the 3D orrery.
 - Stars fainter than V 6.5 from Tycho-2 to V 9 (about 110k stars, about
   1.6 MB binary), NGC objects, a deeper zoom and eyepiece field-of-view
   circles from the equipment inventory. Merge: drop Tycho-2 stars matched to

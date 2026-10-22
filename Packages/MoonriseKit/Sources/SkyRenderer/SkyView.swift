@@ -149,6 +149,7 @@ public struct SkyView: View {
             drawConstellations(&context, p)
             drawStars(&context, p)
             if showDeepSky { drawDeepSky(&context, p) }
+            drawSmallBodies(&context, p)
             drawBodies(&context, p)
             if let highlight { drawHighlight(highlight, &context, p) }
             drawHorizon(&context, p, size: size)
@@ -330,6 +331,34 @@ public struct SkyView: View {
         let c = CGPoint(x: p.size.width / 2, y: p.size.height / 2)
         context.stroke(Path(ellipseIn: CGRect(x: c.x - r, y: c.y - r, width: 2 * r, height: 2 * r)), with: .color(style.highlight), lineWidth: 1.5)
         label(&context, String(format: "%.2f°", degrees), at: CGPoint(x: c.x, y: c.y + r + 4), anchor: .top, color: style.highlight)
+    }
+
+    /// Comets as open circles, asteroids as small diamonds, named at 90° field or closer.
+    func drawSmallBodies(_ context: inout GraphicsContext, _ p: Projection) {
+        var comets = Path(), asteroids = Path()
+        for b in scene.smallBodies where b.position.altitude > 0 {
+            guard let pt = p.point(b.position) else { continue }
+            let r = max(2.5, 4.5 - 0.3 * b.magnitude)
+            if b.body.isComet {
+                comets.addEllipse(in: CGRect(x: pt.x - r, y: pt.y - r, width: 2 * r, height: 2 * r))
+            } else {
+                asteroids.move(to: CGPoint(x: pt.x, y: pt.y - r))
+                asteroids.addLine(to: CGPoint(x: pt.x + r, y: pt.y))
+                asteroids.addLine(to: CGPoint(x: pt.x, y: pt.y + r))
+                asteroids.addLine(to: CGPoint(x: pt.x - r, y: pt.y))
+                asteroids.closeSubpath()
+            }
+            if fieldOfView <= 90 {
+                label(&context, Self.shortName(b.body.name), at: CGPoint(x: pt.x + r + 3, y: pt.y), anchor: .leading, color: style.muted)
+            }
+        }
+        context.stroke(comets, with: .color(style.planet), lineWidth: 1.2)
+        context.fill(asteroids, with: .color(style.planet.opacity(0.8)))
+    }
+
+    /// "1 Ceres" for "1 Ceres (A801 AA)"; comets as given.
+    static func shortName(_ name: String) -> String {
+        name.range(of: " (").map { String(name[..<$0.lowerBound]) } ?? name
     }
 
     func drawBodies(_ context: inout GraphicsContext, _ p: Projection) {

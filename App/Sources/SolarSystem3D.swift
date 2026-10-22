@@ -372,6 +372,11 @@ struct SolarSystem3DView: View {
             let shown = layers.comets && (Self.mainComets.contains(c.id) || showerParents.contains(c.id))
             out.append(SolarMarker(id: "comet:\(c.id)", name: c.name, kind: .comet, scene: s, radius: dot(s), visible: shown))
         }
+        // Comets near perihelion from JPL's Small-Body Database, through the backend.
+        for b in SkyModel.shared.smallBodies where b.isComet {
+            let s = map.point(b.position(at: date))
+            out.append(SolarMarker(id: "sbdb:\(b.name)", name: b.name, kind: .comet, scene: s, radius: dot(s), visible: layers.comets))
+        }
         return out
     }
 

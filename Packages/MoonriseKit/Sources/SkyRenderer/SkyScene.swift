@@ -153,6 +153,12 @@ public struct PlacedDeepSky: Sendable {
     public var north: Horizontal
 }
 
+public struct PlacedSmallBody: Sendable {
+    public var body: SmallBody
+    public var position: Horizontal
+    public var magnitude: Double
+}
+
 public struct PlacedBody: Sendable {
     public var body: Body
     public var position: Horizontal
@@ -169,6 +175,9 @@ public struct SkyScene: Sendable {
     public var bodies: [PlacedBody]
     public var deepSky: [PlacedDeepSky]
     public var ngc: [PlacedDeepSky]
+    /// Comets and asteroids brighter than `smallBodyLimit`.
+    public var smallBodies: [PlacedSmallBody]
+    public static let smallBodyLimit = 9.0
     /// Moon's elongation east of the sun, degrees (0 new, 180 full).
     public var moonPhase: Double
     /// Milky Way cells brighter than `milkyWayFloor`, above −3° (the rest are dropped before projection).
@@ -189,7 +198,7 @@ public struct SkyScene: Sendable {
         return zip(near, placed).map { PlacedStar(star: $0, position: $1) }
     }
 
-    public init(date: Date, observer: Observer, magnitudeLimit: Double = 6.5) throws {
+    public init(date: Date, observer: Observer, magnitudeLimit: Double = 6.5, smallBodies: [SmallBody] = []) throws {
         self.date = date
         self.observer = observer
         let visible = Catalog.stars.filter { $0.magnitude <= magnitudeLimit }
@@ -210,6 +219,9 @@ public struct SkyScene: Sendable {
             )
         }
         moonPhase = try SkyEngine.moonPhase(at: date)
+        let bright = smallBodies.compactMap { b in (try? b.apparent(at: date)).flatMap { $0.magnitude <= Self.smallBodyLimit ? (b, $0) : nil } }
+        let placedSmall = SkyEngine.horizontal(j2000: bright.map { ($0.1.ra, $0.1.dec) }, at: date, from: observer)
+        self.smallBodies = zip(bright, placedSmall).map { PlacedSmallBody(body: $0.0, position: $1, magnitude: $0.1.magnitude) }
         let cells = Catalog.milkyWay.enumerated().filter { $0.element > Self.milkyWayFloor }
         let centres = cells.map { (ra: 1 + 2 * Double($0.offset % 180), dec: -89 + 2 * Double($0.offset / 180)) }
         let placed = SkyEngine.horizontal(j2000: centres, at: date, from: observer)

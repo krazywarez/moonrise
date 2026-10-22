@@ -6,6 +6,7 @@ import { activeEvent, fetchTrajectory, STEP_MINUTES } from "./live";
 import { fetchLaunch, fetchLaunches, PREVIOUS_URL, throttleSeconds, Throttled, UPCOMING_URL, type Launch } from "./ll2";
 import { digestPayload, dueOffsets, fetchLatest, localDate, pickHeadlines, type Article } from "./news";
 import { fetchSolarWind, STORM_KP, stormLikely, type SolarWind } from "./solarwind";
+import { fetchSmallBodies } from "./smallbodies";
 import { fetchCcor2, fetchCycle, fetchEnlil } from "./sun";
 import { fetchSpaceWeather, next24h, type SpaceWeather } from "./swpc";
 
@@ -50,7 +51,7 @@ const json = (body: unknown, status = 200, maxAge?: number) =>
 const PRIVACY_URL = "https://krz.sh/privacy/moonrise/";
 
 /** Read-only endpoints whose responses are the same for everyone. */
-const API = new Set(["/v1/today", "/v1/launches", "/v1/live", "/v1/satellites", "/v1/news", "/v1/sun"]);
+const API = new Set(["/v1/today", "/v1/launches", "/v1/live", "/v1/satellites", "/v1/news", "/v1/sun", "/v1/smallbodies"]);
 
 function api(url: URL, env: Env, now: Date): Promise<Response> {
   switch (url.pathname) {
@@ -59,8 +60,15 @@ function api(url: URL, env: Env, now: Date): Promise<Response> {
     case "/v1/live": return live(env, url, now);
     case "/v1/news": return news(env);
     case "/v1/sun": return sun(env);
+    case "/v1/smallbodies": return smallBodies(env);
     default: return satellites(env);
   }
+}
+
+/** Comets near perihelion and bright asteroids, refreshed daily. */
+async function smallBodies(env: Env): Promise<Response> {
+  const row = await env.DB.prepare("SELECT fetched_at, body FROM feed_snapshots WHERE feed = 'sbdb' AND ok = 1").first<{ fetched_at: string; body: string }>();
+  return json({ fetchedAt: row?.fetched_at ?? null, bodies: row ? JSON.parse(row.body) : [] }, 200, MAX_AGE.smallBodies);
 }
 
 /** WSA-Enlil at Earth, CCOR-2 frames and solar cycle 25, each with the time it was fetched. */
@@ -101,7 +109,7 @@ async function cached(request: Request, ctx: ExecutionContext | undefined, respo
 }
 
 /** How long clients may reuse each GET response, matched to how often its source is polled. */
-export const MAX_AGE = { today: 60, launches: 300, satellites: 3600, live: 300, news: 600, sun: 1800 } as const;
+export const MAX_AGE = { today: 60, launches: 300, satellites: 3600, live: 300, news: 600, sun: 1800, smallBodies: 3600 } as const;
 
 function validDevice(d: Partial<DeviceRequest>): d is DeviceRequest {
   return (
@@ -511,6 +519,8 @@ async function pollSun(env: Env, now: Date): Promise<void> {
   const jobs: [string, () => Promise<unknown>][] = [["sun:enlil", () => fetchEnlil(now)], ["sun:ccor2", () => fetchCcor2(now)]];
   const cycle = await env.DB.prepare("SELECT 1 FROM feed_snapshots WHERE feed = 'sun:cycle' AND ok = 1").first();
   if (now.getUTCHours() === 0 || !cycle) jobs.push(["sun:cycle", () => fetchCycle()]);
+  const sbdb = await env.DB.prepare("SELECT 1 FROM feed_snapshots WHERE feed = 'sbdb' AND ok = 1").first();
+  if (now.getUTCHours() === 3 || !sbdb) jobs.push(["sbdb", () => fetchSmallBodies(now)]);
   for (const [feed, job] of jobs) {
     try {
       await save.bind(feed, now.toISOString(), JSON.stringify(await job())).run();

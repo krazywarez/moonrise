@@ -9,8 +9,8 @@ import SkyRenderer
 
 /// Serializes Astronomy Engine calls, which are not thread-safe.
 actor Astronomer {
-    func scene(at date: Date, from observer: Observer) throws -> SkyScene {
-        try SkyScene(date: date, observer: observer)
+    func scene(at date: Date, from observer: Observer, smallBodies: [SmallBody] = []) throws -> SkyScene {
+        try SkyScene(date: date, observer: observer, smallBodies: smallBodies)
     }
 
     func details(of body: Body, at date: Date, from observer: Observer) throws -> BodyDetails {
@@ -57,6 +57,9 @@ final class SkyModel: NSObject, CLLocationManagerDelegate {
     private(set) var spaceWeather: SpaceWeather?
     private(set) var passes: [SatellitePass] = []
     private var elements: [OrbitalElements] = []
+    /// Comets and asteroids from the backend's /v1/smallbodies (JPL SBDB, refreshed daily).
+    private(set) var smallBodies: [SmallBody] = []
+    private var smallBodiesFetched: Date?
     private var elementsFetched: Date?
     private var passesComputed: (at: Date, observer: Observer, elementsFetched: Date?)?
     private var weatherFetched: Date?
@@ -138,11 +141,15 @@ final class SkyModel: NSObject, CLLocationManagerDelegate {
         guard !building else { pending = true; return }
         building = true
         let date = displayedDate, observer = observer, astronomer = astronomer
+        if smallBodiesFetched.map({ Date.now.timeIntervalSince($0) > 3600 }) ?? true {
+            Task { if await refreshSmallBodies() { refresh() } }
+        }
+        let small = smallBodies
         Task {
             let clock = ContinuousClock()
             var scene: SkyScene?
             let start = clock.now
-            scene = try? await astronomer.scene(at: date, from: observer)
+            scene = try? await astronomer.scene(at: date, from: observer, smallBodies: small)
             lastBuild = clock.now - start
             if let scene { self.scene = scene }
             if offsetHours == 0, historicalYear == nil { tonight = try? await astronomer.tonight(at: date, from: observer) }
@@ -150,6 +157,17 @@ final class SkyModel: NSObject, CLLocationManagerDelegate {
             building = false
             if pending { pending = false; refresh() }
         }
+    }
+
+    private struct SmallBodyList: Decodable { var bodies: [SmallBody] }
+
+    /// At most once an hour; the backend refreshes daily. Returns whether the list changed.
+    func refreshSmallBodies() async -> Bool {
+        smallBodiesFetched = .now
+        guard let apiBase, let (data, _) = try? await URLSession.shared.data(from: apiBase.appending(path: "v1/smallbodies")),
+              let list = try? JSONDecoder().decode(SmallBodyList.self, from: data), list.bodies != smallBodies else { return false }
+        smallBodies = list.bodies
+        return true
     }
 
     private struct SatelliteList: Decodable { var satellites: [OrbitalElements] }
