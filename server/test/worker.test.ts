@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readdirSync, readFileSync } from "node:fs";
 import { registerHooks } from "node:module";
 import { DatabaseSync, type SQLInputValue } from "node:sqlite";
-import { afterEach, test } from "node:test";
+import { afterEach, mock, test } from "node:test";
 
 // src/index.ts imports without extensions, which wrangler's bundler resolves.
 registerHooks({
@@ -317,6 +317,35 @@ test("GET API responses are served from the edge cache until they expire", async
     assert.equal(puts.length, 3, "error, health or POST response was cached");
   } finally {
     delete (globalThis as { caches?: unknown }).caches;
+  }
+});
+
+test("/v1/live asks Horizons at most once per 10 minutes, after failures too, and sends a contact", async () => {
+  const { env } = await setup();
+  let up = false;
+  const agents: string[] = [];
+  const hosts = network({
+    "ssd.jpl.nasa.gov": (_url, init) => {
+      agents.push(new Headers(init.headers).get("user-agent") ?? "");
+      if (!up) return new Response("timeout", { status: 522 });
+      return Response.json({ result: "$$SOE\n2461132.500000000, A.D. 2026-Apr-03 00:00:00.0000, 1.0E+05, 2.0E+05, 3.0E+04,\n$$EOE" });
+    },
+  });
+  mock.timers.enable({ apis: ["Date"], now: Date.parse("2026-10-22T00:00:00Z") });
+  const live = async () => (await (await worker.fetch(new Request("https://moonrise.test/v1/live?at=2026-04-06T23:00:00Z"), env as never)).json()) as { points: number[][] };
+  try {
+    assert.equal((await live()).points.length, 0);
+    assert.equal((await live()).points.length, 0);
+    assert.equal(hosts.length, 1, "retried within 10 minutes of a failure");
+    assert.match(agents[0], /^Moonrise\/\d+\.\d+\.\d+ \(sh\.krz\.moonrise; root@krz\.sh\)$/);
+
+    up = true;
+    mock.timers.setTime(Date.parse("2026-10-22T00:11:00Z"));
+    assert.equal((await live()).points.length, 1);
+    assert.equal((await live()).points.length, 1);
+    assert.equal(hosts.length, 2, "stored trajectory read from D1");
+  } finally {
+    mock.timers.reset();
   }
 });
 

@@ -42,6 +42,9 @@ export const EVENTS: LiveEvent[] = [
 
 export const STEP_MINUTES = 30;
 
+/** JPL's SSD API fair use policy asks for the product name, version and a contact. */
+export const HORIZONS_USER_AGENT = "Moonrise/4.1.0 (sh.krz.moonrise; root@krz.sh)";
+
 /** The event whose window contains `at`, if any. */
 export function activeEvent(at: Date, events = EVENTS): LiveEvent | undefined {
   return events.find((e) => Date.parse(e.launch) <= at.getTime() && at.getTime() <= Date.parse(e.end));
@@ -84,7 +87,7 @@ export async function fetchTrajectory(e: LiveEvent, until: Date, from = new Date
     START_TIME: `'${fmt(start)}'`, STOP_TIME: `'${fmt(stop)}'`, STEP_SIZE: `'${STEP_MINUTES}m'`,
     VEC_TABLE: "'1'", OUT_UNITS: "'KM-S'", CSV_FORMAT: "'YES'", OBJ_DATA: "'NO'", MAKE_EPHEM: "'YES'",
   });
-  const res = await fetch(`https://ssd.jpl.nasa.gov/api/horizons.api?${params}`, { headers: { "user-agent": "moonrise-server (sh.krz.moonrise)" } });
+  const res = await fetch(`https://ssd.jpl.nasa.gov/api/horizons.api?${params}`, { headers: { "user-agent": HORIZONS_USER_AGENT } });
   if (res.status !== 200) throw new Error(`Horizons ${res.status}`);
   const result = ((await res.json()) as { result: string }).result;
   const first = ephemerisLimit(result, "prior to");

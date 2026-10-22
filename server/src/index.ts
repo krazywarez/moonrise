@@ -167,7 +167,7 @@ async function sendTest(env: Env, token: string, now: Date): Promise<Response> {
 /**
  * The live event at `?at=` (default now) and its geocentric ecliptic trajectory up to then:
  * points are [unix seconds, x, y, z] km. The cached trajectory is refreshed from Horizons at most
- * every 10 minutes while the event runs.
+ * every 10 minutes while the event runs, and no sooner than 10 minutes after a failed attempt.
  */
 async function live(env: Env, url: URL, now: Date): Promise<Response> {
   const atParam = url.searchParams.get("at");
@@ -182,7 +182,13 @@ async function live(env: Env, url: URL, now: Date): Promise<Response> {
   const covered = (points.at(-1)?.[0] ?? 0) * 1000;
   const wanted = Math.min(now.getTime(), Date.parse(event.end)) - 2 * STEP_MINUTES * 60_000;
   const stale = !row || points.length === 0 || now.getTime() - Date.parse(row.fetched_at) > 10 * 60_000;
-  if (covered < wanted && stale) {
+  // One Horizons request per event per 10 minutes, across requests and isolates and after failures
+  // (JPL's fair use policy: no simultaneous requests, back off on errors). The request that claims the
+  // attempt row makes it.
+  const claimed = covered < wanted && stale && (await env.DB.prepare(
+    "INSERT INTO feed_snapshots (feed, fetched_at, ok) VALUES (?1, ?2, 0) ON CONFLICT (feed) DO UPDATE SET fetched_at = ?2 WHERE fetched_at < ?3",
+  ).bind(`${key}:attempt`, now.toISOString(), new Date(now.getTime() - 10 * 60_000).toISOString()).run()).meta.changes === 1;
+  if (claimed) {
     try {
       const fresh = await fetchTrajectory(event, now);
       if (fresh.length === 0) throw new Error("no Horizons data");
