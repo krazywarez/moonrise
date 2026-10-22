@@ -216,3 +216,22 @@ public enum SkyEngine {
         return a.angle
     }
 }
+
+extension SkyEngine {
+    /// The J2000 right ascension and declination (degrees) of a horizontal direction, roughly: precession,
+    /// nutation and refraction are ignored, so it is off by up to a degree or so. For choosing which part of a
+    /// catalogue to place, not for placing it.
+    public static func approximateJ2000(of h: Horizontal, at date: Date, from observer: Observer) -> (ra: Double, dec: Double) {
+        lock.lock()
+        var t = time(date)
+        let gast = Astronomy_SiderealTime(&t)
+        lock.unlock()
+        let r = Double.pi / 180
+        let phi = observer.latitude * r, alt = h.altitude * r, az = h.azimuth * r
+        let dec = asin(sin(phi) * sin(alt) + cos(phi) * cos(alt) * cos(az))
+        let ha = atan2(-sin(az) * cos(alt), cos(phi) * sin(alt) - sin(phi) * cos(alt) * cos(az))
+        let lst = gast * 15 + observer.longitude
+        let ra = (lst - ha / r).truncatingRemainder(dividingBy: 360)
+        return (ra < 0 ? ra + 360 : ra, dec / r)
+    }
+}

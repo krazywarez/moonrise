@@ -15,6 +15,7 @@ struct SkyScreen: View {
     @AppStorage(SettingsKey.showDeepSky) private var showDeepSky = true
     @AppStorage(SettingsKey.showMilkyWay) private var showMilkyWay = true
     @AppStorage(SettingsKey.horizonProfile) private var horizonProfile = ""
+    @State private var faint: (key: FaintKey, stars: [PlacedStar])?
     @State private var showSettings = false
     @State private var showEvents = false
     @State private var showLog = false
@@ -48,10 +49,11 @@ struct SkyScreen: View {
                 style.background.ignoresSafeArea()
                 if let scene = model.scene {
                     let view = current(width: geo.size.width)
-                    SkyView(scene: scene, centerAzimuth: view.azimuth, centerAltitude: view.altitude, fieldOfView: view.fieldOfView, style: style, culture: Catalog.skyCultures.first { $0.id == skyCulture }, highlight: (tour.map { $0.steps[tourStep].target } ?? shown).flatMap(highlight), showDeepSky: showDeepSky, showMilkyWay: showMilkyWay, horizon: HorizonProfile(stored: horizonProfile)) { [stats] d in
+                    SkyView(scene: scene, centerAzimuth: view.azimuth, centerAltitude: view.altitude, fieldOfView: view.fieldOfView, style: style, culture: Catalog.skyCultures.first { $0.id == skyCulture }, highlight: (tour.map { $0.steps[tourStep].target } ?? shown).flatMap(highlight), showDeepSky: showDeepSky, showMilkyWay: showMilkyWay, horizon: HorizonProfile(stored: horizonProfile), faintStars: faintStars(scene, view)) { [stats] d in
                         stats.record(d)
                     }
                     .ignoresSafeArea()
+                    .task(id: FaintKey(scene: scene, view: view)) { await loadFaint(scene, view) }
                     .gesture(panGesture(width: geo.size.width).simultaneously(with: zoomGesture))
                     .onTapGesture(coordinateSpace: .local) { location in
                         let p = Projection(centerAzimuth: view.azimuth, centerAltitude: view.altitude, fieldOfView: view.fieldOfView, size: geo.size)
@@ -207,9 +209,38 @@ struct SkyScreen: View {
         Task { details = await model.details(of: body) }
     }
 
+    static let minimumField = 3.0
+    /// Narrower than this, Tycho-2 stars to V 9 are added around the view.
+    static let faintField = 40.0
+
+    /// Which faint stars are loaded: the scene's time and place, and the view centre to 2° and field to 5°.
+    struct FaintKey: Hashable {
+        var date: Date, latitude: Double, longitude: Double, azimuth: Int, altitude: Int, field: Int
+        init(scene: SkyScene, view: (azimuth: Double, altitude: Double, fieldOfView: Double)) {
+            date = scene.date; latitude = scene.observer.latitude; longitude = scene.observer.longitude
+            azimuth = Int(view.azimuth / 2); altitude = Int(view.altitude / 2)
+            field = view.fieldOfView < Self.faintField ? Int(view.fieldOfView / 5) : -1
+        }
+        static var faintField: Double { SkyScreen.faintField }
+    }
+
+    private func faintStars(_ scene: SkyScene, _ view: (azimuth: Double, altitude: Double, fieldOfView: Double)) -> [PlacedStar] {
+        guard view.fieldOfView < Self.faintField, let faint, faint.key.date == scene.date else { return [] }
+        return faint.stars
+    }
+
+    /// Tycho-2 stars within the view's diagonal of its centre, off the main thread.
+    private func loadFaint(_ scene: SkyScene, _ view: (azimuth: Double, altitude: Double, fieldOfView: Double)) async {
+        let key = FaintKey(scene: scene, view: view)
+        guard key.field >= 0 else { faint = nil; return }
+        let center = Horizontal(altitude: view.altitude, azimuth: view.azimuth), radius = view.fieldOfView * 0.9 + 3
+        let stars = await Task.detached { scene.faintStars(around: center, radius: radius) }.value
+        if !Task.isCancelled { faint = (key, stars) }
+    }
+
     /// The view direction with any in-progress gestures applied.
     private func current(width: CGFloat) -> (azimuth: Double, altitude: Double, fieldOfView: Double) {
-        let fov = min(max(fieldOfView / Double(zoom), 30), 140)
+        let fov = min(max(fieldOfView / Double(zoom), Self.minimumField), 140)
         if pointer.active { return (pointer.direction.azimuth, pointer.direction.altitude, fov) }
         let degreesPerPoint = fov / Double(max(width, 1))
         let az = (azimuth - Double(drag.width) * degreesPerPoint).truncatingRemainder(dividingBy: 360)
@@ -239,7 +270,7 @@ struct SkyScreen: View {
     private var zoomGesture: some Gesture {
         MagnifyGesture()
             .updating($zoom) { value, state, _ in state = value.magnification }
-            .onEnded { value in fieldOfView = min(max(fieldOfView / Double(value.magnification), 30), 140) }
+            .onEnded { value in fieldOfView = min(max(fieldOfView / Double(value.magnification), Self.minimumField), 140) }
     }
 
     private var header: some View {

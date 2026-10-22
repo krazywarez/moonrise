@@ -83,6 +83,24 @@ public enum Catalog {
         return rows.map { Star(hr: Int($0[0]), ra: $0[1], dec: $0[2], magnitude: $0[3], colorIndex: $0[4], pmRA: $0[5], pmDec: $0[6]) }
     }()
 
+    /// Tycho-2 stars from V 6 to 9 not in the Bright Star Catalogue (ESA; Høg et al. 2000), sorted by V, built by
+    /// scripts/make-tycho.py; `hr` is 0. About 121,000 stars, decoded on first use.
+    public static let faintStars: [Star] = {
+        let url = Bundle.module.url(forResource: "tycho2", withExtension: "bin")!
+        let data = try! Data(contentsOf: url)
+        return stride(from: 0, to: data.count - 13, by: 14).map { o in
+            data.withUnsafeBytes { b in
+                let ra = Double(b.loadUnaligned(fromByteOffset: o, as: UInt32.self).littleEndian) / 4_294_967_296 * 360
+                let dec = Double(b.loadUnaligned(fromByteOffset: o + 4, as: Int32.self).littleEndian) / 2_147_483_647 * 90
+                let v = Double(b[o + 8]) / 20 - 2
+                let bv = Double(Int8(bitPattern: b[o + 9])) / 50
+                let pmRA = Double(b.loadUnaligned(fromByteOffset: o + 10, as: Int16.self).littleEndian) / 1000
+                let pmDec = Double(b.loadUnaligned(fromByteOffset: o + 12, as: Int16.self).littleEndian) / 1000
+                return Star(hr: 0, ra: ra, dec: dec, magnitude: v, colorIndex: bv, pmRA: pmRA, pmDec: pmDec)
+            }
+        }
+    }()
+
     /// Stars by HR number.
     public static let starsByHR: [Int: Star] = Dictionary(uniqueKeysWithValues: stars.map { ($0.hr, $0) })
 
@@ -144,6 +162,19 @@ public struct SkyScene: Sendable {
     public var milkyWay: [(position: Horizontal, value: UInt8)]
 
     static let milkyWayFloor: UInt8 = 48
+
+    /// Tycho-2 stars within `radius` degrees of a direction, placed for this scene. The region is chosen with an
+    /// approximate inverse transform, so `radius` should allow a degree or two.
+    public func faintStars(around center: Horizontal, radius: Double) -> [PlacedStar] {
+        let c = SkyEngine.approximateJ2000(of: center, at: date, from: observer)
+        let r = Double.pi / 180
+        let cosLimit = cos(radius * r), sinDec = sin(c.dec * r), cosDec = cos(c.dec * r)
+        let near = Catalog.faintStars.filter { s in
+            sin(s.dec * r) * sinDec + cos(s.dec * r) * cosDec * cos((s.ra - c.ra) * r) >= cosLimit
+        }
+        let placed = SkyEngine.horizontal(j2000: near.map { $0.position(at: date) }, at: date, from: observer)
+        return zip(near, placed).map { PlacedStar(star: $0, position: $1) }
+    }
 
     public init(date: Date, observer: Observer, magnitudeLimit: Double = 6.5) throws {
         self.date = date

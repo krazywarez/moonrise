@@ -79,14 +79,14 @@ public struct SkyStyle: Sendable {
 /// Stars are filled one path per bin: half a magnitude by four tints from B−V.
 struct StarBin {
     static let tints = 4
-    /// Magnitudes −2 to 6.5.
-    static let count = 18 * tints
+    /// Magnitudes −2 to 9.
+    static let count = 23 * tints
     var index: Int
 
     init(index: Int) { self.index = index }
 
     init(magnitude: Double, colorIndex: Double) {
-        let m = min(max(Int(((magnitude + 2) * 2).rounded()), 0), 17)
+        let m = min(max(Int(((magnitude + 2) * 2).rounded()), 0), 22)
         let t = min(max(Int(((colorIndex + 0.3) / 2 * Double(Self.tints - 1)).rounded()), 0), Self.tints - 1)
         index = m * Self.tints + t
     }
@@ -117,10 +117,12 @@ public struct SkyView: View {
     public var showMilkyWay: Bool
     /// Trees and buildings drawn as ground above the horizon.
     public var horizon: HorizonProfile?
+    /// Tycho-2 stars around the view, when zoomed in.
+    public var faintStars: [PlacedStar]
     /// Called after each draw with the time the draw took.
     public var onDraw: (@Sendable (Duration) -> Void)?
 
-    public init(scene: SkyScene, centerAzimuth: Double = 180, centerAltitude: Double = 55, fieldOfView: Double = 110, style: SkyStyle = SkyStyle(), culture: SkyCulture? = nil, highlight: SkyHighlight? = nil, showDeepSky: Bool = true, showMilkyWay: Bool = true, horizon: HorizonProfile? = nil, onDraw: (@Sendable (Duration) -> Void)? = nil) {
+    public init(scene: SkyScene, centerAzimuth: Double = 180, centerAltitude: Double = 55, fieldOfView: Double = 110, style: SkyStyle = SkyStyle(), culture: SkyCulture? = nil, highlight: SkyHighlight? = nil, showDeepSky: Bool = true, showMilkyWay: Bool = true, horizon: HorizonProfile? = nil, faintStars: [PlacedStar] = [], onDraw: (@Sendable (Duration) -> Void)? = nil) {
         self.scene = scene
         self.style = style
         self.culture = culture
@@ -128,6 +130,7 @@ public struct SkyView: View {
         self.showDeepSky = showDeepSky
         self.showMilkyWay = showMilkyWay
         self.horizon = horizon
+        self.faintStars = faintStars
         self.centerAzimuth = centerAzimuth
         self.centerAltitude = centerAltitude
         self.fieldOfView = fieldOfView
@@ -244,18 +247,20 @@ public struct SkyView: View {
         }
     }
 
-    /// Each star at its own radius; colour and opacity per `StarBin`, faintest bins first.
+    /// Each star at its own radius, larger when zoomed in (up to 2.5 times); colour and opacity per `StarBin`,
+    /// faintest bins first.
     func drawStars(_ context: inout GraphicsContext, _ p: Projection) {
         var bins = [Path](repeating: Path(), count: StarBin.count)
-        for s in scene.stars where s.position.altitude > 0 {
+        let boost = min(2.5, max(1, (60 / fieldOfView).squareRoot()))
+        for s in scene.stars + faintStars where s.position.altitude > 0 {
             guard let pt = p.point(s.position) else { continue }
-            let r = max(0.3, 2.6 - 0.42 * s.star.magnitude)
+            let r = max(0.3, 2.6 - 0.42 * s.star.magnitude) * boost
             bins[StarBin(magnitude: s.star.magnitude, colorIndex: s.star.colorIndex).index]
                 .addEllipse(in: CGRect(x: pt.x - r, y: pt.y - r, width: 2 * r, height: 2 * r))
         }
         for i in bins.indices.reversed() where !bins[i].isEmpty {
             let bin = StarBin(index: i)
-            let opacity = min(1, max(0.25, 1.15 - 0.13 * bin.magnitude))
+            let opacity = min(1, max(0.35, 1.15 - 0.13 * bin.magnitude))
             context.fill(bins[i], with: .color(style.starColor(tint: bin.tint).opacity(opacity)))
         }
     }

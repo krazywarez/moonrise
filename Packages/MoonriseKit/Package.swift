@@ -23,7 +23,7 @@ let package = Package(
         .target(
             name: "SkyRenderer",
             dependencies: ["SkyEngine"],
-            resources: [.copy("Resources/bsc5.json"), .copy("Resources/constellations.json"), .copy("Resources/coastline.json"), .copy("Resources/spacecraft.json"), .copy("Resources/skycultures.json"), .copy("Resources/messier.json"), .copy("Resources/milkyway.bin")]
+            resources: [.copy("Resources/bsc5.json"), .copy("Resources/constellations.json"), .copy("Resources/coastline.json"), .copy("Resources/spacecraft.json"), .copy("Resources/skycultures.json"), .copy("Resources/messier.json"), .copy("Resources/milkyway.bin"), .copy("Resources/tycho2.bin")]
         ),
         .target(name: "Feeds", dependencies: ["SkyEngine"]),
         .target(name: "ObservingLog", dependencies: ["Library", "SkyRenderer"]),
