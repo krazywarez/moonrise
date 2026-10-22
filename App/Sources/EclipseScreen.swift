@@ -52,7 +52,10 @@ struct EclipseScreen: View {
                         ProgressView().tint(ink).frame(maxWidth: .infinity, minHeight: 200)
                     }
                     if loaded { here }
-                    if let path { EclipseDrive(path: path, site: site, accent: accent) }
+                    if let path {
+                        EclipseClouds(path: path, site: site, ink: ink, accent: accent)
+                        EclipseDrive(path: path, site: site, accent: accent)
+                    }
                     if let timeline {
                         SunDiagram(timeline: timeline, ink: ink, accent: accent)
                         dayTools(timeline)

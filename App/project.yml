@@ -21,6 +21,8 @@ targets:
         type: folder
       - path: Plates
         type: folder
+      - path: Clouds
+        type: folder
     dependencies:
       - package: MoonriseKit
         product: SkyEngine

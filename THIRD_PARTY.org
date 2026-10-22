@@ -18,4 +18,6 @@
 | Library images: NASA | =Packages/MoonriseKit/Sources/Library/Resources/pages/*.json= (remote URLs) | Public domain; credit per image | https://images.nasa.gov |
 | Library images: ESA/Hubble, NOIRLab, ESO | same | CC BY 4.0; credit per image | https://esahubble.org, https://noirlab.edu, https://eso.org |
 | Library images: ESA (Rosetta, Gaia, JUICE) | same | CC BY-SA 3.0 IGO; credit per image | https://www.esa.int |
-| Library images: Urania's Mirror (1825), Library of Congress | same | Public domain (no known restrictions) | https://www.loc.gov |
+| Library images: Urania's Mirror (1825), Library of Congress | same; 26 plates bundled in =App/Plates/= | Public domain (no known restrictions) | https://www.loc.gov |
+| Solar eclipse exposure guide (Q values and t = f²/(I × 2^Q)), F. Espenak, NASA GSFC, 1996 | =Packages/MoonriseKit/Sources/SkyEngine/EclipseExposure.swift= | NASA, public domain; credit shown in the app | https://eclipse.gsfc.nasa.gov/SEhelp/SEphoto.html |
+| MODIS Terra daytime cloud fraction (=MODIS_Terra_Cloud_Fraction_Day=), averaged by =scripts/make-clouds.py= | =App/Clouds/*.bin= | NASA, no restrictions; credit NASA GIBS | https://gibs.earthdata.nasa.gov |

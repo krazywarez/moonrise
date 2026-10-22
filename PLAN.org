@@ -499,11 +499,16 @@ Worker; DSN Now freshness; NASA/ESA image licences; 26 LoC plates bundled.
 - Opt-in notification for a visible ISS pass in 15 minutes (local). Done.
 
 ** v5.0: eclipse, 2 August 2027
-- Watch haptics at second and third contact.
+- Watch haptics at second and third contact. Done: smart alarm extended
+  runtime session from C2 − 60 s; not yet felt on a Watch.
 - Drive to totality: nearest point with 95% of the centre-line duration,
-  handed to Apple Maps.
-- Cloud climatology along the path (NASA MODIS or ERA5).
-- Photographer cue mode: filter off and on cues, an exposure table.
+  handed to Apple Maps. Done: band within 31% of the half-width, checked with
+  a local calculation, land checked with Apple's geocoder.
+- Cloud climatology along the path (NASA MODIS or ERA5). Done: MODIS Terra
+  daytime cloud fraction from NASA GIBS (NEO is retired), 2015–2024, for
+  2 August and 6 February (=scripts/make-clouds.py=).
+- Photographer cue mode: filter off and on cues, an exposure table. Done:
+  filters off only with the glasses-off cue; Espenak's exposure guide.
 - Field test on the 6 February 2027 annular eclipse by testers on the path
   (Chile, Argentina, West Africa) with a TestFlight build.
 
