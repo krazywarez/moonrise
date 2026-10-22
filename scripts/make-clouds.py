@@ -17,7 +17,7 @@ import xml.etree.ElementTree as ET
 import zlib
 from pathlib import Path
 
-UA = "Moonrise/5.1.0 (sh.krz.moonrise; root@krz.sh)"
+UA = "Moonrise/5.2.0 (sh.krz.moonrise; root@krz.sh)"
 LAYER = "MODIS_Terra_Cloud_Fraction_Day"
 COLORMAP = "https://gibs.earthdata.nasa.gov/colormaps/v1.3/MODIS_Cloud_Fraction.xml"
 WMS = ("https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.3.0"
