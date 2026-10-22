@@ -5,6 +5,7 @@ import { compose, fetchGroups, fetchSupGP, fitsLaunch, retryDue, retryTick, supg
 import { activeEvent, fetchTrajectory, STEP_MINUTES } from "./live";
 import { fetchLaunch, fetchLaunches, PREVIOUS_URL, throttleSeconds, Throttled, UPCOMING_URL, type Launch } from "./ll2";
 import { digestPayload, dueOffsets, fetchLatest, localDate, pickHeadlines, type Article } from "./news";
+import { fetchSolarWind, STORM_KP, stormLikely, type SolarWind } from "./solarwind";
 import { fetchSpaceWeather, next24h, type SpaceWeather } from "./swpc";
 
 interface Env {
@@ -105,8 +106,10 @@ async function today(env: Env, now: Date): Promise<Response> {
   if (!row) return json({ spaceWeather: null }, 200, MAX_AGE.today);
   const w = JSON.parse(row.body) as SpaceWeather;
   w.forecast = w.forecast.map((f) => ({ ...f, start: new Date(f.start) }));
+  const wind = await env.DB.prepare("SELECT body FROM feed_snapshots WHERE feed = 'rtsw' AND ok = 1").first<{ body: string }>();
   return json({
     spaceWeather: { kpNow: w.kpNow, observedAt: w.observedAt, kpNext24h: next24h(w, now), fetchedAt: row.fetched_at },
+    solarWind: wind ? JSON.parse(wind.body) : null,
   }, 200, MAX_AGE.today);
 }
 
@@ -469,11 +472,28 @@ async function pollSpaceWeather(env: Env, now: Date): Promise<void> {
   await env.DB.prepare(
     "INSERT INTO feed_snapshots (feed, fetched_at, ok, body) VALUES ('swpc', ?1, 1, ?2) ON CONFLICT (feed) DO UPDATE SET fetched_at = ?1, ok = 1, body = ?2",
   ).bind(now.toISOString(), JSON.stringify(w)).run();
-  await sendAuroraAlerts(env, w, now);
+  await sendAuroraAlerts(env, w, await pollSolarWind(env, now), now);
 }
 
-async function sendAuroraAlerts(env: Env, w: SpaceWeather, now: Date): Promise<void> {
-  const kp = actionableKp(w.kpNow, w.forecast, now);
+/** RTSW, reduced; the last good copy is kept on failure, and null is returned so no alert rests on old wind. */
+async function pollSolarWind(env: Env, now: Date): Promise<SolarWind | null> {
+  try {
+    const wind = await fetchSolarWind(now);
+    if (!wind) return null;
+    await env.DB.prepare("INSERT INTO feed_snapshots (feed, fetched_at, ok, body) VALUES ('rtsw', ?1, 1, ?2) ON CONFLICT (feed) DO UPDATE SET fetched_at = ?1, ok = 1, body = ?2")
+      .bind(now.toISOString(), JSON.stringify(wind)).run();
+    return wind;
+  } catch (e) {
+    console.error("rtsw", String(e));
+    await env.DB.prepare("INSERT INTO feed_snapshots (feed, fetched_at, ok) VALUES ('rtsw:error', ?1, 0) ON CONFLICT (feed) DO UPDATE SET fetched_at = ?1").bind(now.toISOString()).run();
+    return null;
+  }
+}
+
+async function sendAuroraAlerts(env: Env, w: SpaceWeather, wind: SolarWind | null, now: Date): Promise<void> {
+  const forecastKp = actionableKp(w.kpNow, w.forecast, now);
+  const early = stormLikely(wind, now) && forecastKp < STORM_KP;
+  const kp = early ? STORM_KP : forecastKp;
   const bandRows = await env.DB.prepare("SELECT DISTINCT band FROM devices WHERE aurora = 1").all<{ band: number }>();
   const bands = alertBands(kp, bandRows.results.map((r) => r.band));
   if (!bands.length || !env.APNS_KEY) return;
@@ -485,7 +505,9 @@ async function sendAuroraAlerts(env: Env, w: SpaceWeather, now: Date): Promise<v
   ).bind(JSON.stringify(bands), event).all<{ token: string; environment: string; band: number; utc_offset_minutes: number }>();
   const due = devices.results.filter((d) => isNight(now, d.utc_offset_minutes)).map((d) => ({ ...d, event: `${d.token}:${event}` }));
   await sendAlerts(env, "aurora", due, now, (d) => ({
-    aps: { alert: { title: "Aurora possible tonight", body: `Kp ${kp.toFixed(1)}. Look toward the ${d.band >= 0 ? "north" : "south"} after dark.` }, sound: "default" },
+    aps: { alert: { title: "Aurora possible tonight", body: early
+      ? `The solar wind has turned strongly south; aurora often follows within the hour. Look toward the ${d.band >= 0 ? "north" : "south"} after dark.`
+      : `Kp ${kp.toFixed(1)}. Look toward the ${d.band >= 0 ? "north" : "south"} after dark.` }, sound: "default" },
   }));
 }
 

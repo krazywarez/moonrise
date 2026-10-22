@@ -515,7 +515,9 @@ Worker; DSN Now freshness; NASA/ESA image licences; 26 LoC plates bundled.
 ** v5.1: Sun
 - Solar wind from SWPC RTSW (=json/rtsw/rtsw_mag_1m.json=,
   =rtsw_wind_1m.json=), reduced on the Worker; earlier aurora alerts from
-  Bz.
+  Bz. Done: 5-minute means over 6 h in =/v1/today=; Sun tab panel and Bz
+  chart; alerts to the Kp 6 bands when the last 30 min average Bz ≤ −10 nT
+  and speed ≥ 450 km/s (a rule of thumb, not a Kp model).
 - Active-region labels on the SDO image.
 - Sun path, golden and blue hour, day length.
 - CCOR-2 coronagraph loop, WSA-Enlil forecast line, solar cycle progress.

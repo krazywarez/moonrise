@@ -34,3 +34,13 @@ let forecast = Data("""
     let w = try SpaceWeather.decodeToday(data)
     #expect(w == SpaceWeather(kpNow: 2.33, observedAt: try Date("2026-10-22T00:05:00Z", strategy: .iso8601), kpNext24h: 4.67))
 }
+
+@Test func decodesBackendSolarWind() throws {
+    let data = Data(#"{"spaceWeather":{"kpNow":2,"observedAt":"2026-10-22T00:05:00.000Z","kpNext24h":null,"fetchedAt":"x"},"solarWind":{"observedAt":"2026-10-22T03:36:00.000Z","source":"SOLAR1","series":[{"t":"2026-10-22T03:30:00.000Z","speed":477.8,"density":5.8,"bz":4.6,"bt":7.8},{"t":"2026-10-22T03:35:00.000Z","speed":467.5,"density":null,"bz":-3.5,"bt":7.7}]}}"#.utf8)
+    let w = try #require(try SolarWind.decodeToday(data))
+    #expect(w.source == "SOLAR1")
+    #expect(w.series.count == 2)
+    #expect(w.bz == -3.5)
+    #expect(w.density == 5.8)
+    #expect(try SolarWind.decodeToday(Data(#"{"spaceWeather":null}"#.utf8)) == nil)
+}

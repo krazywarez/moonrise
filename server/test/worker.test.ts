@@ -244,6 +244,31 @@ test("aurora alerts go out in bounded slices and are recorded per device once an
   assert.deepEqual(push.state.sent, [token(3)]);
 });
 
+test("a strongly southward solar wind alerts the Kp 6 bands before Kp rises", async () => {
+  const { db, env } = await setup();
+  device(db, 0, { band: 45 });
+  const push = apns();
+  let bz = -3;
+  const rows = (f: (m: number) => object) => Array.from({ length: 60 }, (_, m) =>
+    ({ time_tag: new Date(Date.parse("2026-10-20T22:05:00Z") - (60 - m) * 60_000).toISOString().slice(0, 19), active: true, source: "SOLAR1", ...f(m) }));
+  const payloads: string[] = [];
+  network({
+    ...push.handlers,
+    "api.push.apple.com": (url, init) => { payloads.push(String(init.body)); return push.handlers["api.push.apple.com"](url, init); },
+    "services.swpc.noaa.gov": (url) => {
+      if (url.pathname.endsWith("rtsw_mag_1m.json")) return Response.json(rows(() => ({ bz_gsm: bz, bt: 14 })));
+      if (url.pathname.endsWith("rtsw_wind_1m.json")) return Response.json(rows(() => ({ proton_speed: 540, proton_density: 9 })));
+      return Response.json(url.pathname.includes("planetary_k_index_1m") ? [{ time_tag: "2026-10-20T22:00:00", estimated_kp: 2 }] : []);
+    },
+  });
+  await run(env, FIVE, "2026-10-20T22:05:00Z");
+  assert.equal(push.state.sent.length, 0, "quiet wind, Kp 2");
+  bz = -13;
+  await run(env, FIVE, "2026-10-20T22:05:00Z");
+  assert.deepEqual(push.state.sent, [token(0)]);
+  assert.match(payloads.at(-1)!, /turned strongly south/);
+});
+
 test("an aurora run cut short leaves the remaining devices for the next run", async () => {
   const { db, env } = await setup();
   for (let i = 0; i < 5; i++) device(db, i);

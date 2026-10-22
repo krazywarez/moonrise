@@ -12,6 +12,7 @@ struct SunScreen: View {
     @State private var imageID = Date.now
     @State private var picture: Picture?
     @State private var imageFailed = false
+    @State private var solarWind: SolarWind?
     @Environment(\.dynamicTypeSize) private var typeSize
 
     private var kp: [KpBar] { data?.kp ?? [] }
@@ -51,6 +52,9 @@ struct SunScreen: View {
                 Text(SolarImage.credit).font(.caption2).dimmed(0.5).padding(.top, 4)
 
                 section("Aurora tonight", note: "NOAA's forecast of where the aurora may be overhead in the next hour; brighter green is more likely. From a few hundred kilometres further from the pole it can still be seen low on the horizon.") { auroraMap }
+                if let solarWind {
+                    section("Solar wind", note: "Measured 1.5 million km sunward of Earth, 30 to 60 minutes before it arrives. When Bz, the north–south part of its magnetic field, turns strongly negative (south), aurora often follows.") { solarWindPanel(solarWind) }
+                }
                 section("Solar flares, last 24 h", note: "X-rays from the Sun, measured by NOAA's GOES satellites. Spikes are flares: M and X class can disrupt radio and GPS, and the biggest can bring a storm a day or two later.") {
                     flares
                     if let p = data?.probabilities { probabilityTable(p) }
@@ -73,6 +77,7 @@ struct SunScreen: View {
 
     private func load(force: Bool) async {
         if data == nil { await show(SunFeeds.lastSaved()) }
+        if let apiBase { solarWind = (try? await SolarWind.fetch(base: apiBase)) ?? solarWind }
         if force { imageID = .now }
         let result = await SunFeeds.load(force: force)
         await show(result?.snapshot)
@@ -341,6 +346,28 @@ struct SunScreen: View {
             }
             .frame(height: 140)
             Text("Solid: observed. Faint: forecast. Red: storm level (Kp 5 or more).")
+                .font(.caption2).dimmed(0.6)
+        }
+    }
+
+    private func solarWindPanel(_ w: SolarWind) -> some View {
+        let n = { (v: Double?, f: Int) in v.map { $0.formatted(.number.precision(.fractionLength(f))) } ?? "–" }
+        return VStack(alignment: .leading, spacing: 10) {
+            HStack(spacing: 20) {
+                stat("Speed, km/s", n(w.speed, 0))
+                stat("Density, /cm³", n(w.density, 1))
+                stat("Bz, nT", n(w.bz, 1))
+                stat("Field, nT", n(w.bt, 1))
+            }
+            Chart(w.series.filter { $0.bz != nil }) { p in
+                LineMark(x: .value("Time", p.t), y: .value("Bz", p.bz ?? 0)).foregroundStyle(ink)
+                RuleMark(y: .value("Zero", 0)).foregroundStyle(ink.opacity(0.3))
+                RuleMark(y: .value("Strong south", -10)).foregroundStyle(accent.opacity(0.6)).lineStyle(StrokeStyle(lineWidth: 0.5, dash: [3, 3]))
+            }
+            .chartYAxis { AxisMarks { _ in AxisGridLine().foregroundStyle(ink.opacity(0.15)); AxisValueLabel().foregroundStyle(ink.opacity(0.6)) } }
+            .chartXAxis { AxisMarks(values: .stride(by: .hour, count: 2)) { _ in AxisValueLabel(format: .dateTime.hour()).foregroundStyle(ink.opacity(0.6)) } }
+            .frame(height: 110)
+            Text("Bz over 6 hours, 5-minute means. Dashed: −10 nT. From \(w.source), \(w.observedAt.formatted(date: .omitted, time: .shortened)).")
                 .font(.caption2).dimmed(0.6)
         }
     }
