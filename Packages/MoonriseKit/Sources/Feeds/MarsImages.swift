@@ -11,7 +11,7 @@ public struct MarsImage: Sendable, Identifiable, Hashable {
     public var image: URL
     public var credit: String
 
-    public static let perseveranceURL = URL(string: "https://mars.nasa.gov/rss/api/?feed=raw_images&category=mars2020&feedtype=json&num=100&page=0&order=sol+desc")!
+    public static let perseveranceURL = URL(string: "https://mars.nasa.gov/rss/api/?feed=raw_images&category=mars2020&feedtype=json&num=25&page=0&order=sol+desc")!
     public static let curiosityURL = URL(string: "https://mars.nasa.gov/api/v1/raw_image_items/?order=sol%20desc,date_taken%20desc&per_page=100&page=0&condition_1=msl:mission")!
 
     /// Newest full frames from both rovers, `limit` per rover. A rover whose feed fails is left out.

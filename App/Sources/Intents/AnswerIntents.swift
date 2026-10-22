@@ -113,7 +113,7 @@ struct SpaceWeatherIntent: AppIntent {
     static let supportedModes: IntentModes = .background
 
     func perform() async throws -> some IntentResult & ProvidesDialog & ShowsSnippetView {
-        guard let weather = try? await SpaceWeather.fetch() else { throw AnswerError.offline }
+        guard let weather = try? await SpaceWeather.fetch(base: apiBase) else { throw AnswerError.offline }
         let place = Place.current
         let a = AuroraAnswer(weather: weather, place: place)
         return .result(dialog: dialog(a.spoken), view: AnswerSnippet(heading: "Space weather · \(place.label)", rows: a.rows, footnote: a.footnote))

@@ -14,3 +14,11 @@ import Testing
     #expect(articles[0].published == Date(timeIntervalSince1970: 1_792_341_122))
     #expect(!articles[0].summary.hasSuffix(" "))
 }
+
+@Test func decodesBackendNews() throws {
+    let data = Data(#"{"fetchedAt":"2026-10-22T00:10:00.000Z","results":[{"id":7,"title":"t","summary":" s ","url":"https://example.com/a","image_url":null,"news_site":"ESA","published_at":"2026-10-20T13:00:00Z"}]}"#.utf8)
+    let a = try NewsArticle.decode(data)
+    #expect(a.map(\.id) == [7])
+    #expect(a.first?.summary == "s")
+    #expect(a.first?.image == nil)
+}

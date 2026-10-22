@@ -33,7 +33,7 @@ struct NewsList: View {
     func load(force: Bool) async {
         if !force, let cached: [NewsArticle] = FeedMemo.get("news", maxAge: 600) { articles = cached; return }
         do {
-            articles = try await NewsArticle.latest()
+            articles = try await NewsArticle.latest(base: apiBase)
             if let articles { FeedMemo.set("news", articles) }
             failed = false
         } catch {

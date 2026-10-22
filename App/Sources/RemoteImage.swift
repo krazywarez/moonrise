@@ -32,7 +32,8 @@ enum ImageLoader {
         if let hit = cached(url, maxPixels: maxPixels) { return hit }
         let data: Data
         do {
-            data = try await URLSession.shared.data(for: URLRequest(url: url), delegate: CancelLargeBody(limit: largeBody)).0
+            // Image URLs are never reused for new content, so a cached copy is used without asking the host again.
+            data = try await URLSession.shared.data(for: URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad), delegate: CancelLargeBody(limit: largeBody)).0
         } catch let error as URLError where error.code == .cancelled && !Task.isCancelled {
             // A data task holds the whole body in memory, twice while it finishes. Download to a file instead
             // and map it, so ImageIO reads it from disk.

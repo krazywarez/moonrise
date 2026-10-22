@@ -42,10 +42,26 @@ public struct SpaceWeather: Sendable, Equatable {
         return SpaceWeather(kpNow: last.estimated_kp, observedAt: observedAt, kpNext24h: next)
     }
 
-    public static func fetch(session: URLSession = .shared, at date: Date = .now) async throws -> SpaceWeather {
+    /// From the backend's /v1/today, which polls SWPC for every install; straight from SWPC if the backend
+    /// is unset or fails.
+    public static func fetch(base: URL?, session: URLSession = .shared, at date: Date = .now) async throws -> SpaceWeather {
+        if let base, let w = try? decodeToday(await session.data(from: base.appending(path: "v1/today")).0) { return w }
         async let now = session.data(from: nowURL).0
         async let forecast = session.data(from: forecastURL).0
         return try decode(now: await now, forecast: await forecast, at: date)
+    }
+
+    /// The `spaceWeather` object of the backend's GET /v1/today.
+    static func decodeToday(_ data: Data) throws -> SpaceWeather {
+        struct Today: Decodable {
+            struct Weather: Decodable { var kpNow: Double; var observedAt: String; var kpNext24h: Double? }
+            var spaceWeather: Weather
+        }
+        let w = try JSONDecoder().decode(Today.self, from: data).spaceWeather
+        guard let observedAt = try? Date(w.observedAt, strategy: Date.ISO8601FormatStyle(includingFractionalSeconds: true)) else {
+            throw DecodingError.dataCorrupted(.init(codingPath: [], debugDescription: "bad observedAt"))
+        }
+        return SpaceWeather(kpNow: w.kpNow, observedAt: observedAt, kpNext24h: w.kpNext24h)
     }
 
     /// NOAA G-scale for a Kp value: G1 at Kp 5 through G5 at Kp 9.

@@ -1,6 +1,7 @@
 import Foundation
 
-/// Space news from the Spaceflight News API (The Space Devs): headline, summary and a link to the article.
+/// Space news from the Spaceflight News API (The Space Devs), through the backend's /v1/news, which The Space Devs
+/// prefer to clients calling them directly: headline, summary and a link to the article.
 public struct NewsArticle: Sendable, Identifiable, Hashable, Decodable {
     public var id: Int
     public var title: String
@@ -12,8 +13,9 @@ public struct NewsArticle: Sendable, Identifiable, Hashable, Decodable {
 
     public static let url = URL(string: "https://api.spaceflightnewsapi.net/v4/articles/?limit=40")!
 
-    public static func latest(session: URLSession = .shared) async throws -> [NewsArticle] {
-        try decode(await session.data(from: url).0)
+    /// Straight from the Spaceflight News API only when no backend is configured.
+    public static func latest(base: URL?, session: URLSession = .shared) async throws -> [NewsArticle] {
+        try decode(await session.data(from: base?.appending(path: "v1/news") ?? url).0)
     }
 
     /// Decodes a page, leaving out Astronomy Picture of the Day posts, whose summaries are page navigation.

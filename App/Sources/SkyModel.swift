@@ -174,11 +174,11 @@ final class SkyModel: NSObject, CLLocationManagerDelegate {
         passesComputed = (.now, observer, elementsFetched)
     }
 
-    /// SWPC asks for no more than once a minute; this checks every 10.
+    /// The backend polls SWPC every 5 minutes; this checks every 10.
     func refreshSpaceWeather() async {
         if let weatherFetched, Date.now.timeIntervalSince(weatherFetched) < 600 { return }
         do {
-            spaceWeather = try await SpaceWeather.fetch()
+            spaceWeather = try await SpaceWeather.fetch(base: apiBase)
             weatherFetched = .now
         } catch {
             log.error("Space weather failed: \(error.localizedDescription, privacy: .public)")

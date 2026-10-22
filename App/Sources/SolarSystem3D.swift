@@ -946,7 +946,7 @@ struct SolarSystem3DView: View {
 
     private func loadWeather() async {
         while !Task.isCancelled {
-            async let kp = try? SpaceWeather.fetch()
+            async let kp = try? SpaceWeather.fetch(base: apiBase)
             async let sun = SunFeeds.load(force: false)
             let (k, s) = await (kp, sun)
             var w = SolarWeather(kp: k?.kpNow)

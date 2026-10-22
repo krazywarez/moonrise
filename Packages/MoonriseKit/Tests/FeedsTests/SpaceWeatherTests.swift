@@ -28,3 +28,9 @@ let forecast = Data("""
     #expect(SpaceWeather.gScale(5.33) == 1)
     #expect(SpaceWeather.gScale(9) == 5)
 }
+
+@Test func decodesBackendToday() throws {
+    let data = Data(#"{"spaceWeather":{"kpNow":2.33,"observedAt":"2026-10-22T00:05:00.000Z","kpNext24h":4.67,"fetchedAt":"2026-10-22T00:10:12.964Z"}}"#.utf8)
+    let w = try SpaceWeather.decodeToday(data)
+    #expect(w == SpaceWeather(kpNow: 2.33, observedAt: try Date("2026-10-22T00:05:00Z", strategy: .iso8601), kpNext24h: 4.67))
+}

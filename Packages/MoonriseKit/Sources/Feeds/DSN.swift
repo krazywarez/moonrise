@@ -29,8 +29,9 @@ public struct DSNStatus: Sendable {
 
     public static let url = URL(string: "https://eyes.nasa.gov/dsn/data/dsn.xml")!
 
+    /// The file changes every few seconds but is served with max-age=3600, so the local cache is skipped.
     public static func fetch(session: URLSession = .shared) async throws -> DSNStatus {
-        try decode(await session.data(from: url).0)
+        try decode(await session.data(for: URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData)).0)
     }
 
     public static func decode(_ data: Data) throws -> DSNStatus {

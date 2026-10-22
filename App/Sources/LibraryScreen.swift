@@ -289,6 +289,15 @@ struct PageThumb: View {
                 // Library of Congress scans carry a frame and colour bars; crop to the plate.
                 RemoteImage(url: image.url, points: large ? 640 : 260) { fallback }
                     .scaleEffect(image.url.host() == "tile.loc.gov" ? 1.45 : 1)
+                // CC BY providers (ESA, ESO, NOIRLab) ask that the credit stay with the image. Long credits are
+                // cut here; the page the thumbnail opens shows them in full with the licence.
+                if image.licence.hasPrefix("CC") {
+                    Text(image.credit)
+                        .font(.system(size: large ? 10 : 8)).lineLimit(2)
+                        .foregroundStyle(.white.opacity(0.85)).shadow(color: .black, radius: 2)
+                        .padding(4)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
+                }
             } else {
                 fallback
             }
