@@ -111,6 +111,7 @@ targets:
           MOONRISE_API_URL: https://moonrise.krz.sh
       base:
         PRODUCT_BUNDLE_IDENTIFIER: sh.krz.moonrise.widgets
+        SWIFT_ACTIVE_COMPILATION_CONDITIONS: $(inherited) WIDGET_EXTENSION
         DEVELOPMENT_TEAM: ZCNAX3VL9D
         CODE_SIGN_STYLE: Automatic
         SWIFT_VERSION: "6.0"
