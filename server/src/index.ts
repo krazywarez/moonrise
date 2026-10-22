@@ -1,4 +1,4 @@
-import { activityPush, focusEvery, focusPick, focusPollDue, inFocus, needsChannel, sinceNet, type ActivityState } from "./activity";
+import { activityPush, startDue, startPayload, type StartLaunch, focusEvery, focusPick, focusPollDue, inFocus, needsChannel, sinceNet, type ActivityState } from "./activity";
 import { AttestError, fromBase64, toBase64, verifyAssertion, verifyAttestation, type AttestedKey } from "./appattest";
 import { broadcast, createChannel, deleteChannel, retryable, send, sendAll, type ApnsConfig } from "./apns";
 import { actionableKp, alertBands, eventKey, isNight } from "./aurora";
@@ -191,6 +191,13 @@ export default {
     const test = url.pathname.match(/^\/v1\/devices\/([0-9a-f]{64,200})\/test$/i);
     if (request.method === "POST" && test) return sendTest(env, test[1].toLowerCase(), now);
 
+    if (request.method === "POST" && url.pathname === "/v1/launch-starts") return registerLaunchStarts(request, env, now);
+    const delStarts = url.pathname.match(/^\/v1\/launch-starts\/([0-9a-f]{64,200})$/i);
+    if (request.method === "DELETE" && delStarts) {
+      await env.DB.prepare("DELETE FROM launch_starts WHERE token = ?1").bind(delStarts[1].toLowerCase()).run();
+      return json({ ok: true });
+    }
+
     const del = url.pathname.match(/^\/v1\/devices\/([0-9a-f]{64,200})$/i);
     if (request.method === "DELETE" && del) {
       await env.DB.prepare("DELETE FROM devices WHERE token = ?1").bind(del[1]).run();
@@ -361,6 +368,75 @@ async function launchTick(env: Env, now: Date): Promise<void> {
   else if (pollList) await pollLaunches(env, now);
   // Channels are handed out with the launch's current state, so a poll means reading it again.
   if (env.APNS_KEY) await launchChannels(env, pollFocus || pollList ? await nearLaunches(env, now) : near, now);
+  if (env.APNS_KEY) await startLaunches(env, now);
+}
+
+const RULE = (v: unknown) => Array.isArray(v) && v.length <= 20 && v.every((x) => typeof x === "string" && x.length > 0 && x.length <= 100);
+
+/**
+ * POST /v1/launch-starts {token, environment, rockets, providers, challenge?}: the rockets and providers whose launches
+ * start a countdown on this install. Signed with App Attest like /v1/devices. No rules removes the token.
+ */
+async function registerLaunchStarts(request: Request, env: Env, now: Date): Promise<Response> {
+  const body = new Uint8Array(await request.arrayBuffer());
+  let d: { token?: unknown; environment?: unknown; rockets?: unknown; providers?: unknown; challenge?: string };
+  try {
+    d = JSON.parse(new TextDecoder().decode(body));
+  } catch {
+    d = {};
+  }
+  if (typeof d.token !== "string" || !/^[0-9a-f]{64,200}$/i.test(d.token) || (d.environment !== "sandbox" && d.environment !== "production") || !RULE(d.rockets) || !RULE(d.providers)) {
+    return json({ error: "invalid registration" }, 400);
+  }
+  const refused = await checkAssertion(env, request, body, d.challenge, now);
+  if (refused) return refused;
+  const rockets = d.rockets as string[], providers = d.providers as string[];
+  if (!rockets.length && !providers.length) {
+    await env.DB.prepare("DELETE FROM launch_starts WHERE token = ?1").bind(d.token.toLowerCase()).run();
+  } else {
+    await env.DB.prepare(
+      `INSERT INTO launch_starts (token, environment, rockets, providers, last_seen) VALUES (?1, ?2, ?3, ?4, ?5)
+       ON CONFLICT (token) DO UPDATE SET environment = ?2, rockets = ?3, providers = ?4, last_seen = ?5`,
+    ).bind(d.token.toLowerCase(), d.environment, JSON.stringify(rockets), JSON.stringify(providers), now.toISOString()).run();
+  }
+  return json({ ok: true });
+}
+
+/**
+ * Push-to-start for followed launches: an hour before NET, each install following the launch's rocket or provider
+ * gets the countdown, subscribed to the launch's broadcast channel. Once per install, launch and NET date, so a
+ * launch moved to another day starts again.
+ */
+async function startLaunches(env: Env, now: Date): Promise<void> {
+  const due = (await env.DB.prepare(
+    "SELECT id, name, net, status, rocket, provider, mission, location FROM launches WHERE net > ?1 AND net <= ?2",
+  // A minute either side: LL2 writes "…:00Z" and toISOString "…:00.000Z", which compare unequal as text. startDue decides.
+  ).bind(new Date(now.getTime() - 60_000).toISOString(), new Date(now.getTime() + 61 * 60_000).toISOString()).all<StartLaunch>()).results.filter((l) => startDue(l, now));
+  if (!due.length) return;
+  const config: ApnsConfig = { keyId: env.APNS_KEY_ID, teamId: env.APNS_TEAM_ID, privateKey: env.APNS_KEY, topic: env.APNS_TOPIC };
+  for (const l of due) {
+    const channels = Object.fromEntries((await env.DB.prepare("SELECT environment, channel_id FROM launch_channels WHERE launch_id = ?1 AND ended_at IS NULL")
+      .bind(l.id).all<{ environment: string; channel_id: string }>()).results.map((c) => [c.environment, c.channel_id]));
+    const event = `${l.id}:${l.net.slice(0, 10)}`;
+    const installs = (await env.DB.prepare(
+      `SELECT token, environment FROM launch_starts s
+       WHERE (EXISTS (SELECT 1 FROM json_each(s.rockets) WHERE value = ?1) OR EXISTS (SELECT 1 FROM json_each(s.providers) WHERE value = ?2))
+       AND NOT EXISTS (SELECT 1 FROM alerts_sent a WHERE a.kind = 'start' AND a.band = 0 AND a.event = s.token || ':' || ?3)
+       LIMIT ?4`,
+    ).bind(l.rocket, l.provider, event, PUSH_SLICE).all<{ token: string; environment: string }>()).results;
+    if (!installs.length) continue;
+    const results = await sendAll(config, installs.map((i) => ({
+      token: i.token, payload: startPayload(l, channels[i.environment] ?? null, now), sandbox: i.environment === "sandbox", type: "liveactivity" as const,
+    })), PUSH_CONCURRENCY);
+    const writes: D1PreparedStatement[] = [];
+    installs.forEach((i, k) => {
+      const { status, reason } = results[k];
+      if (status !== 200) console.error("apns start", status, reason);
+      if (status === 410) writes.push(env.DB.prepare("DELETE FROM launch_starts WHERE token = ?1").bind(i.token));
+      else if (!retryable(status)) writes.push(env.DB.prepare("INSERT OR IGNORE INTO alerts_sent (kind, band, event, sent_at) VALUES ('start', 0, ?1, ?2)").bind(`${i.token}:${event}`, now.toISOString()));
+    });
+    if (writes.length) await env.DB.batch(writes);
+  }
 }
 
 /** With an LL2 key: the launch in focus on the even minutes the 5-minute cron does not run on, and its broadcasts. */
@@ -750,5 +826,6 @@ async function prune(env: Env, now: Date): Promise<void> {
     env.DB.prepare("DELETE FROM app_keys WHERE last_used < ?1").bind(new Date(now.getTime() - DEVICE_RETENTION_MS).toISOString()),
     env.DB.prepare("DELETE FROM alerts_sent WHERE sent_at < ?1").bind(new Date(now.getTime() - 3 * 86400_000).toISOString()),
     env.DB.prepare("DELETE FROM devices WHERE last_seen < ?1").bind(new Date(now.getTime() - DEVICE_RETENTION_MS).toISOString()),
+    env.DB.prepare("DELETE FROM launch_starts WHERE last_seen < ?1").bind(new Date(now.getTime() - DEVICE_RETENTION_MS).toISOString()),
   ]);
 }

@@ -72,3 +72,38 @@ export function activityPush(sent: ActivityState, current: ActivityState, now: D
   else aps["stale-date"] = unix(net + 60 * MINUTE);
   return { payload: { aps }, priority: sent.status === current.status ? 5 : 10, end };
 }
+
+export interface StartLaunch extends ActivityState {
+  id: string;
+  rocket: string;
+  provider: string;
+  mission: string | null;
+  name: string;
+  location: string;
+}
+
+/** A followed launch is started on devices once it is within the hour and has no outcome. */
+export function startDue(l: ActivityState, now: Date): boolean {
+  const t = Date.parse(l.net);
+  return !OUTCOMES.includes(l.status) && now.getTime() < t && t - now.getTime() <= FOCUS_BEFORE;
+}
+
+/**
+ * Push-to-start payload: `attributes` match LaunchActivityAttributes and `content-state` its ContentState, as when
+ * the app starts the activity itself. With a channel the activity subscribes to the launch's broadcasts (iOS 18).
+ */
+export function startPayload(l: StartLaunch, channelId: string | null, now: Date): { aps: Record<string, unknown> } {
+  const net = Date.parse(l.net);
+  const mission = l.mission ?? l.name;
+  const aps: Record<string, unknown> = {
+    timestamp: unix(now.getTime()),
+    event: "start",
+    "attributes-type": "LaunchActivityAttributes",
+    attributes: { launchID: l.id, rocket: l.rocket, mission, location: l.location },
+    "content-state": { net: unix(net) - REFERENCE_DATE, status: l.status },
+    "stale-date": unix(net + 60 * MINUTE),
+    alert: { title: `${l.rocket} launches in an hour`, body: mission },
+  };
+  if (channelId) aps["input-push-channel"] = channelId;
+  return { aps };
+}

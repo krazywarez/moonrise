@@ -46,6 +46,7 @@ final class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCent
         ImageLoader.configureURLCache()
         UNUserNotificationCenter.current().delegate = self
         application.registerForRemoteNotifications()
+        Task { @MainActor in LaunchStarts.shared.start() }
         MoonriseShortcuts.updateAppShortcutParameters()
         Task.detached(priority: .utility) { Library.prepareSearch() }
         Task.detached(priority: .background) { await SpotlightIndexer.indexIfNeeded() }

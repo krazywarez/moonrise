@@ -84,6 +84,7 @@ struct SettingsScreen: View {
     @AppStorage(SettingsKey.onboarded) private var onboarded = true
     @Environment(\.dismiss) private var dismiss
     @State private var alerts = AuroraAlerts.shared
+    @State private var starts = LaunchStarts.shared
     @AppStorage(SettingsKey.dailySummary) private var dailySummary = false
     @AppStorage(SettingsKey.issPasses) private var issPasses = false
     @AppStorage(SettingsKey.dailySummaryMinutes) private var dailySummaryMinutes = DailySummaryNotifications.defaultMinutes
@@ -125,6 +126,20 @@ struct SettingsScreen: View {
                     Text("Alerts")
                 } footer: {
                     Text("Aurora alerts tell you when the aurora may be visible from your area at night. News alerts send three of the day's space headlines at 9 a.m. For these, Moonrise sends our server this device's notification token, a 5° band of geomagnetic latitude, your time zone offset and which alerts are on, not your location.")
+                }
+                if !starts.rockets.isEmpty || !starts.providers.isEmpty {
+                    Section {
+                        ForEach(starts.rockets, id: \.self) { r in
+                            Toggle(r, isOn: Binding(get: { true }, set: { on in Task { await starts.set(rocket: r, on) } }))
+                        }
+                        ForEach(starts.providers, id: \.self) { p in
+                            Toggle(p, isOn: Binding(get: { true }, set: { on in Task { await starts.set(provider: p, on) } }))
+                        }
+                    } header: {
+                        Text("Launch countdowns")
+                    } footer: {
+                        Text("Launches by these rockets and providers start a countdown on the Lock Screen an hour before liftoff. For this, Moonrise sends our server a Live Activity token and this list.")
+                    }
                 }
                 Section {
                     Toggle("Daily summary", isOn: Binding(

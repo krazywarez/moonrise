@@ -581,6 +581,11 @@ Worker; DSN Now freshness; NASA/ESA image licences; 26 LoC plates bundled.
   minutes before dark to dawn.
 - Push-to-start for followed launches: needs per-device tokens stored on the
   Worker, a privacy policy change and a matching App Store privacy label.
+  Done (5.8): follow every launch of a rocket or provider from the launch
+  page; =/v1/launch-starts= stores ActivityKit's push-to-start token and the
+  lists (App Attest signed, apart from devices); an hour before NET the
+  Worker starts the countdown on the launch's broadcast channel. Pending:
+  privacy policy and label.
 
 ** v5.6: Observing
 - Meteor radiant altitude (radiant coordinates for the major showers).

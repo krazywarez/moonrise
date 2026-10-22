@@ -196,6 +196,7 @@ struct LaunchDetail: View {
                 visibility.padding(.top, 8)
                 followButton.padding(.top, 8)
                 if let message { Text(message).font(.caption).dimmed(0.7) }
+                LaunchRuleToggles(rocket: launch.rocket, provider: launch.provider).padding(.top, 4)
                 if let d = launch.missionDescription {
                     Text(d).font(.subheadline).dimmed(0.85).padding(.top, 8)
                 }
@@ -347,5 +348,22 @@ struct LaunchDetail: View {
             Text(label).dimmed(0.6)
             Text(value)
         }
+    }
+}
+
+/// Follow every launch of this rocket or provider: the server starts each countdown an hour before liftoff.
+private struct LaunchRuleToggles: View {
+    var rocket: String
+    var provider: String
+    @State private var starts = LaunchStarts.shared
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Toggle("Every \(rocket) launch", isOn: Binding(get: { starts.follows(rocket: rocket) }, set: { on in Task { await starts.set(rocket: rocket, on) } }))
+            Toggle("Every \(provider) launch", isOn: Binding(get: { starts.follows(provider: provider) }, set: { on in Task { await starts.set(provider: provider, on) } }))
+            Text("Starts the countdown on the Lock Screen an hour before each one, without opening Moonrise.").font(.caption).dimmed(0.7)
+            if let status = starts.status { Text(status).font(.caption).dimmed(0.7) }
+        }
+        .font(.subheadline)
     }
 }

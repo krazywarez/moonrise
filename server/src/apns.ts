@@ -58,14 +58,15 @@ function token(config: ApnsConfig): Promise<string> {
   return t;
 }
 
-export async function send(config: ApnsConfig, deviceToken: string, payload: unknown, sandbox: boolean): Promise<ApnsResult> {
+/** An alert to a device token, or with `liveactivity` a Live Activity push (push-to-start) to an ActivityKit token. */
+export async function send(config: ApnsConfig, deviceToken: string, payload: unknown, sandbox: boolean, type: "alert" | "liveactivity" = "alert"): Promise<ApnsResult> {
   const host = sandbox ? "api.sandbox.push.apple.com" : "api.push.apple.com";
   const res = await fetch(`https://${host}/3/device/${deviceToken}`, {
     method: "POST",
     headers: {
       authorization: `bearer ${await token(config)}`,
-      "apns-topic": config.topic,
-      "apns-push-type": "alert",
+      "apns-topic": type === "alert" ? config.topic : `${config.topic}.push-type.liveactivity`,
+      "apns-push-type": type,
       "apns-priority": "10",
       "content-type": "application/json",
     },
@@ -75,13 +76,13 @@ export async function send(config: ApnsConfig, deviceToken: string, payload: unk
 }
 
 /** `send` to each device, at most `concurrency` at a time. Results are in input order; a network error is status 0. */
-export async function sendAll(config: ApnsConfig, sends: { token: string; payload: unknown; sandbox: boolean }[], concurrency: number): Promise<ApnsResult[]> {
+export async function sendAll(config: ApnsConfig, sends: { token: string; payload: unknown; sandbox: boolean; type?: "alert" | "liveactivity" }[], concurrency: number): Promise<ApnsResult[]> {
   const out: ApnsResult[] = new Array(sends.length);
   let next = 0;
   const worker = async () => {
     while (next < sends.length) {
       const i = next++;
-      out[i] = await send(config, sends[i].token, sends[i].payload, sends[i].sandbox).catch((e) => ({ status: 0, apnsId: null, reason: String(e) }));
+      out[i] = await send(config, sends[i].token, sends[i].payload, sends[i].sandbox, sends[i].type).catch((e) => ({ status: 0, apnsId: null, reason: String(e) }));
     }
   };
   await Promise.all(Array.from({ length: Math.min(concurrency, sends.length) }, worker));

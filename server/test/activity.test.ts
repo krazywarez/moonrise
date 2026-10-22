@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { activityPush, focusEvery, focusPick, focusPollDue, inFocus, needsChannel, sinceNet } from "../src/activity.ts";
+import { activityPush, focusEvery, focusPick, focusPollDue, inFocus, needsChannel, sinceNet, startDue, startPayload } from "../src/activity.ts";
 
 const now = new Date("2026-10-20T12:00:00Z");
 const unix = (iso: string) => Date.parse(iso) / 1000;
@@ -80,4 +80,22 @@ test("an outcome ends the activity and dismisses it 15 minutes later", () => {
     assert.equal(p.payload.aps["dismissal-date"], unix("2026-10-20T12:15:00Z"));
     assert.equal(p.payload.aps["stale-date"], undefined);
   }
+});
+
+test("push-to-start runs from an hour before NET until NET, without an outcome", () => {
+  assert.equal(startDue({ net: "2026-10-20T13:00:00Z", status: "Go" }, now), true);
+  assert.equal(startDue({ net: "2026-10-20T13:00:01Z", status: "Go" }, now), false);
+  assert.equal(startDue({ net: "2026-10-20T12:00:00Z", status: "Go" }, now), false);
+  assert.equal(startDue({ net: "2026-10-20T12:30:00Z", status: "Success" }, now), false);
+});
+
+test("the push-to-start payload matches LaunchActivityAttributes and subscribes to the channel", () => {
+  const l = { id: "x1", name: "Falcon 9 | Starlink", net: "2026-10-20T12:45:00Z", status: "Go", rocket: "Falcon 9 Block 5", provider: "SpaceX", mission: null, location: "Cape Canaveral" };
+  const { aps } = startPayload(l, "ch1", now);
+  assert.equal(aps.event, "start");
+  assert.equal(aps["attributes-type"], "LaunchActivityAttributes");
+  assert.deepEqual(aps.attributes, { launchID: "x1", rocket: "Falcon 9 Block 5", mission: "Falcon 9 | Starlink", location: "Cape Canaveral" });
+  assert.deepEqual(aps["content-state"], { net: unix("2026-10-20T12:45:00Z") - 978_307_200, status: "Go" });
+  assert.equal(aps["input-push-channel"], "ch1");
+  assert.equal("input-push-channel" in startPayload(l, null, now).aps, false);
 });

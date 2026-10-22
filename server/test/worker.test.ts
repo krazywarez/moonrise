@@ -592,3 +592,40 @@ test("device registration checks an App Attest assertion over the body, with a o
   const { env: strict } = await setup({ APNS_TEAM_ID: "ZCNAX3VL9D", APP_ATTEST: "require" });
   assert.equal((await worker.fetch(new Request("https://moonrise.krz.sh/v1/devices", { method: "POST", body: plain }), strict as never)).status, 401);
 });
+
+test("followers of a launch's rocket or provider get one push-to-start an hour out, on the launch's channel", async () => {
+  const { db, env } = await setup();
+  db.prepare("INSERT INTO launches (id, name, net, status, status_name, provider, rocket, pad, location, last_updated) VALUES ('L1', 'Falcon 9 | Starlink', '2026-10-20T12:50:00Z', 'Go', 'Go', 'SpaceX', 'Falcon 9', 'SLC-40', 'Cape', 'x')").run();
+  db.prepare("INSERT INTO launch_channels (channel_id, environment, launch_id, net, status, created_at) VALUES ('chP', 'production', 'L1', '2026-10-20T12:50:00Z', 'Go', 'x')").run();
+  const follow = (i: number, rockets: string[], providers: string[]) =>
+    db.prepare("INSERT INTO launch_starts (token, environment, rockets, providers, last_seen) VALUES (?, 'production', ?, ?, 'x')").run(token(i), JSON.stringify(rockets), JSON.stringify(providers));
+  follow(1, ["Falcon 9"], []);
+  follow(2, [], ["SpaceX"]);
+  follow(3, ["Electron"], ["Rocket Lab"]);
+  const pushes: { token: string; topic: string | null; type: string | null; body: string }[] = [];
+  const handler: Handler = (url, init) => {
+    const h = new Headers(init.headers);
+    pushes.push({ token: url.pathname.split("/").at(-1)!, topic: h.get("apns-topic"), type: h.get("apns-push-type"), body: String(init.body) });
+    return new Response(null, { status: 200 });
+  };
+  network({ "api.push.apple.com": handler });
+  await run(env, FIVE, "2026-10-20T11:45:00Z");
+  assert.equal(pushes.length, 0, "more than an hour out");
+  await run(env, FIVE, "2026-10-20T11:50:00Z");
+  assert.deepEqual(pushes.map((p) => p.token).sort(), [token(1), token(2)]);
+  assert.equal(pushes[0].topic, "sh.krz.moonrise.push-type.liveactivity");
+  assert.equal(pushes[0].type, "liveactivity");
+  assert.equal(JSON.parse(pushes[0].body).aps["input-push-channel"], "chP");
+  await run(env, FIVE, "2026-10-20T11:55:00Z");
+  assert.equal(pushes.length, 2, "once per install");
+});
+
+test("launch-start registration stores rules, and no rules removes the token", async () => {
+  const { db, env } = await setup();
+  const post = (body: object) => worker.fetch(new Request("https://moonrise.krz.sh/v1/launch-starts", { method: "POST", body: JSON.stringify(body) }), env as never);
+  assert.equal((await post({ token: token(1), environment: "production", rockets: ["Falcon Heavy"], providers: [] })).status, 200);
+  assert.equal((db.prepare("SELECT rockets FROM launch_starts").get() as { rockets: string }).rockets, '["Falcon Heavy"]');
+  assert.equal((await post({ token: token(1), environment: "production", rockets: "x", providers: [] })).status, 400);
+  assert.equal((await post({ token: token(1), environment: "production", rockets: [], providers: [] })).status, 200);
+  assert.equal(count(db, "SELECT COUNT(*) AS n FROM launch_starts"), 0);
+});
