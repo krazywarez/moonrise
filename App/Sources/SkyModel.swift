@@ -120,7 +120,9 @@ final class SkyModel: NSObject, CLLocationManagerDelegate {
             observer = Observer(latitude: lat, longitude: lon)
             placeName = d.string(forKey: SettingsKey.cityName) ?? "Chicago"
             hasLocation = true
-            Place(latitude: lat, longitude: lon, name: placeName, kind: .city).save(to: d)
+            let place = Place(latitude: lat, longitude: lon, name: placeName, kind: .city)
+            place.save(to: d)
+            Place.shared.map(place.save)
         } else {
             if !hasLocation { placeName = "Chicago (location unavailable)" }
             manager.requestWhenInUseAuthorization()
@@ -219,7 +221,9 @@ final class SkyModel: NSObject, CLLocationManagerDelegate {
             self.observer = Observer(latitude: c.latitude, longitude: c.longitude)
             self.hasLocation = true
             self.placeName = "Your location"
-            Place(latitude: c.latitude, longitude: c.longitude, name: self.placeName, kind: .located).save(to: .standard)
+            let place = Place(latitude: c.latitude, longitude: c.longitude, name: self.placeName, kind: .located)
+            place.save(to: .standard)
+            Place.shared.map(place.save)
             self.refresh()
         }
     }

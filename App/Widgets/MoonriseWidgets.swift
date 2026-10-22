@@ -10,6 +10,8 @@ struct MoonriseWidgets: WidgetBundle {
         MoonWidget()
         PlanetsWidget()
         #if os(iOS)
+        KpWidget()
+        NextLaunchWidget()
         LaunchLiveActivity()
         EventLiveActivity()
         EclipseLiveActivity()
@@ -18,8 +20,12 @@ struct MoonriseWidgets: WidgetBundle {
     }
 }
 
-/// Last known location, or Chicago. The widget does not request a fresh fix.
+/// The Sky tab's place (iPhone, through the App Group), else the last known location, else Chicago.
+/// The widget does not request a fresh fix.
 func widgetObserver() -> (Observer, Bool) {
+    #if os(iOS)
+    if let p = sharedPlace(), p.kind != .fallback { return (p.observer, true) }
+    #endif
     if let c = CLLocationManager().location?.coordinate {
         return (Observer(latitude: c.latitude, longitude: c.longitude), true)
     }

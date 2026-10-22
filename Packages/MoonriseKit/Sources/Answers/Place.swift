@@ -44,6 +44,9 @@ public struct Place: Codable, Sendable, Equatable {
 
     static let key = "answersPlace"
 
+    /// Shared with the widgets, which cannot read the app's own defaults.
+    public static var shared: UserDefaults? { UserDefaults(suiteName: "group.sh.krz.moonrise") }
+
     public static func saved(in defaults: UserDefaults) -> Place? {
         defaults.data(forKey: key).flatMap { try? JSONDecoder().decode(Place.self, from: $0) }
     }

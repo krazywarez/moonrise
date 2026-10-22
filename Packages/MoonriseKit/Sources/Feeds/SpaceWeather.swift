@@ -8,6 +8,12 @@ public struct SpaceWeather: Sendable, Equatable {
     /// Highest predicted 3-hour Kp in the next 24 hours, if any.
     public var kpNext24h: Double?
 
+    public init(kpNow: Double, observedAt: Date, kpNext24h: Double?) {
+        self.kpNow = kpNow
+        self.observedAt = observedAt
+        self.kpNext24h = kpNext24h
+    }
+
     public static let nowURL = URL(string: "https://services.swpc.noaa.gov/json/planetary_k_index_1m.json")!
     public static let forecastURL = URL(string: "https://services.swpc.noaa.gov/products/noaa-planetary-k-index-forecast.json")!
 
