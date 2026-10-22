@@ -21,8 +21,10 @@ final class ScreenshotTests: XCTestCase {
         try XCUIScreen.main.screenshot().pngRepresentation.write(to: folder.appending(path: "\(name).png"))
     }
 
+    /// iPhone has a tab bar; iPad's tabs at the top are plain buttons.
     private func tab(_ name: String) {
-        app.tabBars.buttons[name].firstMatch.tap()
+        let bar = app.tabBars.buttons[name].firstMatch
+        (bar.exists ? bar : app.buttons[name].firstMatch).tap()
     }
 
     func testScreenshots() throws {

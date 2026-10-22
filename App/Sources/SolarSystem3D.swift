@@ -758,6 +758,8 @@ struct SolarSystem3DView: View {
             }
         }
         var placed: [CGRect] = []
+        // SBDB can add dozens of comets; past this many, the rest are drawn without names unless selected.
+        var cometLabels = 0
         let points = screenPoints(size: size)
         // Anything whose centre falls on the disc of a nearer body is hidden behind it.
         let discs = points.filter { $0.radius > 4 }.map { ($0.point, $0.radius, cam.distance(to: $0.marker.scene)) }
@@ -772,8 +774,10 @@ struct SolarSystem3DView: View {
                 // caption2 runs about 6 pt a character; a little padding keeps neighbours readable.
                 let width = CGFloat(item.marker.name.count) * 6 + 8
                 let box = CGRect(x: at.x - width / 2, y: at.y - 8, width: width, height: 16)
-                let clear = item.marker.id == selected || !placed.contains { $0.intersects(box) }
+                let room = item.marker.kind != .comet || cometLabels < 6
+                let clear = item.marker.id == selected || (room && !placed.contains { $0.intersects(box) })
                 if clear { placed.append(box) }
+                if clear, item.marker.kind == .comet { cometLabels += 1 }
                 return (item.marker, item.point, item.radius, clear)
             }
     }
