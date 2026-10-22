@@ -542,7 +542,9 @@ Worker; DSN Now freshness; NASA/ESA image licences; 26 LoC plates bundled.
   BSC5 by HIP/HD, then by position (10″, ΔV 0.5); BSC5 keeps HR numbers.
   Done for the stars: 121,088 Tycho-2 stars V 6–9 (1.7 MB), BSC5 matches
   dropped by position alone (30″, ΔV 0.7; BSC5 has no HIP numbers); placed
-  around the view below 40° field; zoom to 3°.
+  around the view below 40° field; zoom to 3°. Done: 800 NGC/IC objects to
+  magnitude 11 (OpenNGC), shown below 40°; eyepiece and binocular fields from
+  the inventory as a circle at the centre.
 - Horizon profile. Done: 36 altitudes (10° steps) set by dragging in Settings
   → Horizon; the sky chart draws them as ground.
 

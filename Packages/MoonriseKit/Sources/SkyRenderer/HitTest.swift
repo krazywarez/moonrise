@@ -7,6 +7,8 @@ public enum SkyObject: Sendable, Equatable {
     case constellation(String)
     /// Messier number.
     case deepSky(Int)
+    /// NGC or IC designation, e.g. "NGC 7000".
+    case ngc(String)
 }
 
 extension SkyScene {
@@ -31,6 +33,12 @@ extension SkyScene {
                 .filter { $0.1 <= radius * 0.6 }
                 .min { $0.1 < $1.1 }
             if let hit { return .deepSky(hit.0) }
+            if p.fieldOfView <= 40, let n = ngc
+                .compactMap({ d in distance(d.position).map { (d.object.name, $0) } })
+                .filter({ $0.1 <= radius * 0.6 })
+                .min(by: { $0.1 < $1.1 }) {
+                return .ngc(n.0)
+            }
         }
 
         var best: (String, CGFloat)?

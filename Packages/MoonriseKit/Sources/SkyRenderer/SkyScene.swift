@@ -59,8 +59,13 @@ public struct DeepSkyObject: Sendable, Decodable {
     public var minorAxis: Double?
     /// Degrees east of north.
     public var positionAngle: Double?
-    /// Library page id.
+    /// Library page id; empty for NGC and IC objects.
     public var page: String
+    /// "NGC 7000" or "IC 434"; nil for Messier objects.
+    public var designation: String?
+
+    /// "M42" or "NGC 7000".
+    public var name: String { designation ?? "M\(messier)" }
 
     public var kind: Kind {
         switch type {
@@ -127,6 +132,13 @@ public enum Catalog {
         let url = Bundle.module.url(forResource: "messier", withExtension: "json")!
         return try! JSONDecoder().decode([DeepSkyObject].self, from: Data(contentsOf: url))
     }()
+
+    /// NGC and IC objects to magnitude 11 not in Messier's list, from OpenNGC (CC BY-SA 4.0), built by
+    /// scripts/make-ngc.py.
+    public static let ngc: [DeepSkyObject] = {
+        let url = Bundle.module.url(forResource: "ngc", withExtension: "json")!
+        return try! JSONDecoder().decode([DeepSkyObject].self, from: Data(contentsOf: url))
+    }()
 }
 
 public struct PlacedStar: Sendable {
@@ -156,6 +168,7 @@ public struct SkyScene: Sendable {
     public var starsByHR: [Int: Horizontal]
     public var bodies: [PlacedBody]
     public var deepSky: [PlacedDeepSky]
+    public var ngc: [PlacedDeepSky]
     /// Moon's elongation east of the sun, degrees (0 new, 180 full).
     public var moonPhase: Double
     /// Milky Way cells brighter than `milkyWayFloor`, above −3° (the rest are dropped before projection).
@@ -185,6 +198,8 @@ public struct SkyScene: Sendable {
         starsByHR = Dictionary(uniqueKeysWithValues: stars.map { ($0.star.hr, $0.position) })
         let dso = SkyEngine.horizontal(j2000: Catalog.deepSky.flatMap { [($0.ra, $0.dec), ($0.ra, $0.dec + 0.1)] }, at: date, from: observer)
         deepSky = Catalog.deepSky.enumerated().map { i, o in PlacedDeepSky(object: o, position: dso[2 * i], north: dso[2 * i + 1]) }
+        let n = SkyEngine.horizontal(j2000: Catalog.ngc.flatMap { [($0.ra, $0.dec), ($0.ra, $0.dec + 0.1)] }, at: date, from: observer)
+        ngc = Catalog.ngc.enumerated().map { i, o in PlacedDeepSky(object: o, position: n[2 * i], north: n[2 * i + 1]) }
         bodies = try ([.moon] + Body.planets).map { body in
             let i = try SkyEngine.illumination(body, at: date)
             return PlacedBody(

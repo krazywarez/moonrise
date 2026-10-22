@@ -16,6 +16,7 @@ struct SkyScreen: View {
     @AppStorage(SettingsKey.showMilkyWay) private var showMilkyWay = true
     @AppStorage(SettingsKey.horizonProfile) private var horizonProfile = ""
     @State private var faint: (key: FaintKey, stars: [PlacedStar])?
+    @State private var eyepiece: EyepieceField?
     @State private var showSettings = false
     @State private var showEvents = false
     @State private var showLog = false
@@ -49,7 +50,7 @@ struct SkyScreen: View {
                 style.background.ignoresSafeArea()
                 if let scene = model.scene {
                     let view = current(width: geo.size.width)
-                    SkyView(scene: scene, centerAzimuth: view.azimuth, centerAltitude: view.altitude, fieldOfView: view.fieldOfView, style: style, culture: Catalog.skyCultures.first { $0.id == skyCulture }, highlight: (tour.map { $0.steps[tourStep].target } ?? shown).flatMap(highlight), showDeepSky: showDeepSky, showMilkyWay: showMilkyWay, horizon: HorizonProfile(stored: horizonProfile), faintStars: faintStars(scene, view)) { [stats] d in
+                    SkyView(scene: scene, centerAzimuth: view.azimuth, centerAltitude: view.altitude, fieldOfView: view.fieldOfView, style: style, culture: Catalog.skyCultures.first { $0.id == skyCulture }, highlight: (tour.map { $0.steps[tourStep].target } ?? shown).flatMap(highlight), showDeepSky: showDeepSky, showMilkyWay: showMilkyWay, horizon: HorizonProfile(stored: horizonProfile), faintStars: faintStars(scene, view), eyepieceField: eyepiece?.degrees) { [stats] d in
                         stats.record(d)
                     }
                     .ignoresSafeArea()
@@ -307,6 +308,17 @@ struct SkyScreen: View {
                     }
                 }
                 Section("Explore") {
+                    Menu {
+                        ForEach(EyepieceField.all(in: equipmentInventory.all())) { f in
+                            Button {
+                                eyepiece = f
+                                fieldOfView = max(Self.minimumField, f.degrees * 3)
+                            } label: {
+                                Text(f.name + (f.magnification.map { String(format: ", %.0f×", $0) } ?? ""))
+                            }
+                        }
+                        if eyepiece != nil { Button("None") { eyepiece = nil } }
+                    } label: { Label("Eyepiece field", systemImage: "circle.dashed") }
                     Button { showYear = true } label: { Label("Sky in another year", systemImage: "hourglass") }
                     Button { showLog = true } label: { Label("Observing log", systemImage: "book.closed") }
                 }
@@ -345,6 +357,8 @@ struct SkyScreen: View {
                 Text("Constellation · \(id)").font(.footnote).dimmed(0.7)
             case .deepSky(let m):
                 if let d = model.scene?.deepSky.first(where: { $0.object.messier == m }) { deepSkyFacts(d) }
+            case .ngc(let name):
+                if let d = model.scene?.ngc.first(where: { $0.object.name == name }) { deepSkyFacts(d) }
             }
             HStack(spacing: 20) {
                 Button { logEntry = newObservation(title(for: object)) } label: {
@@ -376,6 +390,7 @@ struct SkyScreen: View {
         case .body(let b): Library.page(body: b.rawValue)
         case .constellation(let id): Library.page(constellation: id)
         case .deepSky(let m): Catalog.deepSky.first { $0.messier == m }.flatMap { Library.page(id: $0.page) }
+        case .ngc: nil
         }
     }
 
@@ -384,6 +399,7 @@ struct SkyScreen: View {
         case .body(let b): b.rawValue.capitalized
         case .constellation(let id): constellationNames[id] ?? id
         case .deepSky(let m): "M\(m)"
+        case .ngc(let name): name
         }
     }
 

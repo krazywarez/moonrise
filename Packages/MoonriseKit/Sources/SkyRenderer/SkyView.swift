@@ -119,10 +119,12 @@ public struct SkyView: View {
     public var horizon: HorizonProfile?
     /// Tycho-2 stars around the view, when zoomed in.
     public var faintStars: [PlacedStar]
+    /// An eyepiece's true field, degrees across, drawn as a circle at the centre.
+    public var eyepieceField: Double?
     /// Called after each draw with the time the draw took.
     public var onDraw: (@Sendable (Duration) -> Void)?
 
-    public init(scene: SkyScene, centerAzimuth: Double = 180, centerAltitude: Double = 55, fieldOfView: Double = 110, style: SkyStyle = SkyStyle(), culture: SkyCulture? = nil, highlight: SkyHighlight? = nil, showDeepSky: Bool = true, showMilkyWay: Bool = true, horizon: HorizonProfile? = nil, faintStars: [PlacedStar] = [], onDraw: (@Sendable (Duration) -> Void)? = nil) {
+    public init(scene: SkyScene, centerAzimuth: Double = 180, centerAltitude: Double = 55, fieldOfView: Double = 110, style: SkyStyle = SkyStyle(), culture: SkyCulture? = nil, highlight: SkyHighlight? = nil, showDeepSky: Bool = true, showMilkyWay: Bool = true, horizon: HorizonProfile? = nil, faintStars: [PlacedStar] = [], eyepieceField: Double? = nil, onDraw: (@Sendable (Duration) -> Void)? = nil) {
         self.scene = scene
         self.style = style
         self.culture = culture
@@ -131,6 +133,7 @@ public struct SkyView: View {
         self.showMilkyWay = showMilkyWay
         self.horizon = horizon
         self.faintStars = faintStars
+        self.eyepieceField = eyepieceField
         self.centerAzimuth = centerAzimuth
         self.centerAltitude = centerAltitude
         self.fieldOfView = fieldOfView
@@ -149,6 +152,7 @@ public struct SkyView: View {
             drawBodies(&context, p)
             if let highlight { drawHighlight(highlight, &context, p) }
             drawHorizon(&context, p, size: size)
+            if let eyepieceField { drawEyepiece(eyepieceField, &context, p) }
             onDraw?(ContinuousClock.now - start)
         }
     }
@@ -279,7 +283,8 @@ public struct SkyView: View {
     func drawDeepSky(_ context: inout GraphicsContext, _ p: Projection) {
         let minimum = 4.0
         var solid = Path(), dashed = Path()
-        for d in scene.deepSky where d.position.altitude > 0 {
+        let ngc = fieldOfView <= 40 ? scene.ngc : []
+        for d in scene.deepSky + ngc where d.position.altitude > 0 {
             guard let f = symbolFrame(d, p) else { continue }
             let o = d.object, c = f.center
             let perArcmin = hypot(f.north.dx, f.north.dy) / 60
@@ -310,12 +315,21 @@ public struct SkyView: View {
                     solid.addLine(to: CGPoint(x: c.x + dx * 2 * small, y: c.y + dy * 2 * small))
                 }
             }
-            if fieldOfView <= 60 {
-                label(&context, "M\(o.messier)", at: CGPoint(x: c.x, y: c.y + r + 2), anchor: .top, color: style.muted)
+            if fieldOfView <= (o.designation == nil ? 60 : 25) {
+                label(&context, o.name, at: CGPoint(x: c.x, y: c.y + r + 2), anchor: .top, color: style.muted)
             }
         }
         context.stroke(solid, with: .color(style.line), lineWidth: 0.8)
         context.stroke(dashed, with: .color(style.line), style: StrokeStyle(lineWidth: 0.8, dash: [2, 2]))
+    }
+
+    /// At the centre of a stereographic view a circle of angular radius c has radius 2 tan(c / 2) in the projection's units.
+    func drawEyepiece(_ degrees: Double, _ context: inout GraphicsContext, _ p: Projection) {
+        let unit = Double(p.size.width) / (4 * tan(p.fieldOfView * .pi / 720))
+        let r = unit * 2 * tan(degrees / 2 * .pi / 360)
+        let c = CGPoint(x: p.size.width / 2, y: p.size.height / 2)
+        context.stroke(Path(ellipseIn: CGRect(x: c.x - r, y: c.y - r, width: 2 * r, height: 2 * r)), with: .color(style.highlight), lineWidth: 1.5)
+        label(&context, String(format: "%.2f°", degrees), at: CGPoint(x: c.x, y: c.y + r + 4), anchor: .top, color: style.highlight)
     }
 
     func drawBodies(_ context: inout GraphicsContext, _ p: Projection) {
