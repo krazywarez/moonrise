@@ -19,6 +19,8 @@ targets:
       - Shared
       - path: Globes
         type: folder
+      - path: Plates
+        type: folder
     dependencies:
       - package: MoonriseKit
         product: SkyEngine

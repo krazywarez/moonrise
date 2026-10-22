@@ -45,7 +45,7 @@
     "image": {
       "url": "https://science.nasa.gov/wp-content/uploads/2023/04/crab-nebula-mosaic.jpg?w=1200",
       "credit": "NASA, ESA, J. Hester and A. Loll (Arizona State University)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-1/",
       "caption": "Hubble mosaic of the Crab Nebula assembled from 24 exposures, showing the orange filaments of the shattered star."
     },
@@ -112,7 +112,7 @@
     ],
     "essay": "M2 is a globular cluster: a spherical swarm of old stars held together by their combined gravity. It holds more than 150,000 stars and measures over 150 light-years across, which puts it among the largest clusters of its kind. Most of its mass is packed into the core, with the star density falling off steadily toward the edges.\n\nThe French astronomer Jean-Dominique Maraldi found it in 1746 while he was following a comet. It was the first globular cluster to be added to Messier's list. The cluster lies about 37,000 light-years away in Aquarius.\n\nAt magnitude 6.3, M2 sits right at the naked-eye limit and can be glimpsed without optics only under very dark, clear skies. Binoculars show it as a round, fuzzy star with a brighter middle, about 16 arcminutes across including its faint outer halo. A small telescope makes the core stand out more clearly, but the individual stars blend together until you use a large instrument. October evenings are the best time to look.",
     "image": {
-      "url": "https://cdn.esahubble.org/archives/images/screen/potw1913a.jpg",
+      "url": "https://cdn.esahubble.org/archives/images/thumb700x/potw1913a.jpg",
       "credit": "ESA/Hubble & NASA, G. Piotto et al.",
       "licence": "CC BY 4.0",
       "page": "https://esahubble.org/images/potw1913a/",
@@ -181,7 +181,7 @@
     ],
     "essay": "M3 was the first object in the catalogue that Charles Messier discovered himself, in 1764. He described it as a nebula without stars. Twenty years later, in 1784, William Herschel resolved it into individual stars. Astronomers now count more than half a million stars in the cluster, and its age is estimated at about eight billion years.\n\nM3 is known for its variable stars. At least 274 have been found in it, more than in any other known cluster. For some kinds of variable star the period of the brightness changes is tied to the star's true luminosity. That relation lets astronomers turn measured brightness into distance, which makes clusters like M3 useful for calibrating distance scales.\n\nThe cluster lies 34,000 light-years away in Canes Venatici, roughly between Arcturus and the handle of the Big Dipper. At magnitude 6.2 it is easy to pick up in binoculars as a round glow about 18 arcminutes across with a bright centre. Moderate telescopes start to resolve stars around its edges. It is best placed for viewing in June.",
     "image": {
-      "url": "https://cdn.esahubble.org/archives/images/screen/potw1914a.jpg",
+      "url": "https://cdn.esahubble.org/archives/images/thumb700x/potw1914a.jpg",
       "credit": "ESA/Hubble & NASA, G. Piotto et al.",
       "licence": "CC BY 4.0",
       "page": "https://esahubble.org/images/potw1914a/",
@@ -252,7 +252,7 @@
     "image": {
       "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/hubble/stars/globular-clusters/Hubble_M4_WFC3_ACS_ok_flat_cont_FINAL_NewImage.jpg?w=1600",
       "credit": "NASA, ESA, G. Piotto (Universita degli Studi di Padova), S. Anderson (University of Washington), A. Sarajedini (Florida Atlantic University), L. Bedin (INAF - Osservatorio Astronomico di Padova); Image Processing: Gladys Kober (NASA/Catholic University of America)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-4/",
       "caption": "Hubble image of M4 combining Wide Field Camera 3 and Advanced Camera for Surveys data across a wide range of wavelengths."
     },
@@ -321,7 +321,7 @@
     "image": {
       "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/hubble/stars/globular-clusters/Hubble_M5_WFC3_UV_flat_FINAL_NewImage.jpg?w=1600",
       "credit": "NASA, ESA, G. Piotto (Universita degli Studi di Padova); Image Processing: Gladys Kober (NASA/Catholic University of America)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-5/",
       "caption": "Ultraviolet Hubble image of M5 that highlights the cluster's hot, blue stars."
     },
@@ -459,7 +459,7 @@
     "image": {
       "url": "https://science.nasa.gov/wp-content/uploads/2023/06/hubble-m7-wfc3-2-flat-final.jpg?w=1200",
       "credit": "NASA, ESA, D. Bennett (University of Maryland), and K. Sahu (STScI); Image Processing: Gladys Kober",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-7/",
       "caption": "Hubble view of a small field of stars within the open cluster M7."
     },
@@ -528,7 +528,7 @@
     "image": {
       "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/hubble/nebulae/emission/Hubble_M8_ACS_1_flat_FINAL.jpg?w=1600",
       "credit": "NASA, ESA, M. Mutchler (Space Telescope Science Institute); Processing: Gladys Kober (NASA/Catholic University of America)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-8/",
       "caption": "Hubble image of part of the Lagoon Nebula, with clouds of gas, dark dust and scattered young blue stars."
     },
@@ -597,7 +597,7 @@
     "image": {
       "url": "https://science.nasa.gov/wp-content/uploads/2023/04/heic1205a.jpg?w=1200",
       "credit": "NASA & ESA",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-9/",
       "caption": "Hubble image of the core of the globular cluster M9 in visible, infrared and ultraviolet light."
     },
@@ -666,7 +666,7 @@
     "image": {
       "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/hubble/stars/globular-clusters/Hubble_M10_WFC3UVIS_flat_FINAL_NewImage.jpg?w=1600",
       "credit": "NASA, ESA, G. Piotto (Universita degli Studi di Padova); Image Processing: Gladys Kober (NASA/Catholic University of America)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-10/",
       "caption": "Ultraviolet Hubble image of M10's core, where hot blue stragglers stand out."
     },
@@ -733,7 +733,7 @@
     ],
     "essay": "M11 is one of the richest and most compact open clusters known, with more than 2,900 stars. Its brightest stars form a rough V shape that resembles a flock of ducks in flight, which gives it the name Wild Duck Cluster. The German astronomer Gottfried Kirch discovered it in 1681.\n\nOpen clusters are loosely bound groups of stars. They usually disperse after a few hundred million years, much sooner than the tightly bound globular clusters. By studying the brightest and hottest main-sequence stars in M11, astronomers estimate that it formed about 220 million years ago. It is one of the few open clusters in Messier's catalogue that Hubble has imaged.\n\nThe cluster lies 6,200 light-years away in the small constellation Scutum, against one of the brightest parts of the Milky Way. Of the open clusters in Messier's catalogue it is the most distant that can be seen with the naked eye, at magnitude 6.3. Binoculars show it as a small, triangular patch of light about 14 arcminutes across. A small telescope resolves the patch into a dense field of faint stars with one brighter star near the tip of the V. August is the best month to view it.",
     "image": {
-      "url": "https://cdn.esahubble.org/archives/images/screen/potw1912a.jpg",
+      "url": "https://cdn.esahubble.org/archives/images/thumb700x/potw1912a.jpg",
       "credit": "ESA/Hubble & NASA, P. Dobbie et al.",
       "licence": "CC BY 4.0",
       "page": "https://esahubble.org/images/potw1912a/",
@@ -802,7 +802,7 @@
     ],
     "essay": "M12 is a globular cluster in Ophiuchus, about 23,000 light-years from Earth. Charles Messier discovered it in 1764. It is a relatively loose cluster, yet it contains many interacting binary stars. In these pairs, material from one star flows onto its companion and gives off X-rays, and many such sources have been detected in M12. That is unexpected, because stars in a sparse cluster should interact less often than those in a dense one.\n\nM12 also has fewer low-mass stars than expected. Astronomers think the Milky Way's gravity stripped many of them away as the cluster passed through denser regions of the galaxy on its orbit around the galactic centre. It may have lost up to a million stars this way.\n\nAt magnitude 7.7, M12 is visible in binoculars as a soft, round glow about 16 arcminutes across. It lies only a few degrees from M10, and the two make a good pair at low power. In a small telescope M12 looks less concentrated than M10, and its looser structure lets moderate apertures resolve stars across much of its face. It is best observed in July.",
     "image": {
-      "url": "https://cdn.esahubble.org/archives/images/screen/potw1113a.jpg",
+      "url": "https://cdn.esahubble.org/archives/images/thumb700x/potw1113a.jpg",
       "credit": "ESA/Hubble & NASA",
       "licence": "CC BY 4.0",
       "page": "https://esahubble.org/images/potw1113a/",
@@ -871,7 +871,7 @@
     ],
     "essay": "M13 is one of the brightest globular clusters visible from the Northern Hemisphere. It holds more than 100,000 stars and lies about 25,000 light-years away in Hercules. Edmond Halley, known for the comet that bears his name, discovered it in 1714.\n\nWhen Charles Messier added the cluster to his catalogue in 1764, he believed it contained no stars. Its stars are so tightly packed that they were not resolved until 1779. Near the core, stars are about a hundred times more crowded than in the Sun's neighbourhood. At that density stars sometimes collide and merge. The products are blue stragglers, which look younger than the stars around them.\n\nM13 is easy to find. It sits on the western side of the Keystone, the four-star figure at the centre of Hercules, about a third of the way from Eta to Zeta Herculis. At magnitude 5.8 it can be glimpsed with the naked eye from a dark site and is obvious in binoculars as a round glow with a bright centre. A small telescope shows a granular texture across its 20-arcminute disc, and larger telescopes resolve many of its stars. July is the best month.",
     "image": {
-      "url": "https://cdn.esahubble.org/archives/images/screen/potw1011a.jpg",
+      "url": "https://cdn.esahubble.org/archives/images/thumb700x/potw1011a.jpg",
       "credit": "ESA/Hubble and NASA",
       "licence": "CC BY 4.0",
       "page": "https://esahubble.org/images/potw1011a/",
@@ -942,7 +942,7 @@
     "image": {
       "url": "https://science.nasa.gov/wp-content/uploads/2023/04/hubble_m14_wfc3_1flat_cont_final.jpg?w=1200",
       "credit": "NASA, ESA, and F. D'Antona (INAF, Osservatorio Astronomico di Roma); Image Processing: Gladys Kober",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-14/",
       "caption": "Hubble image of M14 in ultraviolet, visible and near-infrared light."
     },
@@ -1011,7 +1011,7 @@
     "image": {
       "url": "https://science.nasa.gov/wp-content/uploads/2023/04/heic1321a.jpg?w=1200",
       "credit": "NASA, ESA",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-15/",
       "caption": "Hubble image of M15 combining ultraviolet, visible and infrared observations."
     },
@@ -1080,7 +1080,7 @@
     "image": {
       "url": "https://science.nasa.gov/wp-content/uploads/2023/04/hubble_birthofstars_0.jpg?w=1200",
       "credit": "NASA, ESA and the Hubble Heritage Team (STScI/AURA)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-16/",
       "caption": "Hubble view of the Pillars of Creation, columns of gas and dust in the Eagle Nebula."
     },
@@ -1149,7 +1149,7 @@
     "image": {
       "url": "https://science.nasa.gov/wp-content/uploads/2017/10/m17-field2-f110wf160w-a1-final-vers1.jpg?w=1200",
       "credit": "NASA, ESA, and A. Kraus (The University of Texas at Austin); Processing: Gladys Kober (NASA/Catholic University of America)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-17/",
       "caption": "Hubble image of part of the Omega Nebula, colourised to highlight oxygen, hydrogen and infrared light."
     },
@@ -1287,7 +1287,7 @@
     "image": {
       "url": "https://science.nasa.gov/wp-content/uploads/2023/04/hubble_m19_wfc3_str_gapfilled_flat_cont_final.jpg?w=1200",
       "credit": "NASA, ESA, and C. Johnson (STScI); Image Processing: Gladys Kober",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-19/",
       "caption": "Hubble image of M19 in ultraviolet, visible and near-infrared light, with a small gap filled by ground-based data."
     },
@@ -1356,7 +1356,7 @@
     "image": {
       "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/hubble/nebulae/emission/hubble_2026_trifid.jpg?w=1600",
       "credit": "NASA, ESA, STScI; Image Processing: Joseph DePasquale (STScI)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-20/",
       "caption": "Hubble's 2026 Wide Field Camera 3 image of the Trifid Nebula, taken for the telescope's 36th anniversary."
     },
@@ -1492,7 +1492,7 @@
     ],
     "essay": "M22 was one of the first globular clusters ever found. The German amateur astronomer Abraham Ihle came across it in August 1665 while looking for Saturn. At about 10,000 light-years, it is one of the closest globular clusters to Earth, and it is one of about 150 known in the Milky Way.\n\nThe cluster is about 70 light-years in diameter. Like other globular clusters it is old, probably 12 to 13 billion years, compared with a universe 13.8 billion years old. It lies in front of the Galactic Bulge, the dense mass of stars around the centre of the Milky Way. Dust and gas between us and the cluster dim its light, so it looks fainter than it otherwise would.\n\nM22 is one of the brightest globular clusters visible from the Northern Hemisphere, at magnitude 5.1. Under good conditions it can be seen with the naked eye a little northeast of the top of the Sagittarius \"teapot\". On the sky it covers an area about the size of the full Moon. Binoculars show a large, bright glow, and a small telescope starts to resolve its stars, more easily than for most globulars. The best month is August.",
     "image": {
-      "url": "https://cdn.esahubble.org/archives/images/screen/potw1514a.jpg",
+      "url": "https://cdn.esahubble.org/archives/images/thumb700x/potw1514a.jpg",
       "credit": "ESA/Hubble & NASA",
       "licence": "CC BY 4.0",
       "page": "https://esahubble.org/images/potw1514a/",
@@ -1632,7 +1632,7 @@
     "image": {
       "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/hubble/stars/star-cloud/Hubble_M24_1_flat_FINAL_A_rot90.jpg?w=1600",
       "credit": "NASA, ESA, and R. Sahai (Jet Propulsion Laboratory); Processing: Gladys Kober (NASA/Catholic University of America)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-24/",
       "caption": "Hubble view of a tiny part of the Small Sagittarius Star Cloud, crowded with stars of many colours."
     },
@@ -1839,7 +1839,7 @@
     "image": {
       "url": "https://science.nasa.gov/wp-content/uploads/2023/04/opo0306a.jpg?w=1200",
       "credit": "NASA/ESA and the Hubble Heritage Team (STScI/AURA)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-27/",
       "caption": "Hubble close-up of glowing knots of gas in part of the Dumbbell Nebula."
     },
@@ -1906,7 +1906,7 @@
     ],
     "essay": "M28 is a globular cluster in Sagittarius, about 18,000 light-years from Earth. Charles Messier discovered it in 1764.\n\nIt was the first globular cluster found to contain a millisecond pulsar. This object, PSR B1821–24, is a dense neutron star that spins about once every three milliseconds. It emits beams of radiation from its poles, and as the star rotates the beams sweep past Earth like a lighthouse, so it appears to pulse. Astronomers found it in 1986 with the Lovell Telescope, a radio telescope in England. Millisecond pulsars are thought to be spun up by taking in material from a companion star. The crowded cores of globular clusters, where close encounters between stars are common, are good places to form them.\n\nAt magnitude 7.7, M28 appears in binoculars as a faint, round patch of light. It lies about a degree northwest of Kaus Borealis, the star at the top of the Sagittarius \"teapot\". A small telescope shows a compact glow with a brighter centre, about 11 arcminutes across, and larger telescopes resolve its individual stars more effectively. M22, a brighter globular cluster, is a few degrees to the east. August is the best month.",
     "image": {
-      "url": "https://cdn.esahubble.org/archives/images/screen/potw1910a.jpg",
+      "url": "https://cdn.esahubble.org/archives/images/thumb700x/potw1910a.jpg",
       "credit": "ESA/Hubble & NASA, J. E. Grindlay et al.",
       "licence": "CC BY 4.0",
       "page": "https://esahubble.org/images/potw1910a/",
@@ -2044,7 +2044,7 @@
     ],
     "essay": "M30 is a globular cluster in Capricornus, about 28,000 light-years from Earth. Charles Messier discovered it in 1764. It is about 90 light-years across and formed about 13 billion years ago. Its several hundred thousand stars are packed very densely toward the centre.\n\nLike other globular clusters, M30 is made up mostly of old stars, but it also contains blue stragglers, old stars that look young. Using Hubble's Wide Field Planetary Camera 2, astronomers identified two distinct types in M30. Some form when two stars collide nearly head-on and merge. Others are in binary systems, where one star pulls hydrogen from its companion and is rejuvenated by the extra fuel.\n\nAt magnitude 7.7, M30 can be seen in binoculars as a small, round glow. It lies in a fairly empty part of the sky. A small telescope shows a bright, concentrated core about 12 arcminutes across including its faint outer halo. Larger instruments resolve stars in its outer parts. The best month to look is October.",
     "image": {
-      "url": "https://cdn.esahubble.org/archives/images/screen/heic0918a.jpg",
+      "url": "https://cdn.esahubble.org/archives/images/thumb700x/heic0918a.jpg",
       "credit": "NASA / ESA",
       "licence": "CC BY 4.0",
       "page": "https://esahubble.org/images/heic0918a/",
@@ -2115,7 +2115,7 @@
     "image": {
       "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/hubble/galaxies/andromeda/Hubble_M31Mosaic_2025_10552x2468_STScI-01JGY92V0Z2HJTVH605N4WH9XQ.jpg?w=2000",
       "credit": "NASA, ESA, Benjamin F. Williams (UWashington), Zhuo Chen (UWashington), L. Clifton Johnson (Northwestern); Image Processing: Joseph DePasquale (STScI)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-31/",
       "caption": "Hubble's 2025 panorama of the Andromeda Galaxy, assembled from more than 600 overlapping fields."
     },
@@ -2184,7 +2184,7 @@
     "image": {
       "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/hubble/galaxies/elliptical/Hubble_M32_str2_flat_FINAL_NewImage.jpg?w=1600",
       "credit": "NASA, ESA, B. Williams (University of Washington); Image Processing: Gladys Kober (NASA/Catholic University of America)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-32/",
       "caption": "Hubble image of M32 taken for the Panchromatic Hubble Andromeda Southern Treasury survey."
     },
@@ -2253,7 +2253,7 @@
     "image": {
       "url": "https://science.nasa.gov/wp-content/uploads/2023/04/heic1901a.jpg?w=1600",
       "credit": "NASA, ESA, and M. Durbin, J. Dalcanton and B. F. Williams (University of Washington)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-33/",
       "caption": "Hubble mosaic of the central region and inner spiral arms of the Triangulum Galaxy."
     },
@@ -2391,7 +2391,7 @@
     "image": {
       "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/hubble/stars/open-clusters/Hubble_M35_WFPC2ok_flat_FINAL1.jpg?w=1600",
       "credit": "NASA, ESA, and E. Nelan (Space Telescope Science Institute), A. Riess (The Johns Hopkins University), J. Rhodes (Jet Propulsion Laboratory) ; Processing: Gladys Kober (NASA/Catholic University of America)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-35/",
       "caption": "Hubble close-up of several of the hundreds of stars in the open cluster M35."
     },
@@ -2874,7 +2874,7 @@
     "image": {
       "url": "https://science.nasa.gov/wp-content/uploads/2023/04/orion-nebula-xlarge_web.jpg",
       "credit": "NASA, ESA, M. Robberto (Space Telescope Science Institute/ESA) and the Hubble Space Telescope Orion Treasury Project Team",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-42/",
       "caption": "Hubble mosaic of the Orion Nebula, built from 520 exposures in multiple wavelengths."
     },
@@ -2943,7 +2943,7 @@
     "image": {
       "url": "https://science.nasa.gov/wp-content/uploads/2023/04/heic0601c.jpg?w=1200",
       "credit": "NASA, ESA, M. Robberto (Space Telescope Science Institute/ESA) and the Hubble Space Telescope Orion Treasury Project Team",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-43/",
       "caption": "Hubble view of M43, a small nebula shaped by a single massive star near its centre."
     },
@@ -3149,7 +3149,7 @@
     "image": {
       "url": "https://science.nasa.gov/wp-content/uploads/2023/04/hubble_ngc2438_wfpc2_screen_3mb.png?w=1200",
       "credit": "NASA, ESA, K. Knoll (NASA Goddard), and S. Öttl (Leopold Franzens Universität Innsbruck), et. al.; Processing: Gladys Kober (NASA/Catholic University of America)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-46/",
       "caption": "Hubble image of the planetary nebula NGC 2438 in front of the stars of M46."
     },
@@ -3287,7 +3287,7 @@
     "image": {
       "url": "https://science.nasa.gov/wp-content/uploads/2024/08/hubble-m48-1-flat-final-2.jpg?w=1200",
       "credit": "NASA, ESA, A. Riess (The Johns Hopkins University): Processing: Gladys Kober (NASA/Catholic University of America)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-48/",
       "caption": "Hubble image of part of the open cluster M48."
     },
@@ -3350,7 +3350,7 @@
     ],
     "essay": "M49 is a giant elliptical galaxy in the Virgo Cluster, about 60 million light-years away. Charles Messier discovered it in 1771. It was the first member of the Virgo Cluster to be found, and the first elliptical galaxy found outside the Local Group.\n\nElliptical galaxies lack the arms and discs of spirals. They are smooth, fairly featureless systems, and their stars are usually much older than those in spiral galaxies. M49 contains about 200 billion stars. It also has an unusually rich population of globular star clusters, nearly 6,000. An X-ray source at its core indicates a supermassive black hole, estimated at about 565 million times the mass of the Sun.\n\nAt magnitude 9.4, M49 is one of the brighter galaxies in the Virgo Cluster. It can be picked up in binoculars, but it is easier in a small telescope. There it appears as a round to slightly oval glow, with a bright centre and no visible structure. May is the best month to look.",
     "image": {
-      "url": "https://cdn.esahubble.org/archives/images/screen/potw1911a.jpg",
+      "url": "https://cdn.esahubble.org/archives/images/thumb700x/potw1911a.jpg",
       "credit": "ESA/Hubble & NASA, J. Blakenslee, P Cote et al.",
       "licence": "CC BY 4.0",
       "page": "https://esahubble.org/images/potw1911a/",
@@ -3490,7 +3490,7 @@
     "image": {
       "url": "https://science.nasa.gov/wp-content/uploads/2023/04/m51-and-companion_0.jpg?w=1200",
       "credit": "NASA, ESA, S. Beckwith (STScI) and the Hubble Heritage Team (STScI/AURA)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-51/",
       "caption": "Hubble image of the Whirlpool Galaxy and its companion NGC 5195."
     },
@@ -3626,7 +3626,7 @@
     ],
     "essay": "M53 is one of the most distant globular clusters from Earth, about 59,700 light-years away in Coma Berenices. The German astronomer Johann Elert Bode discovered it in 1775.\n\nGlobular clusters are much older and larger than open clusters. They are expected to contain mostly old, red stars and few young, blue ones. M53 has an unusually large number of blue stragglers: stars that look brighter and younger than the cluster's other stars, even though all of them should have formed at about the same time. These stars probably form through close encounters or collisions between stars in the crowded core. Hubble's sharp images help astronomers pick them out from the surrounding stars.\n\nThe cluster is roughly spherical and becomes steadily denser toward its centre. At magnitude 8.3 it is a small-telescope target, about a degree northeast of the star Alpha Comae Berenices. In a small telescope it appears as a round, evenly bright glow about 13 arcminutes across with a brighter core. Larger telescopes resolve its individual stars. The fainter globular cluster NGC 5053 lies about a degree away. M53 is best observed in May.",
     "image": {
-      "url": "https://cdn.esahubble.org/archives/images/screen/potw1140a.jpg",
+      "url": "https://cdn.esahubble.org/archives/images/thumb700x/potw1140a.jpg",
       "credit": "ESA/Hubble & NASA",
       "licence": "CC BY 4.0",
       "page": "https://esahubble.org/images/potw1140a/",
@@ -3695,7 +3695,7 @@
     ],
     "essay": "M54 was the first globular cluster found to lie outside the Milky Way. Charles Messier discovered it in 1778 without knowing its true distance. The cluster belongs to a small satellite galaxy of the Milky Way, the Sagittarius Dwarf Elliptical Galaxy, and lies about 90,000 light-years from Earth.\n\nThe Sagittarius dwarf is slowly being pulled apart and absorbed by the Milky Way's much stronger gravity. Eventually the two galaxies will merge, and M54 will become part of our galaxy. In Hubble's images, M54 is a dense, compact ball of stars that becomes much more crowded toward the centre.\n\nAt magnitude 8.4, M54 can be found in binoculars as a small, star-like patch near Ascella, Zeta Sagittarii, at the bottom of the Sagittarius \"teapot\". A small telescope shows a bright, compact core with a faint halo about 12 arcminutes across. Resolving its individual stars needs a large telescope. The best month to look is August.",
     "image": {
-      "url": "https://cdn.esahubble.org/archives/images/screen/potw1145a.jpg",
+      "url": "https://cdn.esahubble.org/archives/images/thumb700x/potw1145a.jpg",
       "credit": "ESA/Hubble & NASA",
       "licence": "CC BY 4.0",
       "page": "https://esahubble.org/images/potw1145a/",
@@ -3766,7 +3766,7 @@
     "image": {
       "url": "https://science.nasa.gov/wp-content/uploads/2023/06/hubble-m55-mos-acs-long-flat-final2.jpg?w=1200",
       "credit": "NASA, ESA, A. Sarajedini (Florida Atlantic University), and M. Libralato (STScI, ESA, JWST); Image Processing: Gladys Kober",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-55/",
       "caption": "Hubble mosaic of part of the globular cluster M55, resolved into individual stars."
     },

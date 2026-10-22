@@ -147,12 +147,12 @@ Checked 2026-10-17 against primary sources unless marked unconfirmed.
 | NASA SDO | =assets/img/latest/latest_{512,1024,...}_{0171,0193,0304,HMIIC}.jpg= | Not copyrighted unless noted. Credit: "Courtesy of NASA/SDO and the AIA, EVE, and HMI science teams." |
 | JPL Horizons API | Spacecraft positions (Voyager 1 = -31) | No published limit; errors come back as HTTP 200, check payload. Cache server-side. |
 | CelesTrak GP | =celestrak.org/NORAD/elements/gp.php?CATNR=25544&FORMAT=JSON= | Updates every 2 h; one download per update. >50 HTTP errors in 2 h blocks the IP. Fetch only from the Worker; stop on any non-200. |
-| Launch Library 2 v2.3.0 | =ll.thespacedevs.com/2.3.0/= | 15 requests/hour anonymous (confirmed). Higher tiers via Patreon; price, commercial and attribution terms unpublished. Ask The Space Devs before launch. |
+| Launch Library 2 v2.3.0 | =ll.thespacedevs.com/2.3.0/= | 15 requests/hour anonymous; key via Patreon. Terms in TheSpaceDevs/Tutorials FAQs: attribution encouraged, not required; cache server-side, no direct client calls; User-Agent =App/Version (contact)=; =/api-throttle/= is free. Same for Spaceflight News API. |
 | NASA Image and Video Library | Planet, mission and spacecraft images | Generally not copyrighted; acknowledge NASA. Insignia and logotype protected; no implied endorsement; no current astronauts in promotion. |
-| ESA/Hubble, ESA/Webb, ESO | Deep-sky images | CC BY 4.0; full credit line visible next to each image; note modifications. ESO: no commercial use of identifiable people. |
+| ESA/Hubble, ESA/Webb, ESO | Deep-sky images | CC BY 4.0; full credit line visible next to each image; note modifications. ESO: no commercial use of identifiable people. Images credited NASA and ESA are labelled CC BY 4.0. |
 | USGS Astrogeology | Planet and moon maps | Public domain |
 | NASA Exoplanet Archive | Exoplanets (later) | Public; bundle a snapshot, refresh periodically |
-| Historical star atlases (LoC, Linda Hall Library, Wikimedia scans) | Constellation plates | Works public domain; check each scan's terms |
+| Historical star atlases (LoC, Linda Hall Library, Wikimedia scans) | Constellation plates | Works public domain; check each scan's terms. LoC plates bundled (=App/Plates=): loc.gov limits automated requests per IP. |
 
 Track source and licence per image in the content bundle from day one.
 
@@ -560,7 +560,6 @@ Sky, System, Sun, Launches, Library core (above).
 - App Store Connect: privacy policy URL https://krz.sh/privacy/moonrise/.
 - App Store Connect privacy label: Location, Coarse Location, App
   Functionality, not linked, not used for tracking (WeatherKit).
-- Ask The Space Devs about Launch Library 2 attribution terms.
 
 * risks
 - Library scope: 320 pages is most of the effort. Ship 1.0 with fewer

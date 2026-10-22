@@ -43,7 +43,7 @@
     ],
     "essay": "M56 is a globular cluster in Lyra, about 33,000 light-years away. Charles Messier found it in January 1779 and described it as a nebula without stars; William Herschel first resolved it into individual stars around 1784.\n\nHubble observations show that M56 contains very little of any element heavier than hydrogen and helium, so its stars formed early, before later generations of stars had enriched the galaxy. Clusters with this composition tend to lie along a plane in the Milky Way's halo. That pattern suggests many of them, M56 included, were captured from a satellite galaxy rather than formed with the Milky Way itself.\n\nAt magnitude 8.3, M56 is one of the fainter Messier globulars and lacks the bright, concentrated core that most of them have. It sits roughly halfway between Albireo (Beta Cygni) and Gamma Lyrae, in a rich Milky Way field. Binoculars show a small, faint glow. A small telescope shows a round haze, and only the inner part, about 3′ across, is easy to see by eye. August evenings are the best time to look for it from mid-northern latitudes.",
     "image": {
-      "url": "https://cdn.esahubble.org/archives/images/screen/potw1234a.jpg",
+      "url": "https://cdn.esahubble.org/archives/images/thumb700x/potw1234a.jpg",
       "credit": "NASA & ESA Acknowledgement: Gilles Chapdelaine",
       "licence": "CC BY 4.0",
       "page": "https://esahubble.org/images/potw1234a/",
@@ -114,7 +114,7 @@
     "image": {
       "url": "https://science.nasa.gov/wp-content/uploads/2023/04/ring-nebula-full_jpg.jpg?w=1600",
       "credit": "NASA, ESA and the Hubble Heritage (STScI/AURA)-ESA/Hubble Collaboration",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-57/",
       "caption": "Hubble view of the Ring Nebula: blue gas at the centre, a doughnut of redder gas around it, and dark knots on the inner rim."
     },
@@ -183,7 +183,7 @@
     "image": {
       "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/hubble/galaxies/spiral/Hubble_M58_1_flat_FINAL.jpg?w=1600",
       "credit": "NASA, ESA, D. Thilker (The Johns Hopkins University); Image Processing: Gladys Kober (NASA/Catholic University of America)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-58/",
       "caption": "Hubble view of M58 in infrared, visible and ultraviolet light, showing its star-forming regions and dust."
     },
@@ -250,7 +250,7 @@
     ],
     "essay": "M59 is one of the larger elliptical galaxies in the Virgo Cluster, about 60 million light-years away. It is still well short of the cluster's giant ellipticals in both mass and luminosity. Johann Gottfried Koehler discovered M59 and its neighbour M60 in spring 1779 while following that year's comet; Messier, watching the same comet, added M58, M59 and M60 to his catalogue.\n\nA supermassive black hole of around 270 million solar masses sits at the centre of M59. The galaxy also has an inner disc of stars and around 2,200 globular clusters, a high number for a galaxy of its size. Its innermost 200 light-years rotate in the opposite direction to the rest of the galaxy. This is the smallest such counter-rotating region known in any galaxy.\n\nM59 lies close to M58 and M60 in the sky and is best placed in May. In a small telescope it is an oval glow with a brighter centre. Larger telescopes add little detail, as is typical of elliptical galaxies.",
     "image": {
-      "url": "https://cdn.esahubble.org/archives/images/screen/potw1921a.jpg",
+      "url": "https://cdn.esahubble.org/archives/images/thumb700x/potw1921a.jpg",
       "credit": "ESA/Hubble & NASA, P. Cote",
       "licence": "CC BY 4.0",
       "page": "https://esahubble.org/images/potw1921a/",
@@ -321,7 +321,7 @@
     "image": {
       "url": "https://science.nasa.gov/wp-content/uploads/2023/04/m60_and_ngc_4647.jpg?w=1600",
       "credit": "NASA, ESA and the Hubble Heritage (STScI/AURA)-ESA/Hubble Collaboration",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-60/",
       "caption": "Hubble view of the elliptical galaxy M60 (centre) and the smaller spiral galaxy NGC 4647 (upper right)."
     },
@@ -388,7 +388,7 @@
     ],
     "essay": "M61 is a barred spiral galaxy in the Virgo Cluster, about 55 million light-years away. Barnaba Oriani discovered it in May 1779 while following that year's comet. Messier saw it the same night but took it for the comet, and only recognised it as a fixed object six days later.\n\nM61 is a starburst galaxy: it is forming stars at a high rate and using up its supply of gas quickly by astronomical standards. Red patches along its arms mark regions of new star formation. An X-ray source in the nucleus points to a supermassive black hole at the centre. M61 has also hosted seven observed supernovae, more than any other galaxy in the Messier catalogue.\n\nThe galaxy is seen almost face-on, and Hubble images trace its arms inward to a smaller, bright spiral at the centre. At magnitude 10.2, it needs a moderately sized telescope. Look for it in May, in the southern part of the Virgo galaxy field. Small instruments show a round glow with a brighter core, and larger apertures begin to hint at the arms.",
     "image": {
-      "url": "https://cdn.esahubble.org/archives/images/screen/potw2114a.jpg",
+      "url": "https://cdn.esahubble.org/archives/images/thumb700x/potw2114a.jpg",
       "credit": "ESA/Hubble & NASA, ESO, J. Lee and the PHANGS-HST Team",
       "licence": "CC BY 4.0",
       "page": "https://esahubble.org/images/potw2114a/",
@@ -459,7 +459,7 @@
     "image": {
       "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/hubble/stars/globular-clusters/Hubble_M62_2019_potw1915a.jpg?w=1600",
       "credit": "NASA, ESA, and S. Anderson (University of Washington) and J. Chaname (Pontificia Universidad Católica de Chile)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-62/",
       "caption": "Hubble view of the dense core of M62, taken in ultraviolet and visible light."
     },
@@ -526,7 +526,7 @@
     ],
     "essay": "M63, the Sunflower Galaxy, is a spiral galaxy about 27 million light-years away in Canes Venatici. It belongs to the M51 Group, named after its brightest member, the Whirlpool Galaxy. Pierre Méchain found it in 1779. It was the first of 24 objects he contributed to Messier's catalogue.\n\nM63 is a flocculent spiral. Instead of two long, well-defined arms, it shows many short, broken arm segments wound around a yellow core, which gives the galaxy its name. The arms are bright because of recently formed blue-white stars. Structurally the galaxy has only two arms, which show up more clearly in infrared images. Astronomers study flocculent spirals like M63 to understand what drives star formation when there is no strong spiral pattern to organise it.\n\nAt magnitude 9.3, M63 appears in small telescopes as a faint oval patch of light about 10′ by 6′, with a brighter centre. It is best seen in May.",
     "image": {
-      "url": "https://cdn.esahubble.org/archives/images/screen/potw1536a.jpg",
+      "url": "https://cdn.esahubble.org/archives/images/thumb700x/potw1536a.jpg",
       "credit": "ESA/Hubble & NASA",
       "licence": "CC BY 4.0",
       "page": "https://esahubble.org/images/potw1536a/",
@@ -597,7 +597,7 @@
     "image": {
       "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/hubble/galaxies/spiral/Hubble_M64_UVIS_V4_flat_HST_FINAL2.jpg?w=1600",
       "credit": "NASA, CSA, ESA, F. Belfiore (European Southern Observatory – Germany), J. Lee (Space Telescope Science Institute), A. Leroy (The Ohio State University), and D. Thilker (The Johns Hopkins University); Processing: Gladys Kober (NASA/Catholic University of America)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-64/",
       "caption": "Hubble view of M64 in ultraviolet, visible and near-infrared light, showing the dark dust band in front of its core."
     },
@@ -664,7 +664,7 @@
     ],
     "essay": "M65 is a spiral galaxy about 35 million light-years away in Leo. With its neighbours M66 and NGC 3628 it forms the Leo Triplet, a small group of interacting galaxies. Messier discovered M65 and M66 on the same night in 1780, having missed both in 1773 when a comet passed between them. NGC 3628, the third member, was found by William Herschel in 1784 and is not in the Messier catalogue.\n\nWe see M65 at a steep angle, so its disc appears as a long, narrow oval about 8′ by 1.5′, with dust lanes visible in Hubble images. Only one supernova has been recorded in it so far, SN 2013am.\n\nM65 shines at magnitude 10.3 and is best seen in April. A small telescope with a low-power eyepiece shows M65 and M66 in the same field as two elongated glows, and on a dark night NGC 3628 can be added as a fainter, thin streak nearby.",
     "image": {
-      "url": "https://cdn.esahubble.org/archives/images/screen/potw1352a.jpg",
+      "url": "https://cdn.esahubble.org/archives/images/thumb700x/potw1352a.jpg",
       "credit": "ESA/Hubble & NASA",
       "licence": "CC BY 4.0",
       "page": "https://esahubble.org/images/potw1352a/",
@@ -733,7 +733,7 @@
     ],
     "essay": "M66 is a spiral galaxy about 35 million light-years away in Leo, and a member of the Leo Triplet with M65 and NGC 3628. Messier discovered it, together with M65, in 1780. He noted that he had missed both in 1773, when a comet passed between them, probably because of the comet's light. Five supernovae have been recorded in M66.\n\nThe three galaxies are close enough to affect each other's structure. In M66 this shows as asymmetric spiral arms and a core that appears off-centre, both probably caused by the gravitational pull of the other two. M66 is actively forming stars. Hubble included it in the Legacy ExtraGalactic UV Survey (LEGUS), an ultraviolet survey of nearby star-forming galaxies.\n\nAt magnitude 8.9, M66 is brighter than M65 and can be spotted with a small telescope. It is best seen in April, and a low-power eyepiece shows it and M65 in one field. M66 appears as a broader, brighter oval than its neighbour.",
     "image": {
-      "url": "https://cdn.esahubble.org/archives/images/screen/heic1006a.jpg",
+      "url": "https://cdn.esahubble.org/archives/images/thumb700x/heic1006a.jpg",
       "credit": "NASA, ESA and the Hubble Heritage (STScI/AURA)-ESA/Hubble Collaboration. Acknowledgement: Davide De Martin and Robert Gendler",
       "licence": "CC BY 4.0",
       "page": "https://esahubble.org/images/heic1006a/",
@@ -804,7 +804,7 @@
     "image": {
       "url": "https://science.nasa.gov/wp-content/uploads/2024/02/m67-acs-1mstr-flat-final.jpg?w=1600",
       "credit": "NASA, ESA, and J. Krist (Jet Propulsion Laboratory); Processing: Gladys Kober (NASA/Catholic University of America)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-67/",
       "caption": "Hubble's close-up of a small part of M67, showing a handful of bright stars with diffraction spikes."
     },
@@ -871,7 +871,7 @@
     ],
     "essay": "M68 is a globular cluster in Hydra, about 33,000 light-years away. Charles Messier discovered it in 1780. Like the other 150 or so globular clusters around the Milky Way, it is a dense ball of very old stars, numbering in the hundreds of thousands or more, held together by their mutual gravity for many billions of years.\n\nM68's stars occupy a region little more than a hundred light-years across, tiny compared with the 100,000-light-year disc of the Milky Way. The cluster also lies in an unusual direction, in the half of the sky away from the galactic centre, where few globulars are found.\n\nAt magnitude 8.0, M68 can be found with binoculars as a small round glow. To find it, follow the line from Delta to Beta Corvi onward to a 5th-magnitude star; M68 lies about 45′ northeast of that star. A small telescope shows a hazy disc with a gradually brighter middle, and medium apertures begin to resolve its outer stars. It is best seen in April, low in the south from mid-northern latitudes.",
     "image": {
-      "url": "https://cdn.esahubble.org/archives/images/screen/potw1231a.jpg",
+      "url": "https://cdn.esahubble.org/archives/images/thumb700x/potw1231a.jpg",
       "credit": "ESA/Hubble & NASA",
       "licence": "CC BY 4.0",
       "page": "https://esahubble.org/images/potw1231a/",
@@ -940,7 +940,7 @@
     ],
     "essay": "M69 is a globular cluster in Sagittarius, about 29,700 light-years away. Charles Messier discovered it in 1780.\n\nM69 is one of the most metal-rich globular clusters known. To astronomers, \"metals\" are all elements heavier than hydrogen and helium. These are produced inside stars and returned to space when the stars die, so each new generation of stars starts with more of them. Old globular clusters normally have very low metal content, but the stars in M69 have more than ten times as much iron as stars in other globulars of similar age. Comparing clusters like this one helps astronomers reconstruct how chemical enrichment and star formation progressed in the early galaxy.\n\nAt magnitude 8.3, M69 is visible in binoculars as a small hazy spot. It is similar in size and brightness to its neighbour M70, which Messier found on the same night. Small telescopes show a round glow with a brighter centre. The cluster is best seen in August, low in the south from mid-northern latitudes.",
     "image": {
-      "url": "https://cdn.esahubble.org/archives/images/screen/potw1240a.jpg",
+      "url": "https://cdn.esahubble.org/archives/images/thumb700x/potw1240a.jpg",
       "credit": "ESA/Hubble & NASA",
       "licence": "CC BY 4.0",
       "page": "https://esahubble.org/images/potw1240a/",
@@ -1009,7 +1009,7 @@
     ],
     "essay": "M70 is a globular cluster in Sagittarius, about 30,000 light-years away. Charles Messier discovered it in 1780.\n\nM70 lies slightly beyond the galactic centre from our point of view, about 7,500 light-years from it, and is about 12.7 billion years old. It has undergone core collapse, which packs even more stars into its centre than in a typical globular cluster. Stars in a globular cluster all orbit a shared centre of gravity. Over time, encounters between them sort the stars by mass: lighter stars gain speed and drift outward, while heavier stars sink toward the middle. The result is a very dense core. About a fifth of the roughly 150 globular clusters in the Milky Way have collapsed cores like this.\n\nAt magnitude 9.1, M70 is a little fainter than its neighbour M69 and is best seen in a small telescope, where it appears as a small round glow with a concentrated centre. August is the best month to look for it from mid-northern latitudes, where it stays low in the south.",
     "image": {
-      "url": "https://cdn.esahubble.org/archives/images/screen/potw1215a.jpg",
+      "url": "https://cdn.esahubble.org/archives/images/thumb700x/potw1215a.jpg",
       "credit": "ESA/Hubble & NASA",
       "licence": "CC BY 4.0",
       "page": "https://esahubble.org/images/potw1215a/",
@@ -1078,7 +1078,7 @@
     ],
     "essay": "M71 is a globular cluster in the small constellation Sagitta, about 13,000 light-years away and about 27 light-years across. The Swiss astronomer Jean-Philippe Loys de Chéseaux recorded it in 1745–46, and Messier added it to his catalogue in 1780.\n\nFor many years M71 was thought to be a dense open cluster, because its stars are much less concentrated toward the centre than in a typical globular. In the 1970s astronomers concluded that it is a sparse globular cluster. Its stars are around 9 to 10 billion years old and contain little besides hydrogen and helium, as is usual for globulars.\n\nM71 lies between Gamma and Delta Sagittae, in the middle of the arrow, in a rich part of the summer Milky Way. NASA gives its magnitude as 6.1. In binoculars it appears as a faint patch of light. A small telescope begins to resolve it into stars, and because it lacks a bright core it can look more like a rich open cluster than a globular. It is best seen in September.",
     "image": {
-      "url": "https://cdn.esahubble.org/archives/images/screen/potw1018a.jpg",
+      "url": "https://cdn.esahubble.org/archives/images/thumb700x/potw1018a.jpg",
       "credit": "ESA/Hubble and NASA",
       "licence": "CC BY 4.0",
       "page": "https://esahubble.org/images/potw1018a/",
@@ -1147,7 +1147,7 @@
     ],
     "essay": "M72 is a globular cluster in Aquarius. At about 50,000 light-years it is one of the most distant clusters in Messier's catalogue. Pierre Méchain discovered it in 1780, the first of five star clusters he found while assisting Messier.\n\nLike other globular clusters, M72 is an ancient, roughly spherical collection of stars packed closely toward its centre, all orbiting a shared centre of gravity. About 150 globulars are known in the Milky Way. Hubble images of M72 taken at several wavelengths separate its stars by type. Stars that were originally more massive and have used up much of their hydrogen appear blue and hot, while lower-mass stars that have swollen into red giants appear red. Comparing these groups helps astronomers work out how globular clusters formed. Hubble's wider views of M72 also show many background galaxies far beyond it.\n\nAt magnitude 9.4, M72 is a faint target. In a small telescope it is a small, round patch of light with no resolved stars. It lies in western Aquarius, about 1.5° west of the four-star group M73, and is best seen in September.",
     "image": {
-      "url": "https://cdn.esahubble.org/archives/images/screen/potw2516a.jpg",
+      "url": "https://cdn.esahubble.org/archives/images/thumb700x/potw2516a.jpg",
       "credit": "ESA/Hubble & NASA, A. Sarajedini, G. Piotto, M. Libralato",
       "licence": "CC BY 4.0",
       "page": "https://esahubble.org/images/potw2516a/",
@@ -1285,7 +1285,7 @@
     ],
     "essay": "M74 is a spiral galaxy about 32 million light-years away in Pisces. Pierre Méchain discovered it in 1780. We see it face-on, and it is a clear example of a grand-design spiral: two symmetrical arms reach out from the nucleus, traced by winding dust lanes.\n\nThe arms hold clusters of young blue stars and many pink H II regions, clouds of hydrogen gas made to glow by ultraviolet light from hot young stars inside them. These regions mark where stars have formed recently, and astronomers use them to study star formation with both space and ground-based telescopes.\n\nM74 is one of the hardest Messier objects to see. Its light is spread over a large area about 10′ across, so its surface brightness is low despite its overall magnitude of 10. It lies about 1.3° east-northeast of Eta Piscium. Under a dark sky, a small telescope shows a faint, round glow with a slightly brighter centre; light pollution or a bright Moon can hide it completely. The spiral arms need a larger telescope and very dark skies. It is best seen in November.",
     "image": {
-      "url": "https://cdn.esahubble.org/archives/images/screen/potw2235a.jpg",
+      "url": "https://cdn.esahubble.org/archives/images/thumb700x/potw2235a.jpg",
       "credit": "ESA/Hubble & NASA, R. Chandar",
       "licence": "CC BY 4.0",
       "page": "https://esahubble.org/images/potw2235a/",
@@ -1354,7 +1354,7 @@
     ],
     "essay": "M75 is a globular cluster in western Sagittarius, about 67,500 light-years away, which makes it one of the more remote Messier globulars. Pierre Méchain discovered it in August 1780. Messier observed it that October, measured its position and added it to his catalogue.\n\nThe cluster holds some 400,000 stars and is around 13 billion years old. It is the most centrally concentrated globular in the Messier catalogue, with most of its stars packed into a large, bright nucleus. Hubble has studied its stellar populations and looked for signs of an intermediate-mass black hole at its centre, between about one hundred and one million solar masses.\n\nBecause its light is so concentrated, M75 at magnitude 8.6 is easier to see than its distance suggests. In binoculars it looks almost like a star. A small telescope shows a small, bright, round glow, and a 10-inch or larger telescope is needed to resolve some of its stars. It lies in the western part of Sagittarius and is best seen in September.",
     "image": {
-      "url": "https://cdn.esahubble.org/archives/images/screen/potw1916a.jpg",
+      "url": "https://cdn.esahubble.org/archives/images/thumb700x/potw1916a.jpg",
       "credit": "ESA/Hubble & NASA, F. Ferraro et al.",
       "licence": "CC BY 4.0",
       "page": "https://esahubble.org/images/potw1916a/",
@@ -1425,7 +1425,7 @@
     "image": {
       "url": "https://science.nasa.gov/wp-content/uploads/2024/04/hubble-34th-littledumbell-sm-stsci-01htddrc7nr68q120setwhmsaq.png",
       "credit": "NASA, ESA, STScI",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-76/",
       "caption": "Hubble's 2024 view of the Little Dumbbell Nebula: two lobes of gas expanding from a central white dwarf."
     },
@@ -1492,7 +1492,7 @@
     ],
     "essay": "M77 is a spiral galaxy about 45 million light-years away in Cetus. It is one of the largest galaxies in the Messier catalogue. Pierre Méchain discovered it in 1780 and recorded it as a nebula; Messier and others of the time thought it might be a star cluster. More than a century passed before astronomers understood that such spiral nebulae were separate galaxies far beyond the Milky Way.\n\nM77 is a standard example of a Seyfert galaxy: a spiral with an extremely bright, active nucleus that emits strongly in X-rays and ultraviolet light. The source of this energy is gas falling onto a supermassive black hole. Hubble's ultraviolet images show brightness changes in the nucleus, consistent with a compact energy source there. Around the centre, red and blue pockets of star formation lie along the arms, with dark dust lanes wrapped around the starry core.\n\nAt magnitude 9.6, M77 can be seen with a small telescope as a small, bright glow with a star-like centre. The fainter outer arms need a larger telescope and dark skies. It lies less than a degree east-southeast of Delta Ceti and is best seen in December.",
     "image": {
-      "url": "https://cdn.esahubble.org/archives/images/screen/potw2515a.jpg",
+      "url": "https://cdn.esahubble.org/archives/images/thumb700x/potw2515a.jpg",
       "credit": "ESA/Hubble & NASA, L. C. Ho, D. Thilker",
       "licence": "CC BY 4.0",
       "page": "https://esahubble.org/images/potw2515a/",
@@ -1563,7 +1563,7 @@
     "image": {
       "url": "https://science.nasa.gov/wp-content/uploads/2023/04/m78_0.jpg",
       "credit": "NASA, ESA, J. Muzerolle (Space Telescope Science Institute) and S. Megeath (University of Toledo)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-78/",
       "caption": "Hubble near-infrared view of part of M78, showing young stars embedded in the dust cloud."
     },
@@ -1632,7 +1632,7 @@
     "image": {
       "url": "https://science.nasa.gov/wp-content/uploads/2023/04/m791343x1343.png",
       "credit": "NASA, ESA, STScI, F. Ferraro (Universita di Bologna) and S. Djorgovski (California Institute of Technology)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-79/",
       "caption": "Hubble view of M79 combining visible and ultraviolet observations from 1995 and 1997."
     },
@@ -1701,7 +1701,7 @@
     "image": {
       "url": "https://science.nasa.gov/wp-content/uploads/2023/04/hubble_m80_wfc3_acs_comb_final2.jpg?w=1600",
       "credit": "NASA, ESA, and G. Piotto (Universita degli Studi di Padova); Image Processing: Gladys Kober",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-80/",
       "caption": "Hubble view of M80 in ultraviolet, visible and infrared light, showing stars of different types by colour."
     },
@@ -1770,7 +1770,7 @@
     "image": {
       "url": "https://science.nasa.gov/wp-content/uploads/2023/04/m81-print.jpg?w=1600",
       "credit": "NASA, ESA and the Hubble Heritage Team (STScI/AURA)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-81/",
       "caption": "Hubble view of M81 in visible and infrared light, with spiral arms winding into a large central bulge."
     },
@@ -1839,7 +1839,7 @@
     "image": {
       "url": "https://science.nasa.gov/wp-content/uploads/2023/04/m82.jpg?w=1600",
       "credit": "NASA, ESA and the Hubble Heritage Team (STScI/AURA); Acknowledgment: J. Gallagher (University of Wisconsin), M. Mountain (STScI) and P. Puxley (National Science Foundation)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-82/",
       "caption": "Hubble view of M82, with red filaments of hydrogen streaming out from the centre of the edge-on disc."
     },
@@ -1908,7 +1908,7 @@
     "image": {
       "url": "https://science.nasa.gov/wp-content/uploads/2023/04/m83.jpg?w=1600",
       "credit": "NASA, ESA and the Hubble Heritage Team (STScI/AURA); Acknowledgment: W. Blair (STScI/Johns Hopkins University) and R. O’Connell (University of Virginia)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-83/",
       "caption": "Hubble mosaic of M83, with pink and blue regions of star formation along its arms."
     },
@@ -1977,7 +1977,7 @@
     "image": {
       "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/hubble/galaxies/elliptical/M84_1_wholegal_flat_FINAL3.jpg?w=1600",
       "credit": "NASA, ESA, P. Cote (National Research Council of Canada); Processing: Gladys Kober (NASA/Catholic University of America)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-84/",
       "caption": "Hubble view of M84, an elliptical galaxy with a bright core and dust lanes crossing its centre."
     },
@@ -2046,7 +2046,7 @@
     "image": {
       "url": "https://science.nasa.gov/wp-content/uploads/2023/04/m85_0.jpg",
       "credit": "NASA, ESA and R. O’Connell (University of Virginia)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-85/",
       "caption": "Hubble view of the centre of M85 in infrared, visible and ultraviolet light."
     },
@@ -2113,7 +2113,7 @@
     ],
     "essay": "M86 is a galaxy in the Virgo Cluster, about 52 million light-years away. It is either an elliptical or a lenticular galaxy. Charles Messier discovered it in 1781, and it is one of the brightest members of the cluster. It contains around 3,800 globular clusters.\n\nMost of the Virgo Cluster is moving away from the Milky Way, but M86 is approaching. It lies on the far side of the cluster and is falling toward the cluster's centre, which carries it in our direction. Of all the galaxies in Messier's catalogue, M86 is approaching us the fastest. Hubble has studied its core as part of a survey of early-type galaxies, the old ellipticals and lenticulars found near the centres of galaxy clusters, to work out their central structure and history.\n\nAt magnitude 9.2, M86 can be seen with binoculars and small telescopes. It lies near the centre of the Virgo Cluster, with M84 often in the same field of view as a slightly smaller round glow. Both are part of Markarian's Chain, a curved line of galaxies. Telescopes 8 inches or larger show several fainter galaxies in the same field. It is best seen in May.",
     "image": {
-      "url": "https://cdn.esahubble.org/archives/images/screen/potw1938a.jpg",
+      "url": "https://cdn.esahubble.org/archives/images/thumb700x/potw1938a.jpg",
       "credit": "ESA/Hubble & NASA, P. Cote et al.",
       "licence": "CC BY 4.0",
       "page": "https://esahubble.org/images/potw1938a/",
@@ -2184,7 +2184,7 @@
     "image": {
       "url": "https://science.nasa.gov/wp-content/uploads/2023/04/m87-full_jpg.jpg?w=1600",
       "credit": "NASA, ESA and the Hubble Heritage Team (STScI/AURA); Acknowledgment: P. Cote (Herzberg Institute of Astrophysics) and E. Baltz (Stanford University)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-87/",
       "caption": "Hubble view of M87, a giant elliptical galaxy surrounded by thousands of globular clusters."
     },
@@ -2251,7 +2251,7 @@
     ],
     "essay": "M88 is a spiral galaxy about 63 million light-years away. It is a member of the Virgo Cluster but lies just over the border in Coma Berenices. Charles Messier discovered it in March 1781, on the same night as eight other objects in his catalogue.\n\nM88 has well-defined, symmetrical spiral arms and contains around 400 billion stars. Its nucleus is active, meaning the centre is more luminous than the rest of the galaxy, and it holds a black hole of about 100 million solar masses. The galaxy is moving toward the centre of the Virgo Cluster. In 200 to 300 million years, about two million light-years from where it is now, it will make its closest approach to M87, the giant elliptical at the cluster's heart.\n\nM88 is one of the brighter Messier galaxies, at magnitude 9.5. It can be seen with large binoculars under dark skies. A small telescope shows an elongated glow with a brighter core, and larger telescopes bring out the core more clearly. It is best seen in May.",
     "image": {
-      "url": "https://cdn.esahubble.org/archives/images/screen/potm2605a.jpg",
+      "url": "https://cdn.esahubble.org/archives/images/thumb700x/potm2605a.jpg",
       "credit": "ESA/Hubble & NASA, D. Thilker and the MAUVE-HST Team",
       "licence": "CC BY 4.0",
       "page": "https://esahubble.org/images/potm2605a/",
@@ -2322,7 +2322,7 @@
     "image": {
       "url": "https://science.nasa.gov/wp-content/uploads/2023/04/m89.png",
       "credit": "NASA, ESA, STScI, and M. Franx (Universiteit Leiden) and S. Faber (University of California, Santa Cruz)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-89/",
       "caption": "Hubble view of most of M89, with globular clusters as points of light and an edge-on spiral below its core."
     },
@@ -2389,7 +2389,7 @@
     ],
     "essay": "M90 is a spiral galaxy in the Virgo Cluster, about 59 million light-years away. Charles Messier found it in 1781 while observing other Virgo galaxies. It contains about a trillion stars and a thousand globular clusters.\n\nAbout 300 million years ago, M90's orbit carried it close to the centre of the cluster. The dense gas there acted like a strong headwind and stripped much of the galaxy's own gas, forming a diffuse halo around it. Without that gas, M90's arms now form few new stars, and only the inner disc is still active. Over time the galaxy is expected to fade into a lenticular galaxy, with a disc but no star-forming arms. Its orbit has also accelerated it enough that it is escaping the cluster, and it happens to be moving toward us. Other Virgo galaxies move at similar speeds but in the opposite direction.\n\nAt magnitude 9.5, M90 can be seen with binoculars in a clear, dark sky as a faint smudge. A small telescope shows an elongated glow with a bright core, and larger telescopes begin to show its arms. It is best seen in May.",
     "image": {
-      "url": "https://cdn.esahubble.org/archives/images/screen/potw2442a.jpg",
+      "url": "https://cdn.esahubble.org/archives/images/thumb700x/potw2442a.jpg",
       "credit": "ESA/Hubble & NASA, D. Thilker, J. Lee and the PHANGS-HST Team",
       "licence": "CC BY 4.0",
       "page": "https://esahubble.org/images/potw2442a/",
@@ -2460,7 +2460,7 @@
     "image": {
       "url": "https://science.nasa.gov/wp-content/uploads/2023/04/m91_wfc3_4_crop_v2_final.jpg?w=1600",
       "credit": "NASA, ESA, and J. Lee (California Institute of Technology); Processing: Gladys Kober (NASA/Catholic University of America)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-91/",
       "caption": "Hubble view of M91 in ultraviolet, visible and infrared light."
     },
@@ -2527,7 +2527,7 @@
     ],
     "essay": "M92 is a globular cluster in Hercules, about 27,000 light-years away. Johann Elert Bode discovered it in 1777. It contains about 330,000 stars and is one of the oldest star clusters in the Milky Way, with an age close to that of the universe.\n\nLike other ancient globulars, M92 is made up almost entirely of hydrogen and helium, with only traces of heavier elements, which astronomers call metals. It formed before earlier generations of stars had produced much of these elements. Measuring the composition and brightness of its stars lets astronomers estimate the cluster's age, and M92 is often used as a reference for the oldest stellar populations.\n\nAt magnitude 6.3, M92 is one of the brighter globular clusters in the sky. It is visible to the unaided eye from a dark site, and binoculars show it easily. Within Hercules it is second only to M13, slightly fainter and about a third smaller. A small telescope shows a bright, condensed core, and medium-sized telescopes resolve its outer stars. It is best seen in July.",
     "image": {
-      "url": "https://cdn.esahubble.org/archives/images/screen/potw1449a.jpg",
+      "url": "https://cdn.esahubble.org/archives/images/thumb700x/potw1449a.jpg",
       "credit": "ESA/Hubble & NASA Acknowledgement: Gilles Chapdelaine",
       "licence": "CC BY 4.0",
       "page": "https://esahubble.org/images/potw1449a/",
@@ -2665,7 +2665,7 @@
     ],
     "essay": "M94 is a spiral galaxy about 16 million light-years away in Canes Venatici. Pierre Méchain discovered it in 1781.\n\nThe galaxy's most visible feature is a bright ring around the core where stars are forming at a high rate, called a starburst ring. Its cause is probably a pressure wave moving outward from the centre. The wave compresses gas and dust in its path until clouds collapse under gravity and form stars. M94 was long thought to be about 30,000 light-years across, but two faint outer arms, beyond the bright inner region, were found more recently and roughly triple its known diameter. The galaxy also appears to contain less dark matter than other galaxies, for reasons that are not understood, and astronomers have studied it closely as a result.\n\nAt magnitude 9.0, M94 can be spotted through a small telescope, which shows a bright, compact core inside a fainter oval glow. It is best seen in May.",
     "image": {
-      "url": "https://cdn.esahubble.org/archives/images/screen/potw1542a.jpg",
+      "url": "https://cdn.esahubble.org/archives/images/thumb700x/potw1542a.jpg",
       "credit": "ESA/Hubble & NASA",
       "licence": "CC BY 4.0",
       "page": "https://esahubble.org/images/potw1542a/",
@@ -2736,7 +2736,7 @@
     "image": {
       "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/hubble/galaxies/spiral/Hubble_M95_center_ma_flat_FINAL.jpg?w=1600",
       "credit": "NASA, ESA, J. Lee (STScI), and R. Chandar (University of Toledo); Image Processing: Gladys Kober (NASA/Catholic University of America)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-95/",
       "caption": "Hubble view of the centre of M95, combining data from two star-formation studies."
     },
@@ -2803,7 +2803,7 @@
     ],
     "essay": "M96 is a spiral galaxy in Leo, about 35 million light-years away, with roughly the mass and size of the Milky Way. Pierre Méchain discovered it in 1781, and Messier added it to his catalogue four days later.\n\nM96 is very asymmetric. Its dust and gas are unevenly spread through its weak spiral arms, and its core is not exactly at the galaxy's centre. These irregularities are thought to come from the gravitational pull of neighbouring galaxies in the M96 Group, also called Leo I, which includes M95 and M105. It is the nearest group to contain both bright spirals and a bright elliptical. Hubble's 2025 observations recorded light from ionised hydrogen and nitrogen. Pink bubbles of gas surround hot young stars in a ring of star formation in the galaxy's outer parts, and astronomers use the data to study how stars form inside dusty gas clouds.\n\nAt magnitude 10.1, M96 appears dim in the sky and is best seen with a medium-sized telescope, with M95 and M105 nearby. It shows as an oval glow with a bright centre. It is best seen in April.",
     "image": {
-      "url": "https://cdn.esahubble.org/archives/images/screen/potw2534a.jpg",
+      "url": "https://cdn.esahubble.org/archives/images/thumb700x/potw2534a.jpg",
       "credit": "ESA/Hubble & NASA, F. Belfiore, D. Calzetti",
       "licence": "CC BY 4.0",
       "page": "https://esahubble.org/images/potw2534a/",
@@ -2943,7 +2943,7 @@
     "image": {
       "url": "https://science.nasa.gov/wp-content/uploads/2023/04/m98.png",
       "credit": "NASA, ESA, V. Rubin (Carnegie Institution of Washington)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-98/",
       "caption": "Hubble view of part of M98 near its core, taken in 1995 with the Wide Field and Planetary Camera 2."
     },
@@ -3010,7 +3010,7 @@
     ],
     "essay": "M99 is a spiral galaxy about 55 million light-years away in Coma Berenices, part of the Virgo Cluster. Pierre Méchain discovered it in 1781. It is a grand-design spiral, with long, clearly defined arms, seen almost face-on. In the 1840s it was one of the first galaxies in which Lord Rosse recognised spiral structure.\n\nOne object in M99 has resisted classification. PTF 10fqs, discovered in April 2010, brightened more than a nova but less than a supernova. Proposed explanations include a giant planet falling into its parent star. Hubble imaged the region in June 2010, while the outburst was fading, to pin down the star's position so that other telescopes could return to it later.\n\nAt magnitude 10.4, M99 needs a moderately sized telescope. It lies close to M98 and M100, which Méchain found on the same night in March 1781. A small telescope shows a round glow with a brighter middle, and larger apertures under dark skies hint at the arms. It is best seen in May.",
     "image": {
-      "url": "https://cdn.esahubble.org/archives/images/screen/potw1223a.jpg",
+      "url": "https://cdn.esahubble.org/archives/images/thumb700x/potw1223a.jpg",
       "credit": "ESA/Hubble & NASA. Acknowledgement: Matej Novak",
       "licence": "CC BY 4.0",
       "page": "https://esahubble.org/images/potw1223a/",
@@ -3150,7 +3150,7 @@
     "image": {
       "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/hubble/galaxies/spiral/M101_HST_MIRI_V3_flat_FINAL.jpg?w=1600",
       "credit": "NASA, CSA, ESA, D. Calzetti (University of Massachusetts - Amherst), C. Clark (Space Telescope Science Institute - ESA - JWST), K. Kuntz (The John Hopkins University), and B. Shappee (University of Hawaii) ; Processing: Gladys Kober (NASA/Catholic University of America)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-101/",
       "caption": "Combined Hubble and Webb view of the centre of M101 in ultraviolet, visible and infrared light."
     },
@@ -3219,7 +3219,7 @@
     "image": {
       "url": "https://science.nasa.gov/wp-content/uploads/2023/04/ngc5866.jpg?w=1600",
       "credit": "NASA, ESA and the Hubble Heritage Team (STScI/AURA); Acknowledgment: W. Keel (University of Alabama, Tuscaloosa)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-102/",
       "caption": "Hubble view of NGC 5866, the Spindle Galaxy, with its thin dust lane seen edge-on."
     },
@@ -3426,7 +3426,7 @@
     "image": {
       "url": "https://science.nasa.gov/wp-content/uploads/2023/04/m105.jpg?w=1600",
       "credit": "NASA, ESA, STScI, and C. Sarazin (University of Virginia)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-105/",
       "caption": "Hubble view of the elliptical galaxy M105, smooth and featureless with a bright centre."
     },
@@ -3493,7 +3493,7 @@
     ],
     "essay": "M106 is a spiral galaxy about 24 million light-years away in Canes Venatici. Pierre Méchain discovered it in 1781, though it was not included in Messier's catalogue until the 20th century.\n\nMost spiral galaxies have one pair of arms. M106 has an additional pair that shows up as red wisps of glowing gas in images. Unlike the main arms, these are made of hot gas rather than stars. Astronomers attribute them to the supermassive black hole at the galaxy's centre, as an indirect effect of the violent churning of matter around it. Hubble has also observed M106 in its Legacy ExtraGalactic UV Survey (LEGUS), an ultraviolet survey of star-forming galaxies in the nearby universe.\n\nAt magnitude 9.1, M106 is relatively bright and can be spotted with a small telescope. It lies in the northern part of Canes Venatici, south of the Big Dipper's bowl. A small telescope shows a long oval glow, about 19′ by 8′, with a bright core. A larger telescope is needed to see detail in the arms. It is best seen in May.",
     "image": {
-      "url": "https://cdn.esahubble.org/archives/images/screen/heic1302a.jpg",
+      "url": "https://cdn.esahubble.org/archives/images/thumb700x/heic1302a.jpg",
       "credit": "NASA, ESA, the Hubble Heritage Team (STScI/AURA), and R. Gendler (for the Hubble Heritage Team). Acknowledgment: J. GaBany",
       "licence": "CC BY 4.0",
       "page": "https://esahubble.org/images/heic1302a/",
@@ -3562,7 +3562,7 @@
     ],
     "essay": "M107 is a globular cluster in Ophiuchus, about 20,000 light-years away. Pierre Méchain discovered it in 1782, and William Herschel found it independently a year later. It was the last Messier object to be discovered. M104 through M109 were all found by Méchain and were known as \"Méchain objects\" until Helen Sawyer Hogg added them to the Messier catalogue in 1947.\n\nM107 is one of about 150 globular clusters around the Milky Way. Each contains hundreds of thousands of very old stars and ranks among the oldest objects in the galaxy. As globulars go, M107 is not especially dense. Compared with tightly packed clusters such as M53 or M54, its stars are more spread out and stand apart from one another, which shows clearly in Hubble's image.\n\nAt magnitude 8.9, M107 can be spotted through a small telescope or binoculars. Small telescopes show a round glow. Because the cluster is loosely concentrated, medium apertures begin to resolve its stars. It is best seen in July.",
     "image": {
-      "url": "https://cdn.esahubble.org/archives/images/screen/potw1229a.jpg",
+      "url": "https://cdn.esahubble.org/archives/images/thumb700x/potw1229a.jpg",
       "credit": "ESA/Hubble & NASA",
       "licence": "CC BY 4.0",
       "page": "https://esahubble.org/images/potw1229a/",
@@ -3633,7 +3633,7 @@
     "image": {
       "url": "https://science.nasa.gov/wp-content/uploads/2018/03/hubble-m108-1-flat-final-new.jpg",
       "credit": "NASA, ESA, and H. Bond (The Pennsylvania State University); Processing: Gladys Kober (NASA/Catholic University of America)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-108/",
       "caption": "Hubble view of part of M108, showing young star clusters against a mottled background."
     },
@@ -3702,7 +3702,7 @@
     "image": {
       "url": "https://science.nasa.gov/wp-content/uploads/2023/06/hubble-m109-wfc3-2flat.jpg?w=1600",
       "credit": "NASA, ESA, and J. Walsh (Texas A&M University); Processing: Gladys Kober (NASA/Catholic University of America)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-109/",
       "caption": "Hubble view of the bright core of M109 in visible and infrared light."
     },
@@ -3771,7 +3771,7 @@
     "image": {
       "url": "https://science.nasa.gov/wp-content/uploads/2023/04/m110.png",
       "credit": "NASA, ESA, STScI and D. Geisler (Universidad de Concepción)",
-      "licence": "Public domain",
+      "licence": "CC BY 4.0",
       "page": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-110/",
       "caption": "Hubble view of part of M110, with its core at lower right and dark clouds of dust near the centre."
     },

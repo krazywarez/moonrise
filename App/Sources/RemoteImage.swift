@@ -31,15 +31,10 @@ enum ImageLoader {
     static func load(_ url: URL, maxPixels: Int) async throws -> UIImage {
         if let hit = cached(url, maxPixels: maxPixels) { return hit }
         let data: Data
-        do {
-            // Image URLs are never reused for new content, so a cached copy is used without asking the host again.
-            data = try await URLSession.shared.data(for: URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad), delegate: CancelLargeBody(limit: largeBody)).0
-        } catch let error as URLError where error.code == .cancelled && !Task.isCancelled {
-            // A data task holds the whole body in memory, twice while it finishes. Download to a file instead
-            // and map it, so ImageIO reads it from disk.
-            let (file, _) = try await URLSession.shared.download(from: url)
-            data = try Data(contentsOf: file, options: .alwaysMapped)
-            try? FileManager.default.removeItem(at: file)
+        if let file = plate(url) {
+            data = try Data(contentsOf: file)
+        } else {
+            data = try await download(url)
         }
         let image = try await withCheckedThrowingContinuation { c in
             decodes.addOperation { c.resume(with: Result { try downsample(data, maxPixels: maxPixels) }) }
@@ -47,6 +42,26 @@ enum ImageLoader {
         let cost = Int(image.size.width * image.size.height * image.scale * image.scale * 4)
         cache.setObject(image, forKey: key(url, maxPixels), cost: cost)
         return image
+    }
+
+    /// Library of Congress plates ship in the app (Plates/, by their LoC file name): loc.gov limits automated
+    /// requests per IP.
+    private static func plate(_ url: URL) -> URL? {
+        guard url.host() == "tile.loc.gov" else { return nil }
+        return Bundle.main.url(forResource: url.deletingPathExtension().lastPathComponent, withExtension: "jpg", subdirectory: "Plates")
+    }
+
+    private static func download(_ url: URL) async throws -> Data {
+        do {
+            // Image URLs are never reused for new content, so a cached copy is used without asking the host again.
+            return try await URLSession.shared.data(for: URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad), delegate: CancelLargeBody(limit: largeBody)).0
+        } catch let error as URLError where error.code == .cancelled && !Task.isCancelled {
+            // A data task holds the whole body in memory, twice while it finishes. Download to a file instead
+            // and map it, so ImageIO reads it from disk.
+            let (file, _) = try await URLSession.shared.download(from: url)
+            defer { try? FileManager.default.removeItem(at: file) }
+            return try Data(contentsOf: file, options: .alwaysMapped)
+        }
     }
 
     private static func key(_ url: URL, _ maxPixels: Int) -> NSString { "\(maxPixels)|\(url.absoluteString)" as NSString }
