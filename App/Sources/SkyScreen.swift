@@ -13,6 +13,7 @@ struct SkyScreen: View {
     @AppStorage(SettingsKey.nightMode) private var nightMode = "auto"
     @AppStorage(SettingsKey.skyCulture) private var skyCulture = "western"
     @AppStorage(SettingsKey.showDeepSky) private var showDeepSky = true
+    @AppStorage(SettingsKey.showMilkyWay) private var showMilkyWay = true
     @State private var showSettings = false
     @State private var showEvents = false
     @State private var showLog = false
@@ -46,7 +47,7 @@ struct SkyScreen: View {
                 style.background.ignoresSafeArea()
                 if let scene = model.scene {
                     let view = current(width: geo.size.width)
-                    SkyView(scene: scene, centerAzimuth: view.azimuth, centerAltitude: view.altitude, fieldOfView: view.fieldOfView, style: style, culture: Catalog.skyCultures.first { $0.id == skyCulture }, highlight: (tour.map { $0.steps[tourStep].target } ?? shown).flatMap(highlight), showDeepSky: showDeepSky) { [stats] d in
+                    SkyView(scene: scene, centerAzimuth: view.azimuth, centerAltitude: view.altitude, fieldOfView: view.fieldOfView, style: style, culture: Catalog.skyCultures.first { $0.id == skyCulture }, highlight: (tour.map { $0.steps[tourStep].target } ?? shown).flatMap(highlight), showDeepSky: showDeepSky, showMilkyWay: showMilkyWay) { [stats] d in
                         stats.record(d)
                     }
                     .ignoresSafeArea()

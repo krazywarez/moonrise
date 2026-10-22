@@ -530,7 +530,9 @@ Worker; DSN Now freshness; NASA/ESA image licences; 26 LoC plates bundled.
 
 ** v5.2: Sky
 - Milky Way from ESA's "Gaia's sky in colour" (CC BY-SA), clipped before
-  projection.
+  projection. Done: 2° equatorial grid from the Hammer–Aitoff image
+  (=scripts/make-milkyway.swift=), cells under −3° dropped before
+  projection, drawn as blurred discs; Settings switch.
 - Comets in the Sky tab and the orrery from JPL SBDB, fetched daily by the
   Worker. The orrery has periodic comets (Kepler.swift); needs parabolic and
   hyperbolic orbits. Then bright asteroids.

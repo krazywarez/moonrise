@@ -97,6 +97,13 @@ public enum Catalog {
         return try! JSONDecoder().decode([Constellation].self, from: Data(contentsOf: url))
     }()
 
+    /// Milky Way brightness on a 2° J2000 grid (rows Dec −89° to +89°, columns RA 1° to 359°), from ESA's "Gaia's sky
+    /// in colour" (ESA/Gaia/DPAC, CC BY-SA 3.0 IGO), built by scripts/make-milkyway.swift.
+    public static let milkyWay: [UInt8] = {
+        let url = Bundle.module.url(forResource: "milkyway", withExtension: "bin")!
+        return [UInt8](try! Data(contentsOf: url))
+    }()
+
     /// Built by scripts/make-messier.py.
     public static let deepSky: [DeepSkyObject] = {
         let url = Bundle.module.url(forResource: "messier", withExtension: "json")!
@@ -133,6 +140,10 @@ public struct SkyScene: Sendable {
     public var deepSky: [PlacedDeepSky]
     /// Moon's elongation east of the sun, degrees (0 new, 180 full).
     public var moonPhase: Double
+    /// Milky Way cells brighter than `milkyWayFloor`, above −3° (the rest are dropped before projection).
+    public var milkyWay: [(position: Horizontal, value: UInt8)]
+
+    static let milkyWayFloor: UInt8 = 48
 
     public init(date: Date, observer: Observer, magnitudeLimit: Double = 6.5) throws {
         self.date = date
@@ -153,5 +164,9 @@ public struct SkyScene: Sendable {
             )
         }
         moonPhase = try SkyEngine.moonPhase(at: date)
+        let cells = Catalog.milkyWay.enumerated().filter { $0.element > Self.milkyWayFloor }
+        let centres = cells.map { (ra: 1 + 2 * Double($0.offset % 180), dec: -89 + 2 * Double($0.offset / 180)) }
+        let placed = SkyEngine.horizontal(j2000: centres, at: date, from: observer)
+        milkyWay = zip(placed, cells).filter { $0.0.altitude > -3 }.map { ($0.0, $0.1.element) }
     }
 }

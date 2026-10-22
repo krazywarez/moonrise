@@ -40,6 +40,7 @@ public struct SkyStyle: Sendable {
     public var moonLight = Color(red: 0.93, green: 0.91, blue: 0.85)
     public var moonDark = Color(red: 0.16, green: 0.20, blue: 0.27)
     public var planet = Color(red: 0.95, green: 0.84, blue: 0.60)
+    public var milkyWay = Color(red: 0.75, green: 0.80, blue: 0.95)
     /// Rings and lines for whatever a tour is pointing at.
     public var highlight = Color(red: 1.0, green: 0.78, blue: 0.35)
     /// Draw stars in a single red, for dark-adapted eyes.
@@ -63,6 +64,7 @@ public struct SkyStyle: Sendable {
         s.highlight = red
         s.moonDark = Color(red: 0.12, green: 0, blue: 0)
         s.planet = red
+        s.milkyWay = red
         s.monochromeStars = red
         return s
     }()
@@ -112,15 +114,17 @@ public struct SkyView: View {
     public var culture: SkyCulture?
     public var highlight: SkyHighlight?
     public var showDeepSky: Bool
+    public var showMilkyWay: Bool
     /// Called after each draw with the time the draw took.
     public var onDraw: (@Sendable (Duration) -> Void)?
 
-    public init(scene: SkyScene, centerAzimuth: Double = 180, centerAltitude: Double = 55, fieldOfView: Double = 110, style: SkyStyle = SkyStyle(), culture: SkyCulture? = nil, highlight: SkyHighlight? = nil, showDeepSky: Bool = true, onDraw: (@Sendable (Duration) -> Void)? = nil) {
+    public init(scene: SkyScene, centerAzimuth: Double = 180, centerAltitude: Double = 55, fieldOfView: Double = 110, style: SkyStyle = SkyStyle(), culture: SkyCulture? = nil, highlight: SkyHighlight? = nil, showDeepSky: Bool = true, showMilkyWay: Bool = true, onDraw: (@Sendable (Duration) -> Void)? = nil) {
         self.scene = scene
         self.style = style
         self.culture = culture
         self.highlight = highlight
         self.showDeepSky = showDeepSky
+        self.showMilkyWay = showMilkyWay
         self.centerAzimuth = centerAzimuth
         self.centerAltitude = centerAltitude
         self.fieldOfView = fieldOfView
@@ -132,6 +136,7 @@ public struct SkyView: View {
             let start = ContinuousClock.now
             let p = Projection(centerAzimuth: centerAzimuth, centerAltitude: centerAltitude, fieldOfView: fieldOfView, size: size)
             context.fill(Path(CGRect(origin: .zero, size: size)), with: .color(style.background))
+            if showMilkyWay { drawMilkyWay(&context, p) }
             drawConstellations(&context, p)
             drawStars(&context, p)
             if showDeepSky { drawDeepSky(&context, p) }
@@ -139,6 +144,25 @@ public struct SkyView: View {
             if let highlight { drawHighlight(highlight, &context, p) }
             drawHorizon(&context, p, size: size)
             onDraw?(ContinuousClock.now - start)
+        }
+    }
+
+    /// Discs a little larger than a 2° cell in eight steps of brightness, blurred by about a cell so the band reads
+    /// as a glow rather than as cells.
+    func drawMilkyWay(_ context: inout GraphicsContext, _ p: Projection) {
+        let r = 1.2 * Double(p.size.width) / fieldOfView
+        let floor = Double(SkyScene.milkyWayFloor)
+        var bins = [Path](repeating: Path(), count: 8)
+        for cell in scene.milkyWay {
+            guard let pt = p.point(cell.position), pt.x > -r, pt.y > -r, pt.x < p.size.width + r, pt.y < p.size.height + r else { continue }
+            let step = Int((Double(cell.value) - floor) / (256 - floor) * 8)
+            bins[min(7, max(0, step))].addEllipse(in: CGRect(x: pt.x - r, y: pt.y - r, width: 2 * r, height: 2 * r))
+        }
+        context.drawLayer { layer in
+            layer.addFilter(.blur(radius: r))
+            for (i, path) in bins.enumerated() where !path.isEmpty {
+                layer.fill(path, with: .color(style.milkyWay.opacity(0.05 + 0.035 * Double(i))))
+            }
         }
     }
 
