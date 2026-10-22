@@ -584,6 +584,8 @@ Worker; DSN Now freshness; NASA/ESA image licences; 26 LoC plates bundled.
 
 ** v5.6: Observing
 - Meteor radiant altitude (radiant coordinates for the major showers).
+  Done: IMO radiants; each peak in Events gives when the radiant is highest
+  in the dark window, how high, and ZHR × sin(altitude).
 - IMO, COBS and AAVSO exports; a program log PDF.
 - Astronomical League lists (Herschel 400, Double Star, Lunar, Binocular
   Messier) and Lunar 100 (Charles Wood, Sky & Telescope), with permission;

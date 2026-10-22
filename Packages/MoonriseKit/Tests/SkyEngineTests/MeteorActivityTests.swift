@@ -26,3 +26,17 @@ private func peak(darkIn seconds: TimeInterval, kind: SkyEvent.Kind = .meteorSho
     #expect(e.zhr != nil)
     #expect((0...1).contains(try #require(e.moonIllumination)))
 }
+
+@Test func radiantAltitudeFollowsTheSky() throws {
+    let chicago = Observer(latitude: 41.88, longitude: -87.63)
+    let perseids = try #require(MeteorShower.major.first { $0.name == "Perseids" })
+    // 2026-08-13 03:00–09:00 UTC, the dark hours over Chicago: the radiant climbs all night and peaks near dawn.
+    let night = DateInterval(start: Date(timeIntervalSince1970: 1_786_590_000), duration: 6 * 3600)
+    let best = perseids.highestRadiant(in: night, from: chicago)
+    #expect(best.date > night.start.addingTimeInterval(5 * 3600))
+    #expect((60...80).contains(best.altitude))
+    // From Sydney the Ursids (dec +75) never rise.
+    let ursids = try #require(MeteorShower.major.first { $0.name == "Ursids" })
+    let sydney = Observer(latitude: -33.87, longitude: 151.21)
+    #expect(ursids.radiantNote(in: night, from: sydney) == "The radiant stays below the horizon while it is dark.")
+}

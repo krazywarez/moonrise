@@ -21,6 +21,26 @@ public struct SkyEvent: Sendable, Identifiable, Equatable {
     public var id: String { "\(kind.rawValue)-\(title)-\(Int(date.timeIntervalSince1970))" }
 }
 
+extension MeteorShower {
+    /// When in `window` the radiant stands highest, and how high (degrees), sampled every 10 minutes.
+    public func highestRadiant(in window: DateInterval, from observer: Observer) -> (date: Date, altitude: Double) {
+        let eq = SkyEngine.equatorOfDate(j2000: (ra, dec), at: window.start)
+        let steps = max(1, Int(window.duration / 600))
+        return (0...steps).map { i -> (date: Date, altitude: Double) in
+            let t = min(window.end, window.start.addingTimeInterval(Double(i) * 600))
+            return (t, SkyEngine.horizontal(rightAscension: eq.ra / 15, declination: eq.dec, at: t, from: observer).altitude)
+        }.max { $0.altitude < $1.altitude }!
+    }
+
+    /// The radiant's best altitude in `window` and the rate it allows, ZHR × sin(altitude), as a sentence.
+    public func radiantNote(in window: DateInterval, from observer: Observer, time: Date.FormatStyle = .init(date: .omitted, time: .shortened)) -> String {
+        let best = highestRadiant(in: window, from: observer)
+        guard best.altitude > 0 else { return "The radiant stays below the horizon while it is dark." }
+        let rate = Int((Double(zhr) * sin(best.altitude * .pi / 180)).rounded())
+        return "Radiant highest at \(best.date.formatted(time)), \(Int(best.altitude.rounded()))° up: about \(rate) an hour then."
+    }
+}
+
 extension SkyEvent {
     /// When a Lock Screen activity for a meteor shower's peak night starts: 10 minutes before dark, or `now` if that
     /// has passed. Nil for other events, once the night is over, or more than a day ahead.
@@ -38,16 +58,19 @@ public struct MeteorShower: Sendable {
     public var day: Int
     /// Zenithal hourly rate at peak under ideal skies.
     public var zhr: Int
+    /// Radiant at peak, J2000 degrees.
+    public var ra: Double
+    public var dec: Double
 
     public static let major: [MeteorShower] = [
-        MeteorShower(name: "Quadrantids", month: 1, day: 3, zhr: 80),
-        MeteorShower(name: "Lyrids", month: 4, day: 22, zhr: 18),
-        MeteorShower(name: "Eta Aquariids", month: 5, day: 6, zhr: 50),
-        MeteorShower(name: "Perseids", month: 8, day: 12, zhr: 100),
-        MeteorShower(name: "Orionids", month: 10, day: 21, zhr: 20),
-        MeteorShower(name: "Leonids", month: 11, day: 17, zhr: 15),
-        MeteorShower(name: "Geminids", month: 12, day: 14, zhr: 150),
-        MeteorShower(name: "Ursids", month: 12, day: 22, zhr: 10),
+        MeteorShower(name: "Quadrantids", month: 1, day: 3, zhr: 80, ra: 230, dec: 49),
+        MeteorShower(name: "Lyrids", month: 4, day: 22, zhr: 18, ra: 271, dec: 34),
+        MeteorShower(name: "Eta Aquariids", month: 5, day: 6, zhr: 50, ra: 338, dec: -1),
+        MeteorShower(name: "Perseids", month: 8, day: 12, zhr: 100, ra: 48, dec: 58),
+        MeteorShower(name: "Orionids", month: 10, day: 21, zhr: 20, ra: 95, dec: 16),
+        MeteorShower(name: "Leonids", month: 11, day: 17, zhr: 15, ra: 152, dec: 22),
+        MeteorShower(name: "Geminids", month: 12, day: 14, zhr: 150, ra: 112, dec: 33),
+        MeteorShower(name: "Ursids", month: 12, day: 22, zhr: 10, ra: 217, dec: 75),
     ]
 }
 
@@ -169,7 +192,7 @@ extension SkyEngine {
                 let dark = try? darkness(from: night.start, to: night.end, observer: observer)
                 let moon = moonAndDarkness(night: night, dark: dark,
                                            moonUp: (try? moonUp(from: night.start, to: night.end, observer: observer)) ?? [], moonIllumination: lit)
-                out.append(SkyEvent(kind: .meteorShower, date: d, title: "\(m.name) peak", detail: "Up to about \(m.zhr) meteors an hour under dark skies. \(moon)", visibleHere: nil, window: dark ?? night,
+                out.append(SkyEvent(kind: .meteorShower, date: d, title: "\(m.name) peak", detail: "Up to about \(m.zhr) meteors an hour under dark skies. \(m.radiantNote(in: dark ?? night, from: observer)) \(moon)", visibleHere: nil, window: dark ?? night,
                                     zhr: m.zhr, moonIllumination: lit))
             }
         }
