@@ -586,7 +586,10 @@ Worker; DSN Now freshness; NASA/ESA image licences; 26 LoC plates bundled.
 - Meteor radiant altitude (radiant coordinates for the major showers).
   Done: IMO radiants; each peak in Events gives when the radiant is highest
   in the dark window, how high, and ZHR × sin(altitude).
-- IMO, COBS and AAVSO exports; a program log PDF.
+- IMO, COBS and AAVSO exports; a program log PDF. Done: a Report section
+  on each entry (fields kept as Org properties); Export on the log writes
+  the AAVSO visual file, an ICQ file for COBS and IMO VMDB session and rate
+  CSVs; Share on a program writes its PDF.
 - Astronomical League lists (Herschel 400, Double Star, Lunar, Binocular
   Messier) and Lunar 100 (Charles Wood, Sky & Telescope), with permission;
   user program files cover them meanwhile.

@@ -51,6 +51,7 @@ struct ProgramDetail: View {
     @ObservedObject private var store = observingLogStore
     @State private var upTonight: [Candidate]?
     @State private var editing: Observation?
+    @State private var pdf: URL?
 
     private var progress: ProgramProgress? { store.progress[program.id] }
 
@@ -81,11 +82,20 @@ struct ProgramDetail: View {
         }
         .navigationTitle(program.title)
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                if let pdf {
+                    ShareLink(item: pdf) { Image(systemName: "square.and.arrow.up") }
+                        .accessibilityLabel("Share log as PDF")
+                }
+            }
+        }
         .sheet(item: $editing) { o in
             ObservationEditor(observation: o)
         }
         .onAppear { store.reload() }
         .task { await findUpTonight() }
+        .task(id: progress?.count) { pdf = ProgramLogPDF.write(program, progress: progress) }
     }
 
     /// Opens the first entry for a logged object, else a new entry for it.

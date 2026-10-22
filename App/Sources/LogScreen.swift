@@ -79,6 +79,7 @@ let observingLog = ObservingLog(folder: URL.documentsDirectory.appending(path: "
 struct LogScreen: View {
     @ObservedObject private var store = observingLogStore
     @State private var editing: Observation?
+    @State private var exporting = false
     var newEntry: () -> Observation
     @Environment(\.dismiss) private var dismiss
 
@@ -109,6 +110,10 @@ struct LogScreen: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) { Button("Done") { dismiss() } }
                 ToolbarItem(placement: .primaryAction) {
+                    Button { exporting = true } label: { Image(systemName: "square.and.arrow.up") }
+                        .accessibilityLabel("Export reports")
+                }
+                ToolbarItem(placement: .primaryAction) {
                     NavigationLink { EquipmentScreen() } label: { Image(systemName: "binoculars") }
                         .accessibilityLabel("Equipment")
                 }
@@ -124,6 +129,7 @@ struct LogScreen: View {
             .sheet(item: $editing) { o in
                 ObservationEditor(observation: o)
             }
+            .sheet(isPresented: $exporting) { ReportExportSheet(log: entries) }
         }
         .onAppear { store.reload() }
     }
@@ -162,6 +168,7 @@ struct ObservationEditor: View {
                 Section("Notes") {
                     TextEditor(text: $observation.notes).frame(minHeight: 140)
                 }
+                ReportFields(observation: $observation)
                 if let error { Text(error).foregroundStyle(.red).font(.footnote) }
             }
             .navigationTitle(observation.object.isEmpty ? "New observation" : observation.object)
