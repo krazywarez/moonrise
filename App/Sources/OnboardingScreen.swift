@@ -148,7 +148,8 @@ struct OnboardingScreen: View {
                 }
                 button("Back", filled: false) { choosingCity = false }
             } else {
-                button("Use my location", filled: true) {
+                // App Review 5.1.1(iv): the button before the system prompt must not direct the choice.
+                button("Continue", filled: true) {
                     locationMode = "current"
                     onboarded = true
                 }
