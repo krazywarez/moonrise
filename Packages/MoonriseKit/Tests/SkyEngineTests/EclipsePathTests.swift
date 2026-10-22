@@ -84,3 +84,17 @@ private let nasa2027: [(name: String, lat: Double, lon: Double, contacts: [Doubl
     let d = ((craft - moon) * (craft - moon)).sum().squareRoot()
     #expect(d < 3_000)
 }
+
+@Test func bandCandidatesHaveNinetyFivePercentOfTheCentreLine() throws {
+    let path = try #require(EclipsePath.compute(near: Date(timeIntervalSince1970: 1_817_201_220)))
+    // Madrid is north of the 2 August 2027 path; Tarifa is near its centre line.
+    let madrid = path.candidates(near: Observer(latitude: 40.4168, longitude: -3.7038))
+    #expect(madrid.count == 60)
+    #expect(zip(madrid, madrid.dropFirst()).allSatisfy { $0.distanceKm <= $1.distanceKm })
+    let sites = madrid.prefix(10).compactMap { path.site($0) }
+    #expect(sites.count >= 8)
+    #expect(sites.allSatisfy { $0.duration >= 0.95 * $0.centerDuration && $0.latitude < 38 })
+    let tarifa = try #require(path.candidates(near: Observer(latitude: 36.0143, longitude: -5.6044)).first)
+    #expect(tarifa.distanceKm < 30)
+    #expect(path.site(tarifa) != nil)
+}
