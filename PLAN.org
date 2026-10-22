@@ -518,7 +518,9 @@ Worker; DSN Now freshness; NASA/ESA image licences; 26 LoC plates bundled.
   Bz. Done: 5-minute means over 6 h in =/v1/today=; Sun tab panel and Bz
   chart; alerts to the Kp 6 bands when the last 30 min average Bz ≤ −10 nT
   and speed ≥ 450 km/s (a rule of thumb, not a Kp model).
-- Active-region labels on the SDO image.
+- Active-region labels on the SDO image. Done: SWPC =solar_regions.json=, turned at 13.2°/day
+  from 24:00 UTC on =observed_date= and projected with B0; checked on an HMI
+  image (4560, 4557 on their spots).
 - Sun path, golden and blue hour, day length.
 - CCOR-2 coronagraph loop, WSA-Enlil forecast line, solar cycle progress.
 

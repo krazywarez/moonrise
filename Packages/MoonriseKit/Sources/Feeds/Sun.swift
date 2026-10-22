@@ -38,7 +38,7 @@ public enum SolarImage: String, CaseIterable, Sendable, Identifiable {
     public static let credit = "Courtesy of NASA/SDO and the AIA, EVE, and HMI science teams."
 
     /// Disk radius as a fraction of the frame's width.
-    var diskRadius: Double { self == .visible ? 0.45 : 0.39 }
+    public var diskRadius: Double { self == .visible ? 0.45 : 0.39 }
 
     /// Whether a frame shows the whole disk. SDO publishes AIA frames that are black apart from the label along the
     /// bottom, and some with part of the disk behind a curved dark edge. On a 64 px thumbnail, the share of the disk

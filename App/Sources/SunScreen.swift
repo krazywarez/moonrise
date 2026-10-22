@@ -13,6 +13,8 @@ struct SunScreen: View {
     @State private var picture: Picture?
     @State private var imageFailed = false
     @State private var solarWind: SolarWind?
+    @State private var regions: [SolarRegion] = []
+    @AppStorage("sunRegionLabels") private var regionLabels = true
     @Environment(\.dynamicTypeSize) private var typeSize
 
     private var kp: [KpBar] { data?.kp ?? [] }
@@ -48,6 +50,9 @@ struct SunScreen: View {
                 }
                 .pickerStyle(.segmented)
                 .padding(.top, 12)
+                if !regions.isEmpty {
+                    Toggle("Region numbers", isOn: $regionLabels).font(.footnote).tint(accent).padding(.top, 8)
+                }
                 Text(wavelength.caption).font(.footnote).dimmed(0.75).padding(.top, 8)
                 Text(SolarImage.credit).font(.caption2).dimmed(0.5).padding(.top, 4)
 
@@ -78,6 +83,7 @@ struct SunScreen: View {
     private func load(force: Bool) async {
         if data == nil { await show(SunFeeds.lastSaved()) }
         if let apiBase { solarWind = (try? await SolarWind.fetch(base: apiBase)) ?? solarWind }
+        regions = (try? await SolarRegion.fetch()) ?? regions
         if force { imageID = .now }
         let result = await SunFeeds.load(force: force)
         await show(result?.snapshot)
@@ -172,6 +178,7 @@ struct SunScreen: View {
             Group {
                 if let picture {
                     Image(uiImage: picture.image).resizable().scaledToFit()
+                        .overlay { if regionLabels { regionOverlay(at: picture.frame ?? picture.saved ?? picture.loaded) } }
                 } else if imageFailed {
                     Color.black.overlay(Text("Image unavailable").font(.footnote).dimmed(0.6))
                 } else {
@@ -187,6 +194,22 @@ struct SunScreen: View {
                 Text("Latest complete frame from \(universalTime(frame))").font(.caption).dimmed(0.6)
             }
         }
+    }
+
+    /// NOAA region numbers where each region is at `date`, from SWPC's daily report turned with the Sun.
+    private func regionOverlay(at date: Date) -> some View {
+        GeometryReader { g in
+            let r = wavelength.diskRadius * g.size.width
+            ForEach(regions) { region in
+                if let p = region.disk(at: date) {
+                    Text(String(region.number))
+                        .font(.system(size: 10, weight: .medium)).monospacedDigit()
+                        .foregroundStyle(.white).shadow(color: .black, radius: 2)
+                        .position(x: g.size.width / 2 + p.x * r, y: g.size.height / 2 - p.y * r - 10)
+                }
+            }
+        }
+        .accessibilityHidden(true)
     }
 
     /// Three columns, stacked at accessibility text sizes.

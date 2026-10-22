@@ -123,3 +123,22 @@ func solarFrameUsable(name: String, image: SolarImage, usable: Bool) throws {
     let o = try JSONDecoder().decode(Ovation.self, from: data)
     #expect(o.cells == [Ovation.Cell(lon: 0, lat: 65, probability: 12), Ovation.Cell(lon: 359, lat: -60, probability: 3)])
 }
+
+@Test func solarB0FollowsTheYear() {
+    // B0 is about 0° in early June and December, +7.25° in early September, −7.25° in early March.
+    let at = { (s: String) in SolarRegion.b0(at: try! Date(s, strategy: .iso8601)) }
+    #expect(abs(at("2026-06-06T00:00:00Z")) < 0.5)
+    #expect(abs(at("2026-09-07T00:00:00Z") - 7.25) < 0.3)
+    #expect(abs(at("2026-03-06T00:00:00Z") + 7.25) < 0.3)
+}
+
+@Test func regionsRotateWestAndLeaveTheDisk() throws {
+    let data = Data(#"[{"region":4560,"observed_date":"2026-10-21","latitude":13,"longitude":-28,"area":150},{"region":4551,"observed_date":"2026-10-21","latitude":-16,"longitude":-85,"area":340},{"region":4500,"observed_date":"2026-10-20","latitude":0,"longitude":0,"area":10}]"#.utf8)
+    let regions = try SolarRegion.decode(data)
+    #expect(regions.map(\.number) == [4560, 4551])
+    let r = regions[0], noon = try Date("2026-10-22T12:00:00Z", strategy: .iso8601)
+    let p = try #require(r.disk(at: noon))
+    #expect(p.x > sin(28 * Double.pi / 180) * 0.9)
+    #expect(p.y > 0)
+    #expect(regions[1].disk(at: try Date("2026-10-23T12:00:00Z", strategy: .iso8601)) == nil)
+}
