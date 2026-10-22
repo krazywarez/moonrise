@@ -595,7 +595,12 @@ Worker; DSN Now freshness; NASA/ESA image licences; 26 LoC plates bundled.
   user program files cover them meanwhile.
 
 ** v5.7: backend
-- App Attest verification on device registration.
+- App Attest verification on device registration. Done: =/v1/challenge=,
+  =/v1/attest= (chain to Apple's root, nonce, key ID, app ID, AAGUID) and
+  an assertion over each =/v1/devices= body with a one-time challenge and a
+  rising counter. Bad assertions are refused; unsigned registrations are
+  accepted until =APP_ATTEST=require= is set, after builds without it age
+  out. Keys are stored apart from devices.
 
 ** on hold
 - Smart-telescope pointing (Seestar and similar): until there is a

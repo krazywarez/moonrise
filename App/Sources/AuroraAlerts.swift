@@ -82,7 +82,12 @@ final class AuroraAlerts {
             var req = URLRequest(url: apiBase.appending(path: "v1/devices"))
             req.httpMethod = "POST"
             req.setValue("application/json", forHTTPHeaderField: "content-type")
-            req.httpBody = try? JSONSerialization.data(withJSONObject: body)
+            if let (data, headers) = await AppAttest.sign(body, base: apiBase) {
+                req.httpBody = data
+                for (k, v) in headers { req.setValue(v, forHTTPHeaderField: k) }
+            } else {
+                req.httpBody = try? JSONSerialization.data(withJSONObject: body)
+            }
             let ok = await send(req)
             status = ok ? nil : "Couldn't reach the Moonrise server. Alerts will register next time."
         } else {

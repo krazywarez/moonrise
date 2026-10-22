@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { readdirSync, readFileSync } from "node:fs";
 import { registerHooks } from "node:module";
 import { DatabaseSync, type SQLInputValue } from "node:sqlite";
+import { createHash, createPrivateKey, sign } from "node:crypto";
 import { afterEach, mock, test } from "node:test";
 
 // src/index.ts imports without extensions, which wrangler's bundler resolves.
@@ -16,6 +17,7 @@ registerHooks({
   },
 });
 const { default: worker, PUSH_SLICE } = await import("../src/index.ts");
+const { fromBase64, toBase64, verifyAttestation } = await import("../src/appattest.ts");
 
 const FIVE = "*/5 * * * *";
 const TWO = "*/2 * * * *";
@@ -545,4 +547,48 @@ test("a storm opens a channel pair, updates it, and ends it after 3 calm hours; 
   await run(env, FIVE, "2026-10-21T09:15:00Z");
   assert.deepEqual(managed, ["POST", "POST", "DELETE", "DELETE"]);
   assert.equal(count(db, "SELECT COUNT(*) AS n FROM storm_channels"), 0);
+});
+
+test("device registration checks an App Attest assertion over the body, with a one-time challenge", async () => {
+  const fx = JSON.parse(readFileSync(new URL("./fixtures/attest.json", import.meta.url), "utf8"));
+  const { db, env } = await setup({ APNS_TEAM_ID: "ZCNAX3VL9D" });
+  const post = (path: string, body: string, headers: Record<string, string> = {}) =>
+    worker.fetch(new Request(`https://moonrise.krz.sh${path}`, { method: "POST", body, headers }), env as never);
+  const challenge = async () => ((await (await post("/v1/challenge", "")).json()) as { challenge: string }).challenge;
+
+  // The fixture's chain is not Apple's, so the endpoint refuses it, and the challenge is spent either way.
+  const c0 = await challenge();
+  const refused = await post("/v1/attest", JSON.stringify({ keyId: fx.keyId, attestation: fx.attestation, challenge: c0 }));
+  assert.equal(refused.status, 401);
+  assert.deepEqual(await refused.json(), { error: "attestation: intermediate signature" });
+  assert.equal(count(db, "SELECT COUNT(*) AS n FROM attest_challenges"), 0);
+  assert.equal((await post("/v1/attest", JSON.stringify({ keyId: fx.keyId, attestation: "x", challenge: "nope" }))).status, 401);
+
+  const { spki } = await verifyAttestation({ attestation: fromBase64(fx.attestation), keyId: fx.keyId, challenge: fromBase64(fx.challenge), appId: fx.appId, now: new Date("2027-01-01T00:00:00Z"), root: fx.root });
+  db.prepare("INSERT INTO app_keys (key_id, spki, environment, counter, created_at, last_used) VALUES (?, ?, 'sandbox', 0, 'x', 'x')").run(fx.keyId, toBase64(spki));
+  const sha = (...b: Buffer[]) => createHash("sha256").update(Buffer.concat(b)).digest();
+  const assertion = (body: string, counter: number) => {
+    const c = Buffer.alloc(4);
+    c.writeUInt32BE(counter);
+    const authData = Buffer.concat([sha(Buffer.from(fx.appId)), Buffer.from([0x40]), c]);
+    const sig = sign("sha256", sha(authData, sha(Buffer.from(body))), createPrivateKey(fx.leafKey));
+    const text = (s: string) => Buffer.concat([Buffer.from([0x60 | s.length]), Buffer.from(s)]);
+    const bytes = (b: Buffer) => Buffer.concat([Buffer.from([0x58, b.length]), b]);
+    return Buffer.concat([Buffer.from([0xa2]), text("signature"), bytes(sig), text("authenticatorData"), bytes(authData)]).toString("base64");
+  };
+  const device = (c: string) => JSON.stringify({ token: token(7), environment: "sandbox", band: 45, utcOffsetMinutes: 0, aurora: true, challenge: c });
+
+  const body = device(await challenge());
+  const headers = { "x-app-attest-key": fx.keyId, "x-app-attest-assertion": assertion(body, 1) };
+  assert.equal((await post("/v1/devices", body, headers)).status, 200);
+  assert.equal(count(db, "SELECT counter AS n FROM app_keys"), 1);
+  assert.equal(count(db, "SELECT COUNT(*) AS n FROM devices"), 1);
+  assert.equal((await post("/v1/devices", body, headers)).status, 401, "replay: challenge spent");
+  const tampered = device(await challenge());
+  assert.equal((await post("/v1/devices", tampered.replace('"band":45', '"band":50'), { ...headers, "x-app-attest-assertion": assertion(tampered, 2) })).status, 401);
+
+  const plain = JSON.stringify({ token: token(8), environment: "sandbox", band: 45, utcOffsetMinutes: 0 });
+  assert.equal((await post("/v1/devices", plain)).status, 200, "unattested accepted by default");
+  const { env: strict } = await setup({ APNS_TEAM_ID: "ZCNAX3VL9D", APP_ATTEST: "require" });
+  assert.equal((await worker.fetch(new Request("https://moonrise.krz.sh/v1/devices", { method: "POST", body: plain }), strict as never)).status, 401);
 });

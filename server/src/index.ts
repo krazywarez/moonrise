@@ -1,4 +1,5 @@
 import { activityPush, focusEvery, focusPick, focusPollDue, inFocus, needsChannel, sinceNet, type ActivityState } from "./activity";
+import { AttestError, fromBase64, toBase64, verifyAssertion, verifyAttestation, type AttestedKey } from "./appattest";
 import { broadcast, createChannel, deleteChannel, retryable, send, sendAll, type ApnsConfig } from "./apns";
 import { actionableKp, alertBands, eventKey, isNight } from "./aurora";
 import { compose, fetchGroups, fetchSupGP, fitsLaunch, retryDue, retryTick, supgpFile, supgpLaunches, type LaunchElements, type LaunchRef, type Row } from "./celestrak";
@@ -21,6 +22,8 @@ interface Env {
   LL2_API_KEY?: string;
   /** "1": the Worker creates and deletes launch channels itself. Otherwise scripts/channels.ts fills the pool. */
   APNS_MANAGE_CHANNELS?: string;
+  /** "require": device registrations without an App Attest assertion are refused. Otherwise only bad ones are. */
+  APP_ATTEST?: string;
 }
 
 interface DeviceRequest {
@@ -30,7 +33,12 @@ interface DeviceRequest {
   utcOffsetMinutes: number;
   aurora?: boolean;
   news?: boolean;
+  /** From POST /v1/challenge; required with an App Attest assertion. */
+  challenge?: string;
 }
+
+/** Challenges are good for 5 minutes and used once. */
+const CHALLENGE_MS = 5 * 60_000;
 
 const NEWS_CRON = "*/10 * * * *";
 const SATELLITE_CRON = "7 */2 * * *";
@@ -154,9 +162,25 @@ export default {
     // The policy lives on krz.sh; older builds link here.
     if (request.method === "GET" && url.pathname === "/privacy") return Response.redirect(PRIVACY_URL, 301);
 
+    if (request.method === "POST" && url.pathname === "/v1/challenge") {
+      const challenge = toBase64(crypto.getRandomValues(new Uint8Array(32)));
+      await env.DB.prepare("INSERT INTO attest_challenges (challenge, expires_at) VALUES (?1, ?2)").bind(challenge, new Date(now.getTime() + CHALLENGE_MS).toISOString()).run();
+      return json({ challenge });
+    }
+
+    if (request.method === "POST" && url.pathname === "/v1/attest") return attest(request, env, now);
+
     if (request.method === "POST" && url.pathname === "/v1/devices") {
-      const d = (await request.json().catch(() => ({}))) as Partial<DeviceRequest>;
+      const body = new Uint8Array(await request.arrayBuffer());
+      let d: Partial<DeviceRequest>;
+      try {
+        d = JSON.parse(new TextDecoder().decode(body));
+      } catch {
+        d = {};
+      }
       if (!validDevice(d)) return json({ error: "invalid device" }, 400);
+      const refused = await checkAssertion(env, request, body, d.challenge, now);
+      if (refused) return refused;
       await env.DB.prepare(
         `INSERT INTO devices (token, environment, band, utc_offset_minutes, aurora, news, last_seen) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)
          ON CONFLICT (token) DO UPDATE SET environment = ?2, band = ?3, utc_offset_minutes = ?4, aurora = ?5, news = ?6, last_seen = ?7`,
@@ -186,6 +210,54 @@ export default {
     else ctx.waitUntil(Promise.all([pollSpaceWeather(env, now), launchTick(env, now), retrySatellites(env, now), pollSun(env, now)]));
   },
 } satisfies ExportedHandler<Env>;
+
+const appId = (env: Env) => `${env.APNS_TEAM_ID}.${env.APNS_TOPIC}`;
+
+/** Deletes a challenge and says whether it was there and unexpired. */
+async function useChallenge(env: Env, challenge: string | undefined, now: Date): Promise<boolean> {
+  if (typeof challenge !== "string") return false;
+  const row = await env.DB.prepare("DELETE FROM attest_challenges WHERE challenge = ?1 RETURNING expires_at").bind(challenge).first<{ expires_at: string }>();
+  return !!row && row.expires_at > now.toISOString();
+}
+
+/** POST /v1/attest {keyId, attestation, challenge}: stores a key Apple attests belongs to this app. */
+async function attest(request: Request, env: Env, now: Date): Promise<Response> {
+  const a = (await request.json().catch(() => ({}))) as { keyId?: unknown; attestation?: unknown; challenge?: string };
+  if (typeof a.keyId !== "string" || typeof a.attestation !== "string" || a.attestation.length > 20_000) return json({ error: "invalid attestation" }, 400);
+  if (!(await useChallenge(env, a.challenge, now))) return json({ error: "unknown or expired challenge" }, 401);
+  let key: AttestedKey;
+  try {
+    key = await verifyAttestation({ attestation: fromBase64(a.attestation), keyId: a.keyId, challenge: fromBase64(a.challenge!), appId: appId(env), now });
+  } catch (e) {
+    // Malformed input surfaces as DOMException (base64, WebCrypto) or RangeError (truncated data) as well as AttestError.
+    return json({ error: `attestation: ${e instanceof AttestError ? e.message : "malformed"}` }, 401);
+  }
+  await env.DB.prepare("INSERT OR IGNORE INTO app_keys (key_id, spki, environment, counter, created_at, last_used) VALUES (?1, ?2, ?3, 0, ?4, ?4)")
+    .bind(a.keyId, toBase64(key.spki), key.environment, now.toISOString()).run();
+  return json({ ok: true });
+}
+
+/**
+ * A refusal, or null to go ahead: the request's App Attest assertion (header x-app-attest-assertion, by key
+ * x-app-attest-key) must sign the exact body, which carries a fresh challenge. Without one, refused only when
+ * APP_ATTEST is "require".
+ */
+async function checkAssertion(env: Env, request: Request, body: Uint8Array, challenge: string | undefined, now: Date): Promise<Response | null> {
+  const keyId = request.headers.get("x-app-attest-key"), assertion = request.headers.get("x-app-attest-assertion");
+  if (!keyId || !assertion) return env.APP_ATTEST === "require" ? json({ error: "app attest required" }, 401) : null;
+  const key = await env.DB.prepare("SELECT spki, counter FROM app_keys WHERE key_id = ?1").bind(keyId).first<{ spki: string; counter: number }>();
+  if (!key) return json({ error: "unknown key" }, 401);
+  if (!(await useChallenge(env, challenge, now))) return json({ error: "unknown or expired challenge" }, 401);
+  let counter: number;
+  try {
+    counter = await verifyAssertion({ assertion: fromBase64(assertion), clientData: body, spki: fromBase64(key.spki), appId: appId(env), lastCounter: key.counter });
+  } catch (e) {
+    return json({ error: `assertion: ${e instanceof AttestError ? e.message : "malformed"}` }, 401);
+  }
+  // The counter only rises, so a replayed or concurrent assertion with the same counter loses here.
+  const updated = await env.DB.prepare("UPDATE app_keys SET counter = ?2, last_used = ?3 WHERE key_id = ?1 AND counter < ?2").bind(keyId, counter, now.toISOString()).run();
+  return updated.meta.changes ? null : json({ error: "assertion: counter" }, 401);
+}
 
 /** One test push to a registered device, at most once per 10 minutes per device. */
 async function sendTest(env: Env, token: string, now: Date): Promise<Response> {
@@ -674,6 +746,8 @@ async function sendAlerts(env: Env, kind: string, recipients: Recipient[], now: 
 /** Daily: alert keys older than 3 days (the longest is a local day) and devices not registered in DEVICE_RETENTION_MS. */
 async function prune(env: Env, now: Date): Promise<void> {
   await env.DB.batch([
+    env.DB.prepare("DELETE FROM attest_challenges WHERE expires_at < ?1").bind(now.toISOString()),
+    env.DB.prepare("DELETE FROM app_keys WHERE last_used < ?1").bind(new Date(now.getTime() - DEVICE_RETENTION_MS).toISOString()),
     env.DB.prepare("DELETE FROM alerts_sent WHERE sent_at < ?1").bind(new Date(now.getTime() - 3 * 86400_000).toISOString()),
     env.DB.prepare("DELETE FROM devices WHERE last_seen < ?1").bind(new Date(now.getTime() - DEVICE_RETENTION_MS).toISOString()),
   ]);
