@@ -576,7 +576,9 @@ Worker; DSN Now freshness; NASA/ESA image licences; 26 LoC plates bundled.
   Done (storm): a broadcast channel pair per storm (Kp 5 now or within 3
   hours, or a strongly southward wind), updated on each change of G level
   and every 30 minutes, ended after 3 calm hours; =/v1/today.storm= names
-  the channels; Follow on the Sun tab's Kp section.
+  the channels; Follow on the Sun tab's Kp section. Done (meteors): a bell
+  on each peak in Events within a day; computed on the device, from 10
+  minutes before dark to dawn.
 - Push-to-start for followed launches: needs per-device tokens stored on the
   Worker, a privacy policy change and a matching App Store privacy label.
 

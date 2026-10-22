@@ -13,6 +13,7 @@ struct SampleActivitiesSection: View {
             Button("Launch at T−5 minutes") { startLaunch() }
             Button("Eclipse, first contact in 3 minutes") { startEclipse() }
             Button("G2 storm") { startStorm() }
+            Button("Meteor shower, dark in 2 minutes") { startMeteors() }
             Button("End all sample activities", role: .destructive) { Task { await endAll() } }
             if let message {
                 Text(message).font(.footnote).foregroundStyle(.secondary)
@@ -53,6 +54,12 @@ struct SampleActivitiesSection: View {
         request(StormActivityAttributes(startedAt: .now), ActivityContent(state: state, staleDate: .now.addingTimeInterval(45 * 60)))
     }
 
+    private func startMeteors() {
+        let dark = Date.now.addingTimeInterval(120)
+        let attributes = MeteorActivityAttributes(shower: "Test", zhr: 100, darkStart: dark, darkEnd: dark.addingTimeInterval(1800), moonIllumination: 0.2)
+        request(attributes, ActivityContent(state: .init(), staleDate: attributes.darkEnd))
+    }
+
     private func request<A: ActivityAttributes>(_ attributes: A, _ content: ActivityContent<A.ContentState>) {
         guard ActivityAuthorizationInfo().areActivitiesEnabled else {
             message = "Live Activities are turned off for Moonrise in Settings."
@@ -71,6 +78,9 @@ struct SampleActivitiesSection: View {
             await a.end(nil, dismissalPolicy: .immediate)
         }
         for a in Activity<LaunchActivityAttributes>.activities where a.attributes.launchID == "sample" {
+            await a.end(nil, dismissalPolicy: .immediate)
+        }
+        for a in Activity<MeteorActivityAttributes>.activities where a.attributes.shower == "Test" {
             await a.end(nil, dismissalPolicy: .immediate)
         }
         for a in Activity<EclipseActivityAttributes>.activities where a.attributes.site == "Test site" {

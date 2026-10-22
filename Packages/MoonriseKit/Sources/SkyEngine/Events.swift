@@ -15,7 +15,19 @@ public struct SkyEvent: Sendable, Identifiable, Equatable {
     /// When to look, for a forecast: the dark part of a meteor shower's peak night (the whole night where it never gets
     /// fully dark), or greatest eclipse here as a zero-length interval. Nil for other events and eclipses not seen here.
     public var window: DateInterval?
+    /// A meteor shower's zenithal hourly rate at peak, and the Moon's lit fraction at local midnight of the peak night.
+    public var zhr: Int?
+    public var moonIllumination: Double?
     public var id: String { "\(kind.rawValue)-\(title)-\(Int(date.timeIntervalSince1970))" }
+}
+
+extension SkyEvent {
+    /// When a Lock Screen activity for a meteor shower's peak night starts: 10 minutes before dark, or `now` if that
+    /// has passed. Nil for other events, once the night is over, or more than a day ahead.
+    public func activityStart(now: Date) -> Date? {
+        guard kind == .meteorShower, let window, window.end > now, window.start.timeIntervalSince(now) <= 86_400 else { return nil }
+        return max(now, window.start.addingTimeInterval(-600))
+    }
 }
 
 /// A major annual meteor shower (International Meteor Organization working list).
@@ -157,7 +169,8 @@ extension SkyEngine {
                 let dark = try? darkness(from: night.start, to: night.end, observer: observer)
                 let moon = moonAndDarkness(night: night, dark: dark,
                                            moonUp: (try? moonUp(from: night.start, to: night.end, observer: observer)) ?? [], moonIllumination: lit)
-                out.append(SkyEvent(kind: .meteorShower, date: d, title: "\(m.name) peak", detail: "Up to about \(m.zhr) meteors an hour under dark skies. \(moon)", visibleHere: nil, window: dark ?? night))
+                out.append(SkyEvent(kind: .meteorShower, date: d, title: "\(m.name) peak", detail: "Up to about \(m.zhr) meteors an hour under dark skies. \(moon)", visibleHere: nil, window: dark ?? night,
+                                    zhr: m.zhr, moonIllumination: lit))
             }
         }
 

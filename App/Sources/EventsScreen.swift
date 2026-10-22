@@ -115,6 +115,7 @@ struct EventsScreen: View {
                     .padding(.top, 2)
                 }
             }
+            .padding(.trailing, e.activityStart(now: .now) != nil ? 44 : 0)
             Spacer(minLength: 0)
             if link {
                 Image(systemName: "chevron.right").font(.footnote.weight(.semibold)).foregroundStyle(ink.opacity(0.4)).padding(.top, 6)
@@ -124,6 +125,9 @@ struct EventsScreen: View {
         .overlay(alignment: .bottom) { Rectangle().fill(ink.opacity(0.12)).frame(height: 0.5) }
         .contentShape(Rectangle())
         .accessibilityElement(children: .combine)
+        .overlay(alignment: .topTrailing) {
+            if e.kind == .meteorShower { MeteorFollowButton(event: e).padding(.top, 2) }
+        }
     }
 
     private func symbol(_ k: SkyEvent.Kind) -> String {
