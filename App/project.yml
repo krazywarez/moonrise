@@ -76,6 +76,7 @@ targets:
         INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: UIInterfaceOrientationPortrait
         INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight
         INFOPLIST_KEY_NSLocationWhenInUseUsageDescription: Moonrise uses your location to draw the sky above you.
+        INFOPLIST_KEY_NSCameraUsageDescription: Moonrise draws the sky over the camera's picture in Camera view. Nothing is recorded or sent.
   MoonriseWidgets:
     type: app-extension
     platform: iOS

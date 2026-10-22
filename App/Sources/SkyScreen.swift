@@ -1,3 +1,4 @@
+import AVFoundation
 import Library
 import ObservingLog
 import SkyEngine
@@ -17,6 +18,7 @@ struct SkyScreen: View {
     @AppStorage(SettingsKey.horizonProfile) private var horizonProfile = ""
     @State private var faint: (key: FaintKey, stars: [PlacedStar])?
     @State private var eyepiece: EyepieceField?
+    @State private var showCamera = false
     @State private var showSettings = false
     @State private var showEvents = false
     @State private var showLog = false
@@ -108,6 +110,9 @@ struct SkyScreen: View {
         .onChange(of: tourStep) { if let tour { aim(at: tour.steps[tourStep].target) } }
         .sheet(isPresented: $showYear) {
             YearSheet(year: $model.historicalYear, south: model.observer.latitude < 0).preferredColorScheme(.dark)
+        }
+        .fullScreenCover(isPresented: $showCamera) {
+            if let scene = model.scene { ARSkyScreen(scene: scene) }
         }
         .sheet(isPresented: $showSettings, onDismiss: rescheduleNotifications) {
             SettingsScreen { model.applyLocationSettings() }
@@ -308,6 +313,9 @@ struct SkyScreen: View {
                     }
                 }
                 Section("Explore") {
+                    if pointer.available, AVCaptureDevice.default(for: .video) != nil {
+                        Button { showCamera = true } label: { Label("Camera view", systemImage: "camera.viewfinder") }
+                    }
                     Menu {
                         ForEach(EyepieceField.all(in: equipmentInventory.all())) { f in
                             Button {

@@ -555,7 +555,12 @@ Worker; DSN Now freshness; NASA/ESA image licences; 26 LoC plates bundled.
 ** v5.3: AR camera overlay
 - First measure draw time and pointing on a device. Heading from the
   gyroscope with a one-object alignment, not the compass; a pinhole
-  projection matching the camera; refraction.
+  projection matching the camera; refraction. Done in code: Explore → Camera view;
+  =xArbitraryCorrectedZVertical= attitude, first heading from one compass
+  reading, Align on the brightest object within 15° of the centre; pinhole
+  projection from the camera format's field and the aspect-fill crop;
+  Sæmundsson refraction. Not yet measured on a device (draw time is shown in
+  Debug builds).
 
 ** v5.4: System
 - Juno, Europa Clipper, JUICE, Psyche, Parker Solar Probe, Lucy on the

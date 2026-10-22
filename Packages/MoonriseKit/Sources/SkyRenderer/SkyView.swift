@@ -1,23 +1,64 @@
 import SkyEngine
 import SwiftUI
 
-/// Stereographic projection of the sky centred on a viewing direction.
+/// A phone camera's orientation and lens, for drawing the sky over its picture.
+public struct CameraPose: Sendable, Equatable {
+    /// Rows are the device's x (right), y (up) and z (out of the screen) axes in a frame with x north, y west, z up.
+    public var rows: (SIMD3<Double>, SIMD3<Double>, SIMD3<Double>)
+    /// Focal length in points on screen.
+    public var focal: Double
+
+    public init(rows: (SIMD3<Double>, SIMD3<Double>, SIMD3<Double>), focal: Double) {
+        self.rows = rows
+        self.focal = focal
+    }
+
+    public static func == (a: CameraPose, b: CameraPose) -> Bool {
+        a.rows.0 == b.rows.0 && a.rows.1 == b.rows.1 && a.rows.2 == b.rows.2 && a.focal == b.focal
+    }
+
+    /// Atmospheric refraction in degrees for an airless altitude (Bennett 1982, Sæmundsson's inverse form), 10 °C and 1010 hPa.
+    public static func refraction(_ altitude: Double) -> Double {
+        guard altitude > -2 else { return 0 }
+        return 1.02 / tan((altitude + 10.3 / (altitude + 5.11)) * .pi / 180) / 60
+    }
+}
+
+/// Stereographic projection of the sky centred on a viewing direction, or a pinhole projection through a camera.
 public struct Projection: Sendable {
     public var centerAzimuth: Double
     public var centerAltitude: Double
     /// Horizontal field of view in degrees.
     public var fieldOfView: Double
     public var size: CGSize
+    /// When set, points are placed as the camera sees them, with refraction.
+    public var camera: CameraPose?
 
-    public init(centerAzimuth: Double, centerAltitude: Double, fieldOfView: Double, size: CGSize) {
+    public init(centerAzimuth: Double, centerAltitude: Double, fieldOfView: Double, size: CGSize, camera: CameraPose? = nil) {
         self.centerAzimuth = centerAzimuth
         self.centerAltitude = centerAltitude
         self.fieldOfView = fieldOfView
         self.size = size
+        self.camera = camera
     }
 
     /// Screen point, or nil when the direction is behind the viewer.
     public func point(_ h: Horizontal) -> CGPoint? {
+        if let camera { return pinhole(h, camera) }
+        return stereographic(h)
+    }
+
+    /// The camera looks along the device's −z axis; x is right and y up on screen.
+    func pinhole(_ h: Horizontal, _ c: CameraPose) -> CGPoint? {
+        let r = Double.pi / 180
+        let alt = (h.altitude + CameraPose.refraction(h.altitude)) * r, az = h.azimuth * r
+        let w = SIMD3(cos(alt) * cos(az), -cos(alt) * sin(az), sin(alt))
+        let x = (c.rows.0 * w).sum(), y = (c.rows.1 * w).sum(), z = (c.rows.2 * w).sum()
+        guard z < -0.05 else { return nil }
+        return CGPoint(x: Double(size.width) / 2 + c.focal * x / -z, y: Double(size.height) / 2 - c.focal * y / -z)
+    }
+
+    func stereographic(_ h: Horizontal) -> CGPoint? {
         let r = Double.pi / 180
         let alt = h.altitude * r, alt0 = centerAltitude * r
         let dAz = (h.azimuth - centerAzimuth) * r
@@ -121,10 +162,12 @@ public struct SkyView: View {
     public var faintStars: [PlacedStar]
     /// An eyepiece's true field, degrees across, drawn as a circle at the centre.
     public var eyepieceField: Double?
+    /// Draw over a camera picture: no background or Milky Way, and the ground only as a line.
+    public var camera: CameraPose?
     /// Called after each draw with the time the draw took.
     public var onDraw: (@Sendable (Duration) -> Void)?
 
-    public init(scene: SkyScene, centerAzimuth: Double = 180, centerAltitude: Double = 55, fieldOfView: Double = 110, style: SkyStyle = SkyStyle(), culture: SkyCulture? = nil, highlight: SkyHighlight? = nil, showDeepSky: Bool = true, showMilkyWay: Bool = true, horizon: HorizonProfile? = nil, faintStars: [PlacedStar] = [], eyepieceField: Double? = nil, onDraw: (@Sendable (Duration) -> Void)? = nil) {
+    public init(scene: SkyScene, centerAzimuth: Double = 180, centerAltitude: Double = 55, fieldOfView: Double = 110, style: SkyStyle = SkyStyle(), culture: SkyCulture? = nil, highlight: SkyHighlight? = nil, showDeepSky: Bool = true, showMilkyWay: Bool = true, horizon: HorizonProfile? = nil, faintStars: [PlacedStar] = [], eyepieceField: Double? = nil, camera: CameraPose? = nil, onDraw: (@Sendable (Duration) -> Void)? = nil) {
         self.scene = scene
         self.style = style
         self.culture = culture
@@ -134,6 +177,7 @@ public struct SkyView: View {
         self.horizon = horizon
         self.faintStars = faintStars
         self.eyepieceField = eyepieceField
+        self.camera = camera
         self.centerAzimuth = centerAzimuth
         self.centerAltitude = centerAltitude
         self.fieldOfView = fieldOfView
@@ -143,9 +187,9 @@ public struct SkyView: View {
     public var body: some View {
         Canvas { context, size in
             let start = ContinuousClock.now
-            let p = Projection(centerAzimuth: centerAzimuth, centerAltitude: centerAltitude, fieldOfView: fieldOfView, size: size)
-            context.fill(Path(CGRect(origin: .zero, size: size)), with: .color(style.background))
-            if showMilkyWay { drawMilkyWay(&context, p) }
+            let p = Projection(centerAzimuth: centerAzimuth, centerAltitude: centerAltitude, fieldOfView: fieldOfView, size: size, camera: camera)
+            if camera == nil { context.fill(Path(CGRect(origin: .zero, size: size)), with: .color(style.background)) }
+            if showMilkyWay && camera == nil { drawMilkyWay(&context, p) }
             drawConstellations(&context, p)
             drawStars(&context, p)
             if showDeepSky { drawDeepSky(&context, p) }
@@ -398,6 +442,12 @@ public struct SkyView: View {
             az += 1
         }
         guard let first = edge.first, let last = edge.last else { return }
+        if camera != nil {
+            var line = Path()
+            line.addLines(edge)
+            context.stroke(line, with: .color(style.muted), style: StrokeStyle(lineWidth: 1, dash: [6, 4]))
+            return
+        }
         var ground = Path()
         ground.move(to: first)
         for pt in edge.dropFirst() { ground.addLine(to: pt) }
