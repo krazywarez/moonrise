@@ -56,6 +56,7 @@ struct SunScreen: View {
                 Text(wavelength.caption).font(.footnote).dimmed(0.75).padding(.top, 8)
                 Text(SolarImage.credit).font(.caption2).dimmed(0.5).padding(.top, 4)
 
+                section("The Sun here today", note: "When the Sun rises and sets where you are, and the soft light of the golden and blue hours.") { SunToday(ink: ink, accent: accent) }
                 section("Aurora tonight", note: "NOAA's forecast of where the aurora may be overhead in the next hour; brighter green is more likely. From a few hundred kilometres further from the pole it can still be seen low on the horizon.") { auroraMap }
                 if let solarWind {
                     section("Solar wind", note: "Measured 1.5 million km sunward of Earth, 30 to 60 minutes before it arrives. When Bz, the north–south part of its magnetic field, turns strongly negative (south), aurora often follows.") { solarWindPanel(solarWind) }

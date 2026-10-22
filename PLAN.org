@@ -521,7 +521,9 @@ Worker; DSN Now freshness; NASA/ESA image licences; 26 LoC plates bundled.
 - Active-region labels on the SDO image. Done: SWPC =solar_regions.json=, turned at 13.2°/day
   from 24:00 UTC on =observed_date= and projected with B0; checked on an HMI
   image (4560, 4557 on their spots).
-- Sun path, golden and blue hour, day length.
+- Sun path, golden and blue hour, day length. Done: =SunDay= (SkyEngine) and a Sun tab
+  section with the altitude curve, rise, set, noon, day length against
+  yesterday, golden (−4° to +6°) and blue (−6° to −4°) hours.
 - CCOR-2 coronagraph loop, WSA-Enlil forecast line, solar cycle progress.
 
 ** v5.2: Sky
