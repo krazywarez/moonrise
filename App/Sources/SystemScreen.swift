@@ -99,7 +99,7 @@ struct SystemScreen: View {
             VStack(alignment: .leading, spacing: 0) {
                 Text("Solar system").font(.title.weight(.medium))
                 Rectangle().fill(accent).frame(width: 48, height: 5).padding(.top, 8).padding(.bottom, 12)
-                Text("The planets, and the five spacecraft travelling out of the solar system, seen from above. Drag the slider or press play to watch them move between 1958 and 2050.")
+                Text("The planets and spacecraft, seen from above: the five probes leaving the solar system and the missions at work today. Drag the slider or press play to watch them move between 1958 and 2050.")
                     .font(.subheadline).dimmed(0.75).padding(.bottom, 12)
                 modePicker.padding(.bottom, 16)
 

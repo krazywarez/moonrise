@@ -217,16 +217,34 @@ struct SunScreen: View {
     private func regionOverlay(at date: Date) -> some View {
         GeometryReader { g in
             let r = wavelength.diskRadius * g.size.width
-            ForEach(regions) { region in
-                if let p = region.disk(at: date) {
-                    Text(String(region.number))
-                        .font(.system(size: 10, weight: .medium)).monospacedDigit()
-                        .foregroundStyle(.white).shadow(color: .black, radius: 2)
-                        .position(x: g.size.width / 2 + p.x * r, y: g.size.height / 2 - p.y * r - 10)
-                }
+            ForEach(regionLabelPoints(at: date, size: g.size, radius: r), id: \.number) { l in
+                Text(String(l.number))
+                    .font(.system(size: 10, weight: .medium)).monospacedDigit()
+                    .foregroundStyle(.white).shadow(color: .black, radius: 2)
+                    .position(l.point)
             }
         }
         .accessibilityHidden(true)
+    }
+
+    /// A label above each region, else below it; left out where both would overlap a label already placed
+    /// (regions crowd together near the limb).
+    private func regionLabelPoints(at date: Date, size: CGSize, radius r: CGFloat) -> [(number: Int, point: CGPoint)] {
+        var placed: [CGRect] = []
+        var out: [(number: Int, point: CGPoint)] = []
+        for region in regions {
+            guard let p = region.disk(at: date) else { continue }
+            let x = size.width / 2 + p.x * r, y = size.height / 2 - p.y * r
+            for dy: CGFloat in [-10, 10] {
+                let box = CGRect(x: x - 15, y: y + dy - 7, width: 30, height: 14)
+                if !placed.contains(where: { $0.intersects(box) }) {
+                    placed.append(box)
+                    out.append((region.number, CGPoint(x: x, y: y + dy)))
+                    break
+                }
+            }
+        }
+        return out
     }
 
     /// Three columns, stacked at accessibility text sizes.

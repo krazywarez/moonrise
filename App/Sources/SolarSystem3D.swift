@@ -757,7 +757,7 @@ struct SolarSystem3DView: View {
             case .moon: 50
             }
         }
-        var placed: [CGPoint] = []
+        var placed: [CGRect] = []
         let points = screenPoints(size: size)
         // Anything whose centre falls on the disc of a nearer body is hidden behind it.
         let discs = points.filter { $0.radius > 4 }.map { ($0.point, $0.radius, cam.distance(to: $0.marker.scene)) }
@@ -769,8 +769,11 @@ struct SolarSystem3DView: View {
             .sorted { rank($0.marker) < rank($1.marker) }
             .map { item in
                 let at = CGPoint(x: item.point.x, y: item.point.y - max(item.radius, 5) - 9)
-                let clear = item.marker.id == selected || placed.allSatisfy { abs($0.x - at.x) > 48 || abs($0.y - at.y) > 14 }
-                if clear { placed.append(at) }
+                // caption2 runs about 6 pt a character; a little padding keeps neighbours readable.
+                let width = CGFloat(item.marker.name.count) * 6 + 8
+                let box = CGRect(x: at.x - width / 2, y: at.y - 8, width: width, height: 16)
+                let clear = item.marker.id == selected || !placed.contains { $0.intersects(box) }
+                if clear { placed.append(box) }
                 return (item.marker, item.point, item.radius, clear)
             }
     }

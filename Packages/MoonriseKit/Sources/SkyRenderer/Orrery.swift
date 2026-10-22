@@ -111,6 +111,20 @@ public struct OrreryView: View {
             }
             context.fill(Path(ellipseIn: CGRect(x: c.x - 4, y: c.y - 4, width: 8, height: 8)), with: .color(Color(red: 0.95, green: 0.75, blue: 0.35)))
 
+            // Labels are placed after the marks, planets first, then spacecraft in file order; one that would
+            // overlap a placed label is left out (the list below the map names every craft).
+            var labels: [(text: GraphicsContext.ResolvedText, at: CGPoint, anchor: UnitPoint)] = []
+            var placed: [CGRect] = []
+            func label(_ text: Text, at point: CGPoint, anchor: UnitPoint) {
+                let t = context.resolve(text)
+                let size = t.measure(in: CGSize(width: 400, height: 100))
+                let rect = CGRect(x: point.x - anchor.x * size.width, y: point.y - anchor.y * size.height, width: size.width, height: size.height).insetBy(dx: -2, dy: -1)
+                guard !placed.contains(where: { $0.intersects(rect) }) else { return }
+                placed.append(rect)
+                labels.append((t, point, anchor))
+            }
+            var craftLabels: [(Text, CGPoint)] = []
+
             for craft in Spacecraft.all {
                 let path = craft.path(until: date)
                 guard let last = path.last else { continue }
@@ -121,9 +135,7 @@ public struct OrreryView: View {
                 context.stroke(line, with: .color(accent.opacity(faint ? 0.2 : 0.7)), lineWidth: faint ? 0.5 : 0.8)
                 let p = s.point(last)
                 context.fill(Path(ellipseIn: CGRect(x: p.x - 2.5, y: p.y - 2.5, width: 5, height: 5)), with: .color(accent.opacity(faint ? 0.3 : 1)))
-                if !faint {
-                    context.draw(Text(craft.name).font(.caption2).foregroundStyle(accent), at: CGPoint(x: p.x + 6, y: p.y), anchor: .leading)
-                }
+                if !faint { craftLabels.append((Text(craft.name).font(.caption2).foregroundStyle(accent), CGPoint(x: p.x + 6, y: p.y))) }
             }
 
             for body in [SolarBody.mercury, .venus, .mars, .jupiter, .saturn, .uranus, .neptune] {
@@ -132,9 +144,11 @@ public struct OrreryView: View {
                 let r: CGFloat = [.jupiter, .saturn].contains(body) ? 4 : 3
                 context.fill(Path(ellipseIn: CGRect(x: p.x - r, y: p.y - r, width: 2 * r, height: 2 * r)), with: .color(ink))
                 if [.jupiter, .saturn, .uranus, .neptune].contains(body) {
-                    context.draw(Text(body.rawValue.capitalized).font(.caption2).foregroundStyle(ink.opacity(0.8)), at: CGPoint(x: p.x, y: p.y + 10))
+                    label(Text(body.rawValue.capitalized).font(.caption2).foregroundStyle(ink.opacity(0.8)), at: CGPoint(x: p.x, y: p.y + 10), anchor: .center)
                 }
             }
+            for (text, p) in craftLabels { label(text, at: p, anchor: .leading) }
+            for l in labels { context.draw(l.text, at: l.at, anchor: l.anchor) }
             if let earth = try? SkyEngine.heliocentricEarth(at: date) {
                 let p = s.point(SIMD2(earth.x, earth.y))
                 context.fill(Path(ellipseIn: CGRect(x: p.x - 3, y: p.y - 3, width: 6, height: 6)), with: .color(Color(red: 0.35, green: 0.6, blue: 0.95)))
