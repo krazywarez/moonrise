@@ -1,6 +1,7 @@
 // CelesTrak GP data. CelesTrak updates every 2 hours and blocks IPs that fetch more
 // often or keep requesting after errors, so poll every 2 hours and stop on any non-200.
 // A failed poll is tried once more 33 minutes later: at most 2 errors in 2 hours.
+import { USER_AGENT } from "./agent.ts";
 
 /** ISS, Tiangong (CSS Tianhe) and Hubble; all three are in the visual group. */
 export const FEATURED = [25544, 48274, 20580];
@@ -165,7 +166,7 @@ export function retryDue(now: Date, lastOk: string | null, lastError: string | n
   return error >= now.getTime() - 33 * 60_000 && error < now.getTime() && (!lastOk || Date.parse(lastOk) < error);
 }
 
-const HEADERS = { "user-agent": "moonrise-server (sh.krz.moonrise)" };
+const HEADERS = { "user-agent": USER_AGENT };
 const TIMEOUT_MS = 10_000;
 
 async function group(name: string): Promise<Row[]> {
@@ -174,11 +175,17 @@ async function group(name: string): Promise<Row[]> {
   return (await res.json()) as Row[];
 }
 
-/** The visual group (about 150 bright objects) and the last 30 days' launches; throws on the first non-200 so nothing more is requested. */
-export async function fetchGroups(): Promise<{ visual: Row[]; recent: Row[] }> {
-  const visual = await group("visual");
-  const recent = await group("last-30-days");
-  return { visual, recent };
+/**
+ * The visual group (about 150 bright objects) and the last 30 days' launches; throws on the first non-200 so nothing
+ * more is requested. `visual` from earlier in the same 2-hourly update is reused rather than downloaded again.
+ */
+export async function fetchGroups(visual?: Row[]): Promise<{ visual: Row[]; recent: Row[] }> {
+  visual ??= await group("visual");
+  try {
+    return { visual, recent: await group("last-30-days") };
+  } catch (e) {
+    throw Object.assign(e as Error, { visual });
+  }
 }
 
 /** One SupGP file; throws on a non-200 so the caller stops. */

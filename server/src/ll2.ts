@@ -1,5 +1,6 @@
 // Launch Library 2 (The Space Devs). Anonymous limit: 15 requests per hour.
 // Images are not used: their licences are often "Unknown".
+import { USER_AGENT } from "./agent.ts";
 
 export const UPCOMING_URL = "https://ll.thespacedevs.com/2.3.0/launches/upcoming/?limit=20&mode=normal";
 /** Recent launches, for the international designator, which is assigned only after liftoff. */
@@ -73,11 +74,24 @@ export function normalize(r: Raw): Launch {
 
 /** `apiKey` lifts the anonymous per-IP limit, which Cloudflare's shared egress IPs often exhaust (HTTP 429). */
 async function get<T>(url: string, apiKey?: string): Promise<T> {
-  const headers: Record<string, string> = { "user-agent": "moonrise-server (sh.krz.moonrise)" };
+  const headers: Record<string, string> = { "user-agent": USER_AGENT };
   if (apiKey) headers.authorization = `Token ${apiKey}`;
   const res = await fetch(url, { headers });
+  if (res.status === 429) throw new Throttled();
   if (!res.ok) throw new Error(`LL2 ${res.status}`);
   return (await res.json()) as T;
+}
+
+export class Throttled extends Error {
+  constructor() {
+    super("LL2 429");
+  }
+}
+
+/** Seconds until LL2 accepts requests again, from /api-throttle/, which does not count towards the limit. */
+export async function throttleSeconds(apiKey?: string): Promise<number> {
+  const t = await get<{ next_use_secs: number }>("https://ll.thespacedevs.com/2.3.0/api-throttle/", apiKey);
+  return t.next_use_secs;
 }
 
 export async function fetchLaunches(url: string, apiKey?: string): Promise<Launch[]> {

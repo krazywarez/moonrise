@@ -170,6 +170,57 @@ test("a failed CelesTrak poll is tried once more 33 minutes later, from the 5-mi
   assert.equal(await requests(FIVE, "2026-10-21T08:40:00Z"), 0);
 });
 
+test("a CelesTrak retry downloads only the group that failed", async () => {
+  const { env } = await setup({ APNS_KEY: "" });
+  let recentStatus = 522;
+  const paths: string[] = [];
+  network({
+    "celestrak.org": (url) => {
+      paths.push(url.searchParams.get("GROUP") ?? url.pathname);
+      return url.searchParams.get("GROUP") === "last-30-days" ? new Response("[]", { status: recentStatus }) : Response.json([]);
+    },
+  });
+  await run(env, SATELLITES, "2026-10-21T02:07:00Z");
+  assert.deepEqual(paths, ["visual", "last-30-days"]);
+  recentStatus = 200;
+  await run(env, FIVE, "2026-10-21T02:40:00Z");
+  assert.deepEqual(paths, ["visual", "last-30-days", "last-30-days"]);
+  await run(env, SATELLITES, "2026-10-21T04:07:00Z");
+  assert.equal(paths.at(-2), "visual", "next update downloads visual again");
+});
+
+test("an LL2 429 stops LL2 requests until /api-throttle/ says the limit has reset", async () => {
+  const { env } = await setup({ APNS_KEY: "" });
+  let limited = true;
+  const paths: string[] = [];
+  network({
+    "ll.thespacedevs.com": (url) => {
+      paths.push(url.pathname);
+      if (url.pathname.endsWith("/api-throttle/")) return Response.json({ next_use_secs: 1800 });
+      return limited ? new Response("{}", { status: 429 }) : Response.json({ results: [] });
+    },
+  });
+  await run(env, FIVE, "2026-10-20T10:10:00Z");
+  assert.deepEqual(paths, ["/2.3.0/launches/upcoming/", "/2.3.0/api-throttle/"]);
+  limited = false;
+  await run(env, FIVE, "2026-10-20T10:20:00Z");
+  await run(env, FIVE, "2026-10-20T10:30:00Z");
+  assert.equal(paths.length, 2, "polled while throttled");
+  await run(env, FIVE, "2026-10-20T10:40:00Z");
+  assert.equal(paths.length, 3);
+});
+
+test("/v1/news serves the articles the 10-minute cron stored", async () => {
+  const { env } = await setup({ APNS_KEY: "" });
+  const article = { id: 7, title: "t", summary: "s", url: "https://example.com/a", image_url: null, news_site: "ESA", published_at: "2026-10-20T13:00:00Z", authors: [] };
+  network({ "api.spaceflightnewsapi.net": () => Response.json({ results: [article] }) });
+  await run(env, NEWS, "2026-10-20T14:00:00Z");
+  const res = await worker.fetch(new Request("https://moonrise.test/v1/news"), env as never);
+  const { authors: _, ...stored } = article;
+  assert.deepEqual(((await res.json()) as { results: unknown[] }).results, [stored]);
+  assert.equal(res.headers.get("cache-control"), "public, max-age=600");
+});
+
 test("aurora alerts go out in bounded slices and are recorded per device once answered", async () => {
   const { db, env, calls } = await setup();
   for (let i = 0; i < PUSH_SLICE + 10; i++) device(db, i);
@@ -227,7 +278,7 @@ test("news digests go out in slices during the local 09:00 hour, once per local 
   assert.equal(new Set(push.state.sent).size, PUSH_SLICE + 5);
   await run(env, NEWS, "2026-10-20T14:20:00Z");
   assert.equal(push.state.sent.length, PUSH_SLICE + 5);
-  assert.equal(snapi(), 2);
+  assert.equal(snapi(), 3, "polled once per 10-minute run");
   assert.equal(count(db, "SELECT count(*) AS n FROM alerts_sent WHERE kind = 'news' AND event LIKE '%:2026-10-20'"), PUSH_SLICE + 5);
 
   const q = calls.find((c) => c.sql.includes("news = 1"))!;

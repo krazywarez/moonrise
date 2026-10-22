@@ -1,10 +1,14 @@
-// Spaceflight News API (The Space Devs). Free, no key. Used only for the daily news digest push.
+// Spaceflight News API (The Space Devs). Free, no key. Polled every 10 minutes for /v1/news and the daily digest push.
+import { USER_AGENT } from "./agent.ts";
 
 export interface Article {
   id: number;
   title: string;
   news_site: string;
   published_at: string;
+  summary?: string;
+  url?: string;
+  image_url?: string | null;
 }
 
 export const DIGEST_HOUR = 9;
@@ -50,8 +54,9 @@ export function digestPayload(headlines: Article[]) {
 
 export async function fetchLatest(): Promise<Article[]> {
   const res = await fetch("https://api.spaceflightnewsapi.net/v4/articles/?limit=50", {
-    headers: { "user-agent": "moonrise-server (sh.krz.moonrise)" },
+    headers: { "user-agent": USER_AGENT },
   });
   if (res.status !== 200) throw new Error(`SNAPI ${res.status}`);
-  return ((await res.json()) as { results: Article[] }).results;
+  return ((await res.json()) as { results: Article[] }).results
+    .map(({ id, title, summary, url, image_url, news_site, published_at }) => ({ id, title, summary, url, image_url, news_site, published_at }));
 }

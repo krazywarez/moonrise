@@ -3,8 +3,8 @@ import { broadcast, createChannel, deleteChannel, retryable, send, sendAll, type
 import { actionableKp, alertBands, eventKey, isNight } from "./aurora";
 import { compose, fetchGroups, fetchSupGP, fitsLaunch, retryDue, retryTick, supgpFile, supgpLaunches, type LaunchElements, type LaunchRef, type Row } from "./celestrak";
 import { activeEvent, fetchTrajectory, STEP_MINUTES } from "./live";
-import { fetchLaunch, fetchLaunches, PREVIOUS_URL, UPCOMING_URL, type Launch } from "./ll2";
-import { digestPayload, dueOffsets, fetchLatest, localDate, pickHeadlines } from "./news";
+import { fetchLaunch, fetchLaunches, PREVIOUS_URL, throttleSeconds, Throttled, UPCOMING_URL, type Launch } from "./ll2";
+import { digestPayload, dueOffsets, fetchLatest, localDate, pickHeadlines, type Article } from "./news";
 import { fetchSpaceWeather, next24h, type SpaceWeather } from "./swpc";
 
 interface Env {
@@ -48,15 +48,22 @@ const json = (body: unknown, status = 200, maxAge?: number) =>
 const PRIVACY_URL = "https://krz.sh/privacy/moonrise/";
 
 /** Read-only endpoints whose responses are the same for everyone. */
-const API = new Set(["/v1/today", "/v1/launches", "/v1/live", "/v1/satellites"]);
+const API = new Set(["/v1/today", "/v1/launches", "/v1/live", "/v1/satellites", "/v1/news"]);
 
 function api(url: URL, env: Env, now: Date): Promise<Response> {
   switch (url.pathname) {
     case "/v1/today": return today(env, now);
     case "/v1/launches": return launches(env, url, now);
     case "/v1/live": return live(env, url, now);
+    case "/v1/news": return news(env);
     default: return satellites(env);
   }
+}
+
+/** Spaceflight News API articles in its own field names, so clients do not call The Space Devs directly. */
+async function news(env: Env): Promise<Response> {
+  const row = await env.DB.prepare("SELECT fetched_at, body FROM feed_snapshots WHERE feed = 'news' AND ok = 1").first<{ fetched_at: string; body: string }>();
+  return json({ fetchedAt: row?.fetched_at ?? null, results: row ? JSON.parse(row.body) : [] }, 200, MAX_AGE.news);
 }
 
 async function satellites(env: Env): Promise<Response> {
@@ -82,7 +89,7 @@ async function cached(request: Request, ctx: ExecutionContext | undefined, respo
 }
 
 /** How long clients may reuse each GET response, matched to how often its source is polled. */
-export const MAX_AGE = { today: 60, launches: 300, satellites: 3600, live: 300 } as const;
+export const MAX_AGE = { today: 60, launches: 300, satellites: 3600, live: 300, news: 600 } as const;
 
 function validDevice(d: Partial<DeviceRequest>): d is DeviceRequest {
   return (
@@ -141,7 +148,7 @@ export default {
   async scheduled(controller: ScheduledController, env: Env, ctx: ExecutionContext): Promise<void> {
     const now = new Date(controller.scheduledTime);
     if (controller.cron === NEWS_CRON) {
-      ctx.waitUntil(sendNewsDigests(env, now));
+      ctx.waitUntil(pollNews(env, now).then(() => sendNewsDigests(env, now)));
       if (now.getUTCHours() === 0 && now.getUTCMinutes() === 0) ctx.waitUntil(prune(env, now));
     } else if (controller.cron === SATELLITE_CRON) ctx.waitUntil(pollSatellites(env, now));
     else if (controller.cron === FOCUS_CRON) ctx.waitUntil(focusTick(env, now));
@@ -242,10 +249,11 @@ const nearLaunches = async (env: Env, now: Date): Promise<Near[]> =>
  */
 async function launchTick(env: Env, now: Date): Promise<void> {
   const near = await nearLaunches(env, now);
+  const throttled = await ll2Throttled(env, now);
   const focus = near.filter((l) => inFocus(l, now)).map((l) => l.id);
   const keyed = Boolean(env.LL2_API_KEY);
-  const pollFocus = focus.length > 0 && focusPollDue(5, now, keyed);
-  const pollList = !focus.length && now.getUTCMinutes() % 10 === 0;
+  const pollFocus = !throttled && focus.length > 0 && focusPollDue(5, now, keyed);
+  const pollList = !throttled && !focus.length && now.getUTCMinutes() % 10 === 0;
   if (pollFocus) await pollLaunch(env, focusPick(focus, now, focusEvery(keyed)), now);
   else if (pollList) await pollLaunches(env, now);
   // Channels are handed out with the launch's current state, so a poll means reading it again.
@@ -254,11 +262,24 @@ async function launchTick(env: Env, now: Date): Promise<void> {
 
 /** With an LL2 key: the launch in focus on the even minutes the 5-minute cron does not run on, and its broadcasts. */
 async function focusTick(env: Env, now: Date): Promise<void> {
-  if (!focusPollDue(2, now, Boolean(env.LL2_API_KEY))) return;
+  if (!focusPollDue(2, now, Boolean(env.LL2_API_KEY)) || await ll2Throttled(env, now)) return;
   const focus = (await nearLaunches(env, now)).filter((l) => inFocus(l, now)).map((l) => l.id);
   if (!focus.length) return;
   await pollLaunch(env, focusPick(focus, now, focusEvery(true)), now);
   if (env.APNS_KEY) await broadcastChanges(env, now);
+}
+
+/** Whether LL2 said to wait (HTTP 429) and the wait has not passed. */
+async function ll2Throttled(env: Env, now: Date): Promise<boolean> {
+  const row = await env.DB.prepare("SELECT body FROM feed_snapshots WHERE feed = 'll2:throttled'").first<{ body: string }>();
+  return row !== null && Date.parse(row.body) > now.getTime();
+}
+
+/** After a 429, no LL2 requests until /api-throttle/ says the limit has reset (15 minutes if it cannot say). */
+async function ll2Throttle(env: Env, now: Date): Promise<void> {
+  const seconds = await throttleSeconds(env.LL2_API_KEY).catch(() => 0) || 15 * 60;
+  await env.DB.prepare("INSERT INTO feed_snapshots (feed, fetched_at, ok, body) VALUES ('ll2:throttled', ?1, 0, ?2) ON CONFLICT (feed) DO UPDATE SET fetched_at = ?1, body = ?2")
+    .bind(now.toISOString(), new Date(now.getTime() + seconds * 1000).toISOString()).run();
 }
 
 async function pollLaunch(env: Env, id: string, now: Date): Promise<void> {
@@ -266,6 +287,7 @@ async function pollLaunch(env: Env, id: string, now: Date): Promise<void> {
     await env.DB.batch(upsertLaunches(env, [await fetchLaunch(id, env.LL2_API_KEY)]));
   } catch (e) {
     console.error("ll2 launch", String(e));
+    if (e instanceof Throttled) await ll2Throttle(env, now);
     await env.DB.prepare("INSERT INTO feed_snapshots (feed, fetched_at, ok) VALUES ('ll2:error', ?1, 0) ON CONFLICT (feed) DO UPDATE SET fetched_at = ?1").bind(now.toISOString()).run();
   }
 }
@@ -277,6 +299,7 @@ async function pollLaunches(env: Env, now: Date): Promise<void> {
     list = await fetchLaunches(UPCOMING_URL, env.LL2_API_KEY);
   } catch (e) {
     console.error("ll2", String(e));
+    if (e instanceof Throttled) await ll2Throttle(env, now);
     await env.DB.prepare("INSERT INTO feed_snapshots (feed, fetched_at, ok) VALUES ('ll2:error', ?1, 0) ON CONFLICT (feed) DO UPDATE SET fetched_at = ?1").bind(now.toISOString()).run();
     return;
   }
@@ -286,6 +309,7 @@ async function pollLaunches(env: Env, now: Date): Promise<void> {
       list = [...list, ...(await fetchLaunches(PREVIOUS_URL, env.LL2_API_KEY))];
     } catch (e) {
       console.error("ll2 previous", String(e));
+      if (e instanceof Throttled) await ll2Throttle(env, now);
     }
   }
   await env.DB.batch([
@@ -388,11 +412,18 @@ async function retrySatellites(env: Env, now: Date): Promise<void> {
 
 async function pollSatellites(env: Env, now: Date): Promise<void> {
   let groups: { visual: Row[]; recent: Row[] };
+  // A visual group downloaded earlier in this 2-hourly update, kept when last-30-days failed.
+  const kept = await env.DB.prepare("SELECT body FROM feed_snapshots WHERE feed = 'celestrak:visual' AND fetched_at > ?1")
+    .bind(new Date(now.getTime() - 60 * 60_000).toISOString()).first<{ body: string }>();
   try {
-    groups = await fetchGroups();
+    groups = await fetchGroups(kept ? JSON.parse(kept.body) : undefined);
   } catch (e) {
     console.error("celestrak", String(e));
-    await env.DB.prepare("INSERT INTO feed_snapshots (feed, fetched_at, ok) VALUES ('celestrak:error', ?1, 0) ON CONFLICT (feed) DO UPDATE SET fetched_at = ?1").bind(now.toISOString()).run();
+    const visual = (e as { visual?: Row[] }).visual;
+    await env.DB.batch([
+      env.DB.prepare("INSERT INTO feed_snapshots (feed, fetched_at, ok) VALUES ('celestrak:error', ?1, 0) ON CONFLICT (feed) DO UPDATE SET fetched_at = ?1").bind(now.toISOString()),
+      ...(visual && !kept ? [env.DB.prepare("INSERT INTO feed_snapshots (feed, fetched_at, ok, body) VALUES ('celestrak:visual', ?1, 1, ?2) ON CONFLICT (feed) DO UPDATE SET fetched_at = ?1, body = ?2").bind(now.toISOString(), JSON.stringify(visual))] : []),
+    ]);
     return;
   }
   const launches = await env.DB.prepare("SELECT id, mission, provider, net, launch_designator AS designator FROM launches WHERE net >= ?1")
@@ -458,6 +489,17 @@ async function sendAuroraAlerts(env: Env, w: SpaceWeather, now: Date): Promise<v
   }));
 }
 
+/** Spaceflight News API every 10 minutes, matching its cache lifetime; the last good copy is kept on failure. */
+async function pollNews(env: Env, now: Date): Promise<void> {
+  try {
+    const articles = await fetchLatest();
+    await env.DB.prepare("INSERT INTO feed_snapshots (feed, fetched_at, ok, body) VALUES ('news', ?1, 1, ?2) ON CONFLICT (feed) DO UPDATE SET fetched_at = ?1, ok = 1, body = ?2")
+      .bind(now.toISOString(), JSON.stringify(articles)).run();
+  } catch (e) {
+    console.error("snapi", String(e));
+  }
+}
+
 /** The daily news digest, sent in the 09:00 local hour to devices that opted in, once per local day. */
 async function sendNewsDigests(env: Env, now: Date): Promise<void> {
   if (!env.APNS_KEY) return;
@@ -470,15 +512,10 @@ async function sendNewsDigests(env: Env, now: Date): Promise<void> {
   const due = rows.results.map((d) => ({ ...d, band: 0, event: `${d.token}:${localDate(now, d.utc_offset_minutes)}` }));
   if (!due.length) return;
 
-  let payload;
-  try {
-    const headlines = pickHeadlines(await fetchLatest(), now);
-    if (!headlines.length) return;
-    payload = digestPayload(headlines);
-  } catch (e) {
-    console.error("snapi", String(e));
-    return;
-  }
+  const row = await env.DB.prepare("SELECT body FROM feed_snapshots WHERE feed = 'news' AND ok = 1").first<{ body: string }>();
+  const headlines = pickHeadlines(row ? JSON.parse(row.body) as Article[] : [], now);
+  if (!headlines.length) return;
+  const payload = digestPayload(headlines);
 
   await sendAlerts(env, "news", due, now, () => payload);
 }

@@ -1,4 +1,5 @@
 // NOAA SWPC feeds. Responses carry cache-control max-age=60; poll no faster.
+import { USER_AGENT } from "./agent.ts";
 
 export const KP_NOW_URL = "https://services.swpc.noaa.gov/json/planetary_k_index_1m.json";
 export const KP_FORECAST_URL = "https://services.swpc.noaa.gov/products/noaa-planetary-k-index-forecast.json";
@@ -27,7 +28,9 @@ export function decode(nowJson: unknown, forecastJson: unknown): SpaceWeather {
 }
 
 export async function fetchSpaceWeather(): Promise<SpaceWeather> {
-  const [a, b] = await Promise.all([fetch(KP_NOW_URL), fetch(KP_FORECAST_URL)]);
+  const headers = { "user-agent": USER_AGENT };
+  const a = await fetch(KP_NOW_URL, { headers });
+  const b = await fetch(KP_FORECAST_URL, { headers });
   if (!a.ok || !b.ok) throw new Error(`SWPC ${a.status}/${b.status}`);
   return decode(await a.json(), await b.json());
 }
