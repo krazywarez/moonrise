@@ -15,6 +15,8 @@ enum SettingsKey {
     /// Whether the Sky tab is currently drawn in night mode (written by the Sky tab).
     static let nightActive = "nightActive"
     static let dailySummary = "dailySummary"
+    /// Local alerts 15 minutes before visible ISS passes.
+    static let issPasses = "issPassAlerts"
     /// Sky culture id, or "western" for the IAU constellations.
     static let skyCulture = "skyCulture"
     /// Minutes after local midnight.
@@ -77,8 +79,10 @@ struct SettingsScreen: View {
     @Environment(\.dismiss) private var dismiss
     @State private var alerts = AuroraAlerts.shared
     @AppStorage(SettingsKey.dailySummary) private var dailySummary = false
+    @AppStorage(SettingsKey.issPasses) private var issPasses = false
     @AppStorage(SettingsKey.dailySummaryMinutes) private var dailySummaryMinutes = DailySummaryNotifications.defaultMinutes
     @State private var summaryStatus: String?
+    @State private var issStatus: String?
     @AppStorage(SettingsKey.cloudForecast) private var cloudForecast = false
     var onChange: () -> Void
 
@@ -129,6 +133,17 @@ struct SettingsScreen: View {
                     }
                 } footer: {
                     Text("A note each day with the Moon, the planets up that night, the best satellite pass and any events. It is worked out on this device; nothing is sent to our server.")
+                }
+                Section {
+                    Toggle("ISS passes", isOn: Binding(
+                        get: { issPasses },
+                        set: { on in Task { await setISSPasses(on) } }
+                    ))
+                    if let issStatus {
+                        Text(issStatus).font(.footnote).foregroundStyle(.secondary)
+                    }
+                } footer: {
+                    Text("An alert 15 minutes before the International Space Station crosses your sky while you can see it. Worked out on this device; nothing is sent to our server.")
                 }
                 Section {
                     Toggle("Cloud forecasts", isOn: $cloudForecast)
@@ -190,6 +205,18 @@ struct SettingsScreen: View {
                 dailySummaryMinutes = (c.hour ?? 0) * 60 + (c.minute ?? 0)
             }
         )
+    }
+
+    private func setISSPasses(_ on: Bool) async {
+        if on {
+            let granted = (try? await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound])) ?? false
+            guard granted else {
+                issStatus = "Notifications are off for Moonrise. Turn them on in the Settings app."
+                return
+            }
+        }
+        issStatus = nil
+        issPasses = on
     }
 
     private func setDailySummary(_ on: Bool) async {

@@ -104,7 +104,7 @@ struct SkyScreen: View {
         .sheet(isPresented: $showYear) {
             YearSheet(year: $model.historicalYear, south: model.observer.latitude < 0).preferredColorScheme(.dark)
         }
-        .sheet(isPresented: $showSettings, onDismiss: rescheduleSummary) {
+        .sheet(isPresented: $showSettings, onDismiss: rescheduleNotifications) {
             SettingsScreen { model.applyLocationSettings() }
                 .preferredColorScheme(.dark)
                 .tint(.blue)
@@ -122,8 +122,8 @@ struct SkyScreen: View {
         .onChange(of: model.scene == nil) { showRequestedTarget() }
         .onChange(of: onboarded) { if onboarded { model.start() } }
         .onChange(of: night, initial: true) { nightActive = night }
-        .onChange(of: model.observer) { rescheduleSummary() }
-        .onChange(of: scenePhase) { if scenePhase == .active { rescheduleSummary() } }
+        .onChange(of: model.observer) { rescheduleNotifications() }
+        .onChange(of: scenePhase) { if scenePhase == .active { rescheduleNotifications() } }
         .task {
             if onboarded { model.start() }
             while !Task.isCancelled {
@@ -190,8 +190,12 @@ struct SkyScreen: View {
         aim(at: t)
     }
 
-    private func rescheduleSummary() {
-        Task { await DailySummaryNotifications.reschedule(model) }
+    /// The daily summary and ISS pass alerts.
+    private func rescheduleNotifications() {
+        Task {
+            await DailySummaryNotifications.reschedule(model)
+            await ISSPassNotifications.reschedule(model)
+        }
     }
 
     private func select(_ object: SkyObject?) {

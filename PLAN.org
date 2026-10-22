@@ -485,12 +485,18 @@ Sky, System, Sun, Launches, Library core (above).
   3D, checked on a device. Done: Sun snapshot OVATION grid zlib-compressed
   (grid 87 KB to 9 KB base64; snapshot 156 KB to about 78 KB).
 
-** v4.2: widgets and controls
+** v4.2: provider usage terms
+Done: User-Agent with version and contact for every provider; LL2 429
+backoff; CelesTrak retry without a second download; news and Kp through the
+Worker; DSN Now freshness; NASA/ESA image licences; 26 LoC plates bundled.
+
+** v4.3: widgets and controls
 - Lock Screen: Kp, next launch. Home Screen: Voyager 1 distance, today's Sun
-  image.
+  image. Done; not yet checked on a device.
 - Widgets and Control Center controls backed by the App Intents, with an
-  App Group.
-- Opt-in notification for a visible ISS pass in 15 minutes (local).
+  App Group. Done: App Group =group.sh.krz.moonrise= shares the Sky tab's
+  place; controls open Sky, Sun and Launches.
+- Opt-in notification for a visible ISS pass in 15 minutes (local). Done.
 
 ** v5.0: eclipse, 2 August 2027
 - Watch haptics at second and third contact.
