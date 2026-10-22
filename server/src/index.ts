@@ -6,6 +6,7 @@ import { activeEvent, fetchTrajectory, STEP_MINUTES } from "./live";
 import { fetchLaunch, fetchLaunches, PREVIOUS_URL, throttleSeconds, Throttled, UPCOMING_URL, type Launch } from "./ll2";
 import { digestPayload, dueOffsets, fetchLatest, localDate, pickHeadlines, type Article } from "./news";
 import { fetchSolarWind, STORM_KP, stormLikely, type SolarWind } from "./solarwind";
+import { fetchCcor2, fetchCycle, fetchEnlil } from "./sun";
 import { fetchSpaceWeather, next24h, type SpaceWeather } from "./swpc";
 
 interface Env {
@@ -49,7 +50,7 @@ const json = (body: unknown, status = 200, maxAge?: number) =>
 const PRIVACY_URL = "https://krz.sh/privacy/moonrise/";
 
 /** Read-only endpoints whose responses are the same for everyone. */
-const API = new Set(["/v1/today", "/v1/launches", "/v1/live", "/v1/satellites", "/v1/news"]);
+const API = new Set(["/v1/today", "/v1/launches", "/v1/live", "/v1/satellites", "/v1/news", "/v1/sun"]);
 
 function api(url: URL, env: Env, now: Date): Promise<Response> {
   switch (url.pathname) {
@@ -57,8 +58,18 @@ function api(url: URL, env: Env, now: Date): Promise<Response> {
     case "/v1/launches": return launches(env, url, now);
     case "/v1/live": return live(env, url, now);
     case "/v1/news": return news(env);
+    case "/v1/sun": return sun(env);
     default: return satellites(env);
   }
+}
+
+/** WSA-Enlil at Earth, CCOR-2 frames and solar cycle 25, each with the time it was fetched. */
+async function sun(env: Env): Promise<Response> {
+  const rows = await env.DB.prepare("SELECT feed, fetched_at, body FROM feed_snapshots WHERE feed IN ('sun:enlil', 'sun:ccor2', 'sun:cycle') AND ok = 1")
+    .all<{ feed: string; fetched_at: string; body: string }>();
+  const get = (f: string) => rows.results.find((r) => r.feed === f);
+  const part = (f: string, key: string) => ({ fetchedAt: get(f)?.fetched_at ?? null, [key]: get(f) ? JSON.parse(get(f)!.body) : null });
+  return json({ enlil: part("sun:enlil", "points"), ccor2: part("sun:ccor2", "frames"), cycle: part("sun:cycle", "months") }, 200, MAX_AGE.sun);
 }
 
 /** Spaceflight News API articles in its own field names, so clients do not call The Space Devs directly. */
@@ -90,7 +101,7 @@ async function cached(request: Request, ctx: ExecutionContext | undefined, respo
 }
 
 /** How long clients may reuse each GET response, matched to how often its source is polled. */
-export const MAX_AGE = { today: 60, launches: 300, satellites: 3600, live: 300, news: 600 } as const;
+export const MAX_AGE = { today: 60, launches: 300, satellites: 3600, live: 300, news: 600, sun: 1800 } as const;
 
 function validDevice(d: Partial<DeviceRequest>): d is DeviceRequest {
   return (
@@ -155,7 +166,7 @@ export default {
       if (now.getUTCHours() === 0 && now.getUTCMinutes() === 0) ctx.waitUntil(prune(env, now));
     } else if (controller.cron === SATELLITE_CRON) ctx.waitUntil(pollSatellites(env, now));
     else if (controller.cron === FOCUS_CRON) ctx.waitUntil(focusTick(env, now));
-    else ctx.waitUntil(Promise.all([pollSpaceWeather(env, now), launchTick(env, now), retrySatellites(env, now)]));
+    else ctx.waitUntil(Promise.all([pollSpaceWeather(env, now), launchTick(env, now), retrySatellites(env, now), pollSun(env, now)]));
   },
 } satisfies ExportedHandler<Env>;
 
@@ -487,6 +498,25 @@ async function pollSolarWind(env: Env, now: Date): Promise<SolarWind | null> {
     console.error("rtsw", String(e));
     await env.DB.prepare("INSERT INTO feed_snapshots (feed, fetched_at, ok) VALUES ('rtsw:error', ?1, 0) ON CONFLICT (feed) DO UPDATE SET fetched_at = ?1").bind(now.toISOString()).run();
     return null;
+  }
+}
+
+/**
+ * Hourly at minute 20: WSA-Enlil (runs every few hours) and the CCOR-2 listing; solar cycle numbers once a day
+ * (monthly data), or whenever none are stored. Each kept until a fetch succeeds.
+ */
+async function pollSun(env: Env, now: Date): Promise<void> {
+  if (now.getUTCMinutes() !== 20) return;
+  const save = env.DB.prepare("INSERT INTO feed_snapshots (feed, fetched_at, ok, body) VALUES (?1, ?2, 1, ?3) ON CONFLICT (feed) DO UPDATE SET fetched_at = ?2, ok = 1, body = ?3");
+  const jobs: [string, () => Promise<unknown>][] = [["sun:enlil", () => fetchEnlil(now)], ["sun:ccor2", () => fetchCcor2(now)]];
+  const cycle = await env.DB.prepare("SELECT 1 FROM feed_snapshots WHERE feed = 'sun:cycle' AND ok = 1").first();
+  if (now.getUTCHours() === 0 || !cycle) jobs.push(["sun:cycle", () => fetchCycle()]);
+  for (const [feed, job] of jobs) {
+    try {
+      await save.bind(feed, now.toISOString(), JSON.stringify(await job())).run();
+    } catch (e) {
+      console.error(feed, String(e));
+    }
   }
 }
 

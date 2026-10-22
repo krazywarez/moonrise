@@ -524,7 +524,9 @@ Worker; DSN Now freshness; NASA/ESA image licences; 26 LoC plates bundled.
 - Sun path, golden and blue hour, day length. Done: =SunDay= (SkyEngine) and a Sun tab
   section with the altitude curve, rise, set, noon, day length against
   yesterday, golden (−4° to +6°) and blue (−6° to −4°) hours.
-- CCOR-2 coronagraph loop, WSA-Enlil forecast line, solar cycle progress.
+- CCOR-2 coronagraph loop, WSA-Enlil forecast line, solar cycle progress. Done: =/v1/sun=
+  (hourly Enlil at Earth with CME hours, CCOR-2 frames one an hour for a day,
+  cycle 25 monthly); Sun tab charts and a loop played on request.
 
 ** v5.2: Sky
 - Milky Way from ESA's "Gaia's sky in colour" (CC BY-SA), clipped before

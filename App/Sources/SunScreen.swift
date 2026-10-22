@@ -14,6 +14,7 @@ struct SunScreen: View {
     @State private var imageFailed = false
     @State private var solarWind: SolarWind?
     @State private var regions: [SolarRegion] = []
+    @State private var forecast: SunForecast?
     @AppStorage("sunRegionLabels") private var regionLabels = true
     @Environment(\.dynamicTypeSize) private var typeSize
 
@@ -61,9 +62,18 @@ struct SunScreen: View {
                 if let solarWind {
                     section("Solar wind", note: "Measured 1.5 million km sunward of Earth, 30 to 60 minutes before it arrives. When Bz, the north–south part of its magnetic field, turns strongly negative (south), aurora often follows.") { solarWindPanel(solarWind) }
                 }
+                if let f = forecast, !f.enlil.isEmpty {
+                    section("Solar wind forecast", note: "NOAA's WSA-Enlil model of the solar wind speed at Earth, in km/s, for the coming days. Shaded: a coronal mass ejection arriving, which can bring a storm.") { EnlilChart(points: f.enlil, ink: ink, accent: accent) }
+                }
+                if let f = forecast, !f.ccor2.isEmpty {
+                    section("Coronagraph", note: "The Sun's outer corona from NOAA's CCOR-2 on SOLAR-1, with the bright disk blocked. Coronal mass ejections show as expanding clouds.") { CoronagraphLoop(frames: f.ccor2, ink: ink, accent: accent) }
+                }
                 section("Solar flares, last 24 h", note: "X-rays from the Sun, measured by NOAA's GOES satellites. Spikes are flares: M and X class can disrupt radio and GPS, and the biggest can bring a storm a day or two later.") {
                     flares
                     if let p = data?.probabilities { probabilityTable(p) }
+                }
+                if let c = forecast?.cycle {
+                    section("Solar cycle 25", note: "Monthly sunspot numbers since the cycle began in December 2019 (bars), smoothed (red), and NOAA's prediction with its range.") { CycleChart(cycle: c, ink: ink, accent: accent) }
                 }
                 section("Geomagnetic activity (Kp)", note: "How disturbed Earth's magnetic field is, from 0 (quiet) to 9. At 5 or more it is a storm and the aurora reaches lower latitudes.") { kpChart }
 
@@ -85,6 +95,7 @@ struct SunScreen: View {
         if data == nil { await show(SunFeeds.lastSaved()) }
         if let apiBase { solarWind = (try? await SolarWind.fetch(base: apiBase)) ?? solarWind }
         regions = (try? await SolarRegion.fetch()) ?? regions
+        if let apiBase { forecast = (try? await SunForecast.fetch(base: apiBase)) ?? forecast }
         if force { imageID = .now }
         let result = await SunFeeds.load(force: force)
         await show(result?.snapshot)

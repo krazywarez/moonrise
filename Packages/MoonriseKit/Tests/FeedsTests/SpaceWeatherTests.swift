@@ -44,3 +44,11 @@ let forecast = Data("""
     #expect(w.density == 5.8)
     #expect(try SolarWind.decodeToday(Data(#"{"spaceWeather":null}"#.utf8)) == nil)
 }
+
+@Test func decodesBackendSun() throws {
+    let data = Data(#"{"enlil":{"fetchedAt":"x","points":[{"t":"2026-10-22T00:00:00.000Z","speed":410,"density":5,"cloud":false}]},"ccor2":{"fetchedAt":"x","frames":[{"t":"2026-10-22T03:30:00.000Z","url":"https://services.swpc.noaa.gov/images/animations/ccor2/20261022_0330_ccor2_1024by960.jpg"}]},"cycle":{"fetchedAt":null,"months":null}}"#.utf8)
+    let s = try SunForecast.decode(data)
+    #expect(s.enlil.first?.speed == 410)
+    #expect(s.ccor2.count == 1)
+    #expect(s.cycle == nil)
+}
