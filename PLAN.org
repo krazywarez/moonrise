@@ -540,7 +540,8 @@ Worker; DSN Now freshness; NASA/ESA image licences; 26 LoC plates bundled.
   1.6 MB binary), NGC objects, a deeper zoom and eyepiece field-of-view
   circles from the equipment inventory. Merge: drop Tycho-2 stars matched to
   BSC5 by HIP/HD, then by position (10″, ΔV 0.5); BSC5 keeps HR numbers.
-- Horizon profile.
+- Horizon profile. Done: 36 altitudes (10° steps) set by dragging in Settings
+  → Horizon; the sky chart draws them as ground.
 
 ** v5.3: AR camera overlay
 - First measure draw time and pointing on a device. Heading from the

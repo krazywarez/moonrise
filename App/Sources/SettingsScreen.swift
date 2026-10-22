@@ -24,6 +24,8 @@ enum SettingsKey {
     /// Messier objects on the sky chart.
     static let showDeepSky = "showDeepSky"
     static let showMilkyWay = "showMilkyWay"
+    /// HorizonProfile.stored: 36 skyline altitudes.
+    static let horizonProfile = "horizonProfile"
     /// Cloud forecasts from Apple Weather; off unless turned on.
     static let cloudForecast = "cloudForecast"
     /// The eclipse eye-safety note has been shown before a countdown or rehearsal.
@@ -161,6 +163,7 @@ struct SettingsScreen: View {
                     }
                     Toggle("Messier objects", isOn: $showDeepSky)
                     Toggle("Milky Way", isOn: $showMilkyWay)
+                    NavigationLink("Horizon") { HorizonEditor() }
                     Picker("Night mode", selection: $nightMode) {
                         Text("Off").tag("off")
                         Text("On").tag("on")

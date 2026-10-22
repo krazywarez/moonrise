@@ -115,16 +115,19 @@ public struct SkyView: View {
     public var highlight: SkyHighlight?
     public var showDeepSky: Bool
     public var showMilkyWay: Bool
+    /// Trees and buildings drawn as ground above the horizon.
+    public var horizon: HorizonProfile?
     /// Called after each draw with the time the draw took.
     public var onDraw: (@Sendable (Duration) -> Void)?
 
-    public init(scene: SkyScene, centerAzimuth: Double = 180, centerAltitude: Double = 55, fieldOfView: Double = 110, style: SkyStyle = SkyStyle(), culture: SkyCulture? = nil, highlight: SkyHighlight? = nil, showDeepSky: Bool = true, showMilkyWay: Bool = true, onDraw: (@Sendable (Duration) -> Void)? = nil) {
+    public init(scene: SkyScene, centerAzimuth: Double = 180, centerAltitude: Double = 55, fieldOfView: Double = 110, style: SkyStyle = SkyStyle(), culture: SkyCulture? = nil, highlight: SkyHighlight? = nil, showDeepSky: Bool = true, showMilkyWay: Bool = true, horizon: HorizonProfile? = nil, onDraw: (@Sendable (Duration) -> Void)? = nil) {
         self.scene = scene
         self.style = style
         self.culture = culture
         self.highlight = highlight
         self.showDeepSky = showDeepSky
         self.showMilkyWay = showMilkyWay
+        self.horizon = horizon
         self.centerAzimuth = centerAzimuth
         self.centerAltitude = centerAltitude
         self.fieldOfView = fieldOfView
@@ -343,7 +346,7 @@ public struct SkyView: View {
         var edge: [CGPoint] = []
         var az = centerAzimuth - fieldOfView
         while az <= centerAzimuth + fieldOfView {
-            if let pt = p.point(Horizontal(altitude: 0, azimuth: az)) { edge.append(pt) }
+            if let pt = p.point(Horizontal(altitude: max(0, horizon?.altitude(at: az) ?? 0), azimuth: az)) { edge.append(pt) }
             az += 1
         }
         guard let first = edge.first, let last = edge.last else { return }
