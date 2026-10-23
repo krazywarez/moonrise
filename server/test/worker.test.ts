@@ -212,7 +212,7 @@ test("an LL2 429 stops LL2 requests until /api-throttle/ says the limit has rese
   assert.equal(paths.length, 3);
 });
 
-test("/v1/news serves the articles the 10-minute cron stored", async () => {
+test("/v1/news serves the articles the hourly poll stored", async () => {
   const { env } = await setup({ APNS_KEY: "" });
   const article = { id: 7, title: "t", summary: "s", url: "https://example.com/a", image_url: null, news_site: "ESA", published_at: "2026-10-20T13:00:00Z", authors: [] };
   network({ "api.spaceflightnewsapi.net": () => Response.json({ results: [article] }) });
@@ -305,7 +305,7 @@ test("news digests go out in slices during the local 09:00 hour, once per local 
   assert.equal(new Set(push.state.sent).size, PUSH_SLICE + 5);
   await run(env, NEWS, "2026-10-20T14:20:00Z");
   assert.equal(push.state.sent.length, PUSH_SLICE + 5);
-  assert.equal(snapi(), 3, "polled once per 10-minute run");
+  assert.equal(snapi(), 1, "polled at the top of the hour only");
   assert.equal(count(db, "SELECT count(*) AS n FROM alerts_sent WHERE kind = 'news' AND event LIKE '%:2026-10-20'"), PUSH_SLICE + 5);
 
   const q = calls.find((c) => c.sql.includes("news = 1"))!;

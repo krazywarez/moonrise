@@ -1,4 +1,4 @@
-// Spaceflight News API (The Space Devs). Free, no key. Polled every 10 minutes for /v1/news and the daily digest push.
+// Spaceflight News API (The Space Devs). Free, no key. Polled hourly for /v1/news and the daily digest push.
 import { USER_AGENT } from "./agent.ts";
 
 export interface Article {

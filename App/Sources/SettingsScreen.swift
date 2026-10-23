@@ -259,6 +259,7 @@ struct CreditsScreen: View {
     private struct Credit: Hashable {
         var name: String
         var detail: String
+        var url: URL? = nil
     }
 
     private let software: [Credit] = [
@@ -273,11 +274,11 @@ struct CreditsScreen: View {
     private let feeds: [Credit] = [
         Credit(name: "Space weather and aurora forecast", detail: "NOAA Space Weather Prediction Center."),
         Credit(name: "Images of the Sun", detail: "Courtesy of NASA/SDO and the AIA, EVE, and HMI science teams."),
-        Credit(name: "Launch schedule", detail: "The Space Devs, Launch Library 2."),
+        Credit(name: "Launch schedule", detail: "The Space Devs, Launch Library 2.", url: URL(string: "https://thespacedevs.com")),
         Credit(name: "Deep Space Network status", detail: "NASA/JPL, DSN Now."),
         Credit(name: "Satellite orbits", detail: "CelesTrak."),
         Credit(name: "Mars rover raw images", detail: "NASA/JPL-Caltech, with MSSS and ASU for some cameras."),
-        Credit(name: "Space news headlines", detail: "Spaceflight News API, The Space Devs. Articles belong to their publishers."),
+        Credit(name: "Space news headlines", detail: "Spaceflight News API, The Space Devs. Articles belong to their publishers.", url: URL(string: "https://thespacedevs.com")),
     ]
 
     /// Every distinct image credit used by the Library, grouped by licence.
@@ -320,11 +321,13 @@ struct CreditsScreen: View {
         .navigationTitle("Credits and licences")
     }
 
+    @ViewBuilder
     private func row(_ c: Credit) -> some View {
-        VStack(alignment: .leading, spacing: 2) {
+        let text = VStack(alignment: .leading, spacing: 2) {
             Text(c.name)
             Text(c.detail).font(.footnote).foregroundStyle(.secondary)
         }
+        if let url = c.url { Link(destination: url) { text } } else { text }
     }
 }
 

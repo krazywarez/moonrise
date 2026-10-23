@@ -210,7 +210,7 @@ export default {
   async scheduled(controller: ScheduledController, env: Env, ctx: ExecutionContext): Promise<void> {
     const now = new Date(controller.scheduledTime);
     if (controller.cron === NEWS_CRON) {
-      ctx.waitUntil(pollNews(env, now).then(() => sendNewsDigests(env, now)));
+      ctx.waitUntil((now.getUTCMinutes() === 0 ? pollNews(env, now) : Promise.resolve()).then(() => sendNewsDigests(env, now)));
       if (now.getUTCHours() === 0 && now.getUTCMinutes() === 0) ctx.waitUntil(prune(env, now));
     } else if (controller.cron === SATELLITE_CRON) ctx.waitUntil(pollSatellites(env, now));
     else if (controller.cron === FOCUS_CRON) ctx.waitUntil(focusTick(env, now));
@@ -760,7 +760,7 @@ async function sendAuroraAlerts(env: Env, w: SpaceWeather, wind: SolarWind | nul
   }));
 }
 
-/** Spaceflight News API every 10 minutes, matching its cache lifetime; the last good copy is kept on failure. */
+/** Spaceflight News API hourly, as The Space Devs asked; the last good copy is kept on failure. */
 async function pollNews(env: Env, now: Date): Promise<void> {
   try {
     const articles = await fetchLatest();

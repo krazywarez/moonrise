@@ -60,6 +60,9 @@ AND MORE
 - Control Center controls for the Sky, Sun and Launches tabs
 - An Apple Watch app and complications
 
+DATA
+Launch data from Launch Library 2 and news headlines from the Spaceflight News API, both by The Space Devs (thespacedevs.com).
+
 ## Keywords
 
 astronomy,stars,planets,moon phase,constellations,star chart,stargazing,nasa,launch,aurora,eclipse
