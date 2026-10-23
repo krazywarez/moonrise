@@ -103,19 +103,7 @@ public struct Equipment: Sendable, Identifiable, Equatable, Hashable {
     public init?(org text: String) {
         let lines = text.components(separatedBy: "\n")
         guard let head = lines.first, head.hasPrefix("* ") else { return nil }
-        var props: [String: String] = [:]
-        var other: [OrgProperty] = []
-        var i = 1
-        if i < lines.count, lines[i] == ":PROPERTIES:" {
-            i += 1
-            while i < lines.count, lines[i] != ":END:" {
-                if let p = OrgProperty.parse(lines[i]) {
-                    if !Self.knownKeys.contains(p.key) { other.append(p) } else if !p.value.isEmpty { props[p.key] = p.value }
-                }
-                i += 1
-            }
-            i += 1
-        }
+        let (props, other, i) = OrgProperty.drawer(in: lines, at: 1, known: Self.knownKeys)
         guard let id = props[":ID:"] else { return nil }
         func leadingNumber(_ key: String) -> Double? {
             props[key].flatMap { Double($0.prefix { $0.isNumber || $0 == "." }) }

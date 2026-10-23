@@ -105,11 +105,42 @@ extension SkyEngine {
         return (perp * perp).sum().squareRoot() > 6378.135
     }
 
+    /// A pass from its rise to the latest sample above the horizon.
+    private struct OpenPass {
+        var rise: Date, riseAz: Double, peak: Date, maxAlt: Double
+        var visible = false
+
+        /// Records a sample above the horizon; `lit` is asked only while the pass has not yet been seen high enough.
+        mutating func observe(altitude: Double, at t: Date, minAltitude: Double, lit: () -> Bool) {
+            if altitude > maxAlt { maxAlt = altitude; peak = t }
+            if !visible, altitude >= minAltitude, lit() { visible = true }
+        }
+
+        func pass(of elements: OrbitalElements, set: Date, setAzimuth: Double) -> SatellitePass {
+            SatellitePass(name: elements.OBJECT_NAME, rise: rise, set: set, peak: peak, maxAltitude: maxAlt, riseAzimuth: riseAz, setAzimuth: setAzimuth, visible: visible, featured: elements.isFeatured)
+        }
+    }
+
+    /// 20 s samples to advance from `altitude`: further the further below the horizon (see `passes(of:)`).
+    private static func samplesToSkip(below altitude: Double) -> Int {
+        altitude > -8 ? 1 : altitude > -30 ? 3 : 9
+    }
+
+    /// Whether a satellite at `r` is in sunlight while the observer's sky is past civil twilight.
+    private static func litInDarkSky(_ r: SIMD3<Double>, at t: Date, observer: Observer) -> Bool {
+        lock.lock()
+        defer { lock.unlock() }
+        var tt = time(t)
+        let sun = Astronomy_Equator(BODY_SUN, &tt, observer.astro, EQUATOR_OF_DATE, ABERRATION)
+        let sunAlt = Astronomy_Horizon(&tt, observer.astro, sun.ra, sun.dec, REFRACTION_NORMAL).altitude
+        return sunAlt < -6 && sunlit(r, sun: sunDirection(t))
+    }
+
     /// Passes above `minAltitude` in the next `hours`, sampled every 20 s from 8° below the horizon up.
     public static func passes(of elements: OrbitalElements, from start: Date, hours: Double = 72, observer: Observer, minAltitude: Double = 10) -> [SatellitePass] {
         guard let sgp = try? SGP4(elements) else { return [] }
         var out: [SatellitePass] = []
-        var current: (rise: Date, riseAz: Double, peak: Date, maxAlt: Double, visible: Bool)?
+        var current: OpenPass?
         var lastAz = 0.0
         var i = 0
         var t = start
@@ -118,28 +149,19 @@ extension SkyEngine {
             guard let r = sgp.position(at: t) else { break }
             let h = lookAngles(teme: r, at: t, from: observer)
             if h.altitude >= 0 {
-                if current == nil { current = (t, h.azimuth, t, h.altitude, false) }
-                if h.altitude > current!.maxAlt { current!.maxAlt = h.altitude; current!.peak = t }
-                if !current!.visible, h.altitude >= minAltitude {
-                    lock.lock()
-                    var tt = time(t)
-                    let sun = Astronomy_Equator(BODY_SUN, &tt, observer.astro, EQUATOR_OF_DATE, ABERRATION)
-                    let sunAlt = Astronomy_Horizon(&tt, observer.astro, sun.ra, sun.dec, REFRACTION_NORMAL).altitude
-                    if sunAlt < -6, sunlit(r, sun: sunDirection(t)) { current!.visible = true }
-                    lock.unlock()
-                }
+                var c = current ?? OpenPass(rise: t, riseAz: h.azimuth, peak: t, maxAlt: h.altitude)
+                c.observe(altitude: h.altitude, at: t, minAltitude: minAltitude) { litInDarkSky(r, at: t, observer: observer) }
+                current = c
                 lastAz = h.azimuth
             } else if let c = current {
-                if c.maxAlt >= minAltitude {
-                    out.append(SatellitePass(name: elements.OBJECT_NAME, rise: c.rise, set: t, peak: c.peak, maxAltitude: c.maxAlt, riseAzimuth: c.riseAz, setAzimuth: lastAz, visible: c.visible, featured: elements.isFeatured))
-                }
+                if c.maxAlt >= minAltitude { out.append(c.pass(of: elements, set: t, setAzimuth: lastAz)) }
                 current = nil
             }
             // Below the horizon altitude changes no faster than the satellite moves around Earth's centre relative to the
             // observer: about 4°/min in low orbit, under 6.5°/min for any orbit above the surface. A 60 s step from below
             // -8° skips 40 s (at most 4.3°) and a 180 s step from below -30° skips 160 s (at most 17.3°), so no 20 s sample
             // at or above the horizon is skipped and the passes are those of plain 20 s steps.
-            i += h.altitude > -8 ? 1 : h.altitude > -30 ? 3 : 9
+            i += samplesToSkip(below: h.altitude)
             t = start.addingTimeInterval(Double(i) * 20)
         }
         return out

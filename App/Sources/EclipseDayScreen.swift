@@ -104,20 +104,26 @@ struct EclipseDayScreen: View {
             if let cue = spoken, now.timeIntervalSince(cue.date) < 20 {
                 Text(cue.text).font(.title3.weight(.medium)).foregroundStyle(cue.warning ? accent : ink)
             }
-            let upcoming = t.cues.filter { $0.date > now && Int($0.text) == nil }.prefix(3)
-            if !upcoming.isEmpty {
-                VStack(alignment: .leading, spacing: 4) {
-                    ForEach(upcoming, id: \.date) { c in
-                        HStack(alignment: .firstTextBaseline) {
-                            Text("in \(clock(c.date.timeIntervalSince(now)))").monospacedDigit().dimmed(0.6).frame(width: 90, alignment: .leading)
-                            Text(c.text).foregroundStyle(c.warning ? accent : ink).lineLimit(2)
-                        }
-                    }
-                }
-                .font(.footnote)
-            }
+            upcomingCues(t, at: now)
         }
         .accessibilityElement(children: .combine)
+    }
+
+    /// The next three spoken cues that are not a count, each with the time until it.
+    @ViewBuilder
+    private func upcomingCues(_ t: EclipseTimeline, at now: Date) -> some View {
+        let upcoming = t.cues.filter { $0.date > now && Int($0.text) == nil }.prefix(3)
+        if !upcoming.isEmpty {
+            VStack(alignment: .leading, spacing: 4) {
+                ForEach(upcoming, id: \.date) { c in
+                    HStack(alignment: .firstTextBaseline) {
+                        Text("in \(clock(c.date.timeIntervalSince(now)))").monospacedDigit().dimmed(0.6).frame(width: 90, alignment: .leading)
+                        Text(c.text).foregroundStyle(c.warning ? accent : ink).lineLimit(2)
+                    }
+                }
+            }
+            .font(.footnote)
+        }
     }
 
     private func label(_ contact: String, _ t: EclipseTimeline) -> String {

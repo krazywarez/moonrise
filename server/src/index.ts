@@ -120,13 +120,26 @@ async function cached(request: Request, ctx: ExecutionContext | undefined, respo
 /** How long clients may reuse each GET response, matched to how often its source is polled. */
 export const MAX_AGE = { today: 60, launches: 300, satellites: 3600, live: 300, news: 600, sun: 1800, smallBodies: 3600 } as const;
 
+/** An APNs device token: hex, 32 to 100 bytes. */
+function validToken(t: unknown): t is string {
+  return typeof t === "string" && /^[0-9a-f]{64,200}$/i.test(t);
+}
+
+function validEnvironment(e: unknown): e is DeviceRequest["environment"] {
+  return e === "sandbox" || e === "production";
+}
+
+/** A latitude band: a multiple of 5 degrees. */
+function validBand(b: unknown): b is number {
+  return Number.isInteger(b) && Math.abs(b as number) <= 90 && (b as number) % 5 === 0;
+}
+
+function validUTCOffset(m: unknown): m is number {
+  return Number.isInteger(m) && Math.abs(m as number) <= 14 * 60;
+}
+
 function validDevice(d: Partial<DeviceRequest>): d is DeviceRequest {
-  return (
-    typeof d.token === "string" && /^[0-9a-f]{64,200}$/i.test(d.token) &&
-    (d.environment === "sandbox" || d.environment === "production") &&
-    Number.isInteger(d.band) && Math.abs(d.band!) <= 90 && d.band! % 5 === 0 &&
-    Number.isInteger(d.utcOffsetMinutes) && Math.abs(d.utcOffsetMinutes!) <= 14 * 60
-  );
+  return validToken(d.token) && validEnvironment(d.environment) && validBand(d.band) && validUTCOffset(d.utcOffsetMinutes);
 }
 
 async function today(env: Env, now: Date): Promise<Response> {
@@ -155,54 +168,25 @@ export default {
     const now = new Date();
     if (request.method === "GET" && API.has(url.pathname)) return cached(request, ctx, () => api(url, env, now));
 
-    if (request.method === "GET" && url.pathname === "/healthz") {
-      const rows = await env.DB.prepare("SELECT feed, fetched_at, ok FROM feed_snapshots").all();
-      return json({ ok: true, feeds: rows.results });
-    }
+    if (request.method === "GET" && url.pathname === "/healthz") return health(env);
     // The policy lives on krz.sh; older builds link here.
     if (request.method === "GET" && url.pathname === "/privacy") return Response.redirect(PRIVACY_URL, 301);
 
-    if (request.method === "POST" && url.pathname === "/v1/challenge") {
-      const challenge = toBase64(crypto.getRandomValues(new Uint8Array(32)));
-      await env.DB.prepare("INSERT INTO attest_challenges (challenge, expires_at) VALUES (?1, ?2)").bind(challenge, new Date(now.getTime() + CHALLENGE_MS).toISOString()).run();
-      return json({ challenge });
-    }
+    if (request.method === "POST" && url.pathname === "/v1/challenge") return issueChallenge(env, now);
 
     if (request.method === "POST" && url.pathname === "/v1/attest") return attest(request, env, now);
 
-    if (request.method === "POST" && url.pathname === "/v1/devices") {
-      const body = new Uint8Array(await request.arrayBuffer());
-      let d: Partial<DeviceRequest>;
-      try {
-        d = JSON.parse(new TextDecoder().decode(body));
-      } catch {
-        d = {};
-      }
-      if (!validDevice(d)) return json({ error: "invalid device" }, 400);
-      const refused = await checkAssertion(env, request, body, d.challenge, now);
-      if (refused) return refused;
-      await env.DB.prepare(
-        `INSERT INTO devices (token, environment, band, utc_offset_minutes, aurora, news, last_seen) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)
-         ON CONFLICT (token) DO UPDATE SET environment = ?2, band = ?3, utc_offset_minutes = ?4, aurora = ?5, news = ?6, last_seen = ?7`,
-      ).bind(d.token.toLowerCase(), d.environment, d.band, d.utcOffsetMinutes, d.aurora === false ? 0 : 1, d.news === true ? 1 : 0, now.toISOString()).run();
-      return json({ ok: true });
-    }
+    if (request.method === "POST" && url.pathname === "/v1/devices") return registerDevice(request, env, now);
 
     const test = url.pathname.match(/^\/v1\/devices\/([0-9a-f]{64,200})\/test$/i);
     if (request.method === "POST" && test) return sendTest(env, test[1].toLowerCase(), now);
 
     if (request.method === "POST" && url.pathname === "/v1/launch-starts") return registerLaunchStarts(request, env, now);
     const delStarts = url.pathname.match(/^\/v1\/launch-starts\/([0-9a-f]{64,200})$/i);
-    if (request.method === "DELETE" && delStarts) {
-      await env.DB.prepare("DELETE FROM launch_starts WHERE token = ?1").bind(delStarts[1].toLowerCase()).run();
-      return json({ ok: true });
-    }
+    if (request.method === "DELETE" && delStarts) return deleteRow(env, "DELETE FROM launch_starts WHERE token = ?1", delStarts[1].toLowerCase());
 
     const del = url.pathname.match(/^\/v1\/devices\/([0-9a-f]{64,200})$/i);
-    if (request.method === "DELETE" && del) {
-      await env.DB.prepare("DELETE FROM devices WHERE token = ?1").bind(del[1]).run();
-      return json({ ok: true });
-    }
+    if (request.method === "DELETE" && del) return deleteRow(env, "DELETE FROM devices WHERE token = ?1", del[1]);
 
     return json({ error: "not found" }, 404);
   },
@@ -217,6 +201,137 @@ export default {
     else ctx.waitUntil(Promise.all([pollSpaceWeather(env, now), launchTick(env, now), retrySatellites(env, now), pollSun(env, now)]));
   },
 } satisfies ExportedHandler<Env>;
+
+async function health(env: Env): Promise<Response> {
+  const rows = await env.DB.prepare("SELECT feed, fetched_at, ok FROM feed_snapshots").all();
+  return json({ ok: true, feeds: rows.results });
+}
+
+async function issueChallenge(env: Env, now: Date): Promise<Response> {
+  const challenge = toBase64(crypto.getRandomValues(new Uint8Array(32)));
+  await env.DB.prepare("INSERT INTO attest_challenges (challenge, expires_at) VALUES (?1, ?2)").bind(challenge, new Date(now.getTime() + CHALLENGE_MS).toISOString()).run();
+  return json({ challenge });
+}
+
+async function registerDevice(request: Request, env: Env, now: Date): Promise<Response> {
+  const body = new Uint8Array(await request.arrayBuffer());
+  let d: Partial<DeviceRequest>;
+  try {
+    d = JSON.parse(new TextDecoder().decode(body));
+  } catch {
+    d = {};
+  }
+  if (!validDevice(d)) return json({ error: "invalid device" }, 400);
+  const refused = await checkAssertion(env, request, body, d.challenge, now);
+  if (refused) return refused;
+  await env.DB.prepare(
+    `INSERT INTO devices (token, environment, band, utc_offset_minutes, aurora, news, last_seen) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)
+     ON CONFLICT (token) DO UPDATE SET environment = ?2, band = ?3, utc_offset_minutes = ?4, aurora = ?5, news = ?6, last_seen = ?7`,
+  ).bind(d.token.toLowerCase(), d.environment, d.band, d.utcOffsetMinutes, d.aurora === false ? 0 : 1, d.news === true ? 1 : 0, now.toISOString()).run();
+  return json({ ok: true });
+}
+
+async function deleteRow(env: Env, sql: string, token: string): Promise<Response> {
+  await env.DB.prepare(sql).bind(token).run();
+  return json({ ok: true });
+}
+
+const apnsConfig = (env: Env): ApnsConfig => ({ keyId: env.APNS_KEY_ID, teamId: env.APNS_TEAM_ID, privateKey: env.APNS_KEY, topic: env.APNS_TOPIC });
+
+/** A Live Activity push to a channel, kept by APNs for 8 hours. */
+function broadcastPush(config: ApnsConfig, c: { channel_id: string; environment: string }, push: { payload: unknown; priority: 5 | 10 }, now: Date) {
+  return broadcast(config, c.channel_id, push.payload, {
+    sandbox: c.environment === "sandbox",
+    priority: push.priority,
+    expiration: Math.floor(now.getTime() / 1000) + 8 * 3600,
+  });
+}
+
+/** Deletes the channels in `table` whose stored end message has expired. */
+async function deleteEndedChannels(env: Env, config: ApnsConfig, table: "launch_channels" | "storm_channels", now: Date): Promise<void> {
+  const done = await env.DB.prepare(`SELECT channel_id, environment FROM ${table} WHERE ended_at < ?1`)
+    .bind(new Date(now.getTime() - 8 * 3600_000).toISOString()).all<{ channel_id: string; environment: string }>();
+  const label = table === "storm_channels" ? "apns storm channel delete" : "apns channel delete";
+  for (const c of done.results) {
+    const r = await deleteChannel(config, c.channel_id, c.environment === "sandbox");
+    if (r.status === 204 || r.status === 404) await env.DB.prepare(`DELETE FROM ${table} WHERE channel_id = ?1`).bind(c.channel_id).run();
+    else console.error(label, r.status, r.reason);
+  }
+}
+
+/** A channel per environment for each launch that needs one: from the pool, or created when channels are managed here. */
+async function assignLaunchChannels(env: Env, config: ApnsConfig, manage: boolean, near: Near[], now: Date): Promise<void> {
+  const assigned = await env.DB.prepare("SELECT launch_id, environment FROM launch_channels WHERE launch_id IS NOT NULL").all<{ launch_id: string; environment: string }>();
+  const has = new Set(assigned.results.map((c) => `${c.launch_id}:${c.environment}`));
+  for (const l of near.filter((l) => needsChannel(l, now))) {
+    for (const environment of ["sandbox", "production"]) {
+      if (!has.has(`${l.id}:${environment}`)) await assignLaunchChannel(env, manage ? config : null, l, environment, now);
+    }
+  }
+}
+
+/** Takes a pooled channel for a launch in one environment, or creates one when `creator` may. */
+async function assignLaunchChannel(env: Env, creator: ApnsConfig | null, l: Near, environment: string, now: Date): Promise<void> {
+  const pooled = await env.DB.prepare(
+    `UPDATE launch_channels SET launch_id = ?1, net = ?2, status = ?3
+     WHERE channel_id = (SELECT channel_id FROM launch_channels WHERE launch_id IS NULL AND environment = ?4 ORDER BY created_at LIMIT 1)`,
+  ).bind(l.id, l.net, l.status, environment).run();
+  if (pooled.meta.changes) return;
+  if (!creator) {
+    console.error("launch channel pool empty", environment);
+    return;
+  }
+  const c = await createChannel(creator, environment === "sandbox");
+  if (!c.channelId) {
+    console.error("apns channel", c.status, c.reason);
+    return;
+  }
+  await env.DB.prepare("INSERT INTO launch_channels (channel_id, environment, launch_id, net, status, created_at) VALUES (?1, ?2, ?3, ?4, ?5, ?6)")
+    .bind(c.channelId, environment, l.id, l.net, l.status, now.toISOString()).run();
+}
+
+/** An open storm channel and what it last broadcast. */
+interface StormChannelRow {
+  channel_id: string;
+  environment: string;
+  active_at: string;
+  sent: string | null;
+  sent_at: string | null;
+}
+
+/** One new storm channel per environment, recorded as open. */
+async function openStormChannels(env: Env, config: ApnsConfig, iso: string): Promise<StormChannelRow[]> {
+  const open: StormChannelRow[] = [];
+  for (const environment of ["sandbox", "production"]) {
+    const c = await createChannel(config, environment === "sandbox");
+    if (!c.channelId) {
+      console.error("apns storm channel", c.status, c.reason);
+      continue;
+    }
+    await env.DB.prepare("INSERT INTO storm_channels (channel_id, environment, started_at, active_at) VALUES (?1, ?2, ?3, ?3)").bind(c.channelId, environment, iso).run();
+    open.push({ channel_id: c.channelId, environment, active_at: iso, sent: null, sent_at: null });
+  }
+  return open;
+}
+
+/** Pushes the storm's change to one open channel, ending it once the storm has been calm long enough. */
+async function updateStormChannel(env: Env, config: ApnsConfig, c: StormChannelRow, state: StormState, now: Date): Promise<void> {
+  const iso = now.toISOString();
+  const active = stormActive(state);
+  const end = !active && now.getTime() - Date.parse(c.active_at) >= CALM_MS;
+  const push: StormPush | null = end ? stormEnd(state, now)
+    : stormUpdate(c.sent && c.sent_at ? { state: JSON.parse(c.sent), at: new Date(c.sent_at) } : null, state, now);
+  if (active) await env.DB.prepare("UPDATE storm_channels SET active_at = ?2 WHERE channel_id = ?1").bind(c.channel_id, iso).run();
+  if (!push) return;
+  const r = await broadcastPush(config, c, push, now)
+    .catch((e) => ({ status: 0, reason: String(e) }));
+  if (r.status !== 200) {
+    console.error("apns storm broadcast", r.status, r.reason);
+    return;
+  }
+  await env.DB.prepare("UPDATE storm_channels SET sent = ?2, sent_at = ?3, ended_at = ?4 WHERE channel_id = ?1")
+    .bind(c.channel_id, JSON.stringify(state), iso, end ? iso : null).run();
+}
 
 const appId = (env: Env) => `${env.APNS_TEAM_ID}.${env.APNS_TOPIC}`;
 
@@ -274,7 +389,7 @@ async function sendTest(env: Env, token: string, now: Date): Promise<Response> {
   const claimed = await env.DB.prepare("INSERT OR IGNORE INTO alerts_sent (kind, band, event, sent_at) VALUES ('test', 0, ?1, ?2)")
     .bind(window, now.toISOString()).run();
   if (!claimed.meta.changes) return json({ error: "try again in a few minutes" }, 429);
-  const config: ApnsConfig = { keyId: env.APNS_KEY_ID, teamId: env.APNS_TEAM_ID, privateKey: env.APNS_KEY, topic: env.APNS_TOPIC };
+  const config = apnsConfig(env);
   const payload = { aps: { alert: { title: "Moonrise test alert", body: "Alerts reach this device." }, sound: "default" } };
   const r = await send(config, token, payload, device.environment === "sandbox");
   if (r.status === 410) await env.DB.prepare("DELETE FROM devices WHERE token = ?1").bind(token).run();
@@ -385,7 +500,7 @@ async function registerLaunchStarts(request: Request, env: Env, now: Date): Prom
   } catch {
     d = {};
   }
-  if (typeof d.token !== "string" || !/^[0-9a-f]{64,200}$/i.test(d.token) || (d.environment !== "sandbox" && d.environment !== "production") || !RULE(d.rockets) || !RULE(d.providers)) {
+  if (!validToken(d.token) || !validEnvironment(d.environment) || !RULE(d.rockets) || !RULE(d.providers)) {
     return json({ error: "invalid registration" }, 400);
   }
   const refused = await checkAssertion(env, request, body, d.challenge, now);
@@ -413,7 +528,7 @@ async function startLaunches(env: Env, now: Date): Promise<void> {
   // A minute either side: LL2 writes "…:00Z" and toISOString "…:00.000Z", which compare unequal as text. startDue decides.
   ).bind(new Date(now.getTime() - 60_000).toISOString(), new Date(now.getTime() + 61 * 60_000).toISOString()).all<StartLaunch>()).results.filter((l) => startDue(l, now));
   if (!due.length) return;
-  const config: ApnsConfig = { keyId: env.APNS_KEY_ID, teamId: env.APNS_TEAM_ID, privateKey: env.APNS_KEY, topic: env.APNS_TOPIC };
+  const config = apnsConfig(env);
   for (const l of due) {
     const channels = Object.fromEntries((await env.DB.prepare("SELECT environment, channel_id FROM launch_channels WHERE launch_id = ?1 AND ended_at IS NULL")
       .bind(l.id).all<{ environment: string; channel_id: string }>()).results.map((c) => [c.environment, c.channel_id]));
@@ -517,33 +632,11 @@ function upsertLaunches(env: Env, list: Launch[]): D1PreparedStatement[] {
  * retires a channel once its launch is over. Nothing about who follows a launch reaches the server.
  */
 async function launchChannels(env: Env, near: Near[], now: Date): Promise<void> {
-  const config: ApnsConfig = { keyId: env.APNS_KEY_ID, teamId: env.APNS_TEAM_ID, privateKey: env.APNS_KEY, topic: env.APNS_TOPIC };
+  const config = apnsConfig(env);
   const manage = env.APNS_MANAGE_CHANNELS === "1";
   const iso = now.toISOString();
 
-  const assigned = await env.DB.prepare("SELECT launch_id, environment FROM launch_channels WHERE launch_id IS NOT NULL").all<{ launch_id: string; environment: string }>();
-  const has = new Set(assigned.results.map((c) => `${c.launch_id}:${c.environment}`));
-  for (const l of near.filter((l) => needsChannel(l, now))) {
-    for (const environment of ["sandbox", "production"]) {
-      if (has.has(`${l.id}:${environment}`)) continue;
-      const pooled = await env.DB.prepare(
-        `UPDATE launch_channels SET launch_id = ?1, net = ?2, status = ?3
-         WHERE channel_id = (SELECT channel_id FROM launch_channels WHERE launch_id IS NULL AND environment = ?4 ORDER BY created_at LIMIT 1)`,
-      ).bind(l.id, l.net, l.status, environment).run();
-      if (pooled.meta.changes) continue;
-      if (!manage) {
-        console.error("launch channel pool empty", environment);
-        continue;
-      }
-      const c = await createChannel(config, environment === "sandbox");
-      if (!c.channelId) {
-        console.error("apns channel", c.status, c.reason);
-        continue;
-      }
-      await env.DB.prepare("INSERT INTO launch_channels (channel_id, environment, launch_id, net, status, created_at) VALUES (?1, ?2, ?3, ?4, ?5, ?6)")
-        .bind(c.channelId, environment, l.id, l.net, l.status, iso).run();
-    }
-  }
+  await assignLaunchChannels(env, config, manage, near, now);
 
   await broadcastChanges(env, now);
 
@@ -552,18 +645,12 @@ async function launchChannels(env: Env, near: Near[], now: Date): Promise<void> 
     .bind(iso, new Date(now.getTime() - 86400_000).toISOString()).run();
   if (!manage) return;
   // Deleted once the stored end message has expired.
-  const done = await env.DB.prepare("SELECT channel_id, environment FROM launch_channels WHERE ended_at < ?1")
-    .bind(new Date(now.getTime() - 8 * 3600_000).toISOString()).all<{ channel_id: string; environment: string }>();
-  for (const c of done.results) {
-    const r = await deleteChannel(config, c.channel_id, c.environment === "sandbox");
-    if (r.status === 204 || r.status === 404) await env.DB.prepare("DELETE FROM launch_channels WHERE channel_id = ?1").bind(c.channel_id).run();
-    else console.error("apns channel delete", r.status, r.reason);
-  }
+  await deleteEndedChannels(env, config, "launch_channels", now);
 }
 
 /** Each change of status or NET since the last broadcast on a channel. */
 async function broadcastChanges(env: Env, now: Date): Promise<void> {
-  const config: ApnsConfig = { keyId: env.APNS_KEY_ID, teamId: env.APNS_TEAM_ID, privateKey: env.APNS_KEY, topic: env.APNS_TOPIC };
+  const config = apnsConfig(env);
   const changed = await env.DB.prepare(
     `SELECT c.channel_id, c.environment, c.net AS sent_net, c.status AS sent_status, l.net, l.status
      FROM launch_channels c JOIN launches l ON l.id = c.launch_id WHERE c.ended_at IS NULL AND (c.net != l.net OR c.status != l.status)`,
@@ -571,7 +658,7 @@ async function broadcastChanges(env: Env, now: Date): Promise<void> {
   for (const c of changed.results) {
     const push = activityPush({ net: c.sent_net, status: c.sent_status }, c, now)!;
     // APNs keeps the latest message for devices that are offline, for at most 8 hours.
-    const r = await broadcast(config, c.channel_id, push.payload, c.environment === "sandbox", push.priority, Math.floor(now.getTime() / 1000) + 8 * 3600)
+    const r = await broadcastPush(config, c, push, now)
       .catch((e) => ({ status: 0, reason: String(e) }));
     if (r.status !== 200) {
       console.error("apns broadcast", r.status, r.reason);
@@ -662,45 +749,15 @@ async function pollSpaceWeather(env: Env, now: Date): Promise<void> {
  */
 async function stormChannels(env: Env, state: StormState, now: Date): Promise<void> {
   if (!env.APNS_KEY) return;
-  const config: ApnsConfig = { keyId: env.APNS_KEY_ID, teamId: env.APNS_TEAM_ID, privateKey: env.APNS_KEY, topic: env.APNS_TOPIC };
+  const config = apnsConfig(env);
   const iso = now.toISOString();
   const active = stormActive(state);
   let open = (await env.DB.prepare("SELECT channel_id, environment, active_at, sent, sent_at FROM storm_channels WHERE ended_at IS NULL")
-    .all<{ channel_id: string; environment: string; active_at: string; sent: string | null; sent_at: string | null }>()).results;
-  if (!open.length && active && env.APNS_MANAGE_CHANNELS === "1") {
-    for (const environment of ["sandbox", "production"]) {
-      const c = await createChannel(config, environment === "sandbox");
-      if (!c.channelId) {
-        console.error("apns storm channel", c.status, c.reason);
-        continue;
-      }
-      await env.DB.prepare("INSERT INTO storm_channels (channel_id, environment, started_at, active_at) VALUES (?1, ?2, ?3, ?3)").bind(c.channelId, environment, iso).run();
-      open.push({ channel_id: c.channelId, environment, active_at: iso, sent: null, sent_at: null });
-    }
-  }
-  for (const c of open) {
-    const end = !active && now.getTime() - Date.parse(c.active_at) >= CALM_MS;
-    const push: StormPush | null = end ? stormEnd(state, now)
-      : stormUpdate(c.sent && c.sent_at ? { state: JSON.parse(c.sent), at: new Date(c.sent_at) } : null, state, now);
-    if (active) await env.DB.prepare("UPDATE storm_channels SET active_at = ?2 WHERE channel_id = ?1").bind(c.channel_id, iso).run();
-    if (!push) continue;
-    const r = await broadcast(config, c.channel_id, push.payload, c.environment === "sandbox", push.priority, Math.floor(now.getTime() / 1000) + 8 * 3600)
-      .catch((e) => ({ status: 0, reason: String(e) }));
-    if (r.status !== 200) {
-      console.error("apns storm broadcast", r.status, r.reason);
-      continue;
-    }
-    await env.DB.prepare("UPDATE storm_channels SET sent = ?2, sent_at = ?3, ended_at = ?4 WHERE channel_id = ?1")
-      .bind(c.channel_id, JSON.stringify(state), iso, end ? iso : null).run();
-  }
+    .all<StormChannelRow>()).results;
+  if (!open.length && active && env.APNS_MANAGE_CHANNELS === "1") open = await openStormChannels(env, config, iso);
+  for (const c of open) await updateStormChannel(env, config, c, state, now);
   if (env.APNS_MANAGE_CHANNELS !== "1") return;
-  const done = await env.DB.prepare("SELECT channel_id, environment FROM storm_channels WHERE ended_at < ?1")
-    .bind(new Date(now.getTime() - 8 * 3600_000).toISOString()).all<{ channel_id: string; environment: string }>();
-  for (const c of done.results) {
-    const r = await deleteChannel(config, c.channel_id, c.environment === "sandbox");
-    if (r.status === 204 || r.status === 404) await env.DB.prepare("DELETE FROM storm_channels WHERE channel_id = ?1").bind(c.channel_id).run();
-    else console.error("apns storm channel delete", r.status, r.reason);
-  }
+  await deleteEndedChannels(env, config, "storm_channels", now);
 }
 
 /** RTSW, reduced; the last good copy is kept on failure, and null is returned so no alert rests on old wind. */
@@ -804,7 +861,7 @@ interface Recipient {
  * alerts_sent and drops devices it reports gone (410). Retryable failures are not recorded, so a later run tries again.
  */
 async function sendAlerts(env: Env, kind: string, recipients: Recipient[], now: Date, payload: (r: Recipient) => unknown): Promise<void> {
-  const config: ApnsConfig = { keyId: env.APNS_KEY_ID, teamId: env.APNS_TEAM_ID, privateKey: env.APNS_KEY, topic: env.APNS_TOPIC };
+  const config = apnsConfig(env);
   const slice = recipients.slice(0, PUSH_SLICE);
   const results = await sendAll(config, slice.map((r) => ({ token: r.token, payload: payload(r), sandbox: r.environment === "sandbox" })), PUSH_CONCURRENCY);
   const sent = env.DB.prepare("INSERT OR IGNORE INTO alerts_sent (kind, band, event, sent_at) VALUES (?1, ?2, ?3, ?4)");

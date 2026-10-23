@@ -40,8 +40,8 @@ def palette():
     return out
 
 
-def rgba(png):
-    """Pixels of an 8-bit RGBA, non-interlaced PNG, as rows of (r, g, b, a)."""
+def chunks(png):
+    """Width, height and the concatenated IDAT data of an 8-bit RGBA PNG."""
     assert png[:8] == b"\x89PNG\r\n\x1a\n"
     pos, data, width, height = 8, b"", 0, 0
     while pos < len(png):
@@ -53,22 +53,45 @@ def rgba(png):
         elif kind == b"IDAT":
             data += body
         pos += 12 + length
+    return width, height, data
+
+
+def paeth(a, b, c):
+    p = a + b - c
+    pa, pb, pc = abs(p - a), abs(p - b), abs(p - c)
+    return a if pa <= pb and pa <= pc else b if pb <= pc else c
+
+
+def unfilter(f, line, prev):
+    """Reverses PNG filter `f` on one scanline in place, given the previous unfiltered one (4 bytes a pixel)."""
+    for i in range(len(line)):
+        a = line[i - 4] if i >= 4 else 0
+        b, c = prev[i], prev[i - 4] if i >= 4 else 0
+        if f == 1: line[i] = (line[i] + a) & 255
+        elif f == 2: line[i] = (line[i] + b) & 255
+        elif f == 3: line[i] = (line[i] + (a + b) // 2) & 255
+        elif f == 4: line[i] = (line[i] + paeth(a, b, c)) & 255
+
+
+def rgba(png):
+    """Pixels of an 8-bit RGBA, non-interlaced PNG, as rows of (r, g, b, a)."""
+    width, height, data = chunks(png)
     raw, stride, rows, prev = zlib.decompress(data), width * 4, [], bytearray(width * 4)
     for y in range(height):
         f, line = raw[y * (stride + 1)], bytearray(raw[y * (stride + 1) + 1:(y + 1) * (stride + 1)])
-        for i in range(stride):
-            a = line[i - 4] if i >= 4 else 0
-            b, c = prev[i], prev[i - 4] if i >= 4 else 0
-            if f == 1: line[i] = (line[i] + a) & 255
-            elif f == 2: line[i] = (line[i] + b) & 255
-            elif f == 3: line[i] = (line[i] + (a + b) // 2) & 255
-            elif f == 4:
-                p = a + b - c
-                pa, pb, pc = abs(p - a), abs(p - b), abs(p - c)
-                line[i] = (line[i] + (a if pa <= pb and pa <= pc else b if pb <= pc else c)) & 255
+        unfilter(f, line, prev)
         rows.append([tuple(line[x * 4:x * 4 + 4]) for x in range(width)])
         prev = line
     return rows
+
+
+def accumulate(total, count, rows, colors):
+    """Adds each opaque pixel with a known colour to its cell."""
+    for y, row in enumerate(rows):
+        for x, (r, g, b, a) in enumerate(row):
+            if a and (r, g, b) in colors:
+                total[y * 360 + x] += colors[(r, g, b)]
+                count[y * 360 + x] += 1
 
 
 def grid(month_day, colors):
@@ -77,11 +100,7 @@ def grid(month_day, colors):
     for year in YEARS:
         for offset in OFFSETS:
             d = datetime.date(year, month, day) + datetime.timedelta(days=offset)
-            for y, row in enumerate(rgba(get(WMS.format(layer=LAYER, day=d.isoformat())))):
-                for x, (r, g, b, a) in enumerate(row):
-                    if a and (r, g, b) in colors:
-                        total[y * 360 + x] += colors[(r, g, b)]
-                        count[y * 360 + x] += 1
+            accumulate(total, count, rgba(get(WMS.format(layer=LAYER, day=d.isoformat()))), colors)
             time.sleep(1)
     return bytes(round(t / n) if n else 255 for t, n in zip(total, count))
 

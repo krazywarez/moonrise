@@ -105,8 +105,15 @@ async function result(res: Response, idHeader: string): Promise<ApnsResult> {
   return { status: res.status, apnsId: res.headers.get(idHeader), reason };
 }
 
-/** A Live Activity update to every device listening on a broadcast channel. `expiration` is in Unix seconds. */
-export async function broadcast(config: ApnsConfig, channelId: string, payload: unknown, sandbox: boolean, priority: 5 | 10, expiration: number): Promise<ApnsResult> {
+/** How a broadcast is delivered. `expiration` is in Unix seconds. */
+export interface BroadcastOptions {
+  sandbox: boolean;
+  priority: 5 | 10;
+  expiration: number;
+}
+
+/** A Live Activity update to every device listening on a broadcast channel. */
+export async function broadcast(config: ApnsConfig, channelId: string, payload: unknown, { sandbox, priority, expiration }: BroadcastOptions): Promise<ApnsResult> {
   const host = sandbox ? "api.sandbox.push.apple.com" : "api.push.apple.com";
   const res = await fetch(`https://${host}/4/broadcasts/apps/${config.topic}`, {
     method: "POST",

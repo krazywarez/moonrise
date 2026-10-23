@@ -45,7 +45,7 @@ test("broadcast goes to the standard host with the channel, Live Activity type, 
   const real = globalThis.fetch;
   globalThis.fetch = fetcher;
   try {
-    const r = await broadcast(await config(), "dHN0LXNyY2gtY2hubA==", { aps: { event: "update" } }, false, 5, 1_792_230_000);
+    const r = await broadcast(await config(), "dHN0LXNyY2gtY2hubA==", { aps: { event: "update" } }, { sandbox: false, priority: 5, expiration: 1_792_230_000 });
     assert.deepEqual(r, { status: 200, apnsId: "r", reason: null });
   } finally {
     globalThis.fetch = real;

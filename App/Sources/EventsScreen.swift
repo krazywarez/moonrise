@@ -92,30 +92,9 @@ struct EventsScreen: View {
 
     private func row(_ e: SkyEvent, link: Bool) -> some View {
         HStack(alignment: .top, spacing: 14) {
-            VStack(spacing: 0) {
-                Text(e.date.formatted(.dateTime.day())).font(.title2.weight(.medium).monospacedDigit())
-                Text(e.date.formatted(.dateTime.weekday(.abbreviated))).font(.caption2).textCase(.uppercase).foregroundStyle(ink.opacity(0.6))
-            }
-            .frame(width: 40)
-            VStack(alignment: .leading, spacing: 4) {
-                HStack(alignment: .firstTextBaseline, spacing: 6) {
-                    Image(systemName: symbol(e.kind)).font(.subheadline).foregroundStyle(e.visibleHere == true ? accent : ink.opacity(0.7))
-                        .accessibilityHidden(true)
-                    Text(e.title).font(.body.weight(.medium))
-                }
-                Text(e.date.formatted(date: .omitted, time: .shortened)).font(.footnote.monospacedDigit()).foregroundStyle(ink.opacity(0.6))
-                if !e.detail.isEmpty { Text(e.detail).font(.footnote).foregroundStyle(ink.opacity(0.8)) }
-                if let o = outlooks[e.id] { OutlookLine(outlook: o).font(.footnote.monospacedDigit()) }
-                if let v = e.visibleHere {
-                    HStack(spacing: 5) {
-                        Circle().fill(v ? accent : ink.opacity(0.35)).frame(width: 6, height: 6)
-                        Text(v ? "Visible from here" : "Not visible from here").font(.caption.weight(.medium))
-                            .foregroundStyle(v ? ink : ink.opacity(0.6))
-                    }
-                    .padding(.top, 2)
-                }
-            }
-            .padding(.trailing, e.activityStart(now: .now) != nil ? 44 : 0)
+            dateColumn(e)
+            details(e)
+                .padding(.trailing, e.activityStart(now: .now) != nil ? 44 : 0)
             Spacer(minLength: 0)
             if link {
                 Image(systemName: "chevron.right").font(.footnote.weight(.semibold)).foregroundStyle(ink.opacity(0.4)).padding(.top, 6)
@@ -128,6 +107,37 @@ struct EventsScreen: View {
         .overlay(alignment: .topTrailing) {
             if e.kind == .meteorShower { MeteorFollowButton(event: e).padding(.top, 2) }
         }
+    }
+
+    private func dateColumn(_ e: SkyEvent) -> some View {
+        VStack(spacing: 0) {
+            Text(e.date.formatted(.dateTime.day())).font(.title2.weight(.medium).monospacedDigit())
+            Text(e.date.formatted(.dateTime.weekday(.abbreviated))).font(.caption2).textCase(.uppercase).foregroundStyle(ink.opacity(0.6))
+        }
+        .frame(width: 40)
+    }
+
+    private func details(_ e: SkyEvent) -> some View {
+        VStack(alignment: .leading, spacing: 4) {
+            HStack(alignment: .firstTextBaseline, spacing: 6) {
+                Image(systemName: symbol(e.kind)).font(.subheadline).foregroundStyle(e.visibleHere == true ? accent : ink.opacity(0.7))
+                    .accessibilityHidden(true)
+                Text(e.title).font(.body.weight(.medium))
+            }
+            Text(e.date.formatted(date: .omitted, time: .shortened)).font(.footnote.monospacedDigit()).foregroundStyle(ink.opacity(0.6))
+            if !e.detail.isEmpty { Text(e.detail).font(.footnote).foregroundStyle(ink.opacity(0.8)) }
+            if let o = outlooks[e.id] { OutlookLine(outlook: o).font(.footnote.monospacedDigit()) }
+            if let v = e.visibleHere { visibility(v) }
+        }
+    }
+
+    private func visibility(_ v: Bool) -> some View {
+        HStack(spacing: 5) {
+            Circle().fill(v ? accent : ink.opacity(0.35)).frame(width: 6, height: 6)
+            Text(v ? "Visible from here" : "Not visible from here").font(.caption.weight(.medium))
+                .foregroundStyle(v ? ink : ink.opacity(0.6))
+        }
+        .padding(.top, 2)
     }
 
     private func symbol(_ k: SkyEvent.Kind) -> String {

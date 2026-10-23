@@ -90,9 +90,21 @@ extension SkyEngine {
         lock.lock()
         defer { lock.unlock() }
         let end = start.addingTimeInterval(days * 86_400)
-        var out: [SkyEvent] = []
+        let kinds = [
+            moonPhaseEvents(from: start, to: end, observer: observer),
+            lunarEclipseEvents(from: start, to: end, observer: observer),
+            solarEclipseEvents(from: start, to: end, observer: observer),
+            oppositionEvents(from: start, to: end, observer: observer),
+            elongationEvents(from: start, to: end, observer: observer),
+            seasonEvents(from: start, to: end, observer: observer),
+            meteorShowerEvents(from: start, to: end, observer: observer),
+        ]
+        return kinds.flatMap { $0 }.sorted { $0.date < $1.date }
+    }
 
-        // Full and new moons
+    /// Full and new moons.
+    private static func moonPhaseEvents(from start: Date, to end: Date, observer: Observer) -> [SkyEvent] {
+        var out: [SkyEvent] = []
         var t = time(start)
         while true {
             let q = Astronomy_SearchMoonQuarter(t)
@@ -105,7 +117,12 @@ extension SkyEngine {
             t = Astronomy_AddDays(q.time, 1)
         }
 
-        // Lunar eclipses
+        return out
+    }
+
+    /// Lunar eclipses.
+    private static func lunarEclipseEvents(from start: Date, to end: Date, observer: Observer) -> [SkyEvent] {
+        var out: [SkyEvent] = []
         var lunar = Astronomy_SearchLunarEclipse(time(start))
         while lunar.status == ASTRO_SUCCESS, date(lunar.peak) <= end {
             var peak = lunar.peak
@@ -118,7 +135,12 @@ extension SkyEngine {
             lunar = Astronomy_NextLunarEclipse(lunar.peak)
         }
 
-        // Solar eclipses: global, with local circumstances for the observer
+        return out
+    }
+
+    /// Solar eclipses: global, with local circumstances for the observer.
+    private static func solarEclipseEvents(from start: Date, to end: Date, observer: Observer) -> [SkyEvent] {
+        var out: [SkyEvent] = []
         var local: [Date: astro_local_solar_eclipse_t] = [:]
         var l = Astronomy_SearchLocalSolarEclipse(time(start), observer.astro)
         while l.status == ASTRO_SUCCESS, date(l.peak.time) <= end {
@@ -146,14 +168,24 @@ extension SkyEngine {
             solar = Astronomy_NextGlobalSolarEclipse(solar.peak)
         }
 
-        // Oppositions of the outer planets
+        return out
+    }
+
+    /// Oppositions of the outer planets.
+    private static func oppositionEvents(from start: Date, to end: Date, observer: Observer) -> [SkyEvent] {
+        var out: [SkyEvent] = []
         for body in [Body.mars, .jupiter, .saturn, .uranus, .neptune] {
             let r = Astronomy_SearchRelativeLongitude(body.astro, 0, time(start))
             guard r.status == ASTRO_SUCCESS, date(r.time) <= end else { continue }
             out.append(SkyEvent(kind: .opposition, date: date(r.time), title: "\(body.rawValue.capitalized) at opposition", detail: "Opposite the Sun: up all night and at its closest and brightest for the year.", visibleHere: nil))
         }
 
-        // Greatest elongations of Mercury and Venus
+        return out
+    }
+
+    /// Greatest elongations of Mercury and Venus.
+    private static func elongationEvents(from start: Date, to end: Date, observer: Observer) -> [SkyEvent] {
+        var out: [SkyEvent] = []
         for body in [Body.mercury, .venus] {
             var from = time(start)
             while true {
@@ -165,7 +197,12 @@ extension SkyEngine {
             }
         }
 
-        // Equinoxes and solstices
+        return out
+    }
+
+    /// Equinoxes and solstices.
+    private static func seasonEvents(from start: Date, to end: Date, observer: Observer) -> [SkyEvent] {
+        var out: [SkyEvent] = []
         let cal = Calendar(identifier: .gregorian)
         let y0 = cal.component(.year, from: start)
         for y in y0...(y0 + 1) {
@@ -177,7 +214,13 @@ extension SkyEngine {
             }
         }
 
-        // Meteor showers, with darkness and the Moon on the observer's night of the peak
+        return out
+    }
+
+    /// Meteor showers, with darkness and the Moon on the observer's night of the peak.
+    private static func meteorShowerEvents(from start: Date, to end: Date, observer: Observer) -> [SkyEvent] {
+        var out: [SkyEvent] = []
+        let y0 = Calendar(identifier: .gregorian).component(.year, from: start)
         var utc = Calendar(identifier: .gregorian)
         utc.timeZone = TimeZone(identifier: "UTC")!
         for y in y0...(y0 + 1) {
@@ -196,7 +239,6 @@ extension SkyEngine {
                                     zhr: m.zhr, moonIllumination: lit))
             }
         }
-
-        return out.sorted { $0.date < $1.date }
+        return out
     }
 }

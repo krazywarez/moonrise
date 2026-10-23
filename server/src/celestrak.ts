@@ -83,9 +83,12 @@ export function parseSupGP(text: string): Row[] {
 function complete(r: unknown): r is Row {
   if (typeof r !== "object" || r === null) return false;
   const o = r as Row;
-  return typeof o.OBJECT_NAME === "string" && typeof o.OBJECT_ID === "string" && typeof o.EPOCH === "string" && !Number.isNaN(epoch(o)) &&
-    KEYS.every((k) => k === "OBJECT_NAME" || k === "EPOCH" || (typeof o[k] === "number" && Number.isFinite(o[k])));
+  return hasNames(o) && !Number.isNaN(epoch(o)) && KEYS.every((k) => k === "OBJECT_NAME" || k === "EPOCH" || finite(o[k]));
 }
+
+const hasNames = (o: Row) => typeof o.OBJECT_NAME === "string" && typeof o.OBJECT_ID === "string" && typeof o.EPOCH === "string";
+
+const finite = (v: unknown) => typeof v === "number" && Number.isFinite(v);
 
 const epoch = (r: Row) => Date.parse(`${r.EPOCH}Z`);
 
@@ -143,18 +146,25 @@ export function compose(visual: Row[], recent: Row[], launches: LaunchRef[], sup
   const groups = new Map(gp);
   const out: Record<string, LaunchElements> = {};
   for (const l of launches) {
-    const g = l.designator ? gp.get(l.designator) : undefined;
-    const s = supgp[l.id]?.length ? supgp[l.id] : undefined;
-    const source = s && (!g || newest(s) > newest(g)) ? "supgp" : "gp";
-    const rows = source === "supgp" ? s : g;
+    const { source, rows } = launchRows(l, gp, supgp);
     if (!rows) continue;
-    const label = l.mission?.startsWith("Starlink ") ? l.mission.slice(9) : (l.mission ?? l.designator ?? l.id);
+    const label = launchLabel(l);
     if (l.designator) groups.delete(l.designator);
     if (source === "gp" || newest(rows) <= now.getTime()) groups.set(label, rows);
     out[l.id] = { source, elements: launchElements(rows, label) };
   }
   return { satellites: [...pick(visual), ...starlinkTrains(groups)], launches: out };
 }
+
+/** A launch's elements: SupGP when it has newer rows than GP, otherwise GP. */
+function launchRows(l: LaunchRef, gp: Map<string, Row[]>, supgp: Record<string, Row[]>): { source: "supgp" | "gp"; rows: Row[] | undefined } {
+  const g = l.designator ? gp.get(l.designator) : undefined;
+  const s = supgp[l.id]?.length ? supgp[l.id] : undefined;
+  return s && (!g || newest(s) > newest(g)) ? { source: "supgp", rows: s } : { source: "gp", rows: g };
+}
+
+/** "Group 15-25" for a Starlink mission; otherwise the mission, designator or ID. */
+const launchLabel = (l: LaunchRef) => (l.mission?.startsWith("Starlink ") ? l.mission.slice(9) : (l.mission ?? l.designator ?? l.id));
 
 /** The 5-minute tick 33 minutes after each 2-hourly poll, which runs at minute 7 of even UTC hours. */
 export const retryTick = (now: Date) => now.getUTCHours() % 2 === 0 && now.getUTCMinutes() === 40;

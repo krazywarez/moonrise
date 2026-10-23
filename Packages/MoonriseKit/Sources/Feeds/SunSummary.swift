@@ -34,16 +34,8 @@ public enum SunSummary {
             return "\(name(g)) storm (G\(g)) \(when), Kp \(String(format: "%.1f", b.kp)). Aurora possible low in the \(sky) sky."
         }
         if current.g >= 1 {
-            let needed = Geomagnetic.kpNeeded(geomagneticLatitude: geomagneticLatitude)
-            var text = "\(name(current.g)) storm (G\(current.g))\(asOf)."
-            if needed > 9 {
-                text += " Aurora at your latitude would need more than Kp 9."
-            } else if needed > 5 {
-                text += " Aurora at your latitude needs Kp \(String(format: "%.1f", needed))."
-            } else if kp.contains(where: { overlaps($0.start, bar, night) }) {
-                text += " Kp is forecast below 5 after dark."
-            }
-            return text
+            let note = auroraNote(geomagneticLatitude: geomagneticLatitude, kp: kp, bar: bar, night: night)
+            return "\(name(current.g)) storm (G\(current.g))\(asOf).\(note)"
         }
 
         // 2. Solar radiation storm.
@@ -60,6 +52,30 @@ public enum SunSummary {
         }
 
         // 4. Quiet.
+        return quietText(storms: storms, probabilities: probabilities, at: now, time: time)
+    }
+
+    /// What aurora at this latitude would take, during a storm already under way.
+    private static func auroraNote(geomagneticLatitude: Double, kp: [KpBar], bar: TimeInterval, night: DateInterval) -> String {
+        let needed = Geomagnetic.kpNeeded(geomagneticLatitude: geomagneticLatitude)
+        if needed > 9 {
+            return " Aurora at your latitude would need more than Kp 9."
+        }
+        if needed > 5 {
+            return " Aurora at your latitude needs Kp \(String(format: "%.1f", needed))."
+        }
+        if kp.contains(where: { overlaps($0.start, bar, night) }) {
+            return " Kp is forecast below 5 after dark."
+        }
+        return ""
+    }
+
+    private static func quietText(
+        storms: [KpBar],
+        probabilities: SolarProbabilities?,
+        at now: Date,
+        time: (Date) -> String
+    ) -> String {
         if let next = storms.min(by: { $0.start < $1.start }), let g = SpaceWeather.gScale(next.kp) {
             return "Quiet now. \(name(g)) storm (G\(g)) forecast from \(time(next.start)), Kp \(String(format: "%.1f", next.kp))."
         }
