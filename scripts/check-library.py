@@ -30,31 +30,42 @@ def status(url, image=False):
     return err
 
 
-def main():
-    offline = "--offline" in sys.argv
-    pages, problems = [], []
-    for f in sorted(PAGES.glob("*.json")):
-        for p in json.loads(f.read_text()):
-            pages.append((f.name, p))
-    print(f"{len(pages)} pages in {len(list(PAGES.glob('*.json')))} files")
-    if offline:
-        return 0
+def load_pages():
+    """(file name, page) for every Library page, files in name order."""
+    return [(f.name, p) for f in sorted(PAGES.glob("*.json")) for p in json.loads(f.read_text())]
+
+
+def url_checks(pages):
+    """(page id, what, URL, must be an image) for each source and image a page cites."""
     checks = []
-    for name, p in pages:
+    for _, p in pages:
         for s in p.get("sources", []):
             if not s["url"].startswith(SKIP):
                 checks.append((p["id"], "source", s["url"], False))
         if p.get("image"):
             checks.append((p["id"], "image", p["image"]["url"], True))
             checks.append((p["id"], "image page", p["image"]["page"], False))
+    return checks
+
+
+def problem(check, st):
+    """The report line for a failed check, or None when it passed."""
+    pid, kind, url, _ = check
+    # Sites that refuse scripts (403/429) but load in a browser.
+    if st in (403, 429) and any(url.startswith(p) for p in BLOCKS_SCRIPTS):
+        return None
+    return None if st == 200 else f"{pid}: {kind} {st} {url}"
+
+
+def main():
+    pages = load_pages()
+    print(f"{len(pages)} pages in {len(list(PAGES.glob('*.json')))} files")
+    if "--offline" in sys.argv:
+        return 0
+    checks = url_checks(pages)
     with ThreadPoolExecutor(8) as pool:
         results = list(pool.map(lambda c: (c, status(c[2], c[3])), checks))
-    for (pid, kind, url, _), st in results:
-        # Sites that refuse scripts (403/429) but load in a browser.
-        if st in (403, 429) and any(url.startswith(p) for p in BLOCKS_SCRIPTS):
-            continue
-        if st != 200:
-            problems.append(f"{pid}: {kind} {st} {url}")
+    problems = [line for line in (problem(c, st) for c, st in results) if line]
     print(f"{len(checks)} URLs checked, {len(problems)} problems")
     for line in problems:
         print("  " + line)

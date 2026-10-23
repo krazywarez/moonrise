@@ -47,28 +47,49 @@ export const toBase64 = (b: Uint8Array) => btoa(String.fromCharCode(...b));
 // MARK: CBOR (major types 0–5 with definite lengths, which is all App Attest uses)
 
 export function cbor(bytes: Uint8Array): unknown {
-  let i = 0;
-  const length = (info: number): number => {
-    if (info < 24) return info;
-    const n = info === 24 ? 1 : info === 25 ? 2 : info === 26 ? 4 : fail("cbor length");
-    let v = 0;
-    for (let k = 0; k < n; k++) v = v * 256 + bytes[i++];
-    return v;
-  };
-  const item = (): unknown => {
-    if (i >= bytes.length) fail("cbor truncated");
-    const head = bytes[i++], major = head >> 5, n = length(head & 31);
+  return new CborReader(bytes).item();
+}
+
+class CborReader {
+  private i = 0;
+  private readonly bytes: Uint8Array;
+
+  constructor(bytes: Uint8Array) {
+    this.bytes = bytes;
+  }
+
+  item(): unknown {
+    const head = this.take(1)[0], major = head >> 5, n = this.length(head & 31);
     switch (major) {
       case 0: return n;
       case 1: return -1 - n;
-      case 2: { const v = bytes.slice(i, i + n); i += n; return v; }
-      case 3: { const v = new TextDecoder().decode(bytes.slice(i, i + n)); i += n; return v; }
-      case 4: return Array.from({ length: n }, item);
-      case 5: { const m = new Map<unknown, unknown>(); for (let k = 0; k < n; k++) m.set(item(), item()); return m; }
+      case 2: return this.take(n);
+      case 3: return new TextDecoder().decode(this.take(n));
+      case 4: return Array.from({ length: n }, () => this.item());
+      case 5: return this.map(n);
       default: return fail("cbor type");
     }
-  };
-  return item();
+  }
+
+  private length(info: number): number {
+    if (info < 24) return info;
+    const n = info === 24 ? 1 : info === 25 ? 2 : info === 26 ? 4 : fail("cbor length");
+    return this.take(n).reduce((v, byte) => v * 256 + byte, 0);
+  }
+
+  private map(n: number): Map<unknown, unknown> {
+    const m = new Map<unknown, unknown>();
+    for (let k = 0; k < n; k++) m.set(this.item(), this.item());
+    return m;
+  }
+
+  /** The next `n` bytes; failing rather than reading past the end. */
+  private take(n: number): Uint8Array {
+    if (this.i + n > this.bytes.length) fail("cbor truncated");
+    const v = this.bytes.slice(this.i, this.i + n);
+    this.i += n;
+    return v;
+  }
 }
 
 // MARK: DER

@@ -29,38 +29,50 @@ const HOURS = 6;
 const mean = (xs: number[]) => (xs.length ? Math.round((xs.reduce((a, b) => a + b, 0) / xs.length) * 10) / 10 : null);
 const ok = (v: number | null | undefined): v is number => typeof v === "number" && Number.isFinite(v);
 
+interface Bin { speed: number[]; density: number[]; bz: number[]; bt: number[] }
+type Binner = (tag: string) => Bin | undefined;
+
 export function reduce(mag: MagRow[], wind: WindRow[], now: Date): SolarWind | null {
   const start = Math.floor((now.getTime() - HOURS * 3600_000) / BIN) * BIN;
-  const bins = new Map<number, { speed: number[]; density: number[]; bz: number[]; bt: number[] }>();
-  const bin = (tag: string) => {
+  const bins = new Map<number, Bin>();
+  const bin: Binner = (tag) => {
     const t = Date.parse(tag + "Z");
     if (!(t >= start)) return undefined;
     const k = Math.floor(t / BIN) * BIN;
     if (!bins.has(k)) bins.set(k, { speed: [], density: [], bz: [], bt: [] });
     return bins.get(k)!;
   };
+  const latest = binMagnetometer(mag, bin);
+  binPlasma(wind, bin);
+  if (!bins.size) return null;
+  const series = [...bins.entries()].sort((a, b) => a[0] - b[0]).map(([k, b]) => ({
+    t: new Date(k).toISOString(), speed: mean(b.speed), density: mean(b.density), bz: mean(b.bz), bt: mean(b.bt),
+  }));
+  return { observedAt: new Date(latest.observed).toISOString(), source: latest.source, series };
+}
+
+/** Bins the active spacecraft's field readings; returns the time and source of the latest. */
+function binMagnetometer(mag: MagRow[], bin: Binner): { observed: number; source: string } {
   let observed = 0, source = "";
   for (const r of mag) {
-    if (!r.active) continue;
-    const b = bin(r.time_tag);
+    const b = r.active ? bin(r.time_tag) : undefined;
     if (!b) continue;
     if (ok(r.bz_gsm)) b.bz.push(r.bz_gsm);
     if (ok(r.bt)) b.bt.push(r.bt);
     const t = Date.parse(r.time_tag + "Z");
     if (t > observed) { observed = t; source = r.source; }
   }
+  return { observed, source };
+}
+
+/** Bins the active spacecraft's plasma readings. */
+function binPlasma(wind: WindRow[], bin: Binner): void {
   for (const r of wind) {
-    if (!r.active) continue;
-    const b = bin(r.time_tag);
+    const b = r.active ? bin(r.time_tag) : undefined;
     if (!b) continue;
     if (ok(r.proton_speed)) b.speed.push(r.proton_speed);
     if (ok(r.proton_density)) b.density.push(r.proton_density);
   }
-  if (!bins.size) return null;
-  const series = [...bins.entries()].sort((a, b) => a[0] - b[0]).map(([k, b]) => ({
-    t: new Date(k).toISOString(), speed: mean(b.speed), density: mean(b.density), bz: mean(b.bz), bt: mean(b.bt),
-  }));
-  return { observedAt: new Date(observed).toISOString(), source, series };
 }
 
 /**

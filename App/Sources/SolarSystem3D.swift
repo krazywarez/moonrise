@@ -785,23 +785,36 @@ struct SolarSystem3DView: View {
     private func labels(size: CGSize) -> some View {
         ZStack {
             ForEach(labelled(size: size), id: \.marker.id) { item in
-                let m = item.marker
-                let isSelected = m.id == selected
-                let color: Color = isSelected ? accent : m.kind == .craft ? accent.opacity(0.9) : m.kind == .comet ? Color(red: 0.7, green: 0.85, blue: 1) : ink.opacity(m.kind == .moon ? 0.7 : 0.85)
-                ZStack {
-                    if item.radius < 3, m.kind != .craft, m.kind != .comet {
-                        Circle().stroke(isSelected ? accent : ink.opacity(0.6), lineWidth: 1.2).frame(width: 10, height: 10)
-                    }
-                    if item.showName {
-                        Text(m.name).font(.caption2.weight(isSelected ? .semibold : .regular))
-                            .foregroundStyle(color)
-                            .shadow(color: .black, radius: 2)
-                            .fixedSize()
-                            .offset(y: -max(item.radius, 5) - 9)
-                    }
-                }
-                .position(item.point)
+                label(item.marker, radius: item.radius, showName: item.showName)
+                    .position(item.point)
             }
+        }
+    }
+
+    /// A ring for a body too small to see, and its name when there is room for it.
+    private func label(_ m: SolarMarker, radius: CGFloat, showName: Bool) -> some View {
+        let isSelected = m.id == selected
+        return ZStack {
+            if radius < 3, m.kind != .craft, m.kind != .comet {
+                Circle().stroke(isSelected ? accent : ink.opacity(0.6), lineWidth: 1.2).frame(width: 10, height: 10)
+            }
+            if showName {
+                Text(m.name).font(.caption2.weight(isSelected ? .semibold : .regular))
+                    .foregroundStyle(labelColor(m, isSelected: isSelected))
+                    .shadow(color: .black, radius: 2)
+                    .fixedSize()
+                    .offset(y: -max(radius, 5) - 9)
+            }
+        }
+    }
+
+    private func labelColor(_ m: SolarMarker, isSelected: Bool) -> Color {
+        if isSelected { return accent }
+        switch m.kind {
+        case .craft: return accent.opacity(0.9)
+        case .comet: return Color(red: 0.7, green: 0.85, blue: 1)
+        case .moon: return ink.opacity(0.7)
+        default: return ink.opacity(0.85)
         }
     }
 

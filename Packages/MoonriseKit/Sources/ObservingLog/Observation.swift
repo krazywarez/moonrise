@@ -13,6 +13,28 @@ public struct OrgProperty: Sendable, Equatable, Hashable {
 
     var line: String { value.isEmpty ? key : "\(key) \(value)" }
 
+    /// The `:PROPERTIES:` drawer at `lines[start]`, if there is one: values of the
+    /// `known` keys that are set, every other property in order, and the index
+    /// of the first line past the drawer.
+    static func drawer(
+        in lines: [String],
+        at start: Int,
+        known: Set<String>
+    ) -> (known: [String: String], other: [OrgProperty], next: Int) {
+        var props: [String: String] = [:]
+        var other: [OrgProperty] = []
+        var i = start
+        guard i < lines.count, lines[i] == ":PROPERTIES:" else { return (props, other, i) }
+        i += 1
+        while i < lines.count, lines[i] != ":END:" {
+            if let p = parse(lines[i]) {
+                if !known.contains(p.key) { other.append(p) } else if !p.value.isEmpty { props[p.key] = p.value }
+            }
+            i += 1
+        }
+        return (props, other, i + 1)
+    }
+
     /// Splits a drawer line into key and value; nil for lines that are not a property.
     static func parse(_ line: String) -> OrgProperty? {
         let parts = line.split(separator: " ", maxSplits: 1).map(String.init)
@@ -102,19 +124,7 @@ public struct Observation: Sendable, Identifiable, Equatable {
         let lines = text.components(separatedBy: "\n")
         guard let head = lines.first, head.hasPrefix("* "),
               lines.count > 1, lines[1].hasPrefix("["), lines[1].hasSuffix("]") else { return nil }
-        var props: [String: String] = [:]
-        var other: [OrgProperty] = []
-        var i = 2
-        if i < lines.count, lines[i] == ":PROPERTIES:" {
-            i += 1
-            while i < lines.count, lines[i] != ":END:" {
-                if let p = OrgProperty.parse(lines[i]) {
-                    if !Self.knownKeys.contains(p.key) { other.append(p) } else if !p.value.isEmpty { props[p.key] = p.value }
-                }
-                i += 1
-            }
-            i += 1
-        }
+        let (props, other, i) = OrgProperty.drawer(in: lines, at: 2, known: Self.knownKeys)
         let offset = props[":UTC_OFFSET:"].flatMap(Self.offset)
         guard let date = try? Date(String(lines[1].dropFirst().dropLast()), strategy: Self.orgDate(offset.flatMap(TimeZone.init(secondsFromGMT:)) ?? .current).parseStrategy) else { return nil }
         let notes = lines.dropFirst(i).joined(separator: "\n").trimmingCharacters(in: .whitespacesAndNewlines)

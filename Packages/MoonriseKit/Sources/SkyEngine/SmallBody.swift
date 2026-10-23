@@ -30,33 +30,7 @@ public struct SmallBody: Sendable, Equatable, Codable, Identifiable {
     /// Heliocentric position in AU on J2000 ecliptic axes.
     public func position(at date: Date) -> SIMD3<Double> {
         let dt = date.timeIntervalSince1970 / 86_400 + 2_440_587.5 - tp
-        var x: Double, y: Double
-        if abs(e - 1) < 1e-4 {
-            // Barker's equation: s + s³/3 = k Δt / √(2q³), s = tan(ν/2).
-            let w = 3 * Self.k * dt / (2 * q * q * q).squareRoot()
-            let c = cbrt(w / 2 + (w * w / 4 + 1).squareRoot())
-            let s = c - 1 / c
-            (x, y) = (q * (1 - s * s), 2 * q * s)
-        } else if e < 1 {
-            let a = q / (1 - e), m = Self.k * dt / pow(a, 1.5)
-            let mm = remainder(m, 2 * .pi)
-            var E = e < 0.8 ? mm : .pi * (mm < 0 ? -1 : 1)
-            for _ in 0..<60 {
-                let d = (E - e * sin(E) - mm) / (1 - e * cos(E))
-                E -= d
-                if abs(d) < 1e-13 { break }
-            }
-            (x, y) = (a * (cos(E) - e), a * (1 - e * e).squareRoot() * sin(E))
-        } else {
-            let a = q / (e - 1), m = Self.k * dt / pow(a, 1.5)
-            var h = asinh(m / e)
-            for _ in 0..<60 {
-                let d = (e * sinh(h) - h - m) / (e * cosh(h) - 1)
-                h -= d
-                if abs(d) < 1e-13 { break }
-            }
-            (x, y) = (a * (e - cosh(h)), a * (e * e - 1).squareRoot() * sinh(h))
-        }
+        let (x, y) = abs(e - 1) < 1e-4 ? nearParabolicPosition(dt) : e < 1 ? ellipticPosition(dt) : hyperbolicPosition(dt)
         let r = Double.pi / 180
         let (cO, sO) = (cos(node * r), sin(node * r)), (cw, sw) = (cos(peri * r), sin(peri * r)), (ci, si) = (cos(i * r), sin(i * r))
         return SIMD3(
@@ -64,6 +38,40 @@ public struct SmallBody: Sendable, Equatable, Codable, Identifiable {
             (sO * cw + cO * sw * ci) * x + (-sO * sw + cO * cw * ci) * y,
             (sw * si) * x + (cw * si) * y
         )
+    }
+
+    /// In-plane position for an eccentricity near 1, by Barker's equation:
+    /// s + s³/3 = k Δt / √(2q³), s = tan(ν/2).
+    private func nearParabolicPosition(_ dt: Double) -> (x: Double, y: Double) {
+        let w = 3 * Self.k * dt / (2 * q * q * q).squareRoot()
+        let c = cbrt(w / 2 + (w * w / 4 + 1).squareRoot())
+        let s = c - 1 / c
+        return (q * (1 - s * s), 2 * q * s)
+    }
+
+    /// In-plane position on an ellipse, solving Kepler's equation by Newton's method.
+    private func ellipticPosition(_ dt: Double) -> (x: Double, y: Double) {
+        let a = q / (1 - e), m = Self.k * dt / pow(a, 1.5)
+        let mm = remainder(m, 2 * .pi)
+        var E = e < 0.8 ? mm : .pi * (mm < 0 ? -1 : 1)
+        for _ in 0..<60 {
+            let d = (E - e * sin(E) - mm) / (1 - e * cos(E))
+            E -= d
+            if abs(d) < 1e-13 { break }
+        }
+        return (a * (cos(E) - e), a * (1 - e * e).squareRoot() * sin(E))
+    }
+
+    /// In-plane position on a hyperbola, solving the hyperbolic Kepler equation by Newton's method.
+    private func hyperbolicPosition(_ dt: Double) -> (x: Double, y: Double) {
+        let a = q / (e - 1), m = Self.k * dt / pow(a, 1.5)
+        var h = asinh(m / e)
+        for _ in 0..<60 {
+            let d = (e * sinh(h) - h - m) / (e * cosh(h) - 1)
+            h -= d
+            if abs(d) < 1e-13 { break }
+        }
+        return (a * (e - cosh(h)), a * (e * e - 1).squareRoot() * sinh(h))
     }
 
     /// Astrometric J2000 right ascension and declination (degrees), distances (AU) and magnitude from Earth at `date`;

@@ -51,14 +51,18 @@ def license_section(md):
     return " ".join(out)
 
 
-def main():
+def load_hip(path):
+    """HIP number -> (RA, Dec, Vmag) from the VizieR TSV."""
     hip = {}
-    for line in open(sys.argv[1]):
+    for line in open(path):
         p = line.rstrip("\n").split("\t")
         if len(p) == 4 and p[0].strip().isdigit() and p[1].strip() and p[2].strip():
             hip[int(p[0])] = (float(p[1]), float(p[2]), float(p[3] or 99))
+    return hip
 
-    bsc = json.load(open(RES / "bsc5.json"))
+
+def hr_matcher(hip, bsc):
+    """A function from a HIP number to the BSC (HR) star within 0.05 degrees of it, or None."""
     cells = {}
     for row in bsc:
         cells.setdefault((int(row[2])), []).append(row)
@@ -76,40 +80,53 @@ def main():
                     best = (sep, int(row[0]))
         return best[1] if best else None
 
-    out = []
-    for cid, name in CULTURES:
-        index = json.loads(fetch(f"{BASE}/{cid}/index.json"))
-        lic = license_section(fetch(f"{BASE}/{cid}/description.md"))
-        assert "BY-SA" in lic.replace("-BY SA", "BY-SA").replace("BY SA", "BY-SA"), (cid, lic)
-        constellations = []
-        for c in index.get("constellations", []):
-            segments = []
-            for line in c.get("lines", []):
-                current = []
-                for h in line:
-                    hr = hr_for(h) if isinstance(h, int) else None
-                    if hr is None:
-                        if len(current) > 1:
-                            segments.append(current)
-                        current = []
-                    else:
-                        current.append(hr)
-                if len(current) > 1:
-                    segments.append(current)
-            if not segments:
-                continue
-            cn = c.get("common_name", {})
-            entry = {"name": cn.get("english") or cn.get("native") or c["id"], "lines": segments}
-            if cn.get("native") and cn.get("native") != entry["name"]:
-                entry["native"] = cn["native"]
-            constellations.append(entry)
-        out.append({
-            "id": cid, "name": name, "region": index.get("region", ""),
-            "licence": lic, "source": f"https://github.com/Stellarium/stellarium-skycultures/tree/master/{cid}",
-            "constellations": constellations,
-        })
-        print(f"{cid}: {len(constellations)} of {len(index.get('constellations', []))} figures", file=sys.stderr)
+    return hr_for
 
+
+def segments(line, hr_for):
+    """A Stellarium line as runs of matched HR stars, split at stars without a match."""
+    out, current = [], []
+    for h in line:
+        hr = hr_for(h) if isinstance(h, int) else None
+        if hr is None:
+            if len(current) > 1:
+                out.append(current)
+            current = []
+        else:
+            current.append(hr)
+    if len(current) > 1:
+        out.append(current)
+    return out
+
+
+def constellation(c, hr_for):
+    """One figure for the app, or None when none of its lines survive matching."""
+    lines = [s for line in c.get("lines", []) for s in segments(line, hr_for)]
+    if not lines:
+        return None
+    cn = c.get("common_name", {})
+    entry = {"name": cn.get("english") or cn.get("native") or c["id"], "lines": lines}
+    if cn.get("native") and cn.get("native") != entry["name"]:
+        entry["native"] = cn["native"]
+    return entry
+
+
+def culture(cid, name, hr_for):
+    index = json.loads(fetch(f"{BASE}/{cid}/index.json"))
+    lic = license_section(fetch(f"{BASE}/{cid}/description.md"))
+    assert "BY-SA" in lic.replace("-BY SA", "BY-SA").replace("BY SA", "BY-SA"), (cid, lic)
+    figures = [f for f in (constellation(c, hr_for) for c in index.get("constellations", [])) if f]
+    print(f"{cid}: {len(figures)} of {len(index.get('constellations', []))} figures", file=sys.stderr)
+    return {
+        "id": cid, "name": name, "region": index.get("region", ""),
+        "licence": lic, "source": f"https://github.com/Stellarium/stellarium-skycultures/tree/master/{cid}",
+        "constellations": figures,
+    }
+
+
+def main():
+    hr_for = hr_matcher(load_hip(sys.argv[1]), json.load(open(RES / "bsc5.json")))
+    out = [culture(cid, name, hr_for) for cid, name in CULTURES]
     (RES / "skycultures.json").write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")))
 
 

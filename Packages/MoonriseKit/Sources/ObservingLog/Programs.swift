@@ -91,6 +91,18 @@ public struct ObservingProgram: Sendable, Identifiable, Equatable {
 
         public var id: String { ids.first ?? CatalogResolver.fold(name) }
         var keys: [String] { ids.isEmpty ? [id] : ids }
+
+        /// Applies one drawer property from a program file.
+        mutating func apply(_ p: OrgProperty) {
+            switch p.key {
+            case ":CATALOG:":
+                ids = p.value.split(separator: " ").map { CatalogResolver.designation(String($0)) ?? String($0) }
+                if CatalogResolver.designation(name) == nil { aliases = [name] }
+            case ":RA:": ra = Double(p.value)
+            case ":DEC:": dec = Double(p.value)
+            default: break
+            }
+        }
     }
 
     public var id: String
@@ -119,33 +131,12 @@ public struct ObservingProgram: Sendable, Identifiable, Equatable {
 
     /// Parses a program file (format above). Names resolve against `resolver`.
     public init(org text: String, id: String, resolver: CatalogResolver = .messier) {
-        var title = id
-        var objects: [Object] = []
-        var inDrawer = false
+        var parser = ProgramFileParser(title: id, resolver: resolver)
         for line in text.components(separatedBy: "\n") {
-            if line.lowercased().hasPrefix("#+title:") {
-                title = line.dropFirst(8).trimmingCharacters(in: .whitespaces)
-            } else if line.hasPrefix("* ") {
-                let name = line.dropFirst(2).trimmingCharacters(in: .whitespaces)
-                let id = resolver.id(for: name)
-                objects.append(Object(ids: id.map { [$0] } ?? [], name: name, aliases: [], detail: ""))
-                inDrawer = false
-            } else if !objects.isEmpty, line.trimmingCharacters(in: .whitespaces) == ":PROPERTIES:" {
-                inDrawer = true
-            } else if inDrawer, line.trimmingCharacters(in: .whitespaces) == ":END:" {
-                inDrawer = false
-            } else if inDrawer, let p = OrgProperty.parse(line.trimmingCharacters(in: .whitespaces)) {
-                let i = objects.count - 1
-                switch p.key {
-                case ":CATALOG:":
-                    objects[i].ids = p.value.split(separator: " ").map { CatalogResolver.designation(String($0)) ?? String($0) }
-                    if CatalogResolver.designation(objects[i].name) == nil { objects[i].aliases = [objects[i].name] }
-                case ":RA:": objects[i].ra = Double(p.value)
-                case ":DEC:": objects[i].dec = Double(p.value)
-                default: break
-                }
-            }
+            parser.read(line)
         }
+        let title = parser.title
+        var objects = parser.objects
         for i in objects.indices where objects[i].ra == nil || objects[i].dec == nil {
             if let m = Self.messier.objects.first(where: { $0.id == objects[i].id }) {
                 objects[i].ra = m.ra
@@ -186,5 +177,43 @@ public struct ProgramProgress: Sendable {
             if let o = object.keys.compactMap({ index.earliest[$0] }).min(by: { $0.date < $1.date }) { first[object.id] = o }
         }
         self.first = first
+    }
+}
+
+/// Reads a program file line by line: its title, its headings, and their drawers.
+private struct ProgramFileParser {
+    var title: String
+    let resolver: CatalogResolver
+    var objects: [ObservingProgram.Object] = []
+    var inDrawer = false
+
+    init(title: String, resolver: CatalogResolver) {
+        self.title = title
+        self.resolver = resolver
+    }
+
+    mutating func read(_ line: String) {
+        let trimmed = line.trimmingCharacters(in: .whitespaces)
+        if line.lowercased().hasPrefix("#+title:") {
+            title = line.dropFirst(8).trimmingCharacters(in: .whitespaces)
+            return
+        }
+        if line.hasPrefix("* ") {
+            let name = line.dropFirst(2).trimmingCharacters(in: .whitespaces)
+            let id = resolver.id(for: name)
+            objects.append(ObservingProgram.Object(ids: id.map { [$0] } ?? [], name: name, aliases: [], detail: ""))
+            inDrawer = false
+            return
+        }
+        if !objects.isEmpty, trimmed == ":PROPERTIES:" {
+            inDrawer = true
+            return
+        }
+        guard inDrawer else { return }
+        if trimmed == ":END:" {
+            inDrawer = false
+        } else if let p = OrgProperty.parse(trimmed) {
+            objects[objects.count - 1].apply(p)
+        }
     }
 }
