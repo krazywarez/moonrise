@@ -21,7 +21,7 @@ from pathlib import Path
 
 RES = Path(__file__).resolve().parent.parent / "Packages/MoonriseKit/Sources/SkyRenderer/Resources"
 
-bright = json.load(open(RES / "bsc5.json"))
+bright = json.load(open(RES / "bsc5.json", encoding="utf-8"))
 cells = {}
 for hr, ra, dec, v, *_ in bright:
     cells.setdefault((int(dec), int(ra)), []).append((ra, dec, v))
@@ -39,7 +39,7 @@ def in_bsc(ra, dec, v):
 
 
 rows = []
-for r in csv.DictReader(open(sys.argv[1])):
+for r in csv.DictReader(open(sys.argv[1], encoding="utf-8")):
     if not r["RAmdeg"] or not r["VTmag"]:
         continue
     vt, ra, dec = float(r["VTmag"]), float(r["RAmdeg"]), float(r["DEmdeg"])

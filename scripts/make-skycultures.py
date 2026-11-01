@@ -54,7 +54,7 @@ def license_section(md):
 def load_hip(path):
     """HIP number -> (RA, Dec, Vmag) from the VizieR TSV."""
     hip = {}
-    for line in open(path):
+    for line in open(path, encoding="utf-8"):
         p = line.rstrip("\n").split("\t")
         if len(p) == 4 and p[0].strip().isdigit() and p[1].strip() and p[2].strip():
             hip[int(p[0])] = (float(p[1]), float(p[2]), float(p[3] or 99))
@@ -125,9 +125,9 @@ def culture(cid, name, hr_for):
 
 
 def main():
-    hr_for = hr_matcher(load_hip(sys.argv[1]), json.load(open(RES / "bsc5.json")))
+    hr_for = hr_matcher(load_hip(sys.argv[1]), json.load(open(RES / "bsc5.json", encoding="utf-8")))
     out = [culture(cid, name, hr_for) for cid, name in CULTURES]
-    (RES / "skycultures.json").write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")))
+    (RES / "skycultures.json").write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 
 
 if __name__ == "__main__":
