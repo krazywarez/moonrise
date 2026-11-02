@@ -41,7 +41,7 @@ public struct DailySummary: Sendable, Equatable {
         if planets.isEmpty {
             lines.append("No bright planets above 10° tonight.")
         } else {
-            lines.append("Up tonight: \(ListFormatter.localizedString(byJoining: planets)).")
+            lines.append("Up tonight: \(planets.formatted(.list(type: .and).locale(locale))).")
         }
 
         if let pass = passes
