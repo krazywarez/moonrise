@@ -14,7 +14,7 @@ enum ImageLoader {
     }()
 
     // Two decodes at a time; a list otherwise starts one per row at once.
-    nonisolated(unsafe) private static let decodes: OperationQueue = {
+    private static let decodes: OperationQueue = {
         let q = OperationQueue()
         q.maxConcurrentOperationCount = 2
         q.qualityOfService = .userInitiated

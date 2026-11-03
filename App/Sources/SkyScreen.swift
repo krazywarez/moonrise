@@ -217,7 +217,7 @@ struct SkyScreen: View {
 
     static let minimumField = 3.0
     /// Narrower than this, Tycho-2 stars to V 9 are added around the view.
-    static let faintField = 40.0
+    nonisolated static let faintField = 40.0
 
     /// Which faint stars are loaded: the scene's time and place, and the view centre to 2° and field to 5°.
     struct FaintKey: Hashable {
