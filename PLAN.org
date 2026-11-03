@@ -559,8 +559,9 @@ Worker; DSN Now freshness; NASA/ESA image licences; 26 LoC plates bundled.
   =xArbitraryCorrectedZVertical= attitude, first heading from one compass
   reading, Align on the brightest object within 15° of the centre; pinhole
   projection from the camera format's field and the aspect-fill crop;
-  Sæmundsson refraction. Not yet measured on a device (draw time is shown in
-  Debug builds).
+  Sæmundsson refraction. Draw time measured on an iPhone 2026-11-02: 3–4 ms
+  per frame in a Debug build, steady while panning and zooming. Pointing and
+  alignment not yet measured (needs a clear sky).
 
 ** v5.4: System
 - Juno, Europa Clipper, JUICE, Psyche, Parker Solar Probe, Lucy on the
