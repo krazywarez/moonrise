@@ -492,7 +492,7 @@ Worker; DSN Now freshness; NASA/ESA image licences; 26 LoC plates bundled.
 
 ** v4.3: widgets and controls
 - Lock Screen: Kp, next launch. Home Screen: Voyager 1 distance, today's Sun
-  image. Done; not yet checked on a device.
+  image. Done; checked on a device 2026-11-02.
 - Widgets and Control Center controls backed by the App Intents, with an
   App Group. Done: App Group =group.sh.krz.moonrise= shares the Sky tab's
   place; controls open Sky, Sun and Launches.
@@ -586,8 +586,8 @@ Worker; DSN Now freshness; NASA/ESA image licences; 26 LoC plates bundled.
   page; =/v1/launch-starts= stores ActivityKit's push-to-start token and the
   lists (App Attest signed, apart from devices); an hour before NET the
   Worker starts the countdown on the launch's broadcast channel. Privacy
-  policy updated 2026-10-21 (launch countdowns, App Attest). Pending: App
-  Store privacy label check.
+  policy updated 2026-10-21 (launch countdowns, App Attest); App Store
+  privacy label checked 2026-11-02.
 
 ** v5.6: Observing
 - Meteor radiant altitude (radiant coordinates for the major showers).
@@ -620,8 +620,10 @@ Worker; DSN Now freshness; NASA/ESA image licences; 26 LoC plates bundled.
 
 * before publishing
 - App Store Connect: privacy policy URL https://krz.sh/privacy/moonrise/.
+  Done 2026-11-02.
 - App Store Connect privacy label: Location, Coarse Location, App
-  Functionality, not linked, not used for tracking (WeatherKit).
+  Functionality, not linked, not used for tracking (WeatherKit). Done
+  2026-11-02.
 
 * risks
 - Library scope: 320 pages is most of the effort. Ship 1.0 with fewer
