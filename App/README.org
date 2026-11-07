@@ -29,3 +29,5 @@ Connect, signed through the Apple ID in Xcode. The version is
 =git rev-list --count HEAD=, so each build maps to a commit.
 =MOONRISE_PUBLISH=0= exports the =.ipa= to =.build/ios-release= without
 uploading. The visionOS app is a separate product and is not uploaded.
+The script sources =release-ios.sh= from appstore-kit, checked out beside
+this repository or at =$APPSTORE_KIT=.
