@@ -1,0 +1,29 @@
+#+title: moonrise
+
+support this project through [[https://github.com/sponsors/ccleberg][github sponsors]] or [[https://cleberg.net/tips/][cleberg.net/tips]].
+
+* what
+night-sky and space app for iphone, ipad, apple watch and apple vision
+pro. swiftui app with a cloudflare workers backend.
+https://krz.sh/apps/moonrise/
+
+* does
+- the sky for your place and time: about 130,000 stars to magnitude 9,
+  all 88 constellations, the milky way, deep-sky objects, comets, the
+  planets, and the moon at its true phase
+- hold the phone up to see the sky over the camera
+- the solar system from above or in 3d, 1958 to 2050, with spacecraft
+- the sun now: nasa images, solar wind, aurora forecast, solar cycle
+- launches, eclipses, satellite passes, and the deep space network
+- a library of 370 pages on planets, moons, stars, constellations,
+  deep-sky objects, and spacecraft
+
+* requires
+ios 26, watchos 26, or visionos 26.
+
+* build
+see =App/README.org=. the worker is in =server/=.
+
+* license
+0bsd for the code. see LICENSE. bundled data and images keep their own
+licenses, listed in =THIRD_PARTY.org=.
